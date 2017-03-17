@@ -13,4 +13,5 @@ def watson(file_name):
         transcript=""
         for item in result:
             transcript+=item['alternatives'][0]['transcript']
+        transcript.replace('%HESITATION ','')
         return transcript
