@@ -1,68 +1,79 @@
 import string
 import csv
-from gensim.models.keyedvectors import KeyedVectors
+import cPickle
+import os
 import numpy as np
+from gensim.models.keyedvectors import KeyedVectors
 from keras.models import Sequential
 from keras.layers import LSTM, Activation, Dense, Dropout
 from keras.callbacks import ModelCheckpoint
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error
-import cPickle
-import os
-
+#TensorFlow log level to supress unwanted messages.
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'  #tensorflow log level
 
-train_data=None
-test_data=None
+class TopicLSTM(object):
+    def __init__(self):
+        self.train_data=None
+        self.test_data=None
 
-answer_ids={}
-all_topics=[]
-last_id=0
-w2v_model=None
-topic_model=None
-def read_training_data():
-    global train_data, test_data
-    train_data=cPickle.load(open('lstm_train_data.pickle','rb'))
-    test_data=cPickle.load(open('lstm_test_data.pickle','rb'))
+        self.answer_ids={}
+        self.all_topics=[]
+        self.last_id=0
+        self.w2v_model=None
+        self.topic_model=None
+        self.x_train=None
+        self.y_train=None
+        self.x_test=None
+        self.y_test=None
+        self.new_vectors=[]
 
-def train_lstm():
-    #don't pass summed vectors
-    global topic_model
-    x_train=[train_data[i][0] for i in range(len(train_data))] #no of utterances * no_of_sequences * 300
-    y_train=[train_data[i][1] for i in range(len(train_data))] #No_of_utterances * no_of_classes (40)
-    x_train=np.asarray(x_train)
+    def read_training_data(self):
+        self.train_data=cPickle.load(open('training_data/lstm_train_data.pickle','rb'))
+        self.test_data=cPickle.load(open('training_data/lstm_test_data.pickle','rb'))
+        self.x_train=[self.train_data[i][1] for i in range(len(self.train_data))] #no of utterances * no_of_sequences * 300
+        self.y_train=[self.train_data[i][2] for i in range(len(self.train_data))] #No_of_utterances * no_of_classes (40)
+        self.x_train=np.asarray(self.x_train)
+        self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))] #no of utterances * no_of_sequences * 300
+        self.y_test=[self.test_data[i][2] for i in range(len(self.test_data))] #No_of_utterances * no_of_classes (40)
+        self.x_test=np.asarray(self.x_test)
 
-    x_test=[test_data[i][0] for i in range(len(test_data))] #no of utterances * no_of_sequences * 300
-    y_test=[test_data[i][1] for i in range(len(test_data))] #No_of_utterances * no_of_classes (40)
-    x_test=np.asarray(x_test)
+    def train_lstm(self):
+        #don't pass summed vectors
+        nb_samples=len(self.train_data)
+        nb_each_sample=len(self.train_data[0][1])
+        nb_features=len(self.train_data[0][1][0])
+        nb_classes=len(self.train_data[0][2])
 
-    nb_samples=len(train_data)
-    nb_each_sample=len(train_data[0][0])
-    nb_features=len(train_data[0][0][0])
-    nb_classes=len(train_data[0][1])
+        self.topic_model=Sequential()
+        self.topic_model.add(LSTM(nb_features, input_shape=(nb_each_sample,nb_features), dropout=0.5, recurrent_dropout=0.1))
+        #try this
+        #topic_model.add(Dense(nb_classes, activation='sigmoid'))
+        self.topic_model.add(Dropout(0.5))
+        self.topic_model.add(Dense(nb_classes))
+        self.topic_model.add(Activation('softmax'))
+        self.topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
+        print(self.topic_model.summary())
+        filepath='training_data/lstm_model'
+        checkpoint=ModelCheckpoint(filepath, monitor='val_acc',verbose=1, save_best_only=True, mode='max')
+        callbacks_list=[checkpoint]
+        hist=self.topic_model.fit(self.x_train, self.y_train, batch_size=32, epochs=30, validation_split=0.1, callbacks=callbacks_list, verbose=1)
+        # print (self.topic_model.evaluate(self.x_test,self.y_test))
+        self.topic_model.load_weights(filepath)
+        self.topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
 
-    #input_length not working
-    #no of epochs?
-    topic_model=Sequential()
-    topic_model.add(LSTM(nb_features, input_shape=(nb_each_sample,nb_features), dropout=0.5, recurrent_dropout=0.1))
-    topic_model.add(Dropout(0.5))
-    topic_model.add(Dense(nb_classes))
-    topic_model.add(Activation('softmax'))
-    topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
-    print(topic_model.summary())
-    filepath='lstm_model'
-    checkpoint=ModelCheckpoint(filepath, monitor='val_acc',verbose=1, save_best_only=True, mode='max')
-    callbacks_list=[checkpoint]
-    hist=topic_model.fit(x_train, y_train, batch_size=32, epochs=1, validation_split=0.1, callbacks=callbacks_list, verbose=1)
-    topic_model.load_weights(filepath)
-    topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
+        for i in range(0,len(self.train_data)):
+            current_sample=self.x_train[i][np.newaxis, :, :]
+            prediction=self.topic_model.predict(current_sample)
+            self.new_vectors.append([self.train_data[i][0],prediction[0]])
 
-def test_lstm():
-    #predict here
-    trainpredict=topic_model.predict(x_train)
-    testpredict=topic_model.predict(x_test)
-    print testpredict[0], len(testpredict[0])
+        with open('training_data/train_topic_vectors.pickle','wb') as pickle_file:
+            cPickle.dump(self.new_vectors, pickle_file)
 
-if __name__=='__main__':
-    read_training_data()
-    train_lstm()
+
+    def test_lstm(self):
+        #predict here
+        #testpredict=topic_model.predict(x_test)
+        ans = self.topic_model.evaluate(x_test, y_test)
+        print ans
+        #print testpredict[0], len(testpredict[0])

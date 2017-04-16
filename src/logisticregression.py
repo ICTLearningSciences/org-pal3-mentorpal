@@ -4,41 +4,45 @@ from sklearn.linear_model import LogisticRegression
 import cPickle
 
 
-train_data=None
-test_data=None
-train_topic_vectors=None
-test_topic_vectors=None
-ids_answer=None
-logistic_model=None
-def load_data():
-    global train_data, test_data, train_topic_vectors, test_topic_vectors, ids_answer
-    train_data=cPickle.load('lr_train_data.pickle')
-    test_data=cPickle.load('lr_test_data.pickle')
-    train_topic_vectors=cPickle.load('train_topic_vectors.pickle')
-    test_topic_vectors=cPickle.load('test_topic_vectors.pickle')
-    ids_answer=cPickle.load('ids_answer.pickle')
+class LogisticClassifier(object):
+    def __init__(self):
+        self.train_data=None
+        self.test_data=None
+        self.train_topic_vectors=None
+        self.test_topic_vectors=None
+        self.ids_answer=None
+        self.logistic_model=None
+        self.x_train=[]
+        self.x_test=[]
+        self.y_train=[]
+        self.y_test=[]
 
-def fuse_vectors():
+    def load_data(self):
+        self.train_data=cPickle.load(open('training_data/lr_train_data.pickle','rb'))
+        self.test_data=cPickle.load(open('training_data/lr_test_data.pickle','rb'))
+        self.train_topic_vectors=cPickle.load(open('training_data/train_topic_vectors.pickle','rb'))
+        #self.test_topic_vectors=cPickle.load('training_data/test_topic_vectors.pickle')
+        self.ids_answer=cPickle.load(open('training_data/ids_answer.pickle','rb'))
 
-def train_lr():
-    global logistic_model
-    x_train=[train_data[i][0] for i in range(len(train_data))] #no of utterances * no_of_sequences * 300
-    y_train=[train_data[i][1] for i in range(len(train_data))] #No_of_utterances * no_of_classes (40)
-    x_train=np.asarray(x_train)
+    def create_unfused_vectors(self):
+        self.x_train=[self.train_data[i][1] for i in range(len(self.train_data))] #no of utterances * no_of_sequences * 300
+        self.y_train=[self.train_data[i][2] for i in range(len(self.train_data))] #No_of_utterances * no_of_classes (40)
+        self.x_train=np.asarray(self.x_train)
 
-    x_test=[test_data[i][0] for i in range(len(test_data))] #no of utterances * no_of_sequences * 300
-    y_test=[test_data[i][1] for i in range(len(test_data))] #No_of_utterances * no_of_classes (40)
-    x_test=np.asarray(x_test)
-    logistic_model=LogisticRegression()
-    logistic_model.fit(x_train, y_train)
+        self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))] #no of utterances * no_of_sequences * 300
+        self.y_test=[self.test_data[i][2] for i in range(len(self.test_data))] #No_of_utterances * no_of_classes (40)
+        self.x_test=np.asarray(self.x_test)
+
+    def create_fused_vectors(self):
+        for i in range(0,len(self.train_data)):
+            self.x_train.append(np.concatenate((self.train_data[i][1], self.train_topic_vectors[i][1])))
+        self.x_train=np.asarray(self.x_train)
+
+    def train_lr():
+        self.logistic_model=LogisticRegression()
+        self.logistic_model.fit(x_train, y_train)
 
 
-def test_lr():
-
-    
-
-
-
-
+    #def test_lr():
 
 
