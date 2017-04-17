@@ -4,7 +4,7 @@ import cPickle
 import os
 import numpy as np
 from gensim.models.keyedvectors import KeyedVectors
-from keras.models import Sequential
+from keras.models import Sequential, load_model
 from keras.layers import LSTM, Activation, Dense, Dropout
 from keras.callbacks import ModelCheckpoint
 from sklearn.preprocessing import MinMaxScaler
@@ -29,14 +29,17 @@ class TopicLSTM(object):
         self.new_vectors=[]
 
     def read_training_data(self):
-        self.train_data=cPickle.load(open('training_data/lstm_train_data.pickle','rb'))
-        self.test_data=cPickle.load(open('training_data/lstm_test_data.pickle','rb'))
+        self.train_data=cPickle.load(open('training_data/lstm_train_data.pkl','rb'))
+        self.test_data=cPickle.load(open('training_data/lstm_test_data.pkl','rb'))
         self.x_train=[self.train_data[i][1] for i in range(len(self.train_data))] #no of utterances * no_of_sequences * 300
         self.y_train=[self.train_data[i][2] for i in range(len(self.train_data))] #No_of_utterances * no_of_classes (40)
         self.x_train=np.asarray(self.x_train)
-        self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))] #no of utterances * no_of_sequences * 300
-        self.y_test=[self.test_data[i][2] for i in range(len(self.test_data))] #No_of_utterances * no_of_classes (40)
-        self.x_test=np.asarray(self.x_test)
+        try:
+            self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))] #no of utterances * no_of_sequences * 300
+            self.y_test=[self.test_data[i][2] for i in range(len(self.test_data))] #No_of_utterances * no_of_classes (40)
+            self.x_test=np.asarray(self.x_test)
+        except:
+            pass
 
     def train_lstm(self):
         #don't pass summed vectors
@@ -61,13 +64,13 @@ class TopicLSTM(object):
         # print (self.topic_model.evaluate(self.x_test,self.y_test))
         self.topic_model.load_weights(filepath)
         self.topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
-
+        self.topic_model.save('training_data/lstm_topic_model.h5')
         for i in range(0,len(self.train_data)):
             current_sample=self.x_train[i][np.newaxis, :, :]
             prediction=self.topic_model.predict(current_sample)
             self.new_vectors.append([self.train_data[i][0],prediction[0]])
 
-        with open('training_data/train_topic_vectors.pickle','wb') as pickle_file:
+        with open('training_data/train_topic_vectors.pkl','wb') as pickle_file:
             cPickle.dump(self.new_vectors, pickle_file)
 
 
@@ -77,3 +80,8 @@ class TopicLSTM(object):
         ans = self.topic_model.evaluate(x_test, y_test)
         print ans
         #print testpredict[0], len(testpredict[0])
+    
+    def get_topic_vector(self, lstm_vector):
+        self.topic_model=load_model('training_data/lstm_topic_model.h5')
+        predicted_vector=self.topic_model.predict(lstm_vector)
+        return predicted_vector[0]

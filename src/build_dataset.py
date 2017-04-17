@@ -57,8 +57,10 @@ class BuildDataset(object):
         self.all_topics=[]
         self.last_id=0
         self.w2v_model=None
-        topic_model=None
+        self.topic_model=None
         self.topic_set=set()
+        self.preprocessor=NLTKPreprocessor()
+
 
     def read_topics(self):
         with open('data/topics.csv') as f:
@@ -76,7 +78,6 @@ class BuildDataset(object):
         return ret_topics
 
     def read_data(self):
-        preprocessor=NLTKPreprocessor()
         with open('data/Full_Dataset - Sheet1.csv','rU') as f:
             reader=csv.reader(f)
             #row=<question, topic, answer, paraphrases>
@@ -91,7 +92,7 @@ class BuildDataset(object):
                 paraphrases=filter(None, paraphrases)
 
                 #Tokenize the question
-                processed_question=preprocessor.transform(question)
+                processed_question=self.preprocessor.transform(question)
                 topics=topics+helpers
                 topics=filter(None, topics)
                 #normalize the topics
@@ -109,11 +110,12 @@ class BuildDataset(object):
 
                 #look for paraphrases and add them to dataset
                 for i in range(0,len(paraphrases)):
-                    processed_paraphrase=preprocessor.transform(paraphrases[i])
-                    if i==len(paraphrases)-1:
-                        self.test_data.append([paraphrases[i],processed_paraphrase,topics,current_id])
-                    else:
-                        self.train_data.append([paraphrases[i],processed_paraphrase,topics,current_id])
+                    processed_paraphrase=self.preprocessor.transform(paraphrases[i])
+                    self.train_data.append([paraphrases[i],processed_paraphrase,topics,current_id])
+                    # if i==len(paraphrases)-1:
+                    #     self.test_data.append([paraphrases[i],processed_paraphrase,topics,current_id])
+                    # else:
+                    #     self.train_data.append([paraphrases[i],processed_paraphrase,topics,current_id])
 
                     # if len(paraphrases) == 3 and len(paraphrases) - i == 1:
                     #     self.test_data.append([paraphrases[i],topics,current_id])
@@ -146,12 +148,15 @@ class BuildDataset(object):
         padded_vectors=pad_sequences(self.lstm_train_vectors,maxlen=25, dtype='float32',padding='post',truncating='post',value=0.)
         self.lstm_train_vectors=padded_vectors
 
-        for instance in self.test_data:
-            w2v_vector, lstm_vector=self.get_w2v(instance[1])
-            self.test_vectors.append([instance[0],w2v_vector,instance[1],instance[2]])
-            self.lstm_test_vectors.append(lstm_vector)
-        padded_vectors=pad_sequences(self.lstm_test_vectors,maxlen=25, dtype='float32',padding='post',truncating='post',value=0.)
-        self.lstm_test_vectors=padded_vectors
+        try:
+            for instance in self.test_data:
+                w2v_vector, lstm_vector=self.get_w2v(instance[1])
+                self.test_vectors.append([instance[0],w2v_vector,instance[2],instance[3]])
+                self.lstm_test_vectors.append(lstm_vector)
+            padded_vectors=pad_sequences(self.lstm_test_vectors,maxlen=25, dtype='float32',padding='post',truncating='post',value=0.)
+            self.lstm_test_vectors=padded_vectors
+        except:
+            pass
 
     def generate_sparse_topic_vectors(self):
         #Generate the sparse topic train_vectors
@@ -166,33 +171,40 @@ class BuildDataset(object):
             self.train_vectors[i][2]=topic_vector
             self.lstm_train_data.append([question,self.lstm_train_vectors[i],topic_vector])
 
-        #Generate the sparse topic test_vectors
-        for i in range(len(self.test_vectors)):
-            question=self.test_vectors[i][0]
-            vector=self.test_vectors[i][1]
-            current_topics=self.test_vectors[i][2]
-            topic_vector=[0]*len(self.all_topics)
-            for j in range(len(self.all_topics)):
-                if self.all_topics[j] in current_topics:
-                    topic_vector[j]=1
-            self.test_vectors[i][2]=topic_vector
-            self.lstm_test_data.append([question,self.lstm_test_vectors[i],topic_vector])
+        try:
+            #Generate the sparse topic test_vectors
+            for i in range(len(self.test_vectors)):
+                question=self.test_vectors[i][0]
+                vector=self.test_vectors[i][1]
+                current_topics=self.test_vectors[i][2]
+                topic_vector=[0]*len(self.all_topics)
+                for j in range(len(self.all_topics)):
+                    if self.all_topics[j] in current_topics:
+                        topic_vector[j]=1
+                self.test_vectors[i][2]=topic_vector
+                self.lstm_test_data.append([question,self.lstm_test_vectors[i],topic_vector])
+        except:
+            pass
+
 
     def write_data(self):
         #dump lstm_train_data
-        with open('training_data/lstm_train_data.pickle','wb') as pickle_file:
+        with open('training_data/lstm_train_data.pkl','wb') as pickle_file:
             cPickle.dump(self.lstm_train_data, pickle_file)
-        #dump lstm_test_data
-        with open('training_data/lstm_test_data.pickle','wb') as pickle_file:
-            cPickle.dump(self.lstm_test_data, pickle_file)
         #dump train_vectors for logistic regression
-        with open('training_data/lr_train_data.pickle','wb') as pickle_file:
+        with open('training_data/lr_train_data.pkl','wb') as pickle_file:
             cPickle.dump(self.train_vectors,pickle_file)
-        #dump test_vectors for logistic regression
-        with open('training_data/lr_test_data.pickle','wb') as pickle_file:
-            cPickle.dump(self.test_vectors,pickle_file)
+        try:
+            #dump lstm_test_data
+            with open('training_data/lstm_test_data.pkl','wb') as pickle_file:
+                cPickle.dump(self.lstm_test_data, pickle_file)
+            #dump test_vectors for logistic regression
+            with open('training_data/lr_test_data.pkl','wb') as pickle_file:
+                cPickle.dump(self.test_vectors,pickle_file)
+        except:
+            pass
         #dump ids_answers
-        with open('training_data/ids_answer.pickle','wb') as pickle_file:
+        with open('training_data/ids_answer.pkl','wb') as pickle_file:
             cPickle.dump(self.ids_answer,pickle_file)
 
 
