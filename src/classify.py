@@ -60,7 +60,7 @@ def main():
     #classifier.train_lstm()
     #classifier.train_lr()
     print "You can ask questions now. Type 'exit' to exit"
-    question=raw_input("Guest: ")
+    question=raw_input("Guest: ") #fetch after each space?
     while question!= 'exit':
         answer=classifier.get_answer(question)
         print "Clint: ",
