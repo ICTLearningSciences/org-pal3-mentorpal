@@ -13,7 +13,7 @@ class NPCEditor(object):
         self.send_request()
     
     def send_request(self):
-        call(["java", "-cp", "/Applications/NPCEditor.app/npceditor.jar:plugins/batch_plugin.jar", "edu.usc.ict.npc.server.net.ipc.BatchModule", "--stdin", "xml_messages/npceditor_request.xml"])
+        call(["java", "-cp", "/Applications/NPCEditor.app/npceditor.jar:/Applications/NPCEditor.app/plugins/batch_plugin.jar", "edu.usc.ict.npc.server.net.ipc.BatchModule", "--stdin", "xml_messages/npceditor_request.xml"])
 
 def main():
     npc=NPCEditor()

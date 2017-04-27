@@ -4,7 +4,7 @@ import ibm_stt
 import sys
 import os
 import fnmatch
-
+import pandas as pd
 '''
 Converts the .mp4 file to a .wav file.
 Later, this .wav file is split into smaller chunks for each Q-A pair.
@@ -28,16 +28,17 @@ def convert_to_wav(input_file, output_file):
 '''
 Splits the large .wav file into chunks based on the start_time and end_time of chunk.
 audiochunks is the folder where the chunks are stored, based on the ID of the Q-A pair.
-This function is equivalent to running `ffmpeg -i input_file -ss start_time -to end_time -loglevel quiet` on the command line.
+This function is equivalent to running `ffmpeg -i input_file -ss start_time -to end_time output_file -loglevel quiet` on the command line.
 start_time and end_time must be in seconds. For example, a time 01:03:45 is 01*3600 + 03*60 + 45 = 3825 seconds.
 See convert_to_seconds(time) function which does this for you.
+FFMpeg will automatically recognize whether the result must be audio or video, based on the extension of the output_file.
 
 Parameters:
 audiochunks: The audiochunks directory /example/path/to/session1/audiochunks
 input_file: /example/path/to/session1/session1part1.wav, /example/path/to/session1/session1part2.wav
 index: question number
 '''
-def ffmpeg_split(audiochunks, input_file, index, start_time, end_time):
+def ffmpeg_split_audio(audiochunks, input_file, index, start_time, end_time):
     output_file=audiochunks+"/q"+str(index)+".wav"
     output_command="-ss "+str(start_time)+" -to "+str(end_time)+" -loglevel quiet"
     ff=ffmpy.FFmpeg(
@@ -69,7 +70,7 @@ def convert_to_seconds(time):
     return result
 
 '''
-Reads the timestamps from file, converts into seconds and calls ffmpeg_split(...) to split the large .wav file.
+Reads the timestamps from file, converts into seconds and calls ffmpeg_split_audio(...) to split the large .wav file.
 
 Parameters:
 audiochunks: The audiochunks directory /example/path/to/session1/audiochunks
@@ -83,13 +84,15 @@ def split_into_chunks(audiochunks, audio_file, timestamps, offset):
     start_times=[] #list of start times
     end_times=[] #list of end times
     questions=[] #list of questions
-    with open(timestamps, 'r') as csvfile:
-        csvreader=csv.reader(csvfile)
-        csvreader.next() #Skip the header
-        for row in csvreader:
-            questions.append(row[0])
-            start_times.append(row[1])
-            end_times.append(row[2])
+
+    timestamps_file=pd.read_csv(timestamps)
+    #by default, pandas reads empty cells as 0. Since we are dealing with text,we put empty string instead of 0
+    timestamps_file = timestamps_file.fillna('')
+
+    for i in range(0,len(timestamps_file)):
+        questions.append(timestamps_file.iloc[i]['Question'])
+        start_times.append(timestamps_file.iloc[i]['Response start'])
+        end_times.append(timestamps_file.iloc[i]['Response end'])
 
     #convert all start times to seconds
     for i in range(0,len(start_times)):
@@ -102,7 +105,7 @@ def split_into_chunks(audiochunks, audio_file, timestamps, offset):
     #get all the chunks
     for i in range(0,len(start_times)):
         print "Processed chunk "+str(i)
-        ffmpeg_split(audiochunks, audio_file, offset+i, start_times[i], end_times[i])
+        ffmpeg_split_audio(audiochunks, audio_file, offset+i, start_times[i], end_times[i])
     return questions
 
 '''
@@ -145,8 +148,8 @@ def main():
 
     print "Started processing the session..."
     for i in range(number_of_parts):
-        video=dirname+'session'+str(session_number)+'part'+str(i+1)+'.mp4'
-        audio=dirname+'session'+str(session_number)+'part'+str(i+1)+'.wav'
+        video_file=dirname+'session'+str(session_number)+'part'+str(i+1)+'.mp4'
+        audio_file=dirname+'session'+str(session_number)+'part'+str(i+1)+'.wav'
         timestamps=dirname+'session'+str(session_number)+'part'+str(i+1)+'_timestamps.csv'
         audiochunks=dirname+'audiochunks'
         offset=0
@@ -160,10 +163,10 @@ def main():
             offset=len(fnmatch.filter(os.listdir(audiochunks), '*.wav'))
         print "Processing part "+str(i+1)+"..."
         print "Converting video to audio..."
-        convert_to_wav(video, audio)
+        convert_to_wav(video_file, audio_file)
         print "Completed converting to wav"
         print "Chunking the audio into smaller parts..."
-        questions=split_into_chunks(audiochunks, audio,timestamps, offset)
+        questions=split_into_chunks(audiochunks, audio_file, timestamps, offset)
         print "Finished chunking"
         print "Talking to IBM Watson to get transcripts..."
         get_transcript(dirname, audiochunks, questions, offset)
