@@ -26,5 +26,10 @@ The following packages are required for the program to run. All these can be ins
   
   1. **watson_developer_cloud** : IBM Watson's Python wrapper to communicate with their STT service.
   2. **ffmpy** : A wrapper for FFmpeg, which is used to convert video to audio and also cut the audio file into chunks.
+  3. **keras** : Neural network library
+  4. **scikit-learn** : Python Machine Learning library
+  5. **numpy** : Python scientific computing
+  6. **pandas** : High-performance data structures for Python
+  7. **gensim** : Topic Modelling - needed for word2vec
   
   
