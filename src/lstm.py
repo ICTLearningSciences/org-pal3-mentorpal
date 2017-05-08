@@ -8,7 +8,7 @@ from keras.models import Sequential, load_model
 from keras.layers import LSTM, Activation, Dense, Dropout
 from keras.callbacks import ModelCheckpoint
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, f1_score, accuracy_score
 #TensorFlow log level to supress unwanted messages.
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'  #tensorflow log level
 
@@ -16,8 +16,6 @@ class TopicLSTM(object):
     def __init__(self):
         self.train_data=None
         self.test_data=None
-
-        self.answer_ids={}
         self.all_topics=[]
         self.last_id=0
         self.w2v_model=None
@@ -29,8 +27,8 @@ class TopicLSTM(object):
         self.new_vectors=[]
 
     def read_training_data(self):
-        self.train_data=cPickle.load(open('training_data/lstm_train_data.pkl','rb'))
-        self.test_data=cPickle.load(open('training_data/lstm_test_data.pkl','rb'))
+        self.train_data=cPickle.load(open('train_data/lstm_train_data.pkl','rb'))
+        self.test_data=cPickle.load(open('test_data/lstm_test_data.pkl','rb'))
         self.x_train=[self.train_data[i][1] for i in range(len(self.train_data))] #no of utterances * no_of_sequences * 300
         self.y_train=[self.train_data[i][2] for i in range(len(self.train_data))] #No_of_utterances * no_of_classes (40)
         self.x_train=np.asarray(self.x_train)
@@ -57,31 +55,41 @@ class TopicLSTM(object):
         self.topic_model.add(Activation('softmax'))
         self.topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
         print(self.topic_model.summary())
-        filepath='training_data/lstm_model'
+        filepath='train_data/lstm_model'
         checkpoint=ModelCheckpoint(filepath, monitor='val_acc',verbose=1, save_best_only=True, mode='max')
         callbacks_list=[checkpoint]
         hist=self.topic_model.fit(self.x_train, self.y_train, batch_size=32, epochs=30, validation_split=0.1, callbacks=callbacks_list, verbose=1)
         # print (self.topic_model.evaluate(self.x_test,self.y_test))
         self.topic_model.load_weights(filepath)
         self.topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
-        self.topic_model.save('training_data/lstm_topic_model.h5')
+        self.topic_model.save('train_data/lstm_topic_model.h5')
         for i in range(0,len(self.train_data)):
             current_sample=self.x_train[i][np.newaxis, :, :]
             prediction=self.topic_model.predict(current_sample)
             self.new_vectors.append([self.train_data[i][0],prediction[0]])
 
-        with open('training_data/train_topic_vectors.pkl','wb') as pickle_file:
+        with open('train_data/train_topic_vectors.pkl','wb') as pickle_file:
             cPickle.dump(self.new_vectors, pickle_file)
+        self.test_lstm()
 
 
     def test_lstm(self):
-        #predict here
-        #testpredict=topic_model.predict(x_test)
-        ans = self.topic_model.evaluate(x_test, y_test)
-        print ans
-        #print testpredict[0], len(testpredict[0])
+        y_pred=[]
+        for i in range(0,len(self.test_data)):
+            current_sample=self.x_test[i][np.newaxis, :, :]
+            prediction=self.topic_model.predict(current_sample)
+            y_pred.append(prediction[0])
+            self.new_vectors.append([self.test_data[i][0],prediction[0]])
+
+        # print y_pred
+        # print self.y_test
+        # print "Accuracy: "+str(accuracy_score(self.y_test, y_pred))
+
+        # print "F-1: "+str(f1_score(self.y_test, y_pred, average='micro'))
+        with open('test_data/test_topic_vectors.pkl','wb') as pickle_file:
+            cPickle.dump(self.new_vectors, pickle_file)
     
     def get_topic_vector(self, lstm_vector):
-        self.topic_model=load_model('training_data/lstm_topic_model.h5')
+        self.topic_model=load_model('train_data/lstm_topic_model.h5')
         predicted_vector=self.topic_model.predict(lstm_vector)
         return predicted_vector[0]

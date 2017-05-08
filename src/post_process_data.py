@@ -89,15 +89,16 @@ class PostProcessData(object):
             if text_type[i]=='A' and len(self.corpus) > self.corpus_index:
                 output_file=self.answer_chunks+'/answer_'+str(self.answer_number)+'.mp4'
                 training_sample['ID']='answer_'+str(self.answer_number)
-                training_sample['tags']=self.corpus.iloc[self.corpus_index]['Tags']+","+self.corpus.iloc[self.corpus_index]['Helpers']
-                if training_sample['tags'][-1]==',':
-                    training_sample['tags']=training_sample['tags'][:-1]
+                training_sample['topics']=self.corpus.iloc[self.corpus_index]['Topics']+","+self.corpus.iloc[self.corpus_index]['Helpers']
+                if training_sample['topics'][-1]==',':
+                    training_sample['topics']=training_sample['topics'][:-1]
                 training_sample['question']=self.corpus.iloc[self.corpus_index]['Question']+'\r\n'+self.corpus.iloc[self.corpus_index]['P1']+'\r\n'+\
                 self.corpus.iloc[self.corpus_index]['P2']+'\r\n'+self.corpus.iloc[self.corpus_index]['P3']+'\r\n'+\
                 self.corpus.iloc[self.corpus_index]['P4']+'\r\n'+self.corpus.iloc[self.corpus_index]['P5']+'\r\n'+\
                 self.corpus.iloc[self.corpus_index]['P6']+'\r\n'+self.corpus.iloc[self.corpus_index]['P7']+'\r\n'+\
                 self.corpus.iloc[self.corpus_index]['P8']+'\r\n'+self.corpus.iloc[self.corpus_index]['P9']+'\r\n'+\
                 self.corpus.iloc[self.corpus_index]['P10']
+                training_sample['question']=training_sample['question'].strip()
                 training_sample['text']=self.corpus.iloc[self.corpus_index]['text']
                 self.corpus_index+=1
                 self.answer_number+=1
@@ -108,13 +109,32 @@ class PostProcessData(object):
             #self.ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
 
     def write_data(self):
+        #data for Classifier
+        header=True
+        if os.path.exists('data/classifier_data.csv'):
+            header=False
+
+        classifier_df=pd.DataFrame(self.training_data,columns=['ID','topics','text','question'])
+        with open('data/classifier_data.csv', 'a') as classifier_file:
+             classifier_df.to_csv(classifier_file, header=header, index=False)
+
+        #store meta-data for later use
+        with open('data/metadata.txt','w') as metadata_file:
+            metadata_file.write("Last answer number:"+str(self.answer_number)+"\n")
+            metadata_file.write("Last utterance number:"+str(self.utterance_number)+"\n")
+            metadata_file.write("Corpus Index:"+str(self.corpus_index)+"\n")
+
         #data for NPCEditor
-        startrow=0
         header=True
         if os.path.exists('data/NPCEditor_data.xlsx'):
             curr_npceditor_df=pd.read_excel(open('data/NPCEditor_data.xlsx','rb'),sheetname='Sheet1')
             startrow=len(curr_npceditor_df)+1
             header=False
+        npceditor_test_data=[]
+        for i in range(0,len(self.training_data)):
+            questions=self.training_data[i]['question'].split('\r\n')
+            npceditor_test_data.append(questions.pop(-1))
+            self.training_data[i]['question']='\r\n'.join(questions)
         npceditor_df=pd.DataFrame(self.training_data,columns=['ID','text','question'])
         if not header:
             frames=[curr_npceditor_df,npceditor_df]
@@ -126,20 +146,7 @@ class PostProcessData(object):
         df_to_write.to_excel(npceditor_writer,'Sheet1', index=False, header=header)
         npceditor_writer.save()
 
-        #data for Classifier
-        header=True
-        if os.path.exists('data/classifier_data.csv'):
-            header=False
 
-        classifier_df=pd.DataFrame(self.training_data,columns=['ID','tags','text','question'])
-        with open('data/classifier_data.csv', 'a') as classifier_file:
-             classifier_df.to_csv(classifier_file, header=header, index=False)
-
-        #store meta-data for later use
-        with open('data/metadata.txt','w') as metadata_file:
-            metadata_file.write("Last answer number:"+str(self.answer_number)+"\n")
-            metadata_file.write("Last utterance number:"+str(self.utterance_number)+"\n")
-            metadata_file.write("Corpus Index:"+str(self.corpus_index)+"\n")
 
 def main():
     #dirname must be /example/path/to/recordings - top level directory for all recordings
