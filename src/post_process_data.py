@@ -4,7 +4,6 @@ import sys
 import os
 import fnmatch
 import pandas as pd
-from openpyxl import load_workbook
 class PostProcessData(object):
     def __init__(self, answer_chunks, utterance_chunks, answer_number, utterance_number, corpus, corpus_index):
         self.answer_chunks=answer_chunks

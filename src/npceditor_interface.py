@@ -3,7 +3,6 @@ import os
 import cPickle
 import numpy as np
 from subprocess import Popen, PIPE
-from tempfile import TemporaryFile
 from sklearn.metrics import f1_score, accuracy_score
 class NPCEditor(object):
     def __init__(self):
