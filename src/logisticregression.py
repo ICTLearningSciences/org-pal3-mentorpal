@@ -92,6 +92,6 @@ class LogisticClassifier(object):
 
         test_vector=test_vector.reshape(1,-1)
         prediction=self.logistic_model.predict(test_vector)
-        return self.ids_answer[prediction[0]]
+        return prediction[0], self.ids_answer[prediction[0]]
 
 
