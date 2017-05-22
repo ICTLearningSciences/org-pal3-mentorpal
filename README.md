@@ -7,7 +7,7 @@ To obtain transcripts for a particular video, do the following:
   0. After the interview is done, watch it fully and note down the start and end timestamps for each question. Format: HH:MM:SS. Download the timestamps sheet and video. Look at existing timestamp sheets for exact format of the sheet.
   1. Place the video and the timestamps file inside **recordings/session1/**, **recordings/session2/**, etc.
   2. The video must be named as **session1part1.mp4**. The timestamps file must be **session1part1_timestamps.csv**. The session number and part number will change based on what you have. If a session has only one part, then it will be session3part1.mp4, session3part1_timestamps.csv. Part numbering begins at 1.
-  3. Run the command `python src/prepare_data.py /example/path/ICT/Recordings/sessionN` from root directory of the git repository. *N* is the session number.
+  3. Run the command `python src/data_pipeline/prepare_data.py /example/path/ICT/Recordings/sessionN` from root directory of the git repository. *N* is the session number.
   4. The program will first convert the video to audio and create **session1part1.wav.**, etc. based on what the video name is. The audio file has same name, except the extension
   5. Then, the program will cut the audio into chunks, based on the timestamps provided. The chunks are stored inside **recordings/session1/audiochunks** and the chunks are named from **a0.wav** to **qm.wav** where *m* is the number of questions asked in the session.
   6. Once the chunks have been obtained, the program will automatically call the IBM Watson method in `ibm_stt.py`.
