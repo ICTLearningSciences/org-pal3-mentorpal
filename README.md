@@ -20,6 +20,33 @@ To obtain transcripts for a particular video, do the following:
   13. This will generate **classifier_data.csv**, **NPCEditor_data.xlsx** and **metadata.txt**. The first file is for use by the classifier. The second file should be imported into NPCEditor (More on this later) and the third file contains metadata about what was processed. If you have 5 sessions so far and then, you record a sixth session, you don't need to run the post_process_data.py from scratch. You can just run python src/post_process_data.py /example/path/ICT/Recordings 6 6` and data from the sixth session will be appended to **classifier_data.csv** and **NPCEditor_data.xlsx**. **metadata.txt** will also be updated and you can add more new sessions like this. Yould still have to run prepare_data.py for the new sessions every time and have to do the manual work (paraphrases, tags, manual transcription cleanup) for each session.
   14. Now, data for the ensemble classifier is ready and you can proceed to training the classifier and NPCEditor.
   
+NPCEditor Setup
+---------------
+The following steps will setup NPCEditor with the data from **NPCEditor_data.xlsx**
+  1. Open NPCEditor (on Mac, it is an application. On Windows/Linux, it is a .jar file which can be opened by just double-clicking it). Make sure you have Java 8 installed.
+  2. File -> Import -> Excel
+  ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427446/c7e379d4-40aa-11e7-8ece-095f2df2d271.png)
+  3. Select the Excel file (.xlsx) **NPCEditor_data.xlsx**.
+  ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427449/cb951740-40aa-11e7-86e2-763599d3c030.png)
+  4. In a few moments, you should see the questions and answers being loaded into the Utterances tab.
+  5. Navigate to the People tab and click on 'Add' in the bottom left corner. Name your person as you wish. This is not the name of the mentor because when multiple mentors are added, there will still be only one NPCEditor instance running.
+  ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427459/d024a168-40aa-11e7-8037-55ee2cdc446b.png)
+  6. Click on the Accounts tab inside the People tab. Create a new account by clicking the 'Add' button below the list of accounts. The account type must be 'Batch Processing'.
+  ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427465/d7f37a22-40aa-11e7-9564-dce78e782596.png)
+  7. Enter the agent name as the name of the mentor. If there are multiple mentors, each mentor gets a separate batch processing account. This will help in directing questions to specific mentors if required. Leave the module name as such. Check the 'Connect on startup' option. Click 'Connect'.
+  ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427474/dd82c2cc-40aa-11e7-8d64-ffe59ea891d8.png)
+  8. Navigate to the Utterances tab. Select all the answers and from the 'Domain' dropdown, select the name of the person you have created earlier in step 5.
+  ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427479/e2f71294-40aa-11e7-857f-2a39b83fa151.png)
+  9. Leave the questions side untouched. 
+  10. Now, NPCEditor is ready for training.
+  11. Navigate to the Classifiers tab, select the entry in the first box with Sender=Anybody. Set up the classifier as shown in the image below and click on 'Start Training'.
+  ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427493/f0ec88de-40aa-11e7-8c44-0dcf62dab005.png)
+  12. Once the training is finished, the details of the classifier will show up in the status box. This indicates that NPCEditor classifier model is ready.
+  13. Navigate to the 'Conversations' tab and make sure that the Dialog Manager is set to 'Classifier'. XML messages can now be sent to NPCEditor and answers will be returned.
+  
+  
+Classifier Setup
+---------------
   
 System Setup
 ------------
