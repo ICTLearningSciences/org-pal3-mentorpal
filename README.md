@@ -20,7 +20,18 @@ To obtain transcripts for a particular video, do the following:
   13. This will generate **classifier_data.csv**, **NPCEditor_data.xlsx** and **metadata.txt**. The first file is for use by the classifier. The second file should be imported into NPCEditor (More on this later) and the third file contains metadata about what was processed. If you have 5 sessions so far and then, you record a sixth session, you don't need to run the post_process_data.py from scratch. You can just run python src/post_process_data.py /example/path/ICT/Recordings 6 6` and data from the sixth session will be appended to **classifier_data.csv** and **NPCEditor_data.xlsx**. **metadata.txt** will also be updated and you can add more new sessions like this. Yould still have to run prepare_data.py for the new sessions every time and have to do the manual work (paraphrases, tags, manual transcription cleanup) for each session.
   14. Now, data for the ensemble classifier is ready and you can proceed to training the classifier and NPCEditor.
   
-Dependencies
+  
+System Setup
+------------
+The following are required to clone the project from git and run:
+  1. python 2.7 (will be upgrading to python 3.6 soon)
+  2. git
+  3. git-lfs (https://git-lfs.github.com/). Track .pkl files when using git-lfs.
+  4. ffmpeg
+  5. Apache Activemq (activemq.apache.org)
+  6. Java 8
+  
+Python Dependencies
 ------------
 The following packages are required for the program to run. All these can be installed from pip or easy_install.
   
