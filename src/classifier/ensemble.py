@@ -19,11 +19,13 @@ class EnsembleClassifier(object):
         self.npc_y_test=[]
         self.npc_y_pred=[]
         self.ensemble_pred=[]
+
         self.classifier=classify.Classify()
         self.npc=npceditor_interface.NPCEditor()
 
         #variables to keep track of session
         self.blacklist=set()
+        self.special_cases={} #"PAL3 has timed out due to no response from user": "pal3_timeout" and such cases
 
     '''
     This starts the pipeline for training the classifier from scratch.
@@ -93,8 +95,67 @@ class EnsembleClassifier(object):
         return return_id, return_answer
     
     '''
+    Checks if the question is off-topic
+    '''
+    def is_off_topic(self, question):
+
+
+    '''
+    This method checks the status of the question: whether it is an off-topic or a repeat. Other statuses can be added here.
+    '''
+    def check_question(self, question):
+        #if question is a special case
+        if question in self.special_cases:
+            for case, question_status in self.special_cases.iteritems():
+                if question == case:
+                    return question_status
+
+        #if question is off-topic
+        if self.is_off_topic(question):
+            return 'off-topic'
+
+        #if question is repeat
+        if question in self.blacklist:
+            return 'repeat'
+        else:
+            return 'new-question'
+
+    '''
+    This method returns the appropriate prompt for a particular question status
+    '''
+    def return_prompt(self, situation):
+        #Load the prompts file
+
+        #Select a prompt and return it
+
+    '''
     When you want to get an answer to a question, this method will be used. Flexibility to use/not use topic vectors is provided.
+    For special cases like time-out, user diverting away from topic, etc., pass a pre-defined message as the question.
+    check_question(question) will handle the pre-defined message and an appropriate prompt will be returned.
+    For example, when PAL3 times out, a message like "PAL3 has timed out due to no response from user" will be sent as the question.
+    self.special_cases will have this message stored already and a question_status will be linked to it like:
+    "PAL3 has timed out due to no response from user": "pal3_timeout". This question status will trigger an appropriate prompt
+    from return_prompt
     '''
     def answer_the_question(self, question, use_topic_vectors=True):
-        answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
+        question_status=check_question(question) #check the question status
+
+        #if the question is legitimate, then fetch answer
+        if question_status=='new-question':
+            answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
+
+        #Statuses that require a prompt from the mentor
+        else:
+            answer=self.return_prompt(self, question_status)
+
         return answer
+
+    #information to track must be discussed with Ben, Nick, Kayla
+    def start_session(self):
+        self.blacklist.clear()
+        #set other variables to track session
+
+    def end_session(self):
+        #handle variables to end session
+            
+
