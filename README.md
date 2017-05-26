@@ -66,9 +66,13 @@ The components of the classifier are explained below, with data from **classifie
 
 Ensemble Classifier
 -----------------
+
+**IMPORTANT: Make sure to download the Google News Vectors from https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit and place it in the same folder as MentorPAL (the git repo). The git repo and GoogleNews-vectors-negative300.bin must be siblings.**
+
 A sample program **src/classifier/run.py** is provided to demonstrate how to use the ensemble classifier.
 
 The program **src/classifier/ensemble.py** handles the ensemble. Specifically, when it receives a question, it sends it to *src/classifier/npceditor_interface.py** and **src/classifier/classify.py** to get answers from NPCEditor and the classifier. This program has the rules to decide which answer to return. The answer is returned to run.py or whichever interface you call this program from.
+
 
 System Setup
 ------------
