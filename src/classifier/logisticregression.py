@@ -13,14 +13,23 @@ class LogisticClassifier(object):
         self.train_topic_vectors=None
         self.test_topic_vectors=None
         self.ids_answer=None
-        self.logistic_model=None
-        self.x_train=[]
-        self.x_test=[]
-        self.y_train=[]
-        self.y_test=[]
+        self.logistic_model_unfused=None
+        self.logistic_model_fused=None
+        self.x_train_fused=[]
+        self.x_test_fused=[]
+        self.y_train_fused=[]
+        self.y_test_fused=[]
+        self.x_train_unfused=[]
+        self.x_test_unfused=[]
+        self.y_train_unfused=[]
+        self.y_test_unfused=[]
         self.test_questions=[]
 
+    '''
+    Load the data (unpickle the data) from the .pkl files.
+    '''
     def load_data(self):
+        self.lc.ids_answer=cPickle.load(open('train_data/ids_answer.pkl','rb'))
         self.train_data=cPickle.load(open('train_data/lr_train_data.pkl','rb'))
         try:
             self.train_topic_vectors=cPickle.load(open('train_data/train_topic_vectors.pkl','rb'))
@@ -29,39 +38,54 @@ class LogisticClassifier(object):
         except:
             pass
 
-    def create_vectors(self, mode='fused'):
-        if mode=='unfused':
-            print "unfused"
-            self.x_train=[self.train_data[i][1] for i in range(len(self.train_data))]
-            self.y_train=[self.train_data[i][3] for i in range(len(self.train_data))]
-            self.x_train=np.asarray(self.x_train)
-            try:
-                self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
-                self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
-                self.x_test=np.asarray(self.x_test)
-                self.test_questions=[self.test_data[i][0] for i in range(len(self.test_data))]
-            except:
-                pass
-        elif mode=='fused':
-            for i in range(0,len(self.train_data)):
-                self.x_train.append(np.concatenate((self.train_data[i][1], self.train_topic_vectors[i][1])))
-            self.x_train=np.asarray(self.x_train)
-            self.y_train=[self.train_data[i][3] for i in range(len(self.train_data))]
-            try:
-                for i in range(0,len(self.test_data)):
-                    self.x_test.append(np.concatenate((self.test_data[i][1], self.test_topic_vectors[i][1])))
-                self.x_test=np.asarray(self.x_test)
-                self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
-                self.test_questions=[self.test_data[i][0] for i in range(len(self.test_data))]
-            except:
-                pass
+    '''
+    Create the training vectors.
+    '''
+    def create_vectors(self):
+        print "Not using topic vectors"
+        self.x_train_unfused=[self.train_data[i][1] for i in range(len(self.train_data))]
+        self.y_train_unfused=[self.train_data[i][3] for i in range(len(self.train_data))]
+        self.x_train_unfused=np.asarray(self.x_train_unfused)
+        try:
+            self.x_test_unfused=[self.test_data[i][1] for i in range(len(self.test_data))]
+            self.y_test_unfused=[self.test_data[i][3] for i in range(len(self.test_data))]
+            self.x_test_unfused=np.asarray(self.x_test_unfused)
+        except:
+            pass
 
-    def train_lr(self, method='fused'):
-        self.logistic_model=LogisticRegression()
-        self.logistic_model.fit(self.x_train, self.y_train)
-        joblib.dump(self.logistic_model, 'train_data/'+method+'_model.pkl')
+        print "Using topic vectors"
+        for i in range(0,len(self.train_data)):
+            self.x_train_fused.append(np.concatenate((self.train_data[i][1], self.train_topic_vectors[i][1])))
+        self.x_train_fused=np.asarray(self.x_train_fused)
+        self.y_train_fused=[self.train_data[i][3] for i in range(len(self.train_data))]
+        try:
+            for i in range(0,len(self.test_data)):
+                self.x_test_fused.append(np.concatenate((self.test_data[i][1], self.test_topic_vectors[i][1])))
+            self.x_test_fused=np.asarray(self.x_test_fused)
+            self.y_test_fused=[self.test_data[i][3] for i in range(len(self.test_data))]
+        except:
+            pass
+        
+        self.test_questions=[self.test_data[i][0] for i in range(len(self.test_data))]
 
-    def test_lr(self, method='fused'):
+    '''
+    Train the LR classifier.
+    '''
+    def train_lr(self):
+        print "Training without topic vectors"
+        self.logistic_model_unfused=LogisticRegression()
+        self.logistic_model_unfused.fit(self.x_train_unfused, self.y_train_unfused)
+        joblib.dump(self.logistic_model_unfused, 'train_data/unfused_model.pkl')
+
+        print "Training with topic vectors"
+        self.logistic_model_fused=LogisticRegression()
+        self.logistic_model_fused.fit(self.x_train_fused, self.y_train_fused)
+        joblib.dump(self.logistic_model_fused, 'train_data/fused_model.pkl')
+
+    '''
+    Test the LR classifier.
+    '''
+    def test_lr(self, use_topic_vectors=True):
         y_pred=[]
         pred_data=[]
         for i in range(0,len(self.x_test)):
@@ -75,6 +99,9 @@ class LogisticClassifier(object):
             pred_data.append(current_sample)
 
         pred_df=pd.DataFrame(pred_data, columns=['question','predicted_answer','actual_answer'])
+        method='fused'
+        if not use_topic_vectors:
+            method='unfused'
         with open('test_data/predictions_'+method+'.csv','w') as pred_file:
             pred_df.to_csv(pred_file, index=False)
 
@@ -82,13 +109,18 @@ class LogisticClassifier(object):
         print "F-1: "+str(f1_score(self.y_test, y_pred, average='micro'))
         return self.y_test, y_pred
 
-    def get_prediction(self, w2v_vector, topic_vector, method='fused'):
-        print "Using "+method+" model"
+    '''
+    For a single question, get the predicted answer.
+    '''
+    def get_prediction(self, w2v_vector, topic_vector, use_topic_vectors=True):
+        method='fused'
+        if not use_topic_vectors:
+            method='unfused'
         self.logistic_model=joblib.load('train_data/'+method+'_model.pkl')
-        if method=='fused':
-            test_vector=np.concatenate((w2v_vector, topic_vector))
-        else:
+        if not use_topic_vectors:
             test_vector=w2v_vector
+        else:
+            test_vector=np.concatenate((w2v_vector, topic_vector))
 
         test_vector=test_vector.reshape(1,-1)
         prediction=self.logistic_model.predict(test_vector)

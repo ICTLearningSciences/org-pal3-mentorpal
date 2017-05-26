@@ -22,6 +22,9 @@ class NLTKPreprocessor(object):
     def transform(self, X):
         return list(self.tokenize(X))
 
+    '''
+    Tokenizes the input question. It also performs case-folding and stems each word in the question using Porter's Stemmer.
+    '''
     def tokenize(self, sentence):
         tokenizer=RegexpTokenizer(r'\w+')
         # Break the sentence into part of speech tagged tokens
@@ -65,13 +68,19 @@ class ClassifierPreProcess(object):
         self.topic_set=set()
         self.preprocessor=NLTKPreprocessor()
 
-
+    '''
+    Read the list of topics from file.
+    '''
     def read_topics(self):
         with open('data/topics.csv') as f:
             reader=csv.reader(f)
             for row in reader:
                 self.all_topics.append(row[0].lower())
 
+    '''
+    Normalize the topic words to make sure that each topic is represented only once (handles topics typed differently for
+    different questions. For example, JobSpecific and Jobspecific are both normalized to jobspecific)
+    '''
     def normalize_topics(self, topics):
         ret_topics=[]
         for topic in topics:
@@ -81,6 +90,12 @@ class ClassifierPreProcess(object):
             self.topic_set.add(topic)
         return ret_topics
 
+    '''
+    Read the classifier data from data/classifier_data.csv.
+    Split the data to train and test sets.
+    Store the data in format [actual question, transformed question, list of topics, answer_id] in self.train_data and
+    self.test_data
+    '''
     def read_data(self):
         corpus=pd.read_csv('data/classifier_data.csv')
         corpus=corpus.fillna('')
@@ -116,6 +131,13 @@ class ClassifierPreProcess(object):
                 else:
                     self.train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
 
+    '''
+    get the word_vector and lstm_vector for a question. Both vectors are obtained from the Google News Corpus.
+    The difference between these two vectors is given below:
+    Question: "What is your name?"
+    word_vector: Sum of the w2v representation for each word. Dimension: 300 x 1
+    lstm_vector: List of the w2v representation for each word. Dimension: 300 x number_of_words_in_question
+    '''
     def get_w2v(self, question):
         current_vector=np.zeros(300,dtype='float32')
         lstm_vector=[]
@@ -128,6 +150,9 @@ class ClassifierPreProcess(object):
             current_vector+=word_vector
         return current_vector, lstm_vector
 
+    '''
+    For each question in the trainind data, the vectors are generated using the get_w2v function.
+    '''
     def generate_training_vectors(self):
         #for each data point, get w2v vector for the question and store in train_vectors.
         #instance=<question, topic, answer, paraphrases>
@@ -135,9 +160,13 @@ class ClassifierPreProcess(object):
             w2v_vector, lstm_vector=self.get_w2v(instance[1])
             self.train_vectors.append([instance[0],w2v_vector,instance[2],instance[3]])
             self.lstm_train_vectors.append(lstm_vector)
+
+        #For the LSTM, each training sample will have a max dimension of 300 x 25. For those that don't, the pad_sequences
+        #function will pad sequences of [0, 0, 0, 0....] vectors to the end of each sample.
         padded_vectors=pad_sequences(self.lstm_train_vectors,maxlen=25, dtype='float32',padding='post',truncating='post',value=0.)
         self.lstm_train_vectors=padded_vectors
-
+        #The test set might not be present when just training the dataset fully and then letting users ask questions.
+        #That's why the test set code is inside a try-except block.
         try:
             for instance in self.test_data:
                 w2v_vector, lstm_vector=self.get_w2v(instance[1])
@@ -148,6 +177,11 @@ class ClassifierPreProcess(object):
         except:
             pass
 
+    '''
+    For each question, the sparse topc vectors are created. If a question belongs to topic JobSpecific and Travel, then, a vector
+    of size 39 (number of topics) is created with the vector having 1 for JobSpecific and Travel, and 0 for all other topics.
+    This is done for both train and test sets.
+    '''
     def generate_sparse_topic_vectors(self):
         #Generate the sparse topic train_vectors
         for i in range(len(self.train_vectors)):
@@ -160,7 +194,8 @@ class ClassifierPreProcess(object):
                     topic_vector[j]=1
             self.train_vectors[i][2]=topic_vector
             self.lstm_train_data.append([question,self.lstm_train_vectors[i],topic_vector])
-
+        #The test set might not be present when just training the dataset fully and then letting users ask questions.
+        #That's why the test set code is inside a try-except block.
         try:
             #Generate the sparse topic test_vectors
             for i in range(len(self.test_vectors)):
@@ -177,6 +212,10 @@ class ClassifierPreProcess(object):
             pass
 
 
+    '''
+    Write the train and test data to pickle (.pkl) files that can be unpickled in lstm.py and classify.py. This is just dumping
+    the data into a file and then undumping it
+    '''
     def write_data(self):
         if not os.path.exists('train_data'):
             os.mkdir('train_data')
@@ -189,6 +228,9 @@ class ClassifierPreProcess(object):
         #dump train_vectors for logistic regression
         with open('train_data/lr_train_data.pkl','wb') as pickle_file:
             cPickle.dump(self.train_vectors,pickle_file)
+        
+        #The test set might not be present when just training the dataset fully and then letting users ask questions.
+        #That's why the test set code is inside a try-except block.
         try:
             #dump lstm_test_data
             with open('test_data/lstm_test_data.pkl','wb') as pickle_file:

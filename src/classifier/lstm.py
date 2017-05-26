@@ -26,12 +26,16 @@ class TopicLSTM(object):
         self.y_test=None
         self.new_vectors=[]
 
+    '''
+    Read the training data for the LSTM from the pickle files.
+    '''
     def read_training_data(self):
         self.train_data=cPickle.load(open('train_data/lstm_train_data.pkl','rb'))
         self.test_data=cPickle.load(open('test_data/lstm_test_data.pkl','rb'))
         self.x_train=[self.train_data[i][1] for i in range(len(self.train_data))] #no of utterances * no_of_sequences * 300
         self.y_train=[self.train_data[i][2] for i in range(len(self.train_data))] #No_of_utterances * no_of_classes (40)
         self.x_train=np.asarray(self.x_train)
+
         try:
             self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))] #no of utterances * no_of_sequences * 300
             self.y_test=[self.test_data[i][2] for i in range(len(self.test_data))] #No_of_utterances * no_of_classes (40)
@@ -39,6 +43,9 @@ class TopicLSTM(object):
         except:
             pass
 
+    '''
+    Train the LSTM model
+    '''
     def train_lstm(self):
         #don't pass summed vectors
         nb_samples=len(self.train_data)
@@ -72,7 +79,9 @@ class TopicLSTM(object):
             cPickle.dump(self.new_vectors, pickle_file)
         self.test_lstm()
 
-
+    '''
+    Test the LSTM model. Called from train_lstm automatically.
+    '''
     def test_lstm(self):
         y_pred=[]
         for i in range(0,len(self.test_data)):
@@ -89,6 +98,9 @@ class TopicLSTM(object):
         with open('test_data/test_topic_vectors.pkl','wb') as pickle_file:
             cPickle.dump(self.new_vectors, pickle_file)
     
+    '''
+    For a given question, get the topic vector which is used to get answer prediction from the classifier.
+    '''
     def get_topic_vector(self, lstm_vector):
         self.topic_model=load_model('train_data/lstm_topic_model.h5')
         predicted_vector=self.topic_model.predict(lstm_vector)

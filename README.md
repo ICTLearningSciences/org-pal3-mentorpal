@@ -48,11 +48,28 @@ The following steps will setup NPCEditor with the data from **NPCEditor_data.xls
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427493/f0ec88de-40aa-11e7-8c44-0dcf62dab005.png)
   12. Once the training is finished, the details of the classifier will show up in the status box. This indicates that NPCEditor classifier model is ready.
   13. Navigate to the 'Conversations' tab and make sure that the Dialog Manager is set to 'Classifier'. XML messages can now be sent to NPCEditor and answers will be returned.
+  14. Save the session as **train.plist** inside MentorPAL/NPCEditor files.
+
+  **npceditor_interface.py**: Provides an interface to talk to NPCEditor and get answer(s) for question(s) and returns answer(s) along with score(s) and answer ID(s).
   
   
 Classifier Setup
 ---------------
-The following steps will set up and train the classifier for use, with data from **classifier_data.csv*
+The components of the classifier are explained below, with data from **classifier_data.csv**
+  **classifier_preprocess.py**: This file reads the raw text data from **classifier_data.csv**, converts the questions to feature vectors, obtains the sparse topic vectors and dumps all this data into pickle files for use by the classifier and topic neural network (LSTM) classifier.
+
+  **lstm.py**: This file creates the topic LSTM classifier and stores the newly generated topic model in **train_data/lstm_topic_model.h5**. The train and test topic vectors are stored in **train_data/train_topic_vectors.pkl** and **test_data/test_topic_vectors.pkl** respectively.
+
+  **logisticregression.py**: This file creates the Logistic Regression classifier and stores the trained models in **train_data/fused_model.pkl** and **train_data/unfused_model.pkl**, which are the models with the topic vectors and without the topic vectors respectively.
+
+  **classify.py**: This file handles the above three files. It contains master methods which explicitly preprocess the data for the classifier (by calling methods in classifier_preprocess.py), train the topic LSTM (by calling methods in lstm.py) and train the classifier (by calling methods in logisticregression.py).
+
+Ensemble Classifier
+-----------------
+A sample program **src/classifier/run.py** is provided to demonstrate how to use the ensemble classifier.
+
+The program **src/classifier/ensemble.py** handles the ensemble. Specifically, when it receives a question, it sends it to *src/classifier/npceditor_interface.py** and **src/classifier/classify.py** to get answers from NPCEditor and the classifier. This program has the rules to decide which answer to return. The answer is returned to run.py or whichever interface you call this program from.
+
 System Setup
 ------------
 The following are required to clone the project from git and run:

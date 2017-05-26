@@ -15,6 +15,10 @@ class NPCEditor(object):
         self.test_questions=[self.test_data[i][0] for i in range(len(self.test_data))]
         self.train_questions=[]
 
+    '''
+    This method is used to create xml file for a set of questions. This is used only when testing out the classifier with the 
+    entire test set. This big xml file is sent to NPCEditor.
+    '''
     def create_full_xml(self):
         i=0
         for question in self.test_questions:
@@ -25,18 +29,28 @@ class NPCEditor(object):
         tree=ET.ElementTree(self.requests)
         tree.write('xml_messages/npceditor_request.xml')
     
+    '''
+    When a question is asked, this method creates an xml file for that one question only. This xml is sent to NPCEditor.
+    '''
     def create_single_xml(self, question):
         request=ET.SubElement(self.requests,'request', target="All", ID="question_1", source="Anybody")
         ET.SubElement(request, "field", name="text").text = question
         tree=ET.ElementTree(self.requests)
         tree.write('xml_messages/npceditor_request.xml')      
 
+    '''
+    Send an xml file as a request to NPCEditor.
+    '''
     def send_request(self):
         cmd=Popen(['java', '-cp', '/Applications/NPCEditor.app/npceditor.jar:/Applications/NPCEditor.app/plugins/batch_plugin.jar','edu.usc.ict.npc.server.net.ipc.BatchModule','--stdin', 'xml_messages/npceditor_request.xml'], stdout=PIPE)
         cmd_out, cmd_err=cmd.communicate()        
         output=cmd_out.split('\n')
         self.response=output[-2][55:]
 
+    '''
+    Parse the xml file that is returned when the big xml file with a set of questions is sent to NPCEditor.
+    This method is used only when testing the performance of the system.
+    '''
     def parse_full_xml(self):
         responses=ET.fromstring(self.response)
         for response in responses:
@@ -53,6 +67,10 @@ class NPCEditor(object):
         print "F-1: "+str(f1_score(self.y_test, preds, average='micro'))
         return self.y_test, self.y_pred
 
+    '''
+    Parse the xml file that is returned when the xml file with a single question is sent to NPCEditor.
+    This method is used whenever the user asks a new question. This method returns the answer to the ensemble classifier.
+    '''
     def parse_single_xml(self):
         responses=ET.fromstring(self.response)
         answer=""
