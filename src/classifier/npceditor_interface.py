@@ -1,6 +1,6 @@
 import xml.etree.cElementTree as ET
 import os
-import cPickle
+import pickle
 import numpy as np
 from subprocess import Popen, PIPE
 from sklearn.metrics import f1_score, accuracy_score
@@ -9,7 +9,7 @@ class NPCEditor(object):
         self.requests=ET.Element('requests', ID='L1', agentName='Clint')
         self.response=""
         self.y_pred=[]
-        self.test_data=cPickle.load(open('test_data/lr_test_data.pkl','rb'))
+        self.test_data=pickle.load(open('test_data/lr_test_data.pkl','rb'))
         self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
         self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
         self.test_questions=[self.test_data[i][0] for i in range(len(self.test_data))]
@@ -63,8 +63,8 @@ class NPCEditor(object):
                 except:
                     self.y_pred.append((-100.0,"answer_none"))
         preds=[item[1] for item in self.y_pred]
-        print "Accuracy: "+str(accuracy_score(self.y_test, preds))
-        print "F-1: "+str(f1_score(self.y_test, preds, average='micro'))
+        print("Accuracy: "+str(accuracy_score(self.y_test, preds)))
+        print("F-1: "+str(f1_score(self.y_test, preds, average='micro')))
         return self.y_test, self.y_pred
 
     '''

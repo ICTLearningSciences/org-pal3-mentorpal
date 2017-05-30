@@ -104,7 +104,7 @@ def split_into_chunks(audiochunks, audio_file, timestamps, offset):
 
     #get all the chunks
     for i in range(0,len(start_times)):
-        print "Processed chunk "+str(i)
+        print("Processed chunk "+str(i))
         ffmpeg_split_audio(audiochunks, audio_file, offset+i, start_times[i], end_times[i])
     return questions
 
@@ -146,7 +146,7 @@ def main():
     number_of_parts=len(fnmatch.filter(os.listdir(dirname), '*.mp4'))
     session_number=dirname[-2]
 
-    print "Started processing the session..."
+    print("Started processing the session...")
     for i in range(number_of_parts):
         video_file=dirname+'session'+str(session_number)+'part'+str(i+1)+'.mp4'
         audio_file=dirname+'session'+str(session_number)+'part'+str(i+1)+'.wav'
@@ -161,18 +161,18 @@ def main():
         #if audiochunks directory exists, then there is an offset
         else:
             offset=len(fnmatch.filter(os.listdir(audiochunks), '*.wav'))
-        print "Processing part "+str(i+1)+"..."
-        print "Converting video to audio..."
+        print("Processing part "+str(i+1)+"...")
+        print("Converting video to audio...")
         convert_to_wav(video_file, audio_file)
-        print "Completed converting to wav"
-        print "Chunking the audio into smaller parts..."
+        print("Completed converting to wav")
+        print("Chunking the audio into smaller parts...")
         questions=split_into_chunks(audiochunks, audio_file, timestamps, offset)
-        print "Finished chunking"
-        print "Talking to IBM Watson to get transcripts..."
+        print("Finished chunking")
+        print("Talking to IBM Watson to get transcripts...")
         get_transcript(dirname, audiochunks, questions, offset)
-        print "Finished getting the transcripts"
+        print("Finished getting the transcripts")
 
-    print "Video fully processed"
+    print("Video fully processed")
 
 if __name__=="__main__":
     main()

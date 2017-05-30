@@ -1,6 +1,6 @@
 import classify
 import npceditor_interface
-import cPickle
+import pickle
 import lstm
 import classifier_preprocess
 import logisticregression as lr
@@ -11,7 +11,7 @@ from sklearn.metrics import f1_score, accuracy_score
 
 class EnsembleClassifier(object):
     def __init__(self):
-        self.test_data=cPickle.load(open('test_data/lr_test_data.pkl','rb'))
+        self.test_data=pickle.load(open('test_data/lr_test_data.pkl','rb'))
         self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
         self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
         self.cl_y_test=[]
@@ -64,8 +64,8 @@ class EnsembleClassifier(object):
                 else:
                     self.ensemble_pred.append(self.npc_y_pred[i][1])
 
-        print "Accuracy: "+str(accuracy_score(self.y_test, self.ensemble_pred))
-        print "F-1: "+str(f1_score(self.y_test, self.ensemble_pred, average='micro'))
+        print("Accuracy: "+str(accuracy_score(self.y_test, self.ensemble_pred)))
+        print("F-1: "+str(f1_score(self.y_test, self.ensemble_pred, average='micro')))
 
     '''
     When only one answer is required for a single question, use this method. You can choose to use or not use the topic vectors by
@@ -97,7 +97,7 @@ class EnsembleClassifier(object):
     '''
     Checks if the question is off-topic
     '''
-    def is_off_topic(self, question):
+    #def is_off_topic(self, question):
 
 
     '''
@@ -123,7 +123,7 @@ class EnsembleClassifier(object):
     '''
     This method returns the appropriate prompt for a particular question status
     '''
-    def return_prompt(self, situation):
+    #def return_prompt(self, situation):
         #Load the prompts file
 
         #Select a prompt and return it
@@ -155,7 +155,7 @@ class EnsembleClassifier(object):
         self.blacklist.clear()
         #set other variables to track session
 
-    def end_session(self):
+    #def end_session(self):
         #handle variables to end session
             
 

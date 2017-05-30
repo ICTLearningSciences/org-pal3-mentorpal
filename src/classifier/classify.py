@@ -1,6 +1,6 @@
 import lstm
 import classifier_preprocess
-import cPickle
+import pickle
 import logisticregression as lr
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
@@ -11,45 +11,45 @@ class Classify(object):
         self.tl=lstm.TopicLSTM()
         self.lc=lr.LogisticClassifier()
         self.cpp.w2v_model=KeyedVectors.load_word2vec_format('../GoogleNews-vectors-negative300.bin', binary=True)
-        self.lc.ids_answer=cPickle.load(open('train_data/ids_answer.pkl','rb'))
+        self.lc.ids_answer=pickle.load(open('train_data/ids_answer.pkl','rb'))
 
     '''
     Runs methods in classifier_preprocess.py to pre-process the data into formats that the classifier requires.
     '''
     def create_data(self):
-        print "Building dataset..."
-        print "Reading topics..."
+        print("Building dataset...")
+        print("Reading topics...")
         self.cpp.read_topics()
-        print "Reading data..."
+        print("Reading data...")
         self.cpp.read_data()
-        print "Generate w2v vectors..."
+        print("Generate w2v vectors...")
         self.cpp.generate_training_vectors()
         self.cpp.generate_sparse_topic_vectors()
-        print "write data..."
+        print("write data...")
         self.cpp.write_data()
 
     '''
     Trains the topic LSTM by running methods in lstm.py
     '''
     def train_lstm(self):
-        print "Starting LSTM topic training..."
-        print "LSTM is reading training data..."
+        print("Starting LSTM topic training...")
+        print("LSTM is reading training data...")
         self.tl.read_training_data()
-        print "Training LSTM..."
+        print("Training LSTM...")
         self.tl.train_lstm()
-        print "Trained LSTM."
+        print("Trained LSTM.")
 
     '''
     Trains the classifier by running methods in logisticregression.py
     '''
     def train_classifier(self):
-        print "Starting LR training..."
-        print "LR is reading training data..."
+        print("Starting LR training...")
+        print("LR is reading training data...")
         self.lc.load_data()
         self.lc.create_vectors()
-        print "Training LR..."
+        print("Training LR...")
         self.lc.train_lr()
-        print "Trained LR"
+        print("Trained LR")
 
     '''
     Test the classifier performance. Used only when evaluating performance.

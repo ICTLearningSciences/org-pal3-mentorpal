@@ -1,6 +1,6 @@
 import string
 import csv
-import cPickle
+import pickle
 import os
 import numpy as np
 from gensim.models.keyedvectors import KeyedVectors
@@ -30,8 +30,8 @@ class TopicLSTM(object):
     Read the training data for the LSTM from the pickle files.
     '''
     def read_training_data(self):
-        self.train_data=cPickle.load(open('train_data/lstm_train_data.pkl','rb'))
-        self.test_data=cPickle.load(open('test_data/lstm_test_data.pkl','rb'))
+        self.train_data=pickle.load(open('train_data/lstm_train_data.pkl','rb'))
+        self.test_data=pickle.load(open('test_data/lstm_test_data.pkl','rb'))
         self.x_train=[self.train_data[i][1] for i in range(len(self.train_data))] #no of utterances * no_of_sequences * 300
         self.y_train=[self.train_data[i][2] for i in range(len(self.train_data))] #No_of_utterances * no_of_classes (40)
         self.x_train=np.asarray(self.x_train)
@@ -76,7 +76,7 @@ class TopicLSTM(object):
             self.new_vectors.append([self.train_data[i][0],prediction[0]])
 
         with open('train_data/train_topic_vectors.pkl','wb') as pickle_file:
-            cPickle.dump(self.new_vectors, pickle_file)
+            pickle.dump(self.new_vectors, pickle_file)
         self.test_lstm()
 
     '''
@@ -90,13 +90,13 @@ class TopicLSTM(object):
             y_pred.append(prediction[0])
             self.new_vectors.append([self.test_data[i][0],prediction[0]])
 
-        # print y_pred
-        # print self.y_test
-        # print "Accuracy: "+str(accuracy_score(self.y_test, y_pred))
+        # print(y_pred)
+        # print(self.y_test)
+        # print("Accuracy: "+str(accuracy_score(self.y_test, y_pred)))
 
-        # print "F-1: "+str(f1_score(self.y_test, y_pred, average='micro'))
+        # print("F-1: "+str(f1_score(self.y_test, y_pred, average='micro')))
         with open('test_data/test_topic_vectors.pkl','wb') as pickle_file:
-            cPickle.dump(self.new_vectors, pickle_file)
+            pickle.dump(self.new_vectors, pickle_file)
     
     '''
     For a given question, get the topic vector which is used to get answer prediction from the classifier.

@@ -83,7 +83,7 @@ class PostProcessData(object):
 
         #get all the chunks
         for i in range(0,len(start_times)):
-            print "Processed chunk "+str(i)
+            print("Processed chunk "+str(i))
             training_sample={}
             if text_type[i]=='A' and len(self.corpus) > self.corpus_index:
                 output_file=self.answer_chunks+'/answer_'+str(self.answer_number)+'.mp4'

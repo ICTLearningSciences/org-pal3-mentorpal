@@ -3,7 +3,7 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.externals import joblib
 from sklearn.metrics import f1_score, mean_squared_error
-import cPickle
+import pickle
 
 
 class LogisticClassifier(object):
@@ -29,12 +29,12 @@ class LogisticClassifier(object):
     Load the data (unpickle the data) from the .pkl files.
     '''
     def load_data(self):
-        self.lc.ids_answer=cPickle.load(open('train_data/ids_answer.pkl','rb'))
-        self.train_data=cPickle.load(open('train_data/lr_train_data.pkl','rb'))
+        self.lc.ids_answer=pickle.load(open('train_data/ids_answer.pkl','rb'))
+        self.train_data=pickle.load(open('train_data/lr_train_data.pkl','rb'))
         try:
-            self.train_topic_vectors=cPickle.load(open('train_data/train_topic_vectors.pkl','rb'))
-            self.test_data=cPickle.load(open('test_data/lr_test_data.pkl','rb'))
-            self.test_topic_vectors=cPickle.load(open('test_data/test_topic_vectors.pkl','rb'))
+            self.train_topic_vectors=pickle.load(open('train_data/train_topic_vectors.pkl','rb'))
+            self.test_data=pickle.load(open('test_data/lr_test_data.pkl','rb'))
+            self.test_topic_vectors=pickle.load(open('test_data/test_topic_vectors.pkl','rb'))
         except:
             pass
 
@@ -42,7 +42,7 @@ class LogisticClassifier(object):
     Create the training vectors.
     '''
     def create_vectors(self):
-        print "Not using topic vectors"
+        print("Not using topic vectors")
         self.x_train_unfused=[self.train_data[i][1] for i in range(len(self.train_data))]
         self.y_train_unfused=[self.train_data[i][3] for i in range(len(self.train_data))]
         self.x_train_unfused=np.asarray(self.x_train_unfused)
@@ -53,7 +53,7 @@ class LogisticClassifier(object):
         except:
             pass
 
-        print "Using topic vectors"
+        print("Using topic vectors")
         for i in range(0,len(self.train_data)):
             self.x_train_fused.append(np.concatenate((self.train_data[i][1], self.train_topic_vectors[i][1])))
         self.x_train_fused=np.asarray(self.x_train_fused)
@@ -72,12 +72,12 @@ class LogisticClassifier(object):
     Train the LR classifier.
     '''
     def train_lr(self):
-        print "Training without topic vectors"
+        print("Training without topic vectors")
         self.logistic_model_unfused=LogisticRegression()
         self.logistic_model_unfused.fit(self.x_train_unfused, self.y_train_unfused)
         joblib.dump(self.logistic_model_unfused, 'train_data/unfused_model.pkl')
 
-        print "Training with topic vectors"
+        print("Training with topic vectors")
         self.logistic_model_fused=LogisticRegression()
         self.logistic_model_fused.fit(self.x_train_fused, self.y_train_fused)
         joblib.dump(self.logistic_model_fused, 'train_data/fused_model.pkl')
@@ -105,8 +105,8 @@ class LogisticClassifier(object):
         with open('test_data/predictions_'+method+'.csv','w') as pred_file:
             pred_df.to_csv(pred_file, index=False)
 
-        print "Accuracy: "+str(self.logistic_model.score(self.x_test, self.y_test))
-        print "F-1: "+str(f1_score(self.y_test, y_pred, average='micro'))
+        print(("Accuracy: "+str(self.logistic_model.score(self.x_test, self.y_test))))
+        print(("F-1: "+str(f1_score(self.y_test, y_pred, average='micro'))))
         return self.y_test, y_pred
 
     '''

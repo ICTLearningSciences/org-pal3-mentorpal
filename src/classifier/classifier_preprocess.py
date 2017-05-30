@@ -1,7 +1,7 @@
 import string
 import os
 import csv
-import cPickle
+import pickle
 import numpy as np
 import pandas as pd
 from nltk.tokenize import RegexpTokenizer
@@ -14,7 +14,7 @@ from keras.preprocessing.sequence import pad_sequences
 
 class NLTKPreprocessor(object):
     def __init__(self):
-        self.punct      = set(string.punctuation)
+        self.punct = set(string.punctuation)
         self.stemmer=PorterStemmer()
     def inverse_transform(self, X):
         return [" ".join(doc) for doc in X]
@@ -41,11 +41,11 @@ class NLTKPreprocessor(object):
             try:
                 stemmed_token=self.stemmer.stem(token).encode('utf-8')
             except:
-                print "Unicode error. File encoding was changed when you opened it in Excel. ",
-                print "This is most probably an error due to csv file from Google docs being opened in Word. ",
-                print "Download the file from Google Docs and DO NOT open it in Excel. Run the program immediately. ",
-                print "If you want to edit using Excel and then follow instructions at: "
-                print "http://stackoverflow.com/questions/6002256/is-it-possible-to-force-excel-recognize-utf-8-csv-files-automatically"
+                print("Unicode error. File encoding was changed when you opened it in Excel. ", end=' ')
+                print("This is most probably an error due to csv file from Google docs being opened in Word. ", end=' ')
+                print("Download the file from Google Docs and DO NOT open it in Excel. Run the program immediately. ", end=' ')
+                print("If you want to edit using Excel and then follow instructions at: ")
+                print("http://stackoverflow.com/questions/6002256/is-it-possible-to-force-excel-recognize-utf-8-csv-files-automatically")
                 continue
             yield stemmed_token
 
@@ -104,7 +104,7 @@ class ClassifierPreProcess(object):
             topics=corpus.iloc[i]['topics'].split(",")
 
             questions=corpus.iloc[i]['question'].split('\r\n')
-            questions=filter(None, questions)
+            questions=[_f for _f in questions if _f]
             total+=len(questions)
             paraphrases=questions[1:]
             current_question=questions[0]
@@ -117,7 +117,7 @@ class ClassifierPreProcess(object):
 
             #Tokenize the question
             processed_question=self.preprocessor.transform(current_question)
-            topics=filter(None, topics)
+            topics=[_f for _f in questions if _f]
             #normalize the topics
             topics=self.normalize_topics(topics)
 
@@ -224,24 +224,24 @@ class ClassifierPreProcess(object):
 
         #dump lstm_train_data
         with open('train_data/lstm_train_data.pkl','wb') as pickle_file:
-            cPickle.dump(self.lstm_train_data, pickle_file)
+            pickle.dump(self.lstm_train_data, pickle_file)
         #dump train_vectors for logistic regression
         with open('train_data/lr_train_data.pkl','wb') as pickle_file:
-            cPickle.dump(self.train_vectors,pickle_file)
+            pickle.dump(self.train_vectors,pickle_file)
         
         #The test set might not be present when just training the dataset fully and then letting users ask questions.
         #That's why the test set code is inside a try-except block.
         try:
             #dump lstm_test_data
             with open('test_data/lstm_test_data.pkl','wb') as pickle_file:
-                cPickle.dump(self.lstm_test_data, pickle_file)
+                pickle.dump(self.lstm_test_data, pickle_file)
             #dump test_vectors for logistic regression
             with open('test_data/lr_test_data.pkl','wb') as pickle_file:
-                cPickle.dump(self.test_vectors,pickle_file)
+                pickle.dump(self.test_vectors,pickle_file)
         except:
             pass
         #dump ids_answers
         with open('train_data/ids_answer.pkl','wb') as pickle_file:
-            cPickle.dump(self.ids_answer,pickle_file)
+            pickle.dump(self.ids_answer,pickle_file)
 
 
