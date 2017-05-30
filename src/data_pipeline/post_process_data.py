@@ -89,7 +89,7 @@ class PostProcessData(object):
             if text_type[i]=='A' and len(self.corpus) > self.corpus_index:
                 answer_id=self.mentor_name+"_A"+str(self.answer_number)+"_"+session_number+"_"+part_number
                 output_file=self.answer_chunks+'/'+answer_id+'.ogv'
-                training_sample['ID']='answer_'+str(self.answer_number)
+                training_sample['ID']=answer_id
                 training_sample['topics']=self.corpus.iloc[self.corpus_index]['Topics']+","+self.corpus.iloc[self.corpus_index]['Helpers']
                 if training_sample['topics'][-1]==',':
                     training_sample['topics']=training_sample['topics'][:-1]
