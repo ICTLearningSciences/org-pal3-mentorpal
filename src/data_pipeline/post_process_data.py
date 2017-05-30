@@ -5,11 +5,12 @@ import os
 import fnmatch
 import pandas as pd
 class PostProcessData(object):
-    def __init__(self, answer_chunks, utterance_chunks, answer_number, utterance_number, corpus, corpus_index):
+    def __init__(self, answer_chunks, utterance_chunks, answer_number, utterance_number, mentor_name, corpus, corpus_index):
         self.answer_chunks=answer_chunks
         self.utterance_chunks=utterance_chunks
         self.answer_number=answer_number
         self.utterance_number=utterance_number
+        self.mentor_name=mentor_name
         self.corpus=corpus.fillna('')
         self.corpus_index=corpus_index
         self.training_data=[] #training data to write to file, for use by classifier in later stage.
@@ -57,7 +58,7 @@ class PostProcessData(object):
         return result
 
 
-    def get_video_chunks(self, video_file, timestamps):
+    def get_video_chunks(self, video_file, timestamps, session_number, part_number):
         text_type=[]
         start_times=[] #list of start times
         end_times=[] #list of end times
@@ -86,7 +87,8 @@ class PostProcessData(object):
             print("Processed chunk "+str(i))
             training_sample={}
             if text_type[i]=='A' and len(self.corpus) > self.corpus_index:
-                output_file=self.answer_chunks+'/answer_'+str(self.answer_number)+'.mp4'
+                answer_id=self.mentor_name+"_A"+str(self.answer_number)+"_"+session_number+"_"+part_number
+                output_file=self.answer_chunks+'/'+answer_id+'.ogv'
                 training_sample['ID']='answer_'+str(self.answer_number)
                 training_sample['topics']=self.corpus.iloc[self.corpus_index]['Topics']+","+self.corpus.iloc[self.corpus_index]['Helpers']
                 if training_sample['topics'][-1]==',':
@@ -103,7 +105,8 @@ class PostProcessData(object):
                 self.answer_number+=1
                 self.training_data.append(training_sample)
             elif text_type[i]=='U':
-                output_file=self.utterance_chunks+'/utterance_'+str(self.utterance_number)+'.mp4'
+                utterance_id=self.mentor_name+"_U"+str(self.utterance_number)+"_"+session_number+"_"+part_number
+                output_file=self.utterance_chunks+'/'+utterance_id+'.ogv'
                 self.utterance_number+=1
             #self.ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
 
@@ -158,7 +161,7 @@ def main():
     #Checks if dirname has '/' at end. If not, adds it. Just a sanity check
     if dirname[-1] != '/':
         dirname+='/'
-    
+    mentor_name=dirname.split("/")[-2]
     sessions=[]
     for i in range(start_session, end_session+1):
         sessions.append('session'+str(i))
@@ -194,7 +197,7 @@ def main():
 
     #Load the corpus which contains questions, paraphrases and answers
     corpus=pd.read_csv('data/Questions_Paraphrases_Answers.csv')
-    ppd=PostProcessData(answer_chunks, utterance_chunks,last_answer,last_utterance,corpus, corpus_index)
+    ppd=PostProcessData(answer_chunks, utterance_chunks, last_answer, last_utterance, mentor_name, corpus, corpus_index)
 
     #Walk into each session directory and get the answer chunks from each session
     for session in sessions:
@@ -203,7 +206,7 @@ def main():
         for j in range(number_of_parts):
             video_file=session_path+session+'part'+str(j+1)+'.mp4'
             timestamp_file=session_path+session+'part'+str(j+1)+'_timestamps.csv'
-            ppd.get_video_chunks(video_file, timestamp_file)
+            ppd.get_video_chunks(video_file, timestamp_file, session[7:], str(j+1))
     #write the data to file, for use by classifier and NPCEditor
     ppd.write_data()
 
