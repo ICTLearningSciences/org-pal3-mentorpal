@@ -105,8 +105,8 @@ class LogisticClassifier(object):
         with open('test_data/predictions_'+method+'.csv','w') as pred_file:
             pred_df.to_csv(pred_file, index=False)
 
-        print(("Accuracy: "+str(self.logistic_model.score(self.x_test, self.y_test))))
-        print(("F-1: "+str(f1_score(self.y_test, y_pred, average='micro'))))
+        print("Accuracy: "+str(self.logistic_model.score(self.x_test, self.y_test)))
+        print("F-1: "+str(f1_score(self.y_test, y_pred, average='micro')))
         return self.y_test, y_pred
 
     '''
