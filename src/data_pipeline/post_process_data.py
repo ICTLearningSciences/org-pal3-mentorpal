@@ -22,13 +22,13 @@ class PostProcessData(object):
     FFMpeg will automatically recognize whether the result must be audio or video, based on the extension of the output_file.
 
     Parameters:
-    input_file: /example/path/to/session1/session1part1.mp4, /example/path/to/session1/session1part2.mp4
-    output_file: /example/path/to/session1/answer_videos/answer_1.mp4
+    input_file: /example/path/to/mentor/session1/session1part1.mp4, /example/path/to/mentor/session1/session1part2.mp4
+    output_file: /example/path/to/mentor/session1/answer_videos/answer_1.ogv
     start_time: Start time of answer
     end_time: End time of answer
     '''
     def ffmpeg_split_video(self, input_file, output_file, start_time, end_time):
-        output_command="-ss "+str(start_time)+" -to "+str(end_time)+" -loglevel quiet"
+        output_command="-ss "+str(start_time)+" -to "+str(end_time)+" -c:v libtheora -q:v 6 -loglevel quiet"
         ff=ffmpy.FFmpeg(
             inputs={input_file: None},
             outputs={output_file: output_command},
@@ -58,7 +58,7 @@ class PostProcessData(object):
         return result
 
 
-    def get_video_chunks(self, video_file, timestamps, session_number, part_number):
+    def get_video_chunks(self, video_file, timestamps, mentor_name, session_number, part_number):
         text_type=[]
         start_times=[] #list of start times
         end_times=[] #list of end times
@@ -87,7 +87,7 @@ class PostProcessData(object):
             print("Processed chunk "+str(i))
             training_sample={}
             if text_type[i]=='A' and len(self.corpus) > self.corpus_index:
-                answer_id=self.mentor_name+"_A"+str(self.answer_number)+"_"+session_number+"_"+part_number
+                answer_id=self.mentor_name+'_A'+str(self.answer_number)+'_'+str(session_number)+'_'+str(part_number)
                 output_file=self.answer_chunks+'/'+answer_id+'.ogv'
                 training_sample['ID']=answer_id
                 training_sample['topics']=self.corpus.iloc[self.corpus_index]['Topics']+","+self.corpus.iloc[self.corpus_index]['Helpers']
@@ -105,53 +105,88 @@ class PostProcessData(object):
                 self.answer_number+=1
                 self.training_data.append(training_sample)
             elif text_type[i]=='U':
-                utterance_id=self.mentor_name+"_U"+str(self.utterance_number)+"_"+session_number+"_"+part_number
+                #csv for utterance chunks is needed!!
+                utterance_id=self.mentor_name+'_U'+str(self.utterance_number)+'_'+str(session_number)+'_'+str(part_number)
                 output_file=self.utterance_chunks+'/'+utterance_id+'.ogv'
                 self.utterance_number+=1
+            '''
+            Uncomment this line when you want to get the actual cut answers. This takes a long time so this isn't needed
+            when testing the code for the other parts
+            '''
             #self.ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
-
+    '''
+    Write all the data to file.
+    classifier_data.csv: data for use by the classifier
+    metadata.txt: data about the data preparation process. This helps when new sessions are added. No need to start from scratch
+    NPCEditor_data.xlsx: data for NPCEditor
+    '''
+    
     def write_data(self):
         #data for Classifier
-        header=True
+        classifier_header=True
         if os.path.exists('data/classifier_data.csv'):
-            header=False
+            classifier_header=False
 
         classifier_df=pd.DataFrame(self.training_data,columns=['ID','topics','text','question'])
         with open('data/classifier_data.csv', 'a') as classifier_file:
-             classifier_df.to_csv(classifier_file, header=header, index=False)
+             classifier_df.to_csv(classifier_file, header=classifier_header, index=False)
 
         #store meta-data for later use
-        with open('data/metadata.txt','w') as metadata_file:
-            metadata_file.write("Last answer number:"+str(self.answer_number)+"\n")
-            metadata_file.write("Last utterance number:"+str(self.utterance_number)+"\n")
-            metadata_file.write("Corpus Index:"+str(self.corpus_index)+"\n")
+        meta_header=True
+        if os.path.exists('data/metadata.csv'):
+            curr_metadata_df=pd.read_csv(open('data/metadata.csv','rb'))
+            startrow=len(curr_metadata_df)+1
+            meta_header=False
+            for i in range(0,len(curr_metadata_df)):
+                if curr_metadata_df.iloc[i]['Mentor Name'] == self.mentor_name:
+                    curr_metadata_df.set_value(i, 'Last Answer Number', str(self.answer_number))
+                    curr_metadata_df.set_value(i, 'Last Utterance Number', str(self.utterance_number))
+                #corpus index is common for all mentors
+                curr_metadata_df.set_value(i, 'Corpus Index', str(self.corpus_index))
+        else:
+            metadata={}
+            metadata['Mentor Name']=self.mentor_name
+            metadata['Last Answer Number']=self.answer_number
+            metadata['Last Utterance Number']=self.utterance_number
+            metadata['Corpus Index']=self.corpus_index
+            metadata=[metadata]
+            metadata_df=pd.DataFrame(metadata, columns=['Mentor Name', 'Last Answer Number', 'Last Utterance Number', 'Corpus Index'])
+
+        #write metadata to file, depending on whether the file already exists or not
+        with open('data/metadata.csv','a') as metadata_file:
+            #if it doesn't exist, write new data
+            if meta_header:
+                metadata_df.to_csv(metadata_file, header=meta_header, index=False)
+            #if it exists, then write the modified data
+            else:
+                curr_metadata_df.to_csv(metadata_file, header=meta_header, index=False)
 
         #data for NPCEditor
-        header=True
+        npc_header=True
         if os.path.exists('data/NPCEditor_data.xlsx'):
             curr_npceditor_df=pd.read_excel(open('data/NPCEditor_data.xlsx','rb'),sheetname='Sheet1')
             startrow=len(curr_npceditor_df)+1
-            header=False
+            npc_header=False
         npceditor_test_data=[]
         for i in range(0,len(self.training_data)):
             questions=self.training_data[i]['question'].split('\r\n')
             npceditor_test_data.append(questions.pop(-1))
             self.training_data[i]['question']='\r\n'.join(questions)
         npceditor_df=pd.DataFrame(self.training_data,columns=['ID','text','question'])
-        if not header:
+        if not npc_header:
             frames=[curr_npceditor_df,npceditor_df]
             df_to_write=pd.concat(frames)
         else:
             df_to_write=npceditor_df
 
         npceditor_writer=pd.ExcelWriter('data/NPCEditor_data.xlsx',engine='openpyxl')
-        df_to_write.to_excel(npceditor_writer,'Sheet1', index=False, header=header)
+        df_to_write.to_excel(npceditor_writer,'Sheet1', index=False, header=npc_header)
         npceditor_writer.save()
 
 
 
 def main():
-    #dirname must be /example/path/to/recordings - top level directory for all recordings
+    #dirname must be /example/path/to/mentor/ - top level directory for all sessions of that mentor
     dirname=sys.argv[1]
     #If you want to do only one session, then give both start_session and end_session as same number.
     #If you want to do sessions 2,3,4, then give start_session=2 and end_session=4.
@@ -161,7 +196,7 @@ def main():
     #Checks if dirname has '/' at end. If not, adds it. Just a sanity check
     if dirname[-1] != '/':
         dirname+='/'
-    mentor_name=dirname.split("/")[-2]
+    mentor_name=dirname.split('/')[-2]
     sessions=[]
     for i in range(start_session, end_session+1):
         sessions.append('session'+str(i))
@@ -178,27 +213,39 @@ def main():
     if not os.path.isdir(utterance_chunks):
         os.mkdir(utterance_chunks)
     
-    #Load older metadata, to see where to continue numbering answers and utterances from.
-    if not os.path.exists('data/metadata.txt'):
+    #Load older metadata, to see where to continue numbering answers and utterances from, for the current mentor
+    if not os.path.exists('data/metadata.csv'):
         last_answer=1
         last_utterance=1
         corpus_index=0
     else:
-        with open('data/metadata.txt','r') as metadata_file:
-            metadata=metadata_file.readlines()
-            try:
-                last_answer=int(metadata[0].split(":")[1])
-                last_utterance=int(metadata[1].split(":")[1])
-                corpus_index=int(metadata[2].split(":")[1])
-            except:
+        with open('data/metadata.csv','r') as metadata_file:
+            curr_metadata_df=pd.read_csv(open('data/metadata.csv','rb'))
+            if len(curr_metadata_df) > 0:
+                mentor_found = False
+                for i in range(0,len(curr_metadata_df)):
+                    corpus_index=int(curr_metadata_df.iloc[i]['Corpus Index'])
+                    if curr_metadata_df.iloc[i]['Mentor Name'] == mentor_name:
+                        mentor_found = True
+                        last_answer=int(curr_metadata_df.iloc[i]['Last Answer Number'])
+                        last_utterance=int(curr_metadata_df.iloc[i]['Last Utterance Number'])
+                        print "last"
+                        print last_answer, last_utterance
+                        
+                if not mentor_found:
+                    corpus_index=int(curr_metadata_df.iloc[i]['Corpus Index']) #corpus index is common for all mentors
+                    last_answer=1
+                    last_utterance=1
+            #the file is present but no data in it. Sanity check
+            else:
                 last_answer=1
                 last_utterance=1
                 corpus_index=0
 
+
     #Load the corpus which contains questions, paraphrases and answers
     corpus=pd.read_csv('data/Questions_Paraphrases_Answers.csv')
     ppd=PostProcessData(answer_chunks, utterance_chunks, last_answer, last_utterance, mentor_name, corpus, corpus_index)
-
     #Walk into each session directory and get the answer chunks from each session
     for session in sessions:
         session_path=dirname+session+'/'
@@ -206,7 +253,7 @@ def main():
         for j in range(number_of_parts):
             video_file=session_path+session+'part'+str(j+1)+'.mp4'
             timestamp_file=session_path+session+'part'+str(j+1)+'_timestamps.csv'
-            ppd.get_video_chunks(video_file, timestamp_file, session[7:], str(j+1))
+            ppd.get_video_chunks(video_file, timestamp_file, mentor_name, int(session[7:]), j+1)
     #write the data to file, for use by classifier and NPCEditor
     ppd.write_data()
 

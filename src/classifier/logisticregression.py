@@ -83,7 +83,7 @@ class LogisticClassifier(object):
         joblib.dump(self.logistic_model_fused, 'train_data/fused_model.pkl')
 
     '''
-    Test the LR classifier.
+    Test the classifier and evaluate performance. This is only for testing performance. This won't be used in the system flow.
     '''
     def test_lr(self, use_topic_vectors=True):
         y_pred=[]
@@ -110,7 +110,8 @@ class LogisticClassifier(object):
         return self.y_test, y_pred
 
     '''
-    For a single question, get the predicted answer.
+    This is the method that will be used to get an answer for a question in the system flow. When user asks a question, this is 
+    the method that will return the answer predicted by the classifier
     '''
     def get_prediction(self, w2v_vector, topic_vector, use_topic_vectors=True):
         method='fused'

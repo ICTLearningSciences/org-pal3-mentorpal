@@ -44,7 +44,7 @@ class TopicLSTM(object):
             pass
 
     '''
-    Train the LSTM model
+    Train the LSTM with the train data and save the best model to file
     '''
     def train_lstm(self):
         #don't pass summed vectors
@@ -80,7 +80,8 @@ class TopicLSTM(object):
         self.test_lstm()
 
     '''
-    Test the LSTM model. Called from train_lstm automatically.
+    Test the performance of the LSTM with the test set. This won't be used during the system flow. This is for evaluation
+    purposes only.
     '''
     def test_lstm(self):
         y_pred=[]
@@ -99,7 +100,8 @@ class TopicLSTM(object):
             pickle.dump(self.new_vectors, pickle_file)
     
     '''
-    For a given question, get the topic vector which is used to get answer prediction from the classifier.
+    This is the method that will return the topic vector during system flow. When user asks a question and if method=='fused',
+    this method will return the topic vector for the input question which will be used by the classifier to predict an answer.
     '''
     def get_topic_vector(self, lstm_vector):
         self.topic_model=load_model('train_data/lstm_topic_model.h5')

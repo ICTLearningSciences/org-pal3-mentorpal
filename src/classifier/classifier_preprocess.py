@@ -12,6 +12,10 @@ from keras.models import Sequential
 from keras.layers import LSTM, Activation, Dense
 from keras.preprocessing.sequence import pad_sequences
 
+'''
+This class contains the methods that operate on the questions to normalize them. The questions are tokenized, punctuations are
+removed and words are stemmed to bring them to a common platform
+'''
 class NLTKPreprocessor(object):
     def __init__(self):
         self.punct = set(string.punctuation)
@@ -126,6 +130,7 @@ class ClassifierPreProcess(object):
             #look for paraphrases and add them to dataset
             for i in range(0,len(paraphrases)):
                 processed_paraphrase=self.preprocessor.transform(paraphrases[i])
+                #add question to testing dataset if it is the last paraphrase. Else, add to training set
                 if i==len(paraphrases)-1:
                     self.test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
                 else:
@@ -151,7 +156,8 @@ class ClassifierPreProcess(object):
         return current_vector, lstm_vector
 
     '''
-    For each question in the trainind data, the vectors are generated using the get_w2v function.
+    Generate the training question vectors. For the Topic LSTM, each word should be represented by its own 300-length vector.
+    For the classifier, the word vectors are added to form a single vector.
     '''
     def generate_training_vectors(self):
         #for each data point, get w2v vector for the question and store in train_vectors.

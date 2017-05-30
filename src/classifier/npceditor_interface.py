@@ -4,6 +4,42 @@ import pickle
 import numpy as np
 from subprocess import Popen, PIPE
 from sklearn.metrics import f1_score, accuracy_score
+
+'''
+The method to send NPCEditor a question/list of questions and get answers is as follows:
+Create an xml file like this:
+
+<requests ID="QUESTION_LIST_ID" agentName="">
+ <request target="All" ID="QUESTION_ID" source="bar"><field name="text">Hello</field></request>
+ <request target="All" ID="QUESTION_ID2" source="bar"><field name="text">Hello</field></request>
+</requests>
+ 
+Returned xml will be like this:
+ 
+<responses ID="QUESTION_LIST_ID">
+ <response target="All" ID="QUESTION_ID" source="bar">
+  <answers>
+   <utterance score="0.000">
+    <field name="text">Hi</field>
+    <field name="id">RESPONSE_ID</field>
+   </utterance>
+  </answers>
+ </response>
+...
+</responses>
+ 
+ 
+Before you can send it to the editor, you need to create a batch account in NPCEditor.
+Make sure the agentName in the xml message is the same as the agent name on the batch account.
+The source field in the request must be same as the "Scores for: " field in NPCEditor, on the question side. 
+The "Scores for: " field on the answer side must be the name of the account. For a clearer understanding, 
+please see the image in the README file.
+ 
+Send the xml like this:
+java -cp /absolute/path/to/npceditor.jar:absolute/path/to/plugins/batch_plugin.jar edu.usc.ict.npc.server.net.ipc.BatchModule --stdin file-name.xml
+Check code below on how to send the request.
+'''
+
 class NPCEditor(object):
     def __init__(self):
         self.requests=ET.Element('requests', ID='L1', agentName='Clint')

@@ -6,19 +6,19 @@ import os
 import fnmatch
 import pandas as pd
 '''
-Converts the .mp4 file to a .wav file.
-Later, this .wav file is split into smaller chunks for each Q-A pair.
+Converts the .mp4 file to a .ogg file.
+Later, this .ogg file is split into smaller chunks for each Q-A pair.
 This is done because we want transcriptions for each question and the interview contains
 lots of other content like general talking and discussions.
-We use the timestamps for each Q-A to split the .wav file.
+We use the timestamps for each Q-A to split the .ogg file.
 This function is equivalent to running `ffmpeg -i input_file output_file -loglevel quiet` on the command line.
 
 Parameters:
 input_file: Examples are /example/path/to/session1/session1part1.mp4, /example/path/to/session1/session1part2.mp4
-output_file: Examples are /example/path/to/session1/session1part1.wav, /example/path/to/session1/session1part2.wav
+output_file: Examples are /example/path/to/session1/session1part1.ogg, /example/path/to/session1/session1part2.ogg
 '''
 def convert_to_wav(input_file, output_file):
-    output_command=" -loglevel quiet"
+    output_command="-loglevel quiet"
     ff=ffmpy.FFmpeg(
         inputs={input_file: None},
         outputs={output_file: output_command}
@@ -26,7 +26,7 @@ def convert_to_wav(input_file, output_file):
     ff.run()
 
 '''
-Splits the large .wav file into chunks based on the start_time and end_time of chunk.
+Splits the large .ogg file into chunks based on the start_time and end_time of chunk.
 audiochunks is the folder where the chunks are stored, based on the ID of the Q-A pair.
 This function is equivalent to running `ffmpeg -i input_file -ss start_time -to end_time output_file -loglevel quiet` on the command line.
 start_time and end_time must be in seconds. For example, a time 01:03:45 is 01*3600 + 03*60 + 45 = 3825 seconds.
@@ -35,17 +35,18 @@ FFMpeg will automatically recognize whether the result must be audio or video, b
 
 Parameters:
 audiochunks: The audiochunks directory /example/path/to/session1/audiochunks
-input_file: /example/path/to/session1/session1part1.wav, /example/path/to/session1/session1part2.wav
+input_file: /example/path/to/session1/session1part1.ogg, /example/path/to/session1/session1part2.ogg
 index: question number
 '''
 def ffmpeg_split_audio(audiochunks, input_file, index, start_time, end_time):
-    output_file=audiochunks+"/q"+str(index)+".wav"
-    output_command="-ss "+str(start_time)+" -to "+str(end_time)+" -loglevel quiet"
+    output_file=audiochunks+"/q"+str(index)+".ogg"
+    output_command="-ss "+str(start_time)+" -to "+str(end_time)+" -c:a libvorbis -q:a 5 -loglevel quiet"
     ff=ffmpy.FFmpeg(
         inputs={input_file: None},
         outputs={output_file: output_command},
     )
     ff.run()
+
 
 '''
 Converts a timestamp from HH:MM:SS or MM:SS to seconds.
@@ -127,7 +128,7 @@ def get_transcript(dirname, audiochunks, questions, offset):
     csvwriter=csv.writer(transcript_csv)
 
     for i in range(0,len(questions)):
-        wav_file=audiochunks+"/q"+str(offset+i)+".wav"
+        wav_file=audiochunks+"/q"+str(offset+i)+".ogg"
         transcript=ibm_stt.watson(wav_file)
         csvwriter.writerow([questions[i], transcript])
 
@@ -160,7 +161,7 @@ def main():
             os.mkdir(audiochunks)
         #if audiochunks directory exists, then there is an offset
         else:
-            offset=len(fnmatch.filter(os.listdir(audiochunks), '*.wav'))
+            offset=len(fnmatch.filter(os.listdir(audiochunks), '*.ogg'))
         print("Processing part "+str(i+1)+"...")
         print("Converting video to audio...")
         convert_to_wav(video_file, audio_file)

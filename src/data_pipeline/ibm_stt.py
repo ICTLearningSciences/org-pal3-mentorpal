@@ -14,7 +14,7 @@ speech_to_text = SpeechToTextV1(
 )
 
 '''
-Opens an audio .wav file and calls the recognize function which transcribes the audio to text. That is stored in the `result` variable.
+Opens an audio .ogg file and calls the recognize function which transcribes the audio to text. That is stored in the `result` variable.
 The result variable is a dictionary which contains sentences of transcriptions. We cycle through the result variable to get the actual text.
 
 Note: Please make sure that the audio file is less than 100 MB in size. IBM Watson can't handle files larger than 100 MB.
