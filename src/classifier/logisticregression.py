@@ -29,12 +29,12 @@ class LogisticClassifier(object):
     Load the data (unpickle the data) from the .pkl files.
     '''
     def load_data(self):
-        self.ids_answer=pickle.load(open('train_data/ids_answer.pkl','rb'))
-        self.train_data=pickle.load(open('train_data/lr_train_data.pkl','rb'))
+        self.ids_answer=pickle.load(open(os.path.join('train_data','ids_answer.pkl'),'rb'))
+        self.train_data=pickle.load(open(os.path.join('train_data','lr_train_data.pkl'),'rb'))
         try:
-            self.train_topic_vectors=pickle.load(open('train_data/train_topic_vectors.pkl','rb'))
-            self.test_data=pickle.load(open('test_data/lr_test_data.pkl','rb'))
-            self.test_topic_vectors=pickle.load(open('test_data/test_topic_vectors.pkl','rb'))
+            self.train_topic_vectors=pickle.load(open(os.path.join('train_data','train_topic_vectors.pkl'),'rb'))
+            self.test_data=pickle.load(open(os.path.join('test_data','lr_test_data.pkl'),'rb'))
+            self.test_topic_vectors=pickle.load(open(os.path.join('test_data','test_topic_vectors.pkl'),'rb'))
         except:
             pass
 
@@ -75,12 +75,12 @@ class LogisticClassifier(object):
         print("Training without topic vectors")
         self.logistic_model_unfused=LogisticRegression()
         self.logistic_model_unfused.fit(self.x_train_unfused, self.y_train_unfused)
-        joblib.dump(self.logistic_model_unfused, 'train_data/unfused_model.pkl')
+        joblib.dump(self.logistic_model_unfused, os.path.join('train_data','unfused_model.pkl'))
 
         print("Training with topic vectors")
         self.logistic_model_fused=LogisticRegression()
         self.logistic_model_fused.fit(self.x_train_fused, self.y_train_fused)
-        joblib.dump(self.logistic_model_fused, 'train_data/fused_model.pkl')
+        joblib.dump(self.logistic_model_fused, os.path.join('train_data','fused_model.pkl'))
 
     '''
     Test the classifier and evaluate performance. This is only for testing performance. This won't be used in the system flow.
@@ -102,7 +102,7 @@ class LogisticClassifier(object):
         method='fused'
         if not use_topic_vectors:
             method='unfused'
-        with open('test_data/predictions_'+method+'.csv','w') as pred_file:
+        with open(os.path.join('test_data','predictions_'+method+'.csv'),'w') as pred_file:
             pred_df.to_csv(pred_file, index=False)
 
         print("Accuracy: "+str(self.logistic_model.score(self.x_test, self.y_test)))
@@ -117,7 +117,7 @@ class LogisticClassifier(object):
         method='fused'
         if not use_topic_vectors:
             method='unfused'
-        self.logistic_model=joblib.load('train_data/'+method+'_model.pkl')
+        self.logistic_model=joblib.load(os.path.join('train_data',method+'_model.pkl'))
         if not use_topic_vectors:
             test_vector=w2v_vector
         else:

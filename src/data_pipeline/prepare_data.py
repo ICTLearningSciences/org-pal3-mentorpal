@@ -39,7 +39,7 @@ input_file: /example/path/to/session1/session1part1.ogg, /example/path/to/sessio
 index: question number
 '''
 def ffmpeg_split_audio(audiochunks, input_file, index, start_time, end_time):
-    output_file=audiochunks+"/q"+str(index)+".ogg"
+    output_file=os.path.join(audiochunks, "q"+str(index)+".ogg")
     output_command="-ss "+str(start_time)+" -to "+str(end_time)+" -c:a libvorbis -q:a 5 -loglevel quiet"
     ff=ffmpy.FFmpeg(
         inputs={input_file: None},
@@ -128,8 +128,8 @@ def get_transcript(dirname, audiochunks, questions, offset):
     csvwriter=csv.writer(transcript_csv)
 
     for i in range(0,len(questions)):
-        wav_file=audiochunks+"/q"+str(offset+i)+".ogg"
-        transcript=ibm_stt.watson(wav_file)
+        ogg_file=os.path.join(audiochunks,"q"+str(offset+i)+".ogg")
+        transcript=ibm_stt.watson(ogg_file)
         csvwriter.writerow([questions[i], transcript])
 
     transcript_csv.close()
@@ -141,8 +141,8 @@ def main():
     dirname=sys.argv[1]
 
     #Checks if dirname has '/' at end. If not, adds it. Just a sanity check
-    if dirname[-1] != '/':
-        dirname+='/'
+    if dirname[-1] != os.sep:
+        dirname+=os.sep
     #Finds out how many parts are there in the session
     number_of_parts=len(fnmatch.filter(os.listdir(dirname), '*.mp4'))
     session_number=dirname[-2]

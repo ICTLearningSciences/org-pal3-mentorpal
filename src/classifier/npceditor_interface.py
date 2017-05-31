@@ -53,7 +53,7 @@ class NPCEditor(object):
 
 
     def load_test_data(self):
-        self.test_data=pickle.load(open('test_data/lr_test_data.pkl','rb'))
+        self.test_data=pickle.load(open(os.path.join('test_data','lr_test_data.pkl'),'rb'))
         self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
         self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
         [self.test_data[i][0] for i in range(len(self.test_data))]
@@ -69,7 +69,7 @@ class NPCEditor(object):
             i+=1
             #self.train_questions.append("question_"+str(i))
         tree=ET.ElementTree(self.requests)
-        tree.write('xml_messages/npceditor_request.xml')
+        tree.write(os.path.join('xml_messages','npceditor_request.xml'))
     
     '''
     When a question is asked, this method creates an xml file for that one question only. This xml is sent to NPCEditor.
@@ -78,7 +78,7 @@ class NPCEditor(object):
         request=ET.SubElement(self.requests,'request', target="All", ID="question_1", source="Anybody")
         ET.SubElement(request, "field", name="text").text = question
         tree=ET.ElementTree(self.requests)
-        tree.write('xml_messages/npceditor_request.xml')      
+        tree.write(os.path.join('xml_messages','npceditor_request.xml'))   
 
     '''
     Send an xml file as a request to NPCEditor.

@@ -30,8 +30,8 @@ class TopicLSTM(object):
     Read the training data for the LSTM from the pickle files.
     '''
     def read_training_data(self):
-        self.train_data=pickle.load(open('train_data/lstm_train_data.pkl','rb'))
-        self.test_data=pickle.load(open('test_data/lstm_test_data.pkl','rb'))
+        self.train_data=pickle.load(open(os.path.join('train_data','lstm_train_data.pkl'),'rb'))
+        self.test_data=pickle.load(open(os.path.join('test_data','lstm_test_data.pkl'),'rb'))
         self.x_train=[self.train_data[i][1] for i in range(len(self.train_data))] #no of utterances * no_of_sequences * 300
         self.y_train=[self.train_data[i][2] for i in range(len(self.train_data))] #No_of_utterances * no_of_classes (40)
         self.x_train=np.asarray(self.x_train)
@@ -62,20 +62,20 @@ class TopicLSTM(object):
         self.topic_model.add(Activation('softmax'))
         self.topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
         print(self.topic_model.summary())
-        filepath='train_data/lstm_model'
+        filepath=os.path.join('train_data','lstm_model')
         checkpoint=ModelCheckpoint(filepath, monitor='val_acc',verbose=1, save_best_only=True, mode='max')
         callbacks_list=[checkpoint]
         hist=self.topic_model.fit(self.x_train, self.y_train, batch_size=32, epochs=30, validation_split=0.1, callbacks=callbacks_list, verbose=1)
         # print (self.topic_model.evaluate(self.x_test,self.y_test))
         self.topic_model.load_weights(filepath)
         self.topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
-        self.topic_model.save('train_data/lstm_topic_model.h5')
+        self.topic_model.save(os.path.join('train_data','lstm_topic_model.h5'))
         for i in range(0,len(self.train_data)):
             current_sample=self.x_train[i][np.newaxis, :, :]
             prediction=self.topic_model.predict(current_sample)
             self.new_vectors.append([self.train_data[i][0],prediction[0]])
 
-        with open('train_data/train_topic_vectors.pkl','wb') as pickle_file:
+        with open(os.path.join('train_data','train_topic_vectors.pkl'),'wb') as pickle_file:
             pickle.dump(self.new_vectors, pickle_file)
         self.test_lstm()
 
@@ -96,7 +96,7 @@ class TopicLSTM(object):
         # print("Accuracy: "+str(accuracy_score(self.y_test, y_pred)))
 
         # print("F-1: "+str(f1_score(self.y_test, y_pred, average='micro')))
-        with open('test_data/test_topic_vectors.pkl','wb') as pickle_file:
+        with open(os.path.join('test_data','test_topic_vectors.pkl'),'wb') as pickle_file:
             pickle.dump(self.new_vectors, pickle_file)
     
     '''
@@ -104,6 +104,6 @@ class TopicLSTM(object):
     this method will return the topic vector for the input question which will be used by the classifier to predict an answer.
     '''
     def get_topic_vector(self, lstm_vector):
-        self.topic_model=load_model('train_data/lstm_topic_model.h5')
+        self.topic_model=load_model(os.path.join('train_data','lstm_topic_model.h5'))
         predicted_vector=self.topic_model.predict(lstm_vector)
         return predicted_vector[0]
