@@ -11,22 +11,24 @@ class Classify(object):
         self.tl=lstm.TopicLSTM()
         self.lc=lr.LogisticClassifier()
         self.cpp.w2v_model=KeyedVectors.load_word2vec_format('../GoogleNews-vectors-negative300.bin', binary=True)
-        self.lc.ids_answer=pickle.load(open('train_data/ids_answer.pkl','rb'))
+        self.lc.ids_answer=None
 
     '''
     Runs methods in classifier_preprocess.py to pre-process the data into formats that the classifier requires.
     '''
-    def create_data(self):
+    def create_data(self, mode):
         print("Building dataset...")
         print("Reading topics...")
         self.cpp.read_topics()
         print("Reading data...")
-        self.cpp.read_data()
+        self.cpp.read_data(mode)
         print("Generate w2v vectors...")
         self.cpp.generate_training_vectors()
         self.cpp.generate_sparse_topic_vectors()
         print("write data...")
         self.cpp.write_data()
+        
+
 
     '''
     Trains the topic LSTM by running methods in lstm.py
@@ -64,6 +66,7 @@ class Classify(object):
     classifier in logisticregression.py to get a predicted answer and sends this to the ensemble classifier.
     '''
     def get_answer(self,question, use_topic_vectors=True):
+        self.lc.ids_answer=pickle.load(open('train_data/ids_answer.pkl','rb'))
         processed_question=self.cpp.preprocessor.transform(question)
         w2v_vector, lstm_vector=self.cpp.get_w2v(processed_question)
         lstm_vector=[lstm_vector]

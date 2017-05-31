@@ -42,15 +42,21 @@ Check code below on how to send the request.
 
 class NPCEditor(object):
     def __init__(self):
-        self.requests=ET.Element('requests', ID='L1', agentName='Clint')
+        self.requests=ET.Element('requests', ID='L1', agentName='clintanderson')
         self.response=""
         self.y_pred=[]
+        self.test_data=None
+        self.x_test=None
+        self.y_test=None
+        self.test_questions=None
+        self.train_questions=[]
+
+
+    def load_test_data(self):
         self.test_data=pickle.load(open('test_data/lr_test_data.pkl','rb'))
         self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
         self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
-        self.test_questions=[self.test_data[i][0] for i in range(len(self.test_data))]
-        self.train_questions=[]
-
+        [self.test_data[i][0] for i in range(len(self.test_data))]
     '''
     This method is used to create xml file for a set of questions. This is used only when testing out the classifier with the 
     entire test set. This big xml file is sent to NPCEditor.
@@ -79,8 +85,8 @@ class NPCEditor(object):
     '''
     def send_request(self):
         cmd=Popen(['java', '-cp', '/Applications/NPCEditor.app/npceditor.jar:/Applications/NPCEditor.app/plugins/batch_plugin.jar','edu.usc.ict.npc.server.net.ipc.BatchModule','--stdin', 'xml_messages/npceditor_request.xml'], stdout=PIPE)
-        cmd_out, cmd_err=cmd.communicate()        
-        output=cmd_out.split('\n')
+        cmd_out, cmd_err=cmd.communicate()
+        output=cmd_out.decode("utf-8").split('\n')
         self.response=output[-2][55:]
 
     '''

@@ -45,9 +45,9 @@ class NLTKPreprocessor(object):
             try:
                 stemmed_token=self.stemmer.stem(token).encode('utf-8')
             except:
-                print("Unicode error. File encoding was changed when you opened it in Excel. ", end=' ')
-                print("This is most probably an error due to csv file from Google docs being opened in Word. ", end=' ')
-                print("Download the file from Google Docs and DO NOT open it in Excel. Run the program immediately. ", end=' ')
+                print("Unicode error. File encoding was changed when you opened it in Excel. ", end=" ")
+                print("This is most probably an error due to csv file from Google docs being opened in Word. ", end=" ")
+                print("Download the file from Google Docs and DO NOT open it in Excel. Run the program immediately. ", end=" ")
                 print("If you want to edit using Excel and then follow instructions at: ")
                 print("http://stackoverflow.com/questions/6002256/is-it-possible-to-force-excel-recognize-utf-8-csv-files-automatically")
                 continue
@@ -100,7 +100,7 @@ class ClassifierPreProcess(object):
     Store the data in format [actual question, transformed question, list of topics, answer_id] in self.train_data and
     self.test_data
     '''
-    def read_data(self):
+    def read_data(self, mode):
         corpus=pd.read_csv('data/classifier_data.csv')
         corpus=corpus.fillna('')
         total=0
@@ -131,7 +131,7 @@ class ClassifierPreProcess(object):
             for i in range(0,len(paraphrases)):
                 processed_paraphrase=self.preprocessor.transform(paraphrases[i])
                 #add question to testing dataset if it is the last paraphrase. Else, add to training set
-                if i==len(paraphrases)-1:
+                if i==len(paraphrases)-1 and mode=='train_test_mode':
                     self.test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
                 else:
                     self.train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])

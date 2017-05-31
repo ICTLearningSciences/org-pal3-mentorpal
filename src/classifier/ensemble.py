@@ -11,9 +11,9 @@ from sklearn.metrics import f1_score, accuracy_score
 
 class EnsembleClassifier(object):
     def __init__(self):
-        self.test_data=pickle.load(open('test_data/lr_test_data.pkl','rb'))
-        self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
-        self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
+        self.test_data=None
+        self.x_test=None
+        self.y_test=None
         self.cl_y_test=[]
         self.cl_y_pred=[]
         self.npc_y_test=[]
@@ -38,13 +38,19 @@ class EnsembleClassifier(object):
     or False will enable to use/not use topic vectors.
     '''
     def start_pipeline(self, mode='train_mode', use_topic_vectors='True'):
-        self.classifier.create_data()
+        self.classifier.create_data(mode=mode)
         #Classifier is trained with and without topic vectors to provie flexibility
         self.classifier.train_lstm()
         self.classifier.train_classifier()
         if mode=='train_test_mode':
+            self.test_data=pickle.load(open('test_data/lr_test_data.pkl','rb'))
+            self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
+            self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
             self.cl_y_test, self.cl_y_pred=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
+            self.npc.load_test_data()
             self.get_all_answers()
+            
+
 
     '''
     Get answers for all the questions. Used when building a new classifier model. Will be called automatically as part of the 
@@ -76,7 +82,7 @@ class EnsembleClassifier(object):
         self.npc.create_single_xml(question)
         self.npc.send_request()
         npceditor_id, npceditor_score, npceditor_answer=self.npc.parse_single_xml()
-
+        print(npceditor_id, npceditor_answer)
         return_id=None
         return_answer=None
         if npceditor_answer=="answer_none":
@@ -86,9 +92,11 @@ class EnsembleClassifier(object):
             if float(npceditor_score) < -5.56929:
                 return_id=classifier_id
                 return_answer=classifier_answer
+                print("Answer from classifier chosen")
             else:
                 return_id=npceditor_id
                 return_answer=npceditor_answer
+                print("Answer from NPCEditor chosen")
         #check if already answered.
         #If so, fetch different answer or throw appropriate prompt
         self.blacklist.add(return_id)
@@ -138,16 +146,16 @@ class EnsembleClassifier(object):
     from return_prompt
     '''
     def answer_the_question(self, question, use_topic_vectors=True):
-        question_status=check_question(question) #check the question status
+        # question_status=check_question(question) #check the question status
 
-        #if the question is legitimate, then fetch answer
-        if question_status=='new-question':
-            answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
+        # #if the question is legitimate, then fetch answer
+        # if question_status=='new-question':
+        #     answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
 
-        #Statuses that require a prompt from the mentor
-        else:
-            answer=self.return_prompt(self, question_status)
-
+        # #Statuses that require a prompt from the mentor
+        # else:
+        #     answer=self.return_prompt(self, question_status)
+        answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
 
     #information to track must be discussed with Ben, Nick, Kayla

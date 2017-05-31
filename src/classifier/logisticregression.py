@@ -29,7 +29,7 @@ class LogisticClassifier(object):
     Load the data (unpickle the data) from the .pkl files.
     '''
     def load_data(self):
-        self.lc.ids_answer=pickle.load(open('train_data/ids_answer.pkl','rb'))
+        self.ids_answer=pickle.load(open('train_data/ids_answer.pkl','rb'))
         self.train_data=pickle.load(open('train_data/lr_train_data.pkl','rb'))
         try:
             self.train_topic_vectors=pickle.load(open('train_data/train_topic_vectors.pkl','rb'))

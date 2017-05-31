@@ -17,14 +17,16 @@ Train the classifier from scratch
 '''
 #ec.start_pipeline(mode='train_mode')
 
+answer=ec.answer_the_question("What is your name?")
+print(answer)
 
-end_flag=False
-#start the session
-ec.start_session()
+# end_flag=False
+# #start the session
+# ec.start_session()
 
-#while the session is in progress
-while not end_flag:
-    answer=ec.answer_the_question("What is your name?")
+# #while the session is in progress
+# while not end_flag:
+#     answer=ec.answer_the_question("What is your name?")
     
-#end the session
-ec.end_session()
+# #end the session
+# ec.end_session()
