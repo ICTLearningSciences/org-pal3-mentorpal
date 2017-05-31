@@ -22,7 +22,7 @@ For this project, the duration of each Q-A won't exceed 5 minutes and in that ca
 '''
 def watson(file_name):
     with open(file_name,'rb') as audio_file:
-        result=speech_to_text.recognize(audio_file, content_type='audio/wav', continuous=True)['results']
+        result=speech_to_text.recognize(audio_file, continuous=True)['results']
         transcript=""
         for item in result:
             transcript+=item['alternatives'][0]['transcript']

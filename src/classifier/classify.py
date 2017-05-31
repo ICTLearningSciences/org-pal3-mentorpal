@@ -1,6 +1,7 @@
 import lstm
 import classifier_preprocess
 import pickle
+import os
 import logisticregression as lr
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences

@@ -4,6 +4,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.externals import joblib
 from sklearn.metrics import f1_score, mean_squared_error
 import pickle
+import os
 
 
 class LogisticClassifier(object):

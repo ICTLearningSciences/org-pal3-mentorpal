@@ -5,6 +5,7 @@ import lstm
 import classifier_preprocess
 import logisticregression as lr
 import sys
+import os
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score, accuracy_score

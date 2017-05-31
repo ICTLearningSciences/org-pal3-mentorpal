@@ -242,7 +242,7 @@ class ClassifierPreProcess(object):
             with open(os.path.join('test_data','lstm_test_data.pkl'),'wb') as pickle_file:
                 pickle.dump(self.lstm_test_data, pickle_file)
             #dump test_vectors for logistic regression
-            with open('os.path.join(test_data','lr_test_data.pkl'),'wb') as pickle_file:
+            with open(os.path.join('test_data','lr_test_data.pkl'),'wb') as pickle_file:
                 pickle.dump(self.test_vectors,pickle_file)
         except:
             pass
