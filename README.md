@@ -67,7 +67,7 @@ The components of the classifier are explained below, with data from **classifie
 Ensemble Classifier
 -----------------
 
-**IMPORTANT: Make sure to download the Google News Vectors from https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit and place it in the same folder as MentorPAL (the git repo). The git repo and GoogleNews-vectors-negative300.bin must be siblings.**
+**IMPORTANT: Make sure to download the Google News Vectors from <a href="https://drive.google.com/file/d/0B7XkCwpI5KDYNlNUTTlSS21pQmM/edit">here</a> and place it in the same folder as MentorPAL (the git repo). The git repo and GoogleNews-vectors-negative300.bin must be siblings.**
 
 A sample program **src/classifier/run.py** is provided to demonstrate how to use the ensemble classifier.
 
@@ -78,16 +78,16 @@ The Google News Vectors bin file is around 3.6 GB in size and will be loaded eve
 System Setup
 ------------
 The following are required to clone the project from git and run:
-  1. python 2.7 (will be upgrading to python 3.6 soon)
+  1. python 3.6. python 2.7 is no longer supported.
   2. git
-  3. git-lfs (https://git-lfs.github.com/). Track .pkl files when using git-lfs.
+  3. <a href="https://git-lfs.github.com/">git-lfs</a>. Track .pkl files when using git-lfs.
   4. ffmpeg (make sure to install it with --with-theora, --with-libvorbis, --with-opus when using brew on macOS. When compiling from source code, use --enable-theora, --enable-libvorbis, --enable-libopus)
-  5. Apache Activemq (activemq.apache.org)
+  5. <a href="activemq.apache.org">Apache Activemq</a>
   6. Java 8
   
 Python Dependencies
 ------------
-The following packages are required for the program to run. All these can be installed from pip or easy_install.
+The following packages are required for the program to run. All these can be installed from pip3 or easy_install3.
   
   1. **watson_developer_cloud** : IBM Watson's Python wrapper to communicate with their STT service.
   2. **ffmpy** : A wrapper for FFmpeg, which is used to convert video to audio and also cut the audio file into chunks.
@@ -97,4 +97,10 @@ The following packages are required for the program to run. All these can be ins
   6. **pandas** : High-performance data structures for Python
   7. **gensim** : Topic Modelling - needed for word2vec
   
-  
+Windows Setup
+------------
+  1. Get Python 3.5 or 3.6 and install TensorFlow from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#tensorflow">here</a>.
+  2. Install Visual C++ Redistributable 2015 x64 as MSVCP140.dll
+  3. To install keras and gensim, you have to first install scipy from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy">here</a>.
+  4. Install numpy+mkl from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy">here</a>.
+  5. If you are unable to install scikit-learn using pip in Python3, install it from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scikit-learn">here</a>
