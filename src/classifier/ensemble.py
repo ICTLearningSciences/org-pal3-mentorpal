@@ -82,7 +82,6 @@ class EnsembleClassifier(object):
         self.npc.create_single_xml(question)
         self.npc.send_request()
         npceditor_id, npceditor_score, npceditor_answer=self.npc.parse_single_xml()
-        print(npceditor_id, npceditor_answer)
         return_id=None
         return_answer=None
         if npceditor_answer=="answer_none":

@@ -88,11 +88,15 @@ class NPCEditor(object):
         os_name=platform.system()
         if os_name=='Darwin' or os_name=='Linux':
             cmd=Popen(["java", "-cp", os.path.join("..","NPCEditor.app","npceditor.jar")+":"+os.path.join("..","NPCEditor.app","plugins","batch_plugin.jar"),"edu.usc.ict.npc.server.net.ipc.BatchModule","--stdin", os.path.join("xml_messages","npceditor_request.xml")], stdout=PIPE)
+            cmd_out, cmd_err=cmd.communicate()
+            output=cmd_out.decode("utf-8").split('\n')
+            self.response=output[-2][55:]
+            
         elif os_name=='Windows':
             cmd=Popen(["java", "-cp", os.path.join("..","NPCEditor.app","npceditor.jar")+";"+os.path.join("..","NPCEditor.app","plugins","batch_plugin.jar"),"edu.usc.ict.npc.server.net.ipc.BatchModule","--stdin", os.path.join("xml_messages","npceditor_request.xml")], stdout=PIPE)
-        cmd_out, cmd_err=cmd.communicate()
-        output=cmd_out.decode("utf-8").split('\n')
-        self.response=output[-2][55:]
+            cmd_out, cmd_err=cmd.communicate()
+            output=cmd_out.decode("cp437").split('\n')
+            self.response=output[-2][55:]
 
     '''
     Parse the xml file that is returned when the big xml file with a set of questions is sent to NPCEditor.

@@ -16,9 +16,13 @@ ec=ensemble.EnsembleClassifier()
 Train the classifier from scratch
 '''
 #ec.start_pipeline(mode='train_mode')
+print("You can ask questions now")
+a=input()
+while a != 'exit':
+    answer=ec.answer_the_question(a)
+    print(answer)
+    a=input()
 
-answer=ec.answer_the_question("What is your name?")
-print(answer)
 
 # end_flag=False
 # #start the session
