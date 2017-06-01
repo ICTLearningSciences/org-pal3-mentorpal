@@ -2,6 +2,7 @@ import xml.etree.cElementTree as ET
 import os
 import pickle
 import numpy as np
+import platform
 from subprocess import Popen, PIPE
 from sklearn.metrics import f1_score, accuracy_score
 
@@ -84,9 +85,11 @@ class NPCEditor(object):
     Send an xml file as a request to NPCEditor.
     '''
     def send_request(self):
-
-        cmd=Popen(["java", "-cp", os.path.join("..","NPCEditor.app","npceditor.jar")+":"+os.path.join("..","NPCEditor.app","plugins","batch_plugin.jar"),"edu.usc.ict.npc.server.net.ipc.BatchModule","--stdin", os.path.join("xml_messages","npceditor_request.xml")], stdout=PIPE)
-
+        os_name=platform.system()
+        if os_name=='Darwin' or os_name=='Linux':
+            cmd=Popen(["java", "-cp", os.path.join("..","NPCEditor.app","npceditor.jar")+":"+os.path.join("..","NPCEditor.app","plugins","batch_plugin.jar"),"edu.usc.ict.npc.server.net.ipc.BatchModule","--stdin", os.path.join("xml_messages","npceditor_request.xml")], stdout=PIPE)
+        elif os_name=='Windows':
+            cmd=Popen(["java", "-cp", os.path.join("..","NPCEditor.app","npceditor.jar")+";"+os.path.join("..","NPCEditor.app","plugins","batch_plugin.jar"),"edu.usc.ict.npc.server.net.ipc.BatchModule","--stdin", os.path.join("xml_messages","npceditor_request.xml")], stdout=PIPE)
         cmd_out, cmd_err=cmd.communicate()
         output=cmd_out.decode("utf-8").split('\n')
         self.response=output[-2][55:]
