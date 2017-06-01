@@ -84,7 +84,9 @@ class NPCEditor(object):
     Send an xml file as a request to NPCEditor.
     '''
     def send_request(self):
-        cmd=Popen(["java", "-cp", "/Applications/NPCEditor.app/npceditor.jar:/Applications/NPCEditor.app/plugins/batch_plugin.jar","edu.usc.ict.npc.server.net.ipc.BatchModule","--stdin", os.path.join("xml_messages","npceditor_request.xml")], stdout=PIPE)
+
+        cmd=Popen(["java", "-cp", os.path.join("..","NPCEditor.app","npceditor.jar")+":"+os.path.join("..","NPCEditor.app","plugins","batch_plugin.jar"),"edu.usc.ict.npc.server.net.ipc.BatchModule","--stdin", os.path.join("xml_messages","npceditor_request.xml")], stdout=PIPE)
+
         cmd_out, cmd_err=cmd.communicate()
         output=cmd_out.decode("utf-8").split('\n')
         self.response=output[-2][55:]
