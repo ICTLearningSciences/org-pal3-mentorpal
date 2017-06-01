@@ -134,7 +134,7 @@ class PostProcessData(object):
         #store meta-data for later use
         meta_header=True
         if os.path.exists(os.path.join('data','metadata.csv')):
-            curr_metadata_df=pd.read_csv(open(os.path.join('data','metadata.csv'),'rb'))
+            curr_metadata_df=pd.read_csv(open(os.path.join('data','metadata.csv'),'r'))
             startrow=len(curr_metadata_df)+1
             meta_header=False
             for i in range(0,len(curr_metadata_df)):
@@ -164,7 +164,7 @@ class PostProcessData(object):
         #data for NPCEditor
         npc_header=True
         if os.path.exists(os.path.join('data','NPCEditor_data.xlsx')):
-            curr_npceditor_df=pd.read_excel(open(os.path.join('data','NPCEditor_data.xlsx'),'rb'),sheetname='Sheet1')
+            curr_npceditor_df=pd.read_excel(open(os.path.join('data','NPCEditor_data.xlsx'),'r'),sheetname='Sheet1')
             startrow=len(curr_npceditor_df)+1
             npc_header=False
         npceditor_test_data=[]
@@ -220,7 +220,7 @@ def main():
         corpus_index=0
     else:
         with open(os.path.join('data','metadata.csv'),'r') as metadata_file:
-            curr_metadata_df=pd.read_csv(open(os.path.join('data','metadata.csv'),'rb'))
+            curr_metadata_df=pd.read_csv(open(os.path.join('data','metadata.csv'),'r'))
             if len(curr_metadata_df) > 0:
                 mentor_found = False
                 for i in range(0,len(curr_metadata_df)):

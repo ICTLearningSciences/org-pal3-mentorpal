@@ -53,7 +53,7 @@ class NPCEditor(object):
 
 
     def load_test_data(self):
-        self.test_data=pickle.load(open(os.path.join('test_data','lr_test_data.pkl'),'rb'))
+        self.test_data=json.load(open(os.path.join('test_data','lr_test_data.json'),'r'))
         self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
         self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
         [self.test_data[i][0] for i in range(len(self.test_data))]

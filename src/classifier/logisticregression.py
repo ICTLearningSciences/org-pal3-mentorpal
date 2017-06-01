@@ -5,7 +5,7 @@ from sklearn.externals import joblib
 from sklearn.metrics import f1_score, mean_squared_error
 import pickle
 import os
-
+import json
 
 class LogisticClassifier(object):
     def __init__(self):
@@ -27,15 +27,15 @@ class LogisticClassifier(object):
         self.test_questions=[]
 
     '''
-    Load the data (unpickle the data) from the .pkl files.
+    Load the data (unpickle the data) from the .json files.
     '''
     def load_data(self):
-        self.ids_answer=pickle.load(open(os.path.join('train_data','ids_answer.pkl'),'rb'))
-        self.train_data=pickle.load(open(os.path.join('train_data','lr_train_data.pkl'),'rb'))
+        self.ids_answer=json.load(open(os.path.join('train_data','ids_answer.json'),'r'))
+        self.train_data=json.load(open(os.path.join('train_data','lr_train_data.json'),'r'))
         try:
-            self.train_topic_vectors=pickle.load(open(os.path.join('train_data','train_topic_vectors.pkl'),'rb'))
-            self.test_data=pickle.load(open(os.path.join('test_data','lr_test_data.pkl'),'rb'))
-            self.test_topic_vectors=pickle.load(open(os.path.join('test_data','test_topic_vectors.pkl'),'rb'))
+            self.train_topic_vectors=json.load(open(os.path.join('train_data','train_topic_vectors.json'),'r'))
+            self.test_data=json.load(open(os.path.join('test_data','lr_test_data.json'),'r'))
+            self.test_topic_vectors=json.load(open(os.path.join('test_data','test_topic_vectors.json'),'r'))
         except:
             pass
 

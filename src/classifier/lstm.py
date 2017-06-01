@@ -2,6 +2,7 @@ import string
 import csv
 import pickle
 import os
+import json
 import numpy as np
 from gensim.models.keyedvectors import KeyedVectors
 from keras.models import Sequential, load_model
@@ -30,8 +31,8 @@ class TopicLSTM(object):
     Read the training data for the LSTM from the pickle files.
     '''
     def read_training_data(self):
-        self.train_data=pickle.load(open(os.path.join('train_data','lstm_train_data.pkl'),'rb'))
-        self.test_data=pickle.load(open(os.path.join('test_data','lstm_test_data.pkl'),'rb'))
+        self.train_data=json.load(open(os.path.join('train_data','lstm_train_data.json'),'r'))
+        self.test_data=json.load(open(os.path.join('test_data','lstm_test_data.json'),'r'))
         self.x_train=[self.train_data[i][1] for i in range(len(self.train_data))] #no of utterances * no_of_sequences * 300
         self.y_train=[self.train_data[i][2] for i in range(len(self.train_data))] #No_of_utterances * no_of_classes (40)
         self.x_train=np.asarray(self.x_train)
@@ -73,10 +74,10 @@ class TopicLSTM(object):
         for i in range(0,len(self.train_data)):
             current_sample=self.x_train[i][np.newaxis, :, :]
             prediction=self.topic_model.predict(current_sample)
-            self.new_vectors.append([self.train_data[i][0],prediction[0]])
+            self.new_vectors.append([self.train_data[i][0],prediction[0].tolist()])
 
-        with open(os.path.join('train_data','train_topic_vectors.pkl'),'wb') as pickle_file:
-            pickle.dump(self.new_vectors, pickle_file)
+        with open(os.path.join('train_data','train_topic_vectors.json'),'w') as json_file:
+            json.dump(self.new_vectors, json_file)
         self.test_lstm()
 
     '''
@@ -89,15 +90,15 @@ class TopicLSTM(object):
             current_sample=self.x_test[i][np.newaxis, :, :]
             prediction=self.topic_model.predict(current_sample)
             y_pred.append(prediction[0])
-            self.new_vectors.append([self.test_data[i][0],prediction[0]])
+            self.new_vectors.append([self.test_data[i][0],prediction[0].tolist()])
 
         # print(y_pred)
         # print(self.y_test)
         # print("Accuracy: "+str(accuracy_score(self.y_test, y_pred)))
 
         # print("F-1: "+str(f1_score(self.y_test, y_pred, average='micro')))
-        with open(os.path.join('test_data','test_topic_vectors.pkl'),'wb') as pickle_file:
-            pickle.dump(self.new_vectors, pickle_file)
+        with open(os.path.join('test_data','test_topic_vectors.json'),'w') as json_file:
+            json.dump(self.new_vectors, json_file)
     
     '''
     This is the method that will return the topic vector during system flow. When user asks a question and if method=='fused',

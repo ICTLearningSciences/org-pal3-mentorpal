@@ -2,6 +2,7 @@ import string
 import os
 import csv
 import pickle
+import json
 import numpy as np
 import pandas as pd
 from nltk.tokenize import RegexpTokenizer
@@ -43,7 +44,7 @@ class NLTKPreprocessor(object):
 
             # Stem the token and yield
             try:
-                stemmed_token=self.stemmer.stem(token).encode('utf-8')
+                stemmed_token=self.stemmer.stem(token)
             except:
                 print("Unicode error. File encoding was changed when you opened it in Excel. ", end=" ")
                 print("This is most probably an error due to csv file from Google docs being opened in Word. ", end=" ")
@@ -164,7 +165,7 @@ class ClassifierPreProcess(object):
         #instance=<question, topic, answer, paraphrases>
         for instance in self.train_data:
             w2v_vector, lstm_vector=self.get_w2v(instance[1])
-            self.train_vectors.append([instance[0],w2v_vector,instance[2],instance[3]])
+            self.train_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[3]])
             self.lstm_train_vectors.append(lstm_vector)
 
         #For the LSTM, each training sample will have a max dimension of 300 x 25. For those that don't, the pad_sequences
@@ -176,7 +177,7 @@ class ClassifierPreProcess(object):
         try:
             for instance in self.test_data:
                 w2v_vector, lstm_vector=self.get_w2v(instance[1])
-                self.test_vectors.append([instance[0],w2v_vector,instance[2],instance[3]])
+                self.test_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[3]])
                 self.lstm_test_vectors.append(lstm_vector)
             padded_vectors=pad_sequences(self.lstm_test_vectors,maxlen=25, dtype='float32',padding='post',truncating='post',value=0.)
             self.lstm_test_vectors=padded_vectors
@@ -199,7 +200,7 @@ class ClassifierPreProcess(object):
                 if self.all_topics[j] in current_topics:
                     topic_vector[j]=1
             self.train_vectors[i][2]=topic_vector
-            self.lstm_train_data.append([question,self.lstm_train_vectors[i],topic_vector])
+            self.lstm_train_data.append([question,self.lstm_train_vectors[i].tolist(),topic_vector])
         #The test set might not be present when just training the dataset fully and then letting users ask questions.
         #That's why the test set code is inside a try-except block.
         try:
@@ -213,13 +214,13 @@ class ClassifierPreProcess(object):
                     if self.all_topics[j] in current_topics:
                         topic_vector[j]=1
                 self.test_vectors[i][2]=topic_vector
-                self.lstm_test_data.append([question,self.lstm_test_vectors[i],topic_vector])
+                self.lstm_test_data.append([question,self.lstm_test_vectors[i].tolist(),topic_vector])
         except:
             pass
 
 
     '''
-    Write the train and test data to pickle (.pkl) files that can be unpickled in lstm.py and classify.py. This is just dumping
+    Write the train and test data to json (.json) files that can be unpickled in lstm.py and classify.py. This is just dumping
     the data into a file and then undumping it
     '''
     def write_data(self):
@@ -229,25 +230,26 @@ class ClassifierPreProcess(object):
             os.mkdir('test_data')
 
         #dump lstm_train_data
-        with open(os.path.join('train_data','lstm_train_data.pkl'),'wb') as pickle_file:
-            pickle.dump(self.lstm_train_data, pickle_file)
+        with open(os.path.join('train_data','lstm_train_data.json'),'w') as json_file:
+            #data_to_write=self.lstm_train_data.tolist()
+            json.dump(self.lstm_train_data, json_file)
         #dump train_vectors for logistic regression
-        with open(os.path.join('train_data','lr_train_data.pkl'),'wb') as pickle_file:
-            pickle.dump(self.train_vectors,pickle_file)
+        with open(os.path.join('train_data','lr_train_data.json'),'w') as json_file:
+            json.dump(self.train_vectors,json_file)
         
         #The test set might not be present when just training the dataset fully and then letting users ask questions.
         #That's why the test set code is inside a try-except block.
         try:
             #dump lstm_test_data
-            with open(os.path.join('test_data','lstm_test_data.pkl'),'wb') as pickle_file:
-                pickle.dump(self.lstm_test_data, pickle_file)
+            with open(os.path.join('test_data','lstm_test_data.json'),'w') as json_file:
+                json.dump(self.lstm_test_data, json_file)
             #dump test_vectors for logistic regression
-            with open(os.path.join('test_data','lr_test_data.pkl'),'wb') as pickle_file:
-                pickle.dump(self.test_vectors,pickle_file)
+            with open(os.path.join('test_data','lr_test_data.json'),'w') as json_file:
+                json.dump(self.test_vectors,json_file)
         except:
             pass
         #dump ids_answers
-        with open(os.path.join('train_data','ids_answer.pkl'),'wb') as pickle_file:
-            pickle.dump(self.ids_answer,pickle_file)
+        with open(os.path.join('train_data','ids_answer.json'),'w') as json_file:
+            json.dump(self.ids_answer,json_file)
 
 

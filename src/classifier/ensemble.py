@@ -6,6 +6,7 @@ import classifier_preprocess
 import logisticregression as lr
 import sys
 import os
+import json
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score, accuracy_score
@@ -44,15 +45,13 @@ class EnsembleClassifier(object):
         self.classifier.train_lstm()
         self.classifier.train_classifier()
         if mode=='train_test_mode':
-            self.test_data=pickle.load(open(os.path.join('test_data','lr_test_data.pkl'),'rb'))
+            self.test_data=json.load(open(os.path.join('test_data','lr_test_data.json'),'r'))
             self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
             self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
             self.cl_y_test, self.cl_y_pred=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
             self.npc.load_test_data()
             self.get_all_answers()
             
-
-
     '''
     Get answers for all the questions. Used when building a new classifier model. Will be called automatically as part of the 
     start_pipeline method.
