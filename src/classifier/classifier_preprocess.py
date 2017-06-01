@@ -77,7 +77,7 @@ class ClassifierPreProcess(object):
     Read the list of topics from file.
     '''
     def read_topics(self):
-        with open(os.path.join('data','topics.csv')) as f:
+        with open(os.path.join("data","topics.csv")) as f:
             reader=csv.reader(f)
             for row in reader:
                 self.all_topics.append(row[0].lower())
@@ -102,7 +102,7 @@ class ClassifierPreProcess(object):
     self.test_data
     '''
     def read_data(self, mode):
-        corpus=pd.read_csv(os.path.join('data','classifier_data.csv'))
+        corpus=pd.read_csv(os.path.join("data","classifier_data.csv"))
         corpus=corpus.fillna('')
         total=0
         for i in range(0,len(corpus)):
@@ -224,32 +224,32 @@ class ClassifierPreProcess(object):
     the data into a file and then undumping it
     '''
     def write_data(self):
-        if not os.path.exists('train_data'):
-            os.mkdir('train_data')
-        if not os.path.exists('test_data'):
-            os.mkdir('test_data')
+        if not os.path.exists("train_data"):
+            os.mkdir("train_data")
+        if not os.path.exists("test_data"):
+            os.mkdir("test_data")
 
         #dump lstm_train_data
-        with open(os.path.join('train_data','lstm_train_data.json'),'w') as json_file:
+        with open(os.path.join("train_data","lstm_train_data.json"),'w') as json_file:
             #data_to_write=self.lstm_train_data.tolist()
             json.dump(self.lstm_train_data, json_file)
         #dump train_vectors for logistic regression
-        with open(os.path.join('train_data','lr_train_data.json'),'w') as json_file:
+        with open(os.path.join("train_data","lr_train_data.json"),'w') as json_file:
             json.dump(self.train_vectors,json_file)
         
         #The test set might not be present when just training the dataset fully and then letting users ask questions.
         #That's why the test set code is inside a try-except block.
         try:
             #dump lstm_test_data
-            with open(os.path.join('test_data','lstm_test_data.json'),'w') as json_file:
+            with open(os.path.join("test_data","lstm_test_data.json"),'w') as json_file:
                 json.dump(self.lstm_test_data, json_file)
             #dump test_vectors for logistic regression
-            with open(os.path.join('test_data','lr_test_data.json'),'w') as json_file:
+            with open(os.path.join("test_data","lr_test_data.json"),'w') as json_file:
                 json.dump(self.test_vectors,json_file)
         except:
             pass
         #dump ids_answers
-        with open(os.path.join('train_data','ids_answer.json'),'w') as json_file:
+        with open(os.path.join("train_data","ids_answer.json"),'w') as json_file:
             json.dump(self.ids_answer,json_file)
 
 

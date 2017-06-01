@@ -124,7 +124,7 @@ questions: The list of questions which was returned by the split_into_chunks(...
 offset: Question number offset as described before
 '''
 def get_transcript(dirname, audiochunks, questions, offset):
-    transcript_csv=open(dirname+'transcript.csv','a')
+    transcript_csv=open(dirname+"transcript.csv",'a')
     csvwriter=csv.writer(transcript_csv)
 
     for i in range(0,len(questions)):
@@ -144,15 +144,15 @@ def main():
     if dirname[-1] != os.sep:
         dirname+=os.sep
     #Finds out how many parts are there in the session
-    number_of_parts=len(fnmatch.filter(os.listdir(dirname), '*.mp4'))
+    number_of_parts=len(fnmatch.filter(os.listdir(dirname), "*.mp4"))
     session_number=dirname[-2]
 
     print("Started processing the session...")
     for i in range(number_of_parts):
-        video_file=dirname+'session'+str(session_number)+'part'+str(i+1)+'.mp4'
-        audio_file=dirname+'session'+str(session_number)+'part'+str(i+1)+'.wav'
-        timestamps=dirname+'session'+str(session_number)+'part'+str(i+1)+'_timestamps.csv'
-        audiochunks=dirname+'audiochunks'
+        video_file=dirname+"session"+str(session_number)+"part"+str(i+1)+".mp4"
+        audio_file=dirname+"session"+str(session_number)+"part"+str(i+1)+".wav"
+        timestamps=dirname+"session"+str(session_number)+"part"+str(i+1)+"_timestamps.csv"
+        audiochunks=dirname+"audiochunks"
         offset=0
 
         #Create audiochunks directory if it doesn't exist. Won't exist during first session processing
@@ -161,7 +161,7 @@ def main():
             os.mkdir(audiochunks)
         #if audiochunks directory exists, then there is an offset
         else:
-            offset=len(fnmatch.filter(os.listdir(audiochunks), '*.ogg'))
+            offset=len(fnmatch.filter(os.listdir(audiochunks), "*.ogg"))
         print("Processing part "+str(i+1)+"...")
         print("Converting video to audio...")
         convert_to_wav(video_file, audio_file)

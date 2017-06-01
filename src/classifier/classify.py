@@ -67,7 +67,7 @@ class Classify(object):
     classifier in logisticregression.py to get a predicted answer and sends this to the ensemble classifier.
     '''
     def get_answer(self,question, use_topic_vectors=True):
-        self.lc.ids_answer=json.load(open(os.path.join('train_data','ids_answer.json'),'r'))
+        self.lc.ids_answer=json.load(open(os.path.join("train_data","ids_answer.json"),'r'))
         processed_question=self.cpp.preprocessor.transform(question)
         w2v_vector, lstm_vector=self.cpp.get_w2v(processed_question)
         lstm_vector=[lstm_vector]
