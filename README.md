@@ -78,9 +78,9 @@ The Google News Vectors bin file is around 3.6 GB in size and will be loaded eve
 System Setup
 ------------
 The following are required to clone the project from git and run:
-  1. python 3.6. python 2.7 is no longer supported.
+  1. python 3.5.3 (python 2.7 is no longer supported)
   2. git
-  3. <a href="https://git-lfs.github.com/">git-lfs</a>. Track .pkl files when using git-lfs.
+  3. <a href="https://git-lfs.github.com/">git-lfs</a>. Track .pkl and .json files when using git-lfs.
   4. ffmpeg (make sure to install it with --with-theora, --with-libvorbis, --with-opus when using brew on macOS. When compiling from source code, use --enable-theora, --enable-libvorbis, --enable-libopus)
   5. <a href="activemq.apache.org">Apache Activemq</a>
   6. Java 8
@@ -96,10 +96,11 @@ The following packages are required for the program to run. All these can be ins
   5. **numpy** : Python scientific computing
   6. **pandas** : High-performance data structures for Python
   7. **gensim** : Topic Modelling - needed for word2vec
+  8. **openpyxl** : Pandas dependency for writing to excel files
   
 Windows Setup
 ------------
-  1. Get Python 3.5 or 3.6 and install TensorFlow from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#tensorflow">here</a>.
+  1. Get Python 3.5.3 and install TensorFlow from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#tensorflow">here</a>.
   2. Install Visual C++ Redistributable 2015 x64 as MSVCP140.dll
   3. To install keras and gensim, you have to first install scipy from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy">here</a>.
   4. Install numpy+mkl from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy">here</a>.
