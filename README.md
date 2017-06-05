@@ -99,6 +99,7 @@ The following packages are required for the program to run. All these can be ins
   8. **openpyxl** : Pandas dependency for writing to excel files
   10. **tensorflow** : Deep learning library
   11. **nltk** : Natural Language Toolkit
+  12. **h5py** : Python interface to HDF5 binary format
   
 Windows Setup
 ------------
