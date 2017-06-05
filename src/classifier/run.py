@@ -24,7 +24,7 @@ while a != 'exit':
     a=input()
 
 
-end_flag=False
+# end_flag=False
 
 # #start the session
 # ec.start_session()

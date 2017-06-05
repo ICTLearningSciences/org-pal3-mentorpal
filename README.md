@@ -97,6 +97,8 @@ The following packages are required for the program to run. All these can be ins
   6. **pandas** : High-performance data structures for Python
   7. **gensim** : Topic Modelling - needed for word2vec
   8. **openpyxl** : Pandas dependency for writing to excel files
+  10. **tensorflow** : Deep learning library
+  11. **nltk** : Natural Language Toolkit
   
 Windows Setup
 ------------
