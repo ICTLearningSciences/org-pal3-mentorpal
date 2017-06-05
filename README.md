@@ -71,7 +71,7 @@ Ensemble Classifier
 
 A sample program **src/classifier/run.py** is provided to demonstrate how to use the ensemble classifier.
 
-The program **src/classifier/ensemble.py** handles the ensemble. Specifically, when it receives a question, it sends it to *src/classifier/npceditor_interface.py** and **src/classifier/classify.py** to get answers from NPCEditor and the classifier. This program has the rules to decide which answer to return. The answer is returned to run.py or whichever interface you call this program from.
+The program **src/classifier/ensemble.py** handles the ensemble. Specifically, when it receives a question, it sends it to **src/classifier/npceditor_interface.py** and **src/classifier/classify.py** to get answers from NPCEditor and the classifier. This program has the rules to decide which answer to return. The answer is returned to run.py or whichever interface you call this program from.
 
 The Google News Vectors bin file is around 3.6 GB in size and will be loaded every time a new instance of ensemble.py is created. ensemble.py will have the ability to handle session after session and will keep track of session activity. A new instance will be needed only when the program is started from scratch. When multiple users interact with the system one after the other, they will use the same instance of ensemble.py. ensemble.py has the ability to start a new user session, which is different from a new instance of the program itself.
 
