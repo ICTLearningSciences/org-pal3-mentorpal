@@ -87,6 +87,7 @@ class EnsembleClassifier(object):
         if npceditor_answer=="answer_none":
             return_id=classifier_id
             return_answer=classifier_answer
+            print("Answer from classifier chosen")
         else:
             if float(npceditor_score) < -5.56929:
                 return_id=classifier_id
@@ -111,7 +112,7 @@ class EnsembleClassifier(object):
     This method checks the status of the question: whether it is an off-topic or a repeat. Other statuses can be added here.
     '''
     def check_question(self, question):
-        #if question is a special case
+        #if question is a special case - HANDLE SHOW IDLE CASE
         if question in self.special_cases:
             for case, question_status in self.special_cases.iteritems():
                 if question == case:
@@ -161,6 +162,8 @@ class EnsembleClassifier(object):
     def start_session(self):
         self.blacklist.clear()
         #set other variables to track session
+
+        #make mentor speak the intro
 
     #def end_session(self):
         #handle variables to end session
