@@ -21,8 +21,8 @@ Note: Please make sure that the audio file is less than 100 MB in size. IBM Wats
 For this project, the duration of each Q-A won't exceed 5 minutes and in that case, it will be well within 100 MB.
 '''
 def watson(file_name):
-    with open(file_name,'r') as audio_file:
-        result=speech_to_text.recognize(audio_file, content_type='audio/ogg' continuous=True)['results']
+    with open(file_name,'rb') as audio_file:
+        result=speech_to_text.recognize(audio_file, content_type='audio/ogg', continuous=True)['results']
         transcript=""
         for item in result:
             transcript+=item['alternatives'][0]['transcript']
