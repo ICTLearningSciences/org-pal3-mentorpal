@@ -129,42 +129,42 @@ class PostProcessData(object):
 
         classifier_df=pd.DataFrame(self.training_data,columns=['ID','topics','text','question'])
         with open(os.path.join("data","classifier_data.csv"), 'a') as classifier_file:
-             classifier_df.to_csv(classifier_file, header=classifier_header, index=False)
+             classifier_df.to_csv(classifier_file, header=classifier_header, index=False, encoding='utf-8')
 
         #store meta-data for later use
         meta_header=True
         if os.path.exists(os.path.join("data","metadata.csv")):
-            curr_metadata_df=pd.read_csv(open(os.path.join("data","metadata.csv"),'r'))
+            curr_metadata_df=pd.read_csv(open(os.path.join("data","metadata.csv"),'rb'))
             startrow=len(curr_metadata_df)+1
             meta_header=False
             for i in range(0,len(curr_metadata_df)):
                 if curr_metadata_df.iloc[i]['Mentor Name'] == self.mentor_name:
-                    curr_metadata_df.set_value(i, 'Last Answer Number', str(self.answer_number))
-                    curr_metadata_df.set_value(i, 'Last Utterance Number', str(self.utterance_number))
+                    curr_metadata_df.set_value(i, 'Next Answer Number', str(self.answer_number))
+                    curr_metadata_df.set_value(i, 'Next Utterance Number', str(self.utterance_number))
                 #corpus index is common for all mentors
                 curr_metadata_df.set_value(i, 'Corpus Index', str(self.corpus_index))
         else:
             metadata={}
             metadata['Mentor Name']=self.mentor_name
-            metadata['Last Answer Number']=self.answer_number
-            metadata['Last Utterance Number']=self.utterance_number
+            metadata['Next Answer Number']=self.answer_number
+            metadata['Next Utterance Number']=self.utterance_number
             metadata['Corpus Index']=self.corpus_index
             metadata=[metadata]
-            metadata_df=pd.DataFrame(metadata, columns=['Mentor Name', 'Last Answer Number', 'Last Utterance Number', 'Corpus Index'])
+            metadata_df=pd.DataFrame(metadata, columns=['Mentor Name', 'Next Answer Number', 'Next Utterance Number', 'Corpus Index'])
 
         #write metadata to file, depending on whether the file already exists or not
         with open(os.path.join("data","metadata.csv"),'a') as metadata_file:
             #if it doesn't exist, write new data
             if meta_header:
-                metadata_df.to_csv(metadata_file, header=meta_header, index=False)
+                metadata_df.to_csv(metadata_file, header=meta_header, index=False, encoding='utf-8')
             #if it exists, then write the modified data
             else:
-                curr_metadata_df.to_csv(metadata_file, header=meta_header, index=False)
+                curr_metadata_df.to_csv(metadata_file, header=meta_header, index=False, encoding='utf-8')
 
         #data for NPCEditor
         npc_header=True
         if os.path.exists(os.path.join("data","NPCEditor_data.xlsx")):
-            curr_npceditor_df=pd.read_excel(open(os.path.join("data","NPCEditor_data.xlsx"),'r'),sheetname='Sheet1')
+            curr_npceditor_df=pd.read_excel(open(os.path.join("data","NPCEditor_data.xlsx"),'rb'),sheetname='Sheet1')
             startrow=len(curr_npceditor_df)+1
             npc_header=False
         npceditor_test_data=[]
@@ -215,35 +215,35 @@ def main():
     
     #Load older metadata, to see where to continue numbering answers and utterances from, for the current mentor
     if not os.path.exists(os.path.join("data","metadata.csv")):
-        last_answer=1
-        last_utterance=1
+        next_answer=1
+        next_utterance=1
         corpus_index=0
     else:
-        with open(os.path.join("data","metadata.csv"),'r') as metadata_file:
-            curr_metadata_df=pd.read_csv(open(os.path.join("data","metadata.csv"),'r'))
+        with open(os.path.join("data","metadata.csv"),'rb') as metadata_file:
+            curr_metadata_df=pd.read_csv(open(os.path.join("data","metadata.csv"),'rb'))
             if len(curr_metadata_df) > 0:
                 mentor_found = False
                 for i in range(0,len(curr_metadata_df)):
                     corpus_index=int(curr_metadata_df.iloc[i]['Corpus Index'])
                     if curr_metadata_df.iloc[i]['Mentor Name'] == mentor_name:
                         mentor_found = True
-                        last_answer=int(curr_metadata_df.iloc[i]['Last Answer Number'])
-                        last_utterance=int(curr_metadata_df.iloc[i]['Last Utterance Number'])
+                        next_answer=int(curr_metadata_df.iloc[i]['Next Answer Number'])
+                        next_utterance=int(curr_metadata_df.iloc[i]['Next Utterance Number'])
                         
                 if not mentor_found:
                     corpus_index=int(curr_metadata_df.iloc[i]['Corpus Index']) #corpus index is common for all mentors
-                    last_answer=1
-                    last_utterance=1
+                    next_answer=1
+                    next_utterance=1
             #the file is present but no data in it. Sanity check
             else:
-                last_answer=1
-                last_utterance=1
+                next_answer=1
+                next_utterance=1
                 corpus_index=0
 
 
     #Load the corpus which contains questions, paraphrases and answers
-    corpus=pd.read_csv(os.path.join("data","Questions_Paraphrases_Answers.csv"))
-    ppd=PostProcessData(answer_chunks, utterance_chunks, last_answer, last_utterance, mentor_name, corpus, corpus_index)
+    corpus=pd.read_excel(open(os.path.join("data","Questions_Paraphrases_Answers.xlsx"),'rb'), sheetname='Sheet1')
+    ppd=PostProcessData(answer_chunks, utterance_chunks, next_answer, next_utterance, mentor_name, corpus, corpus_index)
     #Walk into each session directory and get the answer chunks from each session
     for session in sessions:
         session_path=dirname+session+os.sep

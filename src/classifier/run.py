@@ -20,7 +20,8 @@ print("You can ask questions now")
 a=input()
 while a != 'exit':
     answer=ec.answer_the_question(a)
-    print(answer)
+    print("Video file: "+answer[0])
+    print("Transcript: "+answer[1])
     a=input()
 
 
