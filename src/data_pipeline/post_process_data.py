@@ -33,6 +33,7 @@ class PostProcessData(object):
             inputs={input_file: None},
             outputs={output_file: output_command},
         )
+        print(ff.cmd)
         ff.run()
 
     '''
@@ -139,6 +140,10 @@ class PostProcessData(object):
             meta_header=False
             for i in range(0,len(curr_metadata_df)):
                 if curr_metadata_df.iloc[i]['Mentor Name'] == self.mentor_name:
+                    print("Found")
+                    print(self.answer_number)
+                    print(self.utterance_number)
+                    input()
                     curr_metadata_df.set_value(i, 'Next Answer Number', str(self.answer_number))
                     curr_metadata_df.set_value(i, 'Next Utterance Number', str(self.utterance_number))
                 #corpus index is common for all mentors
