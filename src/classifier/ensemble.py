@@ -27,6 +27,7 @@ class EnsembleClassifier(object):
 
         #variables to keep track of session
         self.blacklist=set()
+        self.pal3_status_codes={'_START_SESSION_', '_INTRO_', '_IDLE_', '_TIME_OUT_', '_END_SESSION_'}
         self.special_cases={} #"PAL3 has timed out due to no response from user": "pal3_timeout" and such cases
 
     '''
@@ -113,25 +114,26 @@ class EnsembleClassifier(object):
     '''
     def check_question(self, question):
         #if question is a special case - HANDLE SHOW IDLE CASE
-        if question in self.special_cases:
-            for case, question_status in self.special_cases.iteritems():
-                if question == case:
-                    return question_status
+        if question in self.pal3_status_codes:
+            return question
+            # for case, question_status in self.special_cases.iteritems():
+            #     if question == case:
+            #         return question_status
 
         #if question is off-topic
         if self.is_off_topic(question):
-            return 'off-topic'
+            return '_OFF_TOPIC'
 
         #if question is repeat
         if question in self.blacklist:
-            return 'repeat'
+            return '_REPEAT_'
         else:
-            return 'new-question'
+            return '_NEW_QUESTION_'
 
     '''
     This method returns the appropriate prompt for a particular question status
     '''
-    #def return_prompt(self, situation):
+    #def return_prompt(self, question_status):
         #Load the prompts file
 
         #Select a prompt and return it
@@ -149,12 +151,13 @@ class EnsembleClassifier(object):
         # question_status=check_question(question) #check the question status
 
         # #if the question is legitimate, then fetch answer
-        # if question_status=='new-question':
+        # if question_status=='_NEW_QUESTION':
         #     answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
 
         # #Statuses that require a prompt from the mentor
         # else:
         #     answer=self.return_prompt(self, question_status)
+
         answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
 

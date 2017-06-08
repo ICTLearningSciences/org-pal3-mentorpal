@@ -14,6 +14,7 @@ class PostProcessData(object):
         self.corpus=corpus.fillna('')
         self.corpus_index=corpus_index
         self.training_data=[] #training data to write to file, for use by classifier in later stage.
+        self.utterance_data=[] #utterance data to write to file, for use by ensemble.py when checking question status
     '''
     Splits the large .mp4 file into chunks based on the start_time and end_time of chunk.
     This function is equivalent to running `ffmpeg -i input_file -ss start_time -to end_time output_file -loglevel quiet` on the command line.
@@ -86,30 +87,33 @@ class PostProcessData(object):
         #get all the chunks
         for i in range(0,len(start_times)):
             print("Processed chunk "+str(i))
-            training_sample={}
+            answer_sample={}
+            utterance_sample={}
             if text_type[i]=='A' and len(self.corpus) > self.corpus_index:
                 answer_id=self.mentor_name+"_A"+str(self.answer_number)+"_"+str(session_number)+"_"+str(part_number)
                 output_file=os.path.join(self.answer_chunks, answer_id+".ogv")
-                training_sample['ID']=answer_id
-                training_sample['topics']=self.corpus.iloc[self.corpus_index]['Topics']+","+self.corpus.iloc[self.corpus_index]['Helpers']
-                if training_sample['topics'][-1]==',':
-                    training_sample['topics']=training_sample['topics'][:-1]
-                training_sample['question']=self.corpus.iloc[self.corpus_index]['Question']+'\r\n'+self.corpus.iloc[self.corpus_index]['P1']+'\r\n'+\
+                answer_sample['ID']=answer_id
+                answer_sample['topics']=self.corpus.iloc[self.corpus_index]['Topics']+","+self.corpus.iloc[self.corpus_index]['Helpers']
+                if answer_sample['topics'][-1]==',':
+                    answer_sample['topics']=answer_sample['topics'][:-1]
+                answer_sample['question']=self.corpus.iloc[self.corpus_index]['Question']+'\r\n'+self.corpus.iloc[self.corpus_index]['P1']+'\r\n'+\
                 self.corpus.iloc[self.corpus_index]['P2']+'\r\n'+self.corpus.iloc[self.corpus_index]['P3']+'\r\n'+\
                 self.corpus.iloc[self.corpus_index]['P4']+'\r\n'+self.corpus.iloc[self.corpus_index]['P5']+'\r\n'+\
                 self.corpus.iloc[self.corpus_index]['P6']+'\r\n'+self.corpus.iloc[self.corpus_index]['P7']+'\r\n'+\
                 self.corpus.iloc[self.corpus_index]['P8']+'\r\n'+self.corpus.iloc[self.corpus_index]['P9']+'\r\n'+\
                 self.corpus.iloc[self.corpus_index]['P10']
-                training_sample['question']=training_sample['question'].strip()
-                training_sample['text']=self.corpus.iloc[self.corpus_index]['text']
+                answer_sample['question']=answer_sample['question'].strip()
+                answer_sample['text']=self.corpus.iloc[self.corpus_index]['text']
                 self.corpus_index+=1
                 self.answer_number+=1
-                self.training_data.append(training_sample)
+                self.training_data.append(answer_sample)
             elif text_type[i]=='U':
-                #csv for utterance chunks is needed!!
                 utterance_id=self.mentor_name+"_U"+str(self.utterance_number)+"_"+str(session_number)+"_"+str(part_number)
                 output_file=os.path.join(self.utterance_chunks, utterance_id+".ogv")
+                utterance_sample['ID']=utterance_id
+                utterance_sample['utterance']=text[i]
                 self.utterance_number+=1
+                self.utterance_data.append(utterance_sample)
             '''
             Uncomment this line when you want to get the actual cut answers. This takes a long time so this isn't needed
             when testing the code for the other parts
@@ -140,10 +144,6 @@ class PostProcessData(object):
             meta_header=False
             for i in range(0,len(curr_metadata_df)):
                 if curr_metadata_df.iloc[i]['Mentor Name'] == self.mentor_name:
-                    print("Found")
-                    print(self.answer_number)
-                    print(self.utterance_number)
-                    input()
                     curr_metadata_df.set_value(i, 'Next Answer Number', str(self.answer_number))
                     curr_metadata_df.set_value(i, 'Next Utterance Number', str(self.utterance_number))
                 #corpus index is common for all mentors
