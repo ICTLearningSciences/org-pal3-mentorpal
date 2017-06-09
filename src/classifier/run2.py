@@ -23,6 +23,7 @@ read_fd = msvcrt.open_osfhandle(in_pipe, os.O_RDONLY)
 reader = open(read_fd, "r")
 print("READING PIPE...")
 input = reader.readline()
+print("READ: " + input)
 
 #out pipe to Unity
 print("CREATING PIPE...")
@@ -32,7 +33,7 @@ win32pipe.ConnectNamedPipe(out_pipe, None)
 print("CREATING WRITER...")
 write_fd = msvcrt.open_osfhandle(out_pipe, os.O_WRONLY)
 writer = open(write_fd, "w")
-print("CONNECTED")
+print("MENTOR PAL IS READY TO GO")
 
 end_flag = False
 while end_flag == False:
@@ -58,3 +59,6 @@ while end_flag == False:
         print(answer[1])
     writer.flush()
     input = reader.readline()
+
+in_pipe.close()
+out_pipe.close()
