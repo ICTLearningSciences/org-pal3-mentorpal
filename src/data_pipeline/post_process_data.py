@@ -169,7 +169,7 @@ class PostProcessData(object):
         #data for NPCEditor
         npc_header=True
         if os.path.exists(os.path.join("data","NPCEditor_data.xlsx")):
-            curr_npceditor_df=pd.read_excel(open(os.path.join("data","NPCEditor_data.xlsx"),'rb'),sheetname='official')
+            curr_npceditor_df=pd.read_excel(open(os.path.join("data","NPCEditor_data.xlsx"),'rb'),sheetname='Sheet1')
             startrow=len(curr_npceditor_df)+1
             npc_header=False
         npceditor_test_data=[]
@@ -185,7 +185,7 @@ class PostProcessData(object):
             df_to_write=npceditor_df
 
         npceditor_writer=pd.ExcelWriter(os.path.join("data","NPCEditor_data.xlsx"),engine='openpyxl')
-        df_to_write.to_excel(npceditor_writer,'official', index=False, header=npc_header)
+        df_to_write.to_excel(npceditor_writer,'Sheet1', index=False, header=npc_header)
         npceditor_writer.save()
 
 
