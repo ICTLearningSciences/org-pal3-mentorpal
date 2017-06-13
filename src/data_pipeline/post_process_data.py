@@ -169,7 +169,7 @@ class PostProcessData(object):
         #data for NPCEditor
         npc_header=True
         if os.path.exists(os.path.join("data","NPCEditor_data.xlsx")):
-            curr_npceditor_df=pd.read_excel(open(os.path.join("data","NPCEditor_data.xlsx"),'rb'),sheetname='Sheet1')
+            curr_npceditor_df=pd.read_excel(open(os.path.join("data","NPCEditor_data.xlsx"),'rb'),sheetname='official')
             startrow=len(curr_npceditor_df)+1
             npc_header=False
         npceditor_test_data=[]
@@ -185,7 +185,7 @@ class PostProcessData(object):
             df_to_write=npceditor_df
 
         npceditor_writer=pd.ExcelWriter(os.path.join("data","NPCEditor_data.xlsx"),engine='openpyxl')
-        df_to_write.to_excel(npceditor_writer,'Sheet1', index=False, header=npc_header)
+        df_to_write.to_excel(npceditor_writer,'official', index=False, header=npc_header)
         npceditor_writer.save()
 
 
@@ -247,7 +247,7 @@ def main():
 
 
     #Load the corpus which contains questions, paraphrases and answers
-    corpus=pd.read_excel(open(os.path.join("data","Questions_Paraphrases_Answers.xlsx"),'rb'), sheetname='Sheet1')
+    corpus=pd.read_excel(open(os.path.join("data","Questions_Paraphrases_Answers.xlsx"),'rb'), sheetname='official')
     ppd=PostProcessData(answer_chunks, utterance_chunks, next_answer, next_utterance, mentor_name, corpus, corpus_index)
     #Walk into each session directory and get the answer chunks from each session
     for session in sessions:
