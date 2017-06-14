@@ -5,7 +5,7 @@ import os
 import fnmatch
 import pandas as pd
 class PostProcessData(object):
-    def __init__(self, answer_chunks, utterance_chunks, answer_number, utterance_number, mentor_name, answer_corpus, answer_corpus_index, utterance_corpus, utterance_corpus_index:
+    def __init__(self, answer_chunks, utterance_chunks, answer_number, utterance_number, mentor_name, answer_corpus, answer_corpus_index, utterance_corpus, utterance_corpus_index):
         self.answer_chunks=answer_chunks
         self.utterance_chunks=utterance_chunks
         self.answer_number=answer_number
@@ -113,7 +113,9 @@ class PostProcessData(object):
                 utterance_id=self.mentor_name+"_U"+str(self.utterance_number)+"_"+str(session_number)+"_"+str(part_number)
                 output_file=os.path.join(self.utterance_chunks, utterance_id+".ogv")
                 utterance_sample['ID']=utterance_id
-                utterance_sample['utterance']=text[i]
+                utterance_sample['utterance']=self.utterance_corpus.iloc[self.utterance_corpus_index]['Utterance/Prompt']
+                utterance_sample['situation']=self.utterance_corpus.iloc[self.utterance_corpus_index]['Situation']
+                self.utterance_corpus_index+=1
                 self.utterance_number+=1
                 self.utterance_data.append(utterance_sample)
             '''
@@ -138,19 +140,27 @@ class PostProcessData(object):
         with open(os.path.join("data","classifier_data.csv"), 'a') as classifier_file:
              classifier_df.to_csv(classifier_file, header=classifier_header, index=False, encoding='utf-8')
 
+        #data for prompts and utterances
+        utterance_header=True
+        if os.path.exists(os.path.join("data","utterance_data.csv")):
+            utterance_header=False   
+
+        utterance_df=pd.DataFrame(self.utterance_data,columns=['ID','utterance', 'situation'])
+        with open(os.path.join("data","utterance_data.csv"), 'a') as utterance_file:
+             utterance_df.to_csv(utterance_file, header=utterance_header, index=False, encoding='utf-8')
+
         #store meta-data for later use
-        meta_header=True
+        metadata_df=None
         if os.path.exists(os.path.join("data","metadata.csv")):
-            curr_metadata_df=pd.read_csv(open(os.path.join("data","metadata.csv"),'rb'))
-            startrow=len(curr_metadata_df)+1
-            meta_header=False
-            for i in range(0,len(curr_metadata_df)):
-                if curr_metadata_df.iloc[i]['Mentor Name'] == self.mentor_name:
-                    curr_metadata_df.set_value(i, 'Next Answer Number', str(self.answer_number))
-                    curr_metadata_df.set_value(i, 'Next Utterance Number', str(self.utterance_number))
+            metadata_df=pd.read_csv(open(os.path.join("data","metadata.csv"),'rb'))
+            startrow=len(metadata_df)+1
+            for i in range(0,len(metadata_df)):
+                if metadata_df.iloc[i]['Mentor Name'] == self.mentor_name:
+                    metadata_df.set_value(i, 'Next Answer Number', str(self.answer_number))
+                    metadata_df.set_value(i, 'Next Utterance Number', str(self.utterance_number))
                 #answer_corpus index is common for all mentors
-                curr_metadata_df.set_value(i, 'Answer Corpus Index', str(self.answer_corpus_index))
-                curr_metadata_df.set_value(i, 'Utterance Corpus Index', str(self.utterance_corpus_index))
+                metadata_df.set_value(i, 'Answer Corpus Index', str(self.answer_corpus_index))
+                metadata_df.set_value(i, 'Utterance Corpus Index', str(self.utterance_corpus_index))
         else:
             metadata={}
             metadata['Mentor Name']=self.mentor_name
@@ -161,14 +171,9 @@ class PostProcessData(object):
             metadata=[metadata]
             metadata_df=pd.DataFrame(metadata, columns=['Mentor Name', 'Next Answer Number', 'Next Utterance Number', 'Answer Corpus Index', 'Utterance Corpus Index'])
 
-        #write metadata to file, depending on whether the file already exists or not
-        with open(os.path.join("data","metadata.csv"),'a') as metadata_file:
-            #if it doesn't exist, write new data
-            if meta_header:
-                metadata_df.to_csv(metadata_file, header=meta_header, index=False, encoding='utf-8')
-            #if it exists, then write the modified data
-            else:
-                curr_metadata_df.to_csv(metadata_file, header=meta_header, index=False, encoding='utf-8')
+        #write metadata to file
+        with open(os.path.join("data","metadata.csv"),'w') as metadata_file:
+            metadata_df.to_csv(metadata_file, header=True, index=False, encoding='utf-8')
 
         #data for NPCEditor
         npc_header=True
