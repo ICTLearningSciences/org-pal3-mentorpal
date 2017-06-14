@@ -255,8 +255,8 @@ def main():
 
 
     #Load the answer corpus which contains questions, paraphrases and answers
-    answer_corpus=pd.read_excel(open(os.path.join("data","Questions_Paraphrases_Answers.xlsx"),'rb'), sheetname='Sheet1')
-    utterance_corpus=pd.read_excel(open(os.path.join("data","Prompts_Utterances.xlsx"),'rb'), sheetname='Sheet1')
+    answer_corpus=pd.read_excel(open(os.path.join("data","Questions_Paraphrases_Answers.xlsx"),'rb'), sheetname='official')
+    utterance_corpus=pd.read_excel(open(os.path.join("data","Prompts_Utterances.xlsx"),'rb'), sheetname='official')
     ppd=PostProcessData(answer_chunks, utterance_chunks, next_answer, next_utterance, mentor_name, answer_corpus, answer_corpus_index, utterance_corpus, utterance_corpus_index)
     #Walk into each session directory and get the answer chunks from each session
     for session in sessions:
