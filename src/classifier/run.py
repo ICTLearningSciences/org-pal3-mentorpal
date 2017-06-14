@@ -25,14 +25,15 @@ while a != 'exit':
     a=input()
 
 
-# end_flag=False
+end_flag=False
 
-# #start the session
-# ec.start_session()
+#start the session
 
-# #while the session is in progress
-# while not end_flag:
-#     answer=ec.answer_the_question("Timeout")
+ec.start_session()
+
+#while the session is in progress
+while not end_flag:
+    answer=ec.answer_the_question("_TIME_OUT_")
     
-# #end the session
-# ec.end_session()
+#end the session
+ec.end_session()

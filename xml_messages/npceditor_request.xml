@@ -1,1 +1,1 @@
-<requests ID="L1" agentName="clintanderson"><request ID="question_1" source="Anybody" target="All"><field name="text">what is your name?</field></request></requests>
+<requests ID="L1" agentName="clintanderson"><request ID="question_1" source="Anybody" target="All"><field name="text">do you know any jokes?</field></request><request ID="question_1" source="Anybody" target="All"><field name="text">Did you get good grades?</field></request><request ID="question_1" source="Anybody" target="All"><field name="text">Are you good at math?</field></request></requests>

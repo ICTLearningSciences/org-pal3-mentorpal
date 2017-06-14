@@ -5,14 +5,16 @@ import os
 import fnmatch
 import pandas as pd
 class PostProcessData(object):
-    def __init__(self, answer_chunks, utterance_chunks, answer_number, utterance_number, mentor_name, corpus, corpus_index):
+    def __init__(self, answer_chunks, utterance_chunks, answer_number, utterance_number, mentor_name, answer_corpus, answer_corpus_index, utterance_corpus, utterance_corpus_index:
         self.answer_chunks=answer_chunks
         self.utterance_chunks=utterance_chunks
         self.answer_number=answer_number
         self.utterance_number=utterance_number
         self.mentor_name=mentor_name
-        self.corpus=corpus.fillna('')
-        self.corpus_index=corpus_index
+        self.answer_corpus=answer_corpus.fillna('')
+        self.answer_corpus_index=answer_corpus_index
+        self.utterance_corpus=utterance_corpus.fillna('')
+        self.utterance_corpus_index=utterance_corpus_index
         self.training_data=[] #training data to write to file, for use by classifier in later stage.
         self.utterance_data=[] #utterance data to write to file, for use by ensemble.py when checking question status
     '''
@@ -89,22 +91,22 @@ class PostProcessData(object):
             print("Processed chunk "+str(i))
             answer_sample={}
             utterance_sample={}
-            if text_type[i]=='A' and len(self.corpus) > self.corpus_index:
+            if text_type[i]=='A' and len(self.answer_corpus) > self.answer_corpus_index:
                 answer_id=self.mentor_name+"_A"+str(self.answer_number)+"_"+str(session_number)+"_"+str(part_number)
                 output_file=os.path.join(self.answer_chunks, answer_id+".ogv")
                 answer_sample['ID']=answer_id
-                answer_sample['topics']=self.corpus.iloc[self.corpus_index]['Topics']+","+self.corpus.iloc[self.corpus_index]['Helpers']
+                answer_sample['topics']=self.answer_corpus.iloc[self.answer_corpus_index]['Topics']+","+self.answer_corpus.iloc[self.answer_corpus_index]['Helpers']
                 if answer_sample['topics'][-1]==',':
                     answer_sample['topics']=answer_sample['topics'][:-1]
-                answer_sample['question']=self.corpus.iloc[self.corpus_index]['Question']+'\r\n'+self.corpus.iloc[self.corpus_index]['P1']+'\r\n'+\
-                self.corpus.iloc[self.corpus_index]['P2']+'\r\n'+self.corpus.iloc[self.corpus_index]['P3']+'\r\n'+\
-                self.corpus.iloc[self.corpus_index]['P4']+'\r\n'+self.corpus.iloc[self.corpus_index]['P5']+'\r\n'+\
-                self.corpus.iloc[self.corpus_index]['P6']+'\r\n'+self.corpus.iloc[self.corpus_index]['P7']+'\r\n'+\
-                self.corpus.iloc[self.corpus_index]['P8']+'\r\n'+self.corpus.iloc[self.corpus_index]['P9']+'\r\n'+\
-                self.corpus.iloc[self.corpus_index]['P10']
+                answer_sample['question']=self.answer_corpus.iloc[self.answer_corpus_index]['Question']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P1']+'\r\n'+\
+                self.answer_corpus.iloc[self.answer_corpus_index]['P2']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P3']+'\r\n'+\
+                self.answer_corpus.iloc[self.answer_corpus_index]['P4']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P5']+'\r\n'+\
+                self.answer_corpus.iloc[self.answer_corpus_index]['P6']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P7']+'\r\n'+\
+                self.answer_corpus.iloc[self.answer_corpus_index]['P8']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P9']+'\r\n'+\
+                self.answer_corpus.iloc[self.answer_corpus_index]['P10']
                 answer_sample['question']=answer_sample['question'].strip()
-                answer_sample['text']=self.corpus.iloc[self.corpus_index]['text']
-                self.corpus_index+=1
+                answer_sample['text']=self.answer_corpus.iloc[self.answer_corpus_index]['text']
+                self.answer_corpus_index+=1
                 self.answer_number+=1
                 self.training_data.append(answer_sample)
             elif text_type[i]=='U':
@@ -146,16 +148,18 @@ class PostProcessData(object):
                 if curr_metadata_df.iloc[i]['Mentor Name'] == self.mentor_name:
                     curr_metadata_df.set_value(i, 'Next Answer Number', str(self.answer_number))
                     curr_metadata_df.set_value(i, 'Next Utterance Number', str(self.utterance_number))
-                #corpus index is common for all mentors
-                curr_metadata_df.set_value(i, 'Corpus Index', str(self.corpus_index))
+                #answer_corpus index is common for all mentors
+                curr_metadata_df.set_value(i, 'Answer Corpus Index', str(self.answer_corpus_index))
+                curr_metadata_df.set_value(i, 'Utterance Corpus Index', str(self.utterance_corpus_index))
         else:
             metadata={}
             metadata['Mentor Name']=self.mentor_name
             metadata['Next Answer Number']=self.answer_number
             metadata['Next Utterance Number']=self.utterance_number
-            metadata['Corpus Index']=self.corpus_index
+            metadata['Answer Corpus Index']=self.answer_corpus_index
+            metadata['Utterance Corpus Index']=self.utterance_corpus_index
             metadata=[metadata]
-            metadata_df=pd.DataFrame(metadata, columns=['Mentor Name', 'Next Answer Number', 'Next Utterance Number', 'Corpus Index'])
+            metadata_df=pd.DataFrame(metadata, columns=['Mentor Name', 'Next Answer Number', 'Next Utterance Number', 'Answer Corpus Index', 'Utterance Corpus Index'])
 
         #write metadata to file, depending on whether the file already exists or not
         with open(os.path.join("data","metadata.csv"),'a') as metadata_file:
@@ -222,33 +226,38 @@ def main():
     if not os.path.exists(os.path.join("data","metadata.csv")):
         next_answer=1
         next_utterance=1
-        corpus_index=0
+        answer_corpus_index=0
+        utterance_corpus_index=0
     else:
         with open(os.path.join("data","metadata.csv"),'rb') as metadata_file:
             curr_metadata_df=pd.read_csv(open(os.path.join("data","metadata.csv"),'rb'))
             if len(curr_metadata_df) > 0:
                 mentor_found = False
                 for i in range(0,len(curr_metadata_df)):
-                    corpus_index=int(curr_metadata_df.iloc[i]['Corpus Index'])
+                    answer_corpus_index=int(curr_metadata_df.iloc[i]['Answer Corpus Index'])
+                    utterance_corpus_index=int(curr_metadata_df.iloc[i]['Utterance Corpus Index'])
                     if curr_metadata_df.iloc[i]['Mentor Name'] == mentor_name:
                         mentor_found = True
                         next_answer=int(curr_metadata_df.iloc[i]['Next Answer Number'])
                         next_utterance=int(curr_metadata_df.iloc[i]['Next Utterance Number'])
                         
                 if not mentor_found:
-                    corpus_index=int(curr_metadata_df.iloc[i]['Corpus Index']) #corpus index is common for all mentors
+                    answer_corpus_index=int(curr_metadata_df.iloc[i]['Answer Corpus Index']) #answer_corpus index is common for all mentors
+                    utterance_corpus_index=int(curr_metadata_df.iloc[i]['Utterance Corpus Index'])
                     next_answer=1
                     next_utterance=1
             #the file is present but no data in it. Sanity check
             else:
                 next_answer=1
                 next_utterance=1
-                corpus_index=0
+                answer_corpus_index=0
+                utterance_corpus_index=0
 
 
-    #Load the corpus which contains questions, paraphrases and answers
-    corpus=pd.read_excel(open(os.path.join("data","Questions_Paraphrases_Answers.xlsx"),'rb'), sheetname='Sheet1')
-    ppd=PostProcessData(answer_chunks, utterance_chunks, next_answer, next_utterance, mentor_name, corpus, corpus_index)
+    #Load the answer corpus which contains questions, paraphrases and answers
+    answer_corpus=pd.read_excel(open(os.path.join("data","Questions_Paraphrases_Answers.xlsx"),'rb'), sheetname='Sheet1')
+    utterance_corpus=pd.read_excel(open(os.path.join("data","Prompts_Utterances.xlsx"),'rb'), sheetname='Sheet1')
+    ppd=PostProcessData(answer_chunks, utterance_chunks, next_answer, next_utterance, mentor_name, answer_corpus, answer_corpus_index, utterance_corpus, utterance_corpus_index)
     #Walk into each session directory and get the answer chunks from each session
     for session in sessions:
         session_path=dirname+session+os.sep

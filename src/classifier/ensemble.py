@@ -27,8 +27,8 @@ class EnsembleClassifier(object):
 
         #variables to keep track of session
         self.blacklist=set()
-        self.pal3_status_codes={'_START_SESSION_', '_INTRO_', '_IDLE_', '_TIME_OUT_', '_END_SESSION_'}
-        self.special_cases={} #"PAL3 has timed out due to no response from user": "pal3_timeout" and such cases
+        self.pal3_status_codes={'_START_SESSION_', '_INTRO_', '_IDLE_', '_TIME_OUT_', '_END_SESSION_'} #status codes that PAL3 sends to code
+        self.special_cases={} #responses for the special cases
 
     '''
     This starts the pipeline for training the classifier from scratch.
@@ -109,6 +109,21 @@ class EnsembleClassifier(object):
     #def is_off_topic(self, question):
 
 
+    #information to track must be discussed with Ben, Nick, Kayla
+    def start_session(self):
+        self.blacklist.clear()
+        #set other variables to track session
+    
+    #play intro clip
+    def play_intro(self):
+        
+    #play idle clip
+    def play_idle(self):
+        
+    def end_session(self):
+        handle variables to end session
+            
+
     '''
     This method checks the status of the question: whether it is an off-topic or a repeat. Other statuses can be added here.
     '''
@@ -116,10 +131,7 @@ class EnsembleClassifier(object):
         #if question is a special case - HANDLE SHOW IDLE CASE
         if question in self.pal3_status_codes:
             return question
-            # for case, question_status in self.special_cases.iteritems():
-            #     if question == case:
-            #         return question_status
-
+            
         #if question is off-topic
         if self.is_off_topic(question):
             return '_OFF_TOPIC'
@@ -133,10 +145,26 @@ class EnsembleClassifier(object):
     '''
     This method returns the appropriate prompt for a particular question status
     '''
-    #def return_prompt(self, question_status):
-        #Load the prompts file
+    def return_prompt(self, question_status):
+        # Load the prompts file
 
-        #Select a prompt and return it
+        # Select a prompt and return it
+        if question_status=="_START_SESSION_":
+            self.start_session()
+        elif question_status=="_END_SESSION_":
+            self.end_session()
+        elif question_status=="_INTRO_":
+            self.play_intro()
+        elif question_status=="_IDLE_":
+            self.play_idle()
+        elif question_status=="_TIME_OUT_":
+            #load a random prompt from file and return it.
+            #The choice of prompt can also be based on the topic of the last asked question
+            #This will help drive the conversation in the direction we want so that an agenda can be maintained
+        elif question_status=="_OFF_TOPIC_":
+            #load off-topic feedback clip and play it
+        elif question_status=="_REPEAT_":
+            #load repeat feedback clip and play it
 
     '''
     When you want to get an answer to a question, this method will be used. Flexibility to use/not use topic vectors is provided.
@@ -148,27 +176,18 @@ class EnsembleClassifier(object):
     from return_prompt
     '''
     def answer_the_question(self, question, use_topic_vectors=True):
-        # question_status=check_question(question) #check the question status
+        question_status=check_question(question) #check the question status
 
-        # #if the question is legitimate, then fetch answer
-        # if question_status=='_NEW_QUESTION':
-        #     answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
+        #if the question is legitimate, then fetch answer
+        if question_status=='_NEW_QUESTION':
+            answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
 
-        # #Statuses that require a prompt from the mentor
-        # else:
-        #     answer=self.return_prompt(self, question_status)
+        #Statuses that require a prompt from the mentor
+        else:
+            answer=self.return_prompt(self, question_status)
 
-        answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
+        # answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
 
-    #information to track must be discussed with Ben, Nick, Kayla
-    def start_session(self):
-        self.blacklist.clear()
-        #set other variables to track session
 
-        #make mentor speak the intro
-
-    #def end_session(self):
-        #handle variables to end session
-            
 
