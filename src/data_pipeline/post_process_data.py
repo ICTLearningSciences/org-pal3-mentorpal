@@ -234,23 +234,22 @@ def main():
         answer_corpus_index=0
         utterance_corpus_index=0
     else:
-        with open(os.path.join("data","metadata.csv"),'rb') as metadata_file:
-            curr_metadata_df=pd.read_csv(open(os.path.join("data","metadata.csv"),'rb'))
-            if len(curr_metadata_df) > 0:
-                mentor_found = False
-                for i in range(0,len(curr_metadata_df)):
-                    answer_corpus_index=int(curr_metadata_df.iloc[i]['Answer Corpus Index'])
-                    utterance_corpus_index=int(curr_metadata_df.iloc[i]['Utterance Corpus Index'])
-                    if curr_metadata_df.iloc[i]['Mentor Name'] == mentor_name:
-                        mentor_found = True
-                        next_answer=int(curr_metadata_df.iloc[i]['Next Answer Number'])
-                        next_utterance=int(curr_metadata_df.iloc[i]['Next Utterance Number'])
-                        
-                if not mentor_found:
-                    answer_corpus_index=int(curr_metadata_df.iloc[i]['Answer Corpus Index']) #answer_corpus index is common for all mentors
-                    utterance_corpus_index=int(curr_metadata_df.iloc[i]['Utterance Corpus Index'])
-                    next_answer=1
-                    next_utterance=1
+        curr_metadata_df=pd.read_csv(open(os.path.join("data","metadata.csv"),'rb'))
+        if len(curr_metadata_df) > 0:
+            mentor_found = False
+            for i in range(0,len(curr_metadata_df)):
+                answer_corpus_index=int(curr_metadata_df.iloc[i]['Answer Corpus Index'])
+                utterance_corpus_index=int(curr_metadata_df.iloc[i]['Utterance Corpus Index'])
+                if curr_metadata_df.iloc[i]['Mentor Name'] == mentor_name:
+                    mentor_found = True
+                    next_answer=int(curr_metadata_df.iloc[i]['Next Answer Number'])
+                    next_utterance=int(curr_metadata_df.iloc[i]['Next Utterance Number'])
+                    
+            if not mentor_found:
+                answer_corpus_index=int(curr_metadata_df.iloc[i]['Answer Corpus Index']) #answer_corpus index is common for all mentors
+                utterance_corpus_index=int(curr_metadata_df.iloc[i]['Utterance Corpus Index'])
+                next_answer=1
+                next_utterance=1
             #the file is present but no data in it. Sanity check
             else:
                 next_answer=1

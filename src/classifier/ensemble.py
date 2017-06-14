@@ -7,6 +7,7 @@ import logisticregression as lr
 import sys
 import os
 import json
+import random
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score, accuracy_score
@@ -28,7 +29,7 @@ class EnsembleClassifier(object):
         #variables to keep track of session
         self.blacklist=set()
         self.pal3_status_codes={'_START_SESSION_', '_INTRO_', '_IDLE_', '_TIME_OUT_', '_END_SESSION_'} #status codes that PAL3 sends to code
-        self.special_cases={} #responses for the special cases
+        self.utterances_prompts={} #responses for the special cases
 
     '''
     This starts the pipeline for training the classifier from scratch.
@@ -116,7 +117,8 @@ class EnsembleClassifier(object):
     
     #play intro clip
     def play_intro(self):
-        
+        return self.utterances_prompts['_INTRO_'][0]
+
     #play idle clip
     def play_idle(self):
         
@@ -131,7 +133,7 @@ class EnsembleClassifier(object):
         #if question is a special case - HANDLE SHOW IDLE CASE
         if question in self.pal3_status_codes:
             return question
-            
+
         #if question is off-topic
         if self.is_off_topic(question):
             return '_OFF_TOPIC'
@@ -147,24 +149,48 @@ class EnsembleClassifier(object):
     '''
     def return_prompt(self, question_status):
         # Load the prompts file
-
+        utterance_df=pd.read_csv(open(os.path.join("data","utterance_data.csv"),'rb'))
+        for i in range(len(utterance_df)):
+            situation=utterance_df.iloc[i]['situation']
+            video_name=utterance_df.iloc[i]['ID']
+            utterance=utterance_df.iloc[i]['utterance']
+            if situation in self.utterances_prompts:
+                self.utterances_prompts[situation].append((video_name, utterance))
+            else:
+                self.utterances_prompts[situation]=[(video_name, utterance)]
+                
         # Select a prompt and return it
         if question_status=="_START_SESSION_":
             self.start_session()
+
         elif question_status=="_END_SESSION_":
             self.end_session()
+
         elif question_status=="_INTRO_":
             self.play_intro()
+
         elif question_status=="_IDLE_":
             self.play_idle()
+
         elif question_status=="_TIME_OUT_":
             #load a random prompt from file and return it.
             #The choice of prompt can also be based on the topic of the last asked question
             #This will help drive the conversation in the direction we want so that an agenda can be maintained
+            len_timeouts=len(self.utterances_prompts['_TIME_OUT'])
+            index=random.randint(0,len_timeouts-1)
+            return self.utterances_prompts['_TIME_OUT'][index]
+
         elif question_status=="_OFF_TOPIC_":
             #load off-topic feedback clip and play it
+            len_offtopic=len(self.utterances_prompts['_OFF_TOPIC'])
+            index=random.randint(0,len_offtopic-1)
+            return self.utterances_prompts['_OFF_TOPIC'][index]
+
         elif question_status=="_REPEAT_":
             #load repeat feedback clip and play it
+            len_repeat=len(self.utterances_prompts['_REPEAT_'])
+            index=random.randint(0,len_repeat-1)
+            return self.utterances_prompts['_REPEAT_'][index]
 
     '''
     When you want to get an answer to a question, this method will be used. Flexibility to use/not use topic vectors is provided.
