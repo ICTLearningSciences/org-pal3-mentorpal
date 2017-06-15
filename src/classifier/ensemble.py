@@ -127,6 +127,7 @@ class EnsembleClassifier(object):
     #play idle clip
     def play_idle(self):
         print("Idle")
+        return ('no_video_yet', '_EMPTY_TEXT_')
         
     def end_session(self):
         print("Session ended")
@@ -186,15 +187,15 @@ class EnsembleClassifier(object):
             #load a random prompt from file and return it.
             #The choice of prompt can also be based on the topic of the last asked question
             #This will help drive the conversation in the direction we want so that an agenda can be maintained
-            len_timeouts=len(self.utterances_prompts['_TIME_OUT_'])
+            len_timeouts=len(self.utterances_prompts['_PROMPT_'])
             index=random.randint(0,len_timeouts-1)
-            return self.utterances_prompts['_TIME_OUT'][index]
+            return self.utterances_prompts['_PROMPT_'][index]
 
         elif question_status=="_OFF_TOPIC_":
             #load off-topic feedback clip and play it
-            len_offtopic=len(self.utterances_prompts['_OFF_TOPIC'])
+            len_offtopic=len(self.utterances_prompts['_OFF_TOPIC_'])
             index=random.randint(0,len_offtopic-1)
-            return self.utterances_prompts['_OFF_TOPIC'][index]
+            return self.utterances_prompts['_OFF_TOPIC_'][index]
 
         elif question_status=="_REPEAT_":
             #load repeat feedback clip and play it
@@ -217,7 +218,7 @@ class EnsembleClassifier(object):
         #if the question is legitimate, then fetch answer
         if question_status=='_NEW_QUESTION_':
             if not self.session_started:
-                self.return_prompt('_START_SESSION')
+                self.return_prompt('_START_SESSION_')
             answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
 
         #Statuses that require a prompt from the mentor
