@@ -51,7 +51,7 @@ while end_flag == False:
         #ec.end_session()
         writer.write("_SESSION_ENDED_")
     else:
-        answer=ec.answer_the_question(input)
+        answer=ec.process_input_from_ui(input)
         writer.write(answer[0])
         writer.write("\n")
         writer.write(answer[1])

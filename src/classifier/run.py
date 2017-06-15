@@ -16,24 +16,15 @@ ec=ensemble.EnsembleClassifier()
 Train the classifier from scratch
 '''
 #ec.start_pipeline(mode='train_mode')
-print("You can ask questions now")
-a=input()
-while a != 'exit':
-    answer=ec.answer_the_question(a)
-    print("Video file: "+answer[0])
-    print("Transcript: "+answer[1])
-    a=input()
 
-
+print("Interface is ready")
 end_flag=False
-
-#start the session
-
-ec.start_session()
-
-#while the session is in progress
 while not end_flag:
-    answer=ec.answer_the_question("_TIME_OUT_")
-    
-#end the session
-ec.end_session()
+    user_input=input()
+    response=ec.process_input_from_ui(user_input)
+    if response[1]=='_END_':
+        end_flag=True
+        break
+    else:
+        print(response[0])
+        print(response[1])

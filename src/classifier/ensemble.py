@@ -4,6 +4,7 @@ import pickle
 import lstm
 import classifier_preprocess
 import logisticregression as lr
+import pandas as pd
 import sys
 import os
 import json
@@ -22,7 +23,8 @@ class EnsembleClassifier(object):
         self.npc_y_test=[]
         self.npc_y_pred=[]
         self.ensemble_pred=[]
-
+        self.session_started=False
+        self.session_ended=False
         self.classifier=classify.Classify()
         self.npc=npceditor_interface.NPCEditor()
 
@@ -105,26 +107,32 @@ class EnsembleClassifier(object):
         return return_id, return_answer
     
     '''
-    Checks if the question is off-topic
+    Checks if the question is off-topic. This function is not completed yet.
     '''
-    #def is_off_topic(self, question):
+    def is_off_topic(self, question):
+        return False
 
 
     #information to track must be discussed with Ben, Nick, Kayla
     def start_session(self):
-        self.blacklist.clear()
-        #set other variables to track session
-    
+        print("Session started")
+        #handle variables to track session
+        self.session_started=True
+        self.session_ended=False
+        
     #play intro clip
     def play_intro(self):
         return self.utterances_prompts['_INTRO_'][0]
 
     #play idle clip
     def play_idle(self):
+        print("Idle")
         
     def end_session(self):
-        handle variables to end session
-            
+        print("Session ended")
+        #handle variables to end session
+        self.session_ended=True
+        self.blacklist.clear()
 
     '''
     This method checks the status of the question: whether it is an off-topic or a repeat. Other statuses can be added here.
@@ -136,7 +144,7 @@ class EnsembleClassifier(object):
 
         #if question is off-topic
         if self.is_off_topic(question):
-            return '_OFF_TOPIC'
+            return '_OFF_TOPIC_'
 
         #if question is repeat
         if question in self.blacklist:
@@ -158,25 +166,27 @@ class EnsembleClassifier(object):
                 self.utterances_prompts[situation].append((video_name, utterance))
             else:
                 self.utterances_prompts[situation]=[(video_name, utterance)]
-                
+
         # Select a prompt and return it
         if question_status=="_START_SESSION_":
             self.start_session()
+            return ('no_video', '_START_')
 
         elif question_status=="_END_SESSION_":
             self.end_session()
+            return ('no_video', '_END_')
 
         elif question_status=="_INTRO_":
-            self.play_intro()
+            return self.play_intro()
 
         elif question_status=="_IDLE_":
-            self.play_idle()
+            return self.play_idle()
 
         elif question_status=="_TIME_OUT_":
             #load a random prompt from file and return it.
             #The choice of prompt can also be based on the topic of the last asked question
             #This will help drive the conversation in the direction we want so that an agenda can be maintained
-            len_timeouts=len(self.utterances_prompts['_TIME_OUT'])
+            len_timeouts=len(self.utterances_prompts['_TIME_OUT_'])
             index=random.randint(0,len_timeouts-1)
             return self.utterances_prompts['_TIME_OUT'][index]
 
@@ -201,16 +211,18 @@ class EnsembleClassifier(object):
     "PAL3 has timed out due to no response from user": "pal3_timeout". This question status will trigger an appropriate prompt
     from return_prompt
     '''
-    def answer_the_question(self, question, use_topic_vectors=True):
-        question_status=check_question(question) #check the question status
+    def process_input_from_ui(self, question, use_topic_vectors=True):
+        question_status=self.check_question(question) #check the question status
 
         #if the question is legitimate, then fetch answer
-        if question_status=='_NEW_QUESTION':
+        if question_status=='_NEW_QUESTION_':
+            if not self.session_started:
+                self.return_prompt('_START_SESSION')
             answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
 
         #Statuses that require a prompt from the mentor
         else:
-            answer=self.return_prompt(self, question_status)
+            answer=self.return_prompt(question_status)
 
         # answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
