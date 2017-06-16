@@ -118,6 +118,9 @@ class ClassifierPreProcess(object):
             answer_id=corpus.iloc[i]['ID']
 
             self.answer_ids[answer]=answer_id
+
+            #remove nbsp and \"
+            answer=answer.replace('\u00a0',' ')
             self.ids_answer[answer_id]=answer
 
             #Tokenize the question

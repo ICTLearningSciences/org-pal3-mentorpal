@@ -26,5 +26,7 @@ while not end_flag:
         end_flag=True
         break
     else:
-        print(response[0])
-        print(response[1])
+        #Printing the response and storing it in a variable removes the weird characters. Write video_file and transcript to
+        #the pipe for Unity
+        video_file=print(response[0])
+        transcript=print(response[1])
