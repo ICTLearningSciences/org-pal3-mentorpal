@@ -22,7 +22,7 @@ reader = open(read_fd, "r")
 input = reader.readline()
 
 #out pipe to Unity
-out_pipe = win32pipe.CreateNamedPipe(r'\\.\pipe\pipe_python', win32pipe.PIPE_ACCESS_DUPLEX, win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT, 1, 65536, 65536, 300, None)
+out_pipe = win32pipe.CreateNamedPipe(r'\\.\pipe\pipe_python', win32pipe.PIPE_ACCESS_DUPLEX, win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT, 10, 65536, 65536, 300, None)
 win32pipe.ConnectNamedPipe(out_pipe, None)
 write_fd = msvcrt.open_osfhandle(out_pipe, os.O_WRONLY)
 writer = open(write_fd, "w")
