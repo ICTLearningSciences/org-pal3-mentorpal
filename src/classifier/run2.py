@@ -15,16 +15,12 @@ Use this as an example to write your own run.py file which will do the following
 '''
 ec=ensemble.EnsembleClassifier()
 
-#in pipe from Unity
-in_pipe = win32file.CreateFile("\\\\.\\pipe\\pipe_unity", win32file.GENERIC_READ | win32file.GENERIC_WRITE, 0, None, win32file.OPEN_EXISTING, 0, None)
-read_fd = msvcrt.open_osfhandle(in_pipe, os.O_RDONLY)
+# open server pipe from Unity
+pipe = win32file.CreateFile("\\\\.\\pipe\\pipe_unity", win32pipe.PIPE_ACCESS_DUPLEX, 0, None, win32file.OPEN_EXISTING, 0, None)
+read_fd = msvcrt.open_osfhandle(pipe, os.O_RDONLY)
 reader = open(read_fd, "r")
 input = reader.readline()
-
-#out pipe to Unity
-out_pipe = win32pipe.CreateNamedPipe(r'\\.\pipe\pipe_python', win32pipe.PIPE_ACCESS_DUPLEX, win32pipe.PIPE_TYPE_MESSAGE | win32pipe.PIPE_WAIT, 10, 65536, 65536, 300, None)
-win32pipe.ConnectNamedPipe(out_pipe, None)
-write_fd = msvcrt.open_osfhandle(out_pipe, os.O_WRONLY)
+write_fd = msvcrt.open_osfhandle(pipe, os.O_WRONLY)
 writer = open(write_fd, "w")
 
 end_flag = False
@@ -40,19 +36,13 @@ while end_flag == False:
         writer.write("_QUIT_")
         end_flag = True
         break
-    elif input == "_END_SESSION_":
-        #ec.end_session()
-        writer.write("no_video")
-        writer.write("\n")
-        writer.write("_END_")
     else:
-        answer=ec.process_input_from_ui(input)
-        writer.write(answer[0])
+        response=ec.process_input_from_ui(input)
+        writer.write(response[0])
         writer.write("\n")
-        writer.write(answer[1])
+        writer.write(response[1])
 
     writer.flush()
     input = reader.readline()
 
-in_pipe.close()
-out_pipe.close()
+pipe.close()
