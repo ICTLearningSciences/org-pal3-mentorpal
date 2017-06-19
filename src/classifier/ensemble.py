@@ -27,11 +27,20 @@ class EnsembleClassifier(object):
         self.session_ended=False
         self.classifier=classify.Classify()
         self.npc=npceditor_interface.NPCEditor()
-
+        self.utterance_df=pd.read_csv(open(os.path.join("data","utterance_data.csv"),'rb'))
         #variables to keep track of session
         self.blacklist=set()
         self.pal3_status_codes={'_START_SESSION_', '_INTRO_', '_IDLE_', '_TIME_OUT_', '_END_SESSION_'} #status codes that PAL3 sends to code
         self.utterances_prompts={} #responses for the special cases
+        
+        for i in range(len(self.utterance_df)):
+            situation=self.utterance_df.iloc[i]['situation']
+            video_name=self.utterance_df.iloc[i]['ID']
+            utterance=self.utterance_df.iloc[i]['utterance']
+            if situation in self.utterances_prompts:
+                self.utterances_prompts[situation].append((video_name, utterance))
+            else:
+                self.utterances_prompts[situation]=[(video_name, utterance)]
 
     '''
     This starts the pipeline for training the classifier from scratch.
@@ -157,17 +166,6 @@ class EnsembleClassifier(object):
     This method returns the appropriate prompt for a particular question status
     '''
     def return_prompt(self, question_status):
-        # Load the prompts file
-        utterance_df=pd.read_csv(open(os.path.join("data","utterance_data.csv"),'rb'))
-        for i in range(len(utterance_df)):
-            situation=utterance_df.iloc[i]['situation']
-            video_name=utterance_df.iloc[i]['ID']
-            utterance=utterance_df.iloc[i]['utterance']
-            if situation in self.utterances_prompts:
-                self.utterances_prompts[situation].append((video_name, utterance))
-            else:
-                self.utterances_prompts[situation]=[(video_name, utterance)]
-
         # Select a prompt and return it
         if question_status=="_START_SESSION_":
             self.start_session()
@@ -214,7 +212,6 @@ class EnsembleClassifier(object):
     '''
     def process_input_from_ui(self, question, use_topic_vectors=True):
         question_status=self.check_question(question) #check the question status
-
         #if the question is legitimate, then fetch answer
         if question_status=='_NEW_QUESTION_':
             if not self.session_started:

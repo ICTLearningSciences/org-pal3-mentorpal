@@ -28,3 +28,5 @@ while not end_flag:
     else:
         video_file=response[0]
         transcript=response[1]
+        print(video_file)
+        print(transcript)
