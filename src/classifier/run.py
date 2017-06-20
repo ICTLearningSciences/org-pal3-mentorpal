@@ -10,7 +10,11 @@ Use this as an example to write your own run.py file which will do the following
 3. Sends signals to ensemble.py to handle situations that might arise.
 4. Ends session by setting end_flag=True
 '''
-ec=ensemble.EnsembleClassifier()
+
+#mode='npceditor' will fetch answers only from npceditor.
+#mode='classifier' will fetch answers only from classifier.
+#mode='ensemble' will fetch answers from both classifier and ensemble and decide the best
+ec=ensemble.EnsembleClassifier(mode='npceditor')
 
 '''
 Train the classifier from scratch
