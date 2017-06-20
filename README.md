@@ -38,7 +38,7 @@ The following steps will setup NPCEditor with the data from **NPCEditor_data.xls
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427459/d024a168-40aa-11e7-8037-55ee2cdc446b.png)
   6. Click on the Accounts tab inside the People tab. Create a new account by clicking the 'Add' button below the list of accounts. The account type must be 'Batch Processing'.
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427465/d7f37a22-40aa-11e7-9564-dce78e782596.png)
-  7. Enter the agent name as the name of the mentor. If there are multiple mentors, each mentor gets a separate batch processing account. This will help in directing questions to specific mentors if required. Leave the module name as such. Check the 'Connect on startup' option. Click 'Connect'.
+  7. Enter the agent name as the name of the mentor (i.e. 'clintanderson'). If there are multiple mentors, each mentor gets a separate batch processing account. This will help in directing questions to specific mentors if required. Leave the module name as such. Check the 'Connect on startup' option. Click 'Connect'.
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427474/dd82c2cc-40aa-11e7-8d64-ffe59ea891d8.png)
   8. Navigate to the Utterances tab. Select all the answers and from the 'Domain' dropdown, select the name of the person you have created earlier in step 5.
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427479/e2f71294-40aa-11e7-857f-2a39b83fa151.png)
