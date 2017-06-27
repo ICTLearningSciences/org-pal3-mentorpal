@@ -9,6 +9,8 @@ import sys
 import os
 import json
 import random
+import csv
+import datetime
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score, accuracy_score
@@ -34,7 +36,8 @@ class EnsembleClassifier(object):
         self.blacklist=set()
         self.pal3_status_codes={'_START_SESSION_', '_INTRO_', '_IDLE_', '_TIME_OUT_', '_END_SESSION_', '_EMPTY_'} #status codes that PAL3 sends to code
         self.utterances_prompts={} #responses for the special cases
-        
+        self.user_logs=[]
+
         for i in range(len(self.utterance_df)):
             situation=self.utterance_df.iloc[i]['situation']
             video_name=self.utterance_df.iloc[i]['ID']
@@ -55,9 +58,9 @@ class EnsembleClassifier(object):
     or False will enable to use/not use topic vectors.
     '''
     def start_pipeline(self, mode='train_mode', use_topic_vectors='True'):
-        self.classifier.create_data(mode=mode)
+        #self.classifier.create_data(mode=mode)
         #Classifier is trained with and without topic vectors to provie flexibility
-        self.classifier.train_lstm()
+        #self.classifier.train_lstm()
         self.classifier.train_classifier()
         if mode=='train_test_mode':
             self.test_data=json.load(open(os.path.join("test_data","lr_test_data.json"),'r'))
@@ -233,21 +236,25 @@ class EnsembleClassifier(object):
     from return_prompt
     '''
     def process_input_from_ui(self, pal3_input, use_topic_vectors=True):
-
-        # Handle empty strings
-        print('Input is '+repr(pal3_input))
-
         input_status=self.check_input(pal3_input) #check the question status
         #if the question is legitimate, then fetch answer
         if input_status=='_NEW_QUESTION_':
             if not self.session_started:
                 self.return_prompt('_START_SESSION_')
             answer=self.get_one_answer(pal3_input, use_topic_vectors=use_topic_vectors)
-
+            self.user_logs.append({"Question": pal3_input, "Answer":answer[1]})
         #Statuses that require a prompt from the mentor
         else:
             answer=self.return_prompt(input_status)
-
+            if input_status=='_END_SESSION_':
+                #write log to file.
+                time_now=datetime.datetime.now()
+                filename='log_'+str(time_now.hour)+'_'+str(time_now.minute)+'_'+str(time_now.month)+'_'+str(time_now.day)+'_'+str(time_now.year)+'.log'
+                keys=self.user_logs[0].keys()
+                with open(filename, 'w') as log_file:
+                    dict_writer = csv.DictWriter(log_file, keys)
+                    dict_writer.writeheader()
+                    dict_writer.writerows(self.user_logs)
         # answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
 

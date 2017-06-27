@@ -1,8 +1,10 @@
 import pandas as pd
 import numpy as np
-from sklearn.linear_model import LogisticRegression
+from sklearn import metrics
+from sklearn.linear_model import LogisticRegression, RidgeClassifier
 from sklearn.externals import joblib
 from sklearn.metrics import f1_score, mean_squared_error
+from sklearn.model_selection import cross_val_score, cross_val_predict, GridSearchCV, validation_curve
 import pickle
 import os
 import json
@@ -69,19 +71,59 @@ class LogisticClassifier(object):
         
         self.test_questions=[self.test_data[i][0] for i in range(len(self.test_data))]
 
+    def plot_validation_curve(self, train_scores, test_scores):
+        train_scores_mean = np.mean(train_scores, axis=1)
+        train_scores_std = np.std(train_scores, axis=1)
+        test_scores_mean = np.mean(test_scores, axis=1)
+        test_scores_std = np.std(test_scores, axis=1)
+        param_range = np.power(10.0, np.arange(-3, 3))
+        plt.title("Validation Curve with Ridge")
+        plt.xlabel("alpha")
+        plt.ylabel("Score")
+        plt.ylim(0.0, 1.1)
+        lw = 2
+        plt.semilogx(param_range, train_scores_mean, label="Training score",
+                    color="darkorange", lw=lw)
+        plt.fill_between(param_range, train_scores_mean - train_scores_std,
+                        train_scores_mean + train_scores_std, alpha=0.2,
+                        color="darkorange", lw=lw)
+        plt.semilogx(param_range, test_scores_mean, label="Cross-validation score",
+                    color="navy", lw=lw)
+        plt.fill_between(param_range, test_scores_mean - test_scores_std,
+                        test_scores_mean + test_scores_std, alpha=0.2,
+                        color="navy", lw=lw)
+        plt.legend(loc="best")
+        plt.show()
     '''
     Train the LR classifier.
     '''
     def train_lr(self):
+        param_grid = {'C': np.power(10.0, np.arange(-3, 3)) }
         print("Training without topic vectors")
-        self.logistic_model_unfused=LogisticRegression()
+        # lr=LogisticRegression(penalty='l2', C=1.0)
+        # self.logistic_model_unfused=GridSearchCV(lr, param_grid)
+        self.logistic_model_unfused=RidgeClassifier(alpha=1.0)
         self.logistic_model_unfused.fit(self.x_train_unfused, self.y_train_unfused)
+        #print(self.logistic_model_unfused.best_params_, self.logistic_model_unfused.best_score_)
         joblib.dump(self.logistic_model_unfused, os.path.join("train_data","unfused_model.pkl"))
+        #self.plot_validation_curve(train_scores, valid_scores)
+        # scores=cross_val_score(self.logistic_model_unfused, self.x_train_unfused, self.y_train_unfused, cv=2)
+        # print(scores)
+        # predicted = cross_val_predict(self.logistic_model_unfused, self.x_train_unfused, self.y_train_unfused, cv=2)
+        # print(metrics.accuracy_score(self.y_train_unfused, predicted))
 
         print("Training with topic vectors")
-        self.logistic_model_fused=LogisticRegression()
+        # lr=LogisticRegression(penalty='l2')
+        # self.logistic_model_fused=GridSearchCV(lr, param_grid)
+        self.logistic_model_fused=RidgeClassifier(alpha=1.0)
         self.logistic_model_fused.fit(self.x_train_fused, self.y_train_fused)
+        #print(self.logistic_model_fused.best_params_, self.logistic_model_fused.best_score_)
         joblib.dump(self.logistic_model_fused, os.path.join("train_data","fused_model.pkl"))
+        #self.plot_validation_curve(train_scores, valid_scores)
+        # scores=cross_val_score(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
+        # print(scores)
+        # predicted = cross_val_predict(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
+        # print(metrics.accuracy_score(self.y_train_fused, predicted))
 
     '''
     Test the classifier and evaluate performance. This is only for testing performance. This won't be used in the system flow.

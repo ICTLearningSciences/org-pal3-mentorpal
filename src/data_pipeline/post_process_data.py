@@ -63,6 +63,7 @@ class PostProcessData(object):
 
 
     def get_video_chunks(self, video_file, timestamps, mentor_name, session_number, part_number):
+        print(video_file, timestamps, mentor_name, session_number, part_number)
         text_type=[]
         start_times=[] #list of start times
         end_times=[] #list of end times
@@ -98,18 +99,22 @@ class PostProcessData(object):
                 answer_sample['topics']=self.answer_corpus.iloc[self.answer_corpus_index]['Topics']+","+self.answer_corpus.iloc[self.answer_corpus_index]['Helpers']
                 if answer_sample['topics'][-1]==',':
                     answer_sample['topics']=answer_sample['topics'][:-1]
-                answer_sample['question']=self.answer_corpus.iloc[self.answer_corpus_index]['Question']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P1']+'\r\n'+\
-                self.answer_corpus.iloc[self.answer_corpus_index]['P2']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P3']+'\r\n'+\
-                self.answer_corpus.iloc[self.answer_corpus_index]['P4']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P5']+'\r\n'+\
-                self.answer_corpus.iloc[self.answer_corpus_index]['P6']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P7']+'\r\n'+\
-                self.answer_corpus.iloc[self.answer_corpus_index]['P8']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P9']+'\r\n'+\
-                self.answer_corpus.iloc[self.answer_corpus_index]['P10']
+                answer_sample['question']=self.answer_corpus.iloc[self.answer_corpus_index]['Question']+'\r\n'
+                for i in range(1,26):
+                    index='P'+str(i)
+                    answer_sample['question']+=self.answer_corpus.iloc[self.answer_corpus_index][index]+'\r\n'
+                # 
+                # self.answer_corpus.iloc[self.answer_corpus_index]['P2']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P3']+'\r\n'+\
+                # self.answer_corpus.iloc[self.answer_corpus_index]['P4']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P5']+'\r\n'+\
+                # self.answer_corpus.iloc[self.answer_corpus_index]['P6']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P7']+'\r\n'+\
+                # self.answer_corpus.iloc[self.answer_corpus_index]['P8']+'\r\n'+self.answer_corpus.iloc[self.answer_corpus_index]['P9']+'\r\n'+\
+                # self.answer_corpus.iloc[self.answer_corpus_index]['P10']
                 answer_sample['question']=answer_sample['question'].strip()
                 answer_sample['text']=self.answer_corpus.iloc[self.answer_corpus_index]['text']
                 self.answer_corpus_index+=1
                 self.answer_number+=1
                 self.training_data.append(answer_sample)
-            elif text_type[i]=='U':
+            elif text_type[i]=='U' and len(self.utterance_corpus) > self.utterance_corpus_index:
                 utterance_id=self.mentor_name+"_U"+str(self.utterance_number)+"_"+str(session_number)+"_"+str(part_number)
                 output_file=os.path.join(self.utterance_chunks, utterance_id+".ogv")
                 utterance_sample['ID']=utterance_id
@@ -181,18 +186,15 @@ class PostProcessData(object):
             curr_npceditor_df=pd.read_excel(open(os.path.join("data","NPCEditor_data.xlsx"),'rb'),sheetname='Sheet1')
             startrow=len(curr_npceditor_df)+1
             npc_header=False
-        npceditor_test_data=[]
-        for i in range(0,len(self.training_data)):
-            questions=self.training_data[i]['question'].split('\r\n')
-            npceditor_test_data.append(questions.pop(-1))
-            self.training_data[i]['question']='\r\n'.join(questions)
+
+
         npceditor_df=pd.DataFrame(self.training_data,columns=['ID','text','question'])
         if not npc_header:
             frames=[curr_npceditor_df,npceditor_df]
             df_to_write=pd.concat(frames)
         else:
             df_to_write=npceditor_df
-
+        
         npceditor_writer=pd.ExcelWriter(os.path.join("data","NPCEditor_data.xlsx"),engine='openpyxl')
         df_to_write.to_excel(npceditor_writer,'Sheet1', index=False, header=npc_header)
         npceditor_writer.save()
@@ -265,7 +267,7 @@ def main():
     #Walk into each session directory and get the answer chunks from each session
     for session in sessions:
         session_path=dirname+session+os.sep
-        number_of_parts=len(fnmatch.filter(os.listdir(session_path), "*.mp4"))
+        number_of_parts=len(fnmatch.filter(os.listdir(session_path), "*.csv"))
         for j in range(number_of_parts):
             video_file=session_path+session+"part"+str(j+1)+".mp4"
             timestamp_file=session_path+session+"part"+str(j+1)+"_timestamps.csv"

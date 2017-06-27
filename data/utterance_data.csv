@@ -21,36 +21,36 @@ clintanderson_U19_1_2,Never,_FEEDBACK_
 clintanderson_U20_1_2,Often,_FEEDBACK_
 clintanderson_U21_1_2,I do,_FEEDBACK_
 clintanderson_U22_1_2,I don't,_FEEDBACK_
-clintanderson_U23_1_2,I have no idea,_FEEDBACK_
-clintanderson_U24_1_2,I don't think so,_FEEDBACK_
-clintanderson_U25_1_2,I have no idea,_FEEDBACK_
-clintanderson_U26_2_2,I hope so,_FEEDBACK_
-clintanderson_U27_2_2,I'm sorry,_FEEDBACK_
-clintanderson_U28_2_2,I'm sorry to hear that,_FEEDBACK_
-clintanderson_U29_2_2,Thank you,_FEEDBACK_
-clintanderson_U30_2_2,I understand that,_FEEDBACK_
-clintanderson_U31_2_2,I went through something similar,_FEEDBACK_
-clintanderson_U32_2_2,I am not sure,_FEEDBACK_
-clintanderson_U33_2_2,I can't hear you,_FEEDBACK_
-clintanderson_U34_2_2,I don't understand,_FEEDBACK_
+clintanderson_U23_1_2,I have no idea.,_FEEDBACK_
+clintanderson_U24_1_2,I don't think so.,_FEEDBACK_
+clintanderson_U25_1_2,I have no idea.,_FEEDBACK_
+clintanderson_U26_2_2,I hope so.,_FEEDBACK_
+clintanderson_U27_2_2,I'm sorry.,_FEEDBACK_
+clintanderson_U28_2_2,I'm sorry to hear that.,_FEEDBACK_
+clintanderson_U29_2_2,Thank you.,_FEEDBACK_
+clintanderson_U30_2_2,I understand that.,_FEEDBACK_
+clintanderson_U31_2_2,I went through something similar.,_FEEDBACK_
+clintanderson_U32_2_2,I am not sure.,_FEEDBACK_
+clintanderson_U33_2_2,I can't hear you.,_FEEDBACK_
+clintanderson_U34_2_2,I don't understand.,_FEEDBACK_
 clintanderson_U35_2_2,Can you repeat that?,_FEEDBACK_
 clintanderson_U36_2_2,I don't have an answer for that.,_FEEDBACK_
 clintanderson_U37_2_2,Can you ask me something else?,"_REPEAT_, _OFF_TOPIC_"
-clintanderson_U38_2_2,It would help if you could keep the questions short and simple,_FEEDBACK_
+clintanderson_U38_2_2,It would help if you could keep the questions short and simple.,_FEEDBACK_
 clintanderson_U39_2_2,Can you rephrase the question?,_FEEDBACK_
 clintanderson_U40_2_2,I can not predict the future.,_FEEDBACK_
 clintanderson_U41_2_2,I do not want to speculate about the future.,_FEEDBACK_
-clintanderson_U42_2_2,I don't know what that is,_FEEDBACK_
-clintanderson_U43_2_2,I don't know who that is,_FEEDBACK_
-clintanderson_U44_2_2,I am not going to talk about that,_FEEDBACK_
-clintanderson_U45_2_2,I am not here to talk about that,_FEEDBACK_
+clintanderson_U42_2_2,I don't know what that is.,_FEEDBACK_
+clintanderson_U43_2_2,I don't know who that is.,_FEEDBACK_
+clintanderson_U44_2_2,I am not going to talk about that.,_FEEDBACK_
+clintanderson_U45_2_2,I am not here to talk about that.,_FEEDBACK_
 clintanderson_U46_2_2,Anything else?,_PROMPT_
-clintanderson_U47_5_1,I don't have enough information to talk about that,_FEEDBACK_
+clintanderson_U47_5_1,I don't have enough information to talk about that.,_FEEDBACK_
 clintanderson_U48_5_1,I do not have an answer for that.,_FEEDBACK_
-clintanderson_U49_5_1,"That is a great question, unfortunately I never recorded an answer to that.",_OFF_TOPIC_
+clintanderson_U49_5_1,"That is a great question, but unfortunately I never recorded an answer to that.",_OFF_TOPIC_
 clintanderson_U50_5_1,That is a great question. I wish I'd thought of that.,_OFF_TOPIC_
 clintanderson_U51_5_1,"That is an interesting question, but I am here to talk about STEM careers in the Navy. ",_OFF_TOPIC_
-clintanderson_U52_5_1,Unfortunately I was never asked that question,_OFF_TOPIC_
+clintanderson_U52_5_1,"Unfortunately, I was never asked that question.",_OFF_TOPIC_
 clintanderson_U53_5_1,You might have to ask me something else.,_OFF_TOPIC_
 clintanderson_U54_5_1,What do you want to talk about? ,_PROMPT_
 clintanderson_U55_5_1,What would you like to ask me? ,_PROMPT_
@@ -71,14 +71,21 @@ clintanderson_U69_5_1,"I was in the Navy, and now I'm back in college getting my
 clintanderson_U70_5_2,"I worked on nuclear reactors in the Navy, but it is different every day. So you can ask about what I did as a nuke.",_PROMPT_
 clintanderson_U71_5_2,"When you work for the Navy as long as I did, you get to have lots of stories. Some of them are funny, some of them are interestings, feel free to ask about any of them.",_PROMPT_
 clintanderson_U72_5_2,Good careers are about solving what's important. You can ask me about anything that I think is important.,_PROMPT_
-clintanderson_U73_6_1,"I am stored in this machine, I can wait for your questions all day",_PROMPT_
+clintanderson_U73_6_1,"I am stored in this machine, I can wait for your questions all day.",_PROMPT_
 clintanderson_U74_6_1,Do you have any more questions for me?,_PROMPT_
 clintanderson_U75_6_1,Would you mind if I asked you a question? Why are you interested in the Navy? ,_PROMPT_
 clintanderson_U76_6_1,A lot of people ask me about money and military salaries. You can ask me about those things.,_PROMPT_
 clintanderson_U77_6_1,"A lot of people ask me about war, exercise, and payment, you can ask me if you want to.",_PROMPT_
 clintanderson_U78_6_1,I have already answered that question. Please ask me something else.,_REPEAT_
-clintanderson_U79_6_1,I have answered that question before. You can ask me something else,_REPEAT_
+clintanderson_U79_6_1,I have answered that question before. You can ask me something else.,_REPEAT_
 clintanderson_U80_6_1,I answered this question a while ago. Let’s move on.,_REPEAT_
-clintanderson_U81_6_1,"That's a great question. Unfortunately, I don't have an answer for that right now.",_OFF_TOPIC_
+clintanderson_U81_6_1,"That's a great question, but unfortunately, I don't have an answer for that right now.",_OFF_TOPIC_
 clintanderson_U82_6_1,I'm not sure I have an answer for that question.,_OFF_TOPIC_
-clintanderson_U83_6_1,"That is a great question but unfortunately, I don't have an answer right now",_OFF_TOPIC_
+clintanderson_U83_6_1,"That is a great question but unfortunately, I don't have an answer right now.",_OFF_TOPIC_
+clintanderson_U84_7_1,Hello,_FEEDBACK_
+clintanderson_U85_7_1,It's nice to meet you.,_FEEDBACK_
+clintanderson_U86_7_1,Can you please refrain from the use of profanity?,_FEEDBACK_
+clintanderson_U87_7_1,I don't really have an opinion on that.,_OFF_TOPIC_
+clintanderson_U88_7_1,I see you didn't ask me anything there.,_FEEDBACK_
+clintanderson_U89_7_1,You've got to ask me something to get a response.,_FEEDBACK_
+clintanderson_U90_7_1,"No matter what you heard about having a mouth like a sailor, it will hurt your career.",_OFF_TOPIC_
