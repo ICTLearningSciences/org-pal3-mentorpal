@@ -250,11 +250,12 @@ class EnsembleClassifier(object):
                 #write log to file.
                 time_now=datetime.datetime.now()
                 filename='log_'+str(time_now.hour)+'_'+str(time_now.minute)+'_'+str(time_now.month)+'_'+str(time_now.day)+'_'+str(time_now.year)+'.log'
-                keys=self.user_logs[0].keys()
-                with open(filename, 'w') as log_file:
-                    dict_writer = csv.DictWriter(log_file, keys)
-                    dict_writer.writeheader()
-                    dict_writer.writerows(self.user_logs)
+                if len(self.user_logs) > 0:
+                    keys=self.user_logs[0].keys()
+                    with open(filename, 'w') as log_file:
+                        dict_writer = csv.DictWriter(log_file, keys)
+                        dict_writer.writeheader()
+                        dict_writer.writerows(self.user_logs)
         # answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
 
