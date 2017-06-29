@@ -267,7 +267,7 @@ def main():
     #Walk into each session directory and get the answer chunks from each session
     for session in sessions:
         session_path=dirname+session+os.sep
-        number_of_parts=len(fnmatch.filter(os.listdir(session_path), "*.csv"))
+        number_of_parts=len(fnmatch.filter(os.listdir(session_path), "*.mp4"))
         for j in range(number_of_parts):
             video_file=session_path+session+"part"+str(j+1)+".mp4"
             timestamp_file=session_path+session+"part"+str(j+1)+"_timestamps.csv"
