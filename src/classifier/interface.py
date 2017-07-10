@@ -15,7 +15,7 @@ from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score, accuracy_score
 
-class EnsembleClassifier(object):
+class BackendInterface(object):
     def __init__(self, mode='ensemble'):
         self.test_data=None
         self.x_test=None
@@ -28,6 +28,7 @@ class EnsembleClassifier(object):
         self.ensemble_pred=[]
         self.session_started=False
         self.session_ended=False
+        self.cpp=classifier_preprocess.ClassifierPreProcess()
         if self.mode=='ensemble' or self.mode=='classifier':
             self.classifier=classify.Classify()
         self.npc=npceditor_interface.NPCEditor()
@@ -69,6 +70,18 @@ class EnsembleClassifier(object):
             self.cl_y_test, self.cl_y_pred=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
             self.npc.load_test_data()
             self.get_all_answers()
+
+    '''
+    Return the list of topics to the GUI
+    '''
+    def get_topics(self):
+        self.cpp.read_topics()
+        topics=self.cpp.all_topics
+        topics.remove('Navy')
+        topics.remove('Positive')
+        topics.remove('Negative')
+        return topics
+
     '''
     Checks if the question is off-topic. This function is not completed yet.
     '''
@@ -258,6 +271,12 @@ class EnsembleClassifier(object):
                         dict_writer.writerows(self.user_logs)
         # answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
+
+    '''
+    Suggest a question to the user
+    '''
+    # def suggest_question(self):
+    #     self.cpp.read_data('train_mode')
 
 
 

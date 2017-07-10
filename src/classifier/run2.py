@@ -1,4 +1,4 @@
-import ensemble
+import interface
 import win32pipe
 import win32file
 import msvcrt
@@ -7,7 +7,7 @@ import os
 #mode='npceditor' will fetch answers only from npceditor.
 #mode='classifier' will fetch answers only from classifier.
 #mode='ensemble' will fetch answers from both classifier and ensemble and decide the best
-ec=ensemble.EnsembleClassifier(mode='npceditor')
+bi=interface.BackendInterface(mode='npceditor')
 
 # open server pipe from Unity
 pipe = win32file.CreateFile("\\\\.\\pipe\\pipe_unity", win32pipe.PIPE_ACCESS_DUPLEX, 0, None, win32file.OPEN_EXISTING, 0, None)
@@ -34,7 +34,7 @@ while end_flag == False:
         break
 
     else:
-        video_file, transcript = ec.process_input_from_ui(input)
+        video_file, transcript = bi.process_input_from_ui(input)
         print(video_file)
         print(transcript)
         writer.write(video_file)
