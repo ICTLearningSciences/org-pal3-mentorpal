@@ -107,6 +107,9 @@ class ClassifierPreProcess(object):
         total=0
         for i in range(0,len(corpus)):
             topics=corpus.iloc[i]['topics'].split(",")
+            topics=[_f for _f in topics if _f]
+            #normalize the topics
+            topics=self.normalize_topics(topics)
 
             questions=corpus.iloc[i]['question'].split('\r\n')
             questions=[_f for _f in questions if _f]
@@ -116,19 +119,13 @@ class ClassifierPreProcess(object):
 
             answer=corpus.iloc[i]['text']
             answer_id=corpus.iloc[i]['ID']
-
             self.answer_ids[answer]=answer_id
-
             #remove nbsp and \"
             answer=answer.replace('\u00a0',' ')
             self.ids_answer[answer_id]=answer
 
             #Tokenize the question
             processed_question=self.preprocessor.transform(current_question)
-            topics=[_f for _f in questions if _f]
-            #normalize the topics
-            topics=self.normalize_topics(topics)
-
             #add question to dataset
             self.train_data.append([current_question,processed_question,topics,answer_id])
             #look for paraphrases and add them to dataset
@@ -189,7 +186,7 @@ class ClassifierPreProcess(object):
 
     '''
     For each question, the sparse topc vectors are created. If a question belongs to topic JobSpecific and Travel, then, a vector
-    of size 39 (number of topics) is created with the vector having 1 for JobSpecific and Travel, and 0 for all other topics.
+    of size 40 (number of topics) is created with the vector having 1 for JobSpecific and Travel, and 0 for all other topics.
     This is done for both train and test sets.
     '''
     def generate_sparse_topic_vectors(self):

@@ -12,7 +12,8 @@ class Classify(object):
         self.cpp=classifier_preprocess.ClassifierPreProcess()
         self.tl=lstm.TopicLSTM()
         self.lc=lr.LogisticClassifier()
-        self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300.bin'), binary=True)
+        #self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300.bin'), binary=True)
+        self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','small_model.bin'), binary=True)
         self.lc.ids_answer=None
 
     '''
@@ -58,8 +59,8 @@ class Classify(object):
     Test the classifier performance. Used only when evaluating performance.
     '''
     def test_classifier(self, use_topic_vectors=True):
-        y_test, y_pred = self.lc.test_lr(use_topic_vectors=use_topic_vectors)
-        return y_test, y_pred
+        y_test_unfused, y_pred_unfused, y_test_fused, y_pred_fused = self.lc.test_lr(use_topic_vectors=use_topic_vectors)
+        return y_test_unfused, y_pred_unfused, y_test_fused, y_pred_fused
 
     '''
     When a question is asked, this method first normalizes the text using classifier_preprocess.py, then gets the 

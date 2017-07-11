@@ -129,28 +129,49 @@ class LogisticClassifier(object):
     Test the classifier and evaluate performance. This is only for testing performance. This won't be used in the system flow.
     '''
     def test_lr(self, use_topic_vectors=True):
-        y_pred=[]
-        pred_data=[]
-        for i in range(0,len(self.x_test)):
-            sample=self.x_test[i].reshape(1,-1)
-            prediction=self.logistic_model.predict(sample)
-            y_pred.append(prediction[0])
+        y_pred_fused=[]
+        pred_data_fused=[]
+        y_pred_unfused=[]
+        pred_data_unfused=[]
+
+        for i in range(0,len(self.x_test_unfused)):
+            sample=self.x_test_unfused[i].reshape(1,-1)
+            prediction=self.logistic_model_unfused.predict(sample)
+            y_pred_unfused.append(prediction[0])
             current_sample={}
             current_sample['question']=self.test_questions[i]
             current_sample['predicted_answer']=self.ids_answer[prediction[0]]
-            current_sample['actual_answer']=self.ids_answer[self.y_test[i]]
-            pred_data.append(current_sample)
+            current_sample['actual_answer']=self.ids_answer[self.y_test_unfused[i]]
+            pred_data_unfused.append(current_sample)
 
-        pred_df=pd.DataFrame(pred_data, columns=['question','predicted_answer','actual_answer'])
-        method='fused'
-        if not use_topic_vectors:
-            method='unfused'
-        with open(os.path.join("test_data","predictions_"+method+".csv"),'w') as pred_file:
-            pred_df.to_csv(pred_file, index=False)
+        pred_df_unfused=pd.DataFrame(pred_data_unfused, columns=['question','predicted_answer','actual_answer'])
+        with open(os.path.join("test_data","predictions_unfused.csv"),'w') as pred_file:
+            pred_df_unfused.to_csv(pred_file, index=False)
 
-        print("Accuracy: "+str(self.logistic_model.score(self.x_test, self.y_test)))
-        print("F-1: "+str(f1_score(self.y_test, y_pred, average='micro')))
-        return self.y_test, y_pred
+        #print(self.x_test_unfused)
+        #print(self.y_test_unfused)
+        print("Accuracy: "+str(self.logistic_model_unfused.score(self.x_test_unfused, self.y_test_unfused)))
+        print("F-1: "+str(f1_score(self.y_test_unfused, y_pred_unfused, average='micro')))
+
+        for i in range(0,len(self.x_test_fused)):
+            sample=self.x_test_fused[i].reshape(1,-1)
+            prediction=self.logistic_model_fused.predict(sample)
+            y_pred_fused.append(prediction[0])
+            current_sample={}
+            current_sample['question']=self.test_questions[i]
+            current_sample['predicted_answer']=self.ids_answer[prediction[0]]
+            current_sample['actual_answer']=self.ids_answer[self.y_test_fused[i]]
+            pred_data_fused.append(current_sample)
+
+        pred_df_fused=pd.DataFrame(pred_data_fused, columns=['question','predicted_answer','actual_answer'])
+        with open(os.path.join("test_data","predictions_fused.csv"),'w') as pred_file:
+            pred_df_fused.to_csv(pred_file, index=False)
+
+        print("Accuracy: "+str(self.logistic_model_fused.score(self.x_test_fused, self.y_test_fused)))
+        print("F-1: "+str(f1_score(self.y_test_fused, y_pred_fused, average='micro')))
+        
+
+        return self.y_test_unfused, y_pred_unfused, self.y_test_fused, y_pred_fused
 
     '''
     This is the method that will be used to get an answer for a question in the system flow. When user asks a question, this is 

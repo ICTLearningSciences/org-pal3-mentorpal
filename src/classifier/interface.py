@@ -21,14 +21,17 @@ class BackendInterface(object):
         self.x_test=None
         self.y_test=None
         self.mode=mode
-        self.cl_y_test=[]
-        self.cl_y_pred=[]
+        self.cl_y_test_unfused=[]
+        self.cl_y_pred_nufused=[]
+        self.cl_y_test_fused=[]
+        self.cl_y_pred_fused=[]
         self.npc_y_test=[]
         self.npc_y_pred=[]
         self.ensemble_pred=[]
         self.session_started=False
         self.session_ended=False
         self.cpp=classifier_preprocess.ClassifierPreProcess()
+        self.tpp=classifier_preprocess.NLTKPreprocessor()
         if self.mode=='ensemble' or self.mode=='classifier':
             self.classifier=classify.Classify()
         self.npc=npceditor_interface.NPCEditor()
@@ -38,6 +41,7 @@ class BackendInterface(object):
         self.pal3_status_codes={'_START_SESSION_', '_INTRO_', '_IDLE_', '_TIME_OUT_', '_END_SESSION_', '_EMPTY_'} #status codes that PAL3 sends to code
         self.utterances_prompts={} #responses for the special cases
         self.user_logs=[]
+        self.suggestions={}
 
         for i in range(len(self.utterance_df)):
             situation=self.utterance_df.iloc[i]['situation']
@@ -47,7 +51,7 @@ class BackendInterface(object):
                 self.utterances_prompts[situation].append((video_name, utterance))
             else:
                 self.utterances_prompts[situation]=[(video_name, utterance)]
-
+        self.prepare_suggest_data()
     '''
     This starts the pipeline for training the classifier from scratch.
     When new data is available and a new model needs to be built, calling this function will generate a new classifier.
@@ -59,27 +63,58 @@ class BackendInterface(object):
     or False will enable to use/not use topic vectors.
     '''
     def start_pipeline(self, mode='train_mode', use_topic_vectors='True'):
-        #self.classifier.create_data(mode=mode)
+        self.classifier.create_data(mode=mode)
         #Classifier is trained with and without topic vectors to provie flexibility
-        #self.classifier.train_lstm()
+        self.classifier.train_lstm()
         self.classifier.train_classifier()
         if mode=='train_test_mode':
             self.test_data=json.load(open(os.path.join("test_data","lr_test_data.json"),'r'))
             self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
             self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
-            self.cl_y_test, self.cl_y_pred=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
-            self.npc.load_test_data()
-            self.get_all_answers()
+            self.cl_y_test_unfused, self.cl_y_pred_unfused, self.cl_y_test_fused, self.cl_y_pred_fused=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
+            #self.npc.load_test_data()
+            #self.get_all_answers()
 
+    def prepare_suggest_data(self):
+        corpus=pd.read_csv(os.path.join("data","classifier_data.csv"))
+        corpus=corpus.fillna('')
+
+        for i in range(0,len(corpus)):
+            topics=corpus.iloc[i]['topics'].split(",")
+            topics=[_f for _f in topics if _f]
+            #normalize the topics
+            topics=self.cpp.normalize_topics(topics)
+
+            questions=corpus.iloc[i]['question'].split('\r\n')
+            questions=[_f for _f in questions if _f]
+
+            answer=corpus.iloc[i]['text']
+            answer_id=corpus.iloc[i]['ID']
+            #remove nbsp and \"
+            answer=answer.replace('\u00a0',' ')
+
+            for question in questions:
+                for topic in topics:
+                    if topic!='Navy' or topic!='Positive' or topic!='Negative':
+                        if topic in self.suggestions:
+                            self.suggestions[topic].append((question, answer, answer_id))
+                        else:
+                            self.suggestions[topic]=[(question, answer, answer_id)]
     '''
     Return the list of topics to the GUI
     '''
     def get_topics(self):
         self.cpp.read_topics()
         topics=self.cpp.all_topics
-        topics.remove('Navy')
-        topics.remove('Positive')
-        topics.remove('Negative')
+        topics.remove('navy')
+        topics.remove('positive')
+        topics.remove('negative')
+        topics=[_f.title() for _f in topics]
+        for i in range(len(topics)):
+            if topics[i]=='Jobspecific':
+                topics[i]='Job Specific'
+            if topics[i]=='Stem':
+                topics[i]='STEM'
         return topics
 
     '''
@@ -275,8 +310,11 @@ class BackendInterface(object):
     '''
     Suggest a question to the user
     '''
-    # def suggest_question(self):
-    #     self.cpp.read_data('train_mode')
+    def suggest_question(self, topic):
+        if topic=='Job Specific':
+            topic='jobspecific'
+        candidate_questions=self.suggestions[topic.lower()]
+        index=random.randint(0,len(candidate_questions)-1)     
+        selected_question=candidate_questions[index]
 
-
-
+        return (selected_question[0].capitalize(), selected_question[1], selected_question[2])
