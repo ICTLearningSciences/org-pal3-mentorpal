@@ -11,6 +11,7 @@ import json
 import random
 import csv
 import datetime
+import time
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score, accuracy_score
@@ -235,10 +236,22 @@ class BackendInterface(object):
     '''
     def get_one_answer(self, question, use_topic_vectors=True):
         if self.mode=='ensemble' or self.mode=='classifier':
+            start_time=time.time()
             classifier_id, classifier_answer=self.classifier.get_answer(question, use_topic_vectors=use_topic_vectors)
+            end_time=time.time()
+            elapsed=end_time-start_time
+            print("Time to fetch classifier answer is "+str(elapsed))
+        start_time_xml=time.time()
         self.npc.create_single_xml(question)
+        end_time_xml=time.time()
+        elapsed_xml=end_time_xml-start_time_xml
+        print("Time to create XML answer is "+str(elapsed_xml))
+        start_time_npc=time.time()
         self.npc.send_request()
         npceditor_id, npceditor_score, npceditor_answer=self.npc.parse_single_xml()
+        end_time_npc=time.time()
+        elapsed_npc=end_time_npc-start_time_npc
+        print("Time to fetch NPCEditor answer is "+str(elapsed_npc))
         return_id=None
         return_answer=None
 

@@ -8,7 +8,6 @@ import pandas as pd
 from nltk.tokenize import RegexpTokenizer
 from nltk import pos_tag
 from nltk.stem import PorterStemmer
-from gensim.models.keyedvectors import KeyedVectors
 from keras.models import Sequential
 from keras.layers import LSTM, Activation, Dense
 from keras.preprocessing.sequence import pad_sequences

@@ -13,7 +13,7 @@ class Classify(object):
         self.tl=lstm.TopicLSTM()
         self.lc=lr.LogisticClassifier()
         #self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300.bin'), binary=True)
-        self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','small_model.bin'), binary=True)
+        self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
         self.lc.ids_answer=None
 
     '''

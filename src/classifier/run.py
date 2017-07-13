@@ -1,5 +1,5 @@
 import interface
-
+import time
 
 '''
 This file is just a sample on how to start a session, ask questions to the program and end the session.
@@ -14,8 +14,11 @@ Use this as an example to write your own run.py file which will do the following
 #mode='npceditor' will fetch answers only from npceditor.
 #mode='classifier' will fetch answers only from classifier.
 #mode='ensemble' will fetch answers from both classifier and ensemble and decide the best
+start=time.time()
 bi=interface.BackendInterface(mode='ensemble')
-
+end=time.time()
+elapsed=end-start
+print("Time to initialize is "+str(elapsed))
 '''
 Train the classifier from scratch
 '''
