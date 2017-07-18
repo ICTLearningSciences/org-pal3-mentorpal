@@ -244,7 +244,9 @@ class BackendInterface(object):
         if self.mode=='ensemble' or self.mode=='npceditor':
             start_time_xml=time.time()
             self.npc.create_single_xml(question)
-            self.npc.setup_vhmsg()
+
+            #vhmsg messaging mechanism
+            #self.npc.setup_vhmsg()
             end_time_xml=time.time()
             elapsed_xml=end_time_xml-start_time_xml
             print("Time to create XML answer is "+str(elapsed_xml))
@@ -320,8 +322,8 @@ class BackendInterface(object):
                         dict_writer.writeheader()
                         dict_writer.writerows(self.user_logs)
                 
-                #close npceditor session
-                self.npc.close_vhmsg()
+                #close npceditor session vhmsg
+                #self.npc.close_vhmsg()
         # answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
 
