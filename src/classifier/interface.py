@@ -241,17 +241,19 @@ class BackendInterface(object):
             end_time=time.time()
             elapsed=end_time-start_time
             print("Time to fetch classifier answer is "+str(elapsed))
-        start_time_xml=time.time()
-        self.npc.create_single_xml(question)
-        end_time_xml=time.time()
-        elapsed_xml=end_time_xml-start_time_xml
-        print("Time to create XML answer is "+str(elapsed_xml))
-        start_time_npc=time.time()
-        self.npc.send_request()
-        npceditor_id, npceditor_score, npceditor_answer=self.npc.parse_single_xml()
-        end_time_npc=time.time()
-        elapsed_npc=end_time_npc-start_time_npc
-        print("Time to fetch NPCEditor answer is "+str(elapsed_npc))
+        if self.mode=='ensemble' or self.mode=='npceditor':
+            start_time_xml=time.time()
+            self.npc.create_single_xml(question)
+            self.npc.setup_vhmsg()
+            end_time_xml=time.time()
+            elapsed_xml=end_time_xml-start_time_xml
+            print("Time to create XML answer is "+str(elapsed_xml))
+            start_time_npc=time.time()
+            self.npc.send_request(question)
+            npceditor_id, npceditor_score, npceditor_answer=self.npc.parse_single_xml()
+            end_time_npc=time.time()
+            elapsed_npc=end_time_npc-start_time_npc
+            print("Time to fetch NPCEditor answer is "+str(elapsed_npc))
         return_id=None
         return_answer=None
 
@@ -270,7 +272,7 @@ class BackendInterface(object):
                     return_answer=npceditor_answer
                     print("Answer from NPCEditor chosen")
             self.blacklist.add(return_id)
-            return return_id, return_answer
+
         elif self.mode=='npceditor':
             if npceditor_answer=='answer_none' or float(npceditor_score) < -5.59054:
                 return self.return_prompt('_OFF_TOPIC_')
@@ -279,14 +281,14 @@ class BackendInterface(object):
                 return_answer=npceditor_answer
                 self.blacklist.add(return_id)
                 print("Answer from NPCEditor chosen")
-                return return_id, return_answer
+                
         elif self.mode=='classifier':
                 return_id=classifier_id
                 return_answer=classifier_answer
                 self.blacklist.add(return_id)
                 print("Answer from classifier chosen")
 
-
+        return return_id, return_answer
     '''
     When you want to get an answer to a question, this method will be used. Flexibility to use/not use topic vectors is provided.
     For special cases like time-out, user diverting away from topic, etc., pass a pre-defined message as the question.
@@ -317,6 +319,9 @@ class BackendInterface(object):
                         dict_writer = csv.DictWriter(log_file, keys)
                         dict_writer.writeheader()
                         dict_writer.writerows(self.user_logs)
+                
+                #close npceditor session
+                self.npc.close_vhmsg()
         # answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
 

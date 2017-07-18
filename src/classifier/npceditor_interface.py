@@ -4,9 +4,13 @@ import pickle
 import numpy as np
 import platform
 import json
+import sys
+import time
+import inspect
 from subprocess import Popen, PIPE
 from sklearn.metrics import f1_score, accuracy_score
-
+sys.path.append(os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))+os.sep+'libs64')
+import vhmsg_python
 '''
 The method to send NPCEditor a question/list of questions and get answers is as follows:
 Create an xml file like this:
@@ -52,7 +56,7 @@ class NPCEditor(object):
         self.y_test=None
         self.test_questions=None
         self.train_questions=[]
-
+        self.answered_question=False
 
     def load_test_data(self):
         self.test_data=json.load(open(os.path.join("test_data","lr_test_data.json"),'r'))
@@ -80,12 +84,40 @@ class NPCEditor(object):
         request=ET.SubElement(self.requests,'request', target="All", ID="question_1", source="Anybody")
         ET.SubElement(request, "field", name="text").text = question
         tree=ET.ElementTree(self.requests)
-        tree.write(os.path.join("xml_messages","npceditor_request.xml"))   
+        tree.write(os.path.join("xml_messages","npceditor_request.xml")) 
 
+    def PrintResult(self, result):
+        print("SUCCESS" if result==0 else "FAILURE")
+
+    def vhmsg_callback(self, str):
+        print(str)
+        #send xml for parsing
+        self.answered_question=True
+
+    def listen(self):
+        update_interval=0.25
+        while not self.answered_question:
+            time.sleep(update_interval)
+            vhmsg_python.poll()
+
+    def setup_vhmsg(self):
+        vhmsg_python.connect("localhost", "DEFAULT_SCOPE", "61616")
+        vhmsg_python.subscribe("vrExpress")
+        vhmsg_python.setListener(self.vhmsg_callback)
+
+    def close_vhmsg(self):
+        vhmsg_python.wait(1)
+        vhmsg_python.close()
     '''
     Send an xml file as a request to NPCEditor.
     '''
-    def send_request(self):
+    def send_request(self, question):
+        vhmsg_python.send("vrSpeech start test1 user")
+        vhmsg_python.send("vrSpeech finished-speaking test1 user")
+        vhmsg_python.send("vrSpeech interp test1 1 1.0 normal "+question)
+        vhmsg_python.send("vrSpeech asr-complete test1")
+        listen()
+
         os_name=platform.system()
         if os_name=='Darwin' or os_name=='Linux':
             cmd=Popen(["java", "-cp", os.path.join("..","NPCEditor.app","npceditor.jar")+":"+os.path.join("..","NPCEditor.app","plugins","batch_plugin.jar"),"edu.usc.ict.npc.server.net.ipc.BatchModule","--stdin", os.path.join("xml_messages","npceditor_request.xml")], stdout=PIPE)
