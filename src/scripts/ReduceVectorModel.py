@@ -2,18 +2,23 @@ from copy import copy
 from gensim.models.keyedvectors import KeyedVectors
 import numpy as np
 import pandas as pd
+import itertools, os, string, pickle
+from nltk.tokenize import RegexpTokenizer
+from nltk import pos_tag
 DOT_PROD_METHOD = 'dotproduct'
 COSINE_METHOD = 'cos'
 
         
 class VectorModelReducer(object):
     def __init__(self, model, newModel=None, freqDict=None, knownWords=None):
-        if newModel is None: newModel = model.copy(blank=True)
-        if knownWords is not None: knownWords = set(knownWords)
+        if newModel is None:
+            self._newModel = model.copy(blank=False)
+        if knownWords is not None:
+            self._knownWords = set(knownWords)
         self._model = model
-        self._newModel = newModel
+        #self._newModel = newModel
         self._freqDict = freqDict
-        self._knownWords = knownWords
+        #self._knownWords = knownWords
         self._thesaurus = {}
 
     def reduceDimModel(self, maxDim=150):
@@ -36,10 +41,12 @@ class VectorModelReducer(object):
         freqDict = self._freqDict
         knownWords = self._knownWords
         newModel = self._newModel
+
         def knownWordFilter(w):
             val = max(model.compare(w, known) for known in knownWords)
             print("   %s = %2f"%(w, val))
             return val >= relevanceThresh
+
         freqFilter = lambda w: freqDict.get(w, 0) >= freqThresh
         if freqDict is not None and knownWords is not None:
             aFilter = lambda w: freqFilter(w) or knownWordFilter(w)
@@ -86,11 +93,9 @@ class BaseVectorModel(object):
             yield k
     
     def getKeys(self):
-        return self.vectorModel.index2word
         raise NotImplementedError
     
     def getVector(self, w):
-        return self.vectorModel[w]
         raise NotImplementedError
 
     def setVector(self, w, vec):
@@ -136,24 +141,28 @@ class BaseVectorModel(object):
     
 class Word2VecModel(BaseVectorModel):
     def __init__(self):
-        self.vectorModel=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
+        self._vectorModel=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
     
     def getKeys(self):
-        return self.vectorModel.index2word
+        return self._vectorModel.index2word
     
     def getVector(self, w):
-        return self.vectorModel[w]
+        return self._vectorModel[w]
 
     def setVector(self, w, vec):
         raise NotImplementedError
     
     def copy(self, blank=False):
-        raise NotImplementedError
+        if blank == True:
+            return self.__class__()
+        else:
+            return self.__class(copy(self._vectorModel))
 
     def compare(self, w1, w2, method=DOT_PROD_METHOD, dims=None):
         if method == COSINE_METHOD:
-            return self.vectorModel.similarity(w1, w2)
+            return self._vectorModel.similarity(w1, w2)
         else:
+            raise NotImplementedError
 
 class DictVectorModel(BaseVectorModel):
     def __init__(self, modelDict=None):
@@ -174,20 +183,89 @@ class DictVectorModel(BaseVectorModel):
         if blank == True:
             return self.__class__()
         else:
-            return self.__class(copy(self._modelDict))
+            return self.__class__(copy(self._modelDict))
+
+def tokenize(sentence):
+    tokenizer=RegexpTokenizer(r'\w+')
+    # Break the sentence into part of speech tagged tokens
+    tokenized_words=[]
+    punct=set(string.punctuation)
+    for token, tag in pos_tag(tokenizer.tokenize(sentence)):
+        token = token.lower()
+        token = token.strip()
+
+        # If punctuation, ignore token and continue
+        if all(char in punct for char in token):
+            continue
+        tokenized_words.append(token)
+    return tokenized_words
+
+
+def exampleTest2():
+    known=set()
+    corpus=pd.read_csv(os.path.join("data","classifier_data.csv"))
+    corpus=corpus.fillna('')
+    for i in range(len(corpus)):
+        questions=corpus.iloc[i]['question'].split('\r\n')
+        answer=corpus.iloc[i]['text']
+        for question in questions:
+            tokens=tokenize(question)
+            known.update(tokens)
+    answer_tokens=tokenize(answer)
+    known.update(answer_tokens)
+
+    google_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300.bin'), binary=True)
+    allWords=google_model.index2word
+    freqs={w: google_model.vocab[w].count for w in allWords}
+    modelData={w: google_model[w] for w in allWords}
+    origModel=DictVectorModel(modelData)
+    model=origModel
+    thesaurus={}
+
+    # Config Values
+    maxDim = 4
+    freqThresh = 0.04
+    knownThresh = 0.8
+    clumpThresh = 0.99
+
+    # freqThresh=[10**i for i in range(-7,1)]
+    # knownThresh=[0, 0.05, 0.1, 0.15, 0.2]
+    # Filtering/Reduction
+    filterReducer = VectorModelReducer(model, freqDict=freqs, knownWords=known)
+    filteredModel = filterReducer.filterModel(freqThresh, knownThresh)
+    model = filteredModel
+    model_file='vector_models'+os.sep+'model_'+str(freqThresh)+'_'+str(knownThresh)+'.pkl'
+    with open(model_file, 'w') as pickle_file:
+        pickle.dump(model._modelDict, pickle_file)
+
+    # for freq_thresh in freqThresh:
+    #     for known_thresh in knownThresh:
+    #         filteredModel = filterReducer.filterModel(freqThresh, knownThresh)
+    #         model = filteredModel
+    #         model_file='vector_models'+os.sep+'model_'+str(freq_thresh)+'_'+str(known_thresh)+'.json'
+    #         with open(model_file, 'w') as json_file:
+    #             json.dump(model, json_file)
+
+    #clumpReducer = VectorModelReducer(model)
+    #clumpedModel, thesaurus = clumpReducer.clumpModel(clumpThresh)
+    #model = clumpedModel
+    #   
+    return model
+
 
 def exampleTest():
     # Make some fake test data quickly
     # Model is just a vector of the counts of each letter
     # Frequency is just based on the position
     # Known words are a few real words people say
-    import itertools
     base = 'abcd'
     allWords = [''.join(x) for i in range(2, len(base))
                 for x in itertools.permutations(base, i)]
     print(allWords)
     known = ['abba', 'abcd', 'bad', 'dab', 'bab', 'ab']
+
     totalCount = len(allWords)*(len(allWords)-1)/2.0
+
     freqs = {w : (len(allWords)-i)/totalCount
              for i, w in enumerate(sorted(allWords))
              if i < len(allWords)-3}
@@ -196,6 +274,8 @@ def exampleTest():
     print(freqs)
     dimMultiplier = 10
     modelData = {w : [w.count(x)/float(len(w)) for x in base]*dimMultiplier for w in allWords}
+
+    #normalization of the values
     for w, vals in modelData.items():
         norm = float(sum(v**2 for v in vals))**0.5
         modelData[w] = [v/norm for v in vals]
@@ -217,11 +297,15 @@ def exampleTest():
     #clumpReducer = VectorModelReducer(model)
     #clumpedModel, thesaurus = clumpReducer.clumpModel(clumpThresh)
     #model = clumpedModel
-    return model, thesaurus
+    return model
             
 if __name__ == '__main__':
-    model, thesaurus = exampleTest()
-    if 'aa' in model.getKeys():
-        print(len(model.getVector('aa')))
-    for x in sorted([k for k in model]):
-        print(x)
+    model = exampleTest2()
+    print(model.getVector('computer'))
+
+    if 'sasebo' in model.getKeys():
+        print("Vector length is "+str(len(model.getVector('sasebo'))))
+
+    #keys in model
+    # for x in sorted([k for k in model]):
+    #     print(x)
