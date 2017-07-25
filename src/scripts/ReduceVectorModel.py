@@ -110,7 +110,7 @@ class BaseVectorModel(object):
                         raise IndexError("Length of word vector for %s (%i) != %s (%i)"%(w1, len(w1vec), w2, len(w2vec)))
                     dims = len(w1vec)
                 try:
-                    similarity = sum([w1vec[i]*w2vec[i] for i in range(0,dims)])
+                    similarity = np.dot(w1vec, w2vec) #sum([w1vec[i]*w2vec[i] for i in range(0,dims)])
                 except IndexError:
                     raise IndexError("Length of word vector for %s (%i) != %s (%i)"%(w1, len(w1vec), w2, len(w2vec)))
                 return similarity
@@ -124,7 +124,7 @@ class BaseVectorModel(object):
                     dims = len(w1vec)
                 try:
                     norm = float([w**2 for w in w1vec])**0.5 + float([w**2 for w in w2vec])**0.5
-                    similarity = sum([w1vec[i]*w2vec[i] for i in range(0,dims)])
+                    similarity = 1 - spatial.distance.cosine(w1vec, w2vec) #sum([w1vec[i]*w2vec[i] for i in range(0,dims)])
                 except IndexError:
                     raise IndexError("Length of word vector for %s (%i) != %s (%i)"%(w1, len(w1vec), w2, len(w2vec)))
                 return similarity
