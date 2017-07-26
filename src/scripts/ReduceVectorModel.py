@@ -214,7 +214,7 @@ def exampleTest2():
     answer_tokens=tokenize(answer)
     known.update(answer_tokens)
 
-    google_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300.bin'), binary=True)
+    google_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
     allWords=google_model.index2word
     freqs={w: google_model.vocab[w].count for w in allWords}
     modelData={w: google_model[w] for w in allWords}
@@ -234,8 +234,11 @@ def exampleTest2():
     filterReducer = VectorModelReducer(model, freqDict=freqs, knownWords=known)
     filteredModel = filterReducer.filterModel(freqThresh, knownThresh)
     model = filteredModel
+    if not os.path.exists('vector_models'):
+        os.mkdir('vector_models')
     model_file='vector_models'+os.sep+'model_'+str(freqThresh)+'_'+str(knownThresh)+'.pkl'
-    with open(model_file, 'w') as pickle_file:
+    print("Finished filtering")
+    with open(model_file, 'wb') as pickle_file:
         pickle.dump(model._modelDict, pickle_file)
 
     # for freq_thresh in freqThresh:
@@ -301,11 +304,3 @@ def exampleTest():
             
 if __name__ == '__main__':
     model = exampleTest2()
-    print(model.getVector('computer'))
-
-    if 'sasebo' in model.getKeys():
-        print("Vector length is "+str(len(model.getVector('sasebo'))))
-
-    #keys in model
-    # for x in sorted([k for k in model]):
-    #     print(x)

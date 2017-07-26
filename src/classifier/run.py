@@ -15,14 +15,14 @@ Use this as an example to write your own run.py file which will do the following
 #mode='classifier' will fetch answers only from classifier.
 #mode='ensemble' will fetch answers from both classifier and ensemble and decide the best
 start=time.time()
-bi=interface.BackendInterface(mode='npceditor')
+bi=interface.BackendInterface(mode='ensemble')
 end=time.time()
 elapsed=end-start
 print("Time to initialize is "+str(elapsed))
 '''
 Train the classifier from scratch
 '''
-#bi.start_pipeline(mode='train_test_mode')
+bi.start_pipeline(mode='train_test_mode')
 
 list_of_topics=bi.get_topics()
 
