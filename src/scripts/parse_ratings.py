@@ -42,8 +42,8 @@ def main():
 	ratingTask = AnnotationTask(data=allRatings)
 	print("\nCOHEN'S KAPPA: " + str(ratingTask.kappa()))
 	print("KRIPPENDORFF'S ALPHA: " + str(ratingTask.alpha()))
-	print("FLEISS: " + str(ratingTask.multi_kappa()))
-	print("SCOTT'S: " + str(ratingTask.pi()))
+	print("FLEISS' KAPPA: " + str(ratingTask.multi_kappa()))
+	print("SCOTT'S PI: " + str(ratingTask.pi()))
 
 	#calculate percent agreement, ONLY FOR FIRST TWO RATERS
 	matches = 0
