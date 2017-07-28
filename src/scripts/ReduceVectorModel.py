@@ -2,6 +2,7 @@ from copy import copy
 from gensim.models.keyedvectors import KeyedVectors
 import numpy as np
 import pandas as pd
+import scipy
 import itertools, os, string, pickle
 from nltk.tokenize import RegexpTokenizer
 from nltk import pos_tag
@@ -44,7 +45,7 @@ class VectorModelReducer(object):
 
         def knownWordFilter(w):
             val = max(model.compare(w, known) for known in knownWords)
-            print("   %s = %2f"%(w, val))
+           #print("   %s = %2f"%(w, val))
             return val >= relevanceThresh
 
         freqFilter = lambda w: freqDict.get(w, 0) >= freqThresh
@@ -129,7 +130,7 @@ class BaseVectorModel(object):
                     dims = len(w1vec)
                 try:
                     norm = float([w**2 for w in w1vec])**0.5 + float([w**2 for w in w2vec])**0.5
-                    similarity = 1 - spatial.distance.cosine(w1vec, w2vec) #sum([w1vec[i]*w2vec[i] for i in range(0,dims)])
+                    similarity = 1 - scipy.spatial.distance.cosine(w1vec, w2vec) #sum([w1vec[i]*w2vec[i] for i in range(0,dims)])
                 except IndexError:
                     raise IndexError("Length of word vector for %s (%i) != %s (%i)"%(w1, len(w1vec), w2, len(w2vec)))
                 return similarity
@@ -138,10 +139,9 @@ class BaseVectorModel(object):
         else:
             raise TypeError("No vector model comparison method named: %s"%(method,))
         
-    
 class Word2VecModel(BaseVectorModel):
     def __init__(self):
-        self._vectorModel=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
+        self._vectorModel=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300.bin'), binary=True)
     
     def getKeys(self):
         return self._vectorModel.index2word
@@ -214,14 +214,16 @@ def exampleTest2():
     answer_tokens=tokenize(answer)
     known.update(answer_tokens)
 
-    google_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
+    google_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300.bin'), binary=True)
     allWords=google_model.index2word
-    freqs={w: google_model.vocab[w].count for w in allWords}
+    totalCount = len(allWords)*(len(allWords)-1)/2.0
+    freqs={w: google_model.vocab[w].count/totalCount for w in allWords}
     modelData={w: google_model[w] for w in allWords}
     origModel=DictVectorModel(modelData)
     model=origModel
     thesaurus={}
-
+    print(model._modelDict['computer'])
+    v1=model._modelDict['computer']
     # Config Values
     maxDim = 4
     freqThresh = 0.04
@@ -233,14 +235,20 @@ def exampleTest2():
     # Filtering/Reduction
     filterReducer = VectorModelReducer(model, freqDict=freqs, knownWords=known)
     filteredModel = filterReducer.filterModel(freqThresh, knownThresh)
-    model = filteredModel
+    print(filteredModel._modelDict['computer'])
+    v2=filteredModel._modelDict['computer']
+    #norm = float([w**2 for w in v1])**0.5 + float([w**2 for w in v2])**0.5
+    similarity = 1 - scipy.spatial.distance.cosine(v1, v2)
+    print("Similarity is "+str(similarity))
     if not os.path.exists('vector_models'):
         os.mkdir('vector_models')
     model_file='vector_models'+os.sep+'model_'+str(freqThresh)+'_'+str(knownThresh)+'.pkl'
     print("Finished filtering")
     with open(model_file, 'wb') as pickle_file:
-        pickle.dump(model._modelDict, pickle_file)
+        pickle.dump(filteredModel._modelDict, pickle_file)
 
+    #Code for all combinations of freqThresh and knownThresh
+    
     # for freq_thresh in freqThresh:
     #     for known_thresh in knownThresh:
     #         filteredModel = filterReducer.filterModel(freqThresh, knownThresh)
