@@ -6,6 +6,7 @@ import scipy
 import itertools, os, string, pickle
 from nltk.tokenize import RegexpTokenizer
 from nltk import pos_tag
+from nltk.util import ngrams
 DOT_PROD_METHOD = 'dotproduct'
 COSINE_METHOD = 'cos'
 
@@ -188,16 +189,15 @@ class DictVectorModel(BaseVectorModel):
 def tokenize(sentence):
     tokenizer=RegexpTokenizer(r'\w+')
     # Break the sentence into part of speech tagged tokens
-    tokenized_words=[]
-    punct=set(string.punctuation)
-    for token, tag in pos_tag(tokenizer.tokenize(sentence)):
-        token = token.lower()
-        token = token.strip()
+    def get_ngrams(tokens, n):
+        n_grams = ngrams(tokens, n)
+        return ['_'.join(grams) for grams in n_grams]
 
-        # If punctuation, ignore token and continue
-        if all(char in punct for char in token):
-            continue
-        tokenized_words.append(token)
+    tokenized_words=[]
+    unigrams=tokenizer.tokenize(sentence)
+    tokenized_words+=unigrams
+    tokenized_words+=get_ngrams(unigrams, 2)
+    tokenized_words+=get_ngrams(unigrams, 3)
     return tokenized_words
 
 
@@ -229,7 +229,8 @@ def exampleTest2():
     freqThresh = 0.04
     knownThresh = 0.8
     clumpThresh = 0.99
-
+    print(known)
+    input()
     # freqThresh=[10**i for i in range(-7,1)]
     # knownThresh=[0, 0.05, 0.1, 0.15, 0.2]
     # Filtering/Reduction
