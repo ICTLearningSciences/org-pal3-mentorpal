@@ -2,7 +2,7 @@ from copy import copy
 from gensim.models.keyedvectors import KeyedVectors
 import numpy as np
 import pandas as pd
-import scipy
+import scipy, time
 import itertools, os, string, pickle
 from nltk.tokenize import RegexpTokenizer
 from nltk import pos_tag
@@ -43,25 +43,36 @@ class VectorModelReducer(object):
         freqDict = self._freqDict
         knownWords = self._knownWords
         newModel = self._newModel
-
-        def knownWordFilter(w):
+        sum_val=0.0
+        sum_freq=0.0
+        #Returns true if there is a word whose similarity with the word w is >= relevanceThresh.
+        def knownWordFilter(w, sum_val):
             val = max(model.compare(w, known) for known in knownWords)
-           #print("   %s = %2f"%(w, val))
+            #print("   %s = %2f"%(w, val))
+            sum_val+=val
             return val >= relevanceThresh
-
-        freqFilter = lambda w: freqDict.get(w, 0) >= freqThresh
+        
+        def freqFilter(w, sum_freq):
+            freq=freqDict.get(w, 0)
+            sum_freq+=freq
+            return freq >= freqThresh
+            
         if freqDict is not None and knownWords is not None:
-            aFilter = lambda w: freqFilter(w) or knownWordFilter(w)
+            aFilter = lambda w: freqFilter(w, sum_freq) or knownWordFilter(w, sum_val)
         elif freqDict is not None:
             aFilter = freqFilter
         elif knownWords is not None:
             aFilter = knownWordFilter
         else:
             aFilter = None
+        no_of_words=0
         for w in model:
+            no_of_words+=1
             if aFilter is None or aFilter(w):
                 newModel.setVector(w, model.getVector(w))
         # Technically redundant, but to remind this is modified in-place
+        print("Avg relevance "+str(sum_val/no_of_words))
+        print("Avg freq "+str(sum_freq/no_of_words))
         self._newModel = newModel
         return newModel
     
@@ -188,7 +199,7 @@ class DictVectorModel(BaseVectorModel):
 
 def tokenize(sentence):
     tokenizer=RegexpTokenizer(r'\w+')
-    # Break the sentence into part of speech tagged tokens
+    # Break the sentence into n-grams
     def get_ngrams(tokens, n):
         n_grams = ngrams(tokens, n)
         return ['_'.join(grams) for grams in n_grams]
@@ -216,7 +227,8 @@ def exampleTest2():
 
     google_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300.bin'), binary=True)
     allWords=google_model.index2word
-    totalCount = len(allWords)*(len(allWords)-1)/2.0
+    #totalCount = len(allWords)*(len(allWords)-1)/2.0
+    totalCount = len(allWords)
     freqs={w: google_model.vocab[w].count/totalCount for w in allWords}
     modelData={w: google_model[w] for w in allWords}
     origModel=DictVectorModel(modelData)
@@ -229,13 +241,17 @@ def exampleTest2():
     freqThresh = 0.04
     knownThresh = 0.8
     clumpThresh = 0.99
-    print(known)
-    input()
     # freqThresh=[10**i for i in range(-7,1)]
     # knownThresh=[0, 0.05, 0.1, 0.15, 0.2]
-    # Filtering/Reduction
+    # Filtering/Reduction\
+    print("Initialized")
+    start=time.time()
     filterReducer = VectorModelReducer(model, freqDict=freqs, knownWords=known)
+    print("Filtering...")
     filteredModel = filterReducer.filterModel(freqThresh, knownThresh)
+    end=time.time()
+    elapsed=end-start
+    print("Time to filter is "+str(elapsed))
     print(filteredModel._modelDict['computer'])
     v2=filteredModel._modelDict['computer']
     #norm = float([w**2 for w in v1])**0.5 + float([w**2 for w in v2])**0.5
@@ -261,10 +277,10 @@ def exampleTest2():
     #clumpReducer = VectorModelReducer(model)
     #clumpedModel, thesaurus = clumpReducer.clumpModel(clumpThresh)
     #model = clumpedModel
-    #   
+  
     return model
 
-
+#Fake example
 def exampleTest():
     # Make some fake test data quickly
     # Model is just a vector of the counts of each letter

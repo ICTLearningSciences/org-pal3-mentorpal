@@ -71,6 +71,9 @@ class LogisticClassifier(object):
         
         self.test_questions=[self.test_data[i][0] for i in range(len(self.test_data))]
 
+    '''
+    Plot the validation curve based on the train and test scores
+    '''
     def plot_validation_curve(self, train_scores, test_scores):
         train_scores_mean = np.mean(train_scores, axis=1)
         train_scores_std = np.std(train_scores, axis=1)
