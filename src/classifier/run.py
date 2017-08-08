@@ -22,7 +22,7 @@ print("Time to initialize is "+str(elapsed))
 '''
 Train the classifier from scratch
 '''
-bi.start_pipeline(mode='train_test_mode')
+#bi.start_pipeline(mode='train_test_mode')
 
 list_of_topics=bi.get_topics()
 

@@ -13,9 +13,9 @@ class Classify(object):
         self.tl=lstm.TopicLSTM()
         self.lc=lr.LogisticClassifier()
         #self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300.bin'), binary=True)
-        #self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
-        self.cpp.w2v_model=pickle.load(os.path.join('vector_models','model_0.04_0.8.pkl'))
-        sself.lc.ids_answer=None
+        self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
+        #self.cpp.w2v_model=pickle.load(os.path.join('vector_models','model_0.04_0.8.pkl'))
+        self.lc.ids_answer=None
 
     '''
     Runs methods in classifier_preprocess.py to pre-process the data into formats that the classifier requires.
