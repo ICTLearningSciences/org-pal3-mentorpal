@@ -13,8 +13,9 @@ class Classify(object):
         self.tl=lstm.TopicLSTM()
         self.lc=lr.LogisticClassifier()
         #self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300.bin'), binary=True)
-        self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
-        #self.cpp.w2v_model=pickle.load(os.path.join('vector_models','model_0.04_0.8.pkl'))
+        #self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('..','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
+        #CHANGE THIS TO TEST NEW MODELS
+        self.cpp.w2v_model=pickle_load(os.path.join('vector_models','model_2.6820216255e-07_1.pkl'))
         self.lc.ids_answer=None
 
     '''
@@ -78,3 +79,48 @@ class Classify(object):
         topic_vector=self.tl.get_topic_vector(padded_vector)
         predicted_answer=self.lc.get_prediction(w2v_vector, topic_vector, use_topic_vectors=use_topic_vectors)
         return predicted_answer
+
+
+#https://stackoverflow.com/questions/31468117/python-3-can-pickle-handle-byte-objects-larger-than-4gb
+class MacOSFile(object):
+
+    def __init__(self, f):
+        self.f = f
+
+    def __getattr__(self, item):
+        return getattr(self.f, item)
+
+    def read(self, n):
+        # print("reading total_bytes=%s" % n, flush=True)
+        if n >= (1 << 31):
+            buffer = bytearray(n)
+            idx = 0
+            while idx < n:
+                batch_size = min(n - idx, 1 << 31 - 1)
+                # print("reading bytes [%s,%s)..." % (idx, idx + batch_size), end="", flush=True)
+                buffer[idx:idx + batch_size] = self.f.read(batch_size)
+                # print("done.", flush=True)
+                idx += batch_size
+            return buffer
+        return self.f.read(n)
+
+    def write(self, buffer):
+        n = len(buffer)
+        print("writing total_bytes=%s..." % n, flush=True)
+        idx = 0
+        while idx < n:
+            batch_size = min(n - idx, 1 << 31 - 1)
+            print("writing bytes [%s, %s)... " % (idx, idx + batch_size), end="", flush=True)
+            self.f.write(buffer[idx:idx + batch_size])
+            print("done.", flush=True)
+            idx += batch_size
+
+
+def pickle_dump(obj, file_path):
+    with open(file_path, "wb") as f:
+        return pickle.dump(obj, MacOSFile(f), protocol=pickle.HIGHEST_PROTOCOL)
+
+
+def pickle_load(file_path):
+    with open(file_path, "rb") as f:
+        return pickle.load(MacOSFile(f))
