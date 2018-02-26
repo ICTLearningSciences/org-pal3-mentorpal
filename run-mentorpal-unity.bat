@@ -1,3 +1,3 @@
 @echo off
 echo Running MentorPAL...
-..\python35\python src\classifier\run2.py
+py src\classifier\run_unity.py

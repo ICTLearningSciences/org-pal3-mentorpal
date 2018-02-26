@@ -5,6 +5,7 @@ import pickle
 import json
 import numpy as np
 import pandas as pd
+import mentor
 from nltk.tokenize import RegexpTokenizer
 from nltk import pos_tag
 from nltk.stem import PorterStemmer
@@ -20,6 +21,7 @@ class NLTKPreprocessor(object):
     def __init__(self):
         self.punct = set(string.punctuation)
         self.stemmer=PorterStemmer()
+        
     def inverse_transform(self, X):
         return [" ".join(doc) for doc in X]
 
@@ -65,21 +67,15 @@ class ClassifierPreProcess(object):
         self.lstm_test_data=[]
         self.answer_ids={}
         self.ids_answer={}
-        self.all_topics=[]
         self.last_id=0
         self.w2v_model=None
         self.topic_model=None
         self.topic_set=set()
         self.preprocessor=NLTKPreprocessor()
+        self.mentor=None
 
-    '''
-    Read the list of topics from file.
-    '''
-    def read_topics(self):
-        with open(os.path.join("data","topics.csv")) as f:
-            reader=csv.reader(f)
-            for row in reader:
-                self.all_topics.append(row[0].lower())
+    def set_mentor(self, mentor):
+        self.mentor=mentor
 
     '''
     Normalize the topic words to make sure that each topic is represented only once (handles topics typed differently for
@@ -101,7 +97,7 @@ class ClassifierPreProcess(object):
     self.test_data
     '''
     def read_data(self, mode):
-        corpus=pd.read_csv(os.path.join("data","classifier_data.csv"))
+        corpus=self.mentor.classifier_data
         corpus=corpus.fillna('')
         total=0
         for i in range(0,len(corpus)):
@@ -194,9 +190,9 @@ class ClassifierPreProcess(object):
             question=self.train_vectors[i][0]
             vector=self.train_vectors[i][1]
             current_topics=self.train_vectors[i][2]
-            topic_vector=[0]*len(self.all_topics)
-            for j in range(len(self.all_topics)):
-                if self.all_topics[j] in current_topics:
+            topic_vector=[0]*len(self.mentor.topics)
+            for j in range(len(self.mentor.topics)):
+                if self.mentor.topics[j] in current_topics:
                     topic_vector[j]=1
             self.train_vectors[i][2]=topic_vector
             self.lstm_train_data.append([question,self.lstm_train_vectors[i].tolist(),topic_vector])
@@ -208,9 +204,9 @@ class ClassifierPreProcess(object):
                 question=self.test_vectors[i][0]
                 vector=self.test_vectors[i][1]
                 current_topics=self.test_vectors[i][2]
-                topic_vector=[0]*len(self.all_topics)
-                for j in range(len(self.all_topics)):
-                    if self.all_topics[j] in current_topics:
+                topic_vector=[0]*len(self.mentor.topics)
+                for j in range(len(self.mentor.topics)):
+                    if self.mentor.topics[j] in current_topics:
                         topic_vector[j]=1
                 self.test_vectors[i][2]=topic_vector
                 self.lstm_test_data.append([question,self.lstm_test_vectors[i].tolist(),topic_vector])
@@ -229,26 +225,26 @@ class ClassifierPreProcess(object):
             os.mkdir("test_data")
 
         #dump lstm_train_data
-        with open(os.path.join("train_data","lstm_train_data.json"),'w') as json_file:
+        with open(os.path.join("mentors",self.mentor.id,"train_data","lstm_train_data.json"),'w') as json_file:
             #data_to_write=self.lstm_train_data.tolist()
             json.dump(self.lstm_train_data, json_file)
         #dump train_vectors for logistic regression
-        with open(os.path.join("train_data","lr_train_data.json"),'w') as json_file:
+        with open(os.path.join("mentors",self.mentor.id,"train_data","lr_train_data.json"),'w') as json_file:
             json.dump(self.train_vectors,json_file)
         
         #The test set might not be present when just training the dataset fully and then letting users ask questions.
         #That's why the test set code is inside a try-except block.
         try:
             #dump lstm_test_data
-            with open(os.path.join("test_data","lstm_test_data.json"),'w') as json_file:
+            with open(os.path.join("mentors",self.mentor.id,"test_data","lstm_test_data.json"),'w') as json_file:
                 json.dump(self.lstm_test_data, json_file)
             #dump test_vectors for logistic regression
-            with open(os.path.join("test_data","lr_test_data.json"),'w') as json_file:
+            with open(os.path.join("mentors",self.mentor.id,"test_data","lr_test_data.json"),'w') as json_file:
                 json.dump(self.test_vectors,json_file)
         except:
             pass
         #dump ids_answers
-        with open(os.path.join("train_data","ids_answer.json"),'w') as json_file:
+        with open(os.path.join("mentors",self.mentor.id,"train_data","ids_answer.json"),'w') as json_file:
             json.dump(self.ids_answer,json_file)
 
 

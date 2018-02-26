@@ -1,4 +1,3 @@
 @echo off
 echo Running MentorPAL...
-py src\classifier\run.py
-pause
+py src\classifier\run_commandline.py

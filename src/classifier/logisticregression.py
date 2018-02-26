@@ -8,6 +8,7 @@ from sklearn.model_selection import cross_val_score, cross_val_predict, GridSear
 import pickle
 import os
 import json
+import mentor
 
 class LogisticClassifier(object):
     def __init__(self):
@@ -27,17 +28,22 @@ class LogisticClassifier(object):
         self.y_train_unfused=[]
         self.y_test_unfused=[]
         self.test_questions=[]
+        self.mentor=None
+
+    def set_mentor(self, mentor):
+        self.mentor=mentor
+        self.ids_answer=json.load(open(os.path.join("mentors",mentor.id,"train_data","ids_answer.json"),'r'), encoding='utf-8')
 
     '''
     Load the data (unpickle the data) from the .json files.
     '''
     def load_data(self):
-        self.ids_answer=json.load(open(os.path.join("train_data","ids_answer.json"),'r'))
-        self.train_data=json.load(open(os.path.join("train_data","lr_train_data.json"),'r'))
+        self.ids_answer=json.load(open(os.path.join("mentors",self.mentor.id,"train_data","ids_answer.json"),'r'))
+        self.train_data=json.load(open(os.path.join("mentors",self.mentor.id,"train_data","lr_train_data.json"),'r'))
         try:
-            self.train_topic_vectors=json.load(open(os.path.join("train_data","train_topic_vectors.json"),'r'))
-            self.test_data=json.load(open(os.path.join("test_data","lr_test_data.json"),'r'))
-            self.test_topic_vectors=json.load(open(os.path.join("test_data","test_topic_vectors.json"),'r'))
+            self.train_topic_vectors=json.load(open(os.path.join("mentors",self.mentor.id,"train_data","train_topic_vectors.json"),'r'))
+            self.test_data=json.load(open(os.path.join("mentors",self.mentor.id,"test_data","lr_test_data.json"),'r'))
+            self.test_topic_vectors=json.load(open(os.path.join("mentors",self.mentor.id,"test_data","test_topic_vectors.json"),'r'))
         except:
             pass
 
@@ -108,7 +114,7 @@ class LogisticClassifier(object):
         self.logistic_model_unfused=RidgeClassifier(alpha=1.0)
         self.logistic_model_unfused.fit(self.x_train_unfused, self.y_train_unfused)
         #print(self.logistic_model_unfused.best_params_, self.logistic_model_unfused.best_score_)
-        joblib.dump(self.logistic_model_unfused, os.path.join("train_data","unfused_model.pkl"))
+        joblib.dump(self.logistic_model_unfused, os.path.join("mentors",self.mentor.id,"train_data","unfused_model.pkl"))
         #self.plot_validation_curve(train_scores, valid_scores)
         # scores=cross_val_score(self.logistic_model_unfused, self.x_train_unfused, self.y_train_unfused, cv=2)
         # print(scores)
@@ -121,7 +127,7 @@ class LogisticClassifier(object):
         self.logistic_model_fused=RidgeClassifier(alpha=1.0)
         self.logistic_model_fused.fit(self.x_train_fused, self.y_train_fused)
         #print(self.logistic_model_fused.best_params_, self.logistic_model_fused.best_score_)
-        joblib.dump(self.logistic_model_fused, os.path.join("train_data","fused_model.pkl"))
+        joblib.dump(self.logistic_model_fused, os.path.join("mentors",self.mentor.id,"train_data","fused_model.pkl"))
         #self.plot_validation_curve(train_scores, valid_scores)
         # scores=cross_val_score(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
         # print(scores)
@@ -148,7 +154,7 @@ class LogisticClassifier(object):
             pred_data_unfused.append(current_sample)
 
         pred_df_unfused=pd.DataFrame(pred_data_unfused, columns=['question','predicted_answer','actual_answer'])
-        with open(os.path.join("test_data","predictions_unfused.csv"),'w') as pred_file:
+        with open(os.path.join("mentors",self.mentor.id,"test_data","predictions_unfused.csv"),'w') as pred_file:
             pred_df_unfused.to_csv(pred_file, index=False)
 
         #print(self.x_test_unfused)
@@ -167,7 +173,7 @@ class LogisticClassifier(object):
             pred_data_fused.append(current_sample)
 
         pred_df_fused=pd.DataFrame(pred_data_fused, columns=['question','predicted_answer','actual_answer'])
-        with open(os.path.join("test_data","predictions_fused.csv"),'w') as pred_file:
+        with open(os.path.join("mentors",self.mentor.id,"test_data","predictions_fused.csv"),'w') as pred_file:
             pred_df_fused.to_csv(pred_file, index=False)
 
         print("Accuracy: "+str(self.logistic_model_fused.score(self.x_test_fused, self.y_test_fused)))
@@ -184,7 +190,7 @@ class LogisticClassifier(object):
         method='fused'
         if not use_topic_vectors:
             method='unfused'
-        self.logistic_model=joblib.load(os.path.join("train_data",method+"_model.pkl"))
+        self.logistic_model=joblib.load(os.path.join("mentors",self.mentor.id,"train_data",method+"_model.pkl"))
         if not use_topic_vectors:
             test_vector=w2v_vector
         else:
