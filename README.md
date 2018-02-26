@@ -34,11 +34,11 @@ The following steps will setup NPCEditor with the data from **NPCEditor_data.xls
   3. Select the Excel file (.xlsx) **NPCEditor_data.xlsx**.
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427449/cb951740-40aa-11e7-86e2-763599d3c030.png)
   4. In a few moments, you should see the questions and answers being loaded into the Utterances tab.
-  5. Navigate to the People tab and click on 'Add' in the bottom left corner. Name your person as you wish. This is not the name of the mentor because when multiple mentors are added, there will still be only one NPCEditor instance running.
+  5. Navigate to the People tab and click on 'Add' in the bottom left corner. Name your person the name of the mentor (i.e. Clint Anderson, Dan Davis)
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427459/d024a168-40aa-11e7-8037-55ee2cdc446b.png)
   6. Click on the Accounts tab inside the People tab. Create a new account by clicking the 'Add' button below the list of accounts. The account type must be 'Batch Processing'.
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427465/d7f37a22-40aa-11e7-9564-dce78e782596.png)
-  7. Enter the agent name as the name of the mentor (i.e. 'clintanderson'). If there are multiple mentors, each mentor gets a separate batch processing account. This will help in directing questions to specific mentors if required. Leave the module name as such. Check the 'Connect on startup' option. Click 'Connect'.
+  7. Enter the agent name as the first name of the mentor (i.e. 'dan', 'clint'). If there are multiple mentors, each mentor gets a separate batch processing account. This will help in directing questions to specific mentors if required. Leave the module name as such. Check the 'Connect on startup' option. Click 'Connect'.
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427474/dd82c2cc-40aa-11e7-8d64-ffe59ea891d8.png)
   8. Navigate to the Utterances tab. Select all the answers and from the 'Domain' dropdown, select the name of the person you have created earlier in step 5.
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427479/e2f71294-40aa-11e7-857f-2a39b83fa151.png)
@@ -47,8 +47,9 @@ The following steps will setup NPCEditor with the data from **NPCEditor_data.xls
   11. Navigate to the Classifiers tab, select the entry in the first box with Sender=Anybody. Set up the classifier as shown in the image below and click on 'Start Training'.
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427493/f0ec88de-40aa-11e7-8c44-0dcf62dab005.png)
   12. Once the training is finished, the details of the classifier will show up in the status box. This indicates that NPCEditor classifier model is ready.
-  13. Navigate to the 'Conversations' tab and make sure that the Dialog Manager is set to 'Classifier'. XML messages can now be sent to NPCEditor and answers will be returned.
-  14. Save the session as **train.plist** inside MentorPAL/NPCEditor files.
+  13. Navigate to the 'Conversations' tab and make sure that the Dialog Manager is set to 'Scriptable'.
+  14. Navigate to the 'Dialog Manager' tab and enter the following script as text: https://drive.google.com/open?id=1HpdmYfVfsU5j_QXP3IMmejUKNrllGO5jNIYOxSc04dk
+  15. Save the session as **train.plist** inside MentorPAL/NPCEditor files.
 
   **npceditor_interface.py**: Provides an interface to talk to NPCEditor and get answer(s) for question(s) and returns answer(s) along with score(s) and answer ID(s).
   
