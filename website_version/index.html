@@ -2,7 +2,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+	<script src="papaparse.min.js"></script>
 	<title>ICT MentorPal</title>
 	<style>
 		.navbar-pad{
@@ -12,14 +12,14 @@
 			padding-bottom: 1.5%;
 		}
 		.button-settings{
-			width: 19.1%;
+			width: 19%;
 			background-color: #00BFFF;
+			margin-left:0.8%;
 		}
 		.button-row-cap{
 				padding-top: 5.5%;
 				padding-bottom: 5.5%;
-			}
-
+		}
 		.topic-box{
 			height:100px;
 			overflow-y:scroll;
@@ -32,7 +32,6 @@
 			height:100px;
 			width:99%;
 		}
-
 		body{
 			background-color: #e6f9ff;
 		}
@@ -65,36 +64,36 @@
 	</div>
 	<div class="row" style="padding-bottom: 20px; padding-top: 20px; padding-right: 12px">
 		<div class="col-11"style="padding-right: 20px;">
-			<div class = "topic-box" >
-					<div style="padding-bottom: 8px">
-						<button class="btn button-settings" >blkj</button>
-						<button class="btn button-settings">blkj</button>
-						<button class="btn button-settings">blkj</button>
-						<button class="btn button-settings">blkj</button>
-						<button class="btn button-settings">blkj</button>
-					</div>
-					<script type="text/javascript">	//read file which makes array.  Then read array into buttons
-						document.write("<input type='button' value='" + "DFDF" + "'/>");
-						$.ajax({
-							url:'"http://localhost/text.txt',
-							success: function (data){
-								alert(data);
-							  //parse your data here
-							  //you can split into lines using data.split('\n') 
-							  //an use regex functions to effectively parse it
+			<div id = "topic-box" class = "topic-box" >				
+					<script type="text/javascript">	//read file which makes array.  Then read array into buttons and format them etc.
+						Papa.parse("https://raw.githubusercontent.com/benjamid/MentorPAL/master/mentors/clint/data/topics.csv", {
+							download: true,
+							complete: function(results) {						
+								for (var i = 0; i<results.data.length; i++){
+									if (i%5==0){	//create rows for the buttons
+										var buttonrow = document.createElement("div");
+										buttonrow.class="row";
+										buttonrow.style.paddingBottom="0.5%";
+										buttonrow.style.paddingTop="0.25%";
+										document.getElementById("topic-box").appendChild(buttonrow);
+									}				
+									btn = document.createElement("BUTTON");        // Create buttons
+									btn.className = "btn button-settings";
+									var name = results.data[i][0];
+									btn.appendChild(document.createTextNode(name)); 
+									btn.value = name;
+									btn.onclick = function() {findquestion(this)};	//on click find a question
+									buttonrow.appendChild(btn);	//append button to row
+								}
 							}
-						  });
-					
-					
-					
+						});	
+						
+						function findquestion(thisButton) {
+							console.log(thisButton.value);
+							
+						}
 					</script>
-					
-					
-					
-					<button class="btn button-settings">bl</button>
-					<button class="btn button-settings">bl</button>
-					<button class="btn button-settings">bl</button>
-					<button class="btn button-settings">bl</button>
+
 			</div>
 		</div>
 		<div class="col-1">
