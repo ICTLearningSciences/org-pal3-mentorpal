@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+	<title>ICT MentorPal</title>
+	<style>
+		.navbar-pad{
+			padding-top: 0.5%;
+			padding-left: 1.5%;
+			padding-right: 1.5%;
+			padding-bottom: 1.5%;
+		}
+		.button-settings{
+			width: 19.1%;
+			background-color: #00BFFF;
+		}
+		.button-row-cap{
+				padding-top: 5.5%;
+				padding-bottom: 5.5%;
+			}
+
+		.topic-box{
+			height:100px;
+			overflow-y:scroll;
+			overflow-x:hidden;
+			border:6px solid blue;
+			background-color:#e3f2fd; 
+			padding:0.25%;
+		}
+		.form-input{
+			height:100px;
+			width:99%;
+		}
+
+		body{
+			background-color: #e6f9ff;
+		}
+		textarea {
+			resize: none;
+		}
+		.button-caption{
+			width: 100%;
+			padding: 8px;
+			min-width: 70px;
+		}
+	</style>
+</head>
+<body>
+<div class = navbar-pad>
+	<nav class="navbar navbar-light navbar-expand-lg justify-content-between" style="background-color: #00BFFF;">
+	  <a class="navbar-brand img-responsive" href="#"><h2>MentorPal</h2></a>
+	  <a href="http://ict.usc.edu" class="mr-sm-2"><img src="ICT.jpg"></a>
+	</nav>
+</div>
+<div class="container">
+	<div class="row">	
+		<div class="col">
+			<div class="embed-responsive embed-responsive-16by9">
+				<video width="1920" height="1080" controls autoplay>
+					<source src="Interview.mp4" type="video/mp4">
+				</video>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="padding-bottom: 20px; padding-top: 20px; padding-right: 12px">
+		<div class="col-11"style="padding-right: 20px;">
+			<div class = "topic-box" >
+					<div style="padding-bottom: 8px">
+						<button class="btn button-settings" >blkj</button>
+						<button class="btn button-settings">blkj</button>
+						<button class="btn button-settings">blkj</button>
+						<button class="btn button-settings">blkj</button>
+						<button class="btn button-settings">blkj</button>
+					</div>
+					<script type="text/javascript">	//read file which makes array.  Then read array into buttons
+						document.write("<input type='button' value='" + "DFDF" + "'/>");
+						$.ajax({
+							url:'"http://localhost/text.txt',
+							success: function (data){
+								alert(data);
+							  //parse your data here
+							  //you can split into lines using data.split('\n') 
+							  //an use regex functions to effectively parse it
+							}
+						  });
+					
+					
+					
+					</script>
+					
+					
+					
+					<button class="btn button-settings">bl</button>
+					<button class="btn button-settings">bl</button>
+					<button class="btn button-settings">bl</button>
+					<button class="btn button-settings">bl</button>
+			</div>
+		</div>
+		<div class="col-1">
+			<div class="row button-row-cap">
+				<button class = "btn btn-secondary button-caption">Caption</button>
+			</div>
+			<div class="row button-row-cap">
+				<button class = "btn btn-secondary button-caption">Choices</button>
+			</div>
+		</div>
+	</div>
+	<div class="row" style= "padding-right: 12px">
+		<div class="col-11" style="padding-right: 10px; padding-bottom: 3%;">
+			<textarea class="form-control form-input"></textarea>
+		</div>
+		<div class="col-1">
+			<div class="row button-row-cap" style="padding-top: 75%;" >
+				<button class = "button-caption btn btn-success" >Send</button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
