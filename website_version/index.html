@@ -20,6 +20,10 @@
 				padding-top: 5.5%;
 				padding-bottom: 5.5%;
 		}
+		.button-row-choice{
+				padding-top: 5.5%;
+				padding-bottom: 5.5%;
+		}
 		.topic-box{
 			height:100px;
 			overflow-y:scroll;
@@ -27,6 +31,16 @@
 			border:6px solid blue;
 			background-color:#e3f2fd; 
 			padding:0.25%;
+		}
+		.caption-box{
+			height:100px;
+			width:100%;
+			overflow-y:scroll;
+			overflow-x:hidden;
+			border:6px solid blue;
+			background-color:#e3f2fd; 
+			padding:0.25%;
+			display:none;
 		}
 		.form-input{
 			height:100px;
@@ -41,18 +55,26 @@
 		.button-caption{
 			width: 100%;
 			padding: 8px;
-			min-width: 70px;
+			min-width: 70px;	
 		}
+		.button-choice{
+			width: 100%;
+			padding: 8px;
+			min-width: 70px;	
+		}
+
 	</style>
 </head>
-<body>
-<div class = navbar-pad>
-	<nav class="navbar navbar-light navbar-expand-lg justify-content-between" style="background-color: #00BFFF;">
-	  <a class="navbar-brand img-responsive" href="#"><h2>MentorPal</h2></a>
-	  <a href="http://ict.usc.edu" class="mr-sm-2"><img src="ICT.jpg"></a>
-	</nav>
+<body onresize="resizeFix()">
+<div id = "navSize" class ="container-fluid">
+	<div class = "navbar-pad">
+		<nav class="navbar navbar-light navbar-expand-lg justify-content-between" style="background-color: #00BFFF;">
+		  <a class="navbar-brand img-responsive" href="#"><h2>MentorPal</h2></a>
+		  <a href="http://ict.usc.edu" class="mr-sm-2"><img src="ICT.jpg"></a>
+		</nav>
+	</div>
 </div>
-<div class="container">
+<div id = "mainSize" class="container">
 	<div class="row">	
 		<div class="col">
 			<div class="embed-responsive embed-responsive-16by9">
@@ -65,49 +87,22 @@
 	<div class="row" style="padding-bottom: 20px; padding-top: 20px; padding-right: 12px">
 		<div class="col-11"style="padding-right: 20px;">
 			<div id = "topic-box" class = "topic-box" >				
-					<script type="text/javascript">	//read file which makes array.  Then read array into buttons and format them etc.
-						Papa.parse("https://raw.githubusercontent.com/benjamid/MentorPAL/master/mentors/clint/data/topics.csv", {
-							download: true,
-							complete: function(results) {						
-								for (var i = 0; i<results.data.length; i++){
-									if (i%5==0){	//create rows for the buttons
-										var buttonrow = document.createElement("div");
-										buttonrow.class="row";
-										buttonrow.style.paddingBottom="0.5%";
-										buttonrow.style.paddingTop="0.25%";
-										document.getElementById("topic-box").appendChild(buttonrow);
-									}				
-									btn = document.createElement("BUTTON");        // Create buttons
-									btn.className = "btn button-settings";
-									var name = results.data[i][0];
-									btn.appendChild(document.createTextNode(name)); 
-									btn.value = name;
-									btn.onclick = function() {findquestion(this)};	//on click find a question
-									buttonrow.appendChild(btn);	//append button to row
-								}
-							}
-						});	
-						
-						function findquestion(thisButton) {
-							console.log(thisButton.value);
-							
-						}
-					</script>
-
 			</div>
+			<textarea id = "caption-box" class = "caption-box" readonly>
+			</textarea>
 		</div>
 		<div class="col-1">
 			<div class="row button-row-cap">
-				<button class = "btn btn-secondary button-caption">Caption</button>
+				<button id = "button-caption" onclick="toCaption()" class = "btn btn-primary button-caption">Transcript</button>
 			</div>
-			<div class="row button-row-cap">
-				<button class = "btn btn-secondary button-caption">Choices</button>
+			<div class="row button-row-choice">
+				<button id = "button-choice" onclick="toChoices()" class = "btn btn-primary button-choice" disabled  = true>Topics</button>
 			</div>
 		</div>
 	</div>
 	<div class="row" style= "padding-right: 12px">
 		<div class="col-11" style="padding-right: 10px; padding-bottom: 3%;">
-			<textarea class="form-control form-input"></textarea>
+			<textarea id="questionBox" class="form-control form-input"  x-webkit-speech></textarea>
 		</div>
 		<div class="col-1">
 			<div class="row button-row-cap" style="padding-top: 75%;" >
@@ -117,4 +112,5 @@
 	</div>
 </div>
 </body>
+<script src="index.js"></script>
 </html>
