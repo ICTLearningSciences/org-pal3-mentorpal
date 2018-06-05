@@ -24,7 +24,7 @@ class Mentor(object):
             self.title="Nuclear Electrician's Mate"
         elif id == 'dan':
             self.name="Dan Davis"
-            self.title="JD"
+            self.title="High Performance Computing Researcher"
             
         self.load()
     

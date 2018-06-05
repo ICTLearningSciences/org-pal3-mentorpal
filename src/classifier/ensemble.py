@@ -11,70 +11,49 @@ import json
 import random
 import csv
 import datetime
-import time
-import mentor
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score, accuracy_score
 
-class BackendInterface(object):
-    num_blacklisted_repeats = 5
-    
+class EnsembleClassifier(object):
     def __init__(self, mode='ensemble'):
-        self.pal3_status_codes={'_START_SESSION_', '_INTRO_', '_IDLE_', '_TIME_OUT_', '_END_SESSION_', '_EMPTY_'} #status codes that PAL3 sends to code
         self.test_data=None
         self.x_test=None
         self.y_test=None
         self.mode=mode
-        self.cl_y_test_unfused=[]
-        self.cl_y_pred_nufused=[]
-        self.cl_y_test_fused=[]
-        self.cl_y_pred_fused=[]
+        self.cl_y_test=[]
+        self.cl_y_pred=[]
         self.npc_y_test=[]
         self.npc_y_pred=[]
         self.ensemble_pred=[]
-        self.cpp=classifier_preprocess.ClassifierPreProcess()
-        self.tpp=classifier_preprocess.NLTKPreprocessor()
+        self.session_started=False
+        self.session_ended=False
         if self.mode=='ensemble' or self.mode=='classifier':
             self.classifier=classify.Classify()
-        if self.mode=='ensemble' or self.mode=='npceditor':
-            self.npc=npceditor_interface.NPCEditor()
-        self.mentorsById={}
+        self.npc=npceditor_interface.NPCEditor()
         #variables to keep track of session
-        self.mentor=None
-        self.session_started=False
-        self.use_repeats=False
-        self.should_bump=False
-        self.blacklist=list()
-        self.last_topic_suggestion=""
-        self.suggestion_index=0
+        self.mentor_id=None
+        self.blacklist=set()
+        self.pal3_status_codes={'_START_SESSION_', '_INTRO_', '_IDLE_', '_TIME_OUT_', '_END_SESSION_', '_EMPTY_'} #status codes that PAL3 sends to code
+        self.utterances_prompts={} #responses for the special cases
         self.user_logs=[]
 
-    def preload(self, mentors):
-        for mentor in mentors:
-            # start NPCEditor first because it takes a while to load
-            if self.mode=='ensemble' or self.mode=='npceditor':
-                os.system("{0} {1}".format(os.path.abspath(os.path.join('', '..', 'NPCEditor.app', 'run-npceditor')), mentor))
-            self.load_mentor(mentor)
-            # temporarily asking mentors a question to warm up classifier
-            # need to figure out why loading topic_model works for commandline but not vhmsg
-            if self.mode=='ensemble' or self.mode=='classifier':
-                self.set_mentor(mentor)
-                self.get_classifier_answer('asdf')
-        
-    def load_mentor(self, id):
-        self.mentorsById[id]=mentor.Mentor(id)
-            
-    def set_mentor(self, id):
-        if id not in self.mentorsById:
-            self.load_mentor(id)    
-        self.mentor=self.mentorsById[id]
-        self.cpp.set_mentor(self.mentor)
+    def load_mentor(self, mentor_id):
+        self.mentor_id=mentor_id
+        self.utterance_df=pd.read_csv(open(os.path.join("mentors",self.mentor_id,"data","utterance_data.csv"),'rb'))
+        self.cpp.load_mentor(self.mentor_id)
         if self.mode=='ensemble' or self.mode=='classifier':
-            self.classifier.set_mentor(self.mentor)
-        if self.mode=='ensemble' or self.mode=='npceditor':
-            self.npc.set_mentor(self.mentor)
+            self.classifier.load_mentor(self.mentor_id)
         
+        for i in range(len(self.utterance_df)):
+            situation=self.utterance_df.iloc[i]['situation']
+            video_name=self.utterance_df.iloc[i]['ID']
+            utterance=self.utterance_df.iloc[i]['utterance']
+            if situation in self.utterances_prompts:
+                self.utterances_prompts[situation].append((video_name, utterance))
+            else:
+                self.utterances_prompts[situation]=[(video_name, utterance)]
+                
     '''
     This starts the pipeline for training the classifier from scratch.
     When new data is available and a new model needs to be built, calling this function will generate a new classifier.
@@ -86,51 +65,45 @@ class BackendInterface(object):
     or False will enable to use/not use topic vectors.
     '''
     def start_pipeline(self, mode='train_mode', use_topic_vectors='True'):
-        self.classifier.create_data(mode=mode)
-        #Classifier is trained with and without topic vectors to provide flexibility
-        self.classifier.train_lstm()
+        #self.classifier.create_data(mode=mode)
+        #Classifier is trained with and without topic vectors to provie flexibility
+        #self.classifier.train_lstm()
         self.classifier.train_classifier()
         if mode=='train_test_mode':
-            self.test_data=json.load(open(os.path.join("mentors",mentor.mentorId,"test_data","lr_test_data.json"),'r'))
+            self.test_data=json.load(open(os.path.join("mentors",self.mentor_id,"test_data","lr_test_data.json"),'r'))
             self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
             self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
-            self.cl_y_test_unfused, self.cl_y_pred_unfused, self.cl_y_test_fused, self.cl_y_pred_fused=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
+            self.cl_y_test, self.cl_y_pred=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
             self.npc.load_test_data()
-            #self.get_all_answers()
-
-    '''
-    Return the list of topics to the GUI
-    '''
-    def get_topics(self):
-        return self.mentor.topics
-
+            self.get_all_answers()
     '''
     Checks if the question is off-topic. This function is not completed yet.
     '''
     def is_off_topic(self, question):
         return False
 
+
     #information to track must be discussed with Ben, Nick, Kayla
     def start_session(self):
+        print("Session started")
+        #handle variables to track session
         self.session_started=True
+        self.session_ended=False
         
     #play intro clip
     def play_intro(self):
-        return self.mentor.utterances_prompts['_INTRO_'][0]
+        return self.utterances_prompts['_INTRO_'][0]
 
     #play idle clip
     def play_idle(self):
-        return self.mentor.utterances_prompts['_IDLE_'][0]
+        print("Idle")
+        return ('no_video_yet', '_EMPTY_TEXT_')
         
     def end_session(self):
-        self.session_started=False
+        print("Session ended")
+        #handle variables to end session
+        self.session_ended=True
         self.blacklist.clear()
-        
-    def quit(self):
-        if self.mode=='ensemble' or self.mode=='npceditor':
-            for mentor in self.mentorsById:
-                self.npc.close_npceditor(self.mentorsById[mentor].id)
-            self.npc.close_vhmsg()
 
     '''
     This method checks the status of the question: whether it is an off-topic or a repeat. Other statuses can be added here.
@@ -159,55 +132,40 @@ class BackendInterface(object):
     This method returns the appropriate prompt for a particular question status
     '''
     def return_prompt(self, input_status):
-        return_id=None
-        return_answer=None
-        return_score=0.0
-    
         # Select a prompt and return it
         if input_status=="_START_SESSION_":
             self.start_session()
-            return_id, return_answer, return_score=('_START_', self.mentor.name, self.mentor.title)
+            return ('no_video', '_START_')
 
         elif input_status=="_END_SESSION_":
             self.end_session()
-            return_id, return_answer=('no_video', '_END_')
+            return ('no_video', '_END_')
 
         elif input_status=="_INTRO_":
-            return_id, return_answer=self.play_intro()
+            return self.play_intro()
 
         elif input_status=="_IDLE_":
-            return_id, return_answer=self.play_idle()
+            return self.play_idle()
 
         elif input_status=="_TIME_OUT_" or input_status=='_EMPTY_':
             #load a random prompt from file and return it.
             #The choice of prompt can also be based on the topic of the last asked question
             #This will help drive the conversation in the direction we want so that an agenda can be maintained
-            len_timeouts=len(self.mentor.utterances_prompts['_PROMPT_'])
+            len_timeouts=len(self.utterances_prompts['_PROMPT_'])
             index=random.randint(0,len_timeouts-1)
-            return_id, return_answer=self.mentor.utterances_prompts['_PROMPT_'][index]
+            return self.utterances_prompts['_PROMPT_'][index]
 
         elif input_status=="_OFF_TOPIC_":
             #load off-topic feedback clip and play it
-            len_offtopic=len(self.mentor.utterances_prompts['_OFF_TOPIC_'])
+            len_offtopic=len(self.utterances_prompts['_OFF_TOPIC_'])
             index=random.randint(0,len_offtopic-1)
-            return_id, return_answer=self.mentor.utterances_prompts['_OFF_TOPIC_'][index]
-            return_score=-100.0
+            return self.utterances_prompts['_OFF_TOPIC_'][index]
 
         elif input_status=="_REPEAT_":
             #load repeat feedback clip and play it
-            len_repeat=len(self.mentor.utterances_prompts['_REPEAT_'])
+            len_repeat=len(self.utterances_prompts['_REPEAT_'])
             index=random.randint(0,len_repeat-1)
-            return_id, return_answer=self.mentor.utterances_prompts['_REPEAT_'][index]
-            return_score=-200.0
-
-        elif input_status=="_REPEAT_BUMP_":
-            #load repeat feedback clip and play it
-            len_repeat=len(self.mentor.utterances_prompts['_REPEAT_BUMP_'])
-            index=random.randint(0,len_repeat-1)
-            return_id, return_answer=self.mentor.utterances_prompts['_REPEAT_BUMP_'][index]
-            return_score=-300.0
-
-        return return_id, return_answer, return_score
+            return self.utterances_prompts['_REPEAT_'][index]
 
     '''
     Get answers for all the questions. Used when building a new classifier model. Will be called automatically as part of the 
@@ -231,107 +189,49 @@ class BackendInterface(object):
         print("F-1: "+str(f1_score(self.y_test, self.ensemble_pred, average='micro')))
 
     '''
-    Get answer from NPCEditor
-    '''
-    def get_npceditor_answer(self, question, use_topic_vectors=True):
-        start_time_npc=time.time()
-        self.npc.send_request(question)
-        npceditor_id, npceditor_score, npceditor_answer, similar_responses=self.npc.parse_single_xml()
-        end_time_npc=time.time()
-        elapsed_npc=end_time_npc-start_time_npc
-        print("Time to fetch NPCEditor answer {0} is {1}".format(npceditor_id, str(elapsed_npc)))
-        
-        # if chosen response is a repeat, check for similar responses
-        if (not self.use_repeats and npceditor_id in self.blacklist):
-            for response in similar_responses:
-                if response['ID'] not in self.blacklist:
-                    print("Answer {0} is a repeat, chose {1} instead".format(npceditor_id, response['ID']))
-                    npceditor_score=response['score']
-                    npceditor_id=response['ID']
-                    npceditor_answer=response['text']
-
-        return npceditor_id, npceditor_score, npceditor_answer
-        
-    '''
-    Get answer from classifier
-    '''
-    def get_classifier_answer(self, question, use_topic_vectors=True):
-        start_time=time.time()
-        classifier_id, classifier_answer=self.classifier.get_answer(question, use_topic_vectors=use_topic_vectors)
-        end_time=time.time()
-        elapsed=end_time-start_time
-        print("Time to fetch classifier answer is "+str(elapsed))
-        return classifier_id, classifier_answer
-
-    '''
     When only one answer is required for a single question, use this method. You can choose to use or not use the topic vectors by
     passing the named parameter as True or False.
     '''
     def get_one_answer(self, question, use_topic_vectors=True):
+        if self.mode=='ensemble' or self.mode=='classifier':
+            classifier_id, classifier_answer=self.classifier.get_answer(question, use_topic_vectors=use_topic_vectors)
+        self.npc.send_request()
+        npceditor_id, npceditor_score, npceditor_answer=self.npc.parse_single_xml()
         return_id=None
         return_answer=None
-        return_score=0.0
 
         if self.mode=='ensemble':
-            npceditor_id, npceditor_score, npceditor_answer = self.get_npceditor_answer(question, use_topic_vectors)
             if npceditor_answer=="answer_none":
-                classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
                 return_id=classifier_id
                 return_answer=classifier_answer
                 print("Answer from classifier chosen")
             else:
                 if float(npceditor_score) < -5.59054:
-                    classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
                     return_id=classifier_id
                     return_answer=classifier_answer
                     print("Answer from classifier chosen")
                 else:
                     return_id=npceditor_id
                     return_answer=npceditor_answer
-                    return_score=npceditor_score
                     print("Answer from NPCEditor chosen")
-
+            self.blacklist.add(return_id)
+            return return_id, return_answer
         elif self.mode=='npceditor':
-            npceditor_id, npceditor_score, npceditor_answer = self.get_npceditor_answer(question, use_topic_vectors)
             if npceditor_answer=='answer_none' or float(npceditor_score) < -5.59054:
                 return self.return_prompt('_OFF_TOPIC_')
             else:
                 return_id=npceditor_id
                 return_answer=npceditor_answer
-                return_score=npceditor_score
+                self.blacklist.add(return_id)
                 print("Answer from NPCEditor chosen")
-                
+                return return_id, return_answer
         elif self.mode=='classifier':
-            classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
-            return_id=classifier_id
-            return_answer=classifier_answer
-            print("Answer from classifier chosen")
-        
-        # Handle repeats
-        if (not self.use_repeats):
-            if (return_id in self.blacklist):
-                # Handle bumper messages
-                if (self.should_bump):
-                    self.should_bump=False
-                    return self.return_prompt('_REPEAT_BUMP_')
-                self.should_bump=True
-                return self.return_prompt('_REPEAT_')
-            else:
-                if (len(self.blacklist) == self.num_blacklisted_repeats):
-                    self.blacklist.pop(0)
-                self.should_bump=False
-                self.blacklist.append(return_id)
-        
-        return return_id, return_answer, return_score
+                return_id=classifier_id
+                return_answer=classifier_answer
+                self.blacklist.add(return_id)
+                print("Answer from classifier chosen")
 
-    def get_redirect_answer(self):
-        self.use_repeats=True
-        question = self.suggest_question('STEM')[0]
-        print("ask: " + question)
-        return_id, return_answer, return_score = self.get_one_answer(question)
-        self.use_repeats=False
-        return return_id, return_answer, return_score
-    
+
     '''
     When you want to get an answer to a question, this method will be used. Flexibility to use/not use topic vectors is provided.
     For special cases like time-out, user diverting away from topic, etc., pass a pre-defined message as the question.
@@ -365,19 +265,5 @@ class BackendInterface(object):
         # answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
 
-    '''
-    Suggest a question to the user
-    '''
-    def suggest_question(self, topic):
-        if topic=='Job Specific':
-            topic='jobspecific'
 
-        candidate_questions=self.mentor.suggestions[topic.lower()]
-        if (self.last_topic_suggestion == topic):
-            self.suggestion_index=(self.suggestion_index + 1) % len(candidate_questions)
-        else:
-            self.suggestion_index=random.randint(0,len(candidate_questions)-1)
-        
-        selected_question=candidate_questions[self.suggestion_index]
-        self.last_topic_suggestion=topic
-        return (selected_question[0].capitalize(), selected_question[1], selected_question[2])
+
