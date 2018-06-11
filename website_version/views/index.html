@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="papaparse.min.js"></script>
+	<script src="socket.io.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+	<script src="watson-speech.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<title>ICT MentorPal</title>
+</head>
+<body onresize="resizeFix()">
+<div id = "navSize" class ="container-fluid">
+	<div class = "navbar-pad">
+		<nav class="navbar navbar-light" style="background-color: #00BFFF;">
+	        	<div class="navbar-header">
+		        	<a class="navbar-brand" href="#"><h2>MentorPal</h2></a>
+		        </div>
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >Choose Mentor
+					<span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="/clint">Clint</a></li>
+						<li><a href="/dan">Dan</a></li>
+					</ul>
+					<button style="visibility:hidden"></button>
+  					<a href="http://ict.usc.edu" <class="navbar-brand" "mr-sm-2"><img src="ICT.jpg"></a>
+	  			</div>
+		</nav>
+	</div>
+</div>
+<div id = "mainSize" class="container">
+	<div class="row">		<!--This is the video player area-->
+		<div class="col">
+			<div id = "videoWrapper" class="embed-responsive embed-responsive-16by9">
+				<video class ="video" id = "videoPlayer" width="1920" height="1080" controls autoplay>
+					<source src="https://pal3-dev.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.ogv" type="video/ogg">
+				</video>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="padding-bottom: 20px; padding-top: 20px; padding-right: 12px">
+		<div id = "main-box" class="col-11"style="padding-right: 20px;">
+			<div id = "topic-box" class = "topic-box">
+			</div>
+			<textarea id = "caption-box" class = "caption-box" readonly>
+			</textarea>
+		</div>
+		<div id = "button-row" class="col-1">
+			<div class="row button-row-cap">
+				<button id = "button-caption" onclick="toCaption()" class = "btn btn-primary button-caption">Transcript</button>
+			</div>
+			<div class="row button-row-choice">
+				<button id = "button-choice" onclick="toChoices()" class = "btn btn-primary button-choice" disabled  = true>Topics</button>
+			</div>
+		</div>
+	</div>
+	<div class="row" style= "padding-right: 12px">
+		<div class="col-11" style="padding-right: 10px; padding-bottom: 3%;">
+			<textarea id="question-Box" class="form-control form-input" onkeydown="if (event.keyCode == 13) send()" autofocus></textarea>
+		</div>
+		<div class="col-1">
+			<div class="row button-row-choice">
+				<button id="mic-button" style = "display: block;" onclick = "watson()" class = "button-caption btn btn-success" >Mic</button>
+				<button id="stop-button" style="display: none;" onclick = "stopWatson()" class = "button-caption btn btn-danger">Stop</button>
+			</div>
+			<div class="row button-row-cap">
+				<button onclick = "send()" class = "button-caption btn btn-success">Send</button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+<script src="index.js"></script>
+</html>
