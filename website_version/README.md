@@ -7,7 +7,7 @@ Follow the main python guide to install dependencies and setup the classifier.
 - Use Python3.
 - Install all dependencies with pip3.
 - This project doesn't use NPCEditor so that setup can be ignored
-Next, setup the web server.
+####### Next, setup the web server.
 - Open terminal in the root directory (where app.js is) and type 'npm init' to install dependencies.
 - Make sure the vector_models folder contains the GoogleNews vectors and the mentors folder is copied to the same level as package.json is
 - Type 'node app' and the program should run.
