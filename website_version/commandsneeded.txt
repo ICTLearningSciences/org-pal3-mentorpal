@@ -1,0 +1,28 @@
+For reference, these are the commands needed to get the website running. This was done on Ubuntu EC2 before dokerization happened (Python was already installed):
+
+sudo apt-get install docker.io
+sudo apt install nodejs-legacy
+sudo apt install python3-pip
+sudo apt install npm
+git clone https://github.com/benjamid/MentorPAL.git
+cd MentorPAL/website_version
+pip3 install numpy
+pip3 install pandas
+pip3 install keras
+pip3 install tensorflow
+pip3 install gensim
+pip3 install sklearn
+pip3 install nltk
+
+copy over/get vectormodel
+copy to root of website the mentors files
+
+Also install nltk dependency with python:
+python3 (to open shell)
+import nltk
+nltk.download('averaged_perceptron_tagger')
+
+sudo node app
+
+**note an ec2 Micro needs a swap file as well to get enough memory (about 1.5gb total ram works)
+
