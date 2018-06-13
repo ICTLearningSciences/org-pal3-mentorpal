@@ -1,4 +1,5 @@
-For reference, these are the commands needed to get the website running. This was done on Ubuntu EC2 before dokerization happened (Python was already installed):
+For reference, these are the commands needed to get the website running. This was done on Ubuntu EC2 before dokerization happened (Python was already installed).
+However, I recommend you use 
 
 sudo apt-get install docker.io
 sudo apt install nodejs-legacy
