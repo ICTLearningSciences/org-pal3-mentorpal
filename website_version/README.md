@@ -7,6 +7,7 @@
 - Copy this whole repository and insert the GoogleNews vector into the website_version folder
 - Create the image and then deploy it
 > sudo docker build -t ubuntu/node-web-app .
+
 > sudo docker run -p 80:80 ubuntu/node-web-app
 ###### If you would like to do it manually for some reason:
 - Follow the main python guide to install dependencies and setup the classifier.  The commands below are also written out in "commandsneeded.txt"
