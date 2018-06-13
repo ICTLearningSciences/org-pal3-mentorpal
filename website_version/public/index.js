@@ -88,7 +88,7 @@ function renderButtons(results){
 	} else{
 	//////////////////////This is the mobile version
 		for (var i = 0; i<results.data.length-3; i++){
-			if (i%(results.data.length/3)==0){	//create rows for the buttons
+			if (i%(results.data.length/2)==0){	//create rows for the buttons
 				var buttonrow = document.createElement("div");
 				buttonrow.class="row";
 				buttonrow.style.paddingBottom="0.5%";
