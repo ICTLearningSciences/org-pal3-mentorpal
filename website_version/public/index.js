@@ -35,6 +35,7 @@ if (mentorID == 'clint'){
 
 function resizeFix(){	//run everytime the window is resized to keep it responsive
 	if (screen.width<800){	//check if we're on mobile
+		toChoices();
 		document.getElementById("mainSize").className = "container-fluid";
 		document.getElementById("topic-box").className = "topic-box-mobile";
 		renderButtons(globalResults);
@@ -42,7 +43,7 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("main-box").className = 'col';
 
 		document.getElementById("videoWrapper").className = 'video-wrapper';
-		document.getElementById("videoPlayer").className = 'video';
+		document.getElementById("videoPlayer").className = 'video';	
 	} else {	//if not mobile render this
 		document.getElementById("mainSize").className = "container";
 		document.getElementById("topic-box").className = "topic-box";
@@ -87,7 +88,7 @@ function renderButtons(results){
 	} else{
 	//////////////////////This is the mobile version
 		for (var i = 0; i<results.data.length-3; i++){
-			if (i%(results.data.length/4)==0){	//create rows for the buttons
+			if (i%(results.data.length/3)==0){	//create rows for the buttons
 				var buttonrow = document.createElement("div");
 				buttonrow.class="row";
 				buttonrow.style.paddingBottom="0.5%";
