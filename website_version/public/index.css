@@ -35,13 +35,14 @@
 			white-space: normal;
 		}
 		.topic-box-mobile{
-			height:300px;
+			height:210px;
 			overflow-y:hidden;
 			overflow-x:scroll;
 			border:6px solid blue;
 			background-color:#e3f2fd;
 			padding:0.25%;
 			white-space: nowrap;
+			
 		}
 		.caption-box{
 			height:150px;
