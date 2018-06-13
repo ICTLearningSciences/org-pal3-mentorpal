@@ -84,3 +84,7 @@
         .video{
             margin-left: -500px;
         }
+		
+	    $(document).ready(function () {
+              $('.container').jScrollPane();
+		});
