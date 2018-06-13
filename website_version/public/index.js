@@ -194,3 +194,7 @@ video.onended = function(){		//when the video playing finishes, play the idle vi
 }
 video.play();
 document.getElementById("caption-box").innerHTML = '';
+
+$(document).ready(function () {
+	  $('.container').jScrollPane();
+});
