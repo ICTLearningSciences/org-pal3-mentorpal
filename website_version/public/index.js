@@ -87,8 +87,9 @@ function renderButtons(results){
 		}
 	} else{
 	//////////////////////This is the mobile version
-		for (var i = 0; i<results.data.length-3; i++){
-			if (i%(results.data.length/2)==0){	//create rows for the buttons
+		var length = ((results.data.length-3)+(results.data.length-3)%3)/3;
+		for (var i = 0; i<results.data.length-3; i++){			
+			if (i%(length)==0){	//create rows for the buttons results.data.length/2
 				var buttonrow = document.createElement("div");
 				buttonrow.class="row";
 				buttonrow.style.paddingBottom="0.5%";
