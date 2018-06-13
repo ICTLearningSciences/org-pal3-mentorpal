@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 indexRouter.io.listen(http);
-http.listen(3000, function(){
+http.listen(80, function(){
     console.log('Listening for http requests');
 })
 module.exports = app;
