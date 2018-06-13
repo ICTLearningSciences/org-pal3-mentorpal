@@ -85,17 +85,3 @@
             margin-left: -500px;
         }
 		
-.jspTrack
-{
-    background: #b46868; /* changed from #dde */
-    position: relative;
-}
- 
-.jspDrag
-{
-    background: rgba(0,0,0,0.2); /* changed from #bbd */
-    position: relative;
-    top: 0;
-    left: 0;
-    cursor: pointer;
-}
