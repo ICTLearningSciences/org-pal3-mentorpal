@@ -9,6 +9,9 @@
 > sudo docker build -t ubuntu/node-web-app .
 
 > sudo docker run -p 80:80 ubuntu/node-web-app
+- In addition, to support more browsers, convert the ogv files to mp4 as well.  Using ffmpeg navigate to the folder and then batch process them (in linux):
+> for i in *.ogv; do ffmpeg -i "$i" "${i%.*}.mp4"; done
+- upload all of this to the S3
 ###### If you would like to do it manually for some reason:
 - Follow the main python guide to install dependencies and setup the classifier.  The commands below are also written out in "commandsneeded.txt"
 - Clone the whole repository including the web folder.
