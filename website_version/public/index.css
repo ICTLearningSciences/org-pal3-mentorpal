@@ -12,7 +12,7 @@
 		}
 		.button-settings-mobile{
 			width: 49%;
-			height: 85px;
+			height: 80px;
 			background-color: #00BFFF;
 			margin-left:0.8%;
 			font-size: 45px;
@@ -84,4 +84,7 @@
         .video{
             margin-left: -500px;
         }
-     
+     .name {
+		max-width: 100%;
+		overflow-x: hidden;
+	 }
