@@ -75,27 +75,37 @@
 </div>
 <script>
 $("body").niceScroll({
-	cursorcolor:"#2ecc71",
+	cursorcolor:"#0080FF",
 	cursorwidth:"12px",
 	cursoropacitymin: 0.5,
 	cursorborder: "0px solid #000",
-	background:'#ddd'
+	background:'#ddd',
+	preventmultitouchscrolling: false, 
+    cursordragontouch: true,
+	autohidemode: false,
+	touchbehavior: true
 });
 $("#caption-box").niceScroll({
-	cursorcolor:"#2ecc71",
+	cursorcolor:"#0080FF",
 	cursoropacitymin: 0.5,
 	cursorwidth:"16px",
 	cursorborder: "0px solid #000",
 	background:'#ddd',
-	autohidemode: false
+	autohidemode: false,
+	preventmultitouchscrolling: false, 
+	touchbehavior: true,
+    cursordragontouch: true
 });
 $("#topic-box").niceScroll({
-	cursorcolor:"#2ecc71",
+	cursorcolor:"#0080FF",
 	cursoropacitymin: 0.5,
-	cursorwidth:"16px"
+	cursorwidth:"16px",
 	cursorborder: "0px solid #000",
 	background:'#ddd',
-	autohidemode: false
+	autohidemode: false,
+	touchbehavior: true,
+	preventmultitouchscrolling: false, 
+	 cursordragontouch: true
 });
 </script
 </body>
