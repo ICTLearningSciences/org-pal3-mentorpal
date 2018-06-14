@@ -6,16 +6,16 @@
 			padding-bottom: 1.5%;
 		}
 		.button-settings{
-			width: 19%;
+			width: 17%;
 			background-color: #00BFFF;
 			margin-left:0.8%;
 		}
 		.button-settings-mobile{
 			width: 49%;
-			height: 100px;
+			height: 90px;
 			background-color: #00BFFF;
 			margin-left:0.8%;
-			font-size: 50px;
+			font-size: 45px;
 		}
 		.button-row-cap{
 			padding-top: 5.5%;
@@ -84,7 +84,7 @@
         .video{
             margin-left: -500px;
         }
-		.get-nicer {
+/*		.get-nicer {
 		   overflow: auto;
 		   height: 280px;
 		}
@@ -98,8 +98,5 @@
        border: none !important;
        background-color: #000 !important;
        border-radius: 0 !important;
-     }
+     }*/
      
-     .jumbotron {
-       padding-top: 80px;
-     }
