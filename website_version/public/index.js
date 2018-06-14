@@ -194,3 +194,10 @@ video.onended = function(){		//when the video playing finishes, play the idle vi
 video.play();
 document.getElementById("caption-box").innerHTML = '';
 
+$('#view-more').click(function(){
+  $('#scroll-area span').show();
+ 
+  // Trigger the NiceScroll to resize
+  $('#scroll-area').getNiceScroll().resize();
+});
+

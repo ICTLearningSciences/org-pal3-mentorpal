@@ -60,9 +60,6 @@
 		}
 		body{
 			background-color: #e6f9ff;
-			margin: 0;
-			width: 100%;
-			position: relative;
 		}
 		textarea {
 			resize: none;
@@ -87,8 +84,3 @@
         .video{
             margin-left: -500px;
         }
-		html{
-			margin: 0;
-			width: 100%;
-			position: relative;
-		}
