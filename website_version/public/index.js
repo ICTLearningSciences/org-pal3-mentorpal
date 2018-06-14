@@ -180,7 +180,7 @@ socket.on("receiveAnswer", function(data) {		//got the answer
 	video.play();
 	video.controls = true;
 	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
-	document.getElementById("caption-box").value = document.getElementById("caption-box").value + 'Mentor:\n\t' + data.transcript.replace(/\\'/g,"'") + '\n';
+	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>Mentor:\n\t</b>' + data.transcript.replace(/\\'/g,"'") + '\n';
 });
 var token;
 socket.on("token", function(data){
@@ -192,7 +192,7 @@ video.onended = function(){		//when the video playing finishes, play the idle vi
 	video.controls = false;
 }
 video.play();
-document.getElementById("caption-box").innerHTML = '';
+document.getElementById("caption-box").innerHTML = '' + '<b>Mentor:\n\t</b>'  + mentor.intro +'\n';
 
 
 

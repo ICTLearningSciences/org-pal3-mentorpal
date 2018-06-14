@@ -100,7 +100,3 @@
 							   color-stop(.5, rgba(255, 255, 255, .2)),
 							   color-stop(.5, transparent), to(transparent)); 
 		}
-		#topic-box::-webkit-scrollbar{
-			width: 19px;
-			background-color: #F5F5F5;
-		}
