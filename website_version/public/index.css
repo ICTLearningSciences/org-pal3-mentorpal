@@ -60,6 +60,11 @@
 		}
 		body{
 			background-color: #e6f9ff;
+			margin: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			position: relative;
 		}
 		textarea {
 			resize: none;
@@ -84,7 +89,10 @@
         .video{
             margin-left: -500px;
         }
-     .name {
-		max-width: 100%;
-		overflow-x: hidden;
-	 }
+		html{
+			margin: 0;
+			width: 100%;
+			height: 100%;
+			position: relative;
+			overflow: hidden;
+		}

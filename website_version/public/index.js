@@ -58,7 +58,6 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 
 		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9';
 		document.getElementById("videoPlayer").className = 'col';
-
 	}
 }
 
