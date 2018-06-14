@@ -195,6 +195,3 @@ video.onended = function(){		//when the video playing finishes, play the idle vi
 video.play();
 document.getElementById("caption-box").innerHTML = '';
 
-$(".topic-box").niceScroll("div.nice-wrapper", {
-cursorwidth: "12px"
-});
