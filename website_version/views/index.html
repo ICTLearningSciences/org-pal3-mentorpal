@@ -18,7 +18,7 @@
 		        	<a class="navbar-brand" href="#"><h1>MentorPal</h1></a>
 		        </div>
 				<div class="dropdown">
-					<button class="btn btn-primary dropdown-toggle" type="button" style = "width: 220px; height: 50px; font-size: 21px" data-toggle="dropdown">Choose Mentor
+					<button class="btn btn-primary dropdown-toggle" type="button" style = "width: 200px; height: 40px; font-size: 19px" data-toggle="dropdown">Choose Mentor
 					<span class="caret"></span></button>
 					<div class="dropdown-menu">
 						<li><a style = "padding: 15px; font-size: 18px" href="/clint">Clint</a></li>
@@ -58,16 +58,16 @@
 		</div>
 	</div>
 	<div class="row" style= "padding-right: 12px">
-		<div class="col-11" style="padding-right: 10px; padding-bottom: 3%;">
+		<div id = "input-box" class="col-11" style="padding-right: 10px; padding-bottom: 3%;">
 			<textarea id="question-Box" class="form-control form-input" "scroll-pane" onkeydown="if (event.keyCode == 13) send()" autofocus></textarea>
 		</div>
-		<div class="col-1">
+		<div id = "mic-send-row" class="col-1">
 			<div class="row button-row-choice">
 				<button id="mic-button" style = "display: block;" onclick = "watson()" class = "button-caption btn btn-success" >Mic</button>
 				<button id="stop-button" style="display: none;" onclick = "stopWatson()" class = "button-caption btn btn-danger">Stop</button>
 			</div>
 			<div class="row button-row-cap">
-				<button onclick = "send()" class = "button-caption btn btn-success">Send</button>
+				<button id= "send-button" onclick = "send()" class = "button-caption btn btn-success">Send</button>
 			</div>
 		</div>
 	</div>
