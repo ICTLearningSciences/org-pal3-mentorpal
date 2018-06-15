@@ -2,7 +2,7 @@ var globalResults;
 var socket = io();
 var video = document.getElementById("videoPlayer");
 
-var mentorID = window.location.pathname.slice(1);
+var mentorID = window.location.pathname.slice(1,window.location.pathname.length-1);
 var mentor ={};
 //Each mentor needs its own set of links
 //This way, content can be hosted elsewhere explicit
