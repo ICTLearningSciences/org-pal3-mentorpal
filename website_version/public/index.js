@@ -190,7 +190,7 @@ function stopWatson(){
 
 socket.on("receiveAnswer", function(data) {		//got the answer
 	//console.log(data);
-	video.src = mentor.videoURL +'.mp4';
+	video.src = mentor.videoURL+data.videoID+'.mp4';
 	video.play();
 	video.controls = true;
 	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
