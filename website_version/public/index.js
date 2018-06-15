@@ -49,9 +49,13 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 
 		document.getElementById("videoWrapper").className = 'video-wrapper';
 		document.getElementById("videoPlayer").className = 'video';	
-		document.getElementById("mic-send-row").className = 'col-3'
-		document.getElementById("input-box").className = 'col-9'
-		document.getElementById("question-Box").className = 'col-11'
+		document.getElementById("mic-send-row").className = 'col-3';
+		document.getElementById("input-box").className = 'col-9';
+		document.getElementById("question-Box").style = 'height: 170px; font-size: 35px';
+		document.getElementById("mic-button").style = 'height: 65px; width: 220px;  font-size: 30px';
+		document.getElementById("stop-button").style = 'display: none; height: 65px; width: 220px;  font-size: 30px';
+		document.getElementById("send-button").style = 'height: 65px; width: 220px;  font-size: 30px';
+
 	} else {	//if not mobile render this
 		document.getElementById("mainSize").className = "container";
 		document.getElementById("topic-box").className = "topic-box";
@@ -62,8 +66,12 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9';
 		document.getElementById("videoPlayer").className = 'col';
 		document.getElementById("mic-send-row").className = 'col-1'
-		document.getElementById("input-box").className = 'col-11'
-		document.getElementById("question-Box").style.fontSize = '12px'
+		document.getElementById("input-box").className = 'col-11';
+		document.getElementById("question-Box").style = 'height: 120px; font-size: 20px';
+		document.getElementById("mic-button").style = "display: block";
+		document.getElementById("stop-button").style = "display: none";
+		document.getElementById("send-button").style = "display: block";
+
 	}
 }
 
