@@ -11,8 +11,8 @@ if (mentorID == 'clint'){
 		name: "Clinton Anderson",
 		videoURL: "https://s3.us-east-2.amazonaws.com/mentorpal-videos/clint/answer_videos/",
 		idleURL: "https://s3.us-east-2.amazonaws.com/mentorpal-videos/clint/idle_video/idle.mp4",
-		topicsURL: "/clint/topics.csv",
-		questions: "/clint/Questions_Paraphrases_Answers.csv",
+		topicsURL: "topics.csv",
+		questions: "Questions_Paraphrases_Answers.csv",
 		intro: "My name is EMC Clint Anderson, that's Electrician's Mate Clinton Anderson. I was born in Los Angeles, California. I was raised there most of my life and I graduated from high school there. A couple of years after graduating from high school, then I joined the United States Navy. I was an Electrician's Mate for eight years. I served on an aircraft carrier. We went on many deployments. A deployment is when you go to war, you fight. We fought in the Iraq war. I went on three deployments and it was a really great time in my life. I had a lot of fun. At the end of the eight years, I decided that the Navy wasn't quite a career for me. So, I got out of the Navy. I started using the education benefits that we received and I started going to the University of California at Berkeley. I was majoring in computer science and afterwards, I started getting my master's degree from the University of Southern California. I also had a job at the Institute for Creative Technologies. It's been a lot of fun, this whole time. Thanks to the Navy.",
 		introURL: "https://s3.us-east-2.amazonaws.com/mentorpal-videos/clint/answer_videos/clintanderson_A1_1_1.mp4"
 	};
@@ -21,8 +21,8 @@ if (mentorID == 'clint'){
 		name: "Dan Davis",
 		videoURL: "https://s3.us-east-2.amazonaws.com/mentorpal-videos/dan/answer_videos/",
 		idleURL: "https://s3.us-east-2.amazonaws.com/mentorpal-videos/dan/idle_video/idle.mp4",
-		topicsURL: "/dan/topics.csv",
-		questions: "/dan/Questions_Paraphrases_Answers.csv",
+		topicsURL: "topics.csv",
+		questions: "Questions_Paraphrases_Answers.csv",
 		intro: "Hello I'm Dan Davis I've worked for universities to last thirty years doing basic research in high performance computing of work for Cal Tech, University of Southern California and the University of Hawaii",
 		introURL: "https://s3.us-east-2.amazonaws.com/mentorpal-videos/dan/answer_videos/dandavis_A1_1_1.mp4"
 	};
