@@ -1,5 +1,5 @@
 var app = require('express');
-var http = require('http').Server(app);
+var http = require('https');
 var router = app.Router();
 var io = require('socket.io')(http);
 var watson = require('watson-developer-cloud');
