@@ -11,7 +11,7 @@
 > sudo docker run -p 80:80 ubuntu/node-web-app
 - In addition, to support more browsers, convert the ogv files to mp4 as well.  Using ffmpeg navigate to the folder and then batch process them (in linux):
 > for i in *.ogv; do ffmpeg -i "$i" "${i%.*}.mp4"; done
-- upload all of this to the S3
+- upload all of this to the storage ICT has
 ###### If you would like to do it manually for some reason:
 - Follow the main python guide to install dependencies and setup the classifier.  The commands below are also written out in "commandsneeded.txt"
 - Clone the whole repository including the web folder.
@@ -21,6 +21,7 @@
 ####### Next, setup the web server.
 - Open terminal in the root directory (where app.js is) and type 'npm init' to install dependencies.
 - Make sure the vector_models folder contains the GoogleNews vectors and the mentors folder is copied to the same level as package.json is
+- Make sure password.txt in the root contains your passkey to Watson and the username is correct as well
 - Type 'node app' and the program should run.
 - The python script will be called by node.js.
 - If Linux is not used, Python3 might not be able to find its path.  Go to the index.js route to fix it.
