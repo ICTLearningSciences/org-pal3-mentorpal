@@ -7,6 +7,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var fs = require('fs');
 var app = express();
+var apptwo = express();
 var https = require('https');
 var http = require('http');
 // view engine setup
@@ -19,6 +20,7 @@ var options = {
   cert: fs.readFileSync('/etc/letsencrypt/live/mentorpal.org/fullchain.pem')
 };
 var server = https.createServer(options, app);
+var servertwo = http.createServer(apptwo);
 var io = require('socket.io')(server);
 
 app.use(express.json());
@@ -32,6 +34,12 @@ server.listen(443, function(){
     console.log('Listening for http requests');
 });
 indexRouter.io.listen(server);
+apptwo.get('*',function(req,res,next){
+	res.redirect(['https://', req.get('Host'), req.url].join(''));
+});
+servertwo.listen(80, function(){
+	console.log('redirecting');
+});
 
 module.exports = app;
 
