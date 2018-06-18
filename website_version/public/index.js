@@ -40,7 +40,7 @@ if (mentorID == 'clint'){
 }
 
 function resizeFix(){	//run everytime the window is resized to keep it responsive
-	if (screen.width<800){	//check if we're on mobile
+	if (screen.width<700){	//check if we're on mobile
 		toChoices();
 		document.getElementById("mainSize").className = "container-fluid";
 		document.getElementById("topic-box").className = "topic-box-mobile";
@@ -207,7 +207,6 @@ video.onended = function(){		//when the video playing finishes, play the idle vi
 	video.controls = false;
 }
 video.src = mentor.introURL;
-video.play();
 document.getElementById("caption-box").innerHTML = '' + '<b> Mentor: </b> <br>' + '\xa0\xa0\xa0\xa0\xa0\xa0'  +  mentor.intro +'<br>';
 
 
