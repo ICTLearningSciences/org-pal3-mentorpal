@@ -4,17 +4,18 @@ var router = express.Router();
 var io = require('socket.io')(http);
 var watson = require('watson-developer-cloud');
 var PythonShell = require('python-shell');
-
+var fs = require('fs');
 //https://github.com/extrabacon/python-shell/issues/113 : /python-shell/index.js, on line 72
 //After installation, comment out the warning printing if tensorflow is having trouble importing
 var options = {
     pythonPath: '/usr/bin/python3',
 }
 var pyshell = new PythonShell('/../src/classifier/website_interface.py',options);
-
+var text = fs.readFileSync('./password.txt','utf8');
+console.log(text);
 var authorization = new watson.AuthorizationV1({
   username: 'a9e2f186-462c-4109-b220-3cfcdc31c9f6',
-  password: 'H27yANqAuMLr',
+  password: text,
   url: 'https://stream.watsonplatform.net/authorization/api'
 });
 
