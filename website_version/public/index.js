@@ -85,6 +85,7 @@ Papa.parse(mentor.topicsURL, {	//setup the csv for buttons on desktop
 	complete: function(results) {
 		globalResults = results;
 		resizeFix();	//run this after we get the button names
+		video.src = mentor.introURL + isMobile + ".mp4";
 	}
 });
 
@@ -210,7 +211,6 @@ video.onended = function(){		//when the video playing finishes, play the idle vi
 	video.play();
 	video.controls = false;
 }
-video.src = mentor.introURL + isMobile + ".mp4";
 document.getElementById("caption-box").innerHTML = '' + '<b> Mentor: </b> <br>' + '\xa0\xa0\xa0\xa0\xa0\xa0'  +  mentor.intro +'<br>';
 
 
