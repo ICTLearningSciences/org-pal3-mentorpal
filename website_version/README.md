@@ -11,6 +11,8 @@
 > sudo docker run -p 80:80 ubuntu/node-web-app
 - In addition, to support more browsers, convert the ogv files to mp4 as well.  Using ffmpeg navigate to the folder and then batch process them (in linux):
 > for i in *.ogv; do ffmpeg -i "$i" "${i%.*}.mp4"; done
+- In windows, I recommend https://sourceforge.net/projects/ffmpeg-batch/files/FFmpeg_Batch_1.5.3_Portable_x64.exe/download using this.  For converting to mp4 just use default to mp4 setting.  Then for the mobile version of the videos use this for parameters: 
+> -filter:v "crop=614:548:333:86"
 - upload all of this to the storage ICT has
 ###### If you would like to do it manually for some reason:
 - Follow the main python guide to install dependencies and setup the classifier.  The commands below are also written out in "commandsneeded.txt"
