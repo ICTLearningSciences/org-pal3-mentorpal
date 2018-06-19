@@ -171,6 +171,7 @@ function toChoices(){ //switch view of box
 }
 function send(){	//send the question on enter or send key
 	if (document.getElementById("question-Box").value){
+		stopWatson();
 		socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID)});
 		document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b><br>\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + document.getElementById("question-Box").value + '<br>';
 		document.getElementById("question-Box").value = '';
@@ -191,7 +192,9 @@ function watson(){
 function stopWatson(){
 	document.getElementById("stop-button").style.display = 'none';
 	document.getElementById("mic-button").style.display = 'block';
-	stream.stop();
+	if(stream){
+		stream.stop();
+	}
 }
 
 socket.on("receiveAnswer", function(data) {		//got the answer
