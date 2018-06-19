@@ -57,15 +57,18 @@
 	</div>
 	<div class="row" style= "padding-right: 12px">
 		<div id = "input-box" class="col-11" style="padding-right: 10px; padding-bottom: 3%;">
-			<textarea id="question-Box" class="form-control form-input" "scroll-pane" onkeydown="if (event.keyCode == 13) send()" autofocus></textarea>
+			<div class = "text-box-setup">
+				<textarea id="question-Box" class="form-control form-input" "scroll-pane" onkeydown="if (event.keyCode == 13) send()" autofocus></textarea>
+				<button id="mic-button" class = "btn btn-success button-setup" onclick = "watson()" class = "button-caption btn btn-success" >Mic</button>
+				<button id="stop-button" style="display: none;" onclick = "stopWatson()" class = "button-setup btn btn-danger">Stop</button>
+			</div>
 		</div>
 		<div id = "mic-send-row" class="col-1">
 			<div class="row button-row-choice">
-				<button id="mic-button" style = "display: block;" onclick = "watson()" class = "button-caption btn btn-success" >Mic</button>
-				<button id="stop-button" style="display: none;" onclick = "stopWatson()" class = "button-caption btn btn-danger">Stop</button>
+				
 			</div>
 			<div class="row button-row-cap">
-				<button id= "send-button" onclick = "send()" class = "button-caption btn btn-success">Send</button>
+				<button id= "send-button" onclick = "send()" class = "button-click btn btn-success">Send</button>
 			</div>
 		</div>
 	</div>
