@@ -32,6 +32,7 @@ https://github.com/extrabacon/python-shell/issues/113
 > for i in *.ogv; do ffmpeg -i "$i" "${i%.*}.mp4"; done
 - In windows, I recommend https://sourceforge.net/projects/ffmpeg-batch/files/FFmpeg_Batch_1.5.3_Portable_x64.exe/download using this.  For converting to mp4 just use default to mp4 setting.  Then for the mobile version of the videos use this for parameters or something with this ratio: 
 > -filter:v "crop=614:548:333:86"
+> Add _M to the videos as well using the rename output feature
 - upload all of this to the storage ICT has
 - As outlined in the other readme, the classifer.py framework needs the mentor added to it.
 - The website_interface.py needs knowledge of the new mentor.  Copy paste another else if statement as explained in that comment block.

@@ -10,35 +10,35 @@ if (mentorID == 'clint'){
 	mentor = {
 		name: "Clinton Anderson",
 		videoURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/",
-		idleURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/idle.mp4",
+		idleURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/idle",
 		topicsURL: "topics.csv",
 		questions: "Questions_Paraphrases_Answers.csv",
 		intro: "My name is EMC Clint Anderson, that's Electrician's Mate Clinton Anderson. I was born in Los Angeles, California. I was raised there most of my life and I graduated from high school there. A couple of years after graduating from high school, then I joined the United States Navy. I was an Electrician's Mate for eight years. I served on an aircraft carrier. We went on many deployments. A deployment is when you go to war, you fight. We fought in the Iraq war. I went on three deployments and it was a really great time in my life. I had a lot of fun. At the end of the eight years, I decided that the Navy wasn't quite a career for me. So, I got out of the Navy. I started using the education benefits that we received and I started going to the University of California at Berkeley. I was majoring in computer science and afterwards, I started getting my master's degree from the University of Southern California. I also had a job at the Institute for Creative Technologies. It's been a lot of fun, this whole time. Thanks to the Navy.",
-		introURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.mp4"
+		introURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1"
 	};
 } else if (mentorID == 'dan'){
 	mentor = {
 		name: "Dan Davis",
 		videoURL: "https://pal3-dev.ict.usc.edu/resources/mentor/dan/",
-		idleURL: "https://pal3-dev.ict.usc.edu/resources/mentor/dan/idle.mp4",
+		idleURL: "https://pal3-dev.ict.usc.edu/resources/mentor/dan/idle",
 		topicsURL: "topics.csv",
 		questions: "Questions_Paraphrases_Answers.csv",
 		intro: "Hello I'm Dan Davis I've worked for universities to last thirty years doing basic research in high performance computing of work for Cal Tech, University of Southern California and the University of Hawaii",
-		introURL: "https://pal3-dev.ict.usc.edu/resources/mentor/dan/dandavis_A1_1_1.mp4"
+		introURL: "https://pal3-dev.ict.usc.edu/resources/mentor/dan/dandavis_A1_1_1"
 	};
 } else {	//if it's none of these default to clint.  You could redirect to a homepage too that's why this is here
 	mentorID = 'clint';
 	mentor = {
 		name: "Clinton Anderson",
 		videoURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/",
-		idleURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/idle.mp4",
+		idleURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/idle",
 		topicsURL: "clint/topics.csv",
 		questions: "clint/Questions_Paraphrases_Answers.csv",
 		intro: "My name is EMC Clint Anderson, that's Electrician's Mate Clinton Anderson. I was born in Los Angeles, California. I was raised there most of my life and I graduated from high school there. A couple of years after graduating from high school, then I joined the United States Navy. I was an Electrician's Mate for eight years. I served on an aircraft carrier. We went on many deployments. A deployment is when you go to war, you fight. We fought in the Iraq war. I went on three deployments and it was a really great time in my life. I had a lot of fun. At the end of the eight years, I decided that the Navy wasn't quite a career for me. So, I got out of the Navy. I started using the education benefits that we received and I started going to the University of California at Berkeley. I was majoring in computer science and afterwards, I started getting my master's degree from the University of Southern California. I also had a job at the Institute for Creative Technologies. It's been a lot of fun, this whole time. Thanks to the Navy.",
-		introURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.mp4"
+		introURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1"
 	};
 }
-
+var isMobile="";
 function resizeFix(){	//run everytime the window is resized to keep it responsive
 	if (screen.width<700){	//check if we're on mobile
 		toChoices();
@@ -49,14 +49,16 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("main-box").className = 'col';
 
 		document.getElementById("videoWrapper").className = 'video-wrapper';
-		document.getElementById("videoPlayer").className = 'video';	
+		document.getElementById("videoPlayer").width = 920;
+		document.getElementById("videoPlayer").height = 820;
+		
 		document.getElementById("mic-send-row").className = 'col-3';
 		document.getElementById("input-box").className = 'col-9';
 		document.getElementById("question-Box").style = 'height: 170px; font-size: 35px';
 		document.getElementById("mic-button").style = 'height: 65px; width: 220px;  font-size: 30px';
 		document.getElementById("stop-button").style = 'display: none; height: 65px; width: 220px;  font-size: 30px';
 		document.getElementById("send-button").style = 'height: 65px; width: 220px;  font-size: 30px';
-
+		isMobile = "_M";
 	} else {	//if not mobile render this
 		document.getElementById("mainSize").className = "container";
 		document.getElementById("topic-box").className = "topic-box";
@@ -66,13 +68,15 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 
 		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9';
 		document.getElementById("videoPlayer").className = 'col';
+		document.getElementById("videoPlayer").width = 1920;
+		document.getElementById("videoPlayer").height = 1080;
 		document.getElementById("mic-send-row").className = 'col-1'
 		document.getElementById("input-box").className = 'col-11';
 		document.getElementById("question-Box").style = 'height: 120px; font-size: 20px';
 		document.getElementById("mic-button").style = "display: block";
 		document.getElementById("stop-button").style = "display: none";
 		document.getElementById("send-button").style = "display: block";
-
+		isMobile="";
 	}
 }
 
@@ -86,7 +90,7 @@ Papa.parse(mentor.topicsURL, {	//setup the csv for buttons on desktop
 
 function renderButtons(results){
 	document.getElementById("topic-box").innerHTML = '';
-	if (screen.width>=800){	//we shouldn't check this each loop so goes on the outside
+	if (screen.width>=700){	//we shouldn't check this each loop so goes on the outside
 		for (var i = 0; i<results.data.length-3; i++){
 		///////////////This is the desktop version
 			if (i%5==0){	//create rows for the buttons
@@ -191,7 +195,7 @@ function stopWatson(){
 
 socket.on("receiveAnswer", function(data) {		//got the answer
 	//console.log(data);
-	video.src = mentor.videoURL+data.videoID+'.mp4';
+	video.src = mentor.videoURL+data.videoID + isMobile + '.mp4';
 	video.play();
 	video.controls = true;
 	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
@@ -202,11 +206,11 @@ socket.on("token", function(data){
 	token = data.token;
 });
 video.onended = function(){		//when the video playing finishes, play the idle video
-	video.src = mentor.idleURL;
+	video.src = mentor.idleURL + isMobile + ".mp4";
 	video.play();
 	video.controls = false;
 }
-video.src = mentor.introURL;
+video.src = mentor.introURL + isMobile + ".mp4";
 document.getElementById("caption-box").innerHTML = '' + '<b> Mentor: </b> <br>' + '\xa0\xa0\xa0\xa0\xa0\xa0'  +  mentor.intro +'<br>';
 
 
