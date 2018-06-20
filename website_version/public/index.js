@@ -201,6 +201,15 @@ function stopWatson(){
 		stream.stop();
 	}
 }
+function videoSwitch(){
+	var videoPlayer = document.getElementById("videoPlayer")
+	if (videoPlayer.paused){
+		videoPlayer.play();
+	} else {
+		videoPlayer.pause();
+	}
+}
+
 
 socket.on("receiveAnswer", function(data) {		//got the answer
 	//console.log(data);
