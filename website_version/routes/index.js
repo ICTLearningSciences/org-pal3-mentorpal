@@ -29,7 +29,13 @@ router.get('/', function(req, res, next) {
 router.get('/clint', function(req, res, next) {
   res.render('index');
 });
+router.get('/clint/embed', function(req, res, next){
+  res.render('index');
+});
 router.get('/dan', function(req, res, next) {
+  res.render('index');
+});
+router.get('/dan/embed', function(req, res, next){
   res.render('index');
 });
 io.on('connection', function(socket){
