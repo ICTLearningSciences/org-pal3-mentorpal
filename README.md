@@ -20,6 +20,12 @@ To obtain transcripts for a particular video, do the following:
   13. This will generate **classifier_data.csv**, **NPCEditor_data.xlsx** and **metadata.csv**. The first file is for use by the classifier. The second file should be imported into NPCEditor (More on this later) and the third file contains metadata about what was processed. If you have 5 sessions so far and then, you record a sixth session, you don't need to run the post_process_data.py from scratch. You can just run python src/post_process_data.py /example/path/to/mentor 6 6` and data from the sixth session will be appended to **classifier_data.csv** and **NPCEditor_data.xlsx**. **metadata.csv** will also be updated and you can add more new sessions like this. Yould still have to run prepare_data.py for the new sessions every time and have to do the manual work (paraphrases, tags, manual transcription cleanup) for each session.
   14. Now, data for the ensemble classifier is ready and you can proceed to training the classifier and NPCEditor.
 
+  **Troubleshooting of timestamps (Appended 6/19/18..if you need help since it's a pain kshaw@gatech.edu has touched it most recently)**
+  1. Extra lines can't exist in the csv since ",,,," will break the python script and believe that the columns are empty
+  2. The filenames must be exact even in lower/uppercase
+  3. Any generated files must be deleted if you want to run the generator again, or it will give a exit code 1 error.
+  4. The column names in the csv need to be exact even in case or Pandas error might occur.
+  
   **WARNING: Opening any csv/xlsx file downloaded from Google Sheets in Excel will mess up the encoding of text in the files. Google Sheets uses UTF-8 encoding whereas Excel uses Windows-1252. The files must be in UTF-8 only. Always edit the file in Google Sheets and just download it. Never open it on your host machine.**
   
   **If using LibreOffice Calc, the default encoding seems to be UTF-8. Hence, it should be safe to open the csv/xlsx files in LibreOffice**
