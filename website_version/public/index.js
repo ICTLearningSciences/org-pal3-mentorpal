@@ -178,7 +178,7 @@ function send(){	//send the question on enter or send key
 	if (document.getElementById("question-Box").value){
 		stopWatson();
 		socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID)});
-		document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b><br>\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + document.getElementById("question-Box").value + '<br>';
+		document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + document.getElementById("question-Box").value + '<br>';
 		document.getElementById("question-Box").value = '';
 	}
 }
@@ -217,7 +217,7 @@ socket.on("receiveAnswer", function(data) {		//got the answer
 	video.play();
 	video.controls = true;
 	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
-	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>Mentor: <br></b>\xa0\xa0\xa0\xa0\xa0\xa0\xa0' + data.transcript.replace(/\\'/g,"'") + '<br>';
+	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>Mentor: </b>\xa0\xa0' + data.transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
 });
 var token;
 socket.on("token", function(data){
@@ -228,7 +228,7 @@ video.onended = function(){		//when the video playing finishes, play the idle vi
 	video.play();
 	video.controls = false;
 }
-document.getElementById("caption-box").innerHTML = '' + '<b> Mentor: </b> <br>' + '\xa0\xa0\xa0\xa0\xa0\xa0'  +  mentor.intro +'<br>';
+document.getElementById("caption-box").innerHTML = '' + '<b> Mentor: </b>' + '\xa0\xa0'  +  mentor.intro +'<br>';
 
 
 
