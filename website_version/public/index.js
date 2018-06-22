@@ -175,7 +175,7 @@ function toChoices(){ //switch view of box
 	document.getElementById("button-choice").disabled = true;
 }
 function send(){	//send the question on enter or send key
-	if (document.getElementById("question-Box").value){
+	if (document.getElementById("question-Box").value&& document.getElementById("question-Box").value!="\n"){
 		stopWatson();
 		socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID)});
 		document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + document.getElementById("question-Box").value + '<br>';
@@ -230,5 +230,9 @@ video.onended = function(){		//when the video playing finishes, play the idle vi
 }
 document.getElementById("caption-box").innerHTML = '' + '<b> Mentor: </b>' + '\xa0\xa0'  +  mentor.intro +'<br>';
 
-
-
+$('#question-Box').keydown(function(e) {
+    if (e.keyCode === 13) {
+        $(this).val('').focus();
+        return false;
+    }
+})
