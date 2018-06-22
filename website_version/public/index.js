@@ -15,7 +15,7 @@ if (mentorID == 'clint'){
 		topicsURL: "/clint/topics.csv",
 		questions: "/clint/Questions_Paraphrases_Answers.csv",
 		intro: "My name is EMC Clint Anderson, that's Electrician's Mate Clinton Anderson. I was born in Los Angeles, California. I was raised there most of my life and I graduated from high school there. A couple of years after graduating from high school, then I joined the United States Navy. I was an Electrician's Mate for eight years. I served on an aircraft carrier. We went on many deployments. A deployment is when you go to war, you fight. We fought in the Iraq war. I went on three deployments and it was a really great time in my life. I had a lot of fun. At the end of the eight years, I decided that the Navy wasn't quite a career for me. So, I got out of the Navy. I started using the education benefits that we received and I started going to the University of California at Berkeley. I was majoring in computer science and afterwards, I started getting my master's degree from the University of Southern California. I also had a job at the Institute for Creative Technologies. It's been a lot of fun, this whole time. Thanks to the Navy.",
-		introURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1"
+		introURL: "clintanderson_A1_1_1"
 	};
 } else if (mentorID == 'dan'){
 	mentor = {
@@ -25,7 +25,7 @@ if (mentorID == 'clint'){
 		topicsURL: "/dan/topics.csv",
 		questions: "/dan/Questions_Paraphrases_Answers.csv",
 		intro: "Hello I'm Dan Davis I've worked for universities to last thirty years doing basic research in high performance computing of work for Cal Tech, University of Southern California and the University of Hawaii",
-		introURL: "https://pal3-dev.ict.usc.edu/resources/mentor/dan/dandavis_A1_1_1"
+		introURL: "dandavis_A1_1_1"
 	};
 } else {	//if it's none of these default to clint.  You could redirect to a homepage too that's why this is here
 	mentorID = 'clint';
@@ -36,7 +36,7 @@ if (mentorID == 'clint'){
 		topicsURL: "/clint/topics.csv",
 		questions: "/clint/Questions_Paraphrases_Answers.csv",
 		intro: "My name is EMC Clint Anderson, that's Electrician's Mate Clinton Anderson. I was born in Los Angeles, California. I was raised there most of my life and I graduated from high school there. A couple of years after graduating from high school, then I joined the United States Navy. I was an Electrician's Mate for eight years. I served on an aircraft carrier. We went on many deployments. A deployment is when you go to war, you fight. We fought in the Iraq war. I went on three deployments and it was a really great time in my life. I had a lot of fun. At the end of the eight years, I decided that the Navy wasn't quite a career for me. So, I got out of the Navy. I started using the education benefits that we received and I started going to the University of California at Berkeley. I was majoring in computer science and afterwards, I started getting my master's degree from the University of Southern California. I also had a job at the Institute for Creative Technologies. It's been a lot of fun, this whole time. Thanks to the Navy.",
-		introURL: "https://pal3-dev.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1"
+		introURL: "clintanderson_A1_1_1"
 	};
 }
 var isMobile="";
@@ -90,7 +90,8 @@ Papa.parse(mentor.topicsURL, {	//setup the csv for buttons on desktop
 	complete: function(results) {
 		globalResults = results;
 		resizeFix();	//run this after we get the button names
-		video.src = mentor.introURL + isMobile + ".mp4";
+		video.src = mentor.videoURL+mentor.introURL + isMobile + ".mp4";
+		document.getElementById("track").src = "/"+mentorID+"/tracks/"+mentor.introURL+".vtt";
 	}
 });
 
@@ -214,7 +215,7 @@ function videoSwitch(){
 socket.on("receiveAnswer", function(data) {		//got the answer
 	//console.log(data);
 	video.src = mentor.videoURL+data.videoID + isMobile + '.mp4';
-	document.getElementById("track").src = "./clint/tracks/"+data.videoID+".vtt";
+	document.getElementById("track").src = "/"+mentorID+"/tracks/"+data.videoID+".vtt";
 	video.play();
 	video.controls = true;
 	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
