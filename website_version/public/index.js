@@ -52,7 +52,7 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("videoWrapper").className = 'video-wrapper';
 		document.getElementById("videoPlayer").width = 920;
 		document.getElementById("videoPlayer").height = 820;
-		
+
 		document.getElementById("mic-send-row").className = 'col-2';
 		document.getElementById("input-box").className = 'col-10';
 		document.getElementById("question-Box").style = 'padding-right: 95px; height: 170px; font-size: 35px';
@@ -116,7 +116,7 @@ function renderButtons(results){
 		}
 	} else{
 	//////////////////////This is the mobile version
-		for (var i = 0; i<results.data.length-3; i++){			
+		for (var i = 0; i<results.data.length-3; i++){
 			if (i%((results.data.length-3)/2)<1){	//create rows for the buttons results.data.length/2
 				var buttonrow = document.createElement("div");
 				buttonrow.class="row";
@@ -214,6 +214,7 @@ function videoSwitch(){
 socket.on("receiveAnswer", function(data) {		//got the answer
 	//console.log(data);
 	video.src = mentor.videoURL+data.videoID + isMobile + '.mp4';
+	document.getElementById("track").src = "./clint/tracks/"+data.videoID+".vtt";
 	video.play();
 	video.controls = true;
 	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
@@ -225,6 +226,7 @@ socket.on("token", function(data){
 });
 video.onended = function(){		//when the video playing finishes, play the idle video
 	video.src = mentor.idleURL + isMobile + ".mp4";
+	document.getElementById("track").src = "";
 	video.play();
 	video.controls = false;
 }
