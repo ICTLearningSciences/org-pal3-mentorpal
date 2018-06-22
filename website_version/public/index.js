@@ -60,6 +60,7 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("stop-button").style = 'display: none; height: 65px; width: 75px;  font-size: 30px';
 		document.getElementById("send-button").style = 'height: 100px; width: 140px;  font-size: 40px';
 		isMobile = "_M";
+		document.getElementById("track").default = true;
 	} else {	//if not mobile render this
 		document.getElementById("mainSize").className = "container";
 		document.getElementById("topic-box").className = "topic-box";
