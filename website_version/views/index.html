@@ -36,6 +36,7 @@
 		<div class="col">
 			<div id = "videoWrapper" class="embed-responsive embed-responsive-16by9">
 				<video class ="video" id = "videoPlayer" width="1920" height="1080" controls="true" autoplay onclick="videoSwitch();">
+					<track id = "track" src="./clint/tracks/clintanderson_A1_1_1.vtt" kind="subtitles" srclang="en" label="English" default>
 				</video>
 			</div>
 		</div>
@@ -66,7 +67,7 @@
 		</div>
 		<div id = "mic-send-row" class="col-1">
 			<div class="row button-row-choice">
-				
+
 			</div>
 			<div class="row button-row-cap">
 				<button id= "send-button" onclick = "send()" class = "button-click btn btn-success"><i class="fas fa-arrow-right fa-2x"></i></button>
@@ -75,5 +76,5 @@
 	</div>
 </div>
 </body>
-<script src="/index.js"></script> 
+<script src="/index.js"></script>
 </html>
