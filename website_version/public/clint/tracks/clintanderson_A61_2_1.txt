@@ -1,0 +1,9 @@
+00:0:0.0 --> 00:0:3.33
+- The weather is actually pretty cold. It's very sunny
+
+00:0:3.33 --> 00:0:6.67
+-  here in Sasebo, Japan and you think that you can
+
+00:0:6.67 --> 00:0:10.0
+-  go outside in your tank top but it's freezing.
+

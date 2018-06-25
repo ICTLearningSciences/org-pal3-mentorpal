@@ -1,0 +1,9 @@
+00:0:0.0 --> 00:0:4.25
+- I'm an interactive mentor here to answer all of your
+
+00:0:4.25 --> 00:0:8.5
+-  questions, I was developed by computer scientists
+
+00:0:8.5 --> 00:0:12.75
+-  who have a really strong interest in seeing you succeed.
+
