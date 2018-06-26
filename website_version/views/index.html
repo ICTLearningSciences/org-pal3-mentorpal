@@ -12,65 +12,58 @@
 	<title>ICT MentorPal</title>
 </head>
 <body onresize="resizeFix()">
-<div id = "navSize" class ="container-fluid">
-	<div class = "navbar-pad">
-		<nav class="navbar navbar-light" style="background-color: #00BFFF;">
+		<nav class="navbar navbar-light" style="background-color: #CDDDDD; height: 85px">
 	        	<div class="navbar-header">
-		        	<a class="navbar-brand" href="#"><h1>MentorPal</h1></a>
+		        	<a class="navbar-brand" href="#"><img src ="/Logo_MentorPal.png"></a>
 		        </div>
-				<div class="dropdown">
-					<button class="btn btn-primary dropdown-toggle" type="button" style = "width: 200px; height: 50px; font-size: 19px" data-toggle="dropdown">Choose Mentor
-					<span class="caret"></span></button>
-					<div class="dropdown-menu">
-						<li style = "padding: 12px; font-size: 24px"><a  href="/clint">Clint</a></li>
-						<li style = "padding: 12px; font-size: 24px"><a  href="/dan">Dan</a></li>
-					</div>
-					<button style="visibility:hidden"></button>
-  					<a href="http://ict.usc.edu" <class="navbar-brand" "mr-sm-2"><img src="/ICT.jpg"></a>
-	  			</div>
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle choose-mentor" type="button" style = "width: 200px; height: 50px; font-size: 19px" data-toggle="dropdown">Choose Mentor
+						<span class="caret"></span></button>
+						<div class="dropdown-menu">
+							<li style = "padding: 12px; font-size: 24px"><a  href="/clint">Clint</a></li>
+							<li style = "padding: 12px; font-size: 24px"><a  href="/dan">Dan</a></li>
+						</div>
+						<button style="visibility:hidden"></button>
+	  					<a href="http://ict.usc.edu" <class="navbar-brand" "mr-sm-2"><img src="/ICT.png"></a>
+		  			</div>
 		</nav>
-	</div>
-</div>
-<div id = "mainSize" class="container">
-	<div class="row">		<!--This is the video player area-->
-		<div class="col">
-			<div id = "videoWrapper" class="embed-responsive embed-responsive-16by9">
-				<video class ="video" id = "videoPlayer" width="1920" height="1080" controls="true" autoplay onclick="videoSwitch();">
-					<track id = "track" src="/clint/tracks/clintanderson_A1_1_1.vtt" kind="subtitles" srclang="en" label="English">
-				</video>
+<div id = "col" class = "wrap">
+	<div id = "mainSize" class="container">
+		<div class="row">		<!--This is the video player area-->
+				<div id = "videoWrapper" class="embed-responsive embed-responsive-16by9">
+					<video class ="video" id = "videoPlayer" width="1920" height="1080" controls="true" autoplay onclick="videoSwitch();">
+						<track id = "track" src="/clint/tracks/clintanderson_A1_1_1.vtt" kind="subtitles" srclang="en" label="English">
+					</video>
 			</div>
 		</div>
-	</div>
-	<div class="row" style="padding-bottom: 20px; padding-top: 20px; padding-right: 12px">
-		<div id = "main-box" class="col-11"style="padding-right: 20px;">
-			<div id = "topic-box" class = "topic-box">
+		<div class="row" style="padding-bottom: 20px; padding-top: 16px; padding-right: 10px">
+			<div id = "main-box" class="col-11"style="padding-right: 18px;">
+				<div id = "topic-box" class = "topic-box">
+				</div>
+				<div id = "caption-box" class = "caption-box" readonly>
+				</div>
 			</div>
-			<div id = "caption-box" class = "caption-box" readonly>
-			</div>
-		</div>
-		<div id = "button-row" class="col-1">
-			<div class="row button-row-cap">
-				<button id = "button-caption" onclick="toCaption()" class = "btn btn-primary button-caption">Transcript</button>
-			</div>
-			<div class="row button-row-choice">
-				<button id = "button-choice" onclick="toChoices()" class = "btn btn-primary button-choice" disabled  = true>Topics</button>
-			</div>
-		</div>
-	</div>
-	<div class="row" style= "padding-right: 12px">
-		<div id = "input-box" class="col-11" style="padding-right: 10px; padding-bottom: 3%;">
-			<div class = "text-box-setup">
-				<textarea id="question-Box" class="form-control form-input" "scroll-pane" onkeydown="if (event.keyCode == 13) send()" autofocus></textarea>
-				<button id="mic-button" class = "btn btn-success button-setup" onclick = "watson()" class = "button-caption btn btn-success" ><i class="fas fa-microphone-alt fa-lg"></i></button>
-				<button id="stop-button" style="display: none;" onclick = "stopWatson()" class = "button-setup btn btn-danger"><i class="fas fa-microphone-alt fa-2x"></i></button>
+			<div id = "button-row" class="col-1">
+				<div class="row button-row-cap">
+					<button id = "button-caption" onclick="toCaption()" class = "btn btn-primary button-caption">Transcript</button>
+				</div>
+				<div class="row button-row-choice">
+					<button id = "button-choice" onclick="toChoices()" class = "btn btn-primary button-choice" disabled  = true>Topics</button>
+				</div>
 			</div>
 		</div>
-		<div id = "mic-send-row" class="col-1">
-			<div class="row button-row-choice">
-
+		<div class="row" style= "padding-right: 12px">
+			<div id = "input-box" class="col-11" style="padding-right: 10px; padding-bottom: 1%;">
+				<div class = "text-box-setup">
+					<textarea id="question-Box" class="form-input form-control" "scroll-pane" onkeydown="if (event.keyCode == 13) send()" autofocus></textarea>
+					<button id="mic-button" class = "btn mic-setup mic-off" onclick = "watson()"><i class="fas fa-microphone fa-2x"></i></button>
+					<button id="stop-button" style="display: none;" onclick = "stopWatson()" class = "mic-setup btn mic-on"><i class="fas fa-microphone fa-2x"></i></button>
+				</div>
 			</div>
-			<div class="row button-row-cap">
-				<button id= "send-button" onclick = "send()" class = "button-click btn btn-success"><i class="fas fa-arrow-right fa-2x"></i></button>
+			<div id = "mic-send-row" class="col-1">
+				<div class="row button-row-cap">
+					<button id= "send-button" onclick = "send()" class = "enter-button btn"><i class="fas fa-arrow-right fa-2x"></i></button>
+				</div>
 			</div>
 		</div>
 	</div>
