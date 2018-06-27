@@ -4,6 +4,29 @@ import sys
 import os
 import fnmatch
 import pandas as pd
+from threading import Thread
+
+'''
+Converts the video format to ogv and mp4's cropped for the website
+'''
+def ffmpeg_convert_video(input_file):
+    output_file = input_file[0:-4]
+    ff2=ffmpy.FFmpeg(
+        inputs={input_file: None},
+        outputs={output_file+".ogv": "-c:v libtheora -q:v 6 -threads 0 -y"},
+	)
+    print(ff2.cmd + "\n")
+    ff2.run()
+def ffmpeg_convert_mobile(input_file):
+    output_file = input_file[0:-4] + "_M" + ".mp4"
+    ff3=ffmpy.FFmpeg(
+        inputs={input_file: None},
+        #outputs={output_file: "-filter:v crop=614:548:333:86 -y"},  This is for the 1280x720
+        outputs = {output_file: "-filter:v crop=918:822:500:220 -threads 0 -y"}#this is for 1080p  the parameters are width, height, x and y point
+	)
+    print(ff3.cmd + "\n")
+    ff3.run()
+    
 class PostProcessData(object):
     def __init__(self, answer_chunks, utterance_chunks, answer_number, utterance_number, mentor_name, answer_corpus, answer_corpus_index, utterance_corpus, utterance_corpus_index):
         self.answer_chunks=answer_chunks
@@ -17,6 +40,7 @@ class PostProcessData(object):
         self.utterance_corpus_index=utterance_corpus_index
         self.training_data=[] #training data to write to file, for use by classifier in later stage.
         self.utterance_data=[] #utterance data to write to file, for use by ensemble.py when checking question status
+
     '''
     Splits the large .mp4 file into chunks based on the start_time and end_time of chunk.
     This function is equivalent to running `ffmpeg -i input_file -ss start_time -to end_time output_file -loglevel quiet` on the command line.
@@ -31,14 +55,18 @@ class PostProcessData(object):
     end_time: End time of answer
     '''
     def ffmpeg_split_video(self, input_file, output_file, start_time, end_time):
-        output_command="-ss "+str(start_time)+" -to "+str(end_time)+" -c:v libtheora -q:v 6 -loglevel quiet"
+        output_command="-ss "+str(start_time)+" -to "+str(end_time)+"  -loglevel quiet -threads 0 -y"
         ff=ffmpy.FFmpeg(
             inputs={input_file: None},
             outputs={output_file: output_command},
         )
         print(ff.cmd)
         ff.run()
-
+        print("Starting Thread")
+        thread = Thread(target = ffmpeg_convert_video, args = (output_file, ))
+        thread.start()
+        thread2 = Thread(target = ffmpeg_convert_mobile, args = (output_file, ))
+        thread2.start()
     '''
     Converts a timestamp from HH:MM:SS or MM:SS to seconds.
     For example, a time 01:03:45 is 01*3600 + 03*60 + 45 = 3825 seconds
@@ -68,7 +96,7 @@ class PostProcessData(object):
         start_times=[] #list of start times
         end_times=[] #list of end times
         text=[] #list of text
-        
+
         timestamps_file=pd.read_csv(timestamps)
         #by default, pandas reads empty cells as 0. Since we are dealing with text,we put empty string instead of 0
         timestamps_file = timestamps_file.fillna('')
@@ -82,7 +110,7 @@ class PostProcessData(object):
         #convert all start times to seconds
         for i in range(0,len(start_times)):
             start_times[i]=self.convert_to_seconds(start_times[i])
-        
+
         #convert all end times to seconds
         for i in range(0,len(end_times)):
             end_times[i]=self.convert_to_seconds(end_times[i])
@@ -94,14 +122,14 @@ class PostProcessData(object):
             utterance_sample={}
             if text_type[i]=='A' and len(self.answer_corpus) > self.answer_corpus_index:
                 answer_id=self.mentor_name+"_A"+str(self.answer_number)+"_"+str(session_number)+"_"+str(part_number)
-                output_file=os.path.join(self.answer_chunks, answer_id+".ogv")
+                output_file=os.path.join(self.answer_chunks, answer_id+".mp4")
                 answer_sample['ID']=answer_id
                 answer_sample['topics']=self.answer_corpus.iloc[self.answer_corpus_index]['Topics']+","+self.answer_corpus.iloc[self.answer_corpus_index]['Helpers']
                 if answer_sample['topics'][-1]==',':
                     answer_sample['topics']=answer_sample['topics'][:-1]
                 answer_sample['question']=self.answer_corpus.iloc[self.answer_corpus_index]['Question']+'\r\n'
-                for i in range(1,26):
-                    index='P'+str(i)
+                for j in range(1,26):
+                    index='P'+str(j)
                     answer_sample['question']+=self.answer_corpus.iloc[self.answer_corpus_index][index]+'\r\n'
                 answer_sample['question']=answer_sample['question'].strip()
                 answer_sample['text']=self.answer_corpus.iloc[self.answer_corpus_index]['text']
@@ -110,7 +138,7 @@ class PostProcessData(object):
                 self.training_data.append(answer_sample)
             elif text_type[i]=='U' and len(self.utterance_corpus) > self.utterance_corpus_index:
                 utterance_id=self.mentor_name+"_U"+str(self.utterance_number)+"_"+str(session_number)+"_"+str(part_number)
-                output_file=os.path.join(self.utterance_chunks, utterance_id+".ogv")
+                output_file=os.path.join(self.utterance_chunks, utterance_id+".mp4")
                 utterance_sample['ID']=utterance_id
                 utterance_sample['utterance']=self.utterance_corpus.iloc[self.utterance_corpus_index]['Utterance/Prompt']
                 utterance_sample['situation']=self.utterance_corpus.iloc[self.utterance_corpus_index]['Situation']
@@ -121,14 +149,14 @@ class PostProcessData(object):
             Uncomment this line when you want to get the actual cut answers. This takes a long time so this isn't needed
             when testing the code for the other parts
             '''
-            #self.ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
+            self.ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
     '''
     Write all the data to file.
     classifier_data.csv: data for use by the classifier
     metadata.txt: data about the data preparation process. This helps when new sessions are added. No need to start from scratch
     NPCEditor_data.xlsx: data for NPCEditor
     '''
-    
+
     def write_data(self):
         #data for Classifier
         classifier_header=True
@@ -142,7 +170,7 @@ class PostProcessData(object):
         #data for prompts and utterances
         utterance_header=True
         if os.path.exists(os.path.join("data","utterance_data.csv")):
-            utterance_header=False   
+            utterance_header=False
 
         utterance_df=pd.DataFrame(self.utterance_data,columns=['ID','utterance', 'situation'])
         with open(os.path.join("data","utterance_data.csv"), 'a') as utterance_file:
@@ -188,7 +216,7 @@ class PostProcessData(object):
             df_to_write=pd.concat(frames)
         else:
             df_to_write=npceditor_df
-        
+
         npceditor_writer=pd.ExcelWriter(os.path.join("data","NPCEditor_data.xlsx"),engine='openpyxl')
         df_to_write.to_excel(npceditor_writer,'Sheet1', index=False, header=npc_header)
         npceditor_writer.save()
@@ -222,7 +250,7 @@ def main():
     #Create utterance_videos directory if it doesn't exist
     if not os.path.isdir(utterance_chunks):
         os.mkdir(utterance_chunks)
-    
+
     #Load older metadata, to see where to continue numbering answers and utterances from, for the current mentor
     if not os.path.exists(os.path.join("data","metadata.csv")):
         next_answer=1
@@ -240,7 +268,7 @@ def main():
                     mentor_found = True
                     next_answer=int(curr_metadata_df.iloc[i]['Next Answer Number'])
                     next_utterance=int(curr_metadata_df.iloc[i]['Next Utterance Number'])
-                    
+
             if not mentor_found:
                 answer_corpus_index=int(curr_metadata_df.iloc[i]['Answer Corpus Index']) #answer_corpus index is common for all mentors
                 utterance_corpus_index=int(curr_metadata_df.iloc[i]['Utterance Corpus Index'])
