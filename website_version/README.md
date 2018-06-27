@@ -1,7 +1,7 @@
 # This is the web version/wrapper for the MentorPal Project
     *This allows MentorPal to be deployed to hundreds of users remotely onto their computer or mobile device*
 
-#### To redeploy the server: (currently it is on an EC2 under the MentorPal account)
+### To redeploy the server: (currently it is on an EC2 under the MentorPal account)
 ###### It is recommend using the DockerFile created for this purpose.  
 - Install docker on a linux server or use an autodeploy method
 - Copy this whole repository and insert the GoogleNews vector into the website_version folder
@@ -15,7 +15,7 @@
 - Use Python3.
 - Install all dependencies with pip3.
 - This project doesn't use NPCEditor so that setup can be ignored
-####### Next, setup the web server.
+###### Next, setup the web server:
 - Open terminal in the root directory (where app.js is) and type 'npm init' to install dependencies.
 - Make sure the vector_models folder contains the GoogleNews vectors and the mentors folder is copied to the same level as package.json is
 - Make sure password.txt in the root contains your passkey to Watson and the username is correct as well
@@ -26,13 +26,15 @@
 https://github.com/extrabacon/python-shell/issues/113
 - Python errors will be piped through Node, so crashes on Node could occur from Python dependencies.
 - The pickling library for python can throw a warning about conflicting versions or platforms when loading the classifier model.  With the current version, this can be ignored.
-#### To add mentors to the program:
+### If you need to add mentors to the program:
 - First, follow the main guide to process the video data and create outputs for the classifier etc.
+##### The outline below is for old files, the new post processor made makes all the output formats for you.
 - In addition, to support more browsers, convert the ogv files to mp4 as well.  Using ffmpeg navigate to the folder and then batch process them (in linux):
 > for i in *.ogv; do ffmpeg -i "$i" "${i%.*}.mp4"; done
-- In windows, I recommend https://sourceforge.net/projects/ffmpeg-batch/files/FFmpeg_Batch_1.5.3_Portable_x64.exe/download using this.  For converting to mp4 just use default to mp4 setting.  Then for the mobile version of the videos use this for parameters or something with this ratio: 
+- In windows, I recommend https://sourceforge.net/projects/ffmpeg-batch/files/FFmpeg_Batch_1.5.3_Portable_x64.exe/download using this.  For converting to mp4 just use default to mp4 setting.  Then for the mobile version of the videos use this for parameters or something with this ratio:
 > -filter:v "crop=614:548:333:86"
 > Add _M to the videos as well using the rename output feature
+##### Above can be ignored
 - upload all of this to the storage ICT has
 - As outlined in the other readme, the classifer.py framework needs the mentor added to it.
 - The website_interface.py needs knowledge of the new mentor.  Copy paste another else if statement as explained in that comment block.
