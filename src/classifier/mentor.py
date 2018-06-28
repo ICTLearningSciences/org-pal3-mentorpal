@@ -18,23 +18,25 @@ class Mentor(object):
         self.lr_test_data=None
         self.classifier_data=None
         self.lstm_topic_model=None
-        
+
         if id == 'clint':
             self.name="Clinton Anderson"
             self.title="Nuclear Electrician's Mate"
         elif id == 'dan':
             self.name="Dan Davis"
             self.title="High Performance Computing Researcher"
-            
+        elif id == 'julianne':
+            self.name="Julianne Nordhagen"
+            self.title="Placeholder is Here"
         self.load()
-    
+
     def load(self):
         self.classifier_data=pd.read_csv(os.path.join("mentors",self.id,"data","classifier_data.csv"))
         self.load_test_data()
         self.load_topics()
         self.load_utterances()
         self.load_suggestions()
-        
+
     def load_topic_model(self):
         start_time=time.time()
         if self.lstm_topic_model == None:
@@ -43,7 +45,7 @@ class Mentor(object):
         elapsed=end_time-start_time
         print("   Time to load topic model is "+str(elapsed))
         return self.lstm_topic_model
-        
+
     def load_test_data(self):
         self.lr_test_data=json.load(open(os.path.join("mentors",self.id,"test_data","lr_test_data.json"),'r'))
 
