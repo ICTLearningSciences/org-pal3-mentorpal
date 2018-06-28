@@ -4160,10 +4160,10 @@ global.reset()
 <key>speakers</key>
 <array>
 <dict>
-<key>lastName</key>
-<string>Nordhagen</string>
 <key>firstName</key>
 <string>Julianne</string>
+<key>lastName</key>
+<string>Nordhagen</string>
 <key>class</key>
 <string>edu.usc.ict.npc.editor.model.Person</string>
 </dict>

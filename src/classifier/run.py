@@ -9,7 +9,7 @@ def start(answer_mode):
     start=time.time()
     global bi
     bi=interface.BackendInterface(mode=answer_mode)
-    bi.preload(['clint', 'dan'])
+    bi.preload(['clint', 'dan', 'julianne'])
     end=time.time()
     elapsed=end-start
     print("Time to initialize is "+str(elapsed))

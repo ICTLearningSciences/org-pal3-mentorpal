@@ -173,39 +173,45 @@ class BackendInterface(object):
             return_id, return_answer=('no_video', '_END_')
 
         elif input_status=="_INTRO_":
-            return_id, return_answer=self.play_intro()
+            if ('_INTRO_' in self.mentor.utterances_prompts):
+                return_id, return_answer=self.play_intro()
 
         elif input_status=="_IDLE_":
-            return_id, return_answer=self.play_idle()
+            if ('_IDLE_' in self.mentor.utterances_prompts):
+                return_id, return_answer=self.play_idle()
 
         elif input_status=="_TIME_OUT_" or input_status=='_EMPTY_':
             #load a random prompt from file and return it.
             #The choice of prompt can also be based on the topic of the last asked question
             #This will help drive the conversation in the direction we want so that an agenda can be maintained
-            len_timeouts=len(self.mentor.utterances_prompts['_PROMPT_'])
-            index=random.randint(0,len_timeouts-1)
-            return_id, return_answer=self.mentor.utterances_prompts['_PROMPT_'][index]
+            if ('_PROMPT_' in self.mentor.utterances_prompts):
+                len_timeouts=len(self.mentor.utterances_prompts['_PROMPT_'])
+                index=random.randint(0,len_timeouts-1)
+                return_id, return_answer=self.mentor.utterances_prompts['_PROMPT_'][index]
 
         elif input_status=="_OFF_TOPIC_":
             #load off-topic feedback clip and play it
-            len_offtopic=len(self.mentor.utterances_prompts['_OFF_TOPIC_'])
-            index=random.randint(0,len_offtopic-1)
-            return_id, return_answer=self.mentor.utterances_prompts['_OFF_TOPIC_'][index]
-            return_score=-100.0
+            if ('_OFF_TOPIC_' in self.mentor.utterances_prompts):
+                len_offtopic=len(self.mentor.utterances_prompts['_OFF_TOPIC_'])
+                index=random.randint(0,len_offtopic-1)
+                return_id, return_answer=self.mentor.utterances_prompts['_OFF_TOPIC_'][index]
+                return_score=-100.0
 
         elif input_status=="_REPEAT_":
             #load repeat feedback clip and play it
-            len_repeat=len(self.mentor.utterances_prompts['_REPEAT_'])
-            index=random.randint(0,len_repeat-1)
-            return_id, return_answer=self.mentor.utterances_prompts['_REPEAT_'][index]
-            return_score=-200.0
+            if ('_REPEAT_' in self.mentor.utterances_prompts):
+                len_repeat=len(self.mentor.utterances_prompts['_REPEAT_'])
+                index=random.randint(0,len_repeat-1)
+                return_id, return_answer=self.mentor.utterances_prompts['_REPEAT_'][index]
+                return_score=-200.0
 
         elif input_status=="_REPEAT_BUMP_":
             #load repeat feedback clip and play it
-            len_repeat=len(self.mentor.utterances_prompts['_REPEAT_BUMP_'])
-            index=random.randint(0,len_repeat-1)
-            return_id, return_answer=self.mentor.utterances_prompts['_REPEAT_BUMP_'][index]
-            return_score=-300.0
+            if ('_REPEAT_BUMP_' in self.mentor.utterances_prompts):
+                len_repeat=len(self.mentor.utterances_prompts['_REPEAT_BUMP_'])
+                index=random.randint(0,len_repeat-1)
+                return_id, return_answer=self.mentor.utterances_prompts['_REPEAT_BUMP_'][index]
+                return_score=-300.0
 
         return return_id, return_answer, return_score
 
