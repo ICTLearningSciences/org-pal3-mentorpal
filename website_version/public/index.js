@@ -30,7 +30,6 @@ if (mentorID == 'clint'){
 		title: "Dan Davis: High Performance Computing Researcher"
 	};
 } else if (mentorID == 'julianne') {	//if it's none of these default to clint.  You could redirect to a homepage too that's why this is here
-	mentorID = 'julianne';
 	mentor = {
 		name: "Julianne Nordhagen",
 		videoURL: "https://pal3.ict.usc.edu/resources/mentor/julianne/",
@@ -42,6 +41,7 @@ if (mentorID == 'clint'){
 		title: "Julianne Nordhagen: Student Naval Aviator"
 	};
 } else {
+	mentorID = 'clint';
 	mentor = {
 		name: "Clinton Anderson",
 		videoURL: "https://pal3.ict.usc.edu/resources/mentor/clint/",
