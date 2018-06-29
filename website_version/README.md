@@ -58,5 +58,18 @@ https://github.com/extrabacon/python-shell/issues/113
 - Python-shell node library was used. This meant that the python3 part and nodejs part has to be running on the same server, the Dockerimage has to have both python3 and nodejs installed, and each part cannot be offloaded to a different server.  However, its simplicity and efficiency did make it worthwhile for a smaller service such as this one.
 - No templating engine and vanilla javascript was used as much as possible for simplification of the scripts.
 - Socket.io a websockets library is used for simple client to server and server to client data transfer.
-
+## Dependencies:
+#### Server Side:
+- Express *MIT License*
+- handlebars *MIT License*
+- python-shell *MIT License*
+- socket.io *MIT License*
+- watson-developer-cloud (Node Client Library) *Apache License 2.0*
+#### Client Side:
+- Bootstrap *MIT License*
+- FontAwesome  *CC BY 4.0 License*
+- JQuery *MIT License*
+- papaparse *MIT License*
+- socket io *MIT License*
+- watson- *speech website side Apache License 2.0*
 If anything else is needed, don't hesitate to contact the original REU intern, me/Kenneth Shaw at kshaw@gatech.edu.

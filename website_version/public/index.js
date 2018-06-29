@@ -57,7 +57,7 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("input-box").className = 'col-10';
 		document.getElementById("question-Box").style = 'padding-right: 95px; height: 170px; font-size: 35px';
 		document.getElementById("mic-button").style = 'height: 85px; width: 85px;  font-size: 30px';
-		document.getElementById("stop-button").style = 'display: none; height: 65px; width: 75px;  font-size: 30px';
+		document.getElementById("stop-button").style = 'display: none; height: 85px; width: 85px;  font-size: 30px';
 		document.getElementById("send-button").style = 'height: 170px; width: 140px;  font-size: 40px';
 		isMobile = "_M";
 		document.getElementById("videoPlayer").textTracks[0].mode = "showing";

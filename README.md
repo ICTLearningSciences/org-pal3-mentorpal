@@ -106,18 +106,18 @@ Python Dependencies
 ------------
 The following packages are required for the program to run. All these can be installed from pip3 or easy_install3.
 
-  1. **watson_developer_cloud** : IBM Watson's Python wrapper to communicate with their STT service.
-  2. **ffmpy** : A wrapper for FFmpeg, which is used to convert video to audio and also cut the audio file into chunks.
+  1. **watson_developer_cloud** : IBM Watson's Python wrapper to communicate with their STT service. *Apache License 2.0*
+  2. **ffmpy** : A wrapper for FFmpeg, which is used to convert video to audio and also cut the audio file into chunks. *GNU General Public License*
   3. **keras** : Neural network library
-    *Keras is sensitive about versions.... 2.2 currently works with all mentor models so I recommend you use that.
-  4. **scikit-learn** : Python Machine Learning library
-  5. **numpy** : Python scientific computing
-  6. **pandas** : High-performance data structures for Python
-  7. **gensim** : Topic Modelling - needed for word2vec
-  8. **openpyxl** : Pandas dependency for writing to excel files
-  10. **tensorflow** : Deep learning library
-  11. **nltk** : Natural Language Toolkit
-  12. **h5py** : Python interface to HDF5 binary format
+    *Keras is sensitive about versions.... 2.2 currently works with all mentor models so I recommend you use that. *MIT License*
+  4. **scikit-learn** : Python Machine Learning library *BSD license*
+  5. **numpy** : Python scientific computing  *Custom 2-clause BSD*
+  6. **pandas** : High-performance data structures for Python  *BSD 3-Clause*
+  7. **gensim** : Topic Modelling - needed for word2vec *GNU Lesser General Public *
+  8. **openpyxl** : Pandas dependency for writing to excel files *MIT License*
+  10. **tensorflow** : Deep learning library *Apache License 2.0*
+  11. **nltk** : Natural Language Toolkit *Apache License 2.0*
+  12. **h5py** : Python interface to HDF5 binary format *Apache License 2.0*
 
 Windows Setup
 ------------
