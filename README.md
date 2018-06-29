@@ -25,12 +25,12 @@ To obtain transcripts for a particular video, do the following:
   2. The filenames must be exact even in lower/uppercase
   3. Any generated files must be deleted if you want to run the generator again, or it will give a exit code 1 error.
   4. The column names in the csv need to be exact even in case or Pandas error might occur.
-  
+
   **WARNING: Opening any csv/xlsx file downloaded from Google Sheets in Excel will mess up the encoding of text in the files. Google Sheets uses UTF-8 encoding whereas Excel uses Windows-1252. The files must be in UTF-8 only. Always edit the file in Google Sheets and just download it. Never open it on your host machine.**
-  
+
   **If using LibreOffice Calc, the default encoding seems to be UTF-8. Hence, it should be safe to open the csv/xlsx files in LibreOffice**
 
-  
+
 NPCEditor Setup
 ---------------
 The following steps will setup NPCEditor with the data from **NPCEditor_data.xlsx**
@@ -48,7 +48,7 @@ The following steps will setup NPCEditor with the data from **NPCEditor_data.xls
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427474/dd82c2cc-40aa-11e7-8d64-ffe59ea891d8.png)
   8. Navigate to the Utterances tab. Select all the answers and from the 'Domain' dropdown, select the name of the person you have created earlier in step 5.
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427479/e2f71294-40aa-11e7-857f-2a39b83fa151.png)
-  9. Leave the questions side untouched. 
+  9. Leave the questions side untouched.
   10. Now, NPCEditor is ready for training.
   11. Navigate to the Classifiers tab, select the entry in the first box with Sender=Anybody. Set up the classifier as shown in the image below and click on 'Start Training'.
   ![alt text](https://cloud.githubusercontent.com/assets/2927889/26427493/f0ec88de-40aa-11e7-8c44-0dcf62dab005.png)
@@ -58,10 +58,18 @@ The following steps will setup NPCEditor with the data from **NPCEditor_data.xls
   15. Save the session as **train.plist** inside MentorPAL/NPCEditor files.
 
   **npceditor_interface.py**: Provides an interface to talk to NPCEditor and get answer(s) for question(s) and returns answer(s) along with score(s) and answer ID(s).
-  
-  
-Classifier Setup
+
+
+Classifier Setup (added 6/28/18)
 ---------------
+  1. Make a new Topics file  (you need the lowercase negative, positive, and navy too)
+  2. Copy the test_data and train_data folder from an old mentor to a new one. The data inside will be overwritten.  There should be "data" folder as well and "NPCEditor Files"  The videos should be uploaded away already.
+  3. Add this mentor to the python classifier: Edit mentor.py and follow the pattern.
+  4. Use run.py to train.  Specifically open a python shell (type python3 into terminal and you'll enter it)
+  > import run
+  > run.process_input("_TRAIN_ julianne")
+  Use your mentor name obviously and the classifier should train
+
 The components of the classifier are explained below, with data from **classifier_data.csv**
   **classifier_preprocess.py**: This file reads the raw text data from **classifier_data.csv**, converts the questions to feature vectors, obtains the sparse topic vectors and dumps all this data into pickle files for use by the classifier and topic neural network (LSTM) classifier.
 
@@ -91,14 +99,15 @@ The following are required to clone the project from git and run:
   4. ffmpeg (make sure to install it with --with-theora, --with-libvorbis, --with-opus when using brew on macOS. When compiling from source code, use --enable-theora, --enable-libvorbis, --enable-libopus)
   5. <a href="activemq.apache.org">Apache Activemq</a>
   6. Java 8
-  
+
 Python Dependencies
 ------------
 The following packages are required for the program to run. All these can be installed from pip3 or easy_install3.
-  
+
   1. **watson_developer_cloud** : IBM Watson's Python wrapper to communicate with their STT service.
   2. **ffmpy** : A wrapper for FFmpeg, which is used to convert video to audio and also cut the audio file into chunks.
   3. **keras** : Neural network library
+    *Keras is sensitive about versions.... 2.2 currently works with all mentor models so I recommend you use that.
   4. **scikit-learn** : Python Machine Learning library
   5. **numpy** : Python scientific computing
   6. **pandas** : High-performance data structures for Python
@@ -107,11 +116,11 @@ The following packages are required for the program to run. All these can be ins
   10. **tensorflow** : Deep learning library
   11. **nltk** : Natural Language Toolkit
   12. **h5py** : Python interface to HDF5 binary format
-  
+
 Windows Setup
 ------------
   1. Get Python 3.5.3 and install TensorFlow from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#tensorflow">here</a>.
   2. Install Visual C++ Redistributable 2015 x64 as MSVCP140.dll
-  3. To install keras and gensim, you have to first install scipy from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy">here</a>.
+  3. To install keras and gensim, you have to first install scipy from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy">here</a>. (Advised to use Keras 2.2)
   4. Install numpy+mkl from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy">here</a>.
   5. If you are unable to install scikit-learn using pip in Python3, install it from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scikit-learn">here</a>

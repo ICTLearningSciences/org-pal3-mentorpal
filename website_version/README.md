@@ -40,6 +40,7 @@ https://github.com/extrabacon/python-shell/issues/113
 - The website_interface.py needs knowledge of the new mentor.  Copy paste another else if statement as explained in that comment block.
 - Next, enter a 'route' in the node index.js to allow users to visit a certain mentor URL in the website.  Copy paste as explained in that comment block.
 - To allow for users to visit mentors from each other's, copy paste another selection for the dropdown box in the navbar to that new url.
+- Add to the public folder another mentor folder with the topics.csv, the Questions_Paraphrases_Answers.csv and the closed caption tracks for the clients.
 - Finally, edit the client index.js in the public folder to add a new mentor, again following that comment block.
 ## Why it was created this way:
 #### UI:
