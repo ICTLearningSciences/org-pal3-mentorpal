@@ -67,7 +67,9 @@ Classifier Setup (added 6/28/18)
   3. Add this mentor to the python classifier: Edit mentor.py and follow the pattern.
   4. Use run.py to train.  Specifically open a python shell (type python3 into terminal and you'll enter it)
   > import run
+
   > run.process_input("_TRAIN_ julianne")
+  
   Use your mentor name obviously and the classifier should train
 
 The components of the classifier are explained below, with data from **classifier_data.csv**
