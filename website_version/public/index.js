@@ -84,7 +84,9 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 }
 
 if (window.location.pathname.split("/")[2]=="embed"){
-	document.getElementById("navSize").style.display = "none";
+	if (document.getElementById("navSize")){
+		document.getElementById("navSize").style.display = "none";
+	}
 }
 
 Papa.parse(mentor.topicsURL, {	//setup the csv for buttons on desktop
