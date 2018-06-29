@@ -14,6 +14,17 @@
 			font-size: 18px;
 			color: #f4f4f4;
 		}
+		.mentor-title{
+			bottom: 0;
+			margin-bottom: 18px;
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			font-size: 25px;
+		}
+		.hide{
+			visibility: hidden;
+		}
 		.button-settings-mobile{
 			width: 49%;
 			height: 80px;
