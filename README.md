@@ -68,7 +68,7 @@ Classifier Setup (added 6/28/18)
   4. Use run.py to train.  Specifically open a python shell in the same folder as run.py (type python3 into terminal and you'll enter it)
   > import run
 
-  > run.process_input("_TRAIN_ julianne")
+  > run.process_input("\_TRAIN\_ julianne")
 
   Use your mentor name obviously and the classifier should train
 
