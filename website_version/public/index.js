@@ -56,9 +56,9 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("mic-send-row").className = 'col-2';
 		document.getElementById("input-box").className = 'col-10';
 		document.getElementById("question-Box").style = 'padding-right: 95px; height: 170px; font-size: 35px';
-		document.getElementById("mic-button").style = 'height: 65px; width: 75px;  font-size: 30px';
+		document.getElementById("mic-button").style = 'height: 85px; width: 85px;  font-size: 30px';
 		document.getElementById("stop-button").style = 'display: none; height: 65px; width: 75px;  font-size: 30px';
-		document.getElementById("send-button").style = 'height: 100px; width: 140px;  font-size: 40px';
+		document.getElementById("send-button").style = 'height: 170px; width: 140px;  font-size: 40px';
 		isMobile = "_M";
 		document.getElementById("videoPlayer").textTracks[0].mode = "showing";
 	} else {	//if not mobile render this
@@ -77,7 +77,7 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("question-Box").style = 'height: 120px; font-size: 20px';
 		document.getElementById("mic-button").style = "display: block";
 		document.getElementById("stop-button").style = "display: none";
-		document.getElementById("send-button").style = "display: block; height: 100px";
+		document.getElementById("send-button").style = "display: block; height: 120px";
 		document.getElementById("videoPlayer").textTracks[0].mode = "hidden";
 		isMobile="";
 	}
