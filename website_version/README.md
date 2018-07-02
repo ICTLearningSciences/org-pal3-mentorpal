@@ -28,7 +28,7 @@ https://github.com/extrabacon/python-shell/issues/113
 - The pickling library for python can throw a warning about conflicting versions or platforms when loading the classifier model.  With the current version, this can be ignored.
 ### If you need to add mentors to the program:
 - First, follow the main guide to process the video data and create outputs for the classifier etc.
-##### The outline below is for old files, the new post processor made makes all the output formats for you.
+##### The outline below is for individual files, the new post processor made makes all the output formats for you for all the main videos automatically.
 - In addition, to support more browsers, convert the ogv files to mp4 as well.  Using ffmpeg navigate to the folder and then batch process them (in linux):
 > for i in *.ogv; do ffmpeg -i "$i" "${i%.*}.mp4"; done
 - In windows, I recommend https://sourceforge.net/projects/ffmpeg-batch/files/FFmpeg_Batch_1.5.3_Portable_x64.exe/download using this.  For converting to mp4 just use default to mp4 setting.  Then for the mobile version of the videos use this for parameters or something with this ratio:
