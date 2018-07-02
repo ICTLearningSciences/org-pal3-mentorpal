@@ -73,7 +73,7 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("mic-button").style = 'height: 85px; width: 85px;  font-size: 30px';
 		document.getElementById("stop-button").style = 'display: none; height: 85px; width: 85px;  font-size: 30px';
 		document.getElementById("send-button").style = 'height: 170px; width: 140px;  font-size: 40px';
-		document.getElementById("mentor-title").style = "visibility: hidden";
+		document.getElementById("mentor-title").style = "display: none";
 		isMobile = "_M";
 		document.getElementById("videoPlayer").textTracks[0].mode = "showing";
 	} else {	//if desktop render this
