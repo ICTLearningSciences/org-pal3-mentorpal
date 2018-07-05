@@ -22,9 +22,11 @@ if(process.argv[2] != "dev"){
 	};
 	var servertwo = http.createServer(apptwo);
 }
-
-var server = http.createServer(app);
-
+if (process.argv[2]!="dev"){
+	var server = https.createServer(options, app);
+} else {
+	var server = http.createServer(app);
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -40,6 +42,9 @@ if(process.argv[2] == "dev"){
 } else {
 	server.listen(443, function(){
 	    console.log('Listening for http requests');
+	});
+	servertwo.listen(80, function(){
+		console.log('redirecting');
 	});
 	apptwo.get('*',function(req,res,next){
 		res.redirect(['https://', req.get('Host'), req.url].join(''));

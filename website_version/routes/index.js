@@ -7,7 +7,7 @@ var PythonShell = require('python-shell');
 var fs = require('fs');
 //https://github.com/extrabacon/python-shell/issues/113 : /python-shell/index.js, on line 72
 //After installation, comment out the warning printing if tensorflow is having trouble importing
-if(process.argv[2] != "dev"){
+if(process.argv[2] == "dev"){
   var options = {
       pythonPath: 'E:/Python35/python.exe',
       //pythonPath: '/usr/bin/python3'
