@@ -19,7 +19,7 @@
 - Open terminal in the root directory (where app.js is) and type 'npm init' to install dependencies.
 - Make sure the vector_models folder contains the GoogleNews vectors and the mentors folder is copied to the same level as package.json is
 - Make sure password.txt in the root contains your passkey to Watson and the username is correct as well
-- Type 'node app' and the program should run.
+- Type 'node app' and the program should run.  (use 'node app dev' if you're on developing on a windows machine, port 8000 will open for this purpose)
 - The python script will be called by node.js.
 - If Linux is not used, Python3 might not be able to find its path.  Go to the index.js route to fix it.
 - If the Tensorflow import takes a long time, node might believe that python crashed.  Suppress the warnings from Python-shell using this strategy (also commented in)
