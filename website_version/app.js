@@ -21,7 +21,7 @@ var options = {
 };
 var server = https.createServer(options, app);
 var servertwo = http.createServer(apptwo);
-var io = require('socket.io')(server);
+//var io = require('socket.io')(server);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
