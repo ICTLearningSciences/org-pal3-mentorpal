@@ -18,7 +18,7 @@ input_file: Examples are /example/path/to/session1/session1part1.mp4, /example/p
 output_file: Examples are /example/path/to/session1/session1part1.ogg, /example/path/to/session1/session1part2.ogg
 '''
 def convert_to_wav(input_file, output_file):
-    output_command="-loglevel quiet"
+    output_command="-loglevel quiet -y"
     ff=ffmpy.FFmpeg(
         inputs={input_file: None},
         outputs={output_file: output_command}
@@ -98,7 +98,7 @@ def split_into_chunks(audiochunks, audio_file, timestamps, offset):
     #convert all start times to seconds
     for i in range(0,len(start_times)):
         start_times[i]=convert_to_seconds(start_times[i])
-    
+
     #convert all end times to seconds
     for i in range(0,len(end_times)):
         end_times[i]=convert_to_seconds(end_times[i])
