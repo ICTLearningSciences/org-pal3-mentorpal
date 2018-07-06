@@ -10,6 +10,8 @@ var app = express();
 var apptwo = express();
 var https = require('https');
 var http = require('http');
+var request = require('request');
+
 // view engine setup
 app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
@@ -27,6 +29,16 @@ if (process.argv[2]!="dev"){
 } else {
 	var server = http.createServer(app);
 }
+
+//checks if videos are loaded on
+request.head('https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.mp4', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+  		//console.log("file exits");// Continue with your processing here.
+    } else {
+			console.log("not found");
+		}
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
