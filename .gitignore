@@ -1,2 +1,3 @@
 website_version/node_modules
 website_version/password.txt
+*.pyc
