@@ -74,7 +74,7 @@ class LogisticClassifier(object):
             self.y_test_fused=[self.test_data[i][3] for i in range(len(self.test_data))]
         except:
             pass
-        
+
         self.test_questions=[self.test_data[i][0] for i in range(len(self.test_data))]
 
     '''
@@ -178,12 +178,12 @@ class LogisticClassifier(object):
 
         print("Accuracy: "+str(self.logistic_model_fused.score(self.x_test_fused, self.y_test_fused)))
         print("F-1: "+str(f1_score(self.y_test_fused, y_pred_fused, average='micro')))
-        
+
 
         return self.y_test_unfused, y_pred_unfused, self.y_test_fused, y_pred_fused
 
     '''
-    This is the method that will be used to get an answer for a question in the system flow. When user asks a question, this is 
+    This is the method that will be used to get an answer for a question in the system flow. When user asks a question, this is
     the method that will return the answer predicted by the classifier
     '''
     def get_prediction(self, w2v_vector, topic_vector, use_topic_vectors=True):
@@ -198,6 +198,8 @@ class LogisticClassifier(object):
 
         test_vector=test_vector.reshape(1,-1)
         prediction=self.logistic_model.predict(test_vector)
+        print("Data!!!")
+        print(max(self.logistic_model.decision_function(test_vector)))
+        print(max(self.logistic_model.decision_function(test_vector)[0]))
+        print("Data!!!")
         return prediction[0], self.ids_answer[prediction[0]]
-
-

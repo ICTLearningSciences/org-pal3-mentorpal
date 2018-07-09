@@ -26,4 +26,5 @@ def watson(file_name):
         transcript=""
         for item in result:
             transcript+=item['alternatives'][0]['transcript']
+            print(transcript)
         return transcript

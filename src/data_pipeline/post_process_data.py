@@ -26,7 +26,7 @@ def ffmpeg_convert_mobile(input_file):
 	)
     print(ff3.cmd + "\n")
     ff3.run()
-    
+
 class PostProcessData(object):
     def __init__(self, answer_chunks, utterance_chunks, answer_number, utterance_number, mentor_name, answer_corpus, answer_corpus_index, utterance_corpus, utterance_corpus_index):
         self.answer_chunks=answer_chunks
@@ -55,12 +55,12 @@ class PostProcessData(object):
     end_time: End time of answer
     '''
     def ffmpeg_split_video(self, input_file, output_file, start_time, end_time):
-        output_command="-ss "+str(start_time)+" -to "+str(end_time)+"  -loglevel quiet -threads 0 -y"
+        output_command="-ss "+str(start_time)+" -to "+str(end_time)+"  -loglevel quiet -threads 0"
         ff=ffmpy.FFmpeg(
             inputs={input_file: None},
             outputs={output_file: output_command},
         )
-        print(ff.cmd)
+        #print(ff.cmd)
         ff.run()
         print("Starting Thread")
         thread = Thread(target = ffmpeg_convert_video, args = (output_file, ))
@@ -149,7 +149,8 @@ class PostProcessData(object):
             Uncomment this line when you want to get the actual cut answers. This takes a long time so this isn't needed
             when testing the code for the other parts
             '''
-            self.ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
+            print("OUTPUT FILE:" + output_file)
+            #self.ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
     '''
     Write all the data to file.
     classifier_data.csv: data for use by the classifier

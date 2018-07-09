@@ -2,9 +2,9 @@ import subprocess
 import pandas as pd
 import math
 
-videoPath = r'''E:/MentorPalVideos/dan/answer_videos/'''
+videoPath = r'''E:/MentorPALGithub/MentorPAL/mentors/julianne/answer_videos/'''
 ffmpegPath = r'''C:\Users\kshaw\Desktop\ffmpeg-20180611-8c20ea8-win64-static\bin\ffmpeg.exe'''
-classifierDataPath = r'''C:/Users/kshaw/Desktop/classifier_data.csv'''
+classifierDataPath = r'''E:\MentorPALGithub\MentorPAL\data\classifier_data.csv'''
 
 def convert_to_seconds(time):   #copied from pre-process and post-process, handles ":"
     time=time.split(":")
@@ -35,8 +35,8 @@ def getDurations(ID):
     except (ValueError,IndexError):
         print("Video not Found")
         return "error"
-        
-df = pd.read_csv(classifierDataPath) #read 
+
+df = pd.read_csv(classifierDataPath, encoding = "cp1252") #read
 output = pd.DataFrame()
 
 for i in range(len(df["ID"])):
@@ -67,9 +67,7 @@ for i in range(len(df["ID"])):
         outputStart = str(math.floor(secondsStart/60)).zfill(2)+":"+ ('%.3f'%(secondsStart%60)).zfill(6)
         outputEnd = str(math.floor(secondsEnd/60)).zfill(2)+":"+ ('%.3f'%(secondsEnd%60)).zfill(6)
         #print("00:" + outputStart +" --> "+"00:"+ outputEnd)
-        
-        text_file.write("00:" + outputStart +" --> "+"00:"+ outputEnd +'\n')   
+
+        text_file.write("00:" + outputStart +" --> "+"00:"+ outputEnd +'\n')
         text_file.write(transcript[splitIndex[j]:splitIndex[j+1]]+'\n\n')
         #OutputList.append([ID,time,transcript])
-
-
