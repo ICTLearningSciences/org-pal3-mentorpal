@@ -55,7 +55,7 @@ The following steps will setup NPCEditor with the data from **NPCEditor_data.xls
   12. Once the training is finished, the details of the classifier will show up in the status box. This indicates that NPCEditor classifier model is ready.
   13. Navigate to the 'Conversations' tab and make sure that the Dialog Manager is set to 'Scriptable'.
   14. Navigate to the 'Dialog Manager' tab and enter the following script as text: https://drive.google.com/open?id=1HpdmYfVfsU5j_QXP3IMmejUKNrllGO5jNIYOxSc04dk
-  15. Save the session as **train.plist** inside MentorPAL/NPCEditor files.
+  15. Save the session as **train.plist** inside MentorPAL/mentors/nameOfMentor/NPCEditor.
 
   **npceditor_interface.py**: Provides an interface to talk to NPCEditor and get answer(s) for question(s) and returns answer(s) along with score(s) and answer ID(s).
 
@@ -67,6 +67,8 @@ Classifier Setup (added 6/28/18)
   3. Add this mentor to the python classifier: Edit mentor.py and follow the pattern.
   4. Use run.py to train.  Specifically open a python shell in the same folder as run.py (type python3 into terminal and you'll enter it)
   > import run
+
+  > run.start('classifier')
 
   > run.process_input("\_TRAIN\_ julianne")
 
