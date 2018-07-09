@@ -64,8 +64,9 @@ Classifier Setup (added 6/28/18)
 ---------------
   1. Make a new Topics file  (you need the lowercase negative, positive, and navy too)
   2. Copy the test_data and train_data folder from an old mentor to a new one. The data inside will be overwritten.  There should be "data" folder as well and "NPCEditor Files"  The videos should be uploaded away already.
-  3. Add this mentor to the python classifier: Edit mentor.py and follow the pattern.
-  4. Use run.py to train.  Specifically open a python shell in the same folder as run.py (type python3 into terminal and you'll enter it)
+  3. Put this mentor folder and the cut and paste the data folder inside the classifier/mentors/mentorname folder to let it train
+  4. Add this mentor to the python classifier: Edit mentor.py and follow the pattern.
+  5. Use run.py to train.  Specifically open a python shell in the same folder as run.py (type python3 into terminal and you'll enter it)
   > import run
 
   > run.start('classifier')
