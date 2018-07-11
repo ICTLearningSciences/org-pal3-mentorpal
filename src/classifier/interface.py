@@ -19,7 +19,7 @@ from sklearn.metrics import f1_score, accuracy_score
 
 class BackendInterface(object):
     num_blacklisted_repeats = 5
-    
+
     def __init__(self, mode='ensemble'):
         self.pal3_status_codes={'_START_SESSION_', '_INTRO_', '_IDLE_', '_TIME_OUT_', '_END_SESSION_', '_EMPTY_'} #status codes that PAL3 sends to code
         self.test_data=None
@@ -61,26 +61,26 @@ class BackendInterface(object):
             if self.mode=='ensemble' or self.mode=='classifier':
                 self.set_mentor(mentor)
                 self.get_classifier_answer('asdf')
-        
+
     def load_mentor(self, id):
         self.mentorsById[id]=mentor.Mentor(id)
-            
+
     def set_mentor(self, id):
         if id not in self.mentorsById:
-            self.load_mentor(id)    
+            self.load_mentor(id)
         self.mentor=self.mentorsById[id]
         self.cpp.set_mentor(self.mentor)
         if self.mode=='ensemble' or self.mode=='classifier':
             self.classifier.set_mentor(self.mentor)
         if self.mode=='ensemble' or self.mode=='npceditor':
             self.npc.set_mentor(self.mentor)
-        
+
     '''
     This starts the pipeline for training the classifier from scratch.
     When new data is available and a new model needs to be built, calling this function will generate a new classifier.
     When you want to evaluate performance, send method='train_test_mode' to get performance metrics.
     When you want to just train the classifier, the default option mode='train_mode' will be activated. No explicit passing reqd.
-    
+
     Every time, two versions of the classifier are created: one with the topic vectors and one without topic vectors.
     This is done so that in the future, if either model needs to be used to get answers to questions, passing use_topic_vectors=True
     or False will enable to use/not use topic vectors.
@@ -113,7 +113,7 @@ class BackendInterface(object):
     #information to track must be discussed with Ben, Nick, Kayla
     def start_session(self):
         self.session_started=True
-        
+
     #play intro clip
     def play_intro(self):
         return self.mentor.utterances_prompts['_INTRO_'][0]
@@ -121,11 +121,11 @@ class BackendInterface(object):
     #play idle clip
     def play_idle(self):
         return self.mentor.utterances_prompts['_IDLE_'][0]
-        
+
     def end_session(self):
         self.session_started=False
         self.blacklist.clear()
-        
+
     def quit(self):
         if self.mode=='ensemble' or self.mode=='npceditor':
             for mentor in self.mentorsById:
@@ -162,7 +162,7 @@ class BackendInterface(object):
         return_id=None
         return_answer=None
         return_score=0.0
-    
+
         # Select a prompt and return it
         if input_status=="_START_SESSION_":
             self.start_session()
@@ -216,7 +216,7 @@ class BackendInterface(object):
         return return_id, return_answer, return_score
 
     '''
-    Get answers for all the questions. Used when building a new classifier model. Will be called automatically as part of the 
+    Get answers for all the questions. Used when building a new classifier model. Will be called automatically as part of the
     start_pipeline method.
     '''
     def get_all_answers(self):
@@ -246,7 +246,7 @@ class BackendInterface(object):
         end_time_npc=time.time()
         elapsed_npc=end_time_npc-start_time_npc
         print("Time to fetch NPCEditor answer {0} is {1}".format(npceditor_id, str(elapsed_npc)))
-        
+
         # if chosen response is a repeat, check for similar responses
         if (not self.use_repeats and npceditor_id in self.blacklist):
             for response in similar_responses:
@@ -257,13 +257,15 @@ class BackendInterface(object):
                     npceditor_answer=response['text']
 
         return npceditor_id, npceditor_score, npceditor_answer
-        
+
     '''
     Get answer from classifier
     '''
     def get_classifier_answer(self, question, use_topic_vectors=True):
         start_time=time.time()
         classifier_id, classifier_answer=self.classifier.get_answer(question, use_topic_vectors=use_topic_vectors)
+        if classifier_id=="_OFF_TOPIC_":
+            classifier_id, classifier_answer, other = self.return_prompt("_OFF_TOPIC_")
         end_time=time.time()
         elapsed=end_time-start_time
         print("Time to fetch classifier answer is "+str(elapsed))
@@ -290,7 +292,7 @@ class BackendInterface(object):
                     classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
                     return_id=classifier_id
                     return_answer=classifier_answer
-                    print("Answer from classifier chosen")
+                    print("Answer from classifier chosen") #this might be uncertain, maybe grab an _OFF_TOPIC
                 else:
                     return_id=npceditor_id
                     return_answer=npceditor_answer
@@ -306,13 +308,13 @@ class BackendInterface(object):
                 return_answer=npceditor_answer
                 return_score=npceditor_score
                 print("Answer from NPCEditor chosen")
-                
+
         elif self.mode=='classifier':
             classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
             return_id=classifier_id
             return_answer=classifier_answer
             print("Answer from classifier chosen")
-        
+
         # Handle repeats
         if (not self.use_repeats):
             if (return_id in self.blacklist):
@@ -327,7 +329,7 @@ class BackendInterface(object):
                     self.blacklist.pop(0)
                 self.should_bump=False
                 self.blacklist.append(return_id)
-        
+
         return return_id, return_answer, return_score
 
     def get_redirect_answer(self):
@@ -337,7 +339,7 @@ class BackendInterface(object):
         return_id, return_answer, return_score = self.get_one_answer(question)
         self.use_repeats=False
         return return_id, return_answer, return_score
-    
+
     '''
     When you want to get an answer to a question, this method will be used. Flexibility to use/not use topic vectors is provided.
     For special cases like time-out, user diverting away from topic, etc., pass a pre-defined message as the question.
@@ -383,7 +385,7 @@ class BackendInterface(object):
             self.suggestion_index=(self.suggestion_index + 1) % len(candidate_questions)
         else:
             self.suggestion_index=random.randint(0,len(candidate_questions)-1)
-        
+
         selected_question=candidate_questions[self.suggestion_index]
         self.last_topic_suggestion=topic
         return (selected_question[0].capitalize(), selected_question[1], selected_question[2])

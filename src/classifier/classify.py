@@ -21,7 +21,7 @@ class Classify(object):
         self.cpp.set_mentor(mentor)
         self.lc.set_mentor(mentor)
         self.tl.set_mentor(mentor)
-        
+
     '''
     Runs methods in classifier_preprocess.py to pre-process the data into formats that the classifier requires.
     '''
@@ -66,11 +66,11 @@ class Classify(object):
         return y_test_unfused, y_pred_unfused, y_test_fused, y_pred_fused
 
     '''
-    When a question is asked, this method first normalizes the text using classifier_preprocess.py, then gets the 
+    When a question is asked, this method first normalizes the text using classifier_preprocess.py, then gets the
     w2v_vector and lstm_vector. Then, it uses lstm.py to get the topic vector for the input question and finally, uses
     classifier in logisticregression.py to get a predicted answer and sends this to the ensemble classifier.
     '''
-    def get_answer(self,question, use_topic_vectors=True):        
+    def get_answer(self,question, use_topic_vectors=True):
         start_time=time.time()
         processed_question=self.cpp.preprocessor.transform(question)
         end_time=time.time()
@@ -95,11 +95,11 @@ class Classify(object):
         end_time=time.time()
         elapsed=end_time-start_time
         print("Time to get topic vector is "+str(elapsed))
-        
+
         start_time=time.time()
         predicted_answer=self.lc.get_prediction(w2v_vector, topic_vector, use_topic_vectors=use_topic_vectors)
         end_time=time.time()
         elapsed=end_time-start_time
         print("Time to get prediction is "+str(elapsed))
-        
-        return predicted_answer
+
+        return predicted_answer #this will return a keyword if the LC is unsure

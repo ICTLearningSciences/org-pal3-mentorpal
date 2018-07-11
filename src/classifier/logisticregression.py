@@ -120,11 +120,12 @@ class LogisticClassifier(object):
         # print(scores)
         # predicted = cross_val_predict(self.logistic_model_unfused, self.x_train_unfused, self.y_train_unfused, cv=2)
         # print(metrics.accuracy_score(self.y_train_unfused, predicted))
-
         print("Training with topic vectors")
         # lr=LogisticRegression(penalty='l2')
         # self.logistic_model_fused=GridSearchCV(lr, param_grid)
         self.logistic_model_fused=RidgeClassifier(alpha=1.0)
+        #self.logistic_model_fused.class_weight = {'julianne_A23_2_4' : 0.1, 'julianne_A28_2_6' : 0.17, 'julianne_A46_3_2' :0.3, 'julianne_A22_2_3': 0.17}
+        ### this above allows you to weight specific videos up or down depending on if they're getting chosen too much
         self.logistic_model_fused.fit(self.x_train_fused, self.y_train_fused)
         #print(self.logistic_model_fused.best_params_, self.logistic_model_fused.best_score_)
         joblib.dump(self.logistic_model_fused, os.path.join("mentors",self.mentor.id,"train_data","fused_model.pkl"))
@@ -197,9 +198,16 @@ class LogisticClassifier(object):
             test_vector=np.concatenate((w2v_vector, topic_vector))
 
         test_vector=test_vector.reshape(1,-1)
-        prediction=self.logistic_model.predict(test_vector)
+        prediction=self.logistic_model.predict(test_vector) #this is the predicted video ID
         print("Data!!!")
-        print(max(self.logistic_model.decision_function(test_vector)))
-        print(max(self.logistic_model.decision_function(test_vector)[0]))
-        print("Data!!!")
+
+        print(self.logistic_model.class_weight)
+        print(self.logistic_model.decision_function(test_vector)) #this is the confidence values (we can manipulate)
+        highestConfidence = sorted(self.logistic_model.decision_function(test_vector)[0])[self.logistic_model.decision_function(test_vector).size-1]
+        print(highestConfidence) #the highest confidence value
+        print(prediction[0])
+        #print(json.dumps(self.ids_answer))  #this is all of the possible choices
+        print("Data!!!") #so here we'll return a keyword if things are bad
+        if highestConfidence < -0.88:
+            return "_OFF_TOPIC_","_OFF_TOPIC_"
         return prediction[0], self.ids_answer[prediction[0]]
