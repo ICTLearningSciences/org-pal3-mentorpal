@@ -36,7 +36,7 @@ if (mentorID == 'clint'){
 		idleURL: "https://pal3.ict.usc.edu/resources/mentor/julianne/idle",
 		topicsURL: "/julianne/topics.csv",
 		questions: "/julianne/Questions_Paraphrases_Answers.csv",
-		intro: "Hi my name's Julie in Oregon I'm %HESITATION in and sit in the United States Navy and I'm currently a student naval aviator so that means that I have commissioned into the navy and I am starting to learn how to fly planes and %HESITATION will then become a full trained pilot for the navy",
+		intro: "Hi my name's Julie Nordhagen, I'm in the United States Navy and I'm currently a student naval aviator so that means that I have commissioned into the Navy and I am starting to learn how to fly planes and will then become a full trained pilot for the Navy.",
 		introURL: "julianne_U1_1_1",
 		title: "Julianne Nordhagen: Student Naval Aviator"
 	};
