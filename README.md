@@ -112,7 +112,7 @@ The following packages are required for the program to run. All these can be ins
   1. **watson_developer_cloud** : IBM Watson's Python wrapper to communicate with their STT service. *Apache License 2.0*
   2. **ffmpy** : A wrapper for FFmpeg, which is used to convert video to audio and also cut the audio file into chunks. *GNU General Public License*
   3. **keras** : Neural network library
-    *Keras is sensitive about versions.... 2.2 currently works with all mentor models so I recommend you use that. *MIT License*
+    *Keras is sensitive about versions.... 2.0.5 currently works with all mentor models so I recommend you use that. *MIT License*
   4. **scikit-learn** : Python Machine Learning library *BSD license*
   5. **numpy** : Python scientific computing  *Custom 2-clause BSD*
   6. **pandas** : High-performance data structures for Python  *BSD 3-Clause*
@@ -126,6 +126,6 @@ Windows Setup
 ------------
   1. Get Python 3.5.3 and install TensorFlow from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#tensorflow">here</a>.
   2. Install Visual C++ Redistributable 2015 x64 as MSVCP140.dll
-  3. To install keras and gensim, you have to first install scipy from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy">here</a>. (Advised to use Keras 2.2)
+  3. To install keras and gensim, you have to first install scipy from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scipy">here</a>. (Advised to use Keras 2.0.5)
   4. Install numpy+mkl from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#numpy">here</a>.
   5. If you are unable to install scikit-learn using pip in Python3, install it from <a href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#scikit-learn">here</a>
