@@ -199,15 +199,15 @@ class LogisticClassifier(object):
 
         test_vector=test_vector.reshape(1,-1)
         prediction=self.logistic_model.predict(test_vector) #this is the predicted video ID
-        print("Data!!!")
+        #print("Data!!!")
 
-        print(self.logistic_model.class_weight)
-        print(self.logistic_model.decision_function(test_vector)) #this is the confidence values (we can manipulate)
+        #print(self.logistic_model.class_weight)
+        #print(self.logistic_model.decision_function(test_vector)) #this is the confidence values (we can manipulate)
         highestConfidence = sorted(self.logistic_model.decision_function(test_vector)[0])[self.logistic_model.decision_function(test_vector).size-1]
-        print(highestConfidence) #the highest confidence value
-        print(prediction[0])
+        #print(highestConfidence) #the highest confidence value
+        #print(prediction[0])
         #print(json.dumps(self.ids_answer))  #this is all of the possible choices
-        print("Data!!!") #so here we'll return a keyword if things are bad
+        #print("Data!!!") #so here we'll return a keyword if things are bad
         if highestConfidence < -0.88:
             return "_OFF_TOPIC_","_OFF_TOPIC_"
         return prediction[0], self.ids_answer[prediction[0]]
