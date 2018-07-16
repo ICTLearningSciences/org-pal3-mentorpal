@@ -15,6 +15,10 @@ julianne = classify.Classify()
 julianneModel = mentor.Mentor('julianne')
 julianne.set_mentor(julianneModel)
 
+carlos = classify.Classify()
+carlosModel = mentor.Mentor('carlos')
+carlos.set_mentor(carlosModel)
+
 while True:
 	x = input("For Nodejs to enter value, but what is the question?  *use python3*")	#gets the question and id of the client
 	y = x.split(',');
@@ -27,5 +31,7 @@ while True:
 		output = dan.get_answer(question)
 	elif (y[2]=='julianne'):
 		output = julianne.get_answer(question)
+	elif (y[2]=='carlos')
+		output = carlos.get_answer(question)
 	print(output,end='')
 	print(id)

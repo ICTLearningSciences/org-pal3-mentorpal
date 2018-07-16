@@ -150,7 +150,7 @@ class PostProcessData(object):
             when testing the code for the other parts
             '''
             print("OUTPUT FILE:" + output_file)
-            #self.ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
+            self.ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
     '''
     Write all the data to file.
     classifier_data.csv: data for use by the classifier

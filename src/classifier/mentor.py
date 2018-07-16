@@ -28,6 +28,9 @@ class Mentor(object):
         elif id == 'julianne':
             self.name="Julianne Nordhagen"
             self.title="Student Naval Aviator"
+        elif id == 'carlos':
+            self.name= "Carlos Rios"
+            self.title="Marine Logistician"
         self.load()
 
     def load(self):
