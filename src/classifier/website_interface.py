@@ -31,7 +31,7 @@ while True:
 		output = dan.get_answer(question)
 	elif (y[2]=='julianne'):
 		output = julianne.get_answer(question)
-	elif (y[2]=='carlos')
+	elif (y[2]=='carlos'):
 		output = carlos.get_answer(question)
 	print(output,end='')
 	print(id)

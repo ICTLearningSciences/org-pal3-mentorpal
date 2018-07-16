@@ -40,6 +40,17 @@ if (mentorID == 'clint'){
 		introURL: "julianne_U1_1_1",
 		title: "Julianne Nordhagen: Student Naval Aviator"
 	};
+} else if (mentorID == 'carlos') {	//if it's none of these default to clint.  You could redirect to a homepage too that's why this is here
+	mentor = {
+		name: "Carlos Rios",
+		videoURL: "https://pal3.ict.usc.edu/resources/mentor/carlos/",
+		idleURL: "https://pal3.ict.usc.edu/resources/mentor/carlos/idle",
+		topicsURL: "/carlos/topics.csv",
+		questions: "/carlos/Questions_Paraphrases_Answers.csv",
+		intro: "So my name is Carlos Rios. I'm a logistics lead supporting marine corps projects. I'm originally from Connecticut or New Haven, Connecticut. My mother and father are from Puerto Rico they migrated over to Connecticut and then from there after about six well I was about seven years old and moved over to a Philadelphia where I spent most of my most of my youth. About age 18-19 years old graduated high school and joined the marine corps. Twenty three years later, retired. During that time of course I got married. I have been married for twenty seven years. I have two great kids, one currently attending USC and one in the near future want to attend Clemson, South Carolina where I currently reside after my retirement from the marine corps. I spent two years as a contractor supporting the marine corps and I personally think I did such a good job that the government decided to bring it over to that side and support as a government employee and I've been doing that for about seven years high manage everything from my computer, servers, laptops to drones.",
+		introURL: "carlos_A1_1_1",
+		title: "Carlos Rios: Marine Logistician"
+	};
 } else {
 	mentorID = 'clint';
 	mentor = {
