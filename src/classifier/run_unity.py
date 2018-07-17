@@ -9,7 +9,6 @@ def vhmsg_send(message):
 # handle the vhmsg that was received from unity
 def vhmsg_callback(head, body):
     output = run.process_input(body)
-    print(output)
     if run.end_flag:
         vhmsg.closeConnection()
     else:
