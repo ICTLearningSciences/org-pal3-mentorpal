@@ -9,9 +9,11 @@ I want to know everything about you?
 
 Explain your background.
 
-what is a deployment?
+How would you describe yourself?
 
-Tell me about yourself"
+Tell me about yourself
+
+I want to know more about you"
 dandavis_A2_1_1,Background,My name is Dan Davis.,"What is your name?
 
 Who are you?
@@ -20,9 +22,11 @@ What do people call you?
 
 How are you addressed?
 
-What is your name?
+What�s your last name Dan?
 
-What�s your last name Dan?"
+Can I call you Dan?
+
+How would you like to be addressed?"
 dandavis_A3_1_1,Background,I was born in 1944.,"What year were you born?
 
 When were you born?
@@ -33,7 +37,9 @@ What time were you born?
 
 When was your birth year?
 
-Which year were you born?"
+Which year were you born?
+
+Where you born in the 70s?"
 dandavis_A4_1_1,Background,I'm seventy three years old,"How old are you now?
 
 What is your age?
@@ -63,7 +69,9 @@ Is it your birthday?
 
 When is your date of birth?
 
-When were you born?"
+When were you born?
+
+What can you tell me about your birth date?"
 dandavis_A6_1_1,Background,"I was born in Carbondale, Illinois but they spent most of my growing up years in Colorado Springs, Colorado","Where did you grow up?
 
 Where did you spend your childhood?
@@ -133,7 +141,11 @@ do you have a wife?
 
 tell me about your children
 
-how is your family?"
+how is your family?
+
+Are you married?
+
+do you have kids?"
 dandavis_A10_1_1,Background,Actually I've lived quite a few places due to the military but I basically grew up in Colorado springs and then when I got in the military that gave me a lot more varied places to live. I work for a while in Chicago before I joined the service but during the service I have been really all around the world in a number of places,"Where in the world have you lived?
 
 where all have you lived?
@@ -144,9 +156,13 @@ did you travel a lot?
 
 how many places have you visited?
 
-Where do you go?
+Tell me about some of the places you have been on a vacation?
 
-Do you go on vacation?"
+Do you go on vacation?
+
+What all places have you visited?
+
+Are you fond of travel?"
 dandavis_A11_1_1,Background,"I was a terrible student. My high school's early grades were mediocre, when I talk to my high school counselor when it's time to go to college he said you have a very good test scores Mr. Davis but you have no achievement. You will never amount to anything and I don't know what to do with you. When I got to the university of Colorado my first two years were a disaster which occasion my leaving the university, working for a bit, and then enlisting in the service during the Vietnam War","What kind of student were you?
 
 How were you in school?
@@ -180,7 +196,9 @@ When did you sign your Navy contract?
 
 When did you start your Navy career?
 
-when did you enlist?"
+when did you enlist?
+
+When did your journey with the Navy start?"
 dandavis_A13_1_1,"Background,Navy",I am retired from the military and no longer serve active,"Are you currently serving in the military?
 
 Are you currently in the Navy?
@@ -208,7 +226,13 @@ Are you high up in the Navy?
 
 What is your position in the military?
 
-Are you a boss in the Navy?"
+Are you a boss in the Navy?
+
+What is your post in the Navy?
+
+Are you a commander in the military?
+
+Do you have a senior position in the armed forces?"
 dandavis_A15_1_1,Background,"During my years in the military I started out as a private in the marine corps and finally retired as a commander in the Navy during all that time I was in cryptology. I started out as a Morse code intercept operator and then was sent to language school to learn Vietnamese, did active duty is that but when I was in the reserve duty, most my reserve duty was done as an officer where I was setting up cryptologic training programs and cryptologic activities for the enlisted people. In retiring as a commander I had a unit of about ninety people in Denver, Colorado they're all cryptologists, largely from the navy but a few marines and one Air Force officer","What was your duty position while in the military?
 
 what was your duty in the military?
@@ -219,11 +243,13 @@ what were your tasks in the military?
 
 what did you have to do in the military?
 
-What�s your job?
+What job function did you have in the military?
 
 What do you do?
 
-What did you do in Vietnam?"
+What did you do in Vietnam?
+
+What roles did you have in your job at the Navy?"
 dandavis_A16_1_1,Jargon,"I am the commander which is one of the senior officers below admiral. The three stripes on my shoulder boards indicate that I am a commander which is called O-5, which is the pay grade and the star indicates that I am a line officer that means that I am expected to participate in actual combat kinds of duty as opposed to a staff officer like a chaplain or a doctor or a jag officer a lawyer, so I am I am unrestricted line which means I could command the ship if called upon to do so","What does your ranking stand for?
 
 what is your current rank?
@@ -238,7 +264,9 @@ are you highly ranked in the military?
 
 How powerful are you?
 
-What is your rank?"
+What is your rank?
+
+Do you have a senior post in the Navy?"
 dandavis_A17_1_1,Background,"virtually everyone in the military is an officer of one kind or another. After you go through your first three pay grades E-1 through three the next pay grade is either noncommissioned officer in the ground forces or petty officer in the naval forces. Above that we have a warrant officers who are technical specialists who rate between a non commissioned officers and commissioned officers, and then you have commissioned officers. I am a commissioned officer now but served for eight years six in the marine corps and two in the navy as a non commissioned officer or petty officer","Are you an officer?
 
 Do you have a high rank?
@@ -251,9 +279,9 @@ Do you have a leadership role?
 
 are you the boss in the military?
 
-are you an officer?
+What is your position in the Navy?
 
-Are you an officer?"
+Do you have an officer role?"
 dandavis_A18_1_1,Background,"After being elevated from lance corporal to a corporal in the marine corps I was considered a non commissioned officer and my reporting seniors thought that I had excellent potential and wrote good fitness reports for me. When I got in the reserves I was cross service from them and E-6 staff sergeant the marine corps to E-6 cryptologic technician first class in the navy. After serving there for two years I took the chief's exam and I passed the chief's exam which meant I would be promoted to chief petty officer when that position became available. But a program came about called the direct commissioning program where experienced people like myself were offered a chance for a commission so I was a direct commission based on my previous service and activities and became commission at that time as an ensign O-1, and then after that was promoted regularly based again on reviews from my seniors","How did you get to your current rank/position?
 
 how did you become an officer?
@@ -268,7 +296,9 @@ what was your career path like?
 
 Did you elevate in rank over time?
 
-What did you do to go up in your career?"
+What did you do to go up in your career?
+
+What does it take to reach to the position you are now?"
 dandavis_A19_1_1,"Background, Combat",My experience in Vietnam during the combat action there was very rewarding and other number of the men who served with me there with whom I still correspond regularly on the email circuit also said it was one of the best years in their life. It was the most involved and committed duty I've every done and I really have to say the year I spent in Vietnam was the best year of my life,"What was it like being in war?
 
 What is war like?
@@ -340,7 +370,9 @@ Was everything you did in the Navy about technology?
 
 Did you do different things in the Navy?
 
-Do you have to build trenches?"
+Do you have to build trenches?
+
+What kind of work did you do outside cryptology?"
 dandavis_A23_1_1,Training,"One of the things that I think the military is very good as training I had excellent training when I was in the service- both basic infantry training and the technical training I had. I spent almost a year in Washington DC learning Vietnamese. I spent six months in Pensacola learning how to do Morse code so I could do that as well and then I had good training before I went to Vietnam which they called staging training, where they get you prepared to to fight if that's required of you. Training beyond that, had I stayed in, would have been excellent as well but when I got in the reserves I got good training every time I went on my two week duty or my weekend duty","What is the training progression and what is it like?
 
 What is the training process?
@@ -428,7 +460,9 @@ What is an officer?
 
 How does the E ranking system work?
 
-what does an officer do?"
+what does an officer do?
+
+What are the duties of your position in the Navy?"
 dandavis_A27_1_1,Jargon,An NCO or petty officer in the navy is a non commissioned officer and that means there are people who have certain responsibilities in leadership but people who have not gotten a commission from the president of the United States. So they are the kind the middle managers of the military organization. Typically the word flows down from the admirals the generals chief of staff through the senior commissioned officers to junior commissioned officers who who then pass the word on to the chiefs and senior sergeants who then pass the word on to the enlisted personnel,"What does NCO stand for?
 
 tell me more about NCO
@@ -443,7 +477,9 @@ who are petty officers?
 
 Are there middle managers?
 
-who are above enlisted peronel?"
+who are above enlisted personnel?
+
+Can you explain an NCO?"
 dandavis_A28_1_1,"Background,Navy","I think the military these days is in excellent place for acareer. You get better training, better travel, better stability and a chance to test your own medals. One thing that is true about the service is it will show you that you have strengths that you did not know you had before you went in","Is the Navy a good place to have a career?
 
 What are the major benefits of doing this kind of work?
@@ -458,7 +494,9 @@ Should I join the Navy?
 
 Is having a career in the Navy a good idea?
 
-What kind of career is being in the military?"
+What kind of career is being in the military?
+
+Do you think that working for the Navy is a right choice?"
 dandavis_A29_1_1,JobSpecific,"A typical day for a cryptologist is to spend eight hours of that day on what they call watch, which means your duty station would be to go into your office or your facility or your bunker and you would have some duties of analyzing data that you had received in producing reports. You would do that for eight hours without break, if you needed to have food the food would be brought to you on station and then at the end of that eight hours you would have typically sixteen hours off. But in most combat or other kinds of emergency situations you would work up to twelve hours a day doing your technical job. When your state side, your duty would probably be like four to six hours today with a lot of off time a lot of slack time to make up for the extra time we had to put in when you were in a combat situation or deployed overseas","Describe the work you do on a typical day.
 
 What is a regular day like?
@@ -490,7 +528,9 @@ How has your life changed out of the Navy?
 
 What do you do after the Navy?
 
-How is it being retired?"
+How is it being retired?
+
+Are you retired?"
 dandavis_A31_1_1,"Money,Navy","The navy pays a lot better than the civilian population thinks about. The best way to find out what people are in the navy is you can go to computer online and look up the navy pay scales. But navy pay is comparable to civilian pay in almost every one of their levels of of competence, which means when you first joined up a you're getting a decent living wage and by the time you retire you're making as much as your civilian counterparts are. So like a navy captain is is making you know order a hundred thousand dollars a year.","How much money do you earn working for the Navy?
 
 How much do you earn working for the Navy?
@@ -558,7 +598,11 @@ What problems do you see regularly?
 
 Do you run into problems?
 
-Is the military every boring?"
+Is the military every boring?
+
+What are the different kind of challenges you face in your line of work?
+
+What are the different hurdles you face on a day to day basis?"
 dandavis_A35_1_1,"Lifestyle, Culture,Navy",the reading of history indicates that alcohol has been an issue with military people since time immemorial and it is still a problem today to some degree but it is the eve important part of the military experience in my own take on of the history of of the military and it is surprising to me that even though the people I knew in the military drank proficiency amounts of liquor and beer and wine when they got all the military went back to family life of very few of them had any problems with alcohol so the word alcoholics per se but they resist used to drinking a lot in the military so I think is there no more problems with drink in the military than there are civilian life,"What kind of issues are there with alcohol in the Navy?
 
 Is alcohol an issue?
@@ -573,7 +617,9 @@ What happens when sailors get too drunk?
 
 Is alcoholism bad?
 
-Can I drinka lot?"
+Can I drink a lot?
+
+Can you have booze in the military?"
 dandavis_A36_1_1,"Lifestyle, Colleagues,Navy","I think my relationship with my friends in the military was the most critical factor in my life ever, and it had the biggest impact on how well I was able to do in the military, and is continue to have an impact after I've got off active duty and retired. Every week I will hear an email from one of my military buddies guys I was in Vietnam with or served in the navy reserve with, we're still in contact with each other, those friendships seem to last forever","How much did your friends impact where you ended up in your career?
 
 Did your friends impact your career?
@@ -631,7 +677,9 @@ What uniforms do you have to wear?
 
 Do you have to wear the same uniform every day?
 
-Are the uniforms comfortable?"
+Are the uniforms comfortable?
+
+Do you wear a lot of different uniforms everyday?"
 dandavis_A40_1_2,"Lifestyle,Navy","One of the things they really convince you is true in the marine corps and I don't think I've ever met a marine who didn't believe it, was wearing the uniform as a matter of great pride. So the marines put that in me and it's been in me ever since and I've really enjoyed wearing the uniform. But I did have one commanding officer who like to wear the uniform so much that would we'd fly with some place in the reserve for the weekend, when we came back from that trip, he would always make sure we waited till the last minute, so we didn't have changed it a time to change into our civilian clothes before we got on the plane so we always fly home in our summer whites, which your white shoulder boards with the ribbons and everything because he loved to fly wearing uniform. We always got good comments from the people on the plane","Did you like wearing the same uniform?
 
 Do you like your uniform?
@@ -703,7 +751,9 @@ What�s wrong about your career?
 
 If you had to do your job over again, what would you do?
 
-What would you do differently?"
+What would you do differently?
+
+If given a chance, what would you change about your career?"
 dandavis_A44_1_2,"Future,Navy","What people do after the get off active duty depends on the experiences they had when they were on active duty. Some people, at least temporarily, are so bitter about it that they don't want anything to do with the service and want to get as far away from it as they can, and what they try to do is find a complete new way of life. People who enjoyed it or stayed with it all the whole time that they finally retired from it, frequently go into duty that has something that's related back to their military service. In my case I wound up doing military simulation work for all the universities I worked with","What do most people do after leaving active duty?
 
 What happens when you get out of the Navy?
@@ -876,7 +926,9 @@ Can I switch positions in the Navy?
 
 Can I switch careers?
 
-What if I�m not good at Navy work?"
+What if I�m not good at Navy work?
+
+Does Navy provide you enough flexibility to switch careers?"
 dandavis_A55_1_3,"Military, Opportunities, JobSpecific, Decisions","Sometimes the original choice you made for a branch of the service was based on erroneous notion of what they would be doing and after you've served, while especially if you've served with some of the other branches you may say ""gosh I wish I hadn't joined service A, I wish I'd join service B instead"". If that happens what are the options you have and I would have to tell you they're pretty limited. If you signed on the dotted line saying I will serve for six to eight years what have you signed for in service a. They put a lot of money and you investing in boot camp for your non productive and in your training where you're non productive and they finally got to the point where you're productive, they're disinclined to say ""well okay we'll just call it even and you can go join another armed force"". So it's very very difficult to change forces except between enlistments. I enlisted originally in the marine corps, did four years active duty then did two years of non pay reserve duty, in which I was going to drills but not getting paid for it. But I finished up my entire six year enlistment before I got my honorable discharge from themarine corps, reenlisted but in the Navy, enlisted the navy as an enlisted person then got commissioned later on. That worked out fine, the marine corps is happy, the navy's happy, the only problem is mine marine corps buddies arent happy because that they consider that an act of treason for me to join the Navy. They would've been happier if I'd join the Russian army that for me to have joined the Navy","Can you change branches? Can you switch to the Army or Air Force?
 
 Can I switch branches once I am in?
@@ -947,7 +999,11 @@ How many languages do you speak?
 
 Do you speak languages other than English?
 
-Do you know Vietnamese?"
+Do you know Vietnamese?
+
+Are you bilingual or multilingual?
+
+Do you speak more than one language?"
 dandavis_A60_1_3,"JobSpecific, STEM","The solution of technical issues in the stem fields is always very very interesting and I have had in both my military and my civilian life technical issues confront me which I had to work on. To give you an example in cryptology without going into anything is pretty good classified if I can, we were all looking at how to recognize the particular non voice signal that is an electronic signal that was propagated, but had to be identified, and the question was 'could you identify it better by ear or by a oscilloscope tracing?' And the oscilloscope tracing gave you some parameters that could be compared for instance by digitizing the the aveform and analyzing the digitized waveform. We found strange slid off that the human ear was better at detecting the difference signals and it could detect that kind of equipment that was emitting that signal and surprisingly enough, it's hard to explain the physics in the physiology of this, it could even detect a particular machine. That is the signal is different enough that the human ear listening could couldn't even tell you what the difference was, but they can say that's machine in place A-prime and the other single was machine via place B prime. And think about that when you hear my voice compared to Cary Grant's voice how can you tell it's me and not Cary Grant or vice versa. You just do as somehow you can pick out those very fine different sets of technical issues. Technical issues in the civilian world looking at payroll processing how you break down a huge problem and rode on a bunch of processors, used to be just ten or twenty, but then I got to use hundreds and then thousands and then tens of thousands of processors that's a very interesting theoretical issue and a practical one that I had to solve.","Describe a particular technical issue you've had to solve on the job.
 
 What is an example of a technical solution you've found?
@@ -958,7 +1014,9 @@ What technical issues do you solve?
 
 Can you give an example of a technical problem you solved?
 
-Do you have to be a technical expert?"
+Do you have to be a technical expert?
+
+Can you tell me about a technical hurdle that you have overcome as part of your job?"
 dandavis_A61_1_3,JobSpecific,some of us are born loving technology and were more loving people and it just seems like we never have enough time for either one of them or both so the question is in the kinds of work I've done how much time do you spend sitting with technology and how much time do you spend with people I would have to tell you in both my military and then civilian careers I spent probably equal amounts of time with both those and I enjoyed that kind of balance in my life in my military time there were lots of times we working it technically sure cryptologic issue where you had to work alone and you had to tune out anybody who's around but on the other hand almost everything I've done in the military including best kind of analysis was done in a room full of people doing the same sorts of things I was doing and people whom you could turn and say Hey Joe have you been able to figure out how the Abercrombie from food network's the need to know Dan how about this one and you work it out together on the other hand as a civilian yet nothing I love to do more than sit at my computer and I am in the flow doing code that the world just goes away but when the other things I love to do is go to a conference in running the booth and talking everybody who comes to my boots but kinda work we do so I love both in again civilian military fifty fifty technology and people,"How much of your time is spent with people versus with technology?
 
 Do you spend all of your time with machines?
@@ -971,7 +1029,9 @@ Is it boring working on only technology?
 
 Do you love technology?
 
-Do you like your job?"
+Do you like your job?
+
+How much of your job is about people skills vs technical skills?"
 dandavis_A62_1_3,"JobSpecific, STEM,Navy","The question often comes in management circles, ""how much do you tell the troops?"", ""how much do you tell your employees?"", ""how much is too much?"" A lot of people have a problem with telling the people working for them too much because they say my power is I know things my people don't know therefore they will have to come to me to find out what's going on and I will be powerful. I've never felt that way. I've always felt like you should flow everything you know down to the people. Let them sit through what they want and retain what they don't. And you keep your ears open for anything falling back up. So you know what's going on. So I feel like I've always tried to get everybody understand what my goals are and try to understand what my bosses I would say the military is probably better at articulating the goals of the organization. Setting forth the objective and letting people know how they really should behave. The famous military historian Kagan has pointed out that Ulysses Grant was very good at saying 'you need to take your division a move to that side of of the line,' he would say you need to move that side of the line so why because I need someone to support over there with artillery to keep them from moving in that direction, so you need to block them. So the guy knew what he was supposed to do not just what he had to do- but what am I supposed to accomplish. Civilian life I've had some bosses who never really explain to me what it was I was supposed to be accomplishing, or how it would be great to accomplish. Sometimes it's good sometimes it's bad but I think that military does a better job than civilians.","How much do you understand the overall goals of what you are doing?
 
 Do you understand the goals of your work?
@@ -1057,14 +1117,20 @@ What is a port call?
 
 What does port call mean?
 
-Did you work out in the sea?"
+Did you work out in the sea?
+
+Can you tell more about ""in port""?"
 dandavis_A68_2_1,"Jargon,Navy","The Navy historically has had a different way of assigning a break what we would call Reagan most services to its sailors and that is called their rate. In my case when I was a cryptologist, I was a C. T. ,cryptologic technician, one, which means I was like A six of which would be a staff sergeant in the army and that was my rate. C. T. on the other hand is what they call a rating and that describes the kind of work you do in that case you're a technical person working on cryptology. That is, the understanding the analysis and the breaking of codes.","What is a rate?
 
 What does rate mean?
 
 What does the Navy call specialities?
 
-What's the way to tell what a sailor does?"
+What's the way to tell what a sailor does?
+
+Does Navy follow a way of categorizing the specialities of sailors?
+
+Can you explain what does rate mean with respect to the Navy?"
 dandavis_A69_2_1,"Background, Military,Navy","Well I had kind of an interesting way to go through the service. After I'd work my way up from boot camp to morse code training to language school to some advanced training and then duty in combat zones. I got out of the Marine Corps and joined the Navy because I got all that the Marine Corps and had gotten out of the Marine Corps as a staff sergeant and A six, the Navy let me list as an E six cryptologic technician interpretive branch one. So it is a first class petty officer CTI one. That was my first position and that position is charged with doing various translations of foreign languages that are products of the cryptologic process but I think it's by as much as I can see about that.","What was your first position in the Navy?
 
 what rank did you start as when you joined the Navy?
@@ -1103,7 +1169,11 @@ did you get to visit vietnam?
 
 tell me about your deployments
 
-tell me about the places you have visited when you were deployed"
+tell me about the places you have visited when you were deployed
+
+What all places have you been deployed to?
+
+Can you list all the place of your deployment ?"
 dandavis_A72_2_1,Background,"You know discussing nine eleven with people is an interesting phenomena. It's one of those things you have to know somebody pretty well to di in deep to your emotions. But let me just say this about my feelings of nine eleven. I was in Hawaii. I was one of the directors at the now a high performance computing center for the University of Hawai and my daughter called me and said Dad go to the TV there's a terrible thing happening in New York. So I got to the TV before the second tower was struck, and I watched all of that. I'd have to say the major impact on me was one of stirring of aggression. I like the old firehouse horse when he hears the alarm bell go off he charges to get ready to take the horse drawn fire engine to the fire site. I just wanted to go someplace and do something and wanted to be part of it. So my my first impression was one of of anger. How can anybody do that to us? And the second one was let's go get em. But late again and I think I have to know you like better than I know you do go much deeper than that about what I felt on that day.","What was 9-11 like for you?
 
 Did 9-11 make an impact on you?
@@ -1185,7 +1255,9 @@ does popular culture imagine your job decently?
 
 How do you look in uniform?
 
-Does everyone look really athletic?"
+Does everyone look really athletic?
+
+What do you think is overrated about your job?"
 dandavis_A76_2_1,"Misconceptions, Military,Navy",I think a major misconception about the Navy is that the leadership barking orders and being snotty to everybody. I feel like the Navy and to some degree in the Marine Corps are much more management oriented. Your commanding officer in the junior officers and the senior petty officers and senior NCOs over you are there to try to make your job useful and to keep you in good shape and your morale up. So I think it is a misconception that everybody in the military is marked net that just harsh treatment to end up high display there's a lot more it's more team spirit much more a quarterback in the huddle then the drill instructors screaming at you on the drill field and that's that's been my experience and I think a lot of people still make that mistake largely driven by movies who seemed invariably characterized lawsuits as stupid and malicious and evil and violent people and that's just not been my experience with,"What are some of the common misconceptions about the Navy?
 
 What are some of the common misconceptions about your field?
@@ -1275,7 +1347,9 @@ Do you move a lot?
 
 Do you get stuck in one place?
 
-Do you enjoy moving?"
+Do you enjoy moving?
+
+What journeys has your career take you on?"
 dandavis_A82_2_1,Military,"I think the greatest whole work in the military is the camaraderie of the unit camaraderie that allows you to get through combat while she gets you personal loss, allows you to get through injury,  allows you to get through incredible stress and survive that's you see some of that in civilian life. You see some more of it in some kinds of civilian life like police work or firefighting well you get that kind kind of camaraderie but I think it's really a hallmark of the military. The other hallmarks of the military and in the American experience anyway as is the rotation system where you hardly ever any place longer than about two years. So things are always changing, you jobs changing. You work you're doing its changing, the kind of work you are doing is chaning. You're not just going to be a letter carrier for your entire years of life. My father in law did nothing but deliver the mail for the post office fourty years and he loved that. I think that I would not look I love the military where you'll be a linguist here you can go be a cryptanalyst there you go be a team leader here you can go be a unit leader there you can rise in rank you can go different places that kind of progression I enjoyed go back to it tomorrow if I had the opportunity.","What do you find unique about the military?
 
 What do you find unique about your career field in the military?
@@ -1361,7 +1435,11 @@ Is failure, even if it is not your fault, held against you?
 
 Do you get blamed if something does not work?
 
-How severe is failure at work?"
+How severe is failure at work?
+
+What would happen if you mess up?
+
+How bad it is when you screw up something in the Navy?"
 dandavis_A88_2_1,"Growth/learning, STEM, JobSpecific,Navy","I think most of us start out working in the field where we would like to think that we're gonna have an opportunity to improve yourselves and it grows human beings and that's a major call all of us. The military really does give you that opportunity and it sets out early on you know the day you enlist they give you and enlistment or a commission you know who the top dogs. They wear a different uniform they have different rank they get paid a different amount of money and you know that if you're gonna do the kinds of things you want to do you've got to get to all those senior ranks so I think I think in the opportunity to grow in those fields almost built into the military people know about it they're able to mentor you about it help and they are able to help you do tha. Civilian life especially academia's not quite so clear cut and it's not so often people will say well if you do this you can do that. For instance, if you go to work for a tenured professor on campus as a secretary the chance that you could ever become a tenured professor is next to zero you know it requires preparation and training you will never had and you can never really get there so the opportunities to grow vary depending on who your bosses and a lot of that's personality driven more than organizationally and I would say there's been a number of bosses I've had academia who really want to see me grow and then there's been a number of bosses who were just well you can if you want to go, but I am not going to go out of my way to make it happen.","What range of tasks and opportunities does this field present to allow me to grow?
 
 Can I move up?
@@ -1372,7 +1450,11 @@ Is there always something new to learn and master?
 
 Why do people choose this field?
 
-Are you able to grow as a person in this field?"
+Are you able to grow as a person in this field?
+
+is there scope for career growth in your field?
+
+How growth friendly is this field?"
 dandavis_A89_2_1,"STEM, JobSpecific,Navy",When you talk about the environment you'll be facing once you get into a job that can vary all over the map both civilian and military life. In  military life I have done my technical tasks in a room full of electronic equipment in a carefully air conditioned and beautiful modern building with restrooms down the hall and a snack bar that I can get to easily and all the comforts of home. I've also done my job with a single radio and antenna in a tent in the cold weather in North America and I've also done my job in a bunker right on the DMZ in Vietnam where I was one of the few people in that area who even knew what I was doing for a living. So things change a lot of the military about the kind of technical environment you had in civilian life that technological environment in which I lived has always been a good one you know I've I've lived in modern buildings in modern offices stack of all the most modern equipment sometimes equiment so how off the press so to speak that nobody else in the world had that like the quantum computer we have here at USC there only two or three of those operational around the world we've got one of them so it it is been a joy to do that if you're in a smaller university or college of course it should be a little less plush but still very nice working and living conditions.,"Describe the technological environment in which you've worked.
 
 What is the technology around you every day?
@@ -1383,7 +1465,11 @@ Do you work with fancy gear or just regular tools?
 
 Do you work in a lab or on-site?
 
-What is the technical tasks like?"
+What is the technical tasks like?
+
+What can you tell me about the technical environment that you work in?
+
+How would you describe the tehcnological environment that you work in?"
 dandavis_A90_2_1,"Culture,Navy","No matter what professional field you get into you will probably have a number of professional organizations they can be of assistance to you in doing your job and getting promoted. Sometimes these may be associations, professional associations, sometimes they may be sections of the military for instance they're in charge of getting you trained and educated to move up the ranks so you have to be alerted. So in my case I was able to move ahead in the military because there were a number of schools that were set up in their number of curricula set up that would encourage you to proceed further in cryptology about a lot of the work and if you could tell cryptology was personal study you know I could talk to you for hours about the history of cryptology and the military throughout the ages and and that was all part of my skill as a cryptologist. I also have studied a plethora of foreign languages so that when we were in Vietnam for instance I was to go to the linguist when somebody heavy foreign language they recognize they would bring it to me and say what languages is it and I would be able to tell not because that military training helped me learn that because my own private study had exposed me to those languages someplace where I can remember what they were like and that was that was useful. In the civilian world, the association of computing machinery (ACM) which is the major professional organization for people doing research in the computers and computer usage  and they've been very good about keeping me informed about what's going on what jobs are available. So find out what your field has for professional organization and join up you should do that. In the Navy, I belong to the Naval institute which publishes proceedings which is a monthly magazine discussing naval issues also important to me.","What organizations were most helpful to you in your career?
 
 What organizations are important to your work?
@@ -1394,7 +1480,13 @@ Should I join any professional groups?
 
 Is it worth joining honor societies?
 
-Are you a part of IEEE?"
+Are you a part of IEEE?
+
+Have you been a part of ACM?
+
+Did you find any organizations that played an important role in your career?
+
+Can you list any organzations that you found useful for your career?"
 dandavis_A91_2_1,"Risk, JobSpecific,Navy","Risk taking is always part of any employment or any career path and you need to be alert to those and you need to analyze them carefully. To some degree the degree of risk will be dependent on your personality but on the some people like my father in law who did the same thing, many of us don't like any kind of change some of us like the excitement of trying new things and going to new places you can do operator in that field so you have to decide on your own how much risk you want to take but in virtually every fields the people who get ahead the most will be those who can analyze and take the right risk when it's time to take them. Those who get ahead by avoiding risk and just doing their job even if they get promoted may not have the sense of satisfaction that those who push the envelope right to the edge got from their job.","What kind of risks do you need to take in this field?
 
 Is this dangerous?
@@ -1409,7 +1501,9 @@ How bad is the risk?
 
 Can you die easily?
 
-Is risk rewarded well?"
+Is risk rewarded well?
+
+Are you encouraged to take risks in your job?"
 dandavis_A92_2_1,"Impact, JobSpecific,Navy, Positive","One of the things you find out in life is not just the money you make it's the your sense of what you did that made a difference in the world that will determine whether you consider your career a success or a failure. In the military, the work I did, cryptology, there are numerous examples in history about the effect of cryptology. The work from World War two were probably the most at stake was the fact that the US solve the Japanese naval codes in World War two allowed them to predict exactly what the Japanese were planning to do for the battle of midway and ambush the Japanese fleet, thereby sinking a huge number of Japanese carriers, I think three or four carries with some fair along with their pilots in airplanes and made it such that the Japanese never could replace, probably the major turning point in World War two in the Pacific. In the Atlantic, our ability to break because the Germans were using to station their submarines allowed us to win the war by keeping the sea lanes open to Great Britain so that's been a big difference. In computing, supercomputing, and academia clearly you know we were the ones rocking and rolling in the computer field so I feel like we're changing the world every day.","How can your work change the world?
 
 Is your work important to all of us?
@@ -1477,7 +1571,9 @@ What kind of person would you want to meet?
 
 What pop icon would you want to meet?
 
-Are there any musicians that you�re into?"
+Are there any musicians that you�re into?
+
+Do you have a role model that you would like to meet?"
 dandavis_A96_2_2,"Motivation,Positive","Over my adult life almost every job I had to be very personally satisfying. Back for my start working on the call growing up pikes peak all the way through to my last job as an academic for the University of Southern California, I felt like I was doing that important and interesting and constructive work and just have really enjoyed all of it of course my time in the military was my best times of my life and if I had one you live over again it would be my year in Vietnam and I just felt very satisfied about my contribution to what we're trying to do there and so my satisfaction comes from just being part of the team, doing really good work, and enjoying each other while we're doing it.","What kind of personal satisfaction do you get from your job?
 
 does your job make you feel good about yourself?
@@ -1616,7 +1712,13 @@ What was your GPA in high school?
 
 Did you get good grades in high school?
 
-Did you get good test scores?"
+Did you get good test scores?
+
+Did you struggle in school?
+
+Do grades in school matter?
+
+Do you have some tips for someone who is flunking in school?"
 dandavis_A105_2_2,"Advice, Challenges","There were a couple of problems going through any group there are bullys in every group and the bully will always target the people who he thinks he can bully the easiest this makes it tough on everybody I've never been on the aggressive fighter never been particularly athletic so I've been the target of a lot of bullies in my life. You know it's hard to put up with it but hardly ever fatal or hardly ever leads to any kind of permanent injury, I think organizations should be alert to bullying and take care of it better, but for individuals I think the best thing to do is just look inside yourself, think about what's bothering you think about whether it really matters, often the bully is relying on the fact you'll be embarrassed to have been pushed around by somebody and if you don't care I can laugh off or make a joke about it often they'll go away and leave you alone god help you if you've been bullied if I'm around let me know I'd help you to.","What advice do you have for people who are being bullied in high school?
 
 how do you handle tough guys?
@@ -1631,7 +1733,9 @@ What was high school like for you?
 
 Are there bullies in the military?
 
-Do bullies effect you negatively?"
+Do bullies effect you negatively?
+
+How to handle bullies in school?"
 dandavis_A106_2_2,"Advice, Challenges","I think you should be prepared to go to college and I don't think I was very well prepared college I had very few instructors who drove me to do the kinds of work I was able to do I think to some degree a lot of the instructors I had a high school weren't aware of the kind of work I could do, so I think it's kind of difficult to say what you need to do to get ready to go to college but I think the most important thing is you have to learn to think not just regurgitate what you've been told, but think and analyze think and analyze argue it out with your friends take a position that you don't even like and see if you can convince them your position is correct and learn to write an articulate your ideas.","What were some of your fears entering college?
 
 What were some of your fears entering college and your career?
@@ -1691,7 +1795,9 @@ What advise can you give me that can help me in picking the right career field?
 
 how do I pick the right career field?
 
-When did you switch from nuclear tech to computer science?"
+When did you switch from nuclear tech to computer science?
+
+How do you know which is the right career field for you?"
 dandavis_A110_2_2,"Advice, Fit, Motivation",if you're looking around for something you really love to do I think a best way to fight it is to think what do I do when I go home tonight what will you want to do if everybody just leave me alone what what I want to do but I want to be with a friend want to be with the big group of people well I want to be all alone what I want to read what I want to watch a movie on TV what I want to go out to the mall and be with thousands of people around what do I want to do what do I enjoy doing everyday what can I stand the thought of doing what is so terrible don't make me do that what one more time I'll kill myself you know look at who you are and then that will tell you what you want to do that will tell you what you want to do then find a career feel that does that and carefully study that group feel the make sure that crucial does,"How do I find what I love to do?
 
 How can I find what I am passionate about?
@@ -1717,7 +1823,11 @@ I'm stuck in selecting my career path. Can you help?
 
 What should I do if I don't know which job would suit me best?
 
-I�m wondering what I should do"
+I�m wondering what I should do
+
+Is it bad when you don't have a fixed plan for your career?
+
+Is it necessary to have a fixed plan for your career?"
 dandavis_A112_2_2,"Resources, Advice, Mentor, Decisions",as you're making her choice number people you wanna talk to my experience has been people who really should be the best you will talk to frequently let you down the vice I got from high school counselors from I was not productive and in retrospect the people I should have been talking to our professionals in the field I should have talked to people who did it for a living and said what is this work like and that would have been a good thing to do is talk to people like that the other thing good to do would be to talk to somebody who does not have a dog in the fight a military recruiter frequently has on his recruiting criteria the people he needs to recruit this month so he may try to talk you into being in a field that you really heart right for but it's gonna satisfy us to be careful about that but by and large the best people to talk to are the people who are in the field and try to find people of fields we love it and those who hated because they'll give you two different stories and you really need both stories before you can make a choice,"Who are the best people to talk to when making a career choice?
 
 who should I talk to first?
@@ -1758,7 +1868,11 @@ What did you never ask but wish you had?
 
 One question you wish you had asked before?
 
-Is there something you wish you had asked earlier?"
+Is there something you wish you had asked earlier?
+
+Is there any question that you wish youhad asked earlier?
+
+What is one question that you should have asked?"
 dandavis_A115_2_2,"Advice, Failure, Future",we all come into the world with the notion about who we are welcome in the world with the notion about what's going on around this I don't think any of us early on has to face the really definitive issue of critical thinking we like to believe was gonna make us happy with white to believe that things can work out alright or optimist by nature by Darwinian selection we've become often and we don't really ask the hard questions why is this a good place what could go wrong what are my chances of succeeding have in mind actually qualified enough to do this I knew tons of guys when I was going through college who are committed to going to medical school but to get in the universe Colorado medical school you had the past two semesters of calculus and some of them did not have the right wiring in their brain to do calc they just couldn't do and so somebody they should have done some critical thinking with those P. to say look if you can't do calculus you want to be in the medical field maybe you should do something different maybe should be a clinical psychologist or maybe you should become a radiology technician or something else so you can do the work or become a male our inner female are in you know the other things you can do besides being an MD if you want to do this hello corpsman in the navy or a medic in the army but but you know we all want to fantasize about who we are and who are going to become and without asking the hard questions what is it do I fit can I make myself into that mold our largest you know like that appealed,"What is the most common mistake you see people make when making decisions about the future?
 
 what mistakes should be avoided while making future decisions?
@@ -1903,7 +2017,15 @@ did you dream of doing a job like this?
 
 did you have dreams of being something else?
 
-do you remember what you used to think you wanted to do as an adult?"
+do you remember what you used to think you wanted to do as an adult?
+
+What was your dream job when you were a kid?
+
+Did you have a dream in your initial years?
+
+What was your childhood dream?
+
+Did you accomplish your childhood dream?"
 dandavis_A124_3_1,Background,"You know I think of the things that's true about high school is, when it comes to athletics there is a focus on the top ten percent of the class that is really good at some athletics. The varsity team players and not much else. I'm not particularly athletic and so there were no sport I particularly cared for. I played a little basketball because I'm tall and six six, but I can't run so I didn't like that very much didn't play the other team sports and so they just drift through life. As a young adult I found out about volleyball turns out and I'm a very good volleyball player. I even got accused of being a semi pro once during a volleyball match in the navy. So I can't say I'm very good at anything but I certainly did enjoy volleyball and if I was in charge of the world, I would change the way we do athletics in high school. I'd try to help everybody find a sport in which they could excel and play with joy instead of just paying attention to the varsity athletes and everybody else has to do calisthenics.","What sports did you play in high school?
 
 were you an athlete in high school?
@@ -1916,14 +2038,20 @@ are you athletic?
 
 what did you do in high school?
 
-did you do any activities or extraurriculars in high school?"
+did you do any activities or extraurriculars in high school?
+
+Were you into sports in school?"
 dandavis_A125_3_1,Background,"There's a series of questions about favorites that always kind of puzzle me. And the one the puzzles me the most is what is your favorite color. I don't have a favorite color, I can't imagine you would have a favorite color. I like combinations of colors I like all colors. Some colors look better sometimes than other colors. So favorite color doesn't makes sense to me, I guess that's a gene I got that I'm missing the ability to have a favorite color because most people will come up with something, and I just I don't know what to tell you about favorite colors","What is your favorite color?
 
 do you have a favorite color?
 
 do you have any color preferences?
 
-other than Navy blue, what colors do you like?"
+other than Navy blue, what colors do you like?
+
+Which color do you usually prefer?
+
+Is there a color that you really like over the others?"
 dandavis_A126_3_1,Background,"When I was in language school in Washington DC, I was taking Vietnamese and the Vietnamese all spoke French as a second language and they preferred French because French is a much richer and and intellectual language than Vietnamese. Vietnamese is an agricultural language and doesn't have a lot of subtlety to it, so they all spoke French. So they hired a young woman who had just gotten a degree in French from the university of Maryland to speak French to the Vietnamese and she was almost six feet tall, and as I was six six my marine corps ""oh that one's yours, Davis"". So we corresponded, everybody else got dear John letters in Vietnam, all I got was chocolate chip cookies and one bottle of wine she smuggled through the mail to me, that worked out pretty well. So when I got out I married her and this last August we've been married forty six years.","Are you married?
 
 have you got a spouse?
@@ -1965,7 +2093,11 @@ how many kids in your family growing up?
 
 are you an only child?
 
-how is your relationship with your brother or sister?"
+how is your relationship with your brother or sister?
+
+How many siblings do you have?
+
+Tell me something about your siblings?"
 dandavis_A128_3_1,Background,"I'm six feet six inches tall so there's no food in the world that I don't like. I didn't get this tall not eating I can tell you that for sure, so I like food in general. So my favorite food I guess if I had to pick would be a lobster, because traditionally that's what I've always liked and when I really want to celebrate something I go get a lobster. So but I like all food virtually speaking","What is your favorite food?
 
 what do you like to eat?
@@ -1974,14 +2106,28 @@ what is your ideal meal?
 
 do you have a favorite dish ?
 
-what is you preferred cuisine?"
+what is you preferred cuisine?
+
+Do you like chinese or italian?
+
+Are you a foodie?
+
+Do you like deserts?"
 dandavis_A129_3_1,Background,"At two hundred thirty five pounds it's hard for me to think that I have any least favorite foods. I like eating even though I'm six six, two thirty five is a little on the heavy side but I eat almost everything. Least favorite probably could steamed vegetables almost any kind. I love raw vegetables but once you cook them and they get kinda soft I don't like them much anymore. And the food I never would try or the Philippine balutes, a balute is fertilized egg with the fertilized embryo inside, so little unborn baby chicken, the egg they ferment until it's half rotten then eat it. They're wonderful I never have had one but given the opportunity I think I'd probably pass","What is your least favorite food?
 
 is there anything you hate to eat?
 
 what food makes you gag?
 
-what food do you hate?"
+what food do you hate?
+
+Do you have cucumbers?
+
+is there any food that you'd die but rather not eat?
+
+Do you have food that you really do not like?
+
+Is there any dish that makes you go Eew?"
 dandavis_A130_3_1,"Military, Lifestyle,Navy","You know where things always heard growing up was army food is terrible that people complain about army food all the time. So yeah in the marine corps and I started getting the food the food was great. Jeez, I've really enjoyed the food they fed me. People in boot camp gain weight the food was so good, of course that was put on muscle not fat but it was good and I liked it. Then when I went to Morse code training I went to navy base the food down there was wonderful. I mean was was good and plentiful and healthy and I enjoyed it. And then I went to language school was on a navy base we had good food up there too, and that that was alright. And then I went to my first army base, and the food was... We were in Vietnam and the food was not so hot. And then the first year came and new year's day they give this roast beef and everybody who eat roast beef new year's day in the army Chow got some terrible ill and I ate roast beef and I was sick as I ever been in my life. It was terrible, I mean a whole group of us in my watch section were so sick except the guys who for one reason or other had not eaten the roast beef. But they can be forgiven that was a combat zone, so what do you expect. So then I went to Thailand and because the way the watch section was going, we we usually ate hamburgers in the club or we went downtown Thailand and ate. We didn't eat in mess hall very much. And then everybody in the base start getting sick and they couldn't figure iut what it was, and the CO was going to cancel liberty because he said ""you're getting sick from going down and eating Thai food"" and somebody pointed out to him ""you know the guys who don't eat in the mess hall and the guys who didn't get sick"" I didn't get sick and they found out that the mess cook can't overlook the fact that the Thai workers in the scullery had decided that it was too hot in there, but if you turn off the steam valve to the steam sterilizer for me in the room a lot cooler. So with that kind of a lukewarm temperature trying to do the sterilization, people got very ill. So that was another army base so maybe it's just army food, but the other food I had was wonderful","What is the food like in the military?
 
 how is Navy chow?
@@ -2005,7 +2151,17 @@ how often do you get to shoot guns?
 
 do you fire rifles in the Navy?
 
-does everyone use guns?"
+does everyone use guns?
+
+Have you ever used guns in the Navy?
+
+Do you have a revolver?
+
+Can you shoot in the military?
+
+Have you ever shot someone?
+
+Are you a sniper?"
 dandavis_A132_3_1,Background,"Whenever you dress uniform you see above the left breast pocket the the series of ribbons that are typically the top band of the ribbon that holds the metal that goes with that particular honor, and those ribbons tell a lot about who you are and what you've done and where you've been Because I am a cryptologist and not a hero, the senior ribbon that I have is the marine corps good conduct medal which means I did my job and didn't cause trouble. I had the national defense medal which means I was in the armed forces during the Cold War. I have the Vietnam service medal of which means I did a year's tour in Vietnam and has little stars honored for each campaign I was part of, I have 4. Then I have a couple of medals for the travel and oversee studio I did when I was a reservist, a ribbon that indicates how much time I did reserve duty, and then I have three awards from the Republic of Vietnam civic action metal, the gallantry cross medal, and the Vietnam campaign medal. And they were given to me because of the units I was in in Vietnam, and then I have one last ribbon which is the US navy expert rifleman ribbon, a permanent one because I fired experts three times and once you do that they think if you're that good you you don't have to keep five","What are the ribbons/awards that you've gotten?
 
 which medals did you earn?
@@ -2016,7 +2172,11 @@ what did you do to earn your decorations?
 
 have you gotten any awards for your service?
 
-what are your military acheivements?"
+what are your military acheivements?
+
+Have you ever been honored in the military for your achievements?
+
+What are some of the accolades that you have received in your service?"
 dandavis_A133_3_1,"Military, Culture, Background","For a guy who's been in the navy and the marine corps you might find it interesting that the tattoo I have is not at all exotic or exciting. I have only one tattoo, I have a teeny weeny little dot right in the middle of my sternum here I had non Hodgkin's lymphoma that required radiology treatments and they tattoo a little dot right in your chest so that they can get the exact angle for their X rays every time and focused on that target. And that's the only tattoo I have teeny little black dot right there","Do you have any tattoos?
 
 do you like to have tattoos?
@@ -2027,14 +2187,26 @@ are tattoos common in the Navy?
 
 what tattoos do you have?
 
-show me your tattoos."
+show me your tattoos.
+
+Are tattoos popular among the folks at the Navy?
+
+Is it common to have tattoos in the Navy?"
 dandavis_A134_3_1,"Military, Travel,Navy","When I was in the military got a chance to go overseas quite a bit. I did a year in Vietnam. And during that year in Vietnam I was given the opportunity to do two R and Rs. Rest and relaxation, and those were one week tours, one to Australia and one to Japan. Then when I went back to the states almost immediately I was given opportunity doing augmentation tour to help out the army linguist who were stationed in northern Thailand a place called Udorn Tanay, just south of Vientiane Laos. And so I was put on a plane and we flew to Taiwan, and we flew from Taiwan to Hong Kong, and we flew from Hong Kong to Bangkok, spent a couple days in Bangkok, and then flew up country to Udorn Tanay, where I spent three months and spent quite a bit of time out on the economy, that is traveling around locally in Thailand. And one day we got a special opportunity to go up to the Mekong river and sail up and down the Mekong river on one of the motor boats run up and down the Mekong. When they got in the reserves most of my duty was stateside but I had six tours overseas. One of those tours was Naples Italy where I spent almost three weeks doing augmentation tour. I spent two weeks in London, I did another two weeks in London and then spent three tours in northern Japan, Northen Honshu in Japan at a place called Misawa. So I've been overseas quite a bit, also spent about a week in Okinawa coming and going to Vietnam. Have not been station other than that overseas","Did the Navy give you a chance to live overseas?
 
 have you been assigned overseas?
 
 have you been able to live abroad?
 
-has the Navy moved you to different countries?"
+has the Navy moved you to different countries?
+
+Have you ever travelled overseas for work?
+
+Did you travel outside US for work?
+
+Were you ever posted outside United States
+
+Have you travelled to other countries for duty?"
 dandavis_A135_3_1,"Military, Risk, Culture,Navy, Negative","Crimes the military almost identical to the crimes you find in civilian life but the level of crime criminal activity is much reduced. It always is amazing to people to find out that the murder rate for instance in Vietnam was almost nonexistent. Everybody had a weapon, everybody had a weapon with ammunition, everybody was had orders to carry the weapon with ammunition all the time, and yet they did shoot each other. The few murders that happen in Vietnam were fraggings, that is throwing a hand grenade in to somebody, usually a senior officer, or enlisted person. And a lot of that was racially motivated. So the crimes are not that different than the civilian life but they they're less of them probably because people with really serious criminal activity are not allowed to enlist. Then you have the additional crimes that you don't have in the military that do make up a lot of issues in the military. UA, unauthorized absence. Awol, you know stay out too long without leave, desertion, you know all those things that come about and are already crime in the military that do make up a lot of the activity in the criminal justice","What are common crimes that military people commit?
 
 do the Navy personnel commit crimes?
@@ -2045,7 +2217,13 @@ are crimes common in the Navy?
 
 are military members criminals?
 
-what illegal things do people do?"
+what illegal things do people do?
+
+What kind of crimes do people usually commit in the Navy?
+
+Are crimes common in the Navy?
+
+Do you find officers commiting crime in the Navy?"
 dandavis_A136_3_1,"Military, Lifestyle,Navy","As a junior enlisted person, while most people in the marine corps and the navy lived in open bay barracks, that is you live in one fairly large room with anywhere from twenty to fifty bunks in it.  Frequently the bunks were double deckers, that is there was somebody be the upper bunk and somebody lower bunk sometimes they were single level. Then when you make a NCO level, used to be with then you'd get and one or two man room, and then as you got to be a very senior enlisted you would get a reasonable suite to live in. Although senior listed frequently got married and we're living in married quarters or off camp. So they were all pretty decent. Now of course when you're a combat zone you might be on the field some living in tents, depending on if you're one of the services that does that sort thing. Like the air force doesn't do that very much, and the navy doesn't do that very much, but there were navy linguists with me and Kontin, up in the DMZ. where we were living in bunkers. There was a navy corpsman that was up there with this I stepped on this great big engineering spike that went all the way through my foot, stuck out the top and there was a navy corpsman right there to give me a booster shot of tetanus, and and laughed with me about a stupid thing that was to step on that spike. But living quarters typically for cryptologist was very good","What were your living quarters like in the Navy?
 
 how are the living quarters?
@@ -2071,7 +2249,11 @@ did you get a signing bonus?
 
 do recruiters bribe you to enlist?
 
-is money important"
+is money important
+
+What kind of renumeration do you get in the Navy?
+
+What are the monetary benefits of joining the Navy?"
 dandavis_A138_3_1,"Military, Benefits,Navy","One of the best features the military is the ability to retire at an early age, if you're active duty you can retire after just twenty years of service occasionally eighteen and a half. The service really thinks it's to the other good the service to let you go then. And at that juncture usually get about half your base pay but none of your housing allowances, then you get medical benefits for the rest your life that is anytime you get to a military hospital will take care of you, if you get to the civilian doctor there's something called tricare, that pays kind of like insurance. So you can be taken care of. If you're a reservist the retirement benefits don't start when you retire, they started age sixty. So you have to wait until age sixty before you can retire. And that's still a pretty good deal because at age sixty, then you get a fraction of what the active duty people get, depending on how much drilling you did and how often you went on active duty, you know the like. They have a formulated a calculator that comes up with some portion, but it's it's a nice little stipend that goes longer. So security from your school and work, that is makes it up. It's worthwhile retiring and at age sixty you get the tricare if you want it or if you close to a military base you can go there for medical care as well","Can you tell me about military retirement?
 
 how do you plan for getting out of the military?
@@ -2080,7 +2262,11 @@ what do you do when you retire from the Navy?
 
 what benefits do retirees get?
 
-what is Navy retirement?"
+what is Navy retirement?
+
+Do you get retirement benefits in the Navy?
+
+What benefits do you get after your retirement in your field?"
 dandavis_A139_3_2,"Military, Opportunities, Resources","The hiring process is a difficult one for me to describe with any certainty because I've gone through several and none of them I think has been standard. In almost every case someone inside of the organization to which I was being hired knew about me had asked me to join up with that organization, the only difference would have been the when I joined the marine corps in that case I just went and talked all 4 military recruiters, Air Force army navy and marine corps, and basically ask them who will guarantee me a chance go to Vietnam. And the marine corps was the ones who said ""yeah if you join up you're going to Vietnam"" so that's all there is to it. But when I went into lawm after I got out of law school at new practice with my father who had practiced in Colorado springs for years, so there wasn't any hiring process there, just and work with them. And when he passed away I, you know, exactly what you saw was still practicing law in one of my good friends from the reserve unit where I was working said ""you know I know you're not happy practicing law but why don't you join mark Marietta and work for us on this technical project that requires the kind of clearance you have"". And so I said ""well that's pretty good I'll do that"". So I went there. And then another friend of mine from the, at mark Marietta who's also reservist said ""you know they need somebody out at the Jet Propulsion Laboratory at Mark Marietta to work out there went you see if they'll transfer you out there"", because my wife loves the ocean I thought well that's good will go to Los Angeles and then she'll be able to go to the ocean more. So I got that job because somebody suggested. And while I was at JPL, a project came up that we were kind of briefed on, and we were working on, and fellow who was in the project was the head of the high performance computing center at Caltech, and he kinda liked me, so he said ""Dan, why don't you quit working at JPL for mark and other income work for Caltech and help me run this supercomputing centers"". So I became the assistant director there, again a friend, and then on my own kind of I got to know some people at University of Southern California and one of them said, ""why don't you come to university of Southern California, we'll pay you more than cal tech does"", which is always an inducement. And so I did that and that worked out fine. And then some people who knew me asked me to come try to get the high performance computing center for the university of Hawaii, and I did that so I worked out there for awhile and that that also was kind of fun. And we got to got to do that, so I didn't really have a hiring process in any of those I just kind of somebody grease the skids for me and I got right in. ","Describe the hiring process.
 
 what is it like getting into this line of work?
@@ -2125,7 +2311,15 @@ tell me more about the bootcamp
 
 how is the bootcamp?
 
-is it hard to survive in the bootcamp?"
+is it hard to survive in the bootcamp?
+
+What can you tell about the military bootcamp?
+
+Is the military bootcamp as hard as it is rumoured to be?
+
+Did you find the bootcamp really difficult?
+
+What do you do in the Bootcamp?"
 dandavis_A142_3_2,"Military,Navy","I think the most important people to talk to if you're interested during the military are people you can trust who are in the military who'll give you good data. do not take their analysis in the military correctly. They will sometimes do you the wrong direction, if they didn't like it you'll be able to perceive that very quickly. If they didn't like it listen to it and think ""oh here's what a person who didn't like it will tell you"" and try to find somebody who did like it to give you the other side of the story. So this is critical to me, don't just go by what one person tells you to talk to several people with several different views. When I was commanding officer of the navy reserve unit occasionally we'd get people want to join our reserve unit, and I generally would try to get them a chance to talk to somebody who really loved it and another one of th guys who really didn't care for it much it was going to get out after he served his tour. That would give the best chance to find out what was really like. But listen carefully, intermalize what people say and ask factual questions, well he didn't like it, ""what was it like?"" ""what did you do?"" ""what you do every day?"" ""what was that like?"" ""is that what they did the following day?"" You don't try it trying to pin them down because otherwise you get their kind of political opinion about it, rather than how they felt. It's amazing to me how many people I've talked to in the military said I hated my time there. I ask ""where were you stationed and what were you duties and what did you do for fun?"" And after you talked a little while I've had two or three of them say to me you know now that I think about it I really did have a pretty good time. You know so listen listen critically but talk to everybody, and then go talk to every recruiter you can and listen critically they're trying to talk you into joining their service what what are they saying that you can take with a grain of salt and where they say you can take to the bank","Who do I talk to if I'm interested in joining the military?
 
 what are good sources of information in military?
@@ -2158,7 +2352,15 @@ is there any slack built into your work day?
 
 how important is time management in the Navy?
 
-Is it okay to be late?"
+Is it okay to be late?
+
+Do you have rigid working hours?
+
+How does deadlines work in the military?
+
+is there any leniency with respect to time in the military?
+
+How chill is military about deadlines?"
 dandavis_A145_3_2,Background,"When I enlisted in the marine corps, you only had two choices; you did very well on the way entry test, even the recruiters office you could pick aviation options. That meant you're for sure you would not go in the infantry, you'd go in an anaviation option of some kind or another. These days things have changed entirely, the different services have different ways of testing you ahead of time and can guarantee you occupational field. So I'm not exactly sure how that works so I would urge you to talk to your recruiter about that and don't put up with ""well yeah I'll usually or frequently, or maybe, you know"" what are they guaranteeing you is going to happen. You can't get it in writing but at least pin them down to not just give you fluffy statements but to say yes this will happen. ","How can I request to work in a certain area or field?
 
 how likely is it that I will get to do what I want to do?
@@ -2167,7 +2369,11 @@ will the Navy assigned me to something I hate to do?
 
 can I do another job if I don't like mine?
 
-are jobs in the Navy permanent?"
+are jobs in the Navy permanent?
+
+Can you choose your area of work based on interest in the military?
+
+Does the Navy give you enough flexibility to choose your area of work?"
 dandavis_A146_3_2,"Opportunities, Fit, Military,Navy","The most difficult part of my training was physical training. PT, and exercise is not one of my fortes and I hated it, and I still hate it. So that's the most difficult part of all of my military training and upkeep. But the one good thing about the military's it does make sure you don't get out of line very much with your weight and your fitness. So even a day even though and no longer active in the military I get up every morning and walk a couple miles, kept my weight pretty much down, a little over, I probably should be two twenty I'm really about two thirty five. But you know that keep it down to, but that's that's difficult. Intellectually their training system is that, they trained you well they give you a lot of legs up to make sure you're doing alright. Training's good. ","What was the most difficult part of your training?
 
 what is the toughest thing to learn?
@@ -2189,7 +2395,15 @@ what is the pay like outside the military?
 
 will I make more or less than non-military people?
 
-will I make more money if I join the military?"
+will I make more money if I join the military?
+
+Do you get a handsome pay in the military?
+
+Do you think you would have earned more as a civilian ?
+
+Does military provide renumeration better than civilian life?
+
+Does military provide you with satisfactory monetary benefits?"
 dandavis_A148_3_2,"Military, Culture,Navy","I believe the work culture marine corps and navy is different from civilian life in that it focuses on team effort more than anything else I would I would describe that work effort is much more like a team sport like baseball or football where there is a great deal of coordination a great deal of reliance on each other a great deal of doing what you need to be doing so you won't let the team down. I am kind of the webmaster and the communications guy for my high school alumni class, and when I put out a request ""please let me know what color the eyes of your grandchildren"" or anything like that, the people I hear back from the first are my military veterans, because one of the things you learn in the military is 'we're all in this together, everybody's got a job to do, and one of my jobs is to make sure that I don't make anybody else's job harder' so if somebody asked me clean up your bunk, clean up your bunk because otherwise they can do for you. If somebody asked me what color eyes do your grandchildren have, I will I respond right away so that they don't have to come running down and ask me again. And that's one thing you learn in the military and that's part of the work culture that I like the most, and I think it's more the most effective things in the military","How would you describe the work culture of the Navy?
 
 how do you view the way you and your buddies approach your jobs every day?
@@ -2302,7 +2516,11 @@ is there a reason that drives personnel to leave the service?
 
 why do so many people leave the military?
 
-what reasons are there to leave the Navy?"
+what reasons are there to leave the Navy?
+
+What is hard about military?
+
+Do you think military life can sometimes be too hard on people?"
 dandavis_A155_3_2,"Lifestyle, Military, Advice,Navy","One of the most critical features of military life is enforced separation from your loved ones, your family, and your friends. This is not too bad in this day and age, you need to remember that back in the early part of the eighteenth century, New England whalers would leave on equal shifts and be gone for two two and a half years was no communication all to their spouse or their parents, or the siblings or their friends. And then they would come back for a short period time and then got another ship and take off again. You don't see that kind of separation, but there will be some separation. For instance when you're in boot camp typically speaking you will not be allowed to communicate other than by letter to anybody outside of yor boot camp group, your platoon, or flight or batallion, or whatever that they call it in your service. So the advice I think you should give your your family is ""I will be going I will appreciate any way you can communicate with me, I would still be part of your life, so keep me up on what's going on, and know that I'm thinking of you and I'll try to communicate with you whenever I get a chance.""","How will my relationship with my friends or family members be affected if I join the navy, and what advice should I give them?
 
 can my being in the Navy worry my family and friends?
@@ -2353,7 +2571,9 @@ how does advancement work?
 
 is it common to be promoted?
 
-How did you get a PhD?"
+How did you get a PhD?
+
+What are the potential of advancing in this career?"
 dandavis_A158_3_2,"Skills, Future, Military,Navy",the navy has a lot better chance of having transferable skills learned by you than for instance that one of the service militaria infantry type services I mean I was a M. sixty machine gunner in Vietnam as well as a linguist hard to find many jobs is him sixty machine gun so let's talk about those difficult position in the marine corps if you're in in sixty machine gun or what he kept telling to get out a return to civilian life they offered you something called project transition where you can go learned a marine corps field or civilian field if necessary that might be useful to you for instance just because I wanted to do for fun I put in for that project and I was assigned to the base photo lab where I was able to do photographing development and learn photographic skills which would've been very useful in civilian life and I wanted to pursue that as a profession so that's one way to look at it but my linguistic skills academia accepted my language training I got almost I think it was like twelve hours of credit in my from my language training from the military they just accepted but the major thing that I got was every place I've gone people said the man who is senior enlisted or an officer in the military has shown management discipline and and group choose patient characteristics which would be valuable to me and that has all transferred very well,"How will my experience transfer to civilian life after my navy tour of duty?
 
 is this training useful in civilian life?
@@ -2362,7 +2582,11 @@ will this help me get a good job when I get out?
 
 do employers like to hire veterans?
 
-will my Navy skills transfer to civilian life?"
+will my Navy skills transfer to civilian life?
+
+What is the employment scene after getting out of Navy?
+
+Are the Navy skills useful in civilian life?"
 dandavis_A159_3_2,"Military, Culture,Navy",it's difficult to generalize about life in the navy but let me tell you an incident that happened to me that I think is one of my memories of what I think the navy is like and what it should be like while I was working at Martin Marietta I got an opportunity to do an augmentation who are to Naples Italy for three weeks I was a lieutenant commander at that time like lieutenant commanders like a major in the army or the marine corps and I thought this sounds like fun I have no idea what I'll be doing well do it so I I got on a plane and flew to Rome and on my way to Rome I noticed a lot of other people short haircuts and they kind of carried themselves like navy people you off right athletic you don't fit and I said well it's interesting start talking to I'm sure enough they were reservists and they were going to Naples and I got to talk to him and there were some enlisted people a couple officers so it's fun and when we got to Naples we'll report and then it turned out there about Sergio and as luck would have it or bad luck I have in my mind I was the senior officer so I was in charge and there was a a fairly mature chief petty officer there who was a senior chief which is in a a purchase the next the highest rank you can get in the military E. nine in the in the navy is senior I a master chief but this guy was a senior chief so I had four officers the senior chief and everybody else was in most so what was I got I was in charge was I going to do so I knew we were supposed to help these people with their watch standing that is we go in and do our cryptologic duties twenty four hours a day and so we had so I turned to my senior chief I said senior chief you break the enlisted people into four what sections for you know you need three to cover every day and then you need to aim one to cover that because the weekend times too so for what section and I'll be for the officers so I got together with the officers and I said what we're in Italy for the one time in our life for over here to do some hard work but here's what I'm proposing I'm gonna tell the watch sections will set up a watch schedule so that people are working their butts off for a couple of days and then when they get their break they'll get a four or five D. break was known to you all so they can make it up to Venice you go up to Romer go down this is or just go around Naples for five days and enjoy their of Rome and there wasn't that that's a great idea so we got that all set up we got each each officer was in charge of one watch section and he would be in charge of up on the on the order of six or seven people some of whom were linguist but most were electronic warfare specialist or collection specialist or communicators and he would he would make sure they did their job on their watch section and he would help out with put officers did it during the watch which is help writing reports and keeping track what was going on and I was a senior guy so I did a lot of the a briefings to the senior people every briefed us navy of British navy captain and that was that was fun in the senior chief ally star right away right away writing fitness reports for the officers and enlisted evolves because at the end of the three weeks had to turn in what everybody done when they did a good job or not and I didn't want the local commander have to do that so we started doing it together so the senior chief and I did that the troops loved it everybody had a good time there but he did a good job and the active duty personnel who were there helping simply the best group that if we ever see and we never met each other before we got together we were in the navy common goal we know what we're doing we did a lot that's what the navy's all,"What is a story that really shows what it is like being in the Navy?
 
 tell me a good ""sea story"" that reveals the real Navy.
@@ -2371,7 +2595,9 @@ is there some tale that would help me understand the Navy life?
 
 are there experiences you have had that exemplify a Navy career?
 
-How was it working on the Marina?"
+How was it working on the Marina?
+
+What is it like working in the Navy?"
 dandavis_A160_3_2,"Military, Benefits,Navy",when I was in the reserves what we call the ready reserve I here's what we did and I think it's very comparable to that every month we did the weekend drill that means you bet Saturday morning early and we work till about five o'clock Saturday evening Sunday morning early to about five o'clock for those two full days of work we got paid for day's pay and because that's what it if you look at the amount of leave people get on their active duty and a lot of time off they get blah blah they work about four hours a day every day of the year and so let's that's what they paid to get four days pay for two days and then once a year you got a two week actor Tracy someplace so does a really good actor trees I got Naples I got three tours in Japan and in London England once you know is just all kinds of fun stuff but then you went and you just went with equally active duty people and did their job learned what they were doing and just trying to figure out if I get called up how my gonna handle so that's what you did you did your work you did training and the good thing about cryptologists are if you got a radio and you got a linguist you can be a cryptologist anywhere now we did some actual cryptologic stuff right there in our home reserve unit the benefits you get pretty good pay you know I got to law school living off of the those four days pay that I got from the reserves bought food for me and my wife and my brand new baby daughter that was good and as you get senior right the pay is pretty decent then when you retire they add up how many days of reserve duty you got credit for doing your weekends how much you've got new year two weeks of active duty and then how much active duty you did like I get four years will bring cars they told all add up that gives you the percentage of your pay and then because I'm a retired commander I get retired commanders pay times this percentage so I get about in my case about assertive order it right retired get plus medical benefits plus some other benefits like I can fly space available around the world one military aircraft,"What do navy reservists do and what benefits do they get?
 
 what are reservists?
@@ -2422,14 +2648,20 @@ Who is your life mentor?
 
 what person do you rely on for life advice?
 
-what is the best piece of life advice you've gotten?"
+what is the best piece of life advice you've gotten?
+
+What is the best advice have you gotten?
+
+Do you have a personal mentor who gives you advice about life?"
 dandavis_A165_3_2,"Background, Growth/learning, Advice",I think the most important lesson I've learned in life keep learning it over over over every day he is the importance of people and the great worse of people and the great capabilities of and the fact that everybody you meet each treated because of that worse than that because of those capabilities and you should facilitate they're using those capabilities to accomplish what they need to accomplish for self fulfillment you may have to ask him to sacrifice the very life that we all cherish so much but if that sacrifice has to be made we need to make sure it sacrificed in the way that is active and is unavoidable,"What is the most important lesson about life you have learned?
 
 what is the best advice you can give about life?
 
 what important things can you tell me about life?
 
-what is the most essential thing you know about life?"
+what is the most essential thing you know about life?
+
+Do you have any advice for life to give me?"
 dandavis_A166_3_2,"Advice, Priorities",I think the thing is the most important life is to establish something that your life stands for establish something of which you want to be proud and to devote yourself to doing that I think it is critical that you ponder those around you who can help you get to that goal and that you honor their goals and try to help them get to their goal as well,"What do you think is really important in life?
 
 what matters in life?
@@ -2443,7 +2675,13 @@ dandavis_A167_4_1,"Motivation, Impact",if you are a pretty consistent thread thr
 
 What are you trying to fix?
 
-What problem are you solving?"
+What problem are you solving?
+
+
+
+Is there a problem that you really want to solve?
+
+If you get a chance to solve one problem, what would it be?"
 dandavis_A168_4_1,Motivation,there are number of levels that I run to in my professional life both in the military and academia about how do you get fired up in inspired you keep doing what you need to be doing I will avoid the seal logical analysis of being inspired by knowing where you fit in the world and go to something more immediate I have found both in both of my careers that my major inspiration comes from knowing the people who have gone before me the sacrifices they have made to get as far as they've gotten and I'm now got baton and I need to press ahead and when I run out of steam and start to flag I just think of everything they put in including many of them their lives read sacrificed to get where I am today and that puts me up again to keep going,"How and where do you find inspiration?
 
 Why are you inspired?
@@ -2461,7 +2699,11 @@ Do you get in ""the zone"" at work?
 
 Do you reach a flow state when working?
 
-Do you ever get so focused that you forget about your surroundings?"
+Do you ever get so focused that you forget about your surroundings?
+
+Have you ever been in a flow in your work?
+
+Have you ever been such immersed in work that you forgot about everything else?"
 dandavis_A170_4_1,Motivation,I am proudest when I get a chance to work with the team and we succeed in the task that has been set out for us in which we all agree and we're all striving to get it done and I know that my contribution to the team and to that task is the best the feeling I have of being able to support other members of the team and their supporting me that being able to stand by each other when times are tough striving until we get that task accomplished isn't proudest time in my life,"What makes you proud?
 
 What are you proud of?
@@ -2470,7 +2712,9 @@ What would you want to show off to others?
 
 Are you proud of your work?
 
-Are you happy with your successes?"
+Are you happy with your successes?
+
+What is something that you are proud of?"
 dandavis_A171_4_1,Motivation,I'm always the most concern when I feel like your group in which I am working has lost its way if somehow the team does not coalesce where the goal that's been given to us doesn't seem realistic or vital to anybody on the team and that goes for no matter how big the team is if I'm working with just two or three people and we're not making good progress because we don't know where we're going or if I'm talking about an entire nation it seems to have lost its way and not sure which way we want to go and begins to better Baker and argue with each other that keeps me up at night,"What keeps you up at night?
 
 What worries you?
@@ -2507,7 +2751,13 @@ what do you hate doing?
 
 tell me about something you don't like.
 
-What�s the worst thing about your job?"
+What�s the worst thing about your job?
+
+Is there something that you really not like doing?
+
+Can you tell me about something that you have s strong disliking for?
+
+What is it that you do not prefer to do?"
 dandavis_A174_4_1,"Impact, STEM",it was in my skin pursuits and in my military pursuits I have always seen the major beneficiaries are the people for whom my work is immediately targeted whether it be an intelligence report whether it be a new application in computer science I see a small group of people for whom I've been told this product is being developed in this report is being given but I also see a hierarchy and because all the work I've done has been in the heads to the government so now are you trying to serve the immediate people around you at your trying to serve their comrades in arms intends further on up the entire service and of course the ultimate you're trying to serve all of the nation in providing the products with the woman,"Whom do you see as the main beneficiaries of the work you do in (your STEM field)?
 
 Whom do you see as the main beneficiaries of the work you do in your field?
@@ -2533,7 +2783,11 @@ How do you stay motivated to work everyday?
 
 Why are you motivated to be at work everyday?
 
-How do you reward yourself?"
+How do you reward yourself?
+
+What motivates you to get up from your bed and go to work everyday?
+
+What part about your job inspires you so much that you go to work on Monday with a smile?"
 dandavis_A176_4_1,Lifestyle,their love demands on your time no matter what job you have and what kind of work you do and it is just incredibly important that you keep a good view of who needs what from you I mean obviously your your co workers are going to need something from you your unit members who are you need something from you and your family need some working with all of those groups become vital to their success and you just need to keep an idea what's going on I've been fairly successful I think in balancing that out might three dollars would tell you that I hardly ever misty the performing arts performance and her liver missed an athletic event in which they participated there are times when I was overseas or out of pocket in couldn't do it but the vast majority of them I was there for so I think it's just a matter of scheduling your time and making sure you keep a good balance and you don't let any group down,"How did you manage both career and personal life effectively?
 
 How do you balance your home life and career?
@@ -2546,7 +2800,9 @@ How do you balance work and play?
 
 How do you balance work with everything else?
 
-Is it difficult to manage work and live a healthy lifestyle?"
+Is it difficult to manage work and live a healthy lifestyle?
+
+How do you manage to keep both your boss and your wife happy?"
 dandavis_A177_4_1,"JobSpecific, Advice",I've been blessed in my life with having a number of occupations in which I participated in enjoying them and feeling that they were vital and feeling they were fulfilling and enjoyed the people in those professions with whom I worked it is my belief that virtually anybody who had the chance to do the kind of work I did would enjoy it as well but I am old enough to have been around the barn a few times to know that not everybody has the same desires on one of the work I've done has been inside and if you're an outside person you probably wouldn't enjoy cryptology or academic pursuits so they're they're different people I think you have to understand who you are but if you enjoy intellectually challenging problems all my crews have been excellent for that,"How strongly would you recommend this profession to others or to me personally?
 
 Would you recommend your profession to others?
@@ -2587,7 +2843,11 @@ Are there STEM positions in the military?
 
 How can I do STEM in the military?
 
-What are examples of STEM careers in the military?"
+What are examples of STEM careers in the military?
+
+Does military has scope for STEM?
+
+Do you find STEM opportunities in the military?"
 dandavis_A180_4_1,"STEM, JobSpecific, Benefits",the thing I like about stem pursuits and to me that's why I really been my work in cryptology and in academia yes is the challenge the intellectual challenge the people I know who Love cryptology never could put out a crossword puzzle without frigging out and sudoku is the way they spend their spare time so if you like intellectual challenges this is a good way to go still will provide that for you and stem in virtually every area provides that kind of intellectual challenge and in system need to be a scholar you have to keep learning keep reading what I said was awesome promotion boards like that's when things I always ask candidates is what's the last book you have read what a book you're reading right now and what bush has made the biggest difference in your life,"What are the benefits of your STEM career?
 
 What benefits does your STEM career have?
@@ -2700,7 +2960,13 @@ dandavis_A188_4_1,"Advice, Priorities, Lifestyle, Fit",one of the things that I 
 
 what should I look for in a career?
 
-what makes a career interesting?"
+what makes a career interesting?
+
+
+
+What makes a career good?
+
+How should you know that this is a good career?"
 dandavis_A189_4_1,"STEM, Challenges,Negative",I've been in stem careers since I graduated from high school one way or the other that's a literal truth and I've really enjoyed all of the work I've done stem and I enjoy it still to this day did thing that I would really like to see the different about stem is I wish government sometimes who's a little more responsive to supporting the stem research it will make a difference so frequently the government takes the approach of we need to pass a law and keep somebody from doing it rather than that we need to fund some research than we can encourage people to do the right thing rather than trying to force them to do the right thing,"What don't you like about STEM?
 
 what are the negatives of cryptography?
@@ -2727,7 +2993,15 @@ Why did you choose STEM?
 What made you decide that STEM was for you?"
 dandavis_A191_4_1,"STEM, Decisions, Advice,Negative",it seems sometimes that some careers get hyped up because of examples of someone who's tremendously successful so I would definitely not recommend anyone go into stem work if they are swayed by the stories of how much money Bill Gates made her some because that always fails to mention the Bill Gates was a very special person and made his money in a way that the vast majority of us would have a prayer of doing so I don't think you should ever go into a field thank you all that guy's a billionaire I want to be a billionaire like him I I think you should not look at the money or the success of the fame as a goal you want to achieve I'd go after something you can do and enjoy be proud of and let the fame and the money coming that,"Why shouldn't someone choose to go into cryptology?
 
-tell me some disadvatage of stem career"
+tell me some disadvatage of stem career
+
+
+
+
+
+Why would someone not join a STEM field?
+
+What makes a career in STEM a bad choice?"
 dandavis_A192_4_1,"STEM, Challenges",still is an interesting field you get to do a lot of good technical work but as you get more senior you'll find out that you spend more and more time trying to find a sponsor trying to find someone in the industry or the government or some place we'll pay you money to do the work you think needs to be done and that kind of development work although it is exciting in its own way and fun in its own way gets to be a drag after awhile and so that's a part of that that I think you need not to ignore know that it will be part of your job to do it especially as you get senior but know that it's not near as much fun this gone home and write code,"What is the most difficult part of cryptology?
 
 which part of cryptography is the toughest to learn?
@@ -2830,7 +3104,15 @@ dandavis_A200_4_2,"Mentor, Background, Decisions,Positive",in academia mentor th
 
 tell me about your mentor?
 
-do you have a mentor?"
+do you have a mentor?
+
+
+
+Can you tell me about some of the people who have mentored you in life?
+
+Tell me about some of the people who have mentored you in your career?
+
+Do you have someone who influenced your career a lot?"
 dandavis_A201_4_2,"Mentor, Background, Decisions,Positive",well walls or is important and stem as they are in any other field I think it's necessary to keep your eyes open for a good role model one of the first role models I had was my freshman year at the university of Colorado when I took introduction to psychology I have never had the behavioral science course before and I learned from professor Mason the great excitement about scientifically trying to understand how people behave and quantifying that behavior in a way that can then be studied further,"Who is a person that you considered as a role model early in your life? How and why does this person impact your life?
 
 tell me about a person who has impacted your life?
@@ -2920,7 +3202,11 @@ how did you plan to reach your career goals
 
 what are your goals in life?
 
-Do you have a bucket list in life?"
+Do you have a bucket list in life?
+
+How did you plan every stage in your career?
+
+Can you tell me about the plans you had for your career?"
 dandavis_A209_4_3,"Advice, Future",I think I have seen more miserable people who when they were considering their future we're swayed by some external factor such as my friend is in that field or my parents did that kind of work or I was good at it in school or I saw a movie about it once and that looks like fun without really knowing what every day of that work entails and the thing I think you should concentrate on is trying to understand what it is do you enjoy doing and understand what it is the varying professions would have you do every day not the startlingly make movies about the sort of thing you do air every day,"What part of my future should I be most worried about?
 
 Are you worried about your future?
@@ -3529,7 +3815,11 @@ Tell me a good story about college.
 
 Did anything cool happen in college?
 
-Favorite story?"
+Favorite story?
+
+What can you tell about college?
+
+What do you remember about college?"
 dandavis_A256_5_2,"Advice, Challenges, Education, Growth/learning",if you go to college you're going to find some teachers no really click with you we gonna find some teachers who are the boring side in every field you'll find some teach who have their own personal issues are working through that don't make him a good fit to to if you're a large state school like I went to you can almost always find a different professor in that area and usually there are institutions organizations that publish this guy's good teacher was Mister so you can change if you have a really bad teacher but mostly you'll find the teachers your carpet and they have something to teach you and something you can learn from them so I think that's true we coasted difficulty I think again you have to learn to be within years I've never been a runner Ike would never be able to run a marathon I hate running where that had to do it in the service it has been painful to me I've been able to do it but I just don't like it so for me to go into physical education and try to teach people how to be long distance runners would be a bad choice I think all of us need to look at our own capabilities physical mental organizational and say if it's really difficult for me then maybe I should I'm in the wrong field if I have to be able to do this to be in this field why would I think I'd be happier once again those who so maybe a different feel choice to be the right thing to do I don't mean you need to Dodge every challenge it comes to your life but you have to be honest with yourself some and pick a different way,"How would you recommend overcoming bad teachers or difficult subjects?
 
 what do I do if I have bad teachers?
@@ -3861,14 +4151,20 @@ dandavis_A279_6_1,"Military, Background,Navy",I was in the reserves for about tw
 
 Are you in the reserves?
 
-When were you in the reserves?"
+When were you in the reserves?
+
+
+
+Did you spend long in the reserves"
 dandavis_A280_6_1,"JobSpecific, Military,Navy",well it's kind of a difficult question to answer in a precision because that changes from time to time for instance during World War two they were very young people who list and they look very old people and watched because he needed people very badly but right now basically the time limits are on the order of you must be at least seventeen years old and then you still need parental permission until you're eighteen to enlist in the navy and then you can list up until about the age thirty and this varies from time to time and the services change it from time to time depending on the requirements and the services are different for instance the navy right now is thirty two years the marines are twenty nine years but the statutes say you can be in listed up to age for forty two if they need so that changes and their exemptions made but that's because of the rain seventeen Tim thirty it's kind of when they want you to enlist,"What is the age limit to join the Navy?
 
 how old do I have to be to join the military?
 
 is there an age limit for the military?
 
-am i too young to join?"
+am i too young to join?
+
+Does joining military has an age restriction?"
 dandavis_A281_6_1,"Colleagues, Combat, Military,Navy",my best friend in the navy is a concept I find hard to conceive I had so many best friends in the navy it would take me a year to recite them all to you and tell a war story about everyone of them they're all wonderful guys but let me just pick one that probably wouldn't on more active duties with anything else in the navy anyway and that was where officer Sam Werner where I lost your Werner was nearly as tall as I am I'm six six and he's probably six three six four and he and I'm really good volleyball players and if we went on active duty and there was a volleyball match we get involved and we were dating good we were particularly good at being middle blockers he was a brilliant guy he worked at NORAD into civilian life a wonderful cryptologic technician and a wonderful wonderful Morse code operator he can take code like crazy but Sam where there was a really good friend of mine still is but we don't see each other much anymore because he lives in Texas,"Who was your best friend in the Navy?
 
 who was your best friend who served with you?
@@ -3921,7 +4217,11 @@ Tell me about the your computer science project that you are most proud of.
 
 Tell me about the your cryptography project that you are most proud of.
 
-Tell me about the CS project that you are most proud of."
+Tell me about the CS project that you are most proud of.
+
+What will you say about a projce that you are really proud of?
+
+Can you tell me about a project that you really wanna show off?"
 dandavis_A286_6_1,"STEM, JobSpecific, Lifestyle",well the progression of the stem careers through the decades is pretty hard to stomach when you're just starting out to some degree of maybe a little daunting but let's let's I give you what I've experienced over the years when you start out in stem you're gonna probably start out relying a lot of the skills you learned in high school junior college bachelor level college master's degree or PhD where do you come into the process and a lot of those skills you use every day you know like a programming skill if you're doing programming or mathematical analysis of some kind and you do that a lot but you probably spend maybe a quarter of your day writings English one kind or another but very soon you're going to find maybe just after a few years you're spending half your day writing English and only and the other half doing code and by the time you get to be more and more senior you gonna spend more and more time writing so there is a secret there if you can advance in the stem fields you better get good at writing good concise believable compelling English people can read and they'll go along with what you're trying to get him to go along with good materials you're giving so that's how it progresses you start out doing the technical work than you do more and more reporting and management until the very end and then some of the guys I know spent eighty percent of their time writing English one way or the other are preparing lectures or something of that nature,"What is a STEM career like?
 
 Tell me about being in a STEM career.
@@ -4190,7 +4490,13 @@ What do you think is most important for academic success?
 Do you have any tips on how to succeed in school?"
 dandavis_A310_6_3,"Education, Military",the interesting point is well what someone who might be interested military career might do well they're still in high school now some six hundred high schools in the United States have a navy junior reserve officer training corps programs where you can practice in learning some of military skills while you're still in high school that's not very many the army the Air Force in the marine corps also have junior ROTC programs in a number of high schools but they're fairly rare if you don't happen to have the access to one of those schools I think you can do it awful lot in terms of preparing yourself for a military career by perusing online materials comment on the marine corps has an excellent reading list for people considering a career in the marine corps but doing as much reading as you can about the military's always a good leg up and it was certainly one of my favorite topics when I was in high,"Are there any military focused extracurricular activities for high school students?
 
-Are there any extracurricular activities that help prepare you for the military in high school?"
+Are there any extracurricular activities that help prepare you for the military in high school?
+
+
+
+
+
+What activities will you suggest for someone in high school so that he can get ready for the military?"
 dandavis_A311_6_3,"Advice, Education",advice for people in secondary school that is up to graduation from high school has got to be the same it's time to grow up you need to put away childish things and begin thinking about what you're doing this is not the time to say well I can get a good grade if I do this grades are not what you're in high school for your high school to learn how to think you mean high schooler now to analyze your high school learn how to communicate get those skills and be working on take every chance you have to communicate if somebody says we need somebody to give a talk where somebody needs to get up and give a speech volunteer whether you're a natural speaker or like me have terrible stage fright practice practice practice and you'll get used to whatever it is you need to be doing so work on your communication skills and work on figuring out where you're going with your life,"Do you have any advice for high school students?
 
 how do I survive high school?
@@ -4538,7 +4844,15 @@ how do you stay focused?
 What distracts you?"
 dandavis_A340_7_1,"STEM, JobSpecific, Lifestyle, Jargon",a cryptologist is a professional who studies understands analyzes and makes use of varying levels of classified in encrypted and %HESITATION in coated material %HESITATION the cryptologist typically is involved in the collection of that material from other sources other than the United States and is involved in translating and making reports on the information has been collected,"What is a Cryptologist?
 
-What does a cryptologist do?"
+What does a cryptologist do?
+
+
+
+
+
+What do you mean by Cryptologist?
+
+Can you explain the job function of a Cryptologist?"
 dandavis_A341_7_1,"STEM, JobSpecific, Lifestyle",all four of the major branches the military marine corps navy army and Air Force have a very large components devoted to cryptologic activities,"Do all the services have this specialty?
 
 Do all services have cryptology?
@@ -4548,51 +4862,115 @@ dandavis_A342_7_1,"STEM, JobSpecific, Misconceptions",as nations seek to protect
 
 Is this work classified information?
 
-Are things under NDA?"
+Are things under NDA?
+
+
+
+Do you work on classified information?"
 dandavis_A343_7_1,"STEM, JobSpecific, Jargon ",in order to get access to classified information %HESITATION you someone has to say this person should have access to that information and that process is called getting a security clearance and the security clearances very just like in their levels just like the classic five material does that is it's very easy to get a confidential %HESITATION clearance that can be done by local story a secret clearance can be done by you just doing a national agency check that is check with the FBI and very other crime and sit agencies to see if %HESITATION this person has got a criminal record then beyond that you get to top secret level where people are actually going out into the field talking to people who know you asking then if you're trustworthy looking if you have any problems in your background that the records would have shown up and then the very top level of course the is the code word of programs and those are very hard to get a clearance because they involve things including a very very owners of polygraph examination that regularly to make sure that the classified material is secure,"What is a security clearance?
 
 Can you get access to classsified data?
 
-Is there secret information?"
+Is there secret information?
+
+
+
+What do you mean by as security clearance?"
 dandavis_A344_7_1,"STEM, JobSpecific ",people working in the field cryptology have to have won the highest levels of clearance because it is top secret code word material %HESITATION is ASCII sensitive compartmented information and there's a code word associated with several levels of the kind of cryptology do you do it so it does require a clearance in requires an extensive background investigation and many times if not always it will require at some level a polygraph examination and that might be repeated frequently depending on the house and see if the information is to which you have access,"Does this job require a security clearance?
 
 Does this field require a security clearance?
 
 Do you need a clearance to get this data?
 
-Do they check your background?"
+Do they check your background?
+
+Does the military perform a background check on you?
+
+Do you need to have a clean background ?"
 dandavis_A345_7_1,"STEM, JobSpecific, Jargon ",people in the United States almost invariably speak English as their first language and frequently because we live on a continent where at least one border %HESITATION the other people speak English there too a most Americans are not particularly bilingual or trilingual as people are frequently in Europe %HESITATION so as you go around the world doing various duty there is a need for language to understand the language of the people with whom you working and your foes as well %HESITATION so there are three groups of people who %HESITATION do linguistic duty in the military to help out in the first or interpreters and interpreters are people who just help a local commanding officers in the face with the people of the local community so an interpreter %HESITATION might for instance run around with a marine corps captain and his company as they crossed the through %HESITATION territory where the people speak a different language and be able to translate for the captain when he needs to talk to natives when he needs to find out where the enemy is or what he needs to warn the people %HESITATION that they need to clear out of the area because there is going to be a major but so that's an interpreter then you have the interrogators and these are people who trained at a higher level so that they can actually conversation we engage captured enemy and other people might have intelligence and they also have on top of their linguistic training %HESITATION very sophisticated of psychological training so that they can trick the enemy and the divulging %HESITATION secrets and then the level of %HESITATION cryptologic linguist is even the higher still into the records even more extensive linguistic training because the linguist needs to not only be able to translate the material that has been collected and decrypted but he also helps to hope the cryptanalyst %HESITATION understand the way the language works and what kind of in coding and encryption might be used of a lot of the encryption these days of course is the mechanically and is not done %HESITATION in the piecemeal basis which would not involve the linguist as much %HESITATION but still small level codes require language to help out the cryptanalysts to break the codes,"What is a linguist in the military?
 
 What does a linguist do in the millitary?
 
-How do Americans speak to people who know different languages?"
+How do Americans speak to people who know different languages?
+
+What are the duties of a linguist role in the military?
+
+What job function does a linguist have in the Navy?"
 dandavis_A346_7_1,"STEM, JobSpecific, Training ",because of the paucity of native language speakers in the pleasure of languages that you find across the world %HESITATION the service needs to train linguist and they train them at different levels again an interpreter who is just going to be working with local people in need snow just basic questions like come here go there %HESITATION hello we are the Americans you know where is the enemy up please leave the area there's going to be a fight things of that nature they generally have a very short level course that might run just two or three months %HESITATION the interpreters get it much or the interrogators get a much longer course of study maybe half a year or so so they can we have a little better mastery of the language and they work in with their psychological training later %HESITATION the privilege languished on the other hand typically have nearly a year's worth of study %HESITATION to learn the major languages so that they were %HESITATION very very well tune when I graduated from %HESITATION defense language institute east coast we were told that our vocabulary was much larger than the typical Vietnamese was %HESITATION that our understanding language would exceed even native speakers even though we might not be able to speak it very well understanding would be quite large,"What training do linguists get in the service?
 
-What training do linguists have to do?"
+What training do linguists have to do?
+
+What kind of things do they train a linguist for?
+
+Can you tell me about the training you had for the military?
+
+I want to know more about the kind of training you had in the military?"
 dandavis_A347_7_1,"STEM, JobSpecific, Training ",legalistic training can take very lakes but most cryptologic linguist study for almost a year well my course in %HESITATION Vietnamese was scheduled to be thirty seven weeks but when you got a couple of weeks no reporting on board and then a couple weeks checking out it really I was at DLI ECT in Washington DC for almost an entire year studying Vietnamese the people studying Mandarin Chinese and Russian written forty eight week courses which is another ten weeks longer than we had so they were there close to year and a quarter a year and a half before they got out of so about a year would be a good response how long it takes to train equip logically list,"How long does the training take?
 
-How long does it take to become a cryptologic linguist?"
+How long does it take to become a cryptologic linguist?
+
+Does it take long to be a linguist?
+
+What is the duration of the training?
+
+Is it a tedious job to study for linguistics?"
 dandavis_A348_7_1,"STEM, JobSpecific, Training ",linguistic training in the military is not difficult because of as you if you will military just put %HESITATION there's no question about whether you get up in the morning want to go to class now if you get in the morning you do go to class and most of all lessons or are self contained that is you're not doing a lot of extra work on the side if you go to class and if you don't go to class they report use you a and you get arrested %HESITATION then you're given a pretty straightforward training so it's pretty straight forward and and not to challenge well you have to take a test before you can get in the language school that we tell people who don't have any ability language now in my class we started out with age and we lost one fairly rapidly because we are Vietnamese is a total language and if you don't hear the tones %HESITATION then you can't do the language for example of the word not tough means a church the house of the church %HESITATION but not to a means the house of ill repute %HESITATION not to think you want to get mixed up %HESITATION so this young man could not hear the difference in those tones and he was excused,"How hard is the linguistic training?
 
-How hard is the training to become a linguist?"
+How hard is the training to become a linguist?
+
+Would you say it is hard to become a linguist?
+
+Is it hard to be a linguist?
+
+Do you think it is hard to train for a linguist position?"
 dandavis_A349_7_1,"STEM, JobSpecific, Negative ",the language I took was Vietnamese and one of the students in my class %HESITATION was unable to learn Vietnamese %HESITATION he worked hard he showed up for every class he was a fairly smart young man he just couldn't do the language you didn't have that ability %HESITATION so he immediately got orders out of language school and back to another set of cryptologic duties because it already technicians clearance and then on ways to clear its %HESITATION so my memory as he became the specialized cryptologic communications expert which meant he would be in charge of transmitting and receiving could plunge get information it already been %HESITATION decrypted and translated by %HESITATION his fellow marines,"What happens if a student can't learn the language?
 
-What happens if I can't learn the language?"
+What happens if I can't learn the language?
+
+What do you do when you can't learn a language?
+
+Is it hard to learn a new language?
+
+How should you approach learning a new language?"
 dandavis_A350_7_1,"STEM, JobSpecific ",the do the duties of of a cripple Odjick linguist are then the full but the basic duty is to translate the target language into English but that may involve a lot of things part of it is collection %HESITATION sometimes the collection is %HESITATION voice %HESITATION that is radio telephone and then that requires the privilege of going was to understand the equipment that is working with and be able to select the proper %HESITATION channels and %HESITATION tune up the equipment so that he can receive the signal that he needs to receive and then understand which %HESITATION voice for the conversations should be recorded and then later translated and reported on so %HESITATION cryptologic linguist does some %HESITATION transcription of voice %HESITATION does some translation of written materials that are presented to him that come in by other means %HESITATION it's done some intelligence reporting that is sitting down and trying to analyze %HESITATION what the information really means and what it might be important and %HESITATION keeping track of very communication issues what channels are being used what frequency is being used when Christian methods being used to help out other members of his community,"What are the duties of a cryptologic linguist?
 
-What does a linguist have to do?"
+What does a linguist have to do?
+
+What job does a linguist have?
+
+Can you tell me more about the duties of a linguist?"
 dandavis_A351_7_1,"STEM, JobSpecific, Opportunities",it feels it could tell G. change as the fields in cryptology change as the years go on %HESITATION some of the fields that were quite common back when I was in cryptology have been transferred to other areas %HESITATION some of the fields have been %HESITATION kind of obviated because the change in technology %HESITATION for instance one of the largest areas that would strain when I was on active duty back in the sixties and seventies I was worse code %HESITATION because a lot of nations still use Morse code %HESITATION to transmit their official information back and forth so I think that's virtually been obviated these days and so but the people used to do more scope collection now spend more time doing other kinds of singles collection but that is a general group of group that does singles collection for communications then there's a group that collects analyzes identifies and the rights of the missions that are not communications oriented electronic warfare people %HESITATION they want to know what are the characteristics of any kind of machine within minutes or twenty %HESITATION waves and that that could be radars could be %HESITATION telemetry for rockets %HESITATION could be any number of %HESITATION other kinds of of emissions %HESITATION that allow you to identify and the platform and the source of those emissions and what that could tell you about what's going on the other side,"What are the other fields in cryptology?
 
-What does cryptology have in the field?"
+What does cryptology have in the field?
+
+Do you multiple sub fields in cryptology?
+
+Can you tell me more about Cryptology?
+
+Do you have a variety in cryptology?"
 dandavis_A352_7_1,"STEM, JobSpecific, Culture",because of the nature of our work cryptologist could really do his job virtually anywhere in the world that he has a radio a set of earphones on a typewriter to type what he's getting yeah %HESITATION but the equipment is much more sophisticated than that most the time and sometimes a specialized to the particular target and sometimes have to be in fairly close proximity to the target as you know some radio waves travel around the world summer you waves are very short %HESITATION range and don't travel far at all so there virtually cryptologist around the world doing one thing and the other and sometimes their location is classified at a very high level because we don't want anybody to know we've got somebody where they are listing %HESITATION but you can count on there being a fairly large group logic group in any major US installation and %HESITATION a major US insulation overseas especially is probably going to have some people there with group,"Where in the world are cryptologists stationed?
 
-Where do Cryptologists live?"
+Where do Cryptologists live?
+
+Do cryptologists live in dark, undercover labs?
+
+What can you tell about the location of work of cryptologists?
+
+Where do people in your profession are stationed?"
 dandavis_A353_7_1,"STEM, JobSpecific, Culture",fortunately the working conditions for cryptologist you're pretty good compared to a lot of people in the service %HESITATION because of the very sophisticated information that we're seeking and the very sophisticated gear that we used to collect that information it does really require the office like setting a requires air conditioning for instance when I was a continent right up on the DMZ in Vietnam %HESITATION we all live in bunkers all the time because we took rockets and mortars constantly %HESITATION but are the cripple IT bunker was the only bunker in the content astonishment that had its own air conditioner and we had the only %HESITATION generator that ran twenty four hours a day so we could keep the air conditioner going and the %HESITATION infantry people thought that was pretty good living fortunately they didn't have to come in our bunker because our bunker was hotter than blazes anyway because most air conditioning was of course not to protect us %HESITATION but to protect the very sincere electronic equipment that we were using at that time largely cryptologist working office like setting %HESITATION was surrounded by like trying to gear and there's kinds of analytic devices,"What are their working conditions like?
 
-What are the working conditions for a cryptologist like you?"
+What are the working conditions for a cryptologist like you?
+
+Can you tell me more about the conditions you work in?
+
+What can you tell me about the work conditions you have?
+
+What are the work conditions that people in your profession work in?"
 dandavis_A354_7_1,"STEM, JobSpecific",naturally the military are not the only people with intelligence goals in the United States so there are number of civilian agencies that have a cryptology component the most well known of course is the National Security Agency %HESITATION so there are a lot of civilians doing this kind of work but probably the majority of the collection and translation of linguistic activities of the National Security Agency are still performed by service members who are briefed and cleared to do this kind of work,"Are there civilian jobs that do the same things?
 
-Are there civilians that do cryptology and intelligence too?"
+Are there civilians that do cryptology and intelligence too?
+
+Do you have civilians working on the same things as you in Navy do?"
 dandavis_A355_7_1,"STEM, JobSpecific, Opportunities",a person who specializes in cryptology has to get a very high level clearance %HESITATION generally call the special background investigation these clearances can cost from fifty to a hundred thousand dollars to perform because you have to send agents out across the country talking to relatives and prior employers and old friends and %HESITATION classmates from college in the light %HESITATION so the most valuable thing cryptologist typically get out of there experience in cryptology the military as they come out with a clearance highly desired by industry and government because of two reasons first is that a lot of the current tour because already been done an update is much cheaper than doing the whole thing from beginning so both industry and government save money if they can get somebody who's already cleared and the second thing is a lot of people spend all that money trying to get a clearance and then are denied their clients %HESITATION often for reasons that are have nothing to do with them it could be their parents moved around a lot and and the agents can't find where they used to live in can't find people talk to or something but a number reasons and so within that money is goes down a rat hole so speak if if the person can't get cleared if you're hiring or retaining somebody who's already been cleared then you have a pretty high confidence who get cleared the second time around as well,"Does specializing in Cryptology open a desirable set of civilian jobs?
 
 Are there special jobs that Cryptologists can get?"
@@ -4623,7 +5001,11 @@ dandavis_A362_7_2,"STEM, JobSpecific, Opportunities",Mike civilian occupation th
 Is your particular civilian profession worth it in the future?"
 dandavis_A363_7_2,"STEM, JobSpecific, Decisions",I have worked for a number of organizations in my life in the military I practiced law in the small firm for awhile %HESITATION he I have worked for Martin Marietta I worked on the car real ale pikes peak during college %HESITATION in the sense that I've worked for several different universities Celtic USC and universal life I think the difference between most of the three this experiences academia's academia has a unique blend of could it be universal %HESITATION admiration the public has for academics the reasonable stability in the workforce %HESITATION even though on soft money you can you can worry a lot about where your next funding's coming from but I got to my career %HESITATION getting laid off in the X. reasonable and %HESITATION eight a more open as to who you are and who you want to be for instance when I publish papers I can just publish whereas when I worked for industry and for the military I had to get permission from very high levels through a huge rigmarole process before anybody would let me say anything %HESITATION but working for academia I sit down to write my papers and sign my name to a much sentiment and they're gone,"Can you compare working in industry to working in academia?
 
-What is it like working in academia versus in Industry?"
+What is it like working in academia versus in Industry?
+
+What changes do you see between working in academia and Industry?
+
+What kind of cultural differences did you see in working with Academia versus Industry?"
 dandavis_A364_7_2,"STEM, JobSpecific, Decisions",my experience in both industry and academia is a lot of people come up with a really unique idea yeah if we do this that will allow us to do that and they think well wow I could make some money with that that's a sellable ideas and so they quit either industry they're working for the quit academia and they go starter on business and some of them famously have gotten terribly terribly rich doing that just unimaginably rich and those the people you hear about all the time but my experience is been the vast majority of those people go away and then five to ten years later they're back they're back in their living in an apartment now and not their house anymore because they had to mortgage their house to try to keep your business going and it didn't go and they didn't quite make it so it turns out there's a skill set to running a business is a little different than a skill set to be the researcher and having some really good ideas that might be good ideas %HESITATION so people who go through life see that happened a lot of their friends and so one of them say if I have a good idea I'll try to sell it to somebody because I'm not a businessman I might not do a very good job of running my own business,"If researchers have good ideas, why don't they just resign from their employer and start a business to develop and sell their ideas?
 
 Why don't people with good ideas go to startups?

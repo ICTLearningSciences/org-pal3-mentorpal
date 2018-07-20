@@ -1,58 +1,43 @@
 ID,utterance,situation
-dan_U1_1_1,Hello I'm Dan Davis and retired to commander in the United States Navy grew up in Colorado and got my degrees from the university of Colorado in quantitative psychology that is working with computers and psychological field and a degree in law,_INTRO_
-dan_U2_1_1,"I am a retired commander in the United States Navy, I served for 25 years in the Naval Services in cryptological area. I went to the University of Colorado where I got a degree in quantitative psychology where I first wrote Fortran four programs on one of Seymour Cray�s high performance computers. After Law School, I practiced Law for a few years, but I have spend most of my career working for Universities doing high performance computing research. I have worked for Cal-Tech, University of Southern California, and the University of Hawaii. I think that during that time I noticed probably 50% of the people I met were not happy in their careers and their career choice. So I would like to answer questions from you about what might help you with the right career choice.",_INTRO_
-dan_U3_1_3,I don't have enough information to talk about that.,_FEEDBACK_
-dan_U4_1_3,I don't have enough information to talk about that.,_FEEDBACK_
-dan_U5_1_3,I do not have an answer for that.,_FEEDBACK_
-dan_U6_1_3,"That is a great question, unfortunately I never recorded an answer to that.",_OFF_TOPIC_
-dan_U7_1_3,"That is an interesting question, but I am here to talk about STEM careers in the Navy. ",_OFF_TOPIC_
-dan_U8_1_3,Unfortunately I was never asked that question,_OFF_TOPIC_
-dan_U9_1_3,You might have to ask me something else.,_OFF_TOPIC_
-dan_U10_1_3,What do you want to talk about? ,_PROMPT_
-dan_U11_1_3,What would you like to ask me? ,_PROMPT_
-dan_U12_1_3,What do you want to know?,_PROMPT_
-dan_U13_1_3,What do you want to know about me?,_PROMPT_
-dan_U14_1_3,What do you want to know about STEM in the Navy?,_PROMPT_
-dan_U15_1_3,You could ask me about my education.,_PROMPT_
-dan_U16_1_3,You could ask me about my job in the Navy.,_PROMPT_
-dan_U17_1_3,You could ask me about my background. ,_PROMPT_
-dan_U18_1_3,"Go ahead, ask me who gave me the best advice about my career.",_PROMPT_
-dan_U19_2_3,I might have covered this already...,_REPEAT_
-dan_U20_2_3,"This changes pretty quickly, so what I'd tell you today might not be true tomorrow. I would recommend talking to someone local who might know more.",_FEEDBACK_
-dan_U21_2_3,"I did a lot of technical training in the Navy, so you can ask me about what skills I learned.",_PROMPT_
-dan_U22_2_3,You can ask me about the travelling that I did in the Navy.,_PROMPT_
-dan_U23_2_3,"I've made a lot of mistakes in my life, so you can ask me about any of the failures that I've had.",_PROMPT_
-dan_U24_2_3,"I've had a lot of mistakes in my life, and I've learned a lot from them. You can ask about anything and I'll try to be as honest as I can.",_PROMPT_
-dan_U25_2_3,"I spent four years on active duty in the Marine Corps and I've been in the reserves ever since then, although I transferred from the Corps into the Navy about the time I got my commission. Now, I work for the University of Southern California as a research administer, you can ask me about any of those jobs. ",_PROMPT_
-dan_U26_2_3,"I worked on ____ in the Navy, but it is different every day. So you can ask about what I did as a ____.",_PROMPT_
-dan_U27_2_3,"When you work for the Navy as long as I did, you get to have lots of stories. Some of them are funny, some of them are interestings, feel free to ask about any of them.",_PROMPT_
-dan_U28_2_3,Good careers are about solving what's important. You can ask me about anything that I think is important.,_PROMPT_
-dan_U29_5_1,"I am stored in this machine, I can wait for your questions all day",_PROMPT_
-dan_U30_5_1,A lot of people ask me about money and military salaries. You can ask me about those things.,_PROMPT_
-dan_U31_5_1,"A lot of people ask me about war, exercise, and payment, you can ask me if you want to.",_PROMPT_
-dan_U32_5_1,I have already answered that question. Please ask me something else.,_REPEAT_
-dan_U33_5_1,I have answered that question before. You can ask me something else,_REPEAT_
-dan_U34_5_1,I answered this question a while ago. Let�s move on.,_REPEAT_
-dan_U35_5_1,"That's a great question. Unfortunately, I don't have an answer for that right now.",_OFF_TOPIC_
-dan_U36_5_1,I'm not sure I have an answer for that question.,_OFF_TOPIC_
-dan_U37_5_1,I don't really have an opinion on that.,_OFF_TOPIC_
-dan_U38_5_1,I see you didn't ask anything there.,_OFF_TOPIC_
-dan_U39_5_1,You've got to ask me something to get a response.,_OFF_TOPIC_
-dan_U40_5_1,"No matter what you heard about having a mouth like a sailor, it will actually hurt your career.",_PROFANITY_
-dan_U41_5_1,I hope so,_FEEDBACK_
-dan_U42_5_2,I'm sorry,_FEEDBACK_
-dan_U43_5_2,I'm sorry to hear that,_FEEDBACK_
-dan_U44_5_2,Thank you,_FEEDBACK_
-dan_U45_6_2,I understand that,_FEEDBACK_
-dan_U46_6_2,I went through something similar,_FEEDBACK_
-dan_U47_6_2,I am not sure,_FEEDBACK_
-dan_U48_6_2,I can't hear you,_FEEDBACK_
-dan_U49_6_2,I don't understand,_FEEDBACK_
-dan_U50_6_2,Can you repeat that?,_FEEDBACK_
-dan_U51_6_2,I don't have an answer for that.,_OFF_TOPIC_
-dan_U52_6_2,It would help if you could keep the questions short and simple,_FEEDBACK_
-dan_U53_6_2,Can you rephrase the question?,_FEEDBACK_
-dan_U54_6_3,I can not predict the future.,_FEEDBACK_
-dan_U55_6_3,I do not want to speculate about the future.,_FEEDBACK_
-dan_U56_6_3,I don�t know what that is,_FEEDBACK_
-dan_U57_6_3,I don't know who that is,_FEEDBACK_
+dandavis_U1_1_1,Hello I'm Dan Davis and retired to commander in the United States Navy grew up in Colorado and got my degrees from the university of Colorado in quantitative psychology that is working with computers and psychological field and a degree in law,_INTRO_
+dandavis_U2_1_1,"I am a retired commander in the United States Navy, I served for 25 years in the Naval Services in cryptological area. I went to the University of Colorado where I got a degree in quantitative psychology where I first wrote Fortran four programs on one of Seymour Cray�s high performance computers. After Law School, I practiced Law for a few years, but I have spend most of my career working for Universities doing high performance computing research. I have worked for Cal-Tech, University of Southern California, and the University of Hawaii. I think that during that time I noticed probably 50% of the people I met were not happy in their careers and their career choice. So I would like to answer questions from you about what might help you with the right career choice.",_INTRO_
+dandavis_U3_2_3,I don't have enough information to talk about that.,_FEEDBACK_
+dandavis_U4_2_3,I don't have enough information to talk about that.,_FEEDBACK_
+dandavis_U5_2_3,I do not have an answer for that.,_FEEDBACK_
+dandavis_U6_2_3,"That is a great question, unfortunately I never recorded an answer to that.",_OFF_TOPIC_
+dandavis_U7_2_3,"That is an interesting question, but I am here to talk about STEM careers in the Navy. ",_OFF_TOPIC_
+dandavis_U8_2_3,Unfortunately I was never asked that question,_OFF_TOPIC_
+dandavis_U9_2_3,You might have to ask me something else.,_OFF_TOPIC_
+dandavis_U10_2_3,What do you want to talk about? ,_PROMPT_
+dandavis_U11_2_3,What would you like to ask me? ,_PROMPT_
+dandavis_U12_2_3,What do you want to know?,_PROMPT_
+dandavis_U13_5_1,What do you want to know about me?,_PROMPT_
+dandavis_U14_5_1,What do you want to know about STEM in the Navy?,_PROMPT_
+dandavis_U15_5_1,You could ask me about my education.,_PROMPT_
+dandavis_U16_5_1,You could ask me about my job in the Navy.,_PROMPT_
+dandavis_U17_5_1,You could ask me about my background. ,_PROMPT_
+dandavis_U18_5_1,"Go ahead, ask me who gave me the best advice about my career.",_PROMPT_
+dandavis_U19_5_1,I might have covered this already...,_REPEAT_
+dandavis_U20_5_1,"This changes pretty quickly, so what I'd tell you today might not be true tomorrow. I would recommend talking to someone local who might know more.",_FEEDBACK_
+dandavis_U21_5_1,"I did a lot of technical training in the Navy, so you can ask me about what skills I learned.",_PROMPT_
+dandavis_U22_5_1,You can ask me about the travelling that I did in the Navy.,_PROMPT_
+dandavis_U23_5_1,"I've made a lot of mistakes in my life, so you can ask me about any of the failures that I've had.",_PROMPT_
+dandavis_U24_5_1,"I've had a lot of mistakes in my life, and I've learned a lot from them. You can ask about anything and I'll try to be as honest as I can.",_PROMPT_
+dandavis_U25_5_1,"I spent four years on active duty in the Marine Corps and I've been in the reserves ever since then, although I transferred from the Corps into the Navy about the time I got my commission. Now, I work for the University of Southern California as a research administer, you can ask me about any of those jobs. ",_PROMPT_
+dandavis_U26_5_2,"I worked on ____ in the Navy, but it is different every day. So you can ask about what I did as a ____.",_PROMPT_
+dandavis_U27_5_2,"When you work for the Navy as long as I did, you get to have lots of stories. Some of them are funny, some of them are interestings, feel free to ask about any of them.",_PROMPT_
+dandavis_U28_5_2,Good careers are about solving what's important. You can ask me about anything that I think is important.,_PROMPT_
+dandavis_U29_6_2,"I am stored in this machine, I can wait for your questions all day",_PROMPT_
+dandavis_U30_6_2,A lot of people ask me about money and military salaries. You can ask me about those things.,_PROMPT_
+dandavis_U31_6_2,"A lot of people ask me about war, exercise, and payment, you can ask me if you want to.",_PROMPT_
+dandavis_U32_6_2,I have already answered that question. Please ask me something else.,_REPEAT_
+dandavis_U33_6_2,I have answered that question before. You can ask me something else,_REPEAT_
+dandavis_U34_6_2,I answered this question a while ago. Let�s move on.,_REPEAT_
+dandavis_U35_6_2,"That's a great question. Unfortunately, I don't have an answer for that right now.",_OFF_TOPIC_
+dandavis_U36_6_2,I'm not sure I have an answer for that question.,_OFF_TOPIC_
+dandavis_U37_6_2,I don't really have an opinion on that.,_OFF_TOPIC_
+dandavis_U38_6_3,I see you didn't ask anything there.,_OFF_TOPIC_
+dandavis_U39_6_3,You've got to ask me something to get a response.,_OFF_TOPIC_
+dandavis_U40_6_3,"No matter what you heard about having a mouth like a sailor, it will actually hurt your career.",_PROFANITY_
+dandavis_U41_6_3,I hope so,_FEEDBACK_
+idle,,_IDLE_
