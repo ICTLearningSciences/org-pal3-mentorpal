@@ -10,9 +10,6 @@ def start(answer_mode):
     global bi
     bi=interface.BackendInterface(mode=answer_mode)
     bi.preload(['clint', 'dan', 'julianne', 'carlos'])
-    end=time.time()
-    elapsed=end-start
-    print("Time to initialize is "+str(elapsed))
     print("Interface is ready:")
     print("  Start a session:   _START_SESSION_     <mentor id>")
     print("  End session:       _END_SESSION_")

@@ -380,12 +380,15 @@ class BackendInterface(object):
         if topic=='Job Specific':
             topic='jobspecific'
 
-        candidate_questions=self.mentor.suggestions[topic.lower()]
-        if (self.last_topic_suggestion == topic):
-            self.suggestion_index=(self.suggestion_index + 1) % len(candidate_questions)
-        else:
-            self.suggestion_index=random.randint(0,len(candidate_questions)-1)
+        if (topic.lower() in self.mentor.suggestions):
+            candidate_questions=self.mentor.suggestions[topic.lower()]
+            if (self.last_topic_suggestion == topic):
+                self.suggestion_index=(self.suggestion_index + 1) % len(candidate_questions)
+            else:
+                self.suggestion_index=random.randint(0,len(candidate_questions)-1)
 
-        selected_question=candidate_questions[self.suggestion_index]
-        self.last_topic_suggestion=topic
-        return (selected_question[0].capitalize(), selected_question[1], selected_question[2])
+            selected_question=candidate_questions[self.suggestion_index]
+            self.last_topic_suggestion=topic
+            return (selected_question[0].capitalize(), selected_question[1], selected_question[2])
+
+        return ('', '', '')
