@@ -32,7 +32,7 @@ var params = {
 };
 //********add a mentor here: copy paste the pattern*/
 router.get('/', function(req, res, next) {
-  res.render('index');
+  res.render('home');
 });
 router.get('/clint', function(req, res, next) {
   res.render('index');
