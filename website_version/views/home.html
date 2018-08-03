@@ -19,57 +19,56 @@
   </style>
 </head>
 <body>
+	<div id="myNav" class="overlay">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<div class="overlay-content">
+		<h2>Welcome to MentorPal!</h2>
+		<h3>MentorPal is an interactive system that lets you interview <br>Navy sailors to learn more about STEM fields and Navy careers.</h3><br>
+		<h5>By entering your username on the following screen, <br>you agree that your data can be anonymously logged for research.</h5><br>
+		<h1><a href="javascript:closeNav()">Enter MentorPal</a></h1>
+	</div>
+
+
+	</div>
   <nav id = navSize class="navbar navbar-light" style="background-color: #d9dbdf; height: 85px">
       <div class="navbar-header">
         <a class="navbar-brand" href="#"><img src ="/Logo_MentorPal.png"></a>
       </div>
       <div class="dropdown ml-auto">
-        <button class="btn btn-primary dropdown-toggle choose-mentor" type="button" style = "width: 200px; height: 50px; font-size: 19px" data-toggle="dropdown">Choose Mentor
-        <span class="caret"></span></button>
-        <div class="dropdown-menu">
-          <li style = "padding: 12px; font-size: 24px"><a  href="/clint">Clint</a></li>
-          <li style = "padding: 12px; font-size: 24px"><a  href="/dan">Dan</a></li>
-          <li style = "padding: 12px; font-size: 24px"><a  href="/julianne">Julianne</a></li>
-          <li style = "padding: 12px; font-size: 24px"><a  href="/carlos">Carlos</a></li>
-        </div>
-          <button style="visibility:hidden"></button>
           <a href="http://ict.usc.edu" <class="navbar-brand" "mr-sm-2"><img src="/ICT.png"></a>
       </div>
   </nav>
-<div id = "col" class = "wrap">
+<div id = "col-centered" class = "wrap"> <!--https://getbootstrap.com/docs/4.0/components/carousel/-->
 	<div id = "mainSize" class="container">
-    <div class= "row" style="padding-top: 40px">
-      <div id="demo" class="carousel slide" data-ride="carousel" style="height: 620px; width: 1280px">
-
+    <div class= "row" style="padding-top: 40px; padding-bottom: 30px;">
+      <div id="demo" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%">
         <!-- Indicators -->
         <ul class="carousel-indicators">
           <li data-target="#demo" data-slide-to="0" class="active"></li>
           <li data-target="#demo" data-slide-to="1"></li>
           <li data-target="#demo" data-slide-to="2"></li>
         </ul>
-
         <!-- The slideshow -->
         <div class="carousel-inner">
-          <div class="carousel-item active" style="height: 720px; width: 1140px">
+          <div class="carousel-item active" style="height: 100%; width: 100%">
           	<div class = "embed-responsive embed-responsive-16by9">
-                <video src = "https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.ogv" class ="video" id = "videoPlayer" width="1280px" height="720px" controls="false" autoplay>
+                <video src = "https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.mp4" class ="video" id = "videoPlayer" width="100%" height="720px" controls="false">
                 </video>
             </div>
           </div>
-          <div class="carousel-item" style="height: 720px; width: 1140px">
+          <div class="carousel-item" style="height: 100%; width: 100%">
             <div class = "embed-responsive embed-responsive-16by9">
-              <video src = "https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.ogv" class ="video" id = "videoPlayer" width="1280px" height="720px" controls="false" autoplay>
+              <video src = "https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.ogv" class ="video" id = "videoPlayer" width="100%" height="720px" controls="false">
               </video>
             </div>
           </div>
-          <div class="carousel-item" style="height: 720px; width: 1140px">
+          <div class="carousel-item" style="height: 100%; width: 100%">
             <div class = "embed-responsive embed-responsive-16by9">
-              <video src = "https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.ogv" class ="video" id = "videoPlayer" width="1280px" height="720px" controls="false" autoplay>
+              <video src = "https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.ogv" class ="video" id = "videoPlayer" width="100%" height="720px" controls="false">
               </video>
             </div>
           </div>
         </div>
-
         <!-- Left and right controls -->
         <a class="carousel-control-prev" href="#demo" data-slide="prev">
           <span class="carousel-control-prev-icon"></span>
@@ -78,11 +77,17 @@
           <span class="carousel-control-next-icon"></span>
         </a>
       </div>
-    </div>
   </div>
+		<div style = "text-align:center;">
+				<h3>Enter your Username:</h3>
+				<input class="form-control input-lg" id="input-username" type="text"><br>
+				<h3>Choose your first Mentor below:</h3>
+				<button class="btn btn-primary select-mentor" onclick="saveUserID('/clint')" role="button" style = "width: 400px; height: 75px; font-size: 19px; "><b>Clint:</b><br> Nuclear Electrician's Mate</button><br><br>
+				<a class="btn btn-primary select-mentor" href="/dan" role="button" style = "width: 400px; height: 75px; font-size: 19px; "><b>Dan:</b><br> High Performance Computing Researcher</a><br><br>
+				<a class="btn btn-primary select-mentor" href="/carlos" role="button" style = "width: 400px; height: 75px; font-size: 19px; "><b>Carlos:</b><br> Marine Logistician</a><br><br>
 </div>
-
-
-
+<script src = "/home.js">
+/*Below is for Overlay Nav*/
+</script>
 </body>
 </html>

@@ -12,9 +12,17 @@
 	<title>ICT MentorPal</title>
 </head>
 <body onresize="resizeFix()">
+	<div id="myNav" class="overlay">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<div class="overlay-content">
+		<h2>Welcome to MentorPal!</h2>
+		<h3>Click on the topic buttons to get suggested questions.</h3>
+		<h3>Toggle to the Transcript or turn on Closed Captions to read with the Mentor.</h3>
+	</div>
+	</div>
 		<nav id = navSize class="navbar navbar-light" style="background-color: #d9dbdf; height: 85px">
       	<div class="navbar-header">
-        	<a class="navbar-brand" href="#"><img src ="/Logo_MentorPal.png"></a>
+        	<a class="navbar-brand" href="/"><img src ="/Logo_MentorPal.png"></a>
         </div>
 				<div id = "mentor-title" class = 'mentor-title'>
 						Clinton Anderson: Nuclear Electrician's Mate
@@ -30,6 +38,7 @@
 					</div>
 						<button style="visibility:hidden"></button>
   					<a href="http://ict.usc.edu" <class="navbar-brand" "mr-sm-2"><img src="/ICT.png"></a>
+						<span id="user-display" style="font-size: 30px; padding-left: 5px; font-family: "Impact, Charcoal, sans-serif"; ></span>
   			</div>
 		</nav>
 <div id = "col" class = "wrap">	<!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay-->
