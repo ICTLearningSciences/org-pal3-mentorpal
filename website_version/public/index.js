@@ -4,6 +4,7 @@ var video = document.getElementById("videoPlayer");
 
 var mentorID = window.location.pathname.slice(1,window.location.pathname.length-1);
 var mentorID = window.location.pathname.split("/")[1];
+document.getElementById("user-display").textContent = localStorage.getItem("username");
 var mentor = {};
 //Each mentor needs its own set of links
 //This way, content can be hosted elsewhere explicit
@@ -268,3 +269,22 @@ $('#question-Box').keydown(function(e) {
         return false;
     }
 })
+
+
+function openNav() {
+    document.getElementById("myNav").style.height = "100%";
+		video.pause();
+}
+window.onload = function() {
+	if (sessionStorage.notFirstMentor == 1){
+
+	} else {
+		openNav();
+		sessionStorage.notFirstMentor = 1;
+	}
+}
+
+function closeNav() {
+    document.getElementById("myNav").style.height = "0%";
+		video.play();
+}
