@@ -24,7 +24,7 @@
 	<div class="overlay-content">
 		<h2>Welcome to MentorPal!</h2>
 		<h3>MentorPal is an interactive system that lets you interview <br>Navy sailors to learn more about STEM fields and Navy careers.</h3><br>
-		<h5>By entering your username on the following screen, <br>you agree that your data can be anonymously logged for research.</h5><br>
+		<h5>By entering your username on the following screen, <br>you agree that your data will be anonymously logged for research purposes only.</h5><br>
 		<h1><a href="javascript:closeNav()">Enter MentorPal</a></h1>
 	</div>
 
@@ -41,9 +41,9 @@
 <div id = "col-centered" class = "wrap"> <!--https://getbootstrap.com/docs/4.0/components/carousel/-->
 	<div id = "mainSize" class="container">
     <div class= "row" style="padding-top: 40px; padding-bottom: 30px;">
-      <div id="demo" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%">
+      <div id="carousel" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%" data-interval='false'>
         <!-- Indicators -->
-        <ul class="carousel-indicators">
+        <ul class="carousel-indicators" style="bottom: 5%;">
           <li data-target="#demo" data-slide-to="0" class="active"></li>
           <li data-target="#demo" data-slide-to="1"></li>
           <li data-target="#demo" data-slide-to="2"></li>
@@ -52,28 +52,28 @@
         <div class="carousel-inner">
           <div class="carousel-item active" style="height: 100%; width: 100%">
           	<div class = "embed-responsive embed-responsive-16by9">
-                <video src = "https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.mp4" class ="video" id = "videoPlayer" width="100%" height="720px" controls="false">
+                <video src = "https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.mp4" class ="video" id = "video0" width="100%" height="720px" controls="false">
                 </video>
             </div>
           </div>
           <div class="carousel-item" style="height: 100%; width: 100%">
             <div class = "embed-responsive embed-responsive-16by9">
-              <video src = "https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.ogv" class ="video" id = "videoPlayer" width="100%" height="720px" controls="false">
+              <video src = "https://pal3.ict.usc.edu/resources/mentor/dan/dandavis_A1_1_1.mp4" class ="video" id = "video1" width="100%" height="720px" controls="false">
               </video>
             </div>
           </div>
           <div class="carousel-item" style="height: 100%; width: 100%">
             <div class = "embed-responsive embed-responsive-16by9">
-              <video src = "https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.ogv" class ="video" id = "videoPlayer" width="100%" height="720px" controls="false">
+              <video src = "https://pal3.ict.usc.edu/resources/mentor/carlos/carlos_A1_1_1.mp4" class ="video" id = "video2" width="100%" height="720px" controls="false">
               </video>
             </div>
           </div>
         </div>
         <!-- Left and right controls -->
-        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <a class="carousel-control-prev" href="#carousel" data-slide="prev">
           <span class="carousel-control-prev-icon"></span>
         </a>
-        <a class="carousel-control-next" href="#demo" data-slide="next">
+        <a class="carousel-control-next" href="#carousel" data-slide="next">
           <span class="carousel-control-next-icon"></span>
         </a>
       </div>

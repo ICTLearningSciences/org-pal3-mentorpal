@@ -73,4 +73,21 @@ window.onload = function() {
 }
 function closeNav() {
     document.getElementById("myNav").style.height = "0%";
+		document.getElementById("video0").play();
 }
+$('#carousel').on('slide.bs.carousel', function (data) {
+		document.getElementById("video"+data.from).pause();
+})
+$('#carousel').on('slid.bs.carousel', function (data) {
+	  document.getElementById("video"+data.to).play();
+})
+$('#video0').on('ended',function(){
+	document.getElementById("video0").currentTime = 0.1;
+	$('#carousel').carousel("next");
+})
+$('#video1').on('ended',function(){
+	$('#carousel').carousel("next");
+})
+$('#video2').on('ended',function(){
+	$('#carousel').carousel("next");
+})
