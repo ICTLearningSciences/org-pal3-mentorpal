@@ -10,18 +10,20 @@ var mentor = {};
 //This way, content can be hosted elsewhere explicit
 if (mentorID == 'clint'){
 	mentor = {
-		name: "Clinton Anderson",
+		name: "Clint Anderson",
+		shortName: "Clint", //for the transcript
 		videoURL: "https://pal3.ict.usc.edu/resources/mentor/clint/",
 		idleURL: "https://pal3.ict.usc.edu/resources/mentor/clint/idle",
 		topicsURL: "/clint/topics.csv",
 		questions: "/clint/Questions_Paraphrases_Answers.csv",
 		intro: "My name is EMC Clint Anderson, that's Electrician's Mate Clinton Anderson. I was born in Los Angeles, California. I was raised there most of my life and I graduated from high school there. A couple of years after graduating from high school, then I joined the United States Navy. I was an Electrician's Mate for eight years. I served on an aircraft carrier. We went on many deployments. A deployment is when you go to war, you fight. We fought in the Iraq war. I went on three deployments and it was a really great time in my life. I had a lot of fun. At the end of the eight years, I decided that the Navy wasn't quite a career for me. So, I got out of the Navy. I started using the education benefits that we received and I started going to the University of California at Berkeley. I was majoring in computer science and afterwards, I started getting my master's degree from the University of Southern California. I also had a job at the Institute for Creative Technologies. It's been a lot of fun, this whole time. Thanks to the Navy.",
 		introURL: "clintanderson_A1_1_1",
-		title: "Clinton Anderson: Nuclear Electrician's Mate"
+		title: "Clinton Anderson: Nuclear Electrician's Mate" //for the title
 	};
 } else if (mentorID == 'dan'){
 	mentor = {
 		name: "Dan Davis",
+		shortName: "Dan",
 		videoURL: "https://pal3.ict.usc.edu/resources/mentor/dan/",
 		idleURL: "https://pal3.ict.usc.edu/resources/mentor/dan/idle",
 		topicsURL: "/dan/topics.csv",
@@ -33,6 +35,7 @@ if (mentorID == 'clint'){
 } else if (mentorID == 'julianne') {	//if it's none of these default to clint.  You could redirect to a homepage too that's why this is here
 	mentor = {
 		name: "Julianne Nordhagen",
+		shortName: "Julianne",
 		videoURL: "https://pal3.ict.usc.edu/resources/mentor/julianne/",
 		idleURL: "https://pal3.ict.usc.edu/resources/mentor/julianne/idle",
 		topicsURL: "/julianne/topics.csv",
@@ -44,6 +47,7 @@ if (mentorID == 'clint'){
 } else if (mentorID == 'carlos') {	//if it's none of these default to clint.  You could redirect to a homepage too that's why this is here
 	mentor = {
 		name: "Carlos Rios",
+		shortName: "Carlos",
 		videoURL: "https://pal3.ict.usc.edu/resources/mentor/carlos/",
 		idleURL: "https://pal3.ict.usc.edu/resources/mentor/carlos/idle",
 		topicsURL: "/carlos/topics.csv",
@@ -249,7 +253,7 @@ socket.on("receiveAnswer", function(data) {		//got the answer
 	video.play();
 	video.controls = true;
 	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
-	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>Mentor: </b>\xa0\xa0' + data.transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
+	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>'+mentor.shortName+': </b>\xa0\xa0' + data.transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
 });
 var token;
 socket.on("token", function(data){
@@ -261,7 +265,7 @@ video.onended = function(){		//when the video playing finishes, play the idle vi
 	video.play();
 	video.controls = false;
 }
-document.getElementById("caption-box").innerHTML = '' + '<b> Mentor: </b>' + '\xa0\xa0'  +  mentor.intro +'<br>';
+document.getElementById("caption-box").innerHTML = '' + '<b>'+ mentor.shortName +': </b>' + '\xa0\xa0'  +  mentor.intro +'<br>';
 document.getElementById("mentor-title").textContent = mentor.title;
 $('#question-Box').keydown(function(e) {
     if (e.keyCode === 13) {
@@ -269,19 +273,16 @@ $('#question-Box').keydown(function(e) {
         return false;
     }
 })
-
+window.onload = function() {
+	if (!sessionStorage.loaded){
+		openNav();
+	}
+	sessionStorage.loaded = true;
+}
 
 function openNav() {
     document.getElementById("myNav").style.height = "100%";
 		video.pause();
-}
-window.onload = function() {
-	if (sessionStorage.notFirstMentor == 1){
-
-	} else {
-		openNav();
-		sessionStorage.notFirstMentor = 1;
-	}
 }
 
 function closeNav() {

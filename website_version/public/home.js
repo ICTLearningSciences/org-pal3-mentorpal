@@ -70,6 +70,7 @@ function openNav() {
 }
 window.onload = function() {
 		openNav();
+		sessionStorage.loaded = true;
 }
 function closeNav() {
     document.getElementById("myNav").style.height = "0%";

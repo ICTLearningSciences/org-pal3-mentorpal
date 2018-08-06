@@ -24,11 +24,8 @@
       	<div class="navbar-header">
         	<a class="navbar-brand" href="/"><img src ="/Logo_MentorPal.png"></a>
         </div>
-				<div id = "mentor-title" class = 'mentor-title'>
-						Clinton Anderson: Nuclear Electrician's Mate
-				</div>
-				<div class="dropdown ml-auto">
-					<button class="btn btn-primary dropdown-toggle choose-mentor" type="button" style = "width: 200px; height: 50px; font-size: 19px" data-toggle="dropdown">Choose Mentor
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle choose-mentor button-color" type="button" style = "width: 200px; height: 50px; font-size: 19px" data-toggle="dropdown">Choose Mentor
 					<span class="caret"></span></button>
 					<div class="dropdown-menu">
 						<li style = "padding: 12px; font-size: 24px"><a  href="/clint">Clint</a></li>
@@ -36,9 +33,15 @@
 						<li style = "padding: 12px; font-size: 24px"><a  href="/julianne">Julianne</a></li>
 						<li style = "padding: 12px; font-size: 24px"><a  href="/carlos">Carlos</a></li>
 					</div>
+				</div>
+				<span id = "mentor-title" class = 'mentor-title'>
+						Clinton Anderson: Nuclear Electrician's Mate
+				</span>
+				<div class="dropdown ml-auto">
+						<button class = "btn btn-primary button-color" style = "height: 60px; width: 60px; padding: 9px; border-radius: 50%;" onclick = "openNav()"><i class="far fa-question-circle fa-2x"></i></button>
+						<span id="user-display" style="vertical-align: -10px; font-size: 24px; padding-left: 8px; font-family: "Impact, Charcoal, sans-serif"; ></span>
 						<button style="visibility:hidden"></button>
   					<a href="http://ict.usc.edu" <class="navbar-brand" "mr-sm-2"><img src="/ICT.png"></a>
-						<span id="user-display" style="font-size: 30px; padding-left: 5px; font-family: "Impact, Charcoal, sans-serif"; ></span>
   			</div>
 		</nav>
 <div id = "col" class = "wrap">	<!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay-->
@@ -76,7 +79,7 @@
 			</div>
 			<div id = "mic-send-row" class="col-1">
 				<div class="row button-row-enter">
-					<button id= "send-button" onclick = "send()" class = "enter-button btn"><i class="fas fa-arrow-right fa-2x"></i></button>
+					<button id= "send-button" onclick = "send()" class = "enter-button button-color btn"><i class="fas fa-arrow-right fa-2x"></i></button>
 				</div>
 			</div>
 		</div>

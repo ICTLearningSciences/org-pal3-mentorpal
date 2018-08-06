@@ -39,12 +39,14 @@
 		}
 		.choose-mentor{
 			border-radius: 30px;
-			background-color: #1b6a9c;
 		}
 		.button-row-choice{
 			padding-top: 5.5%;
 			padding-bottom: 5.5%;
 			height: 82px;
+		}
+		.button-color{
+			background-color: #1b6a9c;
 		}
 		.topic-box{
 			height:165px;
@@ -126,7 +128,6 @@
 			padding: 8px;
 			min-width: 70px;
 			color: #FFFFFF;
-			background-color: #1b6a9c;
 		}
     .video-wrapper{
         width: 920px;
@@ -154,7 +155,9 @@
 							   color-stop(.5, transparent), to(transparent));
 		}
 		.select-mentor{
-
+			width: 400px;
+			height: 75px;
+			font-size: 19px;
 		}
 
 /* Below is for the overlay*/
