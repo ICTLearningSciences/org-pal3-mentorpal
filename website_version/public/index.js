@@ -289,6 +289,3 @@ function closeNav() {
     document.getElementById("myNav").style.height = "0%";
 		video.play();
 }
-$('videoWrapper').last().on('error', function() {
-    alert('Video not found');
-});
