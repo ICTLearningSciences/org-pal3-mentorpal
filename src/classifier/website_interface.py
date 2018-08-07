@@ -3,7 +3,7 @@
 import classify
 import mentor
 
-clint = classify.Classify()
+'''clint = classify.Classify()
 clintModel = mentor.Mentor('clint')	#this name is decided by classifer and the model has to be added to that with the cooresponding name
 clint.set_mentor(clintModel)
 
@@ -17,16 +17,20 @@ julianne.set_mentor(julianneModel)
 
 carlos = classify.Classify()
 carlosModel = mentor.Mentor('carlos')
-carlos.set_mentor(carlosModel)
+carlos.set_mentor(carlosModel)'''
+
+
+global bi
+bi=interface.BackendInterface(mode=answer_mode)
+bi.preload(['clint', 'dan', 'julianne', 'carlos'])
 
 while True:
 	x = input("For Nodejs to enter value, but what is the question?  *use python3*")	#gets the question and id of the client
 	y = x.split(',');
 	question = y[0]
 	id = y[1]
-	print (y[2])
 	if (y[2]=='clint'):
-		output = clint.get_answer(question)	#sends back the answer and the client id
+		#output = clint.get_answer(question)	#sends back the answer and the client id
 	elif (y[2]=='dan'):
 		output = dan.get_answer(question)
 	elif (y[2]=='julianne'):

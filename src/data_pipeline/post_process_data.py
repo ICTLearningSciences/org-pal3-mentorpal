@@ -130,7 +130,7 @@ class PostProcessData(object):
                 answer_sample['question']=self.answer_corpus.iloc[self.answer_corpus_index]['Question']+'\r\n'
                 for j in range(1,26):
                     index='P'+str(j)
-                    answer_sample['question']+=self.answer_corpus.iloc[self.answer_corpus_index][index]+'\r\n'
+                    answer_sample['question']+=str(self.answer_corpus.iloc[self.answer_corpus_index][index])+'\r\n'
                 answer_sample['question']=answer_sample['question'].strip()
                 answer_sample['text']=self.answer_corpus.iloc[self.answer_corpus_index]['text']
                 self.answer_corpus_index+=1
