@@ -78,8 +78,8 @@ io.on('connection', function(socket){
 
 pyshell.on('message',function(message){ //if a message is recieved from python
     message = message.split("~~");
-    if (message[1]){    //this is the message we need
-		    io.to(message[0]).emit("receiveAnswer",{"videoID": message[1], "transcript": message[2]});    //sends back to the same client
+    if (message[2]){    //this is the message we need
+		    io.to(message[1]).emit("receiveAnswer",{"videoID": message[2], "transcript": message[3]});    //sends back to the same client
     }
 });
 

@@ -32,5 +32,5 @@ while True:	#for now, the overhead of threading module actually doesn't make tha
 		video_file, transcript, score = bi.process_input_from_ui(question)
 		output ="{0}\n{1}\n{2}\n{3}".format(id, video_file, transcript, score)
 		output = output.split('\n')
-		output = output[0]+"~~"+output[1]+"~~"+output[2]+"~~"
+		output = "~~"+output[0]+"~~"+output[1]+"~~"+output[2]+"~~"
 		print(output,end='')
