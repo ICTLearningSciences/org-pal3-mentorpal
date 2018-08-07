@@ -1,6 +1,6 @@
 #THIS FIXES THE ERROR  https://github.com/extrabacon/python-shell/issues/113 Supresses the tensorflow warning
 
-import classify
+import interface
 import mentor
 
 '''clint = classify.Classify()
@@ -21,21 +21,15 @@ carlos.set_mentor(carlosModel)'''
 
 
 global bi
-bi=interface.BackendInterface(mode=answer_mode)
+bi=interface.BackendInterface("classifier")
 bi.preload(['clint', 'dan', 'julianne', 'carlos'])
-
 while True:
 	x = input("For Nodejs to enter value, but what is the question?  *use python3*")	#gets the question and id of the client
-	y = x.split(',');
+	y = x.split('~~');
 	question = y[0]
 	id = y[1]
-	if (y[2]=='clint'):
-		#output = clint.get_answer(question)	#sends back the answer and the client id
-	elif (y[2]=='dan'):
-		output = dan.get_answer(question)
-	elif (y[2]=='julianne'):
-		output = julianne.get_answer(question)
-	elif (y[2]=='carlos'):
-		output = carlos.get_answer(question)
+	bi.set_mentor(y[2])
+	video_file, transcript, score = bi.process_input_from_ui(question)
+	output ="{0}\n{1}\n{2}\n{3}".format(id, video_file, transcript, score)
 	print(output,end='')
 	print(id)
