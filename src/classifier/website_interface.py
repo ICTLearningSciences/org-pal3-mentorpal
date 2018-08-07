@@ -34,3 +34,4 @@ while True:	#for now, the overhead of threading module actually doesn't make tha
 		output = output.split('\n')
 		output = "~~"+output[0]+"~~"+output[1]+"~~"+output[2]+"~~"
 		print(output,end='')
+		print(' ')
