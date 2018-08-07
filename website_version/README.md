@@ -72,4 +72,5 @@ https://github.com/extrabacon/python-shell/issues/113
 - papaparse *MIT License*
 - socket io *MIT License*
 - watson- *speech website side Apache License 2.0*
+- NodeCSV - *BSD License*
 If anything else is needed, don't hesitate to contact the original REU intern, me/Kenneth Shaw at kshaw@gatech.edu.
