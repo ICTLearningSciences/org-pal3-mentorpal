@@ -71,20 +71,15 @@ io.on('connection', function(socket){
     socket.on("sendQuestion", function(data) {
         console.log(data);
         /*do the question processing stuff here*/
-        pyshell.send(data.Question+','+socket.id+','+data.Mentor);
-        console.log(data.Question+','+socket.id+','+data.Mentor);
+        pyshell.send(data.Question+'~~'+socket.id+'~~'+data.Mentor);
+        //console.log(data.Question+','+socket.id+','+data.Mentor);
     });
 });
 
 pyshell.on('message',function(message){ //if a message is recieved from python
-    message = message.split('(');
-    if (message[1]){    //this is the message we need
-        message = message[1];
-        processedOutput = {"videoID": message.slice(1,message.indexOf(",")-1),"transcript": message.slice(message.indexOf(",")+3,message.indexOf(")")-1),"clientID": message.slice(message.indexOf(")")+1).replace("\r","")}
-        console.log(processedOutput);
-		io.to(processedOutput.clientID).emit("receiveAnswer",{"videoID": processedOutput.videoID, "transcript": processedOutput.transcript});    //sends back to the same client
-        console.log('videoID: ' + processedOutput.videoID);
-        console.log('transcript: '+ processedOutput.transcript);
+    if (message){    //this is the message we need
+      message = message.split("~~");
+		io.to(message[1]).emit("receiveAnswer",{"videoID": message[1], "transcript": message[2]});    //sends back to the same client
     }
 });
 
