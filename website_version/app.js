@@ -42,7 +42,7 @@ for (let k = 0; k<2;k++){
 		for (let i = 0; i<rows.length; i++) {
 			request.head('https://pal3.ict.usc.edu/resources/mentor/'+mentorList[j]+'/'+rows[i]["ID"], function (error, response, body) {
 			    if (!error && response.statusCode == 200 && rows[i]) {
-			  		console.log(rows[i]["ID"] + " found");// Continue with your processing here.
+			  		//console.log(rows[i]["ID"] + " found");// Continue with your processing here.
 			    } else if (rows[i]) {
 						console.log(rows[i]["ID"] + " not found!");
 					}
