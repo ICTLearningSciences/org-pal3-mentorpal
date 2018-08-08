@@ -11,7 +11,7 @@ var apptwo = express();
 var https = require('https');
 var http = require('http');
 var request = require('request');
-
+var parse = require('csv-parse')
 // view engine setup
 app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
@@ -31,6 +31,16 @@ if (process.argv[2]!="dev"){
 }
 
 //checks if videos are loaded on
+mentorList = ['clint','dan','julianne','carlos']
+for(j = 0; j<mentorList.length; j++){
+	fs.readFile('mentors/'+mentorList[j]+'/data/utterance_data.csv', function (err, fileData) {
+	  parse(fileData, {columns: true, trim: false}, function(err, rows) {
+			for (i = 0; i<rows.length; i++){
+	    	console.log(rows[i]["ID"])
+			}
+	  })
+	})
+}
 request.head('https://pal3.ict.usc.edu/resources/mentor/clint/clintanderson_A1_1_1.mp4', function (error, response, body) {
     if (!error && response.statusCode == 200) {
   		//console.log("file exits");// Continue with your processing here.
