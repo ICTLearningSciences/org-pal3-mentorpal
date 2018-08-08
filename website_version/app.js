@@ -32,12 +32,12 @@ if (process.argv[2]!="dev"){
 }
 
 //checks if videos are loaded on
-fileList = ['utterance_data.csv', 'classifier_data.csv']
+filesID = ['utterance_data.csv', 'classifier_data.csv'];
 for (let k = 0; k<2;k++){
-	mentorList = ['clint','dan','julianne','carlos']
+	mentorList = ['clint','dan','julianne','carlos'];
 	for(let j = 0; j<mentorList.length; j++) {
 		console.log(mentorList[j]);
-		x = fs.readFileSync('mentors/'+mentorList[j]+'/data/'+fileList[k]);
+		x = fs.readFileSync('mentors/'+mentorList[j]+'/data/'+filesID[k]);
 	  rows = parse(x, {columns: true, trim: false});
 		for (let i = 0; i<rows.length; i++) {
 			request.head('https://pal3.ict.usc.edu/resources/mentor/'+mentorList[j]+'/'+rows[i]["ID"], function (error, response, body) {
