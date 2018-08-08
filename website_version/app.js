@@ -32,25 +32,27 @@ if (process.argv[2]!="dev"){
 }
 
 //checks if videos are loaded on
+var filetypes = ["_M.mp4", ".mp4", ".ogv"];
 var filesID = ['utterance_data.csv', 'classifier_data.csv'];
-for (let k = 0; k<2;k++){
-	var mentorList = ['clint','dan','julianne','carlos'];
-	for(let j = 0; j<mentorList.length; j++) {
-		console.log(mentorList[j]);
-		var x = fs.readFileSync('mentors/'+mentorList[j]+'/data/'+filesID[k]);
-	  var rows = parse(x, {columns: true, trim: false});
-		for (let i = 0; i<rows.length; i++) {
-			request.head('https://pal3.ict.usc.edu/resources/mentor/'+mentorList[j]+'/'+rows[i]["ID"], function (error, response, body) {
-			    if (!error && response.statusCode == 200 && rows[i]) {
-			  		//console.log(rows[i]["ID"] + " found");// Continue with your processing here.
-			    } else if (rows[i]) {
-						console.log(rows[i]["ID"] + " not found!");
-					}
-			});
+for (let l = 0; l<filetypes.length; l++){
+	for (let k = 0; k<2;k++){
+		var mentorList = ['clint','dan','julianne','carlos'];
+		for(let j = 0; j<mentorList.length; j++) {
+			//console.log(mentorList[j]);
+			var x = fs.readFileSync('mentors/'+mentorList[j]+'/data/'+filesID[k]);
+		  let rows = parse(x, {columns: true, trim: false});
+			for (let i = 0; i<rows.length; i++) {
+				request.head('https://pal3.ict.usc.edu/resources/mentor/'+mentorList[j]+'/'+rows[i]["ID"]+filetypes[l], function (error, response, body) {
+				    if (!error && response.statusCode == 200 && rows[i]) {
+				  		//console.log(rows[i]["ID"] + " found");// Continue with your processing here.
+				    } else if (rows[i]) {
+							console.log(rows[i]["ID"]+filetypes[l] + " not found!");
+						}
+				});
+			}
 		}
 	}
 }
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
