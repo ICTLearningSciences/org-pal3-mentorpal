@@ -4,12 +4,17 @@ from watson_developer_cloud import SpeechToTextV1
 API credentials for the IBM Watson service are given below
 Web login credentials for https://console.ng.bluemix.net/
 Username: mentorpal.ict@gmail.com
-Password: P@ssword123
+Password: Ask Ben Nye for it
+Place the text file containing the private key in the root of the website version code
 Contact Madhusudhan Krishnamachari at madhusudhank@icloud.com to get assistance on how to use Watson. (IBM Documentation should help)
 '''
+passphrase = ""
+with open('../../website_version/password.txt', 'r') as password:
+	passphrase = password.read()
+	print(passphrase)
 speech_to_text = SpeechToTextV1(
     username='a9e2f186-462c-4109-b220-3cfcdc31c9f6',
-    password='H27yANqAuMLr',
+    password=passphrase,
     x_watson_learning_opt_out=True #tells IBM Watson not to collect our data, hence keeping our data confidential and secure.
 )
 
