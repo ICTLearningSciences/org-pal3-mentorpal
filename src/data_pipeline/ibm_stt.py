@@ -13,7 +13,7 @@ with open('../../website_version/password.txt', 'r') as password:
 	passphrase = password.read()
 	print(passphrase)
 speech_to_text = SpeechToTextV1(
-    username='a9e2f186-462c-4109-b220-3cfcdc31c9f6',
+    username='b339aacb-e633-4e40-b10d-6f5b300f59bf',
     password=passphrase,
     x_watson_learning_opt_out=True #tells IBM Watson not to collect our data, hence keeping our data confidential and secure.
 )
