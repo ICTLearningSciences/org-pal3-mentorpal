@@ -330,7 +330,7 @@ class BackendInterface(object):
                 self.should_bump=False
                 self.blacklist.append(return_id)
 
-        Logger.logData(self.mentor, question, "", classifier_answer, return_answer, return_id, classifier_score, 1.0)
+        Logger.logData(self.mentor, question, "", classifier_answer, return_answer, return_id, npceditor_score, classifier_score)
         return return_id, return_answer, return_score
 
     def get_redirect_answer(self):

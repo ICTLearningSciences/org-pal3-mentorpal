@@ -9,7 +9,6 @@ class Logger(object):
     def logUserID(ID):
         with open('QuestionAnswerLog.csv', 'a', newline='') as log:
             logWriter = csv.writer(log, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL, lineterminator=",") #this keeps the rest open for
-
     @staticmethod
     def logData(mentor, question, answerNPC, answerClassifier, finalAnswer, videoID, npcConfidence, classifierConfidence):
         if not os.path.isfile('QuestionAnswerLog.csv'):
