@@ -4,7 +4,8 @@ var video = document.getElementById("videoPlayer");
 
 var mentorID = window.location.pathname.slice(1,window.location.pathname.length-1);
 var mentorID = window.location.pathname.split("/")[1];
-document.getElementById("user-display").textContent = localStorage.getItem("username");
+var username = localStorage.getItem("username");
+document.getElementById("user-display").textContent = username;
 var mentor = {};
 //Each mentor needs its own set of links
 //This way, content can be hosted elsewhere explicit
@@ -212,7 +213,7 @@ function toChoices(){ //switch view of box
 function send(){	//send the question on enter or send key
 	if (document.getElementById("question-Box").value&& document.getElementById("question-Box").value!="\n"){
 		stopWatson();
-		socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID)});
+		socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID),"UserID":(username)});
 		document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + document.getElementById("question-Box").value + '<br>';
 		document.getElementById("question-Box").value = '';
 	}

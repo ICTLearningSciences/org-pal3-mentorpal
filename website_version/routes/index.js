@@ -71,7 +71,7 @@ io.on('connection', function(socket){
     socket.on("sendQuestion", function(data) {
         console.log(data);
         /*do the question processing stuff here*/
-        pyshell.send(data.Question+'~~'+socket.id+'~~'+data.Mentor);
+        pyshell.send(data.Question+'~~'+socket.id+'~~'+data.Mentor+'~~'+data.UserID+'~~');
         //console.log(data.Question+','+socket.id+','+data.Mentor);
     });
 });
