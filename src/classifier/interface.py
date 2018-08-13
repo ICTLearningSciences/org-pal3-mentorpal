@@ -279,7 +279,7 @@ class BackendInterface(object):
         return_id=None
         return_answer=None
         return_score=0.0
-
+        npceditor_score=0.0
         if self.mode=='ensemble':
             npceditor_id, npceditor_score, npceditor_answer = self.get_npceditor_answer(question, use_topic_vectors)
             if npceditor_answer=="answer_none":
