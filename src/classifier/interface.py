@@ -13,6 +13,7 @@ import csv
 import datetime
 import time
 import mentor
+from logger import Logger
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score, accuracy_score
@@ -60,7 +61,6 @@ class BackendInterface(object):
             # need to figure out why loading topic_model works for commandline but not vhmsg
             if self.mode=='ensemble' or self.mode=='classifier':
                 self.set_mentor(mentor)
-                self.get_classifier_answer('asdf')
 
     def load_mentor(self, id):
         self.mentorsById[id]=mentor.Mentor(id)
@@ -330,6 +330,7 @@ class BackendInterface(object):
                 self.should_bump=False
                 self.blacklist.append(return_id)
 
+        Logger.logData(self.mentor, question, "", classifier_answer, return_answer, return_id, float(0), 1.0)
         return return_id, return_answer, return_score
 
     def get_redirect_answer(self):
