@@ -263,13 +263,13 @@ class BackendInterface(object):
     '''
     def get_classifier_answer(self, question, use_topic_vectors=True):
         start_time=time.time()
-        classifier_id, classifier_answer=self.classifier.get_answer(question, use_topic_vectors=use_topic_vectors)
+        classifier_id, classifier_answer, classifier_score=self.classifier.get_answer(question, use_topic_vectors=use_topic_vectors)
         if classifier_id=="_OFF_TOPIC_":
             classifier_id, classifier_answer, other = self.return_prompt("_OFF_TOPIC_")
         end_time=time.time()
         elapsed=end_time-start_time
         print("Time to fetch classifier answer is "+str(elapsed))
-        return classifier_id, classifier_answer
+        return classifier_id, classifier_answer, classifier_score
 
     '''
     When only one answer is required for a single question, use this method. You can choose to use or not use the topic vectors by
@@ -283,13 +283,13 @@ class BackendInterface(object):
         if self.mode=='ensemble':
             npceditor_id, npceditor_score, npceditor_answer = self.get_npceditor_answer(question, use_topic_vectors)
             if npceditor_answer=="answer_none":
-                classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
+                classifier_id, classifier_answer, classifier_score = self.get_classifier_answer(question, use_topic_vectors)
                 return_id=classifier_id
                 return_answer=classifier_answer
                 print("Answer from classifier chosen")
             else:
                 if float(npceditor_score) < -5.59054:
-                    classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
+                    classifier_id, classifier_answer, classifier_score = self.get_classifier_answer(question, use_topic_vectors)
                     return_id=classifier_id
                     return_answer=classifier_answer
                     print("Answer from classifier chosen") #this might be uncertain, maybe grab an _OFF_TOPIC
@@ -310,7 +310,7 @@ class BackendInterface(object):
                 print("Answer from NPCEditor chosen")
 
         elif self.mode=='classifier':
-            classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
+            classifier_id, classifier_answer, classifier_score = self.get_classifier_answer(question, use_topic_vectors)
             return_id=classifier_id
             return_answer=classifier_answer
             print("Answer from classifier chosen")
@@ -330,7 +330,7 @@ class BackendInterface(object):
                 self.should_bump=False
                 self.blacklist.append(return_id)
 
-        Logger.logData(self.mentor, question, "", classifier_answer, return_answer, return_id, float(0), 1.0)
+        Logger.logData(self.mentor, question, "", classifier_answer, return_answer, return_id, classifier_score, 1.0)
         return return_id, return_answer, return_score
 
     def get_redirect_answer(self):

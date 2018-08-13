@@ -209,5 +209,5 @@ class LogisticClassifier(object):
         #print(json.dumps(self.ids_answer))  #this is all of the possible choices
         #print("Data!!!") #so here we'll return a keyword if things are bad
         if highestConfidence < -0.88:
-            return "_OFF_TOPIC_","_OFF_TOPIC_"
-        return prediction[0], self.ids_answer[prediction[0]]
+            return "_OFF_TOPIC_","_OFF_TOPIC_",highestConfidence
+        return prediction[0], self.ids_answer[prediction[0]], highestConfidence
