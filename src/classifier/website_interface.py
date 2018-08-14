@@ -29,7 +29,7 @@ while True:	#for now, the overhead of threading module actually doesn't make tha
 		question = y[0]
 		id = y[1]
 		bi.set_mentor(y[2])
-		Logger.logUserID(y[3])
+		Logger.logUserID(y[3],y[1])
 		video_file, transcript, score = bi.process_input_from_ui(question)
 		output ="{0}\n{1}\n{2}\n{3}".format(id, video_file, transcript, score)
 		output = output.split('\n')
