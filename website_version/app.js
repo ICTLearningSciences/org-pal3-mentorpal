@@ -60,7 +60,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/processor', usersRouter);
 indexRouter.io.listen(server);
 if(process.argv[2] == "dev"){
 	server.listen(8000, function(){

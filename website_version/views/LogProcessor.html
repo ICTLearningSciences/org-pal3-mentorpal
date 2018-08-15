@@ -8,8 +8,51 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	<title>ICT MentorPal</title>
 </head>
-<body>
+<body onbeforeunload = "return returnFunction()">
 
 
+<div style = "padding: 24px">
+  <div class="row">
+    <div class="col-sm">
+      <input type="file" id="files" name="files[]" />
+    </div>
+    <div class="col-sm">
+      <div class="form-group">
+        <label for="usr">Name:</label>
+        <input type="text" class="form-control" id="usr">
+      </div>
+    </div>
+    <div class="col-sm">
+
+    </div>
+  </div>
+  <div class="row">
+    <h2>Data</h2>
+    <table class="table table-striped" style= "font-size: 11px" id="table">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>SessionID</th>
+          <th>MentorID</th>
+          <th>Question</th>
+          <th>NPC Answer</th>
+          <th>Classifier Answer</th>
+          <th>Final Choice</th>
+          <th>Final Video</th>
+          <th>NPC Editor Confidence</th>
+          <th>Classifier Confidence</th>
+          <th>Time</th>
+          <th>Response Quality</th>
+          <th>Better Response ID</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script src = "/LogProcessor.js">
+</script>
 </body>
 </html>
