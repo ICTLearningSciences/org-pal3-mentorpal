@@ -49,7 +49,6 @@ function setChoice(row, choice){
     $("#"+btID + "Decent").replaceWith("");
     $("#"+btID + "Poor").replaceWith("Poor");
   }
-  console.log()
 }
 function returnFunction(){
   return 'Are you sure you want to leave? Make sure you downloaded the new file before you leave!';
