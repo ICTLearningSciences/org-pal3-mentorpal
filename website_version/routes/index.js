@@ -22,7 +22,7 @@ var pyshell = new PythonShell('/../src/classifier/website_interface.py',options)
 var text = fs.readFileSync('./password.txt','utf8');
 console.log(text);
 var authorization = new watson.AuthorizationV1({
-  username: 'a9e2f186-462c-4109-b220-3cfcdc31c9f6',
+  username: 'b339aacb-e633-4e40-b10d-6f5b300f59bf',
   password: text,
   url: 'https://stream.watsonplatform.net/authorization/api'
 });
