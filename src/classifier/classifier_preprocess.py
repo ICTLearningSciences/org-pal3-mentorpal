@@ -6,6 +6,7 @@ import json
 import numpy as np
 import pandas as pd
 import mentor
+import re
 from nltk.tokenize import RegexpTokenizer
 from nltk import pos_tag
 from nltk.stem import PorterStemmer
@@ -55,6 +56,55 @@ class NLTKPreprocessor(object):
                 continue
             yield stemmed_token
 
+'''
+This class contains the methods that operate on the questions to generate text features that can help the classifier make better decisions.
+'''
+class TextFeatureGenerator(object):
+    def __init__(self):
+        pass
+
+    def any_negation(self, question_text):
+        for word in question_text.split():
+            if word in ['n', 'no', 'non', 'not'] or re.search(r"\wn't", word):
+                return 1
+        return 0
+
+    def log_wordcount(self, question_text):
+        wordcount = len(question_text.split())
+        return np.log(1 + wordcount)
+
+    def negation_mod(self, question_text):
+        count = 0
+        for word in question_text.split():
+            if word in ['n', 'no', 'non', 'not'] or re.search(r"\wn't", word):
+                count = count + 1
+        return count%2 
+        
+    def what_question(self, question_text):
+        if 'what' in question_text.split():
+            return 1
+        return 0
+
+    def how_question(self, question_text):
+        if 'how' in question_text.split():
+            return 1
+        return 0
+    
+    def why_question(self, question_text):
+        if 'why' in question_text.split():
+            return 1
+        return 0
+    
+    def when_question(self, question_text):
+        if 'when' in question_text.split():
+            return 1
+        return 0
+    
+    def where_question(self, question_text):
+        if 'where' in question_text.split():
+            return 1
+        return 0
+
 class ClassifierPreProcess(object):
     def __init__(self):
         self.train_data=[]
@@ -72,6 +122,7 @@ class ClassifierPreProcess(object):
         self.topic_model=None
         self.topic_set=set()
         self.preprocessor=NLTKPreprocessor()
+        self.features=TextFeatureGenerator()
         self.mentor=None
 
     def set_mentor(self, mentor):
@@ -119,18 +170,23 @@ class ClassifierPreProcess(object):
             answer=answer.replace('\u00a0',' ')
             self.ids_answer[answer_id]=answer
 
+            #Generate text features
+            negation_feature = self.features.any_negation(current_question)
+            wordcount_feature = self.features.log_wordcount(current_question)
             #Tokenize the question
             processed_question=self.preprocessor.transform(current_question)
             #add question to dataset
-            self.train_data.append([current_question,processed_question,topics,answer_id])
+            self.train_data.append([current_question,processed_question,topics,answer_id,negation_feature,wordcount_feature])
             #look for paraphrases and add them to dataset
             for i in range(0,len(paraphrases)):
                 processed_paraphrase=self.preprocessor.transform(paraphrases[i])
+                negation_feature = self.features.any_negation(paraphrases[i])
+                wordcount_feature = self.features.log_wordcount(paraphrases[i])
                 #add question to testing dataset if it is the last paraphrase. Else, add to training set
                 if i==len(paraphrases)-1 and mode=='train_test_mode':
-                    self.test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
+                    self.test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id,negation_feature,wordcount_feature])
                 else:
-                    self.train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
+                    self.train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id,negation_feature,wordcount_feature])
 
     '''
     get the word_vector and lstm_vector for a question. Both vectors are obtained from the Google News Corpus.
@@ -157,10 +213,11 @@ class ClassifierPreProcess(object):
     '''
     def generate_training_vectors(self):
         #for each data point, get w2v vector for the question and store in train_vectors.
-        #instance=<question, topic, answer, paraphrases>
+        #instance=<question, topic, answer, paraphrases, any_negation, log_wordcount>
         for instance in self.train_data:
+            print(instance)
             w2v_vector, lstm_vector=self.get_w2v(instance[1])
-            self.train_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[3]])
+            self.train_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[3],instance[4],instance[5]])
             self.lstm_train_vectors.append(lstm_vector)
 
         #For the LSTM, each training sample will have a max dimension of 300 x 25. For those that don't, the pad_sequences
@@ -172,7 +229,7 @@ class ClassifierPreProcess(object):
         try:
             for instance in self.test_data:
                 w2v_vector, lstm_vector=self.get_w2v(instance[1])
-                self.test_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[3]])
+                self.test_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[3],instance[4],instance[5]])
                 self.lstm_test_vectors.append(lstm_vector)
             padded_vectors=pad_sequences(self.lstm_test_vectors,maxlen=25, dtype='float32',padding='post',truncating='post',value=0.)
             self.lstm_test_vectors=padded_vectors
