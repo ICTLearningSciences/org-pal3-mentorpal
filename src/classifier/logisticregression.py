@@ -64,7 +64,7 @@ class LogisticClassifier(object):
 
         print("Using topic vectors")
         for i in range(0,len(self.train_data)):
-            self.x_train_fused.append(np.concatenate((self.train_data[i][1], self.train_topic_vectors[i][1])))
+            self.x_train_fused.append(np.concatenate((self.train_data[i][1], self.train_topic_vectors[i][1], self.train_data[i][4:])))
         self.x_train_fused=np.asarray(self.x_train_fused)
         self.y_train_fused=[self.train_data[i][3] for i in range(len(self.train_data))]
         try:
@@ -130,10 +130,10 @@ class LogisticClassifier(object):
         #print(self.logistic_model_fused.best_params_, self.logistic_model_fused.best_score_)
         joblib.dump(self.logistic_model_fused, os.path.join("mentors",self.mentor.id,"train_data","fused_model.pkl"))
         #self.plot_validation_curve(train_scores, valid_scores)
-        # scores=cross_val_score(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
-        # print(scores)
-        # predicted = cross_val_predict(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
-        # print(metrics.accuracy_score(self.y_train_fused, predicted))
+        scores=cross_val_score(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=10)
+        print(scores)
+        predicted = cross_val_predict(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=10)
+        print(metrics.accuracy_score(self.y_train_fused, predicted))
 
     '''
     Test the classifier and evaluate performance. This is only for testing performance. This won't be used in the system flow.
