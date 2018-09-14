@@ -144,7 +144,7 @@ class ClassifierPreProcess(object):
     '''
     Read the classifier data from data/classifier_data.csv.
     Split the data to train and test sets.
-    Store the data in format [actual question, transformed question, list of topics, answer_id] in self.train_data and
+    Store the data in format [actual question, transformed question, list of topics, answer_id, any_negation, log_wordcount, negation_mod, what_question, how_question, why_question, when_question, where_question] in self.train_data and
     self.test_data
     '''
     def read_data(self, mode):
@@ -225,7 +225,7 @@ class ClassifierPreProcess(object):
     '''
     def generate_training_vectors(self):
         #for each data point, get w2v vector for the question and store in train_vectors.
-        #instance=<question, topic, answer, paraphrases, any_negation, log_wordcount>
+        #instance=<question, topic, answer, paraphrases, any_negation, log_wordcount, negation_mod, what_question, how_question, why_question, when_question, where_question>
         for instance in self.train_data:
             w2v_vector, lstm_vector=self.get_w2v(instance[1])
             self.train_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[3],instance[4],instance[5],instance[6],instance[7],instance[8],instance[9],instance[10],instance[11]])
