@@ -9,6 +9,7 @@ WORKDIR /usr/src/app
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY website_version/package*.json ./
+
 RUN apt-get update
 RUN apt-get install -y apt-transport-https
 RUN apt-get install -y build-essential

@@ -5,6 +5,8 @@ var io = require('socket.io')(http);
 var watson = require('watson-developer-cloud');
 var PythonShell = require('python-shell');
 var fs = require('fs');
+const appRoot = require('app-root-path').path
+const path = require('path')
 //https://github.com/extrabacon/python-shell/issues/113 : /python-shell/index.js, on line 72
 //After installation, comment out the warning printing if tensorflow is having trouble importing
 
@@ -22,7 +24,8 @@ if(nodeEnv == "dev"){
   }
 }
 var pyshell = new PythonShell('/../src/classifier/website_interface.py',options);
-var text = fs.readFileSync('./password.txt','utf8');
+const passwordPath = path.join(appRoot, 'password.txt')
+var text = fs.readFileSync(passwordPath, 'utf8');
 console.log(text);
 var authorization = new watson.AuthorizationV1({
   username: 'b339aacb-e633-4e40-b10d-6f5b300f59bf',
