@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node app",
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -18,5 +18,9 @@
     "socket.io": "^2.1.1",
     "swig": "^1.4.2",
     "watson-developer-cloud": "^3.4.5"
-  }
+  },
+  "description": "*This allows MentorPal to be deployed to hundreds of users remotely onto their computer or mobile device*",
+  "main": "app.js",
+  "author": "",
+  "license": "ISC"
 }

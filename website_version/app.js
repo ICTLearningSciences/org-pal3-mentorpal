@@ -18,14 +18,16 @@ app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
-if(process.argv[2] != "dev"){
+const nodeEnv = process.env.NODE_ENV || 'dev'
+if(nodeEnv != "dev"){
 	var options = {
 	  key: fs.readFileSync('/etc/letsencrypt/live/mentorpal.org/privkey.pem'),
 	  cert: fs.readFileSync('/etc/letsencrypt/live/mentorpal.org/fullchain.pem')
 	};
 	var servertwo = http.createServer(apptwo);
 }
-if (process.argv[2]!="dev"){
+
+if (nodeEnv){
 	var server = https.createServer(options, app);
 } else {
 	var server = http.createServer(app);
