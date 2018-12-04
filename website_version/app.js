@@ -44,13 +44,10 @@ app.use('/', indexRouter);
 app.use('/processor', usersRouter);
 app.use('/validate', require('./routes/validate'))
 
+const port = process.env.NODE_PORT || 3000
 indexRouter.io.listen(server);
-if(!useSSL){
-	server.listen(8000, function(){
-		console.log('redirecting');
-	});
-} else {
-	server.listen(443, function(){
+if(useSSL){
+  server.listen(443, function(){
 	    console.log('Listening for http requests');
 	});
 	servertwo.listen(80, function(){
@@ -58,6 +55,10 @@ if(!useSSL){
 	});
 	apptwo.get('*',function(req,res,next){
 		res.redirect(['https://', req.get('Host'), req.url].join(''));
+	});
+} else {
+	server.listen(port, function(){
+		console.log(`node listening on port ${port}`);
 	});
 }
 

@@ -31,11 +31,11 @@ run-local:
 	  -it \
 	  --rm \
 	  -u 0 \
-	  -p:8000:8000 \
+	  -p:3000:3000 \
 	  --name mentor-pal-web \
 	  -e NODE_ENV=dev \
 		--mount type=bind,source=$(CURDIR),target=/docker_host \
-	  mentor-pal-web bash
+	  $(DOCKER_IMAGE_TAG)
 
 
 docker-tag:
@@ -58,7 +58,7 @@ else
 endif
 
 # deploy a tagged image of
-deploy-docker-tag: docker-login
+docker-deploy-tag: docker-login
 	docker push $(DOCKER_IMAGE_TAG)
 
 eb-build:
