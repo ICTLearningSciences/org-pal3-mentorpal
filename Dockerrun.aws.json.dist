@@ -1,0 +1,11 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "{{DOCKER_IMAGE_TAG}}"
+  },
+  "Ports": [
+    {
+      "ContainerPort": "80"
+    }
+  ]
+}

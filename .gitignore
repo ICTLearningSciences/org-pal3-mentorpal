@@ -2,3 +2,10 @@ website_version/node_modules
 website_version/password.txt
 *.pyc
 QuestionAnswerLog.csv
+build
+dist
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

@@ -12,17 +12,10 @@ const path = require('path')
 
 const nodeEnv = process.env.NODE_ENV || 'dev'
 
-if(nodeEnv == "dev"){
-  var options = {
-      //pythonPath: 'E:/Python35/python.exe',
-      pythonPath: '/usr/local/bin/python3'
-  }
-} else {
-  var options = {
-      //pythonPath: 'E:/Python35/python.exe',
-      pythonPath: '/usr/bin/python3'
-  }
+const options = {
+    pythonPath: process.env.PYTHON_PATH || '/usr/local/bin/python3'
 }
+
 var pyshell = new PythonShell('/../src/classifier/website_interface.py',options);
 const passwordPath = path.join(appRoot, 'password.txt')
 var text = fs.readFileSync(passwordPath, 'utf8');

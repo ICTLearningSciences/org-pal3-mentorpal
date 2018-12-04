@@ -18,7 +18,7 @@ app.engine('html', cons.swig)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
-const useSSL = (process.env.NODE_ENV || 'dev') !== 'dev'
+const useSSL = false //(process.env.NODE_ENV || 'dev') !== 'dev'
 if(useSSL){
 	var options = {
 	  key: fs.readFileSync('/etc/letsencrypt/live/mentorpal.org/privkey.pem'),

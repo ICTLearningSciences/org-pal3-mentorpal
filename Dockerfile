@@ -29,14 +29,6 @@ WORKDIR /usr/src/app
 RUN python3 -m pip install numpy pandas keras tensorflow sklearn nltk gensim
 RUN python3 -m nltk.downloader averaged_perceptron_tagger
 
-# Get key
-# RUN apt-get update
-# RUN apt-get install software-properties-common
-# RUN add-apt-repository "deb http://archive.ubuntu.com $(lsb_release -sc) universe"
-# RUN add-apt-repository ppa:certbot/certbot
-# RUN apt-get update
-
-
 # Bundle app source
 COPY . .
 
@@ -44,22 +36,3 @@ EXPOSE 80
 WORKDIR /usr/src/app/website_version
 RUN npm install
 CMD ["npm","run","start"]
-
-# RUN apt-get install -y python3.5
-# RUN apt-get install -y python3-pip
-# RUN pip3 install numpy pandas keras tensorflow sklearn nltk
-# RUN pip3 install gensim
-#
-# RUN python3 -m nltk.downloader averaged_perceptron_tagger
-#
-# # If you are building your code for production
-# # RUN npm install --only=production
-#
-#
-# # Bundle app source
-# COPY . .
-#
-# EXPOSE 80
-# WORKDIR /usr/src/app/website_version
-# RUN npm install
-# CMD ["nodejs","app"]
