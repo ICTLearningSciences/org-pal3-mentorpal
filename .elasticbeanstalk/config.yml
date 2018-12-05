@@ -1,0 +1,22 @@
+branch-defaults:
+  default:
+    environment: MentorpalWeb-env
+  master:
+    environment: MentorpalWeb-env
+environment-defaults:
+  MentorpalWeb-env:
+    branch: null
+    repository: null
+global:
+  application_name: mentorpal-web
+  default_ec2_keyname: null
+  default_platform: arn:aws:elasticbeanstalk:us-east-1::platform/Docker running on
+    64bit Amazon Linux/2.12.5
+  default_region: us-east-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli-mentorpal
+  sc: git
+  workspace_type: Application

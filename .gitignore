@@ -4,8 +4,3 @@ website_version/password.txt
 QuestionAnswerLog.csv
 build
 dist
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
