@@ -130,10 +130,10 @@
 			color: #FFFFFF;
 		}
     .video-wrapper{
-        width: 920px;
+        width: 100%;
         overflow:hidden;
         display:block;
-        height:820px;
+        height:50%;
         margin-left: 15px;
     }
 

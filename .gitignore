@@ -4,3 +4,4 @@ website_version/password.txt
 QuestionAnswerLog.csv
 build
 dist
+.DS_Store

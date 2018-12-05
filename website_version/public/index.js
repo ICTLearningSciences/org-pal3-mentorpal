@@ -7,6 +7,7 @@ var mentorID = window.location.pathname.split("/")[1];
 var username = localStorage.getItem("username");
 document.getElementById("user-display").textContent = username;
 var mentor = {};
+
 //Each mentor needs its own set of links
 //This way, content can be hosted elsewhere explicit
 if (mentorID == 'clint'){
@@ -17,6 +18,7 @@ if (mentorID == 'clint'){
 		idleURL: "https://pal3.ict.usc.edu/resources/mentor/clint/idle",
 		topicsURL: "/clint/topics.csv",
 		questions: "/clint/Questions_Paraphrases_Answers.csv",
+		classifier: "/clint/classifier_data.csv",
 		intro: "My name is EMC Clint Anderson, that's Electrician's Mate Clinton Anderson. I was born in Los Angeles, California. I was raised there most of my life and I graduated from high school there. A couple of years after graduating from high school, then I joined the United States Navy. I was an Electrician's Mate for eight years. I served on an aircraft carrier. We went on many deployments. A deployment is when you go to war, you fight. We fought in the Iraq war. I went on three deployments and it was a really great time in my life. I had a lot of fun. At the end of the eight years, I decided that the Navy wasn't quite a career for me. So, I got out of the Navy. I started using the education benefits that we received and I started going to the University of California at Berkeley. I was majoring in computer science and afterwards, I started getting my master's degree from the University of Southern California. I also had a job at the Institute for Creative Technologies. It's been a lot of fun, this whole time. Thanks to the Navy.",
 		introURL: "clintanderson_A1_1_1",
 		title: "Clinton Anderson: Nuclear Electrician's Mate" //for the title
@@ -29,6 +31,7 @@ if (mentorID == 'clint'){
 		idleURL: "https://pal3.ict.usc.edu/resources/mentor/dan/idle",
 		topicsURL: "/dan/topics.csv",
 		questions: "/dan/Questions_Paraphrases_Answers.csv",
+		classifier: "/dan/classifier_data.csv",
 		intro: "Hello I'm Dan Davis I've worked for universities to last thirty years doing basic research in high performance computing of work for Cal Tech, University of Southern California and the University of Hawaii",
 		introURL: "dandavis_A1_1_1",
 		title: "Dan Davis: High Performance Computing Researcher"
@@ -41,6 +44,7 @@ if (mentorID == 'clint'){
 		idleURL: "https://pal3.ict.usc.edu/resources/mentor/julianne/idle",
 		topicsURL: "/julianne/topics.csv",
 		questions: "/julianne/Questions_Paraphrases_Answers.csv",
+		classifier: "/julianne/classifier_data.csv",
 		intro: "Hi my name's Julie Nordhagen, I'm in the United States Navy and I'm currently a student naval aviator so that means that I have commissioned into the Navy and I am starting to learn how to fly planes and will then become a full trained pilot for the Navy.",
 		introURL: "julianne_U1_1_1",
 		title: "Julianne Nordhagen: Student Naval Aviator"
@@ -53,6 +57,7 @@ if (mentorID == 'clint'){
 		idleURL: "https://pal3.ict.usc.edu/resources/mentor/carlos/idle",
 		topicsURL: "/carlos/topics.csv",
 		questions: "/carlos/Questions_Paraphrases_Answers.csv",
+		classifier: "/carlos/classifier_data.csv",
 		intro: "So my name is Carlos Rios. I'm a logistics lead supporting marine corps projects. I'm originally from Connecticut or New Haven, Connecticut. My mother and father are from Puerto Rico they migrated over to Connecticut and then from there after about six well I was about seven years old and moved over to a Philadelphia where I spent most of my most of my youth. About age 18-19 years old graduated high school and joined the marine corps. Twenty three years later, retired. During that time of course I got married. I have been married for twenty seven years. I have two great kids, one currently attending USC and one in the near future want to attend Clemson, South Carolina where I currently reside after my retirement from the marine corps. I spent two years as a contractor supporting the marine corps and I personally think I did such a good job that the government decided to bring it over to that side and support as a government employee and I've been doing that for about seven years high manage everything from my computer, servers, laptops to drones.",
 		introURL: "carlos_A1_1_1",
 		title: "Carlos Rios: Marine Logistician"
@@ -65,11 +70,13 @@ if (mentorID == 'clint'){
 		idleURL: "https://pal3.ict.usc.edu/resources/mentor/clint/idle",
 		topicsURL: "/clint/topics.csv",
 		questions: "/clint/Questions_Paraphrases_Answers.csv",
+		classifier: "/clint/classifier_data.csv",
 		intro: "My name is EMC Clint Anderson, that's Electrician's Mate Clinton Anderson. I was born in Los Angeles, California. I was raised there most of my life and I graduated from high school there. A couple of years after graduating from high school, then I joined the United States Navy. I was an Electrician's Mate for eight years. I served on an aircraft carrier. We went on many deployments. A deployment is when you go to war, you fight. We fought in the Iraq war. I went on three deployments and it was a really great time in my life. I had a lot of fun. At the end of the eight years, I decided that the Navy wasn't quite a career for me. So, I got out of the Navy. I started using the education benefits that we received and I started going to the University of California at Berkeley. I was majoring in computer science and afterwards, I started getting my master's degree from the University of Southern California. I also had a job at the Institute for Creative Technologies. It's been a lot of fun, this whole time. Thanks to the Navy.",
 		introURL: "clintanderson_A1_1_1",
 		title: "Clinton Anderson: Nuclear Electrician's Mate"
 	};
 }
+
 var isMobile="";
 function resizeFix(){	//run everytime the window is resized to keep it responsive
 	if (screen.width<700){	//check if we're on mobile
@@ -82,12 +89,12 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 
 		document.getElementById("videoWrapper").className = 'video-wrapper';
 		document.getElementById("videoPlayer").width = screen.width;
-		document.getElementById("videoPlayer").height = screen.width * 0.5625;
+		document.getElementById("videoPlayer").height = screen.height;
 
 		document.getElementById("mic-send-row").className = 'col-2';
 		document.getElementById("input-box").className = 'col-10';
 		document.getElementById("question-Box").style = 'padding-right: 95px; height: 170px; font-size: 35px';
-		document.getElementById("mic-button").style = 'height: 85px; width: 85px;  font-size: 30px';
+		document.getElementById("mic-button").style = 'height: 75px; width: 75px; font-size: 30px';
 		document.getElementById("stop-button").style = 'display: none; height: 85px; width: 85px;  font-size: 30px';
 		document.getElementById("send-button").style = 'height: 170px; width: 140px;  font-size: 40px';
 		document.getElementById("mentor-title").style = "display: none";
@@ -102,8 +109,8 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 
 		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9';
 		document.getElementById("videoPlayer").className = 'col';
-		document.getElementById("videoPlayer").width = 1920;
-		document.getElementById("videoPlayer").height = 1080;
+		document.getElementById("videoPlayer").width = screen.width;
+		document.getElementById("videoPlayer").height = screen.height;
 		document.getElementById("mic-send-row").className = 'col-1'
 		document.getElementById("input-box").className = 'col-11';
 		document.getElementById("question-Box").style = 'height: 120px; font-size: 20px';
@@ -125,14 +132,14 @@ Papa.parse(mentor.topicsURL, {	//setup the csv for buttons on desktop
 	complete: function(results) {
 		globalResults = results;
 		resizeFix();	//run this after we get the button names
-		video.src = mentor.videoURL+mentor.introURL + isMobile + ".mp4";
+		video.src = mentor.videoURL + mentor.introURL + isMobile + ".mp4";
 		document.getElementById("track").src = "/"+mentorID+"/tracks/"+mentor.introURL+".vtt";
 	}
 });
 
-function renderButtons(results){
+function renderButtons(results) {
 	document.getElementById("topic-box").innerHTML = '';
-	if (screen.width>=700){	//we shouldn't check this each loop so goes on the outside
+	if (screen.width >= 700) {	//we shouldn't check this each loop so goes on the outside
 		for (var i = 0; i<results.data.length-3; i++){
 		///////////////This is the desktop version
 			if (i%5==0){	//create rows for the buttons
@@ -173,51 +180,86 @@ function renderButtons(results){
 
 var x = {};	//hold the amount of times button has already been clicked
 function findquestion(thisButton) {	//find the question that needs to be filled into the send box
-	//console.log(thisButton.value);
-	if (x[thisButton.value]){		//Keep track of which question in the topic list we're on
-		x[thisButton.value] = x[thisButton.value] + 1;
-	} else {
-		x[thisButton.value] = 1;
-	}
 	Papa.parse(mentor.questions, {	//parse the csv
 		download: true,
 		complete: function(results) {
-			var questionNumber = 0;
-			var question;
-			for (var i = 0; i<results.data.length; i++){
-				if (results.data[i][0].includes(thisButton.value)){	//if the question has our topic
-					questionNumber++;
-					if (questionNumber == x[thisButton.value]){	//if its the right question on the list
-						question = results.data[i][3];
-						//console.log(question);
-						document.getElementById("question-Box").value = question;
-						break;
+			var topicQuestionSize = 0
+			for (var i = 0; i < results.data.length; i++) {
+				if (results.data[i][0].toLowerCase().includes(thisButton.value.toLowerCase())) {	//if the question has our topic
+					topicQuestionSize++
+				}
+			}
+
+			if (x[thisButton.value]) {	//Keep track of which question in the topic list we're on
+				x[thisButton.value] = (x[thisButton.value] + 1) % topicQuestionSize
+			} else {
+				x[thisButton.value] = 1
+			}
+
+			var questionNumber = 0
+			var question
+			for (var i = 0; i<results.data.length; i++) {
+				if (results.data[i][0].toLowerCase().includes(thisButton.value.toLowerCase())) {	//if the question has our topic
+					questionNumber++
+					if (questionNumber == x[thisButton.value]) {	//if its the right question on the list
+						question = results.data[i][3]
+						document.getElementById("question-Box").value = question
+						break
 					}
 				}
 			}
 		}
 	});
 }
+
 function toCaption(){	//switch view of box
 	document.getElementById("topic-box").style.display = "none";
 	document.getElementById("caption-box").style.display = "block";
 	document.getElementById("button-caption").disabled = true;
 	document.getElementById("button-choice").disabled = false;
 }
+
 function toChoices(){ //switch view of box
 	document.getElementById("topic-box").style.display = "block";
 	document.getElementById("caption-box").style.display = "none";
 	document.getElementById("button-caption").disabled = false;
 	document.getElementById("button-choice").disabled = true;
 }
+
 function send(){	//send the question on enter or send key
-	if (document.getElementById("question-Box").value&& document.getElementById("question-Box").value!="\n"){
+	const question = document.getElementById("question-Box").value
+	if (question && question != "\n"){
 		stopWatson();
-		socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID),"UserID":(username)});
-		document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + document.getElementById("question-Box").value + '<br>';
-		document.getElementById("question-Box").value = '';
+
+		// first check if the question has a direct match
+		Papa.parse(mentor.classifier, {
+			download: true,
+			complete: function(results) {
+				for (var i = 0; i < results.data.length; i++) {
+					// TODO: won't need this once we fix the NLP
+					// if direct match, use direct answer and don't bother with python tensorflow
+					if (results.data[i][3].toLowerCase().includes(question.toLowerCase())) {
+						const videoID = results.data[i][0]
+						const transcript = results.data[i][2]
+
+						video.src = mentor.videoURL + videoID + isMobile + '.mp4';
+						document.getElementById("track").src = "/" + mentorID + "/tracks/" + videoID + ".vtt";
+						video.play();
+						video.controls = true;
+						document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
+						document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>'+mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
+						return;
+					}
+				}
+
+				socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID),"UserID":(username)});
+				document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + document.getElementById("question-Box").value + '<br>';
+				document.getElementById("question-Box").value = '';
+			}
+		});
 	}
 }
+
 var stream;
 function watson(){
 	document.getElementById("mic-button").style.display = 'none';
@@ -230,6 +272,7 @@ function watson(){
 	   console.log(err);
    });
 }
+
 function stopWatson(){
 	document.getElementById("stop-button").style.display = 'none';
 	document.getElementById("mic-button").style.display = 'block';
@@ -237,6 +280,7 @@ function stopWatson(){
 		stream.stop();
 	}
 }
+
 function videoSwitch(){
 	var videoPlayer = document.getElementById("videoPlayer")
 	if (videoPlayer.paused){
@@ -245,7 +289,6 @@ function videoSwitch(){
 		videoPlayer.pause();
 	}
 }
-
 
 socket.on("receiveAnswer", function(data) {		//got the answer
 	//console.log(data);
@@ -256,16 +299,19 @@ socket.on("receiveAnswer", function(data) {		//got the answer
 	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
 	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>'+mentor.shortName+': </b>\xa0\xa0' + data.transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
 });
+
 var token;
 socket.on("token", function(data){
 	token = data.token;
 });
+
 video.onended = function(){		//when the video playing finishes, play the idle video
 	video.src = mentor.idleURL + isMobile + ".mp4";
 	document.getElementById("track").src = "";
 	video.play();
 	video.controls = false;
 }
+
 document.getElementById("caption-box").innerHTML = '' + '<b>'+ mentor.shortName +': </b>' + '\xa0\xa0'  +  mentor.intro +'<br>';
 document.getElementById("mentor-title").textContent = mentor.title;
 $('#question-Box').keydown(function(e) {
@@ -274,6 +320,7 @@ $('#question-Box').keydown(function(e) {
         return false;
     }
 })
+
 window.onload = function() {
 	if (!sessionStorage.loaded){
 		openNav();

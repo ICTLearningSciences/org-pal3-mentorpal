@@ -12,7 +12,7 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 
 		document.getElementById("videoWrapper").className = 'video-wrapper';
 		document.getElementById("videoPlayer").width = screen.width;
-		document.getElementById("videoPlayer").height = screen.width * 0.5625;
+		document.getElementById("videoPlayer").height = screen.height;
 
 		document.getElementById("mic-send-row").className = 'col-2';
 		document.getElementById("input-box").className = 'col-10';

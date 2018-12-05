@@ -384,7 +384,9 @@ class BackendInterface(object):
         if (topic.lower() in self.mentor.suggestions):
             candidate_questions=self.mentor.suggestions[topic.lower()]
             if (self.last_topic_suggestion == topic):
-                self.suggestion_index=(self.suggestion_index + 1) % len(candidate_questions)
+                self.suggestion_index = self.suggestion_index + 1
+                if (self.suggestion_index >= len(candidate_questions)):
+                    self.suggestion_index = 0
             else:
                 self.suggestion_index=random.randint(0,len(candidate_questions)-1)
 
