@@ -6,28 +6,30 @@
 			padding-bottom: 1.5%;
 		}
 		.button-settings{
-			width: 18.75%;
-			height: 45px;
 			background-color: #5c84a4;
-			margin-left:0.8%;
 			border-radius: 40px;
-			font-size: 18px;
+			margin-top: 5px;
+			height: 45px;
 			color: #f4f4f4;
+			font-size: 18px;
+			/* width: 18.75%;
+			margin-left:0.8%; */
+		}
+		.button-settings-mobile{
+			background-color: #5c84a4;
+			border-radius: 30px;
+			margin-top: 15px;
+			height: 80px;
+			color: #f4f4f4;
+			font-size: 35px;
+			/* width: 49%;
+			margin-left:0.8%; */
 		}
 		.mentor-title{
 			padding: 10px;
 		}
 		.hide{
 			visibility: hidden;
-		}
-		.button-settings-mobile{
-			width: 49%;
-			height: 80px;
-			border-radius: 30px;
-			background-color: #5c84a4;
-			margin-left:0.8%;
-			font-size: 35px;
-			color: #f4f4f4;
 		}
 		.button-row-cap{
 			padding-top: 5.5%;
@@ -60,12 +62,18 @@
 		}
 		.topic-box-mobile{
 			height:210px;
-			overflow-y:hidden;
+			border-radius: 20px;
+			overflow-y:scroll;
+			overflow-x:hidden;
+			background-color:#B0BEC8;
+			border: 10px #B0BEC8;
+			padding-top: 0.5%;
+			white-space: normal;
+			/* overflow-y:hidden;
 			overflow-x:scroll;
 			background-color: #B0BEC8;
 			padding:0.25%;
-			white-space: nowrap;
-
+			white-space: nowrap; */
 		}
 		.caption-box{
 			height:165px;

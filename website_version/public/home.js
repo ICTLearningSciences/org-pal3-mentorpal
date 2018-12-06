@@ -32,8 +32,8 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 
 		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9';
 		document.getElementById("videoPlayer").className = 'col';
-		document.getElementById("videoPlayer").width = 1920;
-		document.getElementById("videoPlayer").height = 1080;
+		document.getElementById("videoPlayer").width = screen.width;
+		document.getElementById("videoPlayer").height = screen.height;
 		document.getElementById("mic-send-row").className = 'col-1'
 		document.getElementById("input-box").className = 'col-11';
 		document.getElementById("question-Box").style = 'height: 120px; font-size: 20px';

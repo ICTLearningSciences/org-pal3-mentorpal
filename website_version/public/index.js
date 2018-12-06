@@ -10,7 +10,7 @@ var mentor = {};
 
 //Each mentor needs its own set of links
 //This way, content can be hosted elsewhere explicit
-if (mentorID == 'clint'){
+if (mentorID == 'clint') {
 	mentor = {
 		name: "Clint Anderson",
 		shortName: "Clint", //for the transcript
@@ -23,7 +23,7 @@ if (mentorID == 'clint'){
 		introURL: "clintanderson_A1_1_1",
 		title: "Clinton Anderson: Nuclear Electrician's Mate" //for the title
 	};
-} else if (mentorID == 'dan'){
+} else if (mentorID == 'dan') {
 	mentor = {
 		name: "Dan Davis",
 		shortName: "Dan",
@@ -79,47 +79,45 @@ if (mentorID == 'clint'){
 
 var isMobile="";
 function resizeFix(){	//run everytime the window is resized to keep it responsive
-	if (screen.width<700){	//check if we're on mobile
-		toChoices();
+	document.getElementById("videoPlayer").width = screen.width;
+	document.getElementById("videoPlayer").height = screen.height;
+
+	//if mobile, render this:
+	if (screen.width < 700) {
+		isMobile = "_M";
 		document.getElementById("mainSize").className = "container-fluid";
 		document.getElementById("topic-box").className = "topic-box-mobile";
 		renderButtons(globalResults);
-		document.getElementById("button-row").style.display = 'none';
-		document.getElementById("main-box").className = 'col';
+
+		document.getElementById("main-box").className = "col";
+		document.getElementById("button-row").className = "d-none";
+		toChoices();
 
 		document.getElementById("videoWrapper").className = 'video-wrapper';
-		document.getElementById("videoPlayer").width = screen.width;
-		document.getElementById("videoPlayer").height = screen.height;
+		document.getElementById("videoPlayer").textTracks[0].mode = "showing";	// show on-video captions
 
-		document.getElementById("mic-send-row").className = 'col-2';
-		document.getElementById("input-box").className = 'col-10';
-		document.getElementById("question-Box").style = 'padding-right: 95px; height: 170px; font-size: 35px';
+		document.getElementById("question-Box").style = 'height: 140px; font-size: 30px';
+		document.getElementById("send-button").style = 'height: 140px; width: 140px; font-size: 30px';
 		document.getElementById("mic-button").style = 'height: 75px; width: 75px; font-size: 30px';
 		document.getElementById("stop-button").style = 'display: none; height: 85px; width: 85px;  font-size: 30px';
-		document.getElementById("send-button").style = 'height: 170px; width: 140px;  font-size: 40px';
 		document.getElementById("mentor-title").style = "display: none";
-		isMobile = "_M";
-		document.getElementById("videoPlayer").textTracks[0].mode = "showing";
-	} else {	//if desktop render this
+	}
+	//if desktop, render this
+	else {
+		isMobile="";
 		document.getElementById("mainSize").className = "container";
 		document.getElementById("topic-box").className = "topic-box";
 		renderButtons(globalResults);
-		document.getElementById("button-row").style.display = 'block';
-		document.getElementById("main-box").style.fontSize = '20px';
 
 		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9';
 		document.getElementById("videoPlayer").className = 'col';
-		document.getElementById("videoPlayer").width = screen.width;
-		document.getElementById("videoPlayer").height = screen.height;
-		document.getElementById("mic-send-row").className = 'col-1'
-		document.getElementById("input-box").className = 'col-11';
+		document.getElementById("videoPlayer").textTracks[0].mode = "hidden";	// hide on-video captions
+
 		document.getElementById("question-Box").style = 'height: 120px; font-size: 20px';
+		document.getElementById("send-button").style = 'height: 120px; width: 120px; font-size: 30px';
 		document.getElementById("mic-button").style = "display: block";
 		document.getElementById("stop-button").style = "display: none";
-		document.getElementById("send-button").style = "display: block; height: 120px";
-		document.getElementById("videoPlayer").textTracks[0].mode = "hidden";
 		document.getElementById("mentor-title").style = "bottom: 0; margin-bottom: 18px;	position: absolute; left: 50%; transform: translateX(-50%); font-size: 25px;";
-		isMobile="";
 	}
 }
 
@@ -139,42 +137,23 @@ Papa.parse(mentor.topicsURL, {	//setup the csv for buttons on desktop
 
 function renderButtons(results) {
 	document.getElementById("topic-box").innerHTML = '';
-	if (screen.width >= 700) {	//we shouldn't check this each loop so goes on the outside
-		for (var i = 0; i<results.data.length-3; i++){
-		///////////////This is the desktop version
-			if (i%5==0){	//create rows for the buttons
-				var buttonrow = document.createElement("div");
-				buttonrow.class="row";
-				buttonrow.style.paddingBottom="0.5%";
-				buttonrow.style.paddingTop="0.25%";
-				document.getElementById("topic-box").appendChild(buttonrow);
-			}
-			btn = document.createElement("BUTTON");        // Create buttons
-			btn.className = "btn button-settings";
-			var name = results.data[i][0];
-			btn.appendChild(document.createTextNode(name));
-			btn.value = name;
-			btn.onclick = function() {findquestion(this)};	//on click find a question
-			buttonrow.appendChild(btn);	//append button to row
+	const isMobile = screen.width < 700;
+
+	// loop through all topics and add buttons (excluding Negative, Positive, Navy)
+	for (var i = 0; i < results.data.length-3; i++) {
+		var topicName = results.data[i][0];
+
+		btn = document.createElement("BUTTON");
+		if (isMobile) {
+			btn.className = "btn button-settings-mobile col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
+		} else {
+			btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
 		}
-	} else{
-	//////////////////////This is the mobile version
-		for (var i = 0; i<results.data.length-3; i++){
-			if (i%((results.data.length-3)/2)<1){	//create rows for the buttons results.data.length/2
-				var buttonrow = document.createElement("div");
-				buttonrow.class="row";
-				buttonrow.style.paddingBottom="0.5%";
-				buttonrow.style.paddingTop="0.25%";
-				document.getElementById("topic-box").appendChild(buttonrow);
-			}
-			btn = document.createElement("BUTTON");        // Create buttons
-			btn.className = "btn button-settings-mobile";
-			var name = results.data[i][0];
-			btn.appendChild(document.createTextNode(name));
-			btn.value = name;
-			btn.onclick = function() {findquestion(this)};	//on click find a question
-			buttonrow.appendChild(btn);	//append button to row
-		}
+
+		btn.appendChild(document.createTextNode(topicName));
+		btn.value = topicName;
+		btn.onclick = function() {findquestion(this)};	//on click find a question
+		document.getElementById("topic-box").appendChild(btn);	//append button to row
 	}
 }
 
@@ -212,32 +191,34 @@ function findquestion(thisButton) {	//find the question that needs to be filled 
 	});
 }
 
-function toCaption(){	//switch view of box
+function toCaption() {	//switch view of box
 	document.getElementById("topic-box").style.display = "none";
 	document.getElementById("caption-box").style.display = "block";
 	document.getElementById("button-caption").disabled = true;
 	document.getElementById("button-choice").disabled = false;
 }
 
-function toChoices(){ //switch view of box
+function toChoices() { //switch view of box
 	document.getElementById("topic-box").style.display = "block";
 	document.getElementById("caption-box").style.display = "none";
 	document.getElementById("button-caption").disabled = false;
 	document.getElementById("button-choice").disabled = true;
 }
 
-function send(){	//send the question on enter or send key
+function send() {	//send the question on enter or send key
 	const question = document.getElementById("question-Box").value
 	if (question && question != "\n"){
 		stopWatson();
+		document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + question + '<br>';
+		document.getElementById("question-Box").value = '';
 
 		// first check if the question has a direct match
 		Papa.parse(mentor.classifier, {
 			download: true,
 			complete: function(results) {
 				for (var i = 0; i < results.data.length; i++) {
-					// TODO: won't need this once we fix the NLP
 					// if direct match, use direct answer and don't bother with python tensorflow
+					// TODO: won't need this once we fix the NLP
 					if (results.data[i][3].toLowerCase().includes(question.toLowerCase())) {
 						const videoID = results.data[i][0]
 						const transcript = results.data[i][2]
@@ -246,15 +227,14 @@ function send(){	//send the question on enter or send key
 						document.getElementById("track").src = "/" + mentorID + "/tracks/" + videoID + ".vtt";
 						video.play();
 						video.controls = true;
+
 						document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
-						document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>'+mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
+						document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>' + mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
 						return;
 					}
 				}
 
 				socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID),"UserID":(username)});
-				document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + document.getElementById("question-Box").value + '<br>';
-				document.getElementById("question-Box").value = '';
 			}
 		});
 	}
