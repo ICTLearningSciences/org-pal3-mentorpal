@@ -75,7 +75,7 @@ eb-dist: eb-build
 	printf "\ndeploy:\n  artifact: %s\n" $(EB_ARCHIVE_FILE) \
 		>> ../dist/.elasticbeanstalk/config.yml
 
-eb-deploy: eb-dist deploy-docker-tag
+eb-deploy: #eb-dist docker-deploy-tag
 	cd dist && \
 	eb use $(EB_ENV) && eb deploy
 
