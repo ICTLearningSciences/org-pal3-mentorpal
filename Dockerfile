@@ -13,6 +13,8 @@ COPY website_version/package*.json ./
 RUN apt-get update
 RUN apt-get install -y apt-transport-https
 RUN apt-get install -y build-essential
+
+# do we still need to install npm if base image is node?
 RUN apt-get install -y npm
 
 # Install python
