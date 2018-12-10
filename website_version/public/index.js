@@ -115,26 +115,22 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("videoPlayer").className = 'col';
 		document.getElementById("videoPlayer").textTracks[0].mode = "hidden";	// hide on-video captions
 
+		document.getElementById("mic-button").style.display = 'block';
+		document.getElementById("stop-button").style.display = 'none';
+
 		document.getElementById("question-Box").style = 'height: 120px; font-size: 20px';
 		document.getElementById("send-button").style = 'height: 120px; width: 120px; font-size: 30px';
-		document.getElementById("mic-button").style = "display: block";
-		document.getElementById("stop-button").style = "display: none";
 		document.getElementById("mentor-title").style = "bottom: 0; margin-bottom: 18px;	position: absolute; left: 50%; transform: translateX(-50%); font-size: 25px;";
 	}
 
 	// if inside unity (PAL3 app), render this:
 	if (isUnity == "true") {
-		document.getElementById("mic-button").style.display = 'none';
+		document.getElementById("mainSize").className = "container-fluid"; // make video and button area fill screen
+		document.getElementById("videoPlayer").textTracks[0].mode = "showing"; // show subtitles
+		document.getElementById("mic-button").style.display = 'none';	// hide mic
 		document.getElementById("stop-button").style.display = 'none';
-
-		if (screen.width < 700) {
-			document.getElementById("question-Box").style = 'height: 120px; font-size: 20px';
-			document.getElementById("send-button").style = 'height: 120px; width: 120px; font-size: 30px';
-		}
-	}
-	else {
-		document.getElementById("mic-button").style.display = 'block';
-		document.getElementById("stop-button").style.display = 'none';
+		document.getElementById("question-Box").style = 'height: 120px; font-size: 20px'; // make ui elements smaller
+		document.getElementById("send-button").style = 'height: 120px; width: 120px; font-size: 30px';
 	}
 }
 
@@ -161,7 +157,9 @@ function renderButtons(results) {
 		var topicName = results.data[i][0];
 
 		btn = document.createElement("BUTTON");
-		if (isMobile && isUnity != "true") {
+		if (isUnity == "true") {
+			btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
+		} else if (isMobile) {
 			btn.className = "btn button-settings-mobile col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
 		} else {
 			btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
@@ -288,7 +286,6 @@ function videoSwitch(){
 }
 
 socket.on("receiveAnswer", function(data) {		//got the answer
-	//console.log(data);
 	video.src = mentor.videoURL+data.videoID + isMobile + '.mp4';
 	document.getElementById("track").src = "/"+mentorID+"/tracks/"+data.videoID+".vtt";
 	video.play();
