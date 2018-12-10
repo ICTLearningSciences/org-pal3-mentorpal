@@ -77,17 +77,20 @@ if (mentorID == 'clint') {
 	};
 }
 
-var isMobile="";
+var isMobile=""
+urlp=[];u=location.search.replace("?","").split("&").forEach(function(d){e=d.split("=");urlp[e[0]]=e[1];})
+const isUnity=urlp["unity"]
+
 function resizeFix(){	//run everytime the window is resized to keep it responsive
 	document.getElementById("videoPlayer").width = screen.width;
 	document.getElementById("videoPlayer").height = screen.height;
+	renderButtons(globalResults);
 
 	//if mobile, render this:
 	if (screen.width < 700) {
 		isMobile = "_M";
 		document.getElementById("mainSize").className = "container-fluid";
 		document.getElementById("topic-box").className = "topic-box-mobile";
-		renderButtons(globalResults);
 
 		document.getElementById("main-box").className = "col";
 		document.getElementById("button-row").className = "d-none";
@@ -107,7 +110,6 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		isMobile="";
 		document.getElementById("mainSize").className = "container";
 		document.getElementById("topic-box").className = "topic-box";
-		renderButtons(globalResults);
 
 		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9';
 		document.getElementById("videoPlayer").className = 'col';
@@ -118,6 +120,21 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("mic-button").style = "display: block";
 		document.getElementById("stop-button").style = "display: none";
 		document.getElementById("mentor-title").style = "bottom: 0; margin-bottom: 18px;	position: absolute; left: 50%; transform: translateX(-50%); font-size: 25px;";
+	}
+
+	// if inside unity (PAL3 app), render this:
+	if (isUnity == "true") {
+		document.getElementById("mic-button").style.display = 'none';
+		document.getElementById("stop-button").style.display = 'none';
+
+		if (screen.width < 700) {
+			document.getElementById("question-Box").style = 'height: 120px; font-size: 20px';
+			document.getElementById("send-button").style = 'height: 120px; width: 120px; font-size: 30px';
+		}
+	}
+	else {
+		document.getElementById("mic-button").style.display = 'block';
+		document.getElementById("stop-button").style.display = 'none';
 	}
 }
 
@@ -144,7 +161,7 @@ function renderButtons(results) {
 		var topicName = results.data[i][0];
 
 		btn = document.createElement("BUTTON");
-		if (isMobile) {
+		if (isMobile && isUnity != "true") {
 			btn.className = "btn button-settings-mobile col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
 		} else {
 			btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
