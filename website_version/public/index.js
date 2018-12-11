@@ -5,8 +5,12 @@ var video = document.getElementById("videoPlayer");
 var mentorID = window.location.pathname.slice(1,window.location.pathname.length-1);
 var mentorID = window.location.pathname.split("/")[1];
 var username = localStorage.getItem("username");
-document.getElementById("user-display").textContent = username;
 var mentor = {};
+document.getElementById("user-display").textContent = username;
+
+var isMobile=""
+urlp=[];u=location.search.replace("?","").split("&").forEach(function(d){e=d.split("=");urlp[e[0]]=e[1];})
+const isUnity=urlp["unity"]
 
 //Each mentor needs its own set of links
 //This way, content can be hosted elsewhere explicit
@@ -77,60 +81,34 @@ if (mentorID == 'clint') {
 	};
 }
 
-var isMobile=""
-urlp=[];u=location.search.replace("?","").split("&").forEach(function(d){e=d.split("=");urlp[e[0]]=e[1];})
-const isUnity=urlp["unity"]
-
 function resizeFix(){	//run everytime the window is resized to keep it responsive
 	document.getElementById("videoPlayer").width = screen.width;
 	document.getElementById("videoPlayer").height = screen.height;
 	renderButtons(globalResults);
 
 	//if mobile, render this:
-	if (screen.width < 700) {
+	if (screen.width < 768) {
 		isMobile = "_M";
-		document.getElementById("mainSize").className = "container-fluid";
-		document.getElementById("topic-box").className = "topic-box-mobile";
-
-		document.getElementById("main-box").className = "col";
-		document.getElementById("button-row").className = "d-none";
-		toChoices();
-
+		document.getElementById("main-holder").className = "container-fluid";
 		document.getElementById("videoWrapper").className = 'video-wrapper';
 		document.getElementById("videoPlayer").textTracks[0].mode = "showing";	// show on-video captions
-
-		document.getElementById("question-Box").style = 'height: 140px; font-size: 30px';
-		document.getElementById("send-button").style = 'height: 140px; width: 140px; font-size: 30px';
-		document.getElementById("mic-button").style = 'height: 75px; width: 75px; font-size: 30px';
-		document.getElementById("stop-button").style = 'display: none; height: 85px; width: 85px;  font-size: 30px';
-		document.getElementById("mentor-title").style = "display: none";
+		toChoices();
 	}
 	//if desktop, render this
 	else {
 		isMobile="";
-		document.getElementById("mainSize").className = "container";
-		document.getElementById("topic-box").className = "topic-box";
-
+		document.getElementById("main-holder").className = "container";
 		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9';
 		document.getElementById("videoPlayer").className = 'col';
 		document.getElementById("videoPlayer").textTracks[0].mode = "hidden";	// hide on-video captions
-
-		document.getElementById("mic-button").style.display = 'block';
-		document.getElementById("stop-button").style.display = 'none';
-
-		document.getElementById("question-Box").style = 'height: 120px; font-size: 20px';
-		document.getElementById("send-button").style = 'height: 120px; width: 120px; font-size: 30px';
-		document.getElementById("mentor-title").style = "bottom: 0; margin-bottom: 18px;	position: absolute; left: 50%; transform: translateX(-50%); font-size: 25px;";
 	}
 
 	// if inside unity (PAL3 app), render this:
 	if (isUnity == "true") {
-		document.getElementById("mainSize").className = "container-fluid"; // make video and button area fill screen
+		document.getElementById("main-holder").className = "container-fluid"; // make video and button area fill screen
 		document.getElementById("videoPlayer").textTracks[0].mode = "showing"; // show subtitles
 		document.getElementById("mic-button").style.display = 'none';	// hide mic button
 		document.getElementById("stop-button").style.display = 'none';
-		document.getElementById("question-Box").style = 'height: 120px; font-size: 20px'; // make ui elements smaller
-		document.getElementById("send-button").style = 'height: 120px; width: 120px; font-size: 30px';
 	}
 }
 
@@ -157,15 +135,7 @@ function renderButtons(results) {
 		var topicName = results.data[i][0];
 
 		btn = document.createElement("BUTTON");
-		if (isMobile) {
-			if (isUnity == "true") {
-				btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
-			} else {
-				btn.className = "btn button-settings-mobile col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
-			}
-		} else {
-			btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
-		}
+		btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
 
 		btn.appendChild(document.createTextNode(topicName));
 		btn.value = topicName;
@@ -258,22 +228,28 @@ function send() {	//send the question on enter or send key
 
 var stream;
 function watson(){
-	document.getElementById("mic-button").style.display = 'none';
-	document.getElementById("stop-button").style.display = 'block';
-	stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-	   token: token,
-	   outputElement: '#question-Box' // CSS selector or DOM Element
-    });
-   stream.on('error', function(err) {
-	   console.log(err);
-   });
+	// don't use mic in PAL3 unity mobile app
+	if (isUnity != "true") {
+		document.getElementById("mic-button").style.display = 'none';
+		document.getElementById("stop-button").style.display = 'block';
+		stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+			 token: token,
+			 outputElement: '#question-Box' // CSS selector or DOM Element
+			});
+		 stream.on('error', function(err) {
+			 console.log(err);
+		 });
+	}
 }
 
 function stopWatson(){
-	document.getElementById("stop-button").style.display = 'none';
-	document.getElementById("mic-button").style.display = 'block';
-	if(stream){
-		stream.stop();
+	// don't use mic in PAL3 unity mobile app
+	if (isUnity != "true") {
+		document.getElementById("mic-button").style.display = 'none';
+		document.getElementById("stop-button").style.display = 'block';
+		if(stream){
+			stream.stop();
+		}
 	}
 }
 
