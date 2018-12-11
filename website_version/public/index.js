@@ -127,7 +127,7 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 	if (isUnity == "true") {
 		document.getElementById("mainSize").className = "container-fluid"; // make video and button area fill screen
 		document.getElementById("videoPlayer").textTracks[0].mode = "showing"; // show subtitles
-		document.getElementById("mic-button").style.display = 'none';	// hide mic
+		document.getElementById("mic-button").style.display = 'none';	// hide mic button
 		document.getElementById("stop-button").style.display = 'none';
 		document.getElementById("question-Box").style = 'height: 120px; font-size: 20px'; // make ui elements smaller
 		document.getElementById("send-button").style = 'height: 120px; width: 120px; font-size: 30px';
@@ -157,10 +157,12 @@ function renderButtons(results) {
 		var topicName = results.data[i][0];
 
 		btn = document.createElement("BUTTON");
-		if (isUnity == "true") {
-			btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
-		} else if (isMobile) {
-			btn.className = "btn button-settings-mobile col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
+		if (isMobile) {
+			if (isUnity == true) {
+				btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
+			} else {
+				btn.className = "btn button-settings-mobile col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
+			}
 		} else {
 			btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
 		}
@@ -248,7 +250,6 @@ function send() {	//send the question on enter or send key
 						return;
 					}
 				}
-
 				socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID),"UserID":(username)});
 			}
 		});
