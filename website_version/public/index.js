@@ -158,7 +158,7 @@ function renderButtons(results) {
 
 		btn = document.createElement("BUTTON");
 		if (isMobile) {
-			if (isUnity == true) {
+			if (isUnity == "true") {
 				btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
 			} else {
 				btn.className = "btn button-settings-mobile col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
