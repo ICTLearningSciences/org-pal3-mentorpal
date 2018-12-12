@@ -126,22 +126,31 @@ Papa.parse(mentor.topicsURL, {	//setup the csv for buttons on desktop
 	}
 });
 
-function renderButtons(results) {
+function renderButtons(topics) {
 	document.getElementById("topic-box").innerHTML = '';
-	const isMobile = screen.width < 700;
 
-	// loop through all topics and add buttons (excluding Negative, Positive, Navy)
-	for (var i = 0; i < results.data.length-3; i++) {
-		var topicName = results.data[i][0];
-
-		btn = document.createElement("BUTTON");
-		btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
-
-		btn.appendChild(document.createTextNode(topicName));
-		btn.value = topicName;
-		btn.onclick = function() {findquestion(this)};	//on click find a question
-		document.getElementById("topic-box").appendChild(btn);	//append button to row
-	}
+	//parse the csv
+	Papa.parse(mentor.questions, {
+		download: true,
+		complete: function(results) {
+			// loop through all topics (excluding Negative, Positive, Navy)
+			for (var i = 0; i < topics.data.length-3; i++) {
+				for (var j = 0; j < results.data.length; j++) {
+					// if a question for the topic exists
+					if (results.data[j][0].toLowerCase().includes(topics.data[i][0].toLowerCase())) {
+						var topicName = topics.data[i][0];
+						btn = document.createElement("BUTTON");
+						btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
+						btn.appendChild(document.createTextNode(topicName));
+						btn.value = topicName;
+						btn.onclick = function() {findquestion(this)};	//on click find a question
+						document.getElementById("topic-box").appendChild(btn);	//append button to row
+						break;
+					}
+				}
+			}
+		}
+	});
 }
 
 var x = {};	//hold the amount of times button has already been clicked
@@ -149,31 +158,23 @@ function findquestion(thisButton) {	//find the question that needs to be filled 
 	Papa.parse(mentor.questions, {	//parse the csv
 		download: true,
 		complete: function(results) {
+			var questions={}
 			var topicQuestionSize = 0
 			for (var i = 0; i < results.data.length; i++) {
-				if (results.data[i][0].toLowerCase().includes(thisButton.value.toLowerCase())) {	//if the question has our topic
-					topicQuestionSize++
+				// get all the questions for the chosen topic
+				if (results.data[i][0].toLowerCase().includes(thisButton.value.toLowerCase())) {
+					questions[topicQuestionSize++] = results.data[i][3]
 				}
 			}
 
-			if (x[thisButton.value]) {	//Keep track of which question in the topic list we're on
+			//Keep track of which question in the topic list we're on
+			if (x[thisButton.value]) {
 				x[thisButton.value] = (x[thisButton.value] + 1) % topicQuestionSize
 			} else {
 				x[thisButton.value] = 1
 			}
 
-			var questionNumber = 0
-			var question
-			for (var i = 0; i<results.data.length; i++) {
-				if (results.data[i][0].toLowerCase().includes(thisButton.value.toLowerCase())) {	//if the question has our topic
-					questionNumber++
-					if (questionNumber == x[thisButton.value]) {	//if its the right question on the list
-						question = results.data[i][3]
-						document.getElementById("question-Box").value = question
-						break
-					}
-				}
-			}
+			document.getElementById("question-Box").value = questions[x[thisButton.value]]
 		}
 	});
 }
