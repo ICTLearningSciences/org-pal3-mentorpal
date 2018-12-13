@@ -87,7 +87,7 @@ ifneq ("$(GIT_STATUS)","")
 	exit 1
 endif
 	git tag $(GIT_TAG)
-	cd website_version
+	cd website_version && \
 	npm version patch
 
 run-local:
