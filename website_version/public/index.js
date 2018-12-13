@@ -1,16 +1,16 @@
-var globalResults;
-var socket = io();
-var video = document.getElementById("videoPlayer");
-
-var mentorID = window.location.pathname.slice(1,window.location.pathname.length-1);
-var mentorID = window.location.pathname.split("/")[1];
-var username = localStorage.getItem("username");
-var mentor = {};
-document.getElementById("user-display").textContent = username;
+var globalResults
+var socket = io()
+var video = document.getElementById("videoPlayer")
 
 var isMobile=""
 urlp=[];u=location.search.replace("?","").split("&").forEach(function(d){e=d.split("=");urlp[e[0]]=e[1];})
 const isUnity=urlp["unity"]
+const mentorID = window.location.pathname.split("/")[1]
+const username = localStorage.getItem("username")
+var mentor = {}
+var blacklist = []
+const num_blacklisted_repeats = 5
+document.getElementById("user-display").textContent = username
 
 //Each mentor needs its own set of links
 //This way, content can be hosted elsewhere explicit
@@ -112,7 +112,7 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 	}
 }
 
-if (window.location.pathname.split("/")[2]=="embed"){
+if (window.location.pathname.split("/")[2]=="embed") {
 		document.getElementById("navSize").style.display = "none";
 }
 
@@ -128,7 +128,6 @@ Papa.parse(mentor.topicsURL, {	//setup the csv for buttons on desktop
 
 function renderButtons(topics) {
 	document.getElementById("topic-box").innerHTML = '';
-
 	//parse the csv
 	Papa.parse(mentor.questions, {
 		download: true,
@@ -166,14 +165,12 @@ function findquestion(thisButton) {	//find the question that needs to be filled 
 					questions[topicQuestionSize++] = results.data[i][3]
 				}
 			}
-
 			//Keep track of which question in the topic list we're on
 			if (x[thisButton.value]) {
 				x[thisButton.value] = (x[thisButton.value] + 1) % topicQuestionSize
 			} else {
 				x[thisButton.value] = 1
 			}
-
 			document.getElementById("question-Box").value = questions[x[thisButton.value]]
 		}
 	});
@@ -195,36 +192,46 @@ function toChoices() { //switch view of box
 
 function send() {	//send the question on enter or send key
 	const question = document.getElementById("question-Box").value
+
 	if (question && question != "\n"){
 		stopWatson();
-		document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + question + '<br>';
-		document.getElementById("question-Box").value = '';
 
 		// first check if the question has a direct match
 		Papa.parse(mentor.classifier, {
 			download: true,
 			complete: function(results) {
 				for (var i = 0; i < results.data.length; i++) {
+					var questions = results.data[i][3].split('\r')
 					// if direct match, use direct answer and don't bother with python tensorflow
-					// TODO: won't need this once we fix the NLP
-					if (results.data[i][3].toLowerCase().includes(question.toLowerCase())) {
-						const videoID = results.data[i][0]
-						const transcript = results.data[i][2]
-
-						video.src = mentor.videoURL + videoID + isMobile + '.mp4';
-						document.getElementById("track").src = "/" + mentorID + "/tracks/" + videoID + ".vtt";
-						video.play();
-						video.controls = true;
-
-						document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
-						document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>' + mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
-						return;
+					for (var j = 0; j < questions.length; j++) {
+						if (questions[j].toLowerCase().replace('?','').replace('.','') == question.toLowerCase().replace('?','').replace('.','')) {
+							const videoID = results.data[i][0]
+							const transcript = results.data[i][2]
+							video.src = mentor.videoURL + videoID + isMobile + '.mp4';
+							document.getElementById("track").src = "/" + mentorID + "/tracks/" + videoID + ".vtt";
+							video.play();
+							video.controls = true;
+							document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
+							document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>' + mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
+							addToBlacklist(videoID)
+							return;
+						}
 					}
 				}
-				socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID),"UserID":(username)});
+				socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID),"UserID":(username),"Blacklist":(blacklist)});
+				document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + question + '<br>';
+				document.getElementById("question-Box").value = '';
 			}
 		});
 	}
+}
+
+function addToBlacklist(response) {
+	if (blacklist.length == num_blacklisted_repeats) {
+		blacklist.shift()
+	}
+	blacklist.push(response)
+	console.log(blacklist)
 }
 
 var stream;
@@ -270,6 +277,7 @@ socket.on("receiveAnswer", function(data) {		//got the answer
 	video.controls = true;
 	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
 	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>'+mentor.shortName+': </b>\xa0\xa0' + data.transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
+	addToBlacklist(data.videoID)
 });
 
 var token;

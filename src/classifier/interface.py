@@ -41,6 +41,7 @@ class BackendInterface(object):
         if self.mode=='ensemble' or self.mode=='npceditor':
             self.npc=npceditor_interface.NPCEditor()
         self.mentorsById={}
+
         #variables to keep track of session
         self.mentor=None
         self.session_started=False
@@ -50,30 +51,6 @@ class BackendInterface(object):
         self.last_topic_suggestion=""
         self.suggestion_index=0
         self.user_logs=[]
-
-    def preload(self, mentors):
-        for mentor in mentors:
-            # start NPCEditor first because it takes a while to load
-            if self.mode=='ensemble' or self.mode=='npceditor':
-                os.system("{0} {1}".format(os.path.abspath(os.path.join('', '..', 'NPCEditor.app', 'run-npceditor')), mentor))
-            self.load_mentor(mentor)
-            # temporarily asking mentors a question to warm up classifier
-            # need to figure out why loading topic_model works for commandline but not vhmsg
-            if self.mode=='ensemble' or self.mode=='classifier':
-                self.set_mentor(mentor)
-
-    def load_mentor(self, id):
-        self.mentorsById[id]=mentor.Mentor(id)
-
-    def set_mentor(self, id):
-        if id not in self.mentorsById:
-            self.load_mentor(id)
-        self.mentor=self.mentorsById[id]
-        self.cpp.set_mentor(self.mentor)
-        if self.mode=='ensemble' or self.mode=='classifier':
-            self.classifier.set_mentor(self.mentor)
-        if self.mode=='ensemble' or self.mode=='npceditor':
-            self.npc.set_mentor(self.mentor)
 
     '''
     This starts the pipeline for training the classifier from scratch.
@@ -96,35 +73,53 @@ class BackendInterface(object):
             self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
             self.cl_y_test_unfused, self.cl_y_pred_unfused, self.cl_y_test_fused, self.cl_y_pred_fused=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
             self.npc.load_test_data()
-            #self.get_all_answers()
 
-    '''
-    Return the list of topics to the GUI
-    '''
-    def get_topics(self):
-        return self.mentor.topics
+    def preload(self, mentors):
+        for mentor in mentors:
+            # start NPCEditor first because it takes a while to load
+            if self.mode=='ensemble' or self.mode=='npceditor':
+                os.system("{0} {1}".format(os.path.abspath(os.path.join('', '..', 'NPCEditor.app', 'run-npceditor')), mentor))
+            self.load_mentor(mentor)
+            if self.mode=='ensemble' or self.mode=='classifier':
+                self.set_mentor(mentor)
 
-    '''
-    Checks if the question is off-topic. This function is not completed yet.
-    '''
+    def load_mentor(self, id):
+        self.mentorsById[id]=mentor.Mentor(id)
+
+    def set_mentor(self, id):
+        if id not in self.mentorsById:
+            self.load_mentor(id)
+        self.mentor=self.mentorsById[id]
+        self.cpp.set_mentor(self.mentor)
+        if self.mode=='ensemble' or self.mode=='classifier':
+            self.classifier.set_mentor(self.mentor)
+        if self.mode=='ensemble' or self.mode=='npceditor':
+            self.npc.set_mentor(self.mentor)
+
+    #Checks if the question is off-topic. This function is not completed yet.
     def is_off_topic(self, question):
         return False
 
-    #information to track must be discussed with Ben, Nick, Kayla
+    def set_blacklist(self, blacklist_ids):
+        self.blacklist.clear()
+        for id in blacklist_ids:
+            self.blacklist.append(id)
+
+    def get_topics(self):
+        return self.mentor.topics
+
     def start_session(self):
         self.session_started=True
-
-    #play intro clip
-    def play_intro(self):
-        return self.mentor.utterances_prompts['_INTRO_'][0]
-
-    #play idle clip
-    def play_idle(self):
-        return self.mentor.utterances_prompts['_IDLE_'][0]
 
     def end_session(self):
         self.session_started=False
         self.blacklist.clear()
+
+    def play_intro(self):
+        return self.mentor.utterances_prompts['_INTRO_'][0]
+
+    def play_idle(self):
+        return self.mentor.utterances_prompts['_IDLE_'][0]
 
     def quit(self):
         if self.mode=='ensemble' or self.mode=='npceditor':
@@ -136,8 +131,6 @@ class BackendInterface(object):
     This method checks the status of the question: whether it is an off-topic or a repeat. Other statuses can be added here.
     '''
     def check_input(self, pal3_input):
-        #if question is a special case - HANDLE SHOW IDLE CASE
-
         #check if null or empty string
         if pal3_input.strip() == '':
             return '_EMPTY_'
@@ -214,6 +207,28 @@ class BackendInterface(object):
                 return_score=-300.0
 
         return return_id, return_answer, return_score
+
+    '''
+    Suggest a question to the user
+    '''
+    def suggest_question(self, topic):
+        if topic=='Job Specific':
+            topic='jobspecific'
+
+        if (topic.lower() in self.mentor.suggestions):
+            candidate_questions=self.mentor.suggestions[topic.lower()]
+            if (self.last_topic_suggestion == topic):
+                self.suggestion_index = self.suggestion_index + 1
+                if (self.suggestion_index >= len(candidate_questions)):
+                    self.suggestion_index = 0
+            else:
+                self.suggestion_index=random.randint(0,len(candidate_questions)-1)
+
+            selected_question=candidate_questions[self.suggestion_index]
+            self.last_topic_suggestion=topic
+            return (selected_question[0].capitalize(), selected_question[1], selected_question[2])
+
+        return ('', '', '')
 
     '''
     Get answers for all the questions. Used when building a new classifier model. Will be called automatically as part of the
@@ -373,25 +388,3 @@ class BackendInterface(object):
                         dict_writer.writerows(self.user_logs)
         # answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
-
-    '''
-    Suggest a question to the user
-    '''
-    def suggest_question(self, topic):
-        if topic=='Job Specific':
-            topic='jobspecific'
-
-        if (topic.lower() in self.mentor.suggestions):
-            candidate_questions=self.mentor.suggestions[topic.lower()]
-            if (self.last_topic_suggestion == topic):
-                self.suggestion_index = self.suggestion_index + 1
-                if (self.suggestion_index >= len(candidate_questions)):
-                    self.suggestion_index = 0
-            else:
-                self.suggestion_index=random.randint(0,len(candidate_questions)-1)
-
-            selected_question=candidate_questions[self.suggestion_index]
-            self.last_topic_suggestion=topic
-            return (selected_question[0].capitalize(), selected_question[1], selected_question[2])
-
-        return ('', '', '')

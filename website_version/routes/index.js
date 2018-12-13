@@ -68,10 +68,14 @@ io.on('connection', function(socket){
         }
     });
     socket.on("sendQuestion", function(data) {
-        console.log(data);
+        console.log('~Send Question~')
+        console.log(data.Question)
+        console.log(socket.id)
+        console.log(data.Mentor)
+        console.log(data.UserID)
+        console.log(data.Blacklist)
         /*do the question processing stuff here*/
-        pyshell.send(data.Question+'~~'+socket.id+'~~'+data.Mentor+'~~'+data.UserID+'~~');
-        //console.log(data.Question+','+socket.id+','+data.Mentor);
+        pyshell.send(data.Question+'~~'+socket.id+'~~'+data.Mentor+'~~'+data.UserID+'~~'+JSON.stringify(data.Blacklist)+'~~');
     });
 });
 
