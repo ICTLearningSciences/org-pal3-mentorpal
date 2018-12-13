@@ -86,8 +86,9 @@ ifneq ("$(GIT_STATUS)","")
 	@echo "git working copy has local changes. Cannot tag version"
 	exit 1
 endif
+	git tag $(GIT_TAG)
 	cd website_version
-	npm run version
+	npm version patch
 
 run-local:
 	docker run \
