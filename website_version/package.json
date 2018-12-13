@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "start-dev": "node app dev",
+    "version": "git add -A",
+    "postversion": "git push && git push --tags && rm -rf build/temp"
   },
   "dependencies": {
     "app-root-path": "^2.1.0",

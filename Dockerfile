@@ -1,20 +1,15 @@
 # FROM ubuntu:xenial
 FROM node:8.11.3
-ENV NODE_ENV=production
-
-# Create app directory
+ARG NODE_ENV
+# ENV NODE_ENV=production
 WORKDIR /usr/src/app
 
-# Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY website_version/package*.json ./
-
 RUN apt-get update
 RUN apt-get install -y apt-transport-https
 RUN apt-get install -y build-essential
-
-# do we still need to install npm if base image is node?
 RUN apt-get install -y npm
 
 # Install python
@@ -33,8 +28,8 @@ RUN python3 -m nltk.downloader averaged_perceptron_tagger
 
 # Bundle app source
 COPY . .
-
+COPY ./.env.${NODE_ENV} /usr/src/app/.env
 EXPOSE 80
 WORKDIR /usr/src/app/website_version
 RUN npm install
-CMD ["npm","run","start"]
+CMD npm run start
