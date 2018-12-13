@@ -9,8 +9,8 @@ PKG_NAME ?= $(shell node -p "require('./website_version/package.json').name")
 GIT_STATUS = $(shell git status -s)
 GIT_TAG ?= $(PKG_NAME)-$(PKG_VERSION)
 GIT_REPO ?= https://github.com/benjamid/MentorPAL
-GIT_API_PATH ?= tree/master/website_version
-GIT_URL := ${GIT_REPO}/tags/${GIT_TAG}/${GIT_API_PATH}
+GIT_API_PATH ?= website_version
+GIT_URL := ${GIT_REPO}
 
 DOCKER_USER ?= uscictdocker
 DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_USER).password"
@@ -29,7 +29,8 @@ clean:
 	@rm -rf build dist *.zip
 
 checkout-build-tag:
-	git clone $(GIT_URL) build
+	git clone $(GIT_REPO) build
+	git checkout tags/$(GIT_TAG)
 
 build-tag-node: checkout-build-tag
 	cp website_version/.env* build/website_version
@@ -78,15 +79,11 @@ eb-deploy: eb-dist docker-deploy-tag
 eb-cli-init:
 	eb init -i
 
-ssh:
-	eb use $(EB_ENV) && eb ssh
-
 version:
 ifneq ("$(GIT_STATUS)","")
 	@echo "git working copy has local changes. Cannot tag version"
 	exit 1
 endif
-	git tag $(GIT_TAG)
 	cd website_version && \
 	npm version patch
 
@@ -100,6 +97,9 @@ run-local:
 	  -e NODE_ENV=dev \
 		--mount type=bind,source=$(CURDIR),target=/docker_host \
 	  $(DOCKER_IMAGE_TAG)
+
+ssh:
+	eb use $(EB_ENV) && eb ssh
 
 docker-tag:
 	docker build --no-cache --build-arg NODE_ENV=$(NODE_ENV) -t $(DOCKER_IMAGE_TAG) .
