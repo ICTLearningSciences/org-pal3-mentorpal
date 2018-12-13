@@ -87,7 +87,7 @@ ifneq ("$(GIT_STATUS)","")
 	exit 1
 endif
 	cd website_version
-	npm version
+	npm run version
 
 run-local:
 	docker run \
