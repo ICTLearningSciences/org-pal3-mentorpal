@@ -5,6 +5,9 @@
 
 SHELL:=/bin/bash
 
+NODE_ENV ?= qa
+EB_ENV ?= mentorpal-$(NODE_ENV)
+
 PKG_VERSION ?= $(shell node -p "require('./website_version/package.json').version")
 PKG_NAME ?= $(shell node -p "require('./website_version/package.json').name")
 
@@ -17,8 +20,6 @@ DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_USER).password"
 DOCKER_IMAGE_NAME ?= mentorpal
 DOCKER_IMAGE_TAG ?= $(DOCKER_USER)/$(DOCKER_IMAGE_NAME):$(EB_ENV)-$(GIT_TAG)
 
-NODE_ENV ?= qa
-EB_ENV ?= mentorpal-$(NODE_ENV)
 EB_ARCHIVE_FILE := $(subst /,-,$(GIT_TAG))
 EB_ARCHIVE_FILE := $(EB_ENV)-$(subst :,-,$(GIT_TAG))-$(DATE).zip
 DATE := $(shell date +"%Y%m%dT%H%M")
@@ -70,9 +71,9 @@ eb-deploy: eb-dist docker-deploy-tag
 	cd dist && \
 	eb use $(EB_ENV) && eb deploy
 
-eb-deploy-prod: NODE_ENV=prod EB_ENV=mentorpal-prod
+eb-deploy-prod: NODE_ENV=prod
 eb-deploy-prod: eb-deploy
-	make clean eb-deploy NODE_ENV=prod EB_ENV=mentorpal-prod
+	make clean eb-deploy NODE_ENV=prod
 
 # eb-cli-init
 #
