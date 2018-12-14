@@ -30,6 +30,7 @@ clean:
 
 checkout-build-tag:
 	git clone $(GIT_REPO) build
+	cd build && \
 	git checkout tags/$(GIT_TAG)
 
 build-tag-node: checkout-build-tag
