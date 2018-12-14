@@ -1,7 +1,6 @@
 # FROM ubuntu:xenial
 FROM node:8.11.3
 ARG NODE_ENV
-# ENV NODE_ENV=production
 WORKDIR /usr/src/app
 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -28,7 +27,6 @@ RUN python3 -m nltk.downloader averaged_perceptron_tagger
 
 # Bundle app source
 COPY . .
-COPY ./.env.${NODE_ENV} /usr/src/app/.env
 EXPOSE 80
 WORKDIR /usr/src/app/website_version
 RUN npm install

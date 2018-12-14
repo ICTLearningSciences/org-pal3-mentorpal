@@ -17,12 +17,11 @@ DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_USER).password"
 DOCKER_IMAGE_NAME ?= mentorpal
 DOCKER_IMAGE_TAG ?= $(DOCKER_USER)/$(DOCKER_IMAGE_NAME):$(EB_ENV)-$(GIT_TAG)
 
-DATE := $(shell date +"%Y%m%dT%H%M")
-EB_ENV ?= mentorpal-qa
+NODE_ENV ?= qa
+EB_ENV ?= mentorpal-$(NODE_ENV)
 EB_ARCHIVE_FILE := $(subst /,-,$(GIT_TAG))
 EB_ARCHIVE_FILE := $(EB_ENV)-$(subst :,-,$(GIT_TAG))-$(DATE).zip
-
-NODE_ENV ?= qa
+DATE := $(shell date +"%Y%m%dT%H%M")
 CURDIR = $(shell pwd)
 
 clean:
