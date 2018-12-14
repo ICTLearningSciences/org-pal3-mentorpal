@@ -3,6 +3,8 @@
 #
 .PHONY: help
 
+SHELL:=/bin/bash
+
 PKG_VERSION ?= $(shell node -p "require('./website_version/package.json').version")
 PKG_NAME ?= $(shell node -p "require('./website_version/package.json').name")
 
@@ -85,9 +87,8 @@ ifneq ("$(GIT_STATUS)","")
 	@echo "git working copy has local changes. Cannot tag version"
 	exit 1
 endif
-	cd website_version && \
-	npm version patch
-
+	sh ./make_version
+	
 run-local:
 	docker run \
 	  -it \
