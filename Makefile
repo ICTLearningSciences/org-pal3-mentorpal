@@ -14,7 +14,7 @@ GIT_REPO ?= https://github.com/benjamid/MentorPAL
 
 DOCKER_USER ?= uscictdocker
 DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_USER).password"
-DOCKER_IMAGE_NAME ?= mentor-pal-web
+DOCKER_IMAGE_NAME ?= mentorpal
 DOCKER_IMAGE_TAG ?= $(DOCKER_USER)/$(DOCKER_IMAGE_NAME):$(EB_ENV)-$(GIT_TAG)
 
 DATE := $(shell date +"%Y%m%dT%H%M")
@@ -22,7 +22,7 @@ EB_ENV ?= mentorpal-qa
 EB_ARCHIVE_FILE := $(subst /,-,$(GIT_TAG))
 EB_ARCHIVE_FILE := $(EB_ENV)-$(subst :,-,$(GIT_TAG))-$(DATE).zip
 
-NODE_ENV ?= dev
+NODE_ENV ?= qa
 CURDIR = $(shell pwd)
 
 clean:
@@ -34,7 +34,6 @@ checkout-build-tag:
 	git checkout tags/$(GIT_TAG)
 
 build-tag-node: checkout-build-tag
-	cp website_version/.env* build/website_version
 	cd build && \
 	docker build --no-cache --build-arg NODE_ENV=$(NODE_ENV) -t $(DOCKER_IMAGE_TAG) .
 
