@@ -87,8 +87,8 @@ ifneq ("$(GIT_STATUS)","")
 	@echo "git working copy has local changes. Cannot tag version"
 	exit 1
 endif
-	sh ./make_version
-	
+	sh ./make_version.sh
+
 run-local:
 	docker run \
 	  -it \
