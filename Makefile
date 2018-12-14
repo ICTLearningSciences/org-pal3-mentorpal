@@ -72,7 +72,7 @@ eb-deploy: eb-dist docker-deploy-tag
 
 eb-deploy-prod: NODE_ENV=prod EB_ENV=mentorpal-prod
 eb-deploy-prod: eb-deploy
-	make clean eb-deploy NODE_ENV=dev EB_ENV=dev-pal3
+	make clean eb-deploy NODE_ENV=prod EB_ENV=mentorpal-prod
 
 # eb-cli-init
 #
