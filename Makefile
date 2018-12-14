@@ -9,10 +9,8 @@ PKG_VERSION ?= $(shell node -p "require('./website_version/package.json').versio
 PKG_NAME ?= $(shell node -p "require('./website_version/package.json').name")
 
 GIT_STATUS = $(shell git status -s)
-GIT_TAG ?= $(PKG_NAME)-$(PKG_VERSION)
+GIT_TAG ?= v$(PKG_VERSION)
 GIT_REPO ?= https://github.com/benjamid/MentorPAL
-GIT_API_PATH ?= website_version
-GIT_URL := ${GIT_REPO}
 
 DOCKER_USER ?= uscictdocker
 DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_USER).password"
