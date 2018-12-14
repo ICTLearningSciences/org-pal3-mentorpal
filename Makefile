@@ -22,6 +22,7 @@ DOCKER_IMAGE_TAG ?= $(DOCKER_USER)/$(DOCKER_IMAGE_NAME):$(EB_ENV)-$(GIT_TAG)
 
 EB_ARCHIVE_FILE := $(subst /,-,$(GIT_TAG))
 EB_ARCHIVE_FILE := $(EB_ENV)-$(subst :,-,$(GIT_TAG))-$(DATE).zip
+
 DATE := $(shell date +"%Y%m%dT%H%M")
 CURDIR = $(shell pwd)
 
@@ -75,6 +76,10 @@ eb-deploy-prod: NODE_ENV=prod
 eb-deploy-prod: eb-deploy
 	make clean eb-deploy NODE_ENV=prod
 
+eb-deploy-qa: NODE_ENV=qa
+eb-deploy-qa: eb-deploy
+	make clean eb-deploy NODE_ENV=qa
+
 # eb-cli-init
 #
 # Init the AWS Elastic Beanstalk CLI tool.
@@ -103,12 +108,3 @@ run-local:
 
 ssh:
 	eb use $(EB_ENV) && eb ssh
-
-docker-tag:
-	docker build --no-cache --build-arg NODE_ENV=$(NODE_ENV) -t $(DOCKER_IMAGE_TAG) .
-
-eb-build:
-	mkdir -p build && \
-	cd build && \
-	sed -e s/\{\{DOCKER_IMAGE_TAG\}\}/$(subst /,\\/,$(DOCKER_IMAGE_TAG))/ \
-		../Dockerrun.aws.json.dist > Dockerrun.aws.json
