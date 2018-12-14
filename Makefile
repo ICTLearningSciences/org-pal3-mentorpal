@@ -20,7 +20,7 @@ DOCKER_IMAGE_NAME ?= mentor-pal-web
 DOCKER_IMAGE_TAG ?= $(DOCKER_USER)/$(DOCKER_IMAGE_NAME):$(EB_ENV)-$(GIT_TAG)
 
 DATE := $(shell date +"%Y%m%dT%H%M")
-EB_ENV ?= MentorpalWeb-env
+EB_ENV ?= mentorpal-qa
 EB_ARCHIVE_FILE := $(subst /,-,$(GIT_TAG))
 EB_ARCHIVE_FILE := $(EB_ENV)-$(subst :,-,$(GIT_TAG))-$(DATE).zip
 
@@ -73,6 +73,10 @@ eb-dist: build-tag-node eb-build-tag
 eb-deploy: eb-dist docker-deploy-tag
 	cd dist && \
 	eb use $(EB_ENV) && eb deploy
+
+eb-deploy-prod: NODE_ENV=prod EB_ENV=mentorpal-prod
+eb-deploy-prod: eb-deploy
+	make clean eb-deploy NODE_ENV=dev EB_ENV=dev-pal3
 
 # eb-cli-init
 #

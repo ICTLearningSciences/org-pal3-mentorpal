@@ -1,14 +1,14 @@
 branch-defaults:
   default:
-    environment: MentorpalWeb-env
+    environment: mentorpal-prod
   master:
-    environment: MentorpalWeb-env
+    environment: mentorpal-prod
 environment-defaults:
-  MentorpalWeb-env:
+  mentorpal:
     branch: null
     repository: null
 global:
-  application_name: mentorpal-web
+  application_name: mentorpal
   default_ec2_keyname: null
   default_platform: arn:aws:elasticbeanstalk:us-east-1::platform/Docker running on
     64bit Amazon Linux/2.12.5
