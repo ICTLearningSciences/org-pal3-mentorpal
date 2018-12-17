@@ -17,13 +17,13 @@
 -  maybe turn a switch or apply some, some setting
 
 00:0:20.18 --> 00:0:23.55
--  to a control mechanism that separates it into different,
+-  to a control mechanism that separates itÂ into different,
 
 00:0:23.55 --> 00:0:26.91
 -  different paths. So let's say need a little
 
 00:0:26.91 --> 00:0:30.27
--  bit of water and you have a lot of water over here
+-  bit of waterÂ and you have a lot of water over here
 
 00:0:30.27 --> 00:0:33.64
 -  then you regulate it so that only a little bit
@@ -32,16 +32,16 @@
 -  flows out. But let's say you need lots of water here,
 
 00:0:37.0 --> 00:0:40.36
--  then you regulate it so that there's lots of water
+-  thenÂ youÂ regulate itÂ so that there's lots of water
 
 00:0:40.36 --> 00:0:43.73
--  that comes out. So the same thing happens with
+-  that comes out.Â So the same thing happens with
 
 00:0:43.73 --> 00:0:47.09
--  an electrician, my job. We have voltage regulators
+-  anÂ electrician, my job. We have voltage regulators
 
 00:0:47.09 --> 00:0:50.45
--  so let's say you have a pump that needs twenty
+-  so let's say you haveÂ a pump that needs twenty
 
 00:0:50.45 --> 00:0:53.82
 -  volts and you have a machine that can provide all
@@ -62,5 +62,5 @@
 -  the correct current to go through that machine.
 
 00:1:10.64 --> 00:1:14.0
--  That's a voltage regulator.
+-  That's aÂ voltage regulator.
 

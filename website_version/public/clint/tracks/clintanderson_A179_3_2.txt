@@ -17,7 +17,7 @@
 -  the same job. That's fine for a lot of people,
 
 00:0:23.59 --> 00:0:27.52
--  but for me I chose to try something different than the
+-  but for me I chose to try something different thanÂ the
 
 00:0:27.52 --> 00:0:31.45
 -  military job that I was doing because I wanted
@@ -50,7 +50,7 @@
 -  actually affect my world. Many engineering communities
 
 00:1:6.83 --> 00:1:10.76
--  are like that. If you're making a robot right,
+-  are like that. IfÂ you're making a robot right,
 
 00:1:10.76 --> 00:1:14.69
 -  if you make that robot on January 1st, hopefully
@@ -68,10 +68,10 @@
 -  you're making some kind of new component for a car
 
 00:1:30.41 --> 00:1:34.34
--  and later on that car is gonna be faster because
+-  and later on that carÂ is gonna beÂ faster because
 
 00:1:34.34 --> 00:1:38.28
--  of the component you made. So for a lot of engineering
+-  of the component you made.Â So for aÂ lot of engineering
 
 00:1:38.28 --> 00:1:42.21
 -  jobs you work and then you create a component,

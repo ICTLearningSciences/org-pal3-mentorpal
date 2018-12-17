@@ -32,7 +32,7 @@
 -  maybe is written by computer scientists themselves
 
 00:0:37.78 --> 00:0:41.22
--  you know. So there could be a time when you have
+-  you know. So there could be aÂ time when you have
 
 00:0:41.22 --> 00:0:44.65
 -  to close the book and go you know prep yourself
@@ -53,7 +53,7 @@
 -  the material can be hard sometimes, the projects that
 
 00:1:1.83 --> 00:1:5.26
--  we have can be you know really demanding, but
+-  we haveÂ can be you know really demanding, but
 
 00:1:5.26 --> 00:1:8.7
 -  with enough time you know, they say seven years you
@@ -62,7 +62,7 @@
 -  become an expert. Ten thousand hours you become
 
 00:1:12.13 --> 00:1:15.57
--  an expert so you put in that time, then you will learn
+-  an expert so you put in that time, then you willÂ learn
 
 00:1:15.57 --> 00:1:19.0
 -  computer science.
