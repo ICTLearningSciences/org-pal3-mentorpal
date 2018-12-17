@@ -159,18 +159,21 @@ function findquestion(thisButton) {	//find the question that needs to be filled 
 		complete: function(results) {
 			var questions={}
 			var topicQuestionSize = 0
+
+			// get all the questions for the chosen topic
 			for (var i = 0; i < results.data.length; i++) {
-				// get all the questions for the chosen topic
 				if (results.data[i][0].toLowerCase().includes(thisButton.value.toLowerCase())) {
 					questions[topicQuestionSize++] = results.data[i][3]
 				}
 			}
+
 			//Keep track of which question in the topic list we're on
 			if (x[thisButton.value]) {
 				x[thisButton.value] = (x[thisButton.value] + 1) % topicQuestionSize
 			} else {
 				x[thisButton.value] = 1
 			}
+
 			document.getElementById("question-Box").value = questions[x[thisButton.value]]
 		}
 	});
@@ -195,18 +198,18 @@ function send() {	//send the question on enter or send key
 
 	if (question && question != "\n"){
 		stopWatson();
-
-		// first check if the question has a direct match
 		Papa.parse(mentor.classifier, {
 			download: true,
 			complete: function(results) {
+				// first check if the question has a direct match
 				for (var i = 0; i < results.data.length; i++) {
 					var questions = results.data[i][3].split('\r')
 					// if direct match, use direct answer and don't bother with python tensorflow
 					for (var j = 0; j < questions.length; j++) {
-						if (questions[j].toLowerCase().replace('?','').replace('.','') == question.toLowerCase().replace('?','').replace('.','')) {
+						var q = questions[j].toLowerCase().replace(/\.|\?|\,| /g, '')
+						if (q == question.toLowerCase().replace(/\.|\?|\,| /g, '')) {
 							const videoID = results.data[i][0]
-							const transcript = results.data[i][2]
+							const transcript = results.data[i][2].replace(/\uFFFD/g, ' ')
 							video.src = mentor.videoURL + videoID + isMobile + '.mp4';
 							document.getElementById("track").src = "/" + mentorID + "/tracks/" + videoID + ".vtt";
 							video.play();
@@ -231,7 +234,6 @@ function addToBlacklist(response) {
 		blacklist.shift()
 	}
 	blacklist.push(response)
-	console.log(blacklist)
 }
 
 var stream;
@@ -253,8 +255,8 @@ function watson(){
 function stopWatson(){
 	// don't use mic in PAL3 unity mobile app
 	if (isUnity != "true") {
-		document.getElementById("mic-button").style.display = 'none';
-		document.getElementById("stop-button").style.display = 'block';
+		document.getElementById("mic-button").style.display = 'block';
+		document.getElementById("stop-button").style.display = 'none';
 		if(stream){
 			stream.stop();
 		}
@@ -271,12 +273,13 @@ function videoSwitch(){
 }
 
 socket.on("receiveAnswer", function(data) {		//got the answer
+	const transcript = data.transcript.replace(/\uFFFD/g, ' ')
 	video.src = mentor.videoURL+data.videoID + isMobile + '.mp4';
 	document.getElementById("track").src = "/"+mentorID+"/tracks/"+data.videoID+".vtt";
 	video.play();
 	video.controls = true;
 	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
-	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>'+mentor.shortName+': </b>\xa0\xa0' + data.transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
+	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>'+mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
 	addToBlacklist(data.videoID)
 });
 
