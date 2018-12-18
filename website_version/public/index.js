@@ -209,7 +209,7 @@ function send() {	//send the question on enter or send key
 						var q = questions[j].toLowerCase().replace(/\.|\?|\,| /g, '')
 						if (q == question.toLowerCase().replace(/\.|\?|\,| /g, '')) {
 							const videoID = results.data[i][0]
-							const transcript = results.data[i][2].replace(/\uFFFD/g, ' ')
+							const transcript = sanitize(results.data[i][2])
 							video.src = mentor.videoURL + videoID + isMobile + '.mp4';
 							document.getElementById("track").src = "/" + mentorID + "/tracks/" + videoID + ".vtt";
 							video.play();
@@ -227,6 +227,10 @@ function send() {	//send the question on enter or send key
 			}
 		});
 	}
+}
+
+function sanitize(str_input) {
+	return str_input.replace(/\uFFFD/g, ' ').replace(/\u00E5/g, ' ').replace(/\u00CA/g, '')
 }
 
 function addToBlacklist(response) {
@@ -273,7 +277,7 @@ function videoSwitch(){
 }
 
 socket.on("receiveAnswer", function(data) {		//got the answer
-	const transcript = data.transcript.replace(/\uFFFD/g, ' ')
+	const transcript = sanitize(data.transcript)
 	video.src = mentor.videoURL+data.videoID + isMobile + '.mp4';
 	document.getElementById("track").src = "/"+mentorID+"/tracks/"+data.videoID+".vtt";
 	video.play();
