@@ -10,13 +10,12 @@
 		<script src="/watson-speech.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/index.css">
 		<title>ICT MentorPal</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	</head>
 	<body onresize="resizeFix()">
-		<div id="myNav" class="overlay" style="padding: 20px">
+		<div id="myNav" class="overlay" style="padding-left: 20px; padding-right: 20px">
 			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-			<div class="overlay-content">
+			<div id="myOverlay" class="overlay-content">
 				<h2>Welcome to MentorPal!</h2>
 				<h3>Click on the topic buttons to get suggested questions.</h3>
 				<h3>Toggle to the Transcript or turn on Closed Captions to read with the Mentor.</h3>
@@ -54,38 +53,36 @@
 				<!--This is the video player area-->
 				<div id="video-holder" class="row" style="padding-left: 10px; padding-right: 10px">
 					<div id = "videoWrapper" class="embed-responsive embed-responsive-16by9">
-						<video class ="video" webkit-playsinline="true" playsinline="true" id = "videoPlayer" style="height: 100%; width: 100%" controls="true" onclick="videoSwitch();" onerror="alert('Video not found');">
+						<video id = "videoPlayer" class ="video" webkit-playsinline="true" playsinline="true" controls="true" onclick="videoSwitch();" onerror="alert('Video not found');">
 							<track id = "track" src="/clint/tracks/clintanderson_A1_1_1.vtt" kind="subtitles" srclang="en" label="English">
 						</video>
 					</div>
 				</div>
-				<!--This is the topic/transcript area-->
-				<div id="topic-holder" class="row" style="padding-bottom: 20px; padding-top: 16px; padding-left: 10px; padding-right: 10px">
-					<div id = "main-box" class="col-xl-11 col-lg-10 col-md-10 col-sm-12 col-12" style="padding-right: 10px;">
-						<div id = "topic-box" class = "topic-box">
-						</div>
-						<div id = "caption-box" class = "caption-box" readonly>
-						</div>
+				<!--This is the question/transcript area-->
+				<div id="topic-holder" class="row" style="padding: 10px;">
+					<div id = "main-box" class="col-xl-11 col-lg-10 col-md-10 col-sm-12 col-12">
+						<div id = "topic-box" class = "topic-box"></div>
+						<div id = "caption-box" class = "caption-box" readonly></div>
 					</div>
 					<div id = "button-row" class="col-xl-1 col-lg-2 col-md-2 d-none d-md-block">
 						<div class="row button-row-cap">
 							<button id = "button-caption" onclick="toCaption()" class = "btn button-caption">Transcript</button>
 						</div>
 						<div class="row button-row-choice">
-							<button id = "button-choice" onclick="toChoices()" class = "btn button-choice" disabled  = true>Topics</button>
+							<button id = "button-choice" onclick="toChoices()" class = "btn button-choice" disabled=true>Topics</button>
 						</div>
 					</div>
 				</div>
 				<!--This is the input area-->
-				<div id="input-holder" class="row" style= "padding-left: 10px; padding-right: 10px">
-					<div id = "input-box" class="col-xl-11 col-lg-11 col-md-11 col-sm-10 col-10" style="padding-right: 10px">
+				<div id="input-holder" class="row" style="padding-right: 10px; padding-left: 10px">
+					<div id = "input-box" class="col-xl-11 col-lg-11 col-md-11 col-sm-10 col-10">
 						<div class = "text-box-setup">
 							<textarea id="question-Box" class="form-input form-control" "scroll-pane" onkeydown="if (event.keyCode == 13) send()"></textarea>
 							<button id="mic-button" class = "btn mic-setup mic-off" onclick = "watson()"><i class="fas fa-microphone fa-2x"></i></button>
-							<button id="stop-button" style="display: none;" onclick = "stopWatson()" class = "mic-setup btn mic-on"><i class="fas fa-microphone fa-2x"></i></button>
+							<button id="stop-button" style="display: none;" onclick = "stopWatson()" class = "btn mic-setup mic-on"><i class="fas fa-microphone fa-2x"></i></button>
 						</div>
 					</div>
-					<div id = "mic-send-row" class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2">
+					<div id = "mic-send-row" class="col-xl-1 col-lg-1 col-md-1 col-sm-2 col-2" style="padding-left: 10px">
 						<div class="row button-row-enter">
 							<button id= "send-button" onclick = "send()" class = "enter-button button-color btn"><i class="fas fa-arrow-right fa-2x"></i></button>
 						</div>

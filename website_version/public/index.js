@@ -1,7 +1,6 @@
 var globalResults
 var socket = io()
 var video = document.getElementById("videoPlayer")
-
 var isMobile=""
 urlp=[];u=location.search.replace("?","").split("&").forEach(function(d){e=d.split("=");urlp[e[0]]=e[1];})
 const isUnity=urlp["unity"]
@@ -18,11 +17,6 @@ if (mentorID == 'clint') {
 	mentor = {
 		name: "Clint Anderson",
 		shortName: "Clint", //for the transcript
-		videoURL: "https://pal3.ict.usc.edu/resources/mentor/clint/",
-		idleURL: "https://pal3.ict.usc.edu/resources/mentor/clint/idle",
-		topicsURL: "/clint/topics.csv",
-		questions: "/clint/Questions_Paraphrases_Answers.csv",
-		classifier: "/clint/classifier_data.csv",
 		intro: "My name is EMC Clint Anderson, that's Electrician's Mate Clinton Anderson. I was born in Los Angeles, California. I was raised there most of my life and I graduated from high school there. A couple of years after graduating from high school, then I joined the United States Navy. I was an Electrician's Mate for eight years. I served on an aircraft carrier. We went on many deployments. A deployment is when you go to war, you fight. We fought in the Iraq war. I went on three deployments and it was a really great time in my life. I had a lot of fun. At the end of the eight years, I decided that the Navy wasn't quite a career for me. So, I got out of the Navy. I started using the education benefits that we received and I started going to the University of California at Berkeley. I was majoring in computer science and afterwards, I started getting my master's degree from the University of Southern California. I also had a job at the Institute for Creative Technologies. It's been a lot of fun, this whole time. Thanks to the Navy.",
 		introURL: "clintanderson_A1_1_1",
 		title: "Clinton Anderson: Nuclear Electrician's Mate" //for the title
@@ -31,11 +25,6 @@ if (mentorID == 'clint') {
 	mentor = {
 		name: "Dan Davis",
 		shortName: "Dan",
-		videoURL: "https://pal3.ict.usc.edu/resources/mentor/dan/",
-		idleURL: "https://pal3.ict.usc.edu/resources/mentor/dan/idle",
-		topicsURL: "/dan/topics.csv",
-		questions: "/dan/Questions_Paraphrases_Answers.csv",
-		classifier: "/dan/classifier_data.csv",
 		intro: "Hello I'm Dan Davis I've worked for universities to last thirty years doing basic research in high performance computing of work for Cal Tech, University of Southern California and the University of Hawaii",
 		introURL: "dandavis_A1_1_1",
 		title: "Dan Davis: High Performance Computing Researcher"
@@ -44,11 +33,6 @@ if (mentorID == 'clint') {
 	mentor = {
 		name: "Julianne Nordhagen",
 		shortName: "Julianne",
-		videoURL: "https://pal3.ict.usc.edu/resources/mentor/julianne/",
-		idleURL: "https://pal3.ict.usc.edu/resources/mentor/julianne/idle",
-		topicsURL: "/julianne/topics.csv",
-		questions: "/julianne/Questions_Paraphrases_Answers.csv",
-		classifier: "/julianne/classifier_data.csv",
 		intro: "Hi my name's Julie Nordhagen, I'm in the United States Navy and I'm currently a student naval aviator so that means that I have commissioned into the Navy and I am starting to learn how to fly planes and will then become a full trained pilot for the Navy.",
 		introURL: "julianne_U1_1_1",
 		title: "Julianne Nordhagen: Student Naval Aviator"
@@ -57,11 +41,6 @@ if (mentorID == 'clint') {
 	mentor = {
 		name: "Carlos Rios",
 		shortName: "Carlos",
-		videoURL: "https://pal3.ict.usc.edu/resources/mentor/carlos/",
-		idleURL: "https://pal3.ict.usc.edu/resources/mentor/carlos/idle",
-		topicsURL: "/carlos/topics.csv",
-		questions: "/carlos/Questions_Paraphrases_Answers.csv",
-		classifier: "/carlos/classifier_data.csv",
 		intro: "So my name is Carlos Rios. I'm a logistics lead supporting marine corps projects. I'm originally from Connecticut or New Haven, Connecticut. My mother and father are from Puerto Rico they migrated over to Connecticut and then from there after about six well I was about seven years old and moved over to a Philadelphia where I spent most of my most of my youth. About age 18-19 years old graduated high school and joined the marine corps. Twenty three years later, retired. During that time of course I got married. I have been married for twenty seven years. I have two great kids, one currently attending USC and one in the near future want to attend Clemson, South Carolina where I currently reside after my retirement from the marine corps. I spent two years as a contractor supporting the marine corps and I personally think I did such a good job that the government decided to bring it over to that side and support as a government employee and I've been doing that for about seven years high manage everything from my computer, servers, laptops to drones.",
 		introURL: "carlos_A1_1_1",
 		title: "Carlos Rios: Marine Logistician"
@@ -70,45 +49,44 @@ if (mentorID == 'clint') {
 	mentorID = 'clint';
 	mentor = {
 		name: "Clinton Anderson",
-		videoURL: "https://pal3.ict.usc.edu/resources/mentor/clint/",
-		idleURL: "https://pal3.ict.usc.edu/resources/mentor/clint/idle",
-		topicsURL: "/clint/topics.csv",
-		questions: "/clint/Questions_Paraphrases_Answers.csv",
-		classifier: "/clint/classifier_data.csv",
 		intro: "My name is EMC Clint Anderson, that's Electrician's Mate Clinton Anderson. I was born in Los Angeles, California. I was raised there most of my life and I graduated from high school there. A couple of years after graduating from high school, then I joined the United States Navy. I was an Electrician's Mate for eight years. I served on an aircraft carrier. We went on many deployments. A deployment is when you go to war, you fight. We fought in the Iraq war. I went on three deployments and it was a really great time in my life. I had a lot of fun. At the end of the eight years, I decided that the Navy wasn't quite a career for me. So, I got out of the Navy. I started using the education benefits that we received and I started going to the University of California at Berkeley. I was majoring in computer science and afterwards, I started getting my master's degree from the University of Southern California. I also had a job at the Institute for Creative Technologies. It's been a lot of fun, this whole time. Thanks to the Navy.",
 		introURL: "clintanderson_A1_1_1",
 		title: "Clinton Anderson: Nuclear Electrician's Mate"
 	};
 }
 
-function resizeFix(){	//run everytime the window is resized to keep it responsive
-	document.getElementById("videoPlayer").width = screen.width;
-	document.getElementById("videoPlayer").height = screen.height;
+mentor.videoURL = "https://pal3.ict.usc.edu/resources/mentor/"+mentorID+"/"
+mentor.idleURL = "https://pal3.ict.usc.edu/resources/mentor/"+mentorID+"/idle"
+mentor.topicsURL = "/"+mentorID+"/topics.csv"
+mentor.questions = "/"+mentorID+"/Questions_Paraphrases_Answers.csv"
+mentor.classifier = "/"+mentorID+"/classifier_data.csv"
+
+//run everytime the window is resized to keep it responsive
+function resizeFix() {
 	renderButtons(globalResults);
 
-	//if mobile, render this:
-	if (screen.width < 768) {
+	// if mobile, render this:
+	if (screen.width < 768 || isUnity == "true") {
 		isMobile = "_M";
-		document.getElementById("main-holder").className = "container-fluid";
-		document.getElementById("videoWrapper").className = 'video-wrapper';
-		document.getElementById("videoPlayer").textTracks[0].mode = "showing";	// show on-video captions
+		document.getElementById("main-holder").className = "container-fluid";	// make video and button area fill screen
+		document.getElementById("videoPlayer").textTracks[0].mode = "showing";	// show subtitles
+		document.getElementById("myOverlay").innerHTML = ''
+		document.getElementById("myOverlay").innerHTML += "<h2>Welcome to MentorPal!</h2>"
+		document.getElementById("myOverlay").innerHTML += "<h3>Click on the topic buttons to get suggested questions.</h3>"
 		toChoices();
 	}
-	//if desktop, render this
+	// if desktop, render this
 	else {
 		isMobile="";
 		document.getElementById("main-holder").className = "container";
 		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9';
-		document.getElementById("videoPlayer").className = 'col';
 		document.getElementById("videoPlayer").textTracks[0].mode = "hidden";	// hide on-video captions
 	}
 
 	// if inside unity (PAL3 app), render this:
 	if (isUnity == "true") {
-		document.getElementById("main-holder").className = "container-fluid"; // make video and button area fill screen
-		document.getElementById("videoPlayer").textTracks[0].mode = "showing"; // show subtitles
-		document.getElementById("mic-button").style.display = 'none';	// hide mic button
-		document.getElementById("stop-button").style.display = 'none';
+		document.getElementById("mic-button").style.display = 'none'	// hide mic button
+		document.getElementById("stop-button").style.display = 'none'
 	}
 }
 
@@ -116,7 +94,8 @@ if (window.location.pathname.split("/")[2]=="embed") {
 		document.getElementById("navSize").style.display = "none";
 }
 
-Papa.parse(mentor.topicsURL, {	//setup the csv for buttons on desktop
+//setup the csv for buttons on desktop
+Papa.parse(mentor.topicsURL, {
 	download: true,
 	complete: function(results) {
 		globalResults = results;
@@ -159,7 +138,6 @@ function findquestion(thisButton) {	//find the question that needs to be filled 
 		complete: function(results) {
 			var questions={}
 			var topicQuestionSize = 0
-
 			// get all the questions for the chosen topic
 			for (var i = 0; i < results.data.length; i++) {
 				if (results.data[i][0].toLowerCase().includes(thisButton.value.toLowerCase())) {
@@ -173,27 +151,29 @@ function findquestion(thisButton) {	//find the question that needs to be filled 
 			} else {
 				x[thisButton.value] = 1
 			}
-
 			document.getElementById("question-Box").value = questions[x[thisButton.value]]
 		}
 	});
 }
 
-function toCaption() {	//switch view of box
+//switch view of box
+function toCaption() {
 	document.getElementById("topic-box").style.display = "none";
 	document.getElementById("caption-box").style.display = "block";
 	document.getElementById("button-caption").disabled = true;
 	document.getElementById("button-choice").disabled = false;
 }
 
-function toChoices() { //switch view of box
+//switch view of box
+function toChoices() {
 	document.getElementById("topic-box").style.display = "block";
 	document.getElementById("caption-box").style.display = "none";
 	document.getElementById("button-caption").disabled = false;
 	document.getElementById("button-choice").disabled = true;
 }
 
-function send() {	//send the question on enter or send key
+//send the question on enter or send key
+function send() {
 	const question = document.getElementById("question-Box").value
 
 	if (question && question != "\n"){
