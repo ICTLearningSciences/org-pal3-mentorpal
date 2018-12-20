@@ -11,6 +11,9 @@
 	#mentor-title, #button-row {
 		display: none;
 	}
+	video::-webkit-media-text-track-display{
+		font-size: 200%;
+	}
 	html, body {
 		height: 100%;
 		width: 100%;

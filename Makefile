@@ -76,11 +76,9 @@ eb-deploy: eb-dist docker-deploy-tag
 
 eb-deploy-prod: NODE_ENV=prod
 eb-deploy-prod: eb-deploy
-	make clean eb-deploy NODE_ENV=prod
 
 eb-deploy-qa: NODE_ENV=qa
 eb-deploy-qa: eb-deploy
-	make clean eb-deploy NODE_ENV=qa
 
 # eb-cli-init
 #
