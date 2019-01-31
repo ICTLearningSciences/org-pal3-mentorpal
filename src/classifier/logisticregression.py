@@ -130,10 +130,10 @@ class LogisticClassifier(object):
         #print(self.logistic_model_fused.best_params_, self.logistic_model_fused.best_score_)
         joblib.dump(self.logistic_model_fused, os.path.join("mentors",self.mentor.id,"train_data","fused_model.pkl"))
         #self.plot_validation_curve(train_scores, valid_scores)
-        # scores=cross_val_score(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
-        # print(scores)
-        # predicted = cross_val_predict(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
-        # print(metrics.accuracy_score(self.y_train_fused, predicted))
+        scores=cross_val_score(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
+        print(scores)
+        predicted = cross_val_predict(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
+        print(metrics.accuracy_score(self.y_train_fused, predicted))
 
     '''
     Test the classifier and evaluate performance. This is only for testing performance. This won't be used in the system flow.
@@ -154,12 +154,10 @@ class LogisticClassifier(object):
             current_sample['actual_answer']=self.ids_answer[self.y_test_unfused[i]]
             pred_data_unfused.append(current_sample)
 
-        pred_df_unfused=pd.DataFrame(pred_data_unfused, columns=['question','predicted_answer','actual_answer'])
-        with open(os.path.join("mentors",self.mentor.id,"test_data","predictions_unfused.csv"),'w') as pred_file:
-            pred_df_unfused.to_csv(pred_file, index=False)
+        # pred_df_unfused=pd.DataFrame(pred_data_unfused, columns=['question','predicted_answer','actual_answer'])
+        # with open(os.path.join("mentors",self.mentor.id,"test_data","predictions_unfused.csv"),'w') as pred_file:
+        #     pred_df_unfused.to_csv(pred_file, sep='\t', encoding='utf-8', index=False)
 
-        #print(self.x_test_unfused)
-        #print(self.y_test_unfused)
         print("Accuracy: "+str(self.logistic_model_unfused.score(self.x_test_unfused, self.y_test_unfused)))
         print("F-1: "+str(f1_score(self.y_test_unfused, y_pred_unfused, average='micro')))
 
@@ -173,13 +171,12 @@ class LogisticClassifier(object):
             current_sample['actual_answer']=self.ids_answer[self.y_test_fused[i]]
             pred_data_fused.append(current_sample)
 
-        pred_df_fused=pd.DataFrame(pred_data_fused, columns=['question','predicted_answer','actual_answer'])
-        with open(os.path.join("mentors",self.mentor.id,"test_data","predictions_fused.csv"),'w') as pred_file:
-            pred_df_fused.to_csv(pred_file, index=False)
+        # pred_df_fused=pd.DataFrame(pred_data_fused, columns=['question','predicted_answer','actual_answer'])
+        # with open(os.path.join("mentors",self.mentor.id,"test_data","predictions_fused.csv"),'w') as pred_file:
+        #     pred_df_fused.to_csv(pred_file, index=False)
 
         print("Accuracy: "+str(self.logistic_model_fused.score(self.x_test_fused, self.y_test_fused)))
         print("F-1: "+str(f1_score(self.y_test_fused, y_pred_fused, average='micro')))
-
 
         return self.y_test_unfused, y_pred_unfused, self.y_test_fused, y_pred_fused
 
@@ -209,5 +206,5 @@ class LogisticClassifier(object):
         #print(json.dumps(self.ids_answer))  #this is all of the possible choices
         #print("Data!!!") #so here we'll return a keyword if things are bad
         if highestConfidence < -0.88:
-            return "_OFF_TOPIC_","_OFF_TOPIC_",highestConfidence
-        return prediction[0], self.ids_answer[prediction[0]], highestConfidence
+            return "_OFF_TOPIC_","_OFF_TOPIC_"
+        return prediction[0], self.ids_answer[prediction[0]]

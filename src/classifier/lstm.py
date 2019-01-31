@@ -29,7 +29,7 @@ class TopicLSTM(object):
         self.y_test=None
         self.new_vectors=[]
         self.mentor=None
-        
+
     def set_mentor(self, mentor):
         self.mentor=mentor
 
@@ -68,12 +68,13 @@ class TopicLSTM(object):
         self.topic_model.add(Dense(nb_classes))
         self.topic_model.add(Activation('softmax'))
         self.topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
-        print(self.topic_model.summary())
+        # print(self.topic_model.summary())
         filepath=os.path.join("mentors",self.mentor.id,"train_data",'lstm_model')
         checkpoint=ModelCheckpoint(filepath, monitor='val_acc',verbose=1, save_best_only=True, mode='max')
         callbacks_list=[checkpoint]
-        hist=self.topic_model.fit(self.x_train, self.y_train, batch_size=32, epochs=30, validation_split=0.1, callbacks=callbacks_list, verbose=1)
+        hist=self.topic_model.fit(np.array(self.x_train), np.array(self.y_train), batch_size=32, epochs=30, validation_split=0.1, callbacks=callbacks_list, verbose=1)
         # print (self.topic_model.evaluate(self.x_test,self.y_test))
+
         self.topic_model.load_weights(filepath)
         self.topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
         self.topic_model.save(os.path.join("mentors",self.mentor.id,"train_data","lstm_topic_model.h5"))
@@ -98,25 +99,21 @@ class TopicLSTM(object):
             y_pred.append(prediction[0])
             self.new_vectors.append([self.test_data[i][0],prediction[0].tolist()])
 
-        # print(y_pred)
-        # print(self.y_test)
-        # print("Accuracy: "+str(accuracy_score(self.y_test, y_pred)))
-
         # print("F-1: "+str(f1_score(self.y_test, y_pred, average='micro')))
         with open(os.path.join("mentors",self.mentor.id,"test_data","test_topic_vectors.json"),'w') as json_file:
             json.dump(self.new_vectors, json_file)
-    
+
     '''
     This is the method that will return the topic vector during system flow. When user asks a question and if method=='fused',
     this method will return the topic vector for the input question which will be used by the classifier to predict an answer.
     '''
     def get_topic_vector(self, lstm_vector):
         self.topic_model=self.mentor.load_topic_model()
-        
+
         start_time=time.time()
         predicted_vector=self.topic_model.predict(lstm_vector)
         end_time=time.time()
         elapsed=end_time-start_time
         print("   Time to predict topic model is "+str(elapsed))
-        
+
         return predicted_vector[0]

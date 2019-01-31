@@ -21,7 +21,7 @@ class NLTKPreprocessor(object):
     def __init__(self):
         self.punct = set(string.punctuation)
         self.stemmer=PorterStemmer()
-        
+
     def inverse_transform(self, X):
         return [" ".join(doc) for doc in X]
 
@@ -100,13 +100,14 @@ class ClassifierPreProcess(object):
         corpus=self.mentor.classifier_data
         corpus=corpus.fillna('')
         total=0
+
         for i in range(0,len(corpus)):
             topics=corpus.iloc[i]['topics'].split(",")
             topics=[_f for _f in topics if _f]
             #normalize the topics
             topics=self.normalize_topics(topics)
 
-            questions=corpus.iloc[i]['question'].split('\r\n')
+            questions=corpus.iloc[i]['question'].split('\n')
             questions=[_f for _f in questions if _f]
             total+=len(questions)
             paraphrases=questions[1:]
@@ -231,7 +232,7 @@ class ClassifierPreProcess(object):
         #dump train_vectors for logistic regression
         with open(os.path.join("mentors",self.mentor.id,"train_data","lr_train_data.json"),'w') as json_file:
             json.dump(self.train_vectors,json_file)
-        
+
         #The test set might not be present when just training the dataset fully and then letting users ask questions.
         #That's why the test set code is inside a try-except block.
         try:
@@ -246,5 +247,3 @@ class ClassifierPreProcess(object):
         #dump ids_answers
         with open(os.path.join("mentors",self.mentor.id,"train_data","ids_answer.json"),'w') as json_file:
             json.dump(self.ids_answer,json_file)
-
-

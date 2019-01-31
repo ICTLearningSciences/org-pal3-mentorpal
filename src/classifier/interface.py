@@ -13,7 +13,6 @@ import csv
 import datetime
 import time
 import mentor
-from logger import Logger
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score, accuracy_score
@@ -41,7 +40,6 @@ class BackendInterface(object):
         if self.mode=='ensemble' or self.mode=='npceditor':
             self.npc=npceditor_interface.NPCEditor()
         self.mentorsById={}
-
         #variables to keep track of session
         self.mentor=None
         self.session_started=False
@@ -52,36 +50,17 @@ class BackendInterface(object):
         self.suggestion_index=0
         self.user_logs=[]
 
-    '''
-    This starts the pipeline for training the classifier from scratch.
-    When new data is available and a new model needs to be built, calling this function will generate a new classifier.
-    When you want to evaluate performance, send method='train_test_mode' to get performance metrics.
-    When you want to just train the classifier, the default option mode='train_mode' will be activated. No explicit passing reqd.
-
-    Every time, two versions of the classifier are created: one with the topic vectors and one without topic vectors.
-    This is done so that in the future, if either model needs to be used to get answers to questions, passing use_topic_vectors=True
-    or False will enable to use/not use topic vectors.
-    '''
-    def start_pipeline(self, mode='train_mode', use_topic_vectors='True'):
-        self.classifier.create_data(mode=mode)
-        #Classifier is trained with and without topic vectors to provide flexibility
-        self.classifier.train_lstm()
-        self.classifier.train_classifier()
-        if mode=='train_test_mode':
-            self.test_data=json.load(open(os.path.join("mentors",mentor.mentorId,"test_data","lr_test_data.json"),'r'))
-            self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
-            self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
-            self.cl_y_test_unfused, self.cl_y_pred_unfused, self.cl_y_test_fused, self.cl_y_pred_fused=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
-            self.npc.load_test_data()
-
     def preload(self, mentors):
         for mentor in mentors:
             # start NPCEditor first because it takes a while to load
             if self.mode=='ensemble' or self.mode=='npceditor':
                 os.system("{0} {1}".format(os.path.abspath(os.path.join('', '..', 'NPCEditor.app', 'run-npceditor')), mentor))
             self.load_mentor(mentor)
+            # temporarily asking mentors a question to warm up classifier
+            # need to figure out why loading topic_model works for commandline but not vhmsg
             if self.mode=='ensemble' or self.mode=='classifier':
                 self.set_mentor(mentor)
+                self.get_classifier_answer('asdf')
 
     def load_mentor(self, id):
         self.mentorsById[id]=mentor.Mentor(id)
@@ -96,30 +75,59 @@ class BackendInterface(object):
         if self.mode=='ensemble' or self.mode=='npceditor':
             self.npc.set_mentor(self.mentor)
 
-    #Checks if the question is off-topic. This function is not completed yet.
-    def is_off_topic(self, question):
-        return False
+    '''
+    This starts the pipeline for training the classifier from scratch.
+    When new data is available and a new model needs to be built, calling this function will generate a new classifier.
+    When you want to evaluate performance, send method='train_test_mode' to get performance metrics.
+    When you want to just train the classifier, the default option mode='train_mode' will be activated. No explicit passing reqd.
 
-    def set_blacklist(self, blacklist_ids):
-        self.blacklist.clear()
-        for id in blacklist_ids:
-            self.blacklist.append(id)
+    Every time, two versions of the classifier are created: one with the topic vectors and one without topic vectors.
+    This is done so that in the future, if either model needs to be used to get answers to questions, passing use_topic_vectors=True
+    or False will enable to use/not use topic vectors.
+    '''
+    def start_pipeline(self, mode='train_mode', use_topic_vectors='True'):
+        print(mode)
+        self.classifier.create_data(mode)
+        # Classifier is trained with and without topic vectors to provide flexibility
+        if mode=='train_test_mode' or mode=='train_mode':
+            self.classifier.train_lstm()
+            self.classifier.train_classifier()
+        if mode=='train_test_mode' or mode=='test_mode':
+            self.test_data=json.load(open(os.path.join("mentors",self.mentor.id,"test_data","lr_test_data.json"),'r'))
+            self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
+            self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
+            if self.mode=='ensemble' or self.mode=='classifier':
+                self.cl_y_test_unfused, self.cl_y_pred_unfused, self.cl_y_test_fused, self.cl_y_pred_fused=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
+            if self.mode=='ensemble' or self.mode=='npceditor':
+                self.npc.load_test_data()
 
+    '''
+    Return the list of topics to the GUI
+    '''
     def get_topics(self):
         return self.mentor.topics
 
+    '''
+    Checks if the question is off-topic. This function is not completed yet.
+    '''
+    def is_off_topic(self, question):
+        return False
+
+    #information to track must be discussed with Ben, Nick, Kayla
     def start_session(self):
         self.session_started=True
+
+    #play intro clip
+    def play_intro(self):
+        return self.mentor.utterances_prompts['_INTRO_'][0]
+
+    #play idle clip
+    def play_idle(self):
+        return self.mentor.utterances_prompts['_IDLE_'][0]
 
     def end_session(self):
         self.session_started=False
         self.blacklist.clear()
-
-    def play_intro(self):
-        return self.mentor.utterances_prompts['_INTRO_'][0]
-
-    def play_idle(self):
-        return self.mentor.utterances_prompts['_IDLE_'][0]
 
     def quit(self):
         if self.mode=='ensemble' or self.mode=='npceditor':
@@ -131,6 +139,8 @@ class BackendInterface(object):
     This method checks the status of the question: whether it is an off-topic or a repeat. Other statuses can be added here.
     '''
     def check_input(self, pal3_input):
+        #if question is a special case - HANDLE SHOW IDLE CASE
+
         #check if null or empty string
         if pal3_input.strip() == '':
             return '_EMPTY_'
@@ -209,28 +219,6 @@ class BackendInterface(object):
         return return_id, return_answer, return_score
 
     '''
-    Suggest a question to the user
-    '''
-    def suggest_question(self, topic):
-        if topic=='Job Specific':
-            topic='jobspecific'
-
-        if (topic.lower() in self.mentor.suggestions):
-            candidate_questions=self.mentor.suggestions[topic.lower()]
-            if (self.last_topic_suggestion == topic):
-                self.suggestion_index = self.suggestion_index + 1
-                if (self.suggestion_index >= len(candidate_questions)):
-                    self.suggestion_index = 0
-            else:
-                self.suggestion_index=random.randint(0,len(candidate_questions)-1)
-
-            selected_question=candidate_questions[self.suggestion_index]
-            self.last_topic_suggestion=topic
-            return (selected_question[0].capitalize(), selected_question[1], selected_question[2])
-
-        return ('', '', '')
-
-    '''
     Get answers for all the questions. Used when building a new classifier model. Will be called automatically as part of the
     start_pipeline method.
     '''
@@ -278,13 +266,13 @@ class BackendInterface(object):
     '''
     def get_classifier_answer(self, question, use_topic_vectors=True):
         start_time=time.time()
-        classifier_id, classifier_answer, classifier_score=self.classifier.get_answer(question, use_topic_vectors=use_topic_vectors)
+        classifier_id, classifier_answer=self.classifier.get_answer(question, use_topic_vectors=use_topic_vectors)
         if classifier_id=="_OFF_TOPIC_":
             classifier_id, classifier_answer, other = self.return_prompt("_OFF_TOPIC_")
         end_time=time.time()
         elapsed=end_time-start_time
         print("Time to fetch classifier answer is "+str(elapsed))
-        return classifier_id, classifier_answer, classifier_score
+        return classifier_id, classifier_answer
 
     '''
     When only one answer is required for a single question, use this method. You can choose to use or not use the topic vectors by
@@ -294,17 +282,17 @@ class BackendInterface(object):
         return_id=None
         return_answer=None
         return_score=0.0
-        npceditor_score=0.0
+
         if self.mode=='ensemble':
             npceditor_id, npceditor_score, npceditor_answer = self.get_npceditor_answer(question, use_topic_vectors)
             if npceditor_answer=="answer_none":
-                classifier_id, classifier_answer, classifier_score = self.get_classifier_answer(question, use_topic_vectors)
+                classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
                 return_id=classifier_id
                 return_answer=classifier_answer
                 print("Answer from classifier chosen")
             else:
                 if float(npceditor_score) < -5.59054:
-                    classifier_id, classifier_answer, classifier_score = self.get_classifier_answer(question, use_topic_vectors)
+                    classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
                     return_id=classifier_id
                     return_answer=classifier_answer
                     print("Answer from classifier chosen") #this might be uncertain, maybe grab an _OFF_TOPIC
@@ -325,7 +313,7 @@ class BackendInterface(object):
                 print("Answer from NPCEditor chosen")
 
         elif self.mode=='classifier':
-            classifier_id, classifier_answer, classifier_score = self.get_classifier_answer(question, use_topic_vectors)
+            classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
             return_id=classifier_id
             return_answer=classifier_answer
             print("Answer from classifier chosen")
@@ -345,7 +333,6 @@ class BackendInterface(object):
                 self.should_bump=False
                 self.blacklist.append(return_id)
 
-        Logger.logData(self.mentor, question, "", classifier_answer, return_answer, return_id, npceditor_score, classifier_score)
         return return_id, return_answer, return_score
 
     def get_redirect_answer(self):
@@ -388,3 +375,23 @@ class BackendInterface(object):
                         dict_writer.writerows(self.user_logs)
         # answer=self.get_one_answer(question, use_topic_vectors=use_topic_vectors)
         return answer
+
+    '''
+    Suggest a question to the user
+    '''
+    def suggest_question(self, topic):
+        if topic=='Job Specific':
+            topic='jobspecific'
+
+        if (topic.lower() in self.mentor.suggestions):
+            candidate_questions=self.mentor.suggestions[topic.lower()]
+            if (self.last_topic_suggestion == topic):
+                self.suggestion_index=(self.suggestion_index + 1) % len(candidate_questions)
+            else:
+                self.suggestion_index=random.randint(0,len(candidate_questions)-1)
+
+            selected_question=candidate_questions[self.suggestion_index]
+            self.last_topic_suggestion=topic
+            return (selected_question[0].capitalize(), selected_question[1], selected_question[2])
+
+        return ('', '', '')

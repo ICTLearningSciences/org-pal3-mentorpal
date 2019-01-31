@@ -7,7 +7,7 @@ julianne_U5_1_3,Good morning.,_FEEDBACK_
 julianne_U6_1_3,Good afternoon.,_FEEDBACK_
 julianne_U7_1_3,Good evening.,_FEEDBACK_
 julianne_U8_1_3,Good night.,_FEEDBACK_
-julianne_U9_1_3,I may have said this before.,_OFF TOPIC_
+julianne_U9_1_3,I may have said this before.,_FEEDBACK_
 julianne_U10_1_3,No.,_FEEDBACK_
 julianne_U11_1_3,Maybe.,_FEEDBACK_
 julianne_U12_1_3,Perhaps.,_FEEDBACK_
@@ -19,3 +19,4 @@ julianne_U17_1_3,I do.,_FEEDBACK_
 julianne_U18_1_3,I don't,_FEEDBACK_
 julianne_U19_1_3,I have no idea.,_FEEDBACK_
 julianne_U20_1_3,I do not think so,_FEEDBACK_
+idle,,_IDLE_

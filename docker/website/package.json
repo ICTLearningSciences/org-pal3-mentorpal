@@ -1,0 +1,34 @@
+{
+  "name": "website-version",
+  "version": "1.0.19",
+  "private": true,
+  "scripts": {
+    "start": "node app",
+    "start-dev": "node app dev",
+    "version": "git add -A",
+    "postversion": "git push"
+  },
+  "dependencies": {
+    "app-root-path": "^2.1.0",
+    "async-request": "^1.2.0",
+    "body-parser": "^1.18.3",
+    "consolidate": "^0.15.1",
+    "cookie-parser": "~1.4.3",
+    "csv": "^3.1.0",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "express-handlebars": "^3.0.0",
+    "fs-extra": "^7.0.1",
+    "http-errors": "~1.6.2",
+    "path": "^0.12.7",
+    "python-shell": "^0.5.0",
+    "request-promise": "^4.2.2",
+    "socket.io": "^2.1.1",
+    "swig": "^1.4.2",
+    "watson-developer-cloud": "^3.4.5"
+  },
+  "description": "*This allows MentorPal to be deployed to hundreds of users remotely onto their computer or mobile device*",
+  "main": "app.js",
+  "author": "",
+  "license": "ISC"
+}

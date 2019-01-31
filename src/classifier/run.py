@@ -9,11 +9,16 @@ def start(answer_mode):
     start=time.time()
     global bi
     bi=interface.BackendInterface(mode=answer_mode)
-    bi.preload(['clint', 'dan', 'julianne', 'carlos'])
+
+def preload(mentors):
+    bi.preload(mentors)
+
+def print_instructions():
     print("Interface is ready:")
     print("  Start a session:   _START_SESSION_     <mentor id>")
     print("  End session:       _END_SESSION_")
     print("  Run training:      _TRAIN_             <mentor id>")
+    print("  Run testing:       _TEST_              <mentor id>")
     print("  Get topics:        _TOPICS_            <mentor id>")
     print("  Get intro:         _INTRO_             <mentor id>")
     print("  Get idle:          _IDLE_              <mentor id>")
@@ -60,6 +65,14 @@ def process_input(user_input):
         bi.set_mentor(id)
         bi.start_pipeline(mode='train_mode')
         return '_TRAINED_ {0}'.format(id)
+
+    # retrain the classifier for the given mentor
+    # _TEST_ <mentor id>
+    if tag == "_TEST_":
+        id = inputs[1]
+        bi.set_mentor(id)
+        bi.start_pipeline(mode='train_test_mode')
+        return '_TESTED_ {0}'.format(id)
 
     # get the list of topics for a mentor
     # _TOPICS_ <mentor id>

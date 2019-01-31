@@ -4,7 +4,6 @@
 .PHONY: help
 
 SHELL:=/bin/bash
-
 NODE_ENV ?= qa
 EB_ENV ?= mentorpal-$(NODE_ENV)
 
@@ -25,6 +24,37 @@ EB_ARCHIVE_FILE := $(EB_ENV)-$(subst :,-,$(GIT_TAG))-$(DATE).zip
 
 DATE := $(shell date +"%Y%m%dT%H%M")
 CURDIR = $(shell pwd)
+
+build-commandline:
+	cp docker/commandline/Dockerfile Dockerfile && \
+	cp docker/commandline/.dockerignore .dockerignore && \
+	docker build --no-cache --build-arg NODE_ENV=$(NODE_ENV) -t $(DOCKER_IMAGE_TAG)-commandline .
+
+run-commandline: build-commandline
+	docker run \
+	  -it \
+	  --rm \
+	  -u 0 \
+	  --name mentor-pal-commandline \
+	  -e NODE_ENV=$(NODE_ENV) \
+		--mount type=bind,source=$(CURDIR),target=/docker_host \
+	  $(DOCKER_IMAGE_TAG)-commandline
+
+build-website:
+	cp docker/website/Dockerfile Dockerfile && \
+	cp docker/website/.dockerignore .dockerignore && \
+	docker build --no-cache --build-arg NODE_ENV=$(NODE_ENV) -t $(DOCKER_IMAGE_TAG)-website .
+
+run-website: build-website
+	docker run \
+	  -it \
+	  --rm \
+	  -u 0 \
+	  -p:3000:3000 \
+	  --name mentor-pal-website \
+	  -e NODE_ENV=dev \
+		--mount type=bind,source=$(CURDIR),target=/docker_host \
+	  $(DOCKER_IMAGE_TAG)-website
 
 clean:
 	@rm -rf build dist *.zip

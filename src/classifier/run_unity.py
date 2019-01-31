@@ -15,9 +15,13 @@ def vhmsg_callback(head, body):
         vhmsg_send(output)
 
 run.start('ensemble')
+run.preload(['clint', 'dan', 'julianne', 'carlos'])
+run.print_instructions()
+
 vhmsg = vhmsg.VHMSG()
 vhmsg.openConnection()
 vhmsg.subscribe("MENTORPAL_UNITY2MP", vhmsg_callback)
 vhmsg_send('_READY_')
+
 while not run.end_flag:
     time.sleep(0.1)
