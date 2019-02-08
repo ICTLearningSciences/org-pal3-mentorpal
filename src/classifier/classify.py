@@ -15,7 +15,6 @@ class Classify(object):
         self.tl=lstm.TopicLSTM()
         self.lc=lr.LogisticClassifier()
         self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('vector_models','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
-        #self.cpp.w2v_model=pickle.load(os.path.join('vector_models','model_0.04_0.8.pkl'))
 
     def set_mentor(self, mentor):
         self.cpp.set_mentor(mentor)
@@ -26,37 +25,25 @@ class Classify(object):
     Runs methods in classifier_preprocess.py to pre-process the data into formats that the classifier requires.
     '''
     def create_data(self, mode):
-        print("Building dataset...")
-        print("Reading data...")
         self.cpp.read_data(mode)
-        print("Generate w2v vectors...")
         self.cpp.generate_training_vectors()
         self.cpp.generate_sparse_topic_vectors()
-        print("write data...")
         self.cpp.write_data()
 
     '''
     Trains the topic LSTM by running methods in lstm.py
     '''
     def train_lstm(self):
-        print("Starting LSTM topic training...")
-        print("LSTM is reading training data...")
         self.tl.read_training_data()
-        print("Training LSTM...")
         self.tl.train_lstm()
-        print("Trained LSTM.")
 
     '''
     Trains the classifier by running methods in logisticregression.py
     '''
     def train_classifier(self):
-        print("Starting LR training...")
-        print("LR is reading training data...")
         self.lc.load_data()
         self.lc.create_vectors()
-        print("Training LR...")
         self.lc.train_lr()
-        print("Trained LR")
 
     '''
     Test the classifier performance. Used only when evaluating performance.
@@ -75,31 +62,31 @@ class Classify(object):
         processed_question=self.cpp.preprocessor.transform(question)
         end_time=time.time()
         elapsed=end_time-start_time
-        print("Time to transform preprocessor is "+str(elapsed))
+        # print("Time to transform preprocessor is "+str(elapsed))
 
         start_time=time.time()
         w2v_vector, lstm_vector=self.cpp.get_w2v(processed_question)
         lstm_vector=[lstm_vector]
         end_time=time.time()
         elapsed=end_time-start_time
-        print("Time to get w2v is "+str(elapsed))
+        # print("Time to get w2v is "+str(elapsed))
 
         start_time=time.time()
         padded_vector=pad_sequences(lstm_vector,maxlen=25, dtype='float32',padding='post',truncating='post',value=0.)
         end_time=time.time()
         elapsed=end_time-start_time
-        print("Time to pad sequences is "+str(elapsed))
+        # print("Time to pad sequences is "+str(elapsed))
 
         start_time=time.time()
         topic_vector=self.tl.get_topic_vector(padded_vector)
         end_time=time.time()
         elapsed=end_time-start_time
-        print("Time to get topic vector is "+str(elapsed))
+        # print("Time to get topic vector is "+str(elapsed))
 
         start_time=time.time()
         predicted_answer=self.lc.get_prediction(w2v_vector, topic_vector, use_topic_vectors=use_topic_vectors)
         end_time=time.time()
         elapsed=end_time-start_time
-        print("Time to get prediction is "+str(elapsed))
+        # print("Time to get prediction is "+str(elapsed))
 
         return predicted_answer #this will return a keyword if the LC is unsure

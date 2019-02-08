@@ -86,12 +86,15 @@ class BackendInterface(object):
     or False will enable to use/not use topic vectors.
     '''
     def start_pipeline(self, mode='train_mode', use_topic_vectors='True'):
-        print(mode)
+        self.classifier.__init__()
+        self.classifier.set_mentor(self.mentor)
         self.classifier.create_data(mode)
+
         # Classifier is trained with and without topic vectors to provide flexibility
         if mode=='train_test_mode' or mode=='train_mode':
             self.classifier.train_lstm()
             self.classifier.train_classifier()
+        
         if mode=='train_test_mode' or mode=='test_mode':
             self.test_data=json.load(open(os.path.join("mentors",self.mentor.id,"test_data","lr_test_data.json"),'r'))
             self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]

@@ -51,7 +51,6 @@ class LogisticClassifier(object):
     Create the training vectors.
     '''
     def create_vectors(self):
-        print("Not using topic vectors")
         self.x_train_unfused=[self.train_data[i][1] for i in range(len(self.train_data))]
         self.y_train_unfused=[self.train_data[i][3] for i in range(len(self.train_data))]
         self.x_train_unfused=np.asarray(self.x_train_unfused)
@@ -62,7 +61,6 @@ class LogisticClassifier(object):
         except:
             pass
 
-        print("Using topic vectors")
         for i in range(0,len(self.train_data)):
             self.x_train_fused.append(np.concatenate((self.train_data[i][1], self.train_topic_vectors[i][1])))
         self.x_train_fused=np.asarray(self.x_train_fused)
@@ -108,32 +106,17 @@ class LogisticClassifier(object):
     '''
     def train_lr(self):
         param_grid = {'C': np.power(10.0, np.arange(-3, 3)) }
-        print("Training without topic vectors")
-        # lr=LogisticRegression(penalty='l2', C=1.0)
-        # self.logistic_model_unfused=GridSearchCV(lr, param_grid)
         self.logistic_model_unfused=RidgeClassifier(alpha=1.0)
         self.logistic_model_unfused.fit(self.x_train_unfused, self.y_train_unfused)
-        #print(self.logistic_model_unfused.best_params_, self.logistic_model_unfused.best_score_)
         joblib.dump(self.logistic_model_unfused, os.path.join("mentors",self.mentor.id,"train_data","unfused_model.pkl"))
-        #self.plot_validation_curve(train_scores, valid_scores)
-        # scores=cross_val_score(self.logistic_model_unfused, self.x_train_unfused, self.y_train_unfused, cv=2)
-        # print(scores)
-        # predicted = cross_val_predict(self.logistic_model_unfused, self.x_train_unfused, self.y_train_unfused, cv=2)
-        # print(metrics.accuracy_score(self.y_train_unfused, predicted))
-        print("Training with topic vectors")
-        # lr=LogisticRegression(penalty='l2')
-        # self.logistic_model_fused=GridSearchCV(lr, param_grid)
         self.logistic_model_fused=RidgeClassifier(alpha=1.0)
-        #self.logistic_model_fused.class_weight = {'julianne_A23_2_4' : 0.1, 'julianne_A28_2_6' : 0.17, 'julianne_A46_3_2' :0.3, 'julianne_A22_2_3': 0.17}
-        ### this above allows you to weight specific videos up or down depending on if they're getting chosen too much
         self.logistic_model_fused.fit(self.x_train_fused, self.y_train_fused)
-        #print(self.logistic_model_fused.best_params_, self.logistic_model_fused.best_score_)
         joblib.dump(self.logistic_model_fused, os.path.join("mentors",self.mentor.id,"train_data","fused_model.pkl"))
-        #self.plot_validation_curve(train_scores, valid_scores)
+
         scores=cross_val_score(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
-        print(scores)
+        print("training cross validation score: " + str(scores))
         predicted = cross_val_predict(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
-        print(metrics.accuracy_score(self.y_train_fused, predicted))
+        print("training accuracy score: " + str(metrics.accuracy_score(self.y_train_fused, predicted)))
 
     '''
     Test the classifier and evaluate performance. This is only for testing performance. This won't be used in the system flow.
@@ -154,12 +137,9 @@ class LogisticClassifier(object):
             current_sample['actual_answer']=self.ids_answer[self.y_test_unfused[i]]
             pred_data_unfused.append(current_sample)
 
-        # pred_df_unfused=pd.DataFrame(pred_data_unfused, columns=['question','predicted_answer','actual_answer'])
-        # with open(os.path.join("mentors",self.mentor.id,"test_data","predictions_unfused.csv"),'w') as pred_file:
-        #     pred_df_unfused.to_csv(pred_file, sep='\t', encoding='utf-8', index=False)
-
-        print("Accuracy: "+str(self.logistic_model_unfused.score(self.x_test_unfused, self.y_test_unfused)))
-        print("F-1: "+str(f1_score(self.y_test_unfused, y_pred_unfused, average='micro')))
+        # predicted = cross_val_predict(self.logistic_model_unfused, self.x_test_unfused, self.y_test_unfused, cv=2)
+        # print("testing unfused accuracy score: " + str(metrics.accuracy_score(self.y_test_unfused, predicted)))
+        # print("testing unfused F-1: " + str(f1_score(self.y_test_unfused, y_pred_unfused, average='micro')))
 
         for i in range(0,len(self.x_test_fused)):
             sample=self.x_test_fused[i].reshape(1,-1)
@@ -171,12 +151,9 @@ class LogisticClassifier(object):
             current_sample['actual_answer']=self.ids_answer[self.y_test_fused[i]]
             pred_data_fused.append(current_sample)
 
-        # pred_df_fused=pd.DataFrame(pred_data_fused, columns=['question','predicted_answer','actual_answer'])
-        # with open(os.path.join("mentors",self.mentor.id,"test_data","predictions_fused.csv"),'w') as pred_file:
-        #     pred_df_fused.to_csv(pred_file, index=False)
-
-        print("Accuracy: "+str(self.logistic_model_fused.score(self.x_test_fused, self.y_test_fused)))
-        print("F-1: "+str(f1_score(self.y_test_fused, y_pred_fused, average='micro')))
+        predicted = cross_val_predict(self.logistic_model_fused, self.x_test_fused, self.y_test_fused, cv=2)
+        print("testing fused accuracy score: " + str(metrics.accuracy_score(self.y_test_fused, predicted)))
+        print("testing fused F-1: " + str(f1_score(self.y_test_fused, y_pred_fused, average='micro')))
 
         return self.y_test_unfused, y_pred_unfused, self.y_test_fused, y_pred_fused
 
@@ -196,15 +173,8 @@ class LogisticClassifier(object):
 
         test_vector=test_vector.reshape(1,-1)
         prediction=self.logistic_model.predict(test_vector) #this is the predicted video ID
-        #print("Data!!!")
-
-        #print(self.logistic_model.class_weight)
-        #print(self.logistic_model.decision_function(test_vector)) #this is the confidence values (we can manipulate)
         highestConfidence = sorted(self.logistic_model.decision_function(test_vector)[0])[self.logistic_model.decision_function(test_vector).size-1]
-        #print(highestConfidence) #the highest confidence value
-        #print(prediction[0])
-        #print(json.dumps(self.ids_answer))  #this is all of the possible choices
-        #print("Data!!!") #so here we'll return a keyword if things are bad
+        
         if highestConfidence < -0.88:
             return "_OFF_TOPIC_","_OFF_TOPIC_"
         return prediction[0], self.ids_answer[prediction[0]]

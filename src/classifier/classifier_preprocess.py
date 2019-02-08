@@ -128,10 +128,13 @@ class ClassifierPreProcess(object):
             for i in range(0,len(paraphrases)):
                 processed_paraphrase=self.preprocessor.transform(paraphrases[i])
                 #add question to testing dataset if it is the last paraphrase. Else, add to training set
-                if i==len(paraphrases)-1 and mode=='train_test_mode':
-                    self.test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
-                else:
-                    self.train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
+                # if i==len(paraphrases)-1 and mode=='train_test_mode':
+                #     self.test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
+                # else:
+                #     self.train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
+
+                self.test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
+                self.train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
 
     '''
     get the word_vector and lstm_vector for a question. Both vectors are obtained from the Google News Corpus.
