@@ -4,10 +4,13 @@ WORKDIR /usr/src/app
 
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
-RUN apt-get update
-RUN apt-get install -y apt-transport-https
-RUN apt-get install -y build-essential
-RUN apt-get install -y npm
+COPY website_version/package*.json ./
+
+RUN apt-get update && apt-get install -y \
+    apt-transport-https \
+    build-essential \
+    vim && \
+  rm -rf /var/lib/apt/lists/*
 
 # Install python
 WORKDIR /usr/src
@@ -20,10 +23,31 @@ RUN ln -s /usr/local/bin/python3.5 /usr/local/bin/python3
 
 # Install python dependencies
 WORKDIR /usr/src/app
-RUN python3 -m pip install numpy pandas keras tensorflow sklearn nltk gensim
+RUN python3 -m pip install \
+  gdown \
+  gensim \
+  keras == 2.0.5 \
+  nltk \
+  numpy \
+  pandas \
+  sklearn \
+  tensorflow 
+
 RUN python3 -m nltk.downloader averaged_perceptron_tagger
 
 # Bundle app source
 COPY . .
 EXPOSE 80
-CMD [ "python3", "src/classifier/run_commandline_classifier.py" ]
+WORKDIR /usr/src/app/website_version
+RUN npm install
+
+# Install GoogleNews-vectors-negative300-SLIM.bin to vector_models
+#
+# We use the python gdown script because Google Drive
+# doesn't seem to provide direct download links for large files;
+# the download url always redirects to a confirm page.
+RUN cd vector_models && \
+  gdown https://drive.google.com/uc?id=0B3dYuDrHnGaYLWtqcTVBQVZCejQ
+
+
+CMD npm run start
