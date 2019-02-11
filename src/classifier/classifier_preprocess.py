@@ -53,88 +53,26 @@ class NLTKPreprocessor(object):
                 print("If you want to edit using Excel and then follow instructions at: ")
                 print("http://stackoverflow.com/questions/6002256/is-it-possible-to-force-excel-recognize-utf-8-csv-files-automatically")
                 continue
+
             yield stemmed_token
 
 class ClassifierPreProcess(object):
     def __init__(self):
-        self.train_data=[]
-        self.test_data=[]
         self.train_vectors=[]
         self.test_vectors=[]
         self.lstm_train_vectors=[]
         self.lstm_test_vectors=[]
         self.lstm_train_data=[]
         self.lstm_test_data=[]
-        self.answer_ids={}
-        self.ids_answer={}
         self.last_id=0
         self.w2v_model=None
         self.topic_model=None
         self.topic_set=set()
-        self.preprocessor=NLTKPreprocessor()
         self.mentor=None
+        self.preprocessor=NLTKPreprocessor()
 
     def set_mentor(self, mentor):
         self.mentor=mentor
-
-    '''
-    Normalize the topic words to make sure that each topic is represented only once (handles topics typed differently for
-    different questions. For example, JobSpecific and Jobspecific are both normalized to jobspecific)
-    '''
-    def normalize_topics(self, topics):
-        ret_topics=[]
-        for topic in topics:
-            topic=topic.strip()
-            topic=topic.lower()
-            ret_topics.append(topic)
-            self.topic_set.add(topic)
-        return ret_topics
-
-    '''
-    Read the classifier data from data/classifier_data.csv.
-    Split the data to train and test sets.
-    Store the data in format [actual question, transformed question, list of topics, answer_id] in self.train_data and
-    self.test_data
-    '''
-    def read_data(self, mode):
-        corpus=self.mentor.classifier_data
-        corpus=corpus.fillna('')
-        total=0
-
-        for i in range(0,len(corpus)):
-            topics=corpus.iloc[i]['topics'].split(",")
-            topics=[_f for _f in topics if _f]
-            #normalize the topics
-            topics=self.normalize_topics(topics)
-
-            questions=corpus.iloc[i]['question'].split('\n')
-            questions=[_f for _f in questions if _f]
-            total+=len(questions)
-            paraphrases=questions[1:]
-            current_question=questions[0]
-
-            answer=corpus.iloc[i]['text']
-            answer_id=corpus.iloc[i]['ID']
-            self.answer_ids[answer]=answer_id
-            #remove nbsp and \"
-            answer=answer.replace('\u00a0',' ')
-            self.ids_answer[answer_id]=answer
-
-            #Tokenize the question
-            processed_question=self.preprocessor.transform(current_question)
-            #add question to dataset
-            self.train_data.append([current_question,processed_question,topics,answer_id])
-            #look for paraphrases and add them to dataset
-            for i in range(0,len(paraphrases)):
-                processed_paraphrase=self.preprocessor.transform(paraphrases[i])
-                #add question to testing dataset if it is the last paraphrase. Else, add to training set
-                # if i==len(paraphrases)-1 and mode=='train_test_mode':
-                #     self.test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
-                # else:
-                #     self.train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
-
-                self.test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
-                self.train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
 
     '''
     get the word_vector and lstm_vector for a question. Both vectors are obtained from the Google News Corpus.
@@ -162,7 +100,7 @@ class ClassifierPreProcess(object):
     def generate_training_vectors(self):
         #for each data point, get w2v vector for the question and store in train_vectors.
         #instance=<question, topic, answer, paraphrases>
-        for instance in self.train_data:
+        for instance in self.mentor.train_data:
             w2v_vector, lstm_vector=self.get_w2v(instance[1])
             self.train_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[3]])
             self.lstm_train_vectors.append(lstm_vector)
@@ -174,7 +112,7 @@ class ClassifierPreProcess(object):
         #The test set might not be present when just training the dataset fully and then letting users ask questions.
         #That's why the test set code is inside a try-except block.
         try:
-            for instance in self.test_data:
+            for instance in self.mentor.test_data:
                 w2v_vector, lstm_vector=self.get_w2v(instance[1])
                 self.test_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[3]])
                 self.lstm_test_vectors.append(lstm_vector)

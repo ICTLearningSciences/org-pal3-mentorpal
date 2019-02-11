@@ -35,11 +35,13 @@ class BackendInterface(object):
         self.ensemble_pred=[]
         self.cpp=classifier_preprocess.ClassifierPreProcess()
         self.tpp=classifier_preprocess.NLTKPreprocessor()
+        
         if self.mode=='ensemble' or self.mode=='classifier':
             self.classifier=classify.Classify()
         if self.mode=='ensemble' or self.mode=='npceditor':
             self.npc=npceditor_interface.NPCEditor()
         self.mentorsById={}
+
         #variables to keep track of session
         self.mentor=None
         self.session_started=False

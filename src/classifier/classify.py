@@ -25,7 +25,6 @@ class Classify(object):
     Runs methods in classifier_preprocess.py to pre-process the data into formats that the classifier requires.
     '''
     def create_data(self, mode):
-        self.cpp.read_data(mode)
         self.cpp.generate_training_vectors()
         self.cpp.generate_sparse_topic_vectors()
         self.cpp.write_data()
