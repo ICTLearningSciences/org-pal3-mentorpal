@@ -43,14 +43,15 @@ class Classify(object):
     def train_classifier(self):
         self.lc.load_data()
         self.lc.create_vectors()
-        self.lc.train_lr()
+        scores, accuracy_score = self.lc.train_lr()
+        return scores, accuracy_score
 
     '''
     Test the classifier performance. Used only when evaluating performance.
     '''
     def test_classifier(self, use_topic_vectors=True):
-        y_test_unfused, y_pred_unfused, y_test_fused, y_pred_fused = self.lc.test_lr(use_topic_vectors=use_topic_vectors)
-        return y_test_unfused, y_pred_unfused, y_test_fused, y_pred_fused
+        y_test_unfused, y_pred_unfused, y_test_fused, y_pred_fused, accuracy_score, f1_score = self.lc.test_lr(use_topic_vectors=use_topic_vectors)
+        return y_test_unfused, y_pred_unfused, y_test_fused, y_pred_fused, accuracy_score, f1_score
 
     '''
     When a question is asked, this method first normalizes the text using classifier_preprocess.py, then gets the
@@ -58,35 +59,11 @@ class Classify(object):
     classifier in logisticregression.py to get a predicted answer and sends this to the ensemble classifier.
     '''
     def get_answer(self,question, use_topic_vectors=True):
-        start_time=time.time()
         processed_question=self.cpp.preprocessor.transform(question)
-        end_time=time.time()
-        elapsed=end_time-start_time
-        # print("Time to transform preprocessor is "+str(elapsed))
-
-        start_time=time.time()
         w2v_vector, lstm_vector=self.cpp.get_w2v(processed_question)
         lstm_vector=[lstm_vector]
-        end_time=time.time()
-        elapsed=end_time-start_time
-        # print("Time to get w2v is "+str(elapsed))
-
-        start_time=time.time()
         padded_vector=pad_sequences(lstm_vector,maxlen=25, dtype='float32',padding='post',truncating='post',value=0.)
-        end_time=time.time()
-        elapsed=end_time-start_time
-        # print("Time to pad sequences is "+str(elapsed))
-
-        start_time=time.time()
         topic_vector=self.tl.get_topic_vector(padded_vector)
-        end_time=time.time()
-        elapsed=end_time-start_time
-        # print("Time to get topic vector is "+str(elapsed))
-
-        start_time=time.time()
         predicted_answer=self.lc.get_prediction(w2v_vector, topic_vector, use_topic_vectors=use_topic_vectors)
-        end_time=time.time()
-        elapsed=end_time-start_time
-        # print("Time to get prediction is "+str(elapsed))
 
         return predicted_answer #this will return a keyword if the LC is unsure

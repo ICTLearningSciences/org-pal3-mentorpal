@@ -101,6 +101,7 @@ class LogisticClassifier(object):
                         color="navy", lw=lw)
         plt.legend(loc="best")
         plt.show()
+
     '''
     Train the LR classifier.
     '''
@@ -114,10 +115,14 @@ class LogisticClassifier(object):
         joblib.dump(self.logistic_model_fused, os.path.join("mentors",self.mentor.id,"train_data","fused_model.pkl"))
 
         scores=cross_val_score(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
-        print("training cross validation score: " + str(scores))
         predicted = cross_val_predict(self.logistic_model_fused, self.x_train_fused, self.y_train_fused, cv=2)
-        print("training accuracy score: " + str(metrics.accuracy_score(self.y_train_fused, predicted)))
+        accuracy = metrics.accuracy_score(self.y_train_fused, predicted)
 
+        print("training cross validation score: " + str(scores))
+        print("training accuracy score: " + str(accuracy))
+
+        return scores, accuracy
+        
     '''
     Test the classifier and evaluate performance. This is only for testing performance. This won't be used in the system flow.
     '''
@@ -137,10 +142,13 @@ class LogisticClassifier(object):
             current_sample['actual_answer']=self.ids_answer[self.y_test_unfused[i]]
             pred_data_unfused.append(current_sample)
 
-        # predicted = cross_val_predict(self.logistic_model_unfused, self.x_test_unfused, self.y_test_unfused, cv=2)
-        # print("testing unfused accuracy score: " + str(metrics.accuracy_score(self.y_test_unfused, predicted)))
-        # print("testing unfused F-1: " + str(f1_score(self.y_test_unfused, y_pred_unfused, average='micro')))
+        predicted = cross_val_predict(self.logistic_model_unfused, self.x_test_unfused, self.y_test_unfused, cv=2)
+        accuracy = metrics.accuracy_score(self.y_test_unfused, predicted)
+        f1 = f1_score(self.y_test_unfused, y_pred_unfused, average='micro')
 
+        print("testing unfused accuracy score: " + str(accuracy))
+        print("testing unfused F-1: " + str(f1))
+        
         for i in range(0,len(self.x_test_fused)):
             sample=self.x_test_fused[i].reshape(1,-1)
             prediction=self.logistic_model_fused.predict(sample)
@@ -155,7 +163,7 @@ class LogisticClassifier(object):
         print("testing fused accuracy score: " + str(metrics.accuracy_score(self.y_test_fused, predicted)))
         print("testing fused F-1: " + str(f1_score(self.y_test_fused, y_pred_fused, average='micro')))
 
-        return self.y_test_unfused, y_pred_unfused, self.y_test_fused, y_pred_fused
+        return self.y_test_unfused, y_pred_unfused, self.y_test_fused, y_pred_fused, accuracy, f1
 
     '''
     This is the method that will be used to get an answer for a question in the system flow. When user asks a question, this is
@@ -176,5 +184,6 @@ class LogisticClassifier(object):
         highestConfidence = sorted(self.logistic_model.decision_function(test_vector)[0])[self.logistic_model.decision_function(test_vector).size-1]
         
         if highestConfidence < -0.88:
-            return "_OFF_TOPIC_","_OFF_TOPIC_"
-        return prediction[0], self.ids_answer[prediction[0]]
+            return "_OFF_TOPIC_","_OFF_TOPIC_", highestConfidence
+        
+        return prediction[0], self.ids_answer[prediction[0]], highestConfidence

@@ -15,10 +15,9 @@ def preload(mentors):
 
 def print_instructions():
     print("Interface is ready:")
-    print("  Start a session:   _START_SESSION_     <mentor id>")
+    print("  Start a session:   _START_SESSION_     <mentor id>     <use repeat answers Y/N>")
     print("  End session:       _END_SESSION_")
     print("  Run training:      _TRAIN_             <mentor id>")
-    print("  Run testing:       _TEST_              <mentor id>")
     print("  Get topics:        _TOPICS_            <mentor id>")
     print("  Get intro:         _INTRO_             <mentor id>")
     print("  Get idle:          _IDLE_              <mentor id>")
@@ -26,24 +25,18 @@ def print_instructions():
     print("  Get question:      _QUESTION_          <mentor id>     <topic>")
     print("  Get response:      _ANSWER_            <mentor id>     <question>")
     print("  Get redirect:      _REDIRECT_          <mentor id>     <question>")
-    print("  End program:       _QUIT_")
+    print("  Close the program and shut down all processes: _QUIT_")
 
 def process_input(user_input):
     inputs = user_input.split(' ')
     tag = inputs[0]
     print(user_input)
 
-    # close the program and shut down all processes
-    if tag == "_QUIT_":
-        if bi.session_started == True:
-            bi.process_input_from_ui("_END_SESSION_")
-        bi.quit()
-        global end_flag
-        end_flag=True
-        return '_QUIT_'
-
-    # start a conversation with a mentor
-    # _START_SESSION_ <mentor id> <use repeats Y>
+    # Load a session with a mentor: _START_SESSION_ id use_repeats
+    #   id:             id of mentor
+    #   use_repeats:    mentor should repeat answers that have already been given (does not answer "I have already answered that question")
+    #
+    # Returns: mentor_id _START_ mentor_name mentor_title
     if tag == "_START_SESSION_":
         id = inputs[1]
         bi.set_mentor(id)
@@ -51,39 +44,39 @@ def process_input(user_input):
         tag, name, title = bi.process_input_from_ui(inputs[0])
         return "{0}\n{1}\n{2}\n{3}".format(id, tag, name, title)
 
-    # end the current conversation and record question/answers
-    # _END_SESSION_
+    # End current session with mentor and record questions/answers in text file: _END_SESSION_
+    #
+    # Returns: mentor_id _END_
     if inputs[0] == "_END_SESSION_":
         id = "temp_id"
         bi.process_input_from_ui(inputs[0])
         return "{0}\n{1}".format(id, "_END_")
 
-    # retrain the classifier for the given mentor
-    # _TRAIN_ <mentor id>
+    # Retrain and retest the classifier for a mentor: _TRAIN_ id
+    #   id: id of mentor
+    #
+    # Returns: _TRAINED_ mentor_id 
     if tag == "_TRAIN_":
         id = inputs[1]
         bi.set_mentor(id)
-        bi.start_pipeline(mode='train_mode')
-        return '_TRAINED_ {0}'.format(id)
+        results = bi.start_pipeline(mode='train_test_mode')
+        return '_TRAINED_ {0}\n{1}'.format(id, results)
 
-    # retrain the classifier for the given mentor
-    # _TEST_ <mentor id>
-    if tag == "_TEST_":
-        id = inputs[1]
-        bi.set_mentor(id)
-        bi.start_pipeline(mode='train_test_mode')
-        return '_TESTED_ {0}'.format(id)
-
-    # get the list of topics for a mentor
-    # _TOPICS_ <mentor id>
+    # Get the list of topics for a mentor:  _TOPICS_ id
+    #   id: id of mentor
+    #
+    # Returns: _TOPIC_ list_of_topics
     if inputs[0] == "_TOPICS_":
         id = inputs[1]
         bi.set_mentor(id)
         topics = bi.get_topics()
         return '_TOPICS_\n{0}'.format('\n'.join(topics))
 
-    # get a random question from the given topic
-    # _QUESTION_ <mentor id> <topic>
+    # Get a question from the given topic for a mentor: _QUESTION_ id topic
+    #   id: id of mentor
+    #   topic: name of topic
+    #
+    # Returns: _QUESTION_ question
     if inputs[0] == "_QUESTION_":
         id = inputs[1]
         topic = inputs[2]
@@ -91,8 +84,10 @@ def process_input(user_input):
         suggested_question=bi.suggest_question(topic)
         return '_QUESTION_\n{0}'.format(suggested_question[0])
 
-    # get a unique redirect video
-    # _REDIRECT_ <mentor id>
+    # Get a unique redirect video: _REDIRECT_ id
+    #   id: id of mentor
+    #
+    # Returns: _QUESTION_ question
     if tag == "_REDIRECT_":
         id = inputs[1]
         bi.set_mentor(id)
@@ -105,14 +100,28 @@ def process_input(user_input):
         video_file, transcript, score = bi.process_input_from_ui(tag)
         return "{0}\n{1}\n{2}\n{3}".format(id, video_file, transcript, score)
 
-    # give an answer for the given question and mentor
-    # _ANSWER_ <mentor id> <question>
+    # Get an answer to the question from a mentor: _ANSWER_ id question
+    #   id: id of mentor
+    #   question: question to answer
+    #
+    # Returns: mentor_id video_url transcript accuracy_score
     if tag == "_ANSWER_":
         id = inputs[1]
         question = " ".join(inputs[2:])
         bi.set_mentor(id)
         video_file, transcript, score = bi.process_input_from_ui(question)
         return "{0}\n{1}\n{2}\n{3}".format(id, video_file, transcript, score)
+
+    # End the session, close the program and shut down all processes: _QUIT_
+    #
+    # Returns: _QUIT_
+    if tag == "_QUIT_":
+        if bi.session_started == True:
+            bi.process_input_from_ui("_END_SESSION_")
+        bi.quit()
+        global end_flag
+        end_flag=True
+        return '_QUIT_'
 
 bi = None
 end_flag=False

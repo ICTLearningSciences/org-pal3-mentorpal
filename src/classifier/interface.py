@@ -93,16 +93,24 @@ class BackendInterface(object):
         # Classifier is trained with and without topic vectors to provide flexibility
         if mode=='train_test_mode' or mode=='train_mode':
             self.classifier.train_lstm()
-            self.classifier.train_classifier()
+            train_scores, train_accuracy_score = self.classifier.train_classifier()
         
         if mode=='train_test_mode' or mode=='test_mode':
             self.test_data=json.load(open(os.path.join("mentors",self.mentor.id,"test_data","lr_test_data.json"),'r'))
             self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
             self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
             if self.mode=='ensemble' or self.mode=='classifier':
-                self.cl_y_test_unfused, self.cl_y_pred_unfused, self.cl_y_test_fused, self.cl_y_pred_fused=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
+                self.cl_y_test_unfused, self.cl_y_pred_unfused, self.cl_y_test_fused, self.cl_y_pred_fused,test_accuracy_score,test_f1_score=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
             if self.mode=='ensemble' or self.mode=='npceditor':
                 self.npc.load_test_data()
+
+        if mode=='train_mode':
+            return 'training:\ncross validation scores={0}\naccuracy score={1}'.format(train_scores, train_accuracy_score)
+        if mode=='test_mode':
+            return 'testing:\naccuracy score={0}\nf1 score={1}'.format(test_accuracy_score, test_f1_score)
+        if mode=='train_test_mode':
+            return 'training:\ncross validation scores={0}\naccuracy score={1}\ntesting:\naccuracy score={2}\nf1 score={3}'.format(train_scores, train_accuracy_score, test_accuracy_score, test_f1_score)
+        return null
 
     '''
     Return the list of topics to the GUI
@@ -269,13 +277,13 @@ class BackendInterface(object):
     '''
     def get_classifier_answer(self, question, use_topic_vectors=True):
         start_time=time.time()
-        classifier_id, classifier_answer=self.classifier.get_answer(question, use_topic_vectors=use_topic_vectors)
+        classifier_id, classifier_answer, confidence=self.classifier.get_answer(question, use_topic_vectors=use_topic_vectors)
         if classifier_id=="_OFF_TOPIC_":
             classifier_id, classifier_answer, other = self.return_prompt("_OFF_TOPIC_")
         end_time=time.time()
         elapsed=end_time-start_time
         print("Time to fetch classifier answer is "+str(elapsed))
-        return classifier_id, classifier_answer
+        return classifier_id, classifier_answer, confidence
 
     '''
     When only one answer is required for a single question, use this method. You can choose to use or not use the topic vectors by
@@ -287,38 +295,26 @@ class BackendInterface(object):
         return_score=0.0
 
         if self.mode=='ensemble':
-            npceditor_id, npceditor_score, npceditor_answer = self.get_npceditor_answer(question, use_topic_vectors)
-            if npceditor_answer=="answer_none":
-                classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
-                return_id=classifier_id
-                return_answer=classifier_answer
+            return_id, return_answer, return_score = self.get_npceditor_answer(question, use_topic_vectors)
+            if return_answer=="answer_none":
+                return_id, return_answer, return_score = self.get_classifier_answer(question, use_topic_vectors)
                 print("Answer from classifier chosen")
             else:
-                if float(npceditor_score) < -5.59054:
-                    classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
-                    return_id=classifier_id
-                    return_answer=classifier_answer
+                if float(return_score) < -5.59054:
+                    return_id, return_answer, return_score = self.get_classifier_answer(question, use_topic_vectors)
                     print("Answer from classifier chosen") #this might be uncertain, maybe grab an _OFF_TOPIC
                 else:
-                    return_id=npceditor_id
-                    return_answer=npceditor_answer
-                    return_score=npceditor_score
                     print("Answer from NPCEditor chosen")
 
         elif self.mode=='npceditor':
-            npceditor_id, npceditor_score, npceditor_answer = self.get_npceditor_answer(question, use_topic_vectors)
-            if npceditor_answer=='answer_none' or float(npceditor_score) < -5.59054:
+            return_id, return_answer, return_score = self.get_npceditor_answer(question, use_topic_vectors)
+            if return_answer=='answer_none' or float(return_score) < -5.59054:
                 return self.return_prompt('_OFF_TOPIC_')
             else:
-                return_id=npceditor_id
-                return_answer=npceditor_answer
-                return_score=npceditor_score
                 print("Answer from NPCEditor chosen")
 
         elif self.mode=='classifier':
-            classifier_id, classifier_answer = self.get_classifier_answer(question, use_topic_vectors)
-            return_id=classifier_id
-            return_answer=classifier_answer
+            return_id, return_answer, return_score = self.get_classifier_answer(question, use_topic_vectors)
             print("Answer from classifier chosen")
 
         # Handle repeats
