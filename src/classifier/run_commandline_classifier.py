@@ -2,7 +2,6 @@ import run
 
 run.start('classifier')
 # run.preload(['clint', 'dan', 'julianne', 'carlos'])
-run.preload(['clint'])
 run.print_instructions()
 
 while not run.end_flag:

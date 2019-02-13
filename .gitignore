@@ -6,3 +6,4 @@ QuestionAnswerLog.csv
 build
 dist
 .DS_Store
+.log

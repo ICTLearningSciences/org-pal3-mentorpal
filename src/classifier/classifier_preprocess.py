@@ -168,7 +168,6 @@ class ClassifierPreProcess(object):
 
         #dump lstm_train_data
         with open(os.path.join("mentors",self.mentor.id,"train_data","lstm_train_data.json"),'w') as json_file:
-            #data_to_write=self.lstm_train_data.tolist()
             json.dump(self.lstm_train_data, json_file)
         #dump train_vectors for logistic regression
         with open(os.path.join("mentors",self.mentor.id,"train_data","lr_train_data.json"),'w') as json_file:
@@ -185,6 +184,3 @@ class ClassifierPreProcess(object):
                 json.dump(self.test_vectors,json_file)
         except:
             pass
-        #dump ids_answers
-        with open(os.path.join("mentors",self.mentor.id,"train_data","ids_answer.json"),'w') as json_file:
-            json.dump(self.ids_answer,json_file)

@@ -12,17 +12,13 @@ class Mentor(object):
         self.id = id
         self.name=None
         self.title=None
-        # 
         self.topics=[]
         self.topic_set=set()
         self.utterances_prompts={} #responses for the special cases
         self.suggestions={}
-        # 
         self.classifier_data=None
         self.lr_test_data=None
         self.lstm_topic_model=None
-        self.train_data=[]
-        self.test_data=[]
 
         if id == 'clint':
             self.name="Clinton Anderson"
@@ -44,8 +40,6 @@ class Mentor(object):
         self.load_topics()
         self.load_utterances()
         self.load_suggestions()
-        self.load_testing_data()
-        self.load_training_data()
 
     def load_topics(self):
         self.topics=[]
@@ -77,9 +71,7 @@ class Mentor(object):
                 self.utterances_prompts[situation]=[(video_name, utterance)]
 
     def load_suggestions(self):
-        corpus=pd.read_csv(os.path.join("mentors",self.id,"data","classifier_data.csv"))
-        corpus=corpus.fillna('')
-
+        corpus=self.classifier_data.fillna('')
         for i in range(0,len(corpus)):
             topics=corpus.iloc[i]['topics'].split(",")
             topics=[_f for _f in topics if _f]
@@ -101,69 +93,77 @@ class Mentor(object):
 
     def load_testing_data(self):
         self.lr_test_data=json.load(open(os.path.join("mentors",self.id,"test_data","lr_test_data.json"),'r'))
-        corpus=pd.read_csv(os.path.join("mentors",self.id,"data","testing_data.csv"))
-        corpus=corpus.fillna('')
-        total=0
+        self.test_data_csv=pd.read_csv(os.path.join("mentors",self.id,"data","testing_data.csv"))
+        corpus=self.test_data_csv.fillna('')
         preprocessor=classifier_preprocess.NLTKPreprocessor()
 
         for i in range(0,len(corpus)):
+            # normalized topics
             topics=corpus.iloc[i]['topics'].split(",")
             topics=[_f for _f in topics if _f]
-            #normalize the topics
             topics=self.normalize_topics(topics)
+            # question
             questions=corpus.iloc[i]['question'].split('\n')
             questions=[_f for _f in questions if _f]
-            total+=len(questions)
-            paraphrases=questions[1:]
             current_question=questions[0]
+            processed_question=preprocessor.transform(current_question) # tokenize the question
+            # answer
             answer=corpus.iloc[i]['text']
             answer_id=corpus.iloc[i]['ID']
-            #remove nbsp and \"
             answer=answer.replace('\u00a0',' ')
-            #Tokenize the question
-            processed_question=preprocessor.transform(current_question)
+
             #add question to dataset
             self.test_data.append([current_question,processed_question,topics,answer_id])
-
             #look for paraphrases and add them to dataset
+            paraphrases=questions[1:]
             for i in range(0,len(paraphrases)):
                 processed_paraphrase=preprocessor.transform(paraphrases[i])
                 self.test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
 
     def load_training_data(self):
-        corpus=pd.read_csv(os.path.join("mentors",self.id,"data","training_data.csv"))
-        corpus=corpus.fillna('')
-        total=0
+        self.train_data_csv=pd.read_csv(os.path.join("mentors",self.id,"data","training_data.csv"))
+        corpus=self.train_data_csv.fillna('')
         preprocessor=classifier_preprocess.NLTKPreprocessor()
+        answer_ids={}
+        ids_answer={}
 
         for i in range(0,len(corpus)):
+            # normalized topics
             topics=corpus.iloc[i]['topics'].split(",")
             topics=[_f for _f in topics if _f]
-            #normalize the topics
             topics=self.normalize_topics(topics)
+            # question
             questions=corpus.iloc[i]['question'].split('\n')
             questions=[_f for _f in questions if _f]
-            total+=len(questions)
-            paraphrases=questions[1:]
             current_question=questions[0]
+            # answer
             answer=corpus.iloc[i]['text']
             answer_id=corpus.iloc[i]['ID']
-            #remove nbsp and \"
             answer=answer.replace('\u00a0',' ')
-            #Tokenize the question
-            processed_question=preprocessor.transform(current_question)
-            #add question to dataset
-            self.train_data.append([current_question,processed_question,topics,answer_id])
+            answer_ids[answer]=answer_id
+            ids_answer[answer_id]=answer
 
+            #add question to dataset
+            processed_question=preprocessor.transform(current_question) # tokenize the question
+            self.train_data.append([current_question,processed_question,topics,answer_id,text])
             #look for paraphrases and add them to dataset
+            paraphrases=questions[1:]
             for i in range(0,len(paraphrases)):
                 processed_paraphrase=preprocessor.transform(paraphrases[i])
-                self.train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
+                self.train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id,text])
+        
+        #dump ids_answers
+        with open(os.path.join("mentors",self.id,"train_data","ids_answer.json"),'w') as json_file:
+            json.dump(ids_answer,json_file)
 
     def load_topic_model(self):
         if self.lstm_topic_model == None:
             self.lstm_topic_model=load_model(os.path.join("mentors",self.id,"train_data","lstm_topic_model.h5"))
         return self.lstm_topic_model
+
+    def get_training_data(self):
+        training_data_path = os.path.join("mentors",self.id,"data","training_data.csv")
+        return pd.read_csv(training_data_path, sep=',', header=0)
 
     def normalize_topics(self, topics):
         ret_topics=[]

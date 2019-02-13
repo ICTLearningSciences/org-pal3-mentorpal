@@ -22,20 +22,13 @@ class BackendInterface(object):
 
     def __init__(self, mode='ensemble'):
         self.pal3_status_codes={'_START_SESSION_', '_INTRO_', '_IDLE_', '_TIME_OUT_', '_END_SESSION_', '_EMPTY_'} #status codes that PAL3 sends to code
-        self.test_data=None
-        self.x_test=None
-        self.y_test=None
         self.mode=mode
-        self.cl_y_test_unfused=[]
-        self.cl_y_pred_nufused=[]
-        self.cl_y_test_fused=[]
-        self.cl_y_pred_fused=[]
         self.npc_y_test=[]
         self.npc_y_pred=[]
         self.ensemble_pred=[]
         self.cpp=classifier_preprocess.ClassifierPreProcess()
         self.tpp=classifier_preprocess.NLTKPreprocessor()
-        
+
         if self.mode=='ensemble' or self.mode=='classifier':
             self.classifier=classify.Classify()
         if self.mode=='ensemble' or self.mode=='npceditor':
@@ -98,11 +91,8 @@ class BackendInterface(object):
             train_scores, train_accuracy_score = self.classifier.train_classifier()
         
         if mode=='train_test_mode' or mode=='test_mode':
-            self.test_data=json.load(open(os.path.join("mentors",self.mentor.id,"test_data","lr_test_data.json"),'r'))
-            self.x_test=[self.test_data[i][1] for i in range(len(self.test_data))]
-            self.y_test=[self.test_data[i][3] for i in range(len(self.test_data))]
             if self.mode=='ensemble' or self.mode=='classifier':
-                self.cl_y_test_unfused, self.cl_y_pred_unfused, self.cl_y_test_fused, self.cl_y_pred_fused,test_accuracy_score,test_f1_score=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
+                cl_y_test_unfused, cl_y_pred_unfused, cl_y_test_fused, cl_y_pred_fused, test_accuracy_score, test_f1_score=self.classifier.test_classifier(use_topic_vectors=use_topic_vectors)
             if self.mode=='ensemble' or self.mode=='npceditor':
                 self.npc.load_test_data()
 
@@ -249,9 +239,6 @@ class BackendInterface(object):
                 else:
                     self.ensemble_pred.append(self.npc_y_pred[i][1])
 
-        print("Accuracy: "+str(accuracy_score(self.y_test, self.ensemble_pred)))
-        print("F-1: "+str(f1_score(self.y_test, self.ensemble_pred, average='micro')))
-
     '''
     Get answer from NPCEditor
     '''
@@ -261,7 +248,6 @@ class BackendInterface(object):
         npceditor_id, npceditor_score, npceditor_answer, similar_responses=self.npc.parse_single_xml()
         end_time_npc=time.time()
         elapsed_npc=end_time_npc-start_time_npc
-        print("Time to fetch NPCEditor answer {0} is {1}".format(npceditor_id, str(elapsed_npc)))
 
         # if chosen response is a repeat, check for similar responses
         if (not self.use_repeats and npceditor_id in self.blacklist):
@@ -278,13 +264,9 @@ class BackendInterface(object):
     Get answer from classifier
     '''
     def get_classifier_answer(self, question, use_topic_vectors=True):
-        start_time=time.time()
         classifier_id, classifier_answer, confidence=self.classifier.get_answer(question, use_topic_vectors=use_topic_vectors)
         if classifier_id=="_OFF_TOPIC_":
             classifier_id, classifier_answer, other = self.return_prompt("_OFF_TOPIC_")
-        end_time=time.time()
-        elapsed=end_time-start_time
-        print("Time to fetch classifier answer is "+str(elapsed))
         return classifier_id, classifier_answer, confidence
 
     '''

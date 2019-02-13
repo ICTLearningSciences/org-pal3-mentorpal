@@ -15,8 +15,10 @@ class Classify(object):
         self.tl=lstm.TopicLSTM()
         self.lc=lr.LogisticClassifier()
         self.cpp.w2v_model=KeyedVectors.load_word2vec_format(os.path.join('vector_models','GoogleNews-vectors-negative300-SLIM.bin'), binary=True)
+        self.mentor=None
 
     def set_mentor(self, mentor):
+        self.mentor=mentor
         self.cpp.set_mentor(mentor)
         self.lc.set_mentor(mentor)
         self.tl.set_mentor(mentor)
@@ -57,7 +59,7 @@ class Classify(object):
     w2v_vector and lstm_vector. Then, it uses lstm.py to get the topic vector for the input question and finally, uses
     classifier in logisticregression.py to get a predicted answer and sends this to the ensemble classifier.
     '''
-    def get_answer(self,question, use_topic_vectors=True):
+    def get_answer(self, question, use_topic_vectors=True):
         processed_question=self.cpp.preprocessor.transform(question)
         w2v_vector, lstm_vector=self.cpp.get_w2v(processed_question)
         lstm_vector=[lstm_vector]

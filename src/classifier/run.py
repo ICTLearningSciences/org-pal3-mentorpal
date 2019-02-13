@@ -52,10 +52,20 @@ def process_input(user_input):
         bi.process_input_from_ui(inputs[0])
         return "{0}\n{1}".format(id, "_END_")
 
-    # Retrain and retest the classifier for a mentor: _TRAIN_ id
+    # Retrain the classifier for a mentor: _TRAIN_ id
     #   id: id of mentor
     #
-    # Returns: _TRAINED_ mentor_id 
+    # Returns: _TRAINED_ mentor_id
+    if tag == "_TRAIN_":
+        id = inputs[1]
+        bi.set_mentor(id)
+        results = bi.start_pipeline(mode='train_test_mode')
+        return '_TRAINED_ {0}\n{1}'.format(id, results)
+
+    # Retest the classifier for a mentor: _TEST_ id
+    #   id: id of mentor
+    #
+    # Returns: _TESTED_ mentor_id 
     if tag == "_TRAIN_":
         id = inputs[1]
         bi.set_mentor(id)
