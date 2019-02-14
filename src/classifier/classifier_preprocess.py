@@ -98,13 +98,15 @@ class ClassifierPreProcess(object):
     For the classifier, the word vectors are added to form a single vector.
     '''
     def generate_training_vectors(self):
+        train_data = self.mentor.load_training_data()
         #for each data point, get w2v vector for the question and store in train_vectors.
         #instance=<question, topic, answer, paraphrases>
-        for instance in self.mentor.train_data:
+        for instance in train_data:
             w2v_vector, lstm_vector=self.get_w2v(instance[1])
             self.train_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[3]])
             self.lstm_train_vectors.append(lstm_vector)
 
+        test_data = self.mentor.load_testing_data()
         #For the LSTM, each training sample will have a max dimension of 300 x 25. For those that don't, the pad_sequences
         #function will pad sequences of [0, 0, 0, 0....] vectors to the end of each sample.
         padded_vectors=pad_sequences(self.lstm_train_vectors,maxlen=25, dtype='float32',padding='post',truncating='post',value=0.)
@@ -112,7 +114,7 @@ class ClassifierPreProcess(object):
         #The test set might not be present when just training the dataset fully and then letting users ask questions.
         #That's why the test set code is inside a try-except block.
         try:
-            for instance in self.mentor.test_data:
+            for instance in test_data:
                 w2v_vector, lstm_vector=self.get_w2v(instance[1])
                 self.test_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[3]])
                 self.lstm_test_vectors.append(lstm_vector)

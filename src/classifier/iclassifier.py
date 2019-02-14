@@ -18,12 +18,8 @@ class IClassifier:
             raise Exception('Classifier needs a mentor data model to train on.')
         pass
 
-    def get_answer_mentor(self, mentor, question):
-        if mentor.id is not self.mentor.id:
-            load_model(mentor)
-            train_model()
-        
-        return self.get_answer(question)
-
+    '''
+    Get an answer, answer id, and answer confidence for the given question and current mentor
+    '''
     def get_answer(self, question):
-        return None
+        return "none", "none", 0.0
