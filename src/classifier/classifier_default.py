@@ -4,11 +4,16 @@ import classifier_preprocess
 import mentor
 
 from iclassifier import IClassifier
+from sklearn import metrics
 from sklearn.externals import joblib
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.linear_model import LogisticRegression, RidgeClassifier
+from sklearn.model_selection import cross_val_score, cross_val_predict, GridSearchCV, validation_curve
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
+from keras.models import Sequential, load_model
+from keras.layers import LSTM, Activation, Dense, Dropout
+from keras.callbacks import ModelCheckpoint
 
 class Classifier(IClassifier):
     def __init__(self):
@@ -25,19 +30,13 @@ class Classifier(IClassifier):
         if self.mentor is None:
             raise Exception('Classifier needs a mentor data model to train on.')
         
-        lstm_train_data, train_vectors = self.generate_training_vectors()
-        x_train, y_train = self.read_training_data(lstm_train_data)
-        train_lstm(lstm_train_data, x_train, y_train)
-        # write_data(lstm_train_data, train_vectors)
+        train_vectors, lstm_train_data, lstm_train_vectors, x_train, y_train = self.generate_training_data()
+        topic_model, new_vectors = self.train_lstm(lstm_train_data, x_train, y_train)
+        x_train_fused, y_train_fused, x_train_unfused, y_train_unfused = self.generate_training_fused_unfused(train_vectors, new_vectors)
+        scores, accuracy, logistic_model_fused, logistic_model_unfused = self.train_lr(x_train_fused, y_train_fused, x_train_unfused, y_train_unfused)
+        # write_data(lstm_train_data, train_vectors, new_vectors, topic_model, logistic_model_fused, logistic_model_unfused)
 
-
-    def test_model(self, test_size):
-        if self.mentor is None:
-            raise Exception('Classifier needs a mentor data model to train on.')
-
-        train_data = self.mentor.get_training_data()
-        train, test = train_test_split(train_data, test_size=0.2, random_state=42)
-        question_predict = get_question_predict_data(test)
+        return scores, accuracy
 
     def get_answer(self, question):
         preprocessor = classifier_preprocess.NLTKPreprocessor()
@@ -51,12 +50,16 @@ class Classifier(IClassifier):
 
 
 
+
+
     ''' training '''
-    def generate_training_vectors(self):
+    def generate_training_data(self):
         train_data = self.mentor.load_training_data()
         train_vectors=[]
         lstm_train_vectors=[]
         lstm_train_data = []
+        x_train = None
+        y_train = None
 
         #for each data point, get w2v vector for the question and store in train_vectors.
         #instance=<question, processed_question, topic, answer_id, answer_text>
@@ -82,20 +85,13 @@ class Classifier(IClassifier):
             train_vectors[i][2]=topic_vector
             lstm_train_data.append([question, lstm_train_vectors[i].tolist(), topic_vector])
 
-        return lstm_train_data, train_vectors
-
-    def read_training_data(self, train_data):
-        x_train = None
-        y_train = None
-        x_train=[train_data[i][1] for i in range(len(train_data))] #no of utterances * no_of_sequences * 300
-        y_train=[train_data[i][2] for i in range(len(train_data))] #No_of_utterances * no_of_classes (40)
+        x_train=[lstm_train_data[i][1] for i in range(len(lstm_train_data))] #no of utterances * no_of_sequences * 300
+        y_train=[lstm_train_data[i][2] for i in range(len(lstm_train_data))] #No_of_utterances * no_of_classes (40)
         x_train=np.asarray(x_train)
 
-        return x_train, y_train
+        return train_vectors, lstm_train_data, lstm_train_vectors, x_train, y_train
 
     def train_lstm(self, train_data, x_train, y_train):
-        new_vectors=[]
-
         #don't pass summed vectors
         nb_samples=len(train_data)
         nb_each_sample=len(train_data[0][1])
@@ -113,18 +109,71 @@ class Classifier(IClassifier):
         callbacks_list=[checkpoint]
         hist=topic_model.fit(np.array(x_train), np.array(y_train), batch_size=32, epochs=30, validation_split=0.1, callbacks=callbacks_list, verbose=1)
 
+        new_vectors=[]
         topic_model.load_weights(filepath)
         topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
-        topic_model.save(os.path.join("mentors",self.mentor.id,"train_data","lstm_topic_model.h5"))
         for i in range(0,len(train_data)):
             current_sample=x_train[i][np.newaxis, :, :]
             prediction=topic_model.predict(current_sample)
             new_vectors.append([train_data[i][0],prediction[0].tolist()])
+            
+        return topic_model, new_vectors
 
+    def generate_training_fused_unfused(self, train_data, train_topic_vectors):
+        x_train_fused=[]
+        y_train_fused=[]
+        x_train_unfused=[]
+        y_train_unfused=[]
+
+        x_train_unfused=[train_data[i][1] for i in range(len(train_data))]
+        y_train_unfused=[train_data[i][3] for i in range(len(train_data))]
+        x_train_unfused=np.asarray(x_train_unfused)
+
+        for i in range(0,len(train_data)):
+            x_train_fused.append(np.concatenate((train_data[i][1], train_topic_vectors[i][1])))
+        x_train_fused=np.asarray(x_train_fused)
+        y_train_fused=[train_data[i][3] for i in range(len(train_data))]
+
+        return x_train_fused, y_train_fused, x_train_unfused, y_train_unfused
+
+    def train_lr(self, x_train_fused, y_train_fused, x_train_unfused, y_train_unfused):
+        param_grid = {'C': np.power(10.0, np.arange(-3, 3)) }
+        logistic_model_unfused=RidgeClassifier(alpha=1.0)
+        logistic_model_unfused.fit(x_train_unfused, y_train_unfused)
+        logistic_model_fused=RidgeClassifier(alpha=1.0)
+        logistic_model_fused.fit(x_train_fused, y_train_fused)
+
+        scores=cross_val_score(logistic_model_fused, x_train_fused, y_train_fused, cv=2)
+        predicted = cross_val_predict(logistic_model_fused, x_train_fused, y_train_fused, cv=2)
+        accuracy = metrics.accuracy_score(y_train_fused, predicted)
+
+        return scores, accuracy, logistic_model_fused, logistic_model_unfused
+
+    def write_data(self, lstm_train_data, train_vectors, new_vectors, topic_model, logistic_model_fused, logistic_model_unfused):
+        #dump lstm_train_data
+        with open(os.path.join("mentors",self.mentor.id,"train_data","lstm_train_data.json"),'w') as json_file:
+            json.dump(lstm_train_data, json_file)
+        
+        #dump train_vectors for logistic regression
+        with open(os.path.join("mentors",self.mentor.id,"train_data","lr_train_data.json"),'w') as json_file:
+            json.dump(train_vectors,json_file)
+            
         with open(os.path.join("mentors",self.mentor.id,"train_data","train_topic_vectors.json"),'w') as json_file:
             json.dump(new_vectors, json_file)
-            
-        self.test_lstm()
+
+        topic_model.save(os.path.join("mentors",self.mentor.id,"train_data","lstm_topic_model.h5"))
+        joblib.dump(logistic_model_fused, os.path.join("mentors",self.mentor.id,"train_data","fused_model.pkl"))
+        joblib.dump(logistic_model_unfused, os.path.join("mentors",self.mentor.id,"train_data","unfused_model.pkl"))
+
+
+
+
+
+    ''' testing '''
+    
+
+
+
 
     ''' answer prediction '''
     def get_w2v(self, question):

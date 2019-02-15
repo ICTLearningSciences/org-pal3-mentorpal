@@ -13,5 +13,16 @@ class Metrics:
 
         return answer, answer_id, confidence
 
-    def get_accuracy_score(self, mentor, classifier, test_data):
-        pass
+    def get_training_accuracy(self, mentor, classifier):
+        if mentor is None:
+            raise Exception('Metrics needs a mentor to get training accuracy from')
+
+        if classifier is None:
+            raise Exception('Metrics needs a classifier to get training accuracy from')
+        
+        classifier.load_model(mentor)
+        scores, accuracy = classifier.train_model()
+
+        return scores, accuracy
+    
+    

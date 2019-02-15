@@ -12,11 +12,13 @@ class IClassifier:
 
     '''
     Train the classifier on the data model for the current mentor
+    Return the cross validation score and accuracy score
     '''
     def train_model(self):
         if self.mentor is None:
             raise Exception('Classifier needs a mentor data model to train on.')
-        pass
+        
+        return [], 0.0
 
     '''
     Get an answer, answer id, and answer confidence for the given question and current mentor

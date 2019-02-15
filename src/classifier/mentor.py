@@ -160,12 +160,12 @@ class Mentor(object):
             answer=answer.replace('\u00a0',' ')
             #add question to dataset
             processed_question=preprocessor.transform(current_question) # tokenize the question
-            train_data.append([current_question,processed_question,topics,answer_id,text])
+            train_data.append([current_question,processed_question,topics,answer_id,answer])
             #look for paraphrases and add them to dataset
             paraphrases=questions[1:]
             for i in range(0,len(paraphrases)):
                 processed_paraphrase=preprocessor.transform(paraphrases[i])
-                train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id,text])
+                train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id,answer])
         
         return train_data
 
