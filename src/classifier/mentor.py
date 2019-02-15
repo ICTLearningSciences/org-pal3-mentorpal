@@ -176,6 +176,10 @@ class Mentor(object):
         training_data_path = os.path.join("mentors",self.id,"data","training_data.csv")
         return pd.read_csv(training_data_path, sep=',', header=0)
 
+    def get_testing_data(self):
+        testing_data_path = os.path.join("mentors",self.id,"data","testing_data.csv")
+        return pd.read_csv(testing_data_path, sep=',', header=0)
+
     def normalize_topics(self, topics):
         ret_topics=[]
         for topic in topics:

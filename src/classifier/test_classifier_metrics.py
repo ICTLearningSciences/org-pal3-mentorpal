@@ -39,3 +39,4 @@ clint = Mentor('clint')
 
 test_answer_confidence(clint, classifier, "who are you?")
 test_training_accuracy(clint, classifier)
+test_answer_confidence(clint, classifier, "who are you?")
