@@ -5,9 +5,9 @@ from sklearn.externals import joblib
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 
-from mentorpal.classifier import classifier_preprocess
-from mentorpal.classifier.iclassifier import IClassifier
-from mentorpal.classifier.mentor import Mentor
+from mentorpal import classifier_preprocess
+from mentorpal.iclassifier import IClassifier
+from mentorpal.mentor import Mentor
 
 class MentorClassifier(IClassifier):
     WORD2VEC_DEFAULT_PATH = os.path.join('vector_models','GoogleNews-vectors-negative300-SLIM.bin')
@@ -25,13 +25,15 @@ class MentorClassifier(IClassifier):
         self.mentor = mentor
 
         if isinstance(mentor, str):
-            mentor = Mentor(mentor)
+            print('loading mentor id {}...'.format(mentor))
+            self.mentor = Mentor(mentor)
 
-        assert isinstance(mentor, Mentor), \
+        assert isinstance(self.mentor, Mentor), \
             'invalid type for mentor (expected mentor.Mentor or string id for a mentor, encountered {}'.format(type(mentor))
          
         if isinstance(word2vec, str):
-            word2vec = KeyedVectors.load_word2vec_format(word2vec)
+            print('loading word2vec from path {}...'.format(word2vec))
+            word2vec = KeyedVectors.load_word2vec_format(word2vec, binary = True)
 
         assert isinstance(word2vec, KeyedVectors), \
             'invalid type for word2vec (expected gensim.models.keyedvectors.KeyedVectors or path to binary, encountered {}'.format(type(word2vec))
@@ -84,4 +86,4 @@ class MentorClassifier(IClassifier):
         if highestConfidence < -0.88:
             return "_OFF_TOPIC_", "_OFF_TOPIC_", highestConfidence
         
-        return prediction[0], self.mentor.ids_answer[prediction[0]], highestConfidence
+        return prediction[0], self.mentor.ids_answers[prediction[0]], highestConfidence

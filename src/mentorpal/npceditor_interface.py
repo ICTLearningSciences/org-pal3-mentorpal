@@ -10,7 +10,7 @@ import inspect
 from subprocess import Popen, PIPE
 from sklearn.metrics import f1_score, accuracy_score
 
-from mentorpal.classifier import mentor
+from mentorpal import mentor
 from mentorpal.util import vhmsg
 
 class NPCEditor(object):

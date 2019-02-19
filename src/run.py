@@ -1,5 +1,5 @@
 import time
-from mentorpal.classifier import interface, mentor
+from mentorpal import interface, mentor
 
 #mode='npceditor' will fetch answers only from npceditor.
 #mode='classifier' will fetch answers only from classifier.

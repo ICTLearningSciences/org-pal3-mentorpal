@@ -6,7 +6,7 @@ import pickle
 import time
 from keras.models import Sequential, load_model
 
-from mentorpal.classifier import classifier_preprocess
+from mentorpal import classifier_preprocess
 
 class Mentor(object):
     def __init__(self, id):
@@ -18,6 +18,8 @@ class Mentor(object):
         self.suggestions={}
         self.ids_answers={}
         self.answer_ids={}
+        self.ids_questions={}
+        self.question_ids={}
 
         if id == 'clint':
             self.name="Clinton Anderson"
@@ -38,7 +40,7 @@ class Mentor(object):
         self.topics = self.load_topics()
         self.utterances_prompts = self.load_utterances()
         self.suggestions = self.load_suggestions()
-        self.ids_answers, self.answer_ids = self.load_ids_answers()
+        self.ids_answers, self.answer_ids, self.ids_questions, self.question_ids = self.load_ids_answers()
 
     def load_topics(self):
         topics=[]
@@ -100,16 +102,24 @@ class Mentor(object):
         classifier_data=pd.read_csv(os.path.join("mentors",self.id,"data","classifier_data.csv"))
         corpus=classifier_data.fillna('')
         answer_ids={}
-        ids_answer={}
+        ids_answers={}
+        question_ids={}
+        ids_questions={}
 
         for i in range(0,len(corpus)):
+            ID=corpus.iloc[i]['ID']
             answer=corpus.iloc[i]['text']
-            answer_id=corpus.iloc[i]['ID']
             answer=answer.replace('\u00a0',' ')
-            answer_ids[answer]=answer_id
-            ids_answer[answer_id]=answer
-                
-        return ids_answer, answer_ids
+            answer_ids[answer]=ID
+            ids_answers[ID]=answer
+
+            questions=corpus.iloc[i]['question'].split('\n')
+            for question in questions:
+                question=question.replace('\u00a0',' ')
+                question_ids[question]=ID
+            ids_questions[ID]=questions
+
+        return ids_answers, answer_ids, ids_questions, question_ids
 
     def load_testing_data(self):
         test_data_csv=pd.read_csv(os.path.join("mentors",self.id,"data","testing_data.csv"))
@@ -140,8 +150,8 @@ class Mentor(object):
                 processed_paraphrase=preprocessor.transform(paraphrases[i])
                 test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
 
-    def load_training_data(self):
-        train_data_csv=pd.read_csv(os.path.join("mentors",self.id,"data","training_data.csv"))
+    def load_training_data(self, path):
+        train_data_csv=pd.read_csv(path)
         corpus=train_data_csv.fillna('')
         preprocessor=classifier_preprocess.NLTKPreprocessor()
         train_data=[]

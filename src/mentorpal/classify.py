@@ -5,7 +5,7 @@ import time
 from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 
-from mentorpal.classifier import classifier_preprocess, \
+from mentorpal import classifier_preprocess, \
     logisticregression as lr, lstm, mentor
 
 class Classify(object):

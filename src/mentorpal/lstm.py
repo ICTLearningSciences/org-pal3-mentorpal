@@ -12,7 +12,7 @@ from keras.callbacks import ModelCheckpoint
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, f1_score, accuracy_score
 
-from mentorpal.classifier import mentor
+from mentorpal import mentor
 
 #TensorFlow log level to supress unwanted messages.
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'  #tensorflow log level

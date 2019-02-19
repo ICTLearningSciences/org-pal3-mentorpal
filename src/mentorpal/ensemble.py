@@ -10,7 +10,7 @@ from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score, accuracy_score
 
-from mentorpal.classifier import classifier_preprocess,  classify, \
+from mentorpal import classifier_preprocess,  classify, \
     logisticregression as lr, lstm, npceditor_interface, 
 
 class EnsembleClassifier(object):

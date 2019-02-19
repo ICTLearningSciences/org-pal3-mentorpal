@@ -4,7 +4,7 @@ import interface
 import json,sys
 from logger import Logger
 
-from mentorpal.classifier import mentor
+from mentorpal import mentor
 
 global bi
 bi=interface.BackendInterface("classifier")

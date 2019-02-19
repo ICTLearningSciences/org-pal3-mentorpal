@@ -9,7 +9,7 @@ import pickle
 import os
 import json
 
-from mentorpal.classifier import mentor
+from mentorpal import mentor
 
 class LogisticClassifier(object):
     def __init__(self):

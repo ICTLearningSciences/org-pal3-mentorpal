@@ -12,7 +12,7 @@ from keras.models import Sequential
 from keras.layers import LSTM, Activation, Dense
 from keras.preprocessing.sequence import pad_sequences
 
-from mentorpal.classifier import mentor
+from mentorpal import mentor
 
 '''
 This class contains the methods that operate on the questions to normalize them. The questions are tokenized, punctuations are

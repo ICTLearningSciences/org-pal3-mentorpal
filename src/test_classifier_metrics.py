@@ -1,42 +1,76 @@
-from mentorpal.classifier.mentor import Mentor
+from mentorpal.mentor import Mentor
 from mentorpal.metrics import Metrics
-from mentorpal.classifier.classifier_default import Classifier
+from mentorpal.classifier_default import Classifier
 
-def test_answer_confidence(mentor, classifier, question, expected_id=None, min_confidence=None):
+def test_answer_confidence(classifier, question, expected_id=None, min_confidence=None):
+    print("\nTEST ANSWER CONFIDENCE: {0}".format(classifier.mentor.id))
+    print("question: " + question)
+
     metrics = Metrics()
-    answer, answer_id, confidence = metrics.get_answer_confidence(mentor, classifier, question)
+    answer_id, answer, confidence = metrics.answer_confidence(classifier, question)
 
-    print("test answer confidence for mentor {0}:".format(mentor.id))
-    print("'{0}': {2} '{1}'".format(question, answer, confidence))
+    print("answer: {0}".format(answer))
+    print("id: {0}".format(answer_id))
+    print("confidence: {0}".format(confidence))
 
     if expected_id is not None:
-        if expected_id != answer_id:
-            print("Assertion Error: expected {0}, got {1}".format(expected_id, answer_id))
+        print("Assertion: expected answer id={0}, got {1}".format(expected_id, answer_id))
         assert expected_id == answer_id
     
     if min_confidence is not None:
-        if confidence < min_confidence:
-            print("Assertion Error: expected confidence >= {0}, got confidence = {1}".format(min_confidence, confidence))
+        print("Assertion: expected confidence>={0}, got {1}".format(min_confidence, confidence))
         assert confidence >= min_confidence
 
-def test_training_accuracy(mentor, classifier, min_accuracy=None):
-    metrics = Metrics()
-    scores, accuracy = metrics.get_training_accuracy(mentor, classifier)
+def test_training_accuracy(classifier, train_data=None, min_accuracy=None):
+    print("\nTEST TRAINING ACCURACY: {0}".format(classifier.mentor.id))
+    if train_data is None:
+        train_data = 'training_data.csv'
+        print("No training data file specified, using default: {0}".format(train_data))
+    else:
+        print("training set: {0}".format(train_data))
 
-    print("test training accuracy for mentor {0}:".format(mentor.id))
+    metrics = Metrics()
+    scores, accuracy = metrics.training_accuracy(classifier, train_data)
+
     print("cross validation score: {0}".format(scores))
     print("accuracy score: {0}".format(accuracy))
 
     if min_accuracy is not None:
-        if accuracy < min_accuracy:
-            print("Assertion Error: expected accuracy >= {0}, got accuracy = {1}".format(min_accuracy, accuracy))
+        print("Assertion: expected accuracy>={0}, got {1}".format(min_accuracy, accuracy))
         assert accuracy >= min_accuracy
 
+def test_testing_accuracy(classifier, test_data=None, min_accuracy=None):
+    print("\nTEST TESTING ACCURACY: {0}".format(classifier.mentor.id))
+    if test_data is None:
+        test_data = 'testing_data.csv'
+        print("No testing data file specified, using default: {0}".format(test_data))
+    else:
+        print("testing set: {0}".format(test_data))
+    
+    metrics = Metrics()
+    accuracy, size = metrics.testing_accuracy(classifier, test_data)
+
+    print("questions asked: {0}".format(size))
+    print("accuracy score: {0}".format(accuracy))
+
+    if min_accuracy is not None:
+        print("Assertion: expected accuracy>={0}, got {1}".format(min_accuracy, accuracy))
+        assert accuracy >= min_accuracy
 
 metrics = Metrics()
-classifier = Classifier()
-clint = Mentor('clint')
 
-test_answer_confidence(clint, classifier, "who are you?")
-test_training_accuracy(clint, classifier)
-test_answer_confidence(clint, classifier, "who are you?")
+clint = Classifier('clint')
+julianne = Classifier('julianne')
+dan = Classifier('dan')
+carlos = Classifier('carlos')
+
+# test clint
+test_training_accuracy(clint, None, 0.3)
+test_testing_accuracy(clint, 'testing_data_sparse.csv', 0.5)
+# test_testing_accuracy(clint, 'testing_data_full.csv', 0.5)
+test_answer_confidence(clint,  "why did you join the navy?", 'clintanderson_A131_3_1')
+
+# test julianne
+# test_training_accuracy(julianne)
+# test_testing_accuracy(julianne, 'testing_data_sparse.csv')
+# test_answer_confidence(julianne,  "why did you join the navy?")
