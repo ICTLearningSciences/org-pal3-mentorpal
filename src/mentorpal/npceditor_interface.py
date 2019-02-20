@@ -11,7 +11,7 @@ from subprocess import Popen, PIPE
 from sklearn.metrics import f1_score, accuracy_score
 
 from mentorpal import mentor
-from mentorpal.util import vhmsg
+from mentorpal import vhmsg
 
 class NPCEditor(object):
     def __init__(self):
