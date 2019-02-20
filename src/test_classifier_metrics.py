@@ -64,13 +64,14 @@ julianne = Classifier('julianne')
 dan = Classifier('dan')
 carlos = Classifier('carlos')
 
-# test clint
-test_training_accuracy(clint, None, 0.3)
-test_testing_accuracy(clint, 'testing_data_sparse.csv', 0.5)
-# test_testing_accuracy(clint, 'testing_data_full.csv', 0.5)
-test_answer_confidence(clint,  "why did you join the navy?", 'clintanderson_A131_3_1')
+# test_training_accuracy(clint, 0.3)
+# test_training_accuracy(julianne, 0.4)
+# test_training_accuracy(dan, 0.3)
+# test_training_accuracy(carlos, 0.4)
 
-# test julianne
-# test_training_accuracy(julianne)
-# test_testing_accuracy(julianne, 'testing_data_sparse.csv')
-# test_answer_confidence(julianne,  "why did you join the navy?")
+test_answer_confidence(clint,  "why did you join the navy?", 'clintanderson_A131_3_1')
+test_answer_confidence(julianne,  "why did you join the navy?", 'julianne_A9_1_3')
+test_answer_confidence(dan,  "why did you join the navy?")
+test_answer_confidence(carlos,  "why did you join the navy?", 'carlos_A55_2_1')
+
+# test_testing_accuracy(clint, 'testing_data_sparse.csv', 0.5)
