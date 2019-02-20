@@ -12,7 +12,7 @@ clean:
 # but currently it lives are the root of the project.
 # It will require some effort to move the folder and fix everything
 # dependent that breaks, so for now just soft link it.
-build:
+build: clean
 	mkdir -p ${CLASSIFIER_ROOT}/build
 	cp -r ${MENTORPAL_ROOT}/src ${CLASSIFIER_ROOT}/build
 	cp -r ${MENTORPAL_ROOT}/mentors ${CLASSIFIER_ROOT}/build

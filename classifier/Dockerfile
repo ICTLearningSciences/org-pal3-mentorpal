@@ -1,21 +1,16 @@
 FROM continuumio/miniconda3
 
-# About installed packages:
-#       - build-essential 
-#               Even if this is a runtime image, theano seems to require g++ etc. to run
-RUN apt-get update && apt-get install -y \
-        build-essential && \
-        rm -rf /var/lib/apt/lists/*
-
 ARG CONDA_ENV=mentorpal
 
-ADD environment.yml /tmp/environment.yml
-RUN conda env create -f /tmp/environment.yml
+RUN conda create --name=${CONDA_ENV} python=3.6
 
-# Pull the environment name out of the environment.yml
-RUN echo "source activate $(head -1 /tmp/environment.yml | cut -d' ' -f2)" > ~/.bashrc
-ENV PATH /opt/conda/envs/$(head -1 /tmp/environment.yml | cut -d' ' -f2)/bin:$PATH
-RUN rm /tmp/environment.yml
+RUN echo "source activate ${CONDA_ENV}" > ~/.bashrc
+ENV PATH /opt/conda/envs/${CONDA_ENV}/bin:$PATH
+
+ADD requirements.txt /tmp/requirements.txt
+RUN bash -c "source activate ${CONDA_ENV} && \
+    pip install -r /tmp/requirements.txt"
+RUN rm /tmp/requirements.txt
 
 RUN bash -c "source activate ${CONDA_ENV} && \
     python -m nltk.downloader averaged_perceptron_tagger"
