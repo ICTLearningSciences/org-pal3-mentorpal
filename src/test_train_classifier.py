@@ -1,6 +1,6 @@
 from mentorpal.mentor import Mentor
 from mentorpal.metrics import Metrics
-from mentorpal.train_classifier import TrainClassifier
+from mentorpal.classifier_train_lstm_v1 import TrainLSTMClassifier
 
 def test_answer_confidence(classifier, question, expected_id=None, min_confidence=None):
     print("\nTEST ANSWER CONFIDENCE: {0}".format(classifier.mentor.id))
@@ -59,19 +59,19 @@ def test_testing_accuracy(classifier, test_data=None, min_accuracy=None):
 
 metrics = Metrics()
 
-clint = TrainClassifier('clint')
-# julianne = TrainClassifier('julianne')
-# dan = TrainClassifier('dan')
-# carlos = TrainClassifier('carlos')
-
-test_training_accuracy(clint, None, 0.3)
-# test_training_accuracy(julianne, 0.4)
-# test_training_accuracy(dan, 0.3)
-# test_training_accuracy(carlos, 0.4)
+clint = TrainLSTMClassifier('clint')
+julianne = TrainLSTMClassifier('julianne')
+# dan = TrainLSTMClassifier('dan')
+# carlos = TrainLSTMClassifier('carlos')
 
 test_answer_confidence(clint,  "why did you join the navy?", 'clintanderson_A131_3_1')
-# test_answer_confidence(julianne,  "why did you join the navy?", 'julianne_A9_1_3')
+test_answer_confidence(julianne,  "why did you join the navy?", 'julianne_A9_1_3')
 # test_answer_confidence(dan,  "why did you join the navy?")
 # test_answer_confidence(carlos,  "why did you join the navy?", 'carlos_A55_2_1')
+
+# test_training_accuracy(clint, None, 0.3)
+test_training_accuracy(julianne, None, 0.4)
+# test_training_accuracy(dan, None, 0.3)
+# test_training_accuracy(carlos, None, 0.4)
 
 test_testing_accuracy(clint, 'testing_data_sparse.csv', 0.5)

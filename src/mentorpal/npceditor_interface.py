@@ -1,13 +1,9 @@
 import xml.etree.cElementTree as ET
 import os
-import pickle
 import numpy as np
-import platform
 import json
 import sys
 import time
-import inspect
-from subprocess import Popen, PIPE
 from sklearn.metrics import f1_score, accuracy_score
 
 from mentorpal import mentor

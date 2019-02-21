@@ -14,14 +14,14 @@ from keras.layers import LSTM, Activation, Dense, Dropout
 from keras.callbacks import ModelCheckpoint
 
 from mentorpal.iclassifier import IClassifier
-from mentorpal.mentor_classifier import MentorClassifier
+from mentorpal.classifier_lstm_v1 import LSTMClassifier
 
 '''
-TrainClassifier uses MentorClassifier to get answers, but can also train classifier model
+Wrapper class for LSTMClassifier that also trains the classifier
 '''
-class TrainClassifier(IClassifier):
+class TrainLSTMClassifier(IClassifier):
     def __init__(self, mentor):
-        self.mentor_classifier = MentorClassifier(mentor)
+        self.mentor_classifier = LSTMClassifier(mentor)
         self.mentor = self.mentor_classifier.mentor
 
     def get_answer(self, question):

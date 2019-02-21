@@ -6,11 +6,11 @@ from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.linear_model import RidgeClassifier
 
-from mentorpal import classifier_preprocess
+from mentorpal.nltk_preprocessor import NLTKPreprocessor
 from mentorpal.iclassifier import IClassifier
 from mentorpal.mentor import Mentor
 
-class MentorClassifier(IClassifier):
+class LSTMClassifier(IClassifier):
     WORD2VEC_DEFAULT_PATH = os.path.join('vector_models','GoogleNews-vectors-negative300-SLIM.bin')
     LOGISTIC_MODEL_DEFAULT_PATH = os.path.join("train_data","fused_model.pkl")
 
@@ -54,7 +54,7 @@ class MentorClassifier(IClassifier):
         self.logistic_model = logmodel
 
     def get_answer(self, question):
-        preprocessor = classifier_preprocess.NLTKPreprocessor()
+        preprocessor = NLTKPreprocessor()
         processed_question = preprocessor.transform(question)
         w2v_vector, lstm_vector = self.get_w2v(processed_question)
         lstm_vector = [lstm_vector]
@@ -62,6 +62,7 @@ class MentorClassifier(IClassifier):
         topic_vector = self.get_topic_vector(padded_vector)
         predicted_answer = self.get_prediction(w2v_vector, topic_vector)
         return predicted_answer
+
 
     ''' answer prediction '''
     def get_w2v(self, question):

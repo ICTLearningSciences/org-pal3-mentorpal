@@ -1,12 +1,9 @@
 import pandas as pd
 import os
-import json
 import csv
-import pickle
-import time
-from keras.models import Sequential, load_model
+from keras.models import load_model
 
-from mentorpal import classifier_preprocess
+from mentorpal.nltk_preprocessor import NLTKPreprocessor
 
 class Mentor(object):
     def __init__(self, id):
@@ -121,39 +118,10 @@ class Mentor(object):
 
         return ids_answers, answer_ids, ids_questions, question_ids
 
-    def load_testing_data(self):
-        test_data_csv=pd.read_csv(os.path.join("mentors",self.id,"data","testing_data.csv"))
-        corpus=test_data_csv.fillna('')
-        preprocessor=classifier_preprocess.NLTKPreprocessor()
-        test_data=[]
-
-        for i in range(0,len(corpus)):
-            # normalized topics
-            topics=corpus.iloc[i]['topics'].split(",")
-            topics=[_f for _f in topics if _f]
-            topics=self.normalize_topics(topics)
-            # question
-            questions=corpus.iloc[i]['question'].split('\n')
-            questions=[_f for _f in questions if _f]
-            current_question=questions[0]
-            processed_question=preprocessor.transform(current_question) # tokenize the question
-            # answer
-            answer=corpus.iloc[i]['text']
-            answer_id=corpus.iloc[i]['ID']
-            answer=answer.replace('\u00a0',' ')
-
-            #add question to dataset
-            test_data.append([current_question,processed_question,topics,answer_id])
-            #look for paraphrases and add them to dataset
-            paraphrases=questions[1:]
-            for i in range(0,len(paraphrases)):
-                processed_paraphrase=preprocessor.transform(paraphrases[i])
-                test_data.append([paraphrases[i],processed_paraphrase,topics,answer_id])
-
     def load_training_data(self, path):
         train_data_csv=pd.read_csv(path)
         corpus=train_data_csv.fillna('')
-        preprocessor=classifier_preprocess.NLTKPreprocessor()
+        preprocessor=NLTKPreprocessor()
         train_data=[]
 
         for i in range(0,len(corpus)):
@@ -186,10 +154,6 @@ class Mentor(object):
     def get_training_data(self):
         training_data_path = os.path.join("mentors",self.id,"data","training_data.csv")
         return pd.read_csv(training_data_path, sep=',', header=0)
-
-    def get_testing_data(self):
-        testing_data_path = os.path.join("mentors",self.id,"data","testing_data.csv")
-        return pd.read_csv(testing_data_path, sep=',', header=0)
 
     def normalize_topics(self, topics):
         ret_topics=[]

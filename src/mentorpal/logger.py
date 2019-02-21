@@ -1,6 +1,7 @@
 import os
 import csv
 from datetime import datetime
+
 class Logger(object):
     'New Class with static methods to log data through Python, specifically for the web version'
     def __init__(self):
