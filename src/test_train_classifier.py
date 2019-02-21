@@ -14,38 +14,29 @@ def test_answer_confidence(classifier, question, expected_id=None, min_confidenc
     print("confidence: {0}".format(confidence))
 
     if expected_id is not None:
-        print("Assertion: expected answer id={0}, got {1}".format(expected_id, answer_id))
+        print("expected answer id={0}, got {1}".format(expected_id, answer_id))
         assert expected_id == answer_id
     
     if min_confidence is not None:
-        print("Assertion: expected confidence>={0}, got {1}".format(min_confidence, confidence))
+        print("expected confidence>={0}, got {1}".format(min_confidence, confidence))
         assert confidence >= min_confidence
 
-def test_training_accuracy(classifier, train_data=None, min_accuracy=None):
+def test_training_accuracy(classifier, min_accuracy=None):
     print("\nTEST TRAINING ACCURACY: {0}".format(classifier.mentor.id))
-    if train_data is None:
-        train_data = 'training_data.csv'
-        print("No training data file specified, using default: {0}".format(train_data))
-    else:
-        print("training set: {0}".format(train_data))
 
     metrics = Metrics()
-    scores, accuracy = metrics.training_accuracy(classifier, train_data)
+    scores, accuracy = metrics.training_accuracy(classifier)
 
     print("cross validation score: {0}".format(scores))
     print("accuracy score: {0}".format(accuracy))
 
     if min_accuracy is not None:
-        print("Assertion: expected accuracy>={0}, got {1}".format(min_accuracy, accuracy))
+        print("expected accuracy>={0}, got {1}".format(min_accuracy, accuracy))
         assert accuracy >= min_accuracy
 
-def test_testing_accuracy(classifier, test_data=None, min_accuracy=None):
+def test_testing_accuracy(classifier, test_data, min_accuracy=None):
     print("\nTEST TESTING ACCURACY: {0}".format(classifier.mentor.id))
-    if test_data is None:
-        test_data = 'testing_data.csv'
-        print("No testing data file specified, using default: {0}".format(test_data))
-    else:
-        print("testing set: {0}".format(test_data))
+    print("testing set: {0}".format(test_data))
     
     metrics = Metrics()
     accuracy, size = metrics.testing_accuracy(classifier, test_data)
@@ -54,24 +45,24 @@ def test_testing_accuracy(classifier, test_data=None, min_accuracy=None):
     print("accuracy score: {0}".format(accuracy))
 
     if min_accuracy is not None:
-        print("Assertion: expected accuracy>={0}, got {1}".format(min_accuracy, accuracy))
+        print("expected accuracy>={0}, got {1}".format(min_accuracy, accuracy))
         assert accuracy >= min_accuracy
 
 metrics = Metrics()
 
-clint = TrainLSTMClassifier('clint')
+# clint = TrainLSTMClassifier('clint')
 julianne = TrainLSTMClassifier('julianne')
 # dan = TrainLSTMClassifier('dan')
 # carlos = TrainLSTMClassifier('carlos')
 
-test_answer_confidence(clint,  "why did you join the navy?", 'clintanderson_A131_3_1')
+# test_training_accuracy(clint)
+test_training_accuracy(julianne)
+# test_training_accuracy(dan)
+# test_training_accuracy(carlos)
+
+# test_answer_confidence(clint,  "why did you join the navy?", 'clintanderson_A131_3_1')
 test_answer_confidence(julianne,  "why did you join the navy?", 'julianne_A9_1_3')
 # test_answer_confidence(dan,  "why did you join the navy?")
 # test_answer_confidence(carlos,  "why did you join the navy?", 'carlos_A55_2_1')
 
-# test_training_accuracy(clint, None, 0.3)
-test_training_accuracy(julianne, None, 0.4)
-# test_training_accuracy(dan, None, 0.3)
-# test_training_accuracy(carlos, None, 0.4)
-
-test_testing_accuracy(clint, 'testing_data_sparse.csv', 0.5)
+# test_testing_accuracy(clint, 'testing_data_sparse.csv', 0.5)

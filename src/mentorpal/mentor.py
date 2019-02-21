@@ -1,8 +1,8 @@
 import pandas as pd
 import os
 import csv
-from keras.models import load_model
 
+from mentorpal.utils import normalize_topics
 from mentorpal.nltk_preprocessor import NLTKPreprocessor
 
 class Mentor(object):
@@ -79,7 +79,7 @@ class Mentor(object):
             topics=corpus.iloc[i]['topics'].split(",")
             topics=[_f for _f in topics if _f]
             #normalize the topics
-            topics=self.normalize_topics(topics)
+            topics=normalize_topics(topics)
             questions=corpus.iloc[i]['question'].split('\n')
             questions=[_f for _f in questions if _f]
             answer=corpus.iloc[i]['text']
@@ -117,48 +117,3 @@ class Mentor(object):
             ids_questions[ID]=questions
 
         return ids_answers, answer_ids, ids_questions, question_ids
-
-    def load_training_data(self, path):
-        train_data_csv=pd.read_csv(path)
-        corpus=train_data_csv.fillna('')
-        preprocessor=NLTKPreprocessor()
-        train_data=[]
-
-        for i in range(0,len(corpus)):
-            # normalized topics
-            topics=corpus.iloc[i]['topics'].split(",")
-            topics=[_f for _f in topics if _f]
-            topics=self.normalize_topics(topics)
-            # question
-            questions=corpus.iloc[i]['question'].split('\n')
-            questions=[_f for _f in questions if _f]
-            current_question=questions[0]
-            # answer
-            answer=corpus.iloc[i]['text']
-            answer_id=corpus.iloc[i]['ID']
-            answer=answer.replace('\u00a0',' ')
-            #add question to dataset
-            processed_question=preprocessor.transform(current_question) # tokenize the question
-            train_data.append([current_question,processed_question,topics,answer_id,answer])
-            #look for paraphrases and add them to dataset
-            paraphrases=questions[1:]
-            for i in range(0,len(paraphrases)):
-                processed_paraphrase=preprocessor.transform(paraphrases[i])
-                train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id,answer])
-        
-        return train_data
-
-    def load_topic_model(self):
-        return load_model(os.path.join("mentors",self.id,"train_data","lstm_topic_model.h5"))
-
-    def get_training_data(self):
-        training_data_path = os.path.join("mentors",self.id,"data","training_data.csv")
-        return pd.read_csv(training_data_path, sep=',', header=0)
-
-    def normalize_topics(self, topics):
-        ret_topics=[]
-        for topic in topics:
-            topic=topic.strip()
-            topic=topic.lower()
-            ret_topics.append(topic)
-        return ret_topics

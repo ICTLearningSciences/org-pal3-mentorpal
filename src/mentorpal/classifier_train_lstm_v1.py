@@ -13,33 +13,31 @@ from keras.models import Sequential
 from keras.layers import LSTM, Activation, Dense, Dropout
 from keras.callbacks import ModelCheckpoint
 
-from mentorpal.iclassifier import IClassifier
+from mentorpal.utils import normalize_topics
+from mentorpal.nltk_preprocessor import NLTKPreprocessor
 from mentorpal.classifier_lstm_v1 import LSTMClassifier
 
 '''
-Wrapper class for LSTMClassifier that also trains the classifier
+Wrapper class for LSTMClassifier that trains the classifier
 '''
-class TrainLSTMClassifier(IClassifier):
-    def __init__(self, mentor):
-        self.mentor_classifier = LSTMClassifier(mentor)
-        self.mentor = self.mentor_classifier.mentor
+class TrainLSTMClassifier(LSTMClassifier):
+    TRAINING_DEFAULT_PATH = os.path.join('mentors','{0}','data','classifier_data.csv')
 
-    def get_answer(self, question):
-        return self.mentor_classifier.get_answer(question)
+    def __init__(self, mentor, word2vec = LSTMClassifier.WORD2VEC_DEFAULT_PATH, model_path = LSTMClassifier.MODEL_DEFAULT_PATH):
+        super().__init__(mentor, word2vec, model_path) 
 
     '''
     Trains the classifier on the given training data file
     
     Args:
-        train_file:  (string) file name of the training data to load
-        save: (bool) whether classifier should save retrained model to file
+        train_data:  (string) path of the training data to load
+        save: (bool) whether classifier should save retrained model to model path
     Returns:
         scores: (float array) cross validation scores for training data
         accuracy: (float) accuracy score for training data
     '''
-    def train_model(self, train_file='classifier_data.csv', save=False):
-        path = os.path.join("mentors", self.mentor.id, "data", train_file)
-        training_data = self.mentor.load_training_data(path)
+    def train_model(self, train_data=TRAINING_DEFAULT_PATH):
+        training_data = self.__load_training_data(train_data.format(self.mentor.id))
 
         train_vectors, lstm_train_vectors = self.__load_training_vectors(training_data)
         train_vectors, lstm_train_data = self.__load_topic_vectors(train_vectors, lstm_train_vectors)
@@ -49,12 +47,39 @@ class TrainLSTMClassifier(IClassifier):
         x_train_fused, y_train_fused, x_train_unfused, y_train_unfused = self.__load_fused_unfused(train_vectors, new_vectors)
         scores, accuracy, logistic_model_fused, logistic_model_unfused = self.__train_lr(x_train_fused, y_train_fused, x_train_unfused, y_train_unfused)
 
-        if save is True:
-            self.__write_data(lstm_train_data, train_vectors, new_vectors, topic_model, logistic_model_fused, logistic_model_unfused)
+        self.__write_data(topic_model, logistic_model_fused, logistic_model_unfused)
 
         return scores, accuracy
 
+    def __load_training_data(self, path):
+        train_data_csv=pd.read_csv(path)
+        corpus=train_data_csv.fillna('')
+        preprocessor=NLTKPreprocessor()
+        train_data=[]
 
+        for i in range(0,len(corpus)):
+            # normalized topics
+            topics=corpus.iloc[i]['topics'].split(",")
+            topics=[_f for _f in topics if _f]
+            topics=normalize_topics(topics)
+            # question
+            questions=corpus.iloc[i]['question'].split('\n')
+            questions=[_f for _f in questions if _f]
+            current_question=questions[0]
+            # answer
+            answer=corpus.iloc[i]['text']
+            answer_id=corpus.iloc[i]['ID']
+            answer=answer.replace('\u00a0',' ')
+            #add question to dataset
+            processed_question=preprocessor.transform(current_question) # tokenize the question
+            train_data.append([current_question,processed_question,topics,answer_id,answer])
+            #look for paraphrases and add them to dataset
+            paraphrases=questions[1:]
+            for i in range(0,len(paraphrases)):
+                processed_paraphrase=preprocessor.transform(paraphrases[i])
+                train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id,answer])
+        
+        return train_data
 
     def __load_training_vectors(self, train_data):
         train_vectors=[]
@@ -63,7 +88,7 @@ class TrainLSTMClassifier(IClassifier):
         #for each data point, get w2v vector for the question and store in train_vectors.
         #instance=<question, processed_question, topic, answer_id, answer_text>
         for instance in train_data:
-            w2v_vector, lstm_vector=self.mentor_classifier.get_w2v(instance[1])
+            w2v_vector, lstm_vector=self._LSTMClassifier__get_w2v(instance[1])
             train_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[4]])
             lstm_train_vectors.append(lstm_vector)
 
@@ -131,7 +156,7 @@ class TrainLSTMClassifier(IClassifier):
         topic_model.add(Dense(nb_classes))
         topic_model.add(Activation('softmax'))
         topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
-        filepath=os.path.join("mentors",self.mentor.id,"train_data",'lstm_model')
+        filepath=os.path.join(self.model_path,'lstm_model')
         checkpoint=ModelCheckpoint(filepath, monitor='val_acc',verbose=1, save_best_only=True, mode='max')
         callbacks_list=[checkpoint]
         hist=topic_model.fit(np.array(x_train), np.array(y_train), batch_size=32, epochs=30, validation_split=0.1, callbacks=callbacks_list, verbose=1)
@@ -159,18 +184,7 @@ class TrainLSTMClassifier(IClassifier):
 
         return scores, accuracy, logistic_model_fused, logistic_model_unfused
 
-    def __write_data(self, lstm_train_data, train_vectors, new_vectors, topic_model, logistic_model_fused, logistic_model_unfused):
-        #dump lstm_train_data
-        with open(os.path.join("mentors",self.mentor.id,"train_data","lstm_train_data.json"),'w') as json_file:
-            json.dump(lstm_train_data, json_file)
-        
-        #dump train_vectors for logistic regression
-        with open(os.path.join("mentors",self.mentor.id,"train_data","lr_train_data.json"),'w') as json_file:
-            json.dump(train_vectors,json_file)
-            
-        with open(os.path.join("mentors",self.mentor.id,"train_data","train_topic_vectors.json"),'w') as json_file:
-            json.dump(new_vectors, json_file)
-
-        topic_model.save(os.path.join("mentors",self.mentor.id,"train_data","lstm_topic_model.h5"))
-        joblib.dump(logistic_model_fused, os.path.join("mentors",self.mentor.id,"train_data","fused_model.pkl"))
-        joblib.dump(logistic_model_unfused, os.path.join("mentors",self.mentor.id,"train_data","unfused_model.pkl"))
+    def __write_data(self, topic_model, logistic_model_fused, logistic_model_unfused):
+        topic_model.save(os.path.join(self.model_path,"lstm_topic_model.h5"))
+        joblib.dump(logistic_model_fused, os.path.join(self.model_path,"fused_model.pkl"))
+        joblib.dump(logistic_model_unfused, os.path.join(self.model_path,"unfused_model.pkl"))

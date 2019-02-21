@@ -2,7 +2,7 @@ import csv
 import os
 
 from mentorpal.mentor import Mentor
-from mentorpal.utils import SanitizeString
+from mentorpal.utils import sanitize_string
 
 class Metrics:
 
@@ -22,23 +22,20 @@ class Metrics:
 
         return answer_id, answer, confidence
 
-
     '''
     Train classifier and get accuracy score of training
 
     Args:
         classifier: (IClassifier)
-        train_file: (string) file name of the training data to load
     Returns:
         scores: (float array) cross validation scores for training data
         accuracy: (float) accuracy score for training data
     '''
-    def training_accuracy(self, classifier, train_file):
-        scores, accuracy = classifier.train_model(train_file)
+    def training_accuracy(self, classifier):
+        scores, accuracy = classifier.train_model()
 
         return scores, accuracy
     
-
     '''
     Test classifier and get accuracy score of testing set
 
@@ -52,7 +49,7 @@ class Metrics:
     def testing_accuracy(self, classifier, test_file):
         mentor = classifier.mentor
         path = os.path.join("mentors", mentor.id, "data", test_file)
-        test_data, user_questions = self.read_test_data(path, mentor.question_ids)
+        test_data, user_questions = self.__read_test_data(path, mentor.question_ids)
 
         correct_predictions = 0
         total_predictions = 0
@@ -66,7 +63,7 @@ class Metrics:
         return correct_predictions / total_predictions, total_predictions
 
 
-    def read_test_data(self, file, question_ids):
+    def __read_test_data(self, file, question_ids):
         # load 2D matrix of user questions vs actual questions
         test_data = list(csv.reader(open(file)))
         numrows = len(test_data)
@@ -75,12 +72,12 @@ class Metrics:
         # get user questions
         user_questions = {}
         for c in range(2, numcols):
-            userq = SanitizeString(test_data[0][c])
+            userq = sanitize_string(test_data[0][c])
 
             # get ideal and reasonable matches for user questions
             for r in range(1, numrows):
-                q = SanitizeString(test_data[r][0])
-                match = SanitizeString(test_data[r][c])
+                q = sanitize_string(test_data[r][0])
+                match = sanitize_string(test_data[r][c])
 
                 try:
                     ID = question_ids[test_data[r][0]]
