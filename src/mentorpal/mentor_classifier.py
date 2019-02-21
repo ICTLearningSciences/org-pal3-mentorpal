@@ -43,7 +43,7 @@ class MentorClassifier(IClassifier):
             'invalid type for word2vec (expected gensim.models.keyedvectors.KeyedVectors or path to binary, encountered {}'.format(type(word2vec))
 
         if isinstance(logmodel, str):
-            path = os.path.join("mentors", mentor, logmodel)
+            path = os.path.join("mentors", self.mentor.id, logmodel)
             print('loading logistic model from path {}...'.format(path))
             logmodel = joblib.load(path)
 

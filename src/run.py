@@ -5,12 +5,12 @@ from mentorpal import interface, mentor
 #mode='classifier' will fetch answers only from classifier.
 #mode='ensemble' will fetch answers from both classifier and ensemble and decide the best
 def start(answer_mode):
-    start=time.time()
     global bi
     bi=interface.BackendInterface(mode=answer_mode)
 
-def preload(mentors):
-    bi.preload(mentors)
+def preload(mentor_ids):
+    for mentor in mentor_ids:
+        bi.preload(mentor)
 
 def print_instructions():
     print("Interface is ready:")
@@ -51,24 +51,14 @@ def process_input(user_input):
         bi.process_input_from_ui(inputs[0])
         return "{0}\n{1}".format(id, "_END_")
 
-    # Retrain the classifier for a mentor: _TRAIN_ id
+    # Train the classifier for a mentor: _TRAIN_ id
     #   id: id of mentor
     #
     # Returns: _TRAINED_ mentor_id
     if tag == "_TRAIN_":
         id = inputs[1]
         bi.set_mentor(id)
-        results = bi.start_pipeline(mode='train_test_mode')
-        return '_TRAINED_ {0}\n{1}'.format(id, results)
-
-    # Retest the classifier for a mentor: _TEST_ id
-    #   id: id of mentor
-    #
-    # Returns: _TESTED_ mentor_id 
-    if tag == "_TRAIN_":
-        id = inputs[1]
-        bi.set_mentor(id)
-        results = bi.start_pipeline(mode='train_test_mode')
+        results = bi.train()
         return '_TRAINED_ {0}\n{1}'.format(id, results)
 
     # Get the list of topics for a mentor:  _TOPICS_ id

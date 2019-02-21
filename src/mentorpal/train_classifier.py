@@ -37,7 +37,7 @@ class TrainClassifier(IClassifier):
         scores: (float array) cross validation scores for training data
         accuracy: (float) accuracy score for training data
     '''
-    def train_model(self, train_file, save=False):
+    def train_model(self, train_file='classifier_data.csv', save=False):
         path = os.path.join("mentors", self.mentor.id, "data", train_file)
         training_data = self.mentor.load_training_data(path)
 
