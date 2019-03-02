@@ -5,7 +5,7 @@ from mentorpal.mentor import Mentor
 from mentorpal.utils import sanitize_string
 
 class Metrics:
-
+    
     '''
     Get answer and answer confidence
 
@@ -31,7 +31,7 @@ class Metrics:
         scores: (float array) cross validation scores for training data
         accuracy: (float) accuracy score for training data
     '''
-    def training_accuracy(self, classifier):
+    def train_accuracy(self, classifier):
         scores, accuracy = classifier.train_model()
 
         return scores, accuracy
@@ -46,7 +46,7 @@ class Metrics:
         accuracy: (float) accuracy score for training data (correct predictions out of total predictions)
         size: (int) number of user questions in test set
     '''
-    def testing_accuracy(self, classifier, test_file):
+    def test_accuracy_matrix(self, classifier, test_file):
         mentor = classifier.mentor
         path = os.path.join("mentors", mentor.id, "data", test_file)
         test_data, user_questions = self.__read_test_data(path, mentor.question_ids)

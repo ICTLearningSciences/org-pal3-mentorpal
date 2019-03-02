@@ -1,6 +1,7 @@
 FROM continuumio/miniconda3
 
 ARG CONDA_ENV=mentorpal
+ARG CHECKPOINT=2019-2-21-220
 
 RUN conda create --name=${CONDA_ENV} python=3.6
 
@@ -18,6 +19,7 @@ RUN bash -c "source activate ${CONDA_ENV} && \
 WORKDIR /app
 COPY build/src .
 COPY build/mentors mentors
+COPY build/webdisk_credentials.txt .
 
 # TODO: download GoogleNews-vectors... in a distinct docker stage
 # so that we can install the 'gdown' tool only there and leave it behind

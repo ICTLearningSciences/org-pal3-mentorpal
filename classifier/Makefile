@@ -16,10 +16,10 @@ build: clean
 	mkdir -p ${CLASSIFIER_ROOT}/build
 	cp -r ${MENTORPAL_ROOT}/src ${CLASSIFIER_ROOT}/build
 	cp -r ${MENTORPAL_ROOT}/mentors ${CLASSIFIER_ROOT}/build
+	cp ${MENTORPAL_ROOT}/webdisk_credentials.txt ${CLASSIFIER_ROOT}/build
 
 docker-build: build
 	docker build -t ${DOCKER_IMAGE} .
-
 
 docker-run:
 	docker run \
@@ -32,4 +32,14 @@ docker-run:
 		${DOCKER_IMAGE} \
 			bash
 
-docker-exec-jupyter:
+docker-run-dev:
+	docker run \
+			-it \
+			--rm \
+			--name ${DOCKER_CONTAINER} \
+			--shm-size 8G \
+			-p 8888:8888 \
+			-v ${MENTORPAL_ROOT}:/workingcopy \
+			-v ${MENTORPAL_ROOT}:/app/mentorpal \
+		${DOCKER_IMAGE} \
+			bash

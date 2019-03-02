@@ -1,5 +1,6 @@
 website_version/node_modules
 website_version/password.txt
+webdisk_credentials.txt
 __pycache__
 *.pyc
 QuestionAnswerLog.csv
