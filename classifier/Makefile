@@ -9,10 +9,10 @@ WEBDAV_PATH=https://webdisk.ict.usc.edu/remote.php/webdav/
 CHECKPOINT=2019-2-21-220
 
 init-checkpoint:
-	rm -rf ${MENTORPAL_ROOT}/checkpoint/classifiers
-	rm -rf ${MENTORPAL_ROOT}/checkpoint/vector_models
-	make download-vector-models
+	rm -r ${MENTORPAL_ROOT}/checkpoint/classifiers/*/*/*
+	rm -r ${MENTORPAL_ROOT}/checkpoint/vector_models/*
 	make download-checkpoint classifier=lstm_v1 checkpoint=${CHECKPOINT}
+	make download-vector-models
 
 clean:
 	rm -rf build
@@ -23,9 +23,10 @@ clean:
 # dependent that breaks, so for now just soft link it.
 build: clean
 	mkdir -p ${CLASSIFIER_ROOT}/build
+	mkdir -p ${CLASSIFIER_ROOT}/build/checkpoint/classifiers
 	cp -r ${MENTORPAL_ROOT}/src ${CLASSIFIER_ROOT}/build
 	cp -r ${MENTORPAL_ROOT}/mentors ${CLASSIFIER_ROOT}/build
-	# cp -r ${MENTORPAL_ROOT}/checkpoint ${CLASSIFIER_ROOT}/build
+	cp -r ${MENTORPAL_ROOT}/checkpoint/classifiers ${CLASSIFIER_ROOT}/build/checkpoint
 	cp ${MENTORPAL_ROOT}/.netrc ${CLASSIFIER_ROOT}/build
 
 docker-build: build

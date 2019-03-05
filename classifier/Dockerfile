@@ -23,14 +23,14 @@ RUN apt-get install -y cadaver
 WORKDIR /app
 COPY build/src .
 COPY build/mentors mentors
-# COPY build/checkpoint checkpoint
-COPY build/.netrc ~/.netrc
+COPY build/checkpoint checkpoint
+COPY build/.netrc /root/.netrc
 
-# RUN bash -c "mkdir -p checkpoint/vector_models && \
-#     cd checkpoint/vector_models && \
-# 	printf \"mget checkpoint/vector_models/*\nexit\" >> cmd && \
-# 	cadaver -r cmd ${WEBDAV_PATH} && \
-# 	rm cmd"
+RUN bash -c "mkdir -p checkpoint/vector_models && \
+    cd checkpoint/vector_models && \
+	printf \"mget checkpoint/vector_models/*\nexit\" >> cmd && \
+	cadaver -r cmd ${WEBDAV_PATH} && \
+	rm cmd"
 
 # RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint && \
 # 	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint && \
