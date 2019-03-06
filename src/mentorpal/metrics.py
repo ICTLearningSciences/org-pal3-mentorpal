@@ -45,12 +45,12 @@ class Metrics:
     Returns:
         accuracy: (float) accuracy score for training data (correct predictions out of total predictions)
     '''
-    def test_accuracy_matrix(self, classifier, test_file, num=None):
+    def test_accuracy(self, classifier, test_file, num=None):
         mentor = classifier.mentor
         path = os.path.join("checkpoint","tests",mentor.id,test_file)
         user_questions = self.__read_test_data(path, mentor.question_ids, num)
 
-        print("Loaded test set of {0} questions for {1}".format(len(user_questions), mentor.id))
+        print("Loaded test set '{0}' of {1} questions for {2}".format(test_file, len(user_questions), mentor.id))
 
         correct_predictions = 0
         total_predictions = 0
@@ -60,13 +60,16 @@ class Metrics:
             if ID in user_questions[q]:
                 correct_predictions += 1
             else:
-                print("-- '{0}'".format(q))
+                print("-- {0}. '{1}'".format(total_predictions + 1, q))
                 print("    Expected {0}".format(user_questions[q]))
                 print("    Got {0}".format(ID))
             total_predictions += 1
 
-        return correct_predictions / total_predictions
+        print("{0}/{1} ({2:.1f}%) questions answered correctly".format(
+            correct_predictions, total_predictions,
+            (correct_predictions / total_predictions) * 100))
 
+        return correct_predictions / total_predictions
 
     def __read_test_data(self, file, question_ids, num):
         # load 2D matrix of user questions vs actual questions

@@ -37,10 +37,7 @@ def test_testing_accuracy(classifier, test_data, num_questions=None, min_accurac
     print("\nTESTING ACCURACY: {0}".format(classifier.mentor.id))
     
     metrics = Metrics()
-    accuracy = metrics.test_accuracy_matrix(classifier, test_data, num_questions)
-
-    print("-- testing set: {0}".format(test_data))
-    print("-- accuracy score: {0}".format(accuracy))
+    accuracy = metrics.test_accuracy(classifier, test_data, num_questions)
 
     if min_accuracy is not None:
         print("expected accuracy>={0}, got {1}".format(min_accuracy, accuracy))
