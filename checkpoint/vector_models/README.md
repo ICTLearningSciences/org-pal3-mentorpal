@@ -1,6 +1,6 @@
-## Store checkpoint models here
+## Store vector models here
 
-The models can be downloaded from here: https://webdisk.ict.usc.edu/index.php/s/J7IJMxFuax3SiHo
+The vector models can be downloaded from here: https://webdisk.ict.usc.edu/index.php/s/J7IJMxFuax3SiHo
 
 To access webdisk, you must have a .netrc file:
 machine webdisk.ict.usc.edu
@@ -15,4 +15,4 @@ make init-checkpoint
 
 or
 
-make download-checkpoint classifier={classifier} checkpoint={checkpoint}
+make download-vector-models

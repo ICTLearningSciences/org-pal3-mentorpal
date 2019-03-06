@@ -12,9 +12,9 @@ accuracy = metrics.test_accuracy(classifier, 'testing_data_full.csv')
 
 # train a new classifier checkpoint to compare with old
 # classifier_new = TrainLSTMClassifier('clint')
-# checkpoint = create_checkpoint(classifier_new)
+# create_checkpoint(classifier_new)
 # id_new, answer_new, confidence_new = metrics.answer_confidence(classifier_new, 'why did you join the navy?')
-# accuracy_new = metrics.test_accuracy(classifier_new, 'testing_data_sparse.csv')
+# accuracy_new = metrics.test_accuracy(classifier_new, 'testing_data_full.csv')
 
 # test against a different checkpoint
 classifier_other = TrainLSTMClassifier('clint', '2019-03-04-1749')
