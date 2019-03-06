@@ -13,7 +13,7 @@ test -r "$src" || \
 cd "$(dirname "$src")";
 src="$(basename "$src")";
 root="$(pwd)";
-rc="$(mktemp -t davcopy)";
+rc="$(mktemp -t davcopy.XXX)";
 
 {
     find "$src" -type d | xargs -I{} echo 'mkcol '{}
