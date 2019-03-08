@@ -1,4 +1,3 @@
-import time
 from mentorpal import interface, mentor
 
 #mode='npceditor' will fetch answers only from npceditor.

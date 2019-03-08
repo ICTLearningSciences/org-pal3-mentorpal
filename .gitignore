@@ -1,5 +1,6 @@
 website_version/node_modules
 website_version/password.txt
+.netrc
 __pycache__
 *.pyc
 QuestionAnswerLog.csv

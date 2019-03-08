@@ -1,10 +1,8 @@
 #THIS FIXES THE ERROR  https://github.com/extrabacon/python-shell/issues/113 Supresses the tensorflow warning
 
 import interface
-import json,sys
+import json
 from logger import Logger
-
-from mentorpal import mentor
 
 global bi
 bi=interface.BackendInterface("classifier")

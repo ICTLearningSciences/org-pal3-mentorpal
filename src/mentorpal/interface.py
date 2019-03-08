@@ -5,7 +5,7 @@ import random
 import datetime
 import time
 
-from mentorpal.train_classifier import TrainClassifier
+from mentorpal.classifier_train_lstm_v1 import TrainLSTMClassifier
 from mentorpal.npceditor_interface import NPCEditor
 from mentorpal.mentor import Mentor
 
@@ -44,11 +44,7 @@ class BackendInterface(object):
         if self.mode=='ensemble' or self.mode=='npceditor':
             os.system("{0} {1}".format(os.path.abspath(os.path.join('', '..', 'NPCEditor.app', 'run-npceditor')), mentor_id))
         
-        # temporarily asking mentor a question to warm up classifier
-        # need to figure out why loading topic_model works for commandline but not vhmsg
-        if self.mode=='ensemble' or self.mode=='classifier':
-            self.set_mentor(mentor_id)
-            self.get_classifier_answer('asdf')
+        self.set_mentor(mentor_id)
 
     '''
     Set the given mentor to be the active classifier and NPCEditor instance
@@ -65,7 +61,7 @@ class BackendInterface(object):
             self.npc.set_mentor(self.mentor)
         if self.mode is 'ensemble' or self.mode is 'classifier':
             if id not in self.classifiersById:
-                self.classifiersById[id]=TrainClassifier(self.mentor)
+                self.classifiersById[id]=TrainLSTMClassifier(self.mentor)
             self.classifier=self.classifiersById[id]
 
     '''
