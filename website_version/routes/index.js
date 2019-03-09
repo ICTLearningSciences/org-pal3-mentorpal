@@ -16,7 +16,7 @@ const options = {
     pythonPath: process.env.PYTHON_PATH || '/usr/local/bin/python3'
 }
 
-var pyshell = new PythonShell('/../src/classifier/website_interface.py',options);
+var pyshell = new PythonShell('..src/website_interface.py',options);
 const passwordPath = path.join(appRoot, 'password.txt')
 var text = fs.readFileSync(passwordPath, 'utf8');
 console.log(text);
