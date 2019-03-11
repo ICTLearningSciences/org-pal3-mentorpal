@@ -1,8 +1,12 @@
 
 //This way, content can be hosted elsewhere explicit
 var isMobile="";
-function resizeFix(){	//run everytime the window is resized to keep it responsive
-	if (screen.width<700){	//check if we're on mobile
+
+//run everytime the window is resized to keep it responsive
+function resizeFix(){
+
+	//check if we're on mobile
+	if (screen.width < 768) {
 		toChoices();
 		document.getElementById("mainSize").className = "container-fluid";
 		document.getElementById("topic-box").className = "topic-box-mobile";
@@ -23,7 +27,10 @@ function resizeFix(){	//run everytime the window is resized to keep it responsiv
 		document.getElementById("mentor-title").style = "display: none";
 		isMobile = "_M";
 		document.getElementById("videoPlayer").textTracks[0].mode = "showing";
-	} else {	//if desktop render this
+	}
+
+	//if desktop render this
+	else {
 		document.getElementById("mainSize").className = "container";
 		document.getElementById("topic-box").className = "topic-box";
 		renderButtons(globalResults);
@@ -51,12 +58,11 @@ function saveUserID(URL) {
   if(username) {
     window.location.href = URL;
     localStorage.setItem("username",username);
-  } else {
-    if(confirm("You forgot to create a Username, are you sure you want to continue?")){
+	}
+	else {
+    if (confirm("You forgot to create a Username, are you sure you want to continue?")){
       localStorage.setItem("username","No Username");
       window.location.href = URL;
-    } else {
-
     }
   }
 }
@@ -76,19 +82,24 @@ function closeNav() {
     document.getElementById("myNav").style.height = "0%";
 		document.getElementById("video0").play();
 }
+
 $('#carousel').on('slide.bs.carousel', function (data) {
 		document.getElementById("video"+data.from).pause();
 })
 $('#carousel').on('slid.bs.carousel', function (data) {
 	  document.getElementById("video"+data.to).play();
 })
-$('#video0').on('ended',function(){
+
+$('#video0').on('ended',function() {
 	document.getElementById("video0").currentTime = 0.1;
 	$('#carousel').carousel("next");
 })
-$('#video1').on('ended',function(){
+$('#video1').on('ended',function() {
 	$('#carousel').carousel("next");
 })
-$('#video2').on('ended',function(){
+$('#video2').on('ended',function() {
+	$('#carousel').carousel("next");
+})
+$('#video3').on('ended',function() {
 	$('#carousel').carousel("next");
 })

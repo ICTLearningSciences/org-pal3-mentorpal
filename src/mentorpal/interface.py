@@ -64,6 +64,11 @@ class BackendInterface(object):
                 self.classifiersById[id]=TrainLSTMClassifier(self.mentor)
             self.classifier=self.classifiersById[id]
 
+    def set_blacklist(self, blacklist_ids):
+        self.blacklist.clear()
+        for id in blacklist_ids:
+            self.blacklist.append(id)
+
     '''
     Retrain the current model
     

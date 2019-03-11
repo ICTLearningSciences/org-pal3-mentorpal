@@ -1,18 +1,17 @@
-
 DOCKER_USER ?= uscictdocker
 DOCKER_IMAGE ?= mentorpal-web
 DOCKER_IMAGE_TAG ?= $(DOCKER_USER)/$(DOCKER_IMAGE):$(EB_ENV)
 DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_USER).password"
 
+WEB_ROOT=$(shell pwd)
+MENTORPAL_ROOT=$(shell dirname ${WEB_ROOT})
+
 NODE_ENV ?= qa
 EB_ENV ?= mentorpal-$(NODE_ENV)
-EB_ARCHIVE_FILE := $(EB_ENV)-$(subst :,-,$(DATE).zip
+EB_ARCHIVE_FILE := $(EB_ENV)-$(DATE).zip
 
 PKG_VERSION ?= $(shell node -p "require('./package.json').version")
 PKG_NAME ?= $(shell node -p "require('./package.json').name")
-
-WEB_ROOT=$(shell pwd)
-MENTORPAL_ROOT=$(shell dirname ${WEB_ROOT})
 
 CHECKPOINT=2019-2-21-220
 DATE := $(shell date +"%Y%m%dT%H%M")
@@ -26,23 +25,32 @@ init-checkpoint:
 	make download-vector-models
 
 clean:
-	@rm -rf build dist *.zip
+	rm -rf build dist *.zip
 
 build: clean
 	mkdir -p ${WEB_ROOT}/build
-	mkdir -p ${WEB_ROOT}/build/checkpoint/classifiers
 
+	cp -r ${MENTORPAL_ROOT}/website_version/* ${WEB_ROOT}/build
 	cp -r ${MENTORPAL_ROOT}/src ${WEB_ROOT}/build
 	cp -r ${MENTORPAL_ROOT}/mentors ${WEB_ROOT}/build
-	cp -r ${MENTORPAL_ROOT}/checkpoint/classifiers ${WEB_ROOT}/build/checkpoint
-	cp -r ${MENTORPAL_ROOT}/website_version ${WEB_ROOT}/build
-	cp ${MENTORPAL_ROOT}/.netrc ${WEB_ROOT}/build
+	cp -r ${MENTORPAL_ROOT}/checkpoint ${WEB_ROOT}/build
 
+	cp ${MENTORPAL_ROOT}/.netrc ${WEB_ROOT}/build
+	cp ${WEB_ROOT}/Dockerrun.aws.json.dist ${WEB_ROOT}/build
 	cp ${WEB_ROOT}/package.json ${WEB_ROOT}/build
 	cp ${WEB_ROOT}/password.txt ${WEB_ROOT}/build
 
-docker-build: build
+	cp ${MENTORPAL_ROOT}/mentors/clint/data/* ${WEB_ROOT}/build/public/clint
+	cp ${MENTORPAL_ROOT}/mentors/dan/data/* ${WEB_ROOT}/build/public/dan
+	cp ${MENTORPAL_ROOT}/mentors/carlos/data/* ${WEB_ROOT}/build/public/carlos
+	cp ${MENTORPAL_ROOT}/mentors/julianne/data/* ${WEB_ROOT}/build/public/julianne
+
+local-run: build
 	cd build && \
+	npm install && \
+	node app dev
+
+docker-build: build
 	docker build --no-cache --build-arg NODE_ENV=$(NODE_ENV) CHECKPOINT=${CHECKPOINT} -t ${DOCKER_IMAGE_TAG} .
 
 docker-run:

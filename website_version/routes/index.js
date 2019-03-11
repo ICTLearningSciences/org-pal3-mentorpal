@@ -7,28 +7,23 @@ var PythonShell = require('python-shell');
 var fs = require('fs');
 const appRoot = require('app-root-path').path
 const path = require('path')
-//https://github.com/extrabacon/python-shell/issues/113 : /python-shell/index.js, on line 72
-//After installation, comment out the warning printing if tensorflow is having trouble importing
-
-const nodeEnv = process.env.NODE_ENV || 'dev'
 
 const options = {
     pythonPath: process.env.PYTHON_PATH || '/usr/local/bin/python3'
 }
 
-var pyshell = new PythonShell('..src/website_interface.py',options);
+var pyshell = new PythonShell('src/website_interface.py',options);
 const passwordPath = path.join(appRoot, 'password.txt')
 var text = fs.readFileSync(passwordPath, 'utf8');
-console.log(text);
 var authorization = new watson.AuthorizationV1({
   username: 'b339aacb-e633-4e40-b10d-6f5b300f59bf',
   password: text,
   url: 'https://stream.watsonplatform.net/authorization/api'
 });
-
 var params = {
     url: 'https://gateway.watsonplatform.net/speech-to-text/api'
 };
+
 //********add a mentor here: copy paste the pattern*/
 router.get('/', function(req, res, next) {
   res.render('home');
@@ -57,6 +52,7 @@ router.get('/carlos', function(req, res, next) {
 router.get('/carlos/embed', function(req, res, next){
   res.render('index');
 });
+
 //***********add above*/
 io.on('connection', function(socket){
     console.log('A user has socket connected');

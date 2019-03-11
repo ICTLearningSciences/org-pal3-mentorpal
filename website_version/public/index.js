@@ -183,23 +183,26 @@ function send() {
 			complete: function(results) {
 				// first check if the question has a direct match
 				for (var i = 0; i < results.data.length; i++) {
-					var questions = results.data[i][3].split('\r')
-					// if direct match, use direct answer and don't bother with python tensorflow
-					for (var j = 0; j < questions.length; j++) {
-						var q = questions[j].toLowerCase().replace(/\.|\?|\,| /g, '')
-						if (q == question.toLowerCase().replace(/\.|\?|\,| /g, '')) {
-							const videoID = results.data[i][0]
-							const transcript = sanitize(results.data[i][2])
-							video.src = mentor.videoURL + videoID + isMobile + '.mp4';
-							document.getElementById("track").src = "/" + mentorID + "/tracks/" + videoID + ".vtt";
-							video.play();
-							video.controls = true;
-							document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
-							document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>' + mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
-							addToBlacklist(videoID)
-							return;
+					try {
+						var questions = results.data[i][3].split('\r')
+						// if direct match, use direct answer and don't bother with python tensorflow
+						for (var j = 0; j < questions.length; j++) {
+							var q = questions[j].toLowerCase().replace(/\.|\?|\,| /g, '')
+							if (q == question.toLowerCase().replace(/\.|\?|\,| /g, '')) {
+								const videoID = results.data[i][0]
+								const transcript = sanitize(results.data[i][2])
+								video.src = mentor.videoURL + videoID + isMobile + '.mp4';
+								document.getElementById("track").src = "/" + mentorID + "/tracks/" + videoID + ".vtt";
+								video.play();
+								video.controls = true;
+								document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
+								document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>' + mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
+								addToBlacklist(videoID)
+								return;
+							}
 						}
 					}
+					catch (error) {}
 				}
 				socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID),"UserID":(username),"Blacklist":(blacklist)});
 				document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + question + '<br>';
