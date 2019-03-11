@@ -1,35 +1,37 @@
 from mentorpal.mentor import Mentor
 from mentorpal.metrics import Metrics
-from mentorpal.classifier_train_lstm_v1 import TrainLSTMClassifier
+from mentorpal.classifier_train_lstm_v1 import TrainLSTMClassifier as Classifier1
+from mentorpal.classifier_train_lstm_v2 import TrainLSTMClassifierV2 as Classifier2
 from mentorpal.checkpoint import create_checkpoint
 
+checkpoint = '2019-3-11'
+mentor = 'clint'
+test_set = 'testing_data_full.csv'
+question = 'why did you join the navy?'
 metrics = Metrics()
 
 # load default (stable) classifier checkpoint from webdisk
-classifier = TrainLSTMClassifier('clint')
-id, answer, confidence = metrics.answer_confidence(classifier, 'why did you join the navy?')
-accuracy = metrics.test_accuracy(classifier, 'testing_data_full.csv')
+classifier = Classifier1(mentor)
+id, answer, confidence = metrics.answer_confidence(classifier, question)
+accuracy = metrics.test_accuracy(classifier, test_set)
 
 # train a new classifier checkpoint to compare with old
-# classifier_new = TrainLSTMClassifier('clint')
-# checkpoint = create_checkpoint(classifier_new)
-# classifier_new.__init__('clint', checkpoint)
-# id_new, answer_new, confidence_new = metrics.answer_confidence(classifier_new, 'why did you join the navy?')
-# accuracy_new = metrics.test_accuracy(classifier_new, 'testing_data_full.csv')
+classifier_new = Classifier2(mentor, checkpoint)
+classifier_new.train_model()
+id_new, answer_new, confidence_new = metrics.answer_confidence(classifier_new, question)
+accuracy_new = metrics.test_accuracy(classifier_new, test_set)
 
-# test against a different checkpoint
-classifier_other = TrainLSTMClassifier('clint', '2019-03-04-1749')
-id_other, answer_other, confidence_other = metrics.answer_confidence(classifier_other, 'why did you join the navy?')
-accuracy_other = metrics.test_accuracy(classifier_other, 'testing_data_full.csv')
+print('comparing checkpoint {0} to {1}:'.format(classifier.checkpoint, classifier_new.checkpoint))
 
-print('clint : why did you join the navy?')
+print('{0} : {1}'.format(mentor, question))
 
-print('checkpoint {0} got: {1}\n{2}\n{3}'.format(classifier.checkpoint, id, answer, confidence))
-# print('checkpoint {0} got: {1}\n{2}\n{3}'.format(classifier_new.checkpoint, id_new, answer_new, confidence_new))
-print('checkpoint {0} got: {1}\n{2}\n{3}'.format(classifier_other.checkpoint, id_other, answer_other, confidence_other))
+print(' - {0}:'.format(classifier.checkpoint))
+print('    {1} {2} {3}'.format(id, answer, confidence))
+print(' - {0}:'.format(classifier_new.checkpoint))
+print('    {1} {2} {3}'.format(id_new, answer_new, confidence_new))
 
 print('test accuracy for clint:')
 
-print('checkpoint {0}: {1}'.format(classifier.checkpoint, accuracy))
-# print('checkpoint {0}: {1}'.format(classifier_new.checkpoint, accuracy_new))
-print('checkpoint {0}: {1}'.format(classifier_other.checkpoint, accuracy_other))
+print(' - {0}:\n    {1}'.format(classifier.checkpoint, accuracy))
+print('    {1}'.format())
+print(' - {0}:'.format(classifier_new.checkpoint, accuracy_new))
