@@ -10,7 +10,7 @@ CLASSIFIER_SERVICE_ROOT=$(shell pwd)
 MENTORPAL_ROOT=$(shell dirname ${CLASSIFIER_SERVICE_ROOT})
 
 
-DOCKER_BASE_IMAGE=uscictdocker/mentorpal-classifier
+DOCKER_BASE_IMAGE?=uscictdocker/mentorpal-classifier
 DOCKER_BASE_IMAGE_ID=$(shell docker images -q ${DOCKER_BASE_IMAGE} 2> /dev/null)
 
 docker-build-base:

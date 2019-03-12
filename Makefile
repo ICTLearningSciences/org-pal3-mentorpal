@@ -1,7 +1,10 @@
-#
-# Phony targets.
-#
-.PHONY: help
+.PHONY: \
+	docker-build-services \
+	docker-push-tags-no-build \
+	clean \
+	docker-compose-up-no-rebuild \
+	docker-compose-up
+
 
 docker-build-services:
 	cd services/web_app && \
@@ -17,17 +20,109 @@ docker-push-tags-no-build:
 	cd services/classifier_api && \
 		$(MAKE) docker-push-tag
 
+
+# TODO: deploy process should...
+# 1) fail if any service's repo not committed
+# 2) create a git tag w [qa|prod]-${timestamp}
+# 3) build and push a docker image with same tag as the git tag
+# 4) build docker-compose config (EB version) with correct image tags, secrets, and config
+# 5) push tags to docker
+# 6) deploy to eb
+
 clean:
 	rm -rf build
 
-SECRET_PROPERTIES=config/secrets.properties
+###############################################################################
+# config/config.properties is where we non-sensitive default config for the app
+###############################################################################
 CONFIG_PROPERTIES=config/config.properties
 
+
+###############################################################################
+# config/secret.properties is where we store passwords for the app
+# This file should NEVER be committed to VC
+# but a user does need one to run the server locally or to deploy.
+###############################################################################
+SECRET_PROPERTIES=config/secrets.properties
+
+###############################################################################
+# This rule, gives user an explanatory message if config/secret.properties
+# is missing from their clone
+###############################################################################
 ${SECRET_PROPERTIES}:
 	@echo "you must create a secret.properties file at path ${SECRET_PROPERTIES}"
 	@echo "...and it must contain these props:"
 	@cat config/dist.secrets.properties
 	exit 1
+
+###############################################################################
+# Builds a docker-compose.yml for running locally 
+# with secrets and other config set
+###############################################################################
+DOCKER_COMPOSE_BUILD=build/docker-compose.yml
+${DOCKER_COMPOSE_BUILD}: ${SECRET_PROPERTIES}
+	mkdir -p build
+	cp docker-compose-template.yml build/docker-compose.yml
+
+	python bin/apply_properties.py \
+		${SECRET_PROPERTIES} \
+		build/*.yml
+
+	python bin/apply_properties.py \
+		${CONFIG_PROPERTIES} \
+		build/*.yml
+
+###############################################################################
+# Run the app locally with 'docker-compose up'
+# Does NOT clean the existing build directory first (if one exists)
+# Once the server is running, you can open the local site in a browser at
+# http://localhost:3000
+###############################################################################
+docker-compose-up-no-rebuild: ${DOCKER_COMPOSE_BUILD}
+	cd build && \
+		docker-compose up
+	
+	
+###############################################################################
+# Run the app locally with 'docker-compose up'
+# with a clean build of docker-compose.yml
+# (updated secrets and config)
+###############################################################################
+docker-compose-up: clean docker-compose-up-no-rebuild
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################
+# kubernetes/terraform/kops/eks
+#
+# The rules below relate to kubernetes and aws deployment thereof.
+# As of this writing, we're not going the kubernetes route,
+# mainly because the deployment to AWS is too hairy/difficult to fully automate.
+#
+# For reference, the rules to build and run mentorpal in k8s
+# work locally, but the deployment stuff is very WIP
+###############################################################################
 
 build/kubernetes: ${SECRET_PROPERTIES}
 	mkdir -p build
