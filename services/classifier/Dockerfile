@@ -24,7 +24,7 @@ RUN apt-get install -y cadaver
 WORKDIR /app
 COPY build/src .
 COPY build/mentors mentors
-COPY build/checkpoint checkpoint
+# COPY build/checkpoint checkpoint
 COPY build/.netrc /root/.netrc
 
 RUN bash -c "mkdir -p checkpoint/vector_models && \
@@ -33,28 +33,28 @@ RUN bash -c "mkdir -p checkpoint/vector_models && \
 	cadaver -r cmd ${WEBDAV_PATH} && \
 	rm cmd"
 
-# RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint && \
-# 	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint && \
-# 	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint/*\nexit\" >> cmd && \
-# 	cadaver -r cmd ${WEBDAV_PATH} && \
-# 	rm cmd"
+RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint && \
+	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint && \
+	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint/*\nexit\" >> cmd && \
+	cadaver -r cmd ${WEBDAV_PATH} && \
+	rm cmd"
 
-# RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan && \
-# 	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan && \
-# 	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan/*\nexit\" >> cmd && \
-# 	cadaver -r cmd ${WEBDAV_PATH} && \
-# 	rm cmd"
+RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan && \
+	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan && \
+	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan/*\nexit\" >> cmd && \
+	cadaver -r cmd ${WEBDAV_PATH} && \
+	rm cmd"
 
-# RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos && \
-# 	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos && \
-# 	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos/*\nexit\" >> cmd && \
-# 	cadaver -r cmd ${WEBDAV_PATH} && \
-# 	rm cmd"
+RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos && \
+	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos && \
+	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos/*\nexit\" >> cmd && \
+	cadaver -r cmd ${WEBDAV_PATH} && \
+	rm cmd"
 
-# RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne && \
-# 	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne && \
-# 	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne/*\nexit\" >> cmd && \
-# 	cadaver -r cmd ${WEBDAV_PATH} && \
-# 	rm cmd"
+RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne && \
+	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne && \
+	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne/*\nexit\" >> cmd && \
+	cadaver -r cmd ${WEBDAV_PATH} && \
+	rm cmd"
 
 ENV PYTHONPATH=/app:${PYTHONPATH}

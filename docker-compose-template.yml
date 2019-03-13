@@ -13,3 +13,10 @@ services:
     image: "uscictdocker/mentorpal-classifier-api"
     ports:
       - "5000:5000"
+  proxy:
+    image: "uscictdocker/mentorpal-proxy"
+    ports:
+      - "8080:80"
+    depends_on:
+      - classifier-api
+      - web-app

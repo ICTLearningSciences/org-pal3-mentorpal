@@ -19,13 +19,10 @@ clean:
 # It will require some effort to move the folder and fix everything
 # dependent that breaks, so for now just soft link it.
 build: clean
-	mkdir -p ${CLASSIFIER_ROOT}/build
-	mkdir -p ${CLASSIFIER_ROOT}/build/checkpoint/classifiers
-	mkdir -p ${CLASSIFIER_ROOT}/build/checkpoint/tests
+	mkdir -p ${CLASSIFIER_ROOT}/build/checkpoint
 	cp -r ${MENTORPAL_ROOT}/src ${CLASSIFIER_ROOT}/build
 	cp -r ${MENTORPAL_ROOT}/mentors ${CLASSIFIER_ROOT}/build
-	cp -r ${MENTORPAL_ROOT}/checkpoint/classifiers ${CLASSIFIER_ROOT}/build/checkpoint
-	cp -r ${MENTORPAL_ROOT}/checkpoint/tests ${CLASSIFIER_ROOT}/build/checkpoint
+	cp -r ${MENTORPAL_ROOT}/checkpoint/tests ${CLASSIFIER_ROOT}/build/checkpoint/tests
 	cp ${MENTORPAL_ROOT}/.netrc ${CLASSIFIER_ROOT}/build
 
 docker-build: build
