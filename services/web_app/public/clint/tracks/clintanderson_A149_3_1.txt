@@ -1,0 +1,72 @@
+00:0:0.0 --> 00:0:3.0
+- Something that a lot of people don't really realize
+
+00:0:3.0 --> 00:0:6.0
+-  about computer science is just how easy it is. Yes
+
+00:0:6.0 --> 00:0:9.0
+-  it can be very difficult. You sometimes have to figure
+
+00:0:9.0 --> 00:0:12.0
+-  out algorithms you have to figure out the best
+
+00:0:12.0 --> 00:0:15.0
+-  way to put the light that comes on the screen based
+
+00:0:15.0 --> 00:0:18.0
+-  on the moving of the characters, and you have
+
+00:0:18.0 --> 00:0:21.0
+-  to like, you have to understand that the computer
+
+00:0:21.0 --> 00:0:24.0
+-  is like calculating thousands of things per second
+
+00:0:24.0 --> 00:0:27.0
+-  you know, actually millions of things per second.
+
+00:0:27.0 --> 00:0:30.0
+-  So you have to like tweak and optimize the things
+
+00:0:30.0 --> 00:0:33.0
+-  that are, that you tell the computer to do to make
+
+00:0:33.0 --> 00:0:36.0
+-  it. So all that's very very difficult. However,
+
+00:0:36.0 --> 00:0:39.0
+-  some of computer science is really really easy I
+
+00:0:39.0 --> 00:0:42.0
+-  know that some people who had never done computers
+
+00:0:42.0 --> 00:0:45.0
+-  at all, can you know study for a week or two, and
+
+00:0:45.0 --> 00:0:48.0
+-  then put things on the computer like web design or
+
+00:0:48.0 --> 00:0:51.0
+-  something. So then based on what they learn over
+
+00:0:51.0 --> 00:0:54.0
+-  the next like a few weeks they can actually make
+
+00:0:54.0 --> 00:0:57.0
+-  a career out of that, and that's computer science
+
+00:0:57.0 --> 00:1:0.0
+-  as well. So it ranges from very easy to very hard,
+
+00:1:0.0 --> 00:1:3.0
+-  and lot of people think aw, computer science is so
+
+00:1:3.0 --> 00:1:6.0
+-  difficult. Eh, it's as difficult as you can make
+
+00:1:6.0 --> 00:1:9.0
+-  it. It's as difficult as how hard you're willing
+
+00:1:9.0 --> 00:1:12.0
+-  to try.
+

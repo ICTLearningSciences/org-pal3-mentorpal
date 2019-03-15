@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: minikube-ingress
+  annotations:
+spec:
+  rules:
+  - host: mentorpal.local
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web-app
+          servicePort: 3000
+      - path: /questions
+        backend:
+          serviceName: classifier-api
+          servicePort: 5000

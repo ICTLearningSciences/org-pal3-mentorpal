@@ -1,0 +1,22 @@
+version: '3.0'
+services:
+  web-app:
+    image: "uscictdocker/mentorpal-web-app"
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - classifier-api
+    environment:
+      - WATSON_USER={{WATSON_USER}}
+      - WATSON_PASSWORD={{WATSON_PASSWORD}}
+  classifier-api:
+    image: "uscictdocker/mentorpal-classifier-api"
+    ports:
+      - "5000:5000"
+  proxy:
+    image: "uscictdocker/mentorpal-proxy"
+    ports:
+      - "8080:80"
+    depends_on:
+      - classifier-api
+      - web-app

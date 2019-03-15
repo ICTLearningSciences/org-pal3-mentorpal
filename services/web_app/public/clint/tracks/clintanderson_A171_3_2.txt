@@ -1,0 +1,72 @@
+00:0:0.0 --> 00:0:3.62
+- The most difficult part of training I gotta say, it's
+
+00:0:3.62 --> 00:0:7.25
+-  probably the material, at least for nuclear technology.
+
+00:0:7.25 --> 00:0:10.88
+-  I wasn't a very good student. I got good grades
+
+00:0:10.88 --> 00:0:14.5
+-  but it was really difficult for me to learn
+
+00:0:14.5 --> 00:0:18.12
+-  the material myself. Like for instance one of the
+
+00:0:18.12 --> 00:0:21.75
+-  things that we learned is what grounds are you know,
+
+00:0:21.75 --> 00:0:25.38
+-  and it took me so long to figure out what a ground
+
+00:0:25.38 --> 00:0:29.0
+-  is, like ground they say it's the earth you know.
+
+00:0:29.0 --> 00:0:32.62
+-  Like what do you mean by that? Eventually you
+
+00:0:32.62 --> 00:0:36.25
+-  find out that ground means that that's a plane of
+
+00:0:36.25 --> 00:0:39.88
+-  neutral electricity so that you can have high voltage
+
+00:0:39.88 --> 00:0:43.5
+-  and low voltage and ground means, and there is
+
+00:0:43.5 --> 00:0:47.12
+-  a way to learn it but it just took me a really long
+
+00:0:47.12 --> 00:0:50.75
+-  time to learn it because I wasn't really technical.
+
+00:0:50.75 --> 00:0:54.38
+-  So that's a really simple thing I learned that
+
+00:0:54.38 --> 00:0:58.0
+-  you know like I had to catch up on, but they're
+
+00:0:58.0 --> 00:1:1.62
+-  a lot more complex things you know, like when you
+
+00:1:1.62 --> 00:1:5.25
+-  learned about multiplexes, you're learning about the
+
+00:1:5.25 --> 00:1:8.88
+-  way that the voltage regulator really works on
+
+00:1:8.88 --> 00:1:12.5
+-  the inside you know. Those can be really difficult
+
+00:1:12.5 --> 00:1:16.12
+-  so it's a wrap your head around, but eventually with
+
+00:1:16.12 --> 00:1:19.75
+-  enough opening the pages and putting your eyes
+
+00:1:19.75 --> 00:1:23.38
+-  on it over and over and over, it become simple. Everything
+
+00:1:23.38 --> 00:1:27.0
+-  becomes simple with lots of practice.
+

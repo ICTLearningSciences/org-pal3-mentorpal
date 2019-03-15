@@ -1,140 +1,204 @@
-#
-# Phony targets.
-#
-.PHONY: help
+.PHONY: \
+	docker-build-services \
+	docker-push-tags-no-build \
+	clean \
+	docker-compose-up-no-rebuild \
+	docker-compose-up
 
-SHELL:=/bin/bash
-NODE_ENV ?= qa
-EB_ENV ?= mentorpal-$(NODE_ENV)
 
-PKG_VERSION ?= $(shell node -p "require('./website_version/package.json').version")
-PKG_NAME ?= $(shell node -p "require('./website_version/package.json').name")
+docker-build-services:
+	cd services/web_app && \
+		$(MAKE) docker-build
 
-GIT_STATUS = $(shell git status -s)
-GIT_TAG ?= v$(PKG_VERSION)
-GIT_REPO ?= https://github.com/benjamid/MentorPAL
+	cd services/classifier_api && \
+		$(MAKE) docker-build
 
-DOCKER_USER ?= uscictdocker
-DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_USER).password"
-DOCKER_IMAGE_NAME ?= mentorpal
-DOCKER_IMAGE_TAG ?= $(DOCKER_USER)/$(DOCKER_IMAGE_NAME):$(EB_ENV)-$(GIT_TAG)
+	cd services/proxy && \
+		$(MAKE) docker-build
 
-EB_ARCHIVE_FILE := $(subst /,-,$(GIT_TAG))
-EB_ARCHIVE_FILE := $(EB_ENV)-$(subst :,-,$(GIT_TAG))-$(DATE).zip
+docker-push-tags-no-build:
+	cd services/web_app && \
+		$(MAKE) docker-push-tag
+	
+	cd services/classifier_api && \
+		$(MAKE) docker-push-tag
 
-DATE := $(shell date +"%Y%m%dT%H%M")
-CURDIR = $(shell pwd)
 
-build-commandline:
-	cp docker/commandline/Dockerfile Dockerfile && \
-	cp docker/commandline/.dockerignore .dockerignore && \
-	docker build --no-cache --build-arg NODE_ENV=$(NODE_ENV) -t $(DOCKER_IMAGE_TAG)-commandline .
-
-run-commandline: build-commandline
-	docker run \
-	  -it \
-	  --rm \
-	  -u 0 \
-	  --name mentor-pal-commandline \
-	  -e NODE_ENV=$(NODE_ENV) \
-		--mount type=bind,source=$(CURDIR),target=/docker_host \
-	  $(DOCKER_IMAGE_TAG)-commandline
-
-build-website:
-	cp docker/website/Dockerfile Dockerfile && \
-	cp docker/website/.dockerignore .dockerignore && \
-	docker build --no-cache --build-arg NODE_ENV=$(NODE_ENV) -t $(DOCKER_IMAGE_TAG)-website .
-
-run-website: build-website
-	docker run \
-	  -it \
-	  --rm \
-	  -u 0 \
-	  -p:3000:3000 \
-	  --name mentor-pal-website \
-	  -e NODE_ENV=dev \
-		--mount type=bind,source=$(CURDIR),target=/docker_host \
-	  $(DOCKER_IMAGE_TAG)-website
+# TODO: deploy process should...
+# 1) fail if any service's repo not committed
+# 2) create a git tag w [qa|prod]-${timestamp}
+# 3) build and push a docker image with same tag as the git tag
+# 4) build docker-compose config (EB version) with correct image tags, secrets, and config
+# 5) push tags to docker
+# 6) deploy to eb
 
 clean:
-	@rm -rf build dist *.zip
+	rm -rf build
 
-checkout-build-tag:
-	git clone $(GIT_REPO) build
-	cd build && \
-	git checkout tags/$(GIT_TAG) && \
-	cp ../website_version/password.txt ./website_version/password.txt && \
-	cp -R ../website_version/vector_models ./website_version
+###############################################################################
+# config/config.properties is where we non-sensitive default config for the app
+###############################################################################
+CONFIG_PROPERTIES=config/config.properties
 
-build-tag-node: checkout-build-tag
-	cd build && \
-	docker build --no-cache --build-arg NODE_ENV=$(NODE_ENV) -t $(DOCKER_IMAGE_TAG) .
 
-eb-build-tag: checkout-build-tag
-	cd build && \
-	sed -e s/\{\{DOCKER_IMAGE_TAG\}\}/$(subst /,\\/,$(DOCKER_IMAGE_TAG))/ \
-		Dockerrun.aws.json.dist > Dockerrun.aws.json
+###############################################################################
+# config/secret.properties is where we store passwords for the app
+# This file should NEVER be committed to VC
+# but a user does need one to run the server locally or to deploy.
+###############################################################################
+SECRET_PROPERTIES=config/secrets.properties
 
-# Tries to ensure user is logged in to docker image repo (dockerhub by default)
-# as  user DOCKER_USER.
-#
-# Will trigger an interactive prompt for password *unless* user has stored
-# their password in ~/.docker/$(DOCKER_USER).password
-# e.g. echo mypasswordhere > ~/.docker/uscict.password && chmod 600 ~/.docker/uscict.password
-docker-login:
-ifneq ("$(wildcard $(DOCKER_PASSWORD_FILE))","")
-	@echo "store your docker password at $(DOCKER_PASSWORD_FILE) so you won't have to enter it again"
-	docker login -u $(DOCKER_USER)
-else
-	cat $(DOCKER_PASSWORD_FILE) | docker login -u $(DOCKER_USER) --password-stdin
-endif
-
-docker-deploy-tag: build-tag-node docker-login
-	docker push $(DOCKER_IMAGE_TAG)
-
-eb-dist: build-tag-node eb-build-tag
-	mkdir -p dist/.elasticbeanstalk && \
-	cd build && \
-	zip ../dist/$(EB_ARCHIVE_FILE) Dockerrun.aws.json && \
-	cp ../.elasticbeanstalk/*.yml ../dist/.elasticbeanstalk && \
-	printf "\ndeploy:\n  artifact: %s\n" $(EB_ARCHIVE_FILE) \
-		>> ../dist/.elasticbeanstalk/config.yml
-
-eb-deploy: eb-dist docker-deploy-tag
-	cd dist && \
-	eb use $(EB_ENV) && eb deploy
-
-eb-deploy-prod: NODE_ENV=prod
-eb-deploy-prod: eb-deploy
-
-eb-deploy-qa: NODE_ENV=qa
-eb-deploy-qa: eb-deploy
-
-# eb-cli-init
-#
-# Init the AWS Elastic Beanstalk CLI tool.
-#
-# No make 'deploy' recipes will work without first initing tool
-eb-cli-init:
-	eb init -i
-
-version:
-ifneq ("$(GIT_STATUS)","")
-	@echo "git working copy has local changes. Cannot tag version"
+###############################################################################
+# This rule, gives user an explanatory message if config/secret.properties
+# is missing from their clone
+###############################################################################
+${SECRET_PROPERTIES}:
+	@echo "you must create a secret.properties file at path ${SECRET_PROPERTIES}"
+	@echo "...and it must contain these props:"
+	@cat config/dist.secrets.properties
 	exit 1
-endif
-	sh ./make_version.sh
 
-run-local:
-	docker run \
-	  -it \
-	  --rm \
-	  -u 0 \
-	  -p:3000:3000 \
-	  --name mentor-pal-web \
-	  -e NODE_ENV=dev \
-		--mount type=bind,source=$(CURDIR),target=/docker_host \
-	  $(DOCKER_IMAGE_TAG)
+###############################################################################
+# Builds a docker-compose.yml for running locally 
+# with secrets and other config set
+###############################################################################
+DOCKER_COMPOSE_BUILD=build/docker-compose.yml
+${DOCKER_COMPOSE_BUILD}: ${SECRET_PROPERTIES}
+	mkdir -p build
+	cp docker-compose-template.yml build/docker-compose.yml
 
-ssh:
-	eb use $(EB_ENV) && eb ssh
+	python bin/apply_properties.py \
+		${SECRET_PROPERTIES} \
+		build/*.yml
+
+	python bin/apply_properties.py \
+		${CONFIG_PROPERTIES} \
+		build/*.yml
+
+###############################################################################
+# Run the app locally with 'docker-compose up'
+# Does NOT clean the existing build directory first (if one exists)
+# Once the server is running, you can open the local site in a browser at
+# http://localhost:3000
+###############################################################################
+docker-compose-up-no-rebuild: ${DOCKER_COMPOSE_BUILD}
+	cd build && \
+		docker-compose up
+	
+	
+###############################################################################
+# Run the app locally with 'docker-compose up'
+# with a clean build of docker-compose.yml
+# (updated secrets and config)
+###############################################################################
+docker-compose-up: clean docker-compose-up-no-rebuild
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###############################################################################
+# kubernetes/terraform/kops/eks
+#
+# The rules below relate to kubernetes and aws deployment thereof.
+# As of this writing, we're not going the kubernetes route,
+# mainly because the deployment to AWS is too hairy/difficult to fully automate.
+#
+# For reference, the rules to build and run mentorpal in k8s
+# work locally, but the deployment stuff is very WIP
+###############################################################################
+
+build/kubernetes: ${SECRET_PROPERTIES}
+	mkdir -p build
+	rm -rf build/kubernetes
+	cp -r kubernetes build
+
+	python bin/apply_properties.py \
+		${SECRET_PROPERTIES} \
+		build/kubernetes/*.yml
+
+	python bin/apply_properties.py \
+		${CONFIG_PROPERTIES} \
+		build/kubernetes/*.yml
+
+# TODO: right now kubernetes pulling docker images from docker hub, 
+# so you need to rebuild for each test?
+# Change so that it uses local images during dev
+kubernetes-deploy-local-no-rebuild: build/kubernetes
+	./bin/kubernetes_deploy_local.sh
+
+# TODO: right now kubernetes pulling docker images from docker hub, 
+# so you need to rebuild for each test?
+# Change so that it uses local images during dev
+kubernetes-deploy-prod-no-rebuild: build/kubernetes
+	./bin/kubernetes_deploy_prod.sh
+
+kubernetes-deploy-local: clean kubernetes-deploy-local-no-rebuild
+
+
+kubernetes-deploy-prod: clean kubernetes-deploy-prod-no-rebuild
+
+eks-install:
+	# TODO - support for not just osx
+	# TODO - check if already installed
+	brew install weaveworks/tap/eksctl
+
+CLUSTER_NAME?=mentorpal-test
+AWS_REGION?=us-east-1
+AWS_ZONES?=us-east-1a,us-east-1b
+AWS_NODE_TYPE?=t2.large # for now need large because of mem specs
+NODE_COUNT_PREFERRED=1
+NODE_COUNT_MIN?=1
+NODE_COUNT_MAX?=3
+
+eks-create-cluster:
+	eksctl create cluster \
+		--name=${CLUSTER_NAME} \
+		--region=${AWS_REGION} \
+		--zones=${AWS_ZONES} \
+		--node-type=${AWS_NODE_TYPE} \
+		--nodes=${NODE_COUNT_PREFERRED} \
+		--nodes-min=${NODE_COUNT_MIN} \
+		--nodes-max=${NODE_COUNT_MAX}
+
+
+
+terraform/plan.tf:
+	cd terraform && \
+		terraform init && \
+		terraform plan -out plan.tf
+
+tf-clean:
+	rm terraform/plan.tf
+
+tf-plan: tf-clean terraform/plan.tf
+	
+tf-apply: terraform/plan.tf
+	cd terraform && \
+	terraform apply --auto-approve plan.tf
+
+	
+cluster-validate-ingress-controller:
+	kubectl logs -n kube-system $(kubectl get po -n kube-system | egrep -o alb-ingress[a-zA-Z0-9-]+)
+
+cluster-validate-ingress:
+	kubectl get ingress/2048-ingress -n 2048-game -o wide
