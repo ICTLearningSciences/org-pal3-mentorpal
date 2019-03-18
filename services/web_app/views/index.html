@@ -45,7 +45,7 @@
 						</button>
 						<span id="user-display" style="vertical-align: -10px; font-size: 24px; padding-left: 8px; font-family: "Impact, Charcoal, sans-serif""></span>
 						<button style="visibility:hidden"></button>
-						<a href="http://ict.usc.edu" <class="navbar-brand" "mr-sm-2"><img src="/ICT.png"></a>
+						<a href="http://ict.usc.edu" class="navbar-brand mr-sm-2"><img src="/ICT.png"></a>
 				</div>
 		</nav>
 		<div class = "wrap">	<!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_overlay-->
@@ -77,7 +77,7 @@
 				<div id="input-holder" class="row" style="padding-right: 10px; padding-left: 10px">
 					<div id = "input-box" class="col-xl-11 col-lg-11 col-md-11 col-sm-10 col-10">
 						<div class = "text-box-setup">
-							<textarea id="question-Box" class="form-input form-control" "scroll-pane" onkeydown="if (event.keyCode == 13) send()"></textarea>
+							<textarea id="question-Box" class="form-input form-control scroll-pane" onfocus="clearInputContents(this);" onkeydown="if (event.keyCode == 13) send()"></textarea>
 							<button id="mic-button" class = "btn mic-setup mic-off" onclick = "watson()"><i class="fas fa-microphone fa-2x"></i></button>
 							<button id="stop-button" style="display: none;" onclick = "stopWatson()" class = "btn mic-setup mic-on"><i class="fas fa-microphone fa-2x"></i></button>
 						</div>
