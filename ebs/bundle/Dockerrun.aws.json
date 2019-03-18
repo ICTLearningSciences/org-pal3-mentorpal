@@ -1,0 +1,77 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "nginx-proxy-conf",
+      "host": {
+        "sourcePath": "/var/app/current/proxy/conf.d"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "web-app",
+      "image": "{{WEB_APP_IMAGE_TAG}}",
+      "portMappings": [
+        {
+          "hostPort": 3000,
+          "containerPort": 3000
+        }
+      ],
+      "essential": true,
+      "memory": 1024,
+      "links": [
+        "classifier-api"
+      ],
+      "environment": [
+        {
+          "name": "WATSON_USER",
+          "value": "{{WATSON_USER}}"
+        },
+        {
+          "name": "WATSON_PASSWORD",
+          "value": "{{WATSON_PASSWORD}}"
+        }
+      ]
+    },
+    {
+      "name": "classifier-api",
+      "image": "{{CLASSIFIER_API_IMAGE_TAG}}",
+      "essential": true,
+      "memory": 6144,
+      "portMappings": [
+        {
+          "hostPort": 5000,
+          "containerPort": 5000
+        }
+      ]
+    },
+    {
+      "name": "nginx-proxy",
+      "image": "nginx",
+      "essential": true,
+      "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 80
+        }
+      ],
+      "links": [
+        "web-app",
+        "classifier-api"
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "nginx-proxy-conf",
+          "containerPath": "/etc/nginx/conf.d",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "awseb-logs-nginx-proxy",
+          "containerPath": "/var/log/nginx"
+        }
+      ]
+    }
+  ]
+}

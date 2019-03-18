@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: mentorpal-org-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+  labels:
+    app: mentorpal-org-ingress
+spec:
+  rules:
+  - host: apkg.org
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: web-app
+          servicePort: 3000
+      - path: /questions
+        backend:
+          serviceName: classifier-api
+          servicePort: 5000
