@@ -18,12 +18,8 @@ RUN bash -c "source activate ${CONDA_ENV} && \
     python -m nltk.downloader averaged_perceptron_tagger"
 
 WORKDIR /app
-COPY build/package*.json .
 
-COPY build/src src
-COPY build/mentors mentors
-COPY build/checkpoint checkpoint
-COPY build/.netrc /root/.netrc
+COPY build .
 
 RUN apt-get update
 RUN apt-get install -y apt-transport-https
@@ -38,6 +34,6 @@ RUN bash -c "mkdir -p checkpoint/vector_models && \
 	rm cmd"
 
 EXPOSE 80
-WORKDIR /usr/src/app/website_version
+WORKDIR /usr/src/app
 RUN npm install
 CMD npm run start

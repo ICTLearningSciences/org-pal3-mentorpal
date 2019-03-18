@@ -56,7 +56,7 @@ if (mentorID == 'clint') {
 }
 
 mentor.videoURL = "https://pal3.ict.usc.edu/resources/mentor/"+mentorID+"/"
-mentor.idleURL = "https://pal3.ict.usc.edu/resources/mentor/"+mentorID+"/idle"
+mentor.idleURL = mentor.videoURL+"/idle"
 mentor.topicsURL = "/"+mentorID+"/topics.csv"
 mentor.questions = "/"+mentorID+"/Questions_Paraphrases_Answers.csv"
 mentor.classifier = "/"+mentorID+"/classifier_data.csv"
@@ -174,7 +174,7 @@ function toChoices() {
 
 //send the question on enter or send key
 function send() {
-	const question = document.getElementById("question-Box").value
+	question = document.getElementById("question-Box").value
 
 	if (question && question != "\n"){
 		stopWatson();
@@ -184,11 +184,14 @@ function send() {
 				// first check if the question has a direct match
 				for (var i = 0; i < results.data.length; i++) {
 					try {
-						var questions = results.data[i][3].split('\r')
+						var questions = results.data[i][3].split('\n')
+
 						// if direct match, use direct answer and don't bother with python tensorflow
 						for (var j = 0; j < questions.length; j++) {
 							var q = questions[j].toLowerCase().replace(/\.|\?|\,| /g, '')
-							if (q == question.toLowerCase().replace(/\.|\?|\,| /g, '')) {
+							var q2 = question.toLowerCase().replace(/\.|\?|\,| /g, '')
+
+							if (q == q2) {
 								const videoID = results.data[i][0]
 								const transcript = sanitize(results.data[i][2])
 								video.src = mentor.videoURL + videoID + isMobile + '.mp4';
@@ -197,6 +200,7 @@ function send() {
 								video.controls = true;
 								document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
 								document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>' + mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
+								document.getElementById("question-Box").value = '';
 								addToBlacklist(videoID)
 								return;
 							}
@@ -204,7 +208,8 @@ function send() {
 					}
 					catch (error) {}
 				}
-				socket.emit("sendQuestion", {"Question":(document.getElementById("question-Box").value),"Mentor":(mentorID),"UserID":(username),"Blacklist":(blacklist)});
+				question = sanitize(question)
+				socket.emit("sendQuestion", {"Question":(question),"Mentor":(mentorID),"UserID":(username),"Blacklist":(blacklist)});
 				document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + question + '<br>';
 				document.getElementById("question-Box").value = '';
 			}
@@ -213,7 +218,11 @@ function send() {
 }
 
 function sanitize(str_input) {
-	return str_input.replace(/\uFFFD/g, ' ').replace(/\u00E5/g, ' ').replace(/\u00CA/g, '')
+	str_input = str_input.replace(/\uFFFD/g, ' ')
+	str_input = str_input.replace(/\u00E5/g, ' ')
+	str_input = str_input.replace(/\u00CA/g, ' ')
+	str_input.replace(/[\W_]+/g, '');
+	return str_input
 }
 
 function addToBlacklist(response) {

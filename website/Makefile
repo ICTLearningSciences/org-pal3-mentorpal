@@ -45,11 +45,6 @@ build: clean
 	cp ${MENTORPAL_ROOT}/mentors/carlos/data/* ${WEB_ROOT}/build/public/carlos
 	cp ${MENTORPAL_ROOT}/mentors/julianne/data/* ${WEB_ROOT}/build/public/julianne
 
-local-run: build
-	cd build && \
-	npm install && \
-	node app dev
-
 docker-build: build
 	docker build --no-cache --build-arg NODE_ENV=$(NODE_ENV) CHECKPOINT=${CHECKPOINT} -t ${DOCKER_IMAGE_TAG} .
 
@@ -64,6 +59,14 @@ docker-run:
 			--mount type=bind,source=$(WEB_ROOT),target=/docker_host \
 			$(DOCKER_IMAGE_TAG) \
 				bash
+
+local-build: build
+	cd build && \
+	npm install
+
+local-run:
+	cd build && \
+	node app dev
 
 docker-login:
 ifneq ("$(wildcard $(DOCKER_PASSWORD_FILE))","")
