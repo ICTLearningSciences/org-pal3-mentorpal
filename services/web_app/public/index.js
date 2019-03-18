@@ -175,8 +175,9 @@ function toChoices() {
 //send the question on enter or send key
 function send() {
 	question = document.getElementById("question-Box").value
+	question = question.trim().replace('\n', '\r')
 
-	if (question){
+	if (question) {
 		stopWatson();
 		Papa.parse(mentor.classifier, {
 			download: true,
@@ -184,7 +185,7 @@ function send() {
 				// first check if the question has a direct match
 				for (var i = 0; i < results.data.length; i++) {
 					try {
-						var questions = results.data[i][3].split('\r')
+						var questions = results.data[i][3].replace('\n', '\r').split('\r')
 						// if direct match, use direct answer and don't bother with python tensorflow
 						for (var j = 0; j < questions.length; j++) {
 							var q = sanitize(questions[j]).toLowerCase()
@@ -218,6 +219,7 @@ function sanitize(str_input) {
 	str_input = str_input.replace(/\u00E5/g, ' ')
 	str_input = str_input.replace(/\u00CA/g, ' ')
 	str_input = str_input.replace(/\.|\?|\,| /g, '')
+	str_input = str_input.trim()
 
 	return str_input
 }
