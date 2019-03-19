@@ -86,7 +86,8 @@ ${DOCKER_COMPOSE_BUILD}: ${SECRET_PROPERTIES}
 # http://localhost:3000
 ###############################################################################
 docker-compose-up-no-rebuild: ${DOCKER_COMPOSE_BUILD}
-	cd build && \
+	source activate ${DEV_ENV} && \
+		cd build && \
 		docker-compose up
 	
 	
