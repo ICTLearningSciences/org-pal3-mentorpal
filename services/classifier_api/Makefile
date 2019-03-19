@@ -93,12 +93,12 @@ exec-shell:
 
 
 TEST_ENV=mentorpal_classifier_service_testing
-tests-env-create:
+test-env-create:
 	cd tests && \
 		./conda_env_create.sh ${TEST_ENV}
 
 
-tests-run:
+test:
 	source activate ${TEST_ENV} && \
 		cd tests && \
 		bolt test-features
