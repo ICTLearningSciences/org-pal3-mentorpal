@@ -1,4 +1,3 @@
-import os
 import json
 from flask import Blueprint, jsonify, request
 from mentorpal_classifier_api.errors import InvalidUsage
@@ -6,21 +5,6 @@ from mentorpal_classifier_api.mentors import find_mentor_classifier
 
 
 questions_blueprint = Blueprint('questions', __name__)
-
-# @questions_blueprint.route('/')
-# def index():
-#     return jsonify({
-#         'version': '1.0'
-#     })
-
-@questions_blueprint.route('/ping', methods=['GET'])
-def ping():
-    return jsonify({
-        'status': 'success',
-        'message': 'pong!',
-        'container_id': os.uname()[1]
-    })
-
 
 @questions_blueprint.route('/', methods=['GET','POST'])
 def queries():

@@ -1,7 +1,7 @@
 Feature: Mentors answer questions
 
   Scenario Outline: query to a mentor receives ideal response
-    Given a request url http://localhost:5000/questions
+    Given a request url http://localhost:5000/mentor-api/questions
         And request parameters
           | param     | value         |
           | query     | <query>       |

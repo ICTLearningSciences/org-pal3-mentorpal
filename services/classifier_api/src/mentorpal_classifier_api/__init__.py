@@ -33,7 +33,10 @@ def create_app(script_info=None):
         return response
 
     # register blueprints
-    from mentorpal_classifier_api.questions import questions_blueprint
-    app.register_blueprint(questions_blueprint, url_prefix='/questions')
+    from mentorpal_classifier_api.blueprints.ping import ping_blueprint
+    app.register_blueprint(ping_blueprint, url_prefix='/mentor-api/ping')
+
+    from mentorpal_classifier_api.blueprints.questions import questions_blueprint
+    app.register_blueprint(questions_blueprint, url_prefix='/mentor-api/questions')
 
     return app

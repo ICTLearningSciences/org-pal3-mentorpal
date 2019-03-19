@@ -55,7 +55,7 @@ router.get('/carlos/embed', function(req, res, next){
 const queryMentor = async(mentorId, question) => {
   
   const res = await axios.get(
-    `${CLASSIFIER_API_URL}/questions`, {
+    `${CLASSIFIER_API_URL}/mentor-api/questions`, {
       params: {
         mentor: mentorId,
         query: question
