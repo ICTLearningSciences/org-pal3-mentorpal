@@ -5,6 +5,10 @@
 	docker-compose-up-no-rebuild \
 	docker-compose-up
 
+DEV_ENV=mentorpal-dev
+dev-env-create:
+	cd dev-env && \
+		./create.sh ${DEV_ENV}
 
 docker-build-services:
 	cd services/web_app && \

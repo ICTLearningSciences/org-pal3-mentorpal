@@ -1,12 +1,15 @@
 #THIS FIXES THE ERROR  https://github.com/extrabacon/python-shell/issues/113 Supresses the tensorflow warning
 
-import interface
 import json
-from logger import Logger
+from mentorpal.logger import Logger
+from mentorpal.interface import BackendInterface
 
-global bi
-bi=interface.BackendInterface("classifier")
-bi.preload(['clint', 'dan', 'julianne', 'carlos'])
+bi=BackendInterface('classifier')
+bi.preload('clint')
+bi.preload('dan')
+bi.preload('carlos')
+bi.preload('julianne')
+
 while True:	#for now, the overhead of threading module actually doesn't make that worthwhile, if the model gets more complicated it migth be worth it
 	x = input("For Nodejs to enter value, but what is the question?  *use python3*")	#gets the question and id of the client
 	y = x.split('~~');

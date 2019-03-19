@@ -1,5 +1,5 @@
-website_version/node_modules
-website_version/password.txt
+node_modules
+password.txt
 .netrc
 __pycache__
 *.pyc
