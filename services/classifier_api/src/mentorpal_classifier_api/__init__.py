@@ -39,4 +39,8 @@ def create_app(script_info=None):
     from mentorpal_classifier_api.blueprints.questions import questions_blueprint
     app.register_blueprint(questions_blueprint, url_prefix='/mentor-api/questions')
 
+
+    from mentorpal_classifier_api.blueprints.mentors import mentors_blueprint
+    app.register_blueprint(mentors_blueprint, url_prefix='/mentor-api/mentors')
+
     return app

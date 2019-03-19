@@ -6,3 +6,5 @@ class Config(object):
     # override with a list of ids for mentors
     # that should preload with the server
     MENTOR_IDS_PRELOAD = [ ]
+
+    MENTOR_DATA = '/app/mentors'

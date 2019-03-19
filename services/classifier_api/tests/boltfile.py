@@ -21,7 +21,7 @@ config = {
 	'behave-restful': {
 		'directory': 'features' # path to features folder
 		# ,'options' : {
-		# 	'i': 'features/estimates_2d_poses_for_videos_with_progress.feature'
+		# 	'i': 'features/serves_mentor_track.feature'
 		# }
 		# 'definition': 'yourdefinition',	# if you are using definitions for different environments
 	}
