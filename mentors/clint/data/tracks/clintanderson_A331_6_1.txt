@@ -1,9 +1,0 @@
-00:0:0.0 --> 00:0:4.33
-- I got my undergraduate degree in computer science from
-
-00:0:4.33 --> 00:0:8.67
--  the University of California at Berkeley, and also
-
-00:0:8.67 --> 00:0:13.0
--  I had an education minor.
-

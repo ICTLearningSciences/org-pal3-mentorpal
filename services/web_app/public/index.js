@@ -63,6 +63,9 @@ mentor.idleURL = "https://pal3.ict.usc.edu/resources/mentor/"+mentorID+"/idle"
 mentor.topicsURL = `${MENTOR_API_URL}/mentors/${mentorID}/data/topics.csv`
 mentor.questions = `${MENTOR_API_URL}/mentors/${mentorID}/data/Questions_Paraphrases_Answers.csv`
 mentor.classifier = `${MENTOR_API_URL}/mentors/${mentorID}/data/classifier_data.csv`
+mentor.trackUrlFor = function(id) {
+	return `${MENTOR_API_URL}/mentors/${mentorID}/tracks/${id}.vtt`
+}
 
 //run everytime the window is resized to keep it responsive
 function resizeFix() {
@@ -104,7 +107,7 @@ Papa.parse(mentor.topicsURL, {
 		globalResults = results;
 		resizeFix();	//run this after we get the button names
 		video.src = mentor.videoURL + mentor.introURL + isMobile + ".mp4";
-		document.getElementById("track").src = "/"+mentorID+"/tracks/"+mentor.introURL+".vtt";
+		document.getElementById("track").src = mentor.trackUrlFor(mentor.introURL);
 	}
 });
 
@@ -196,7 +199,7 @@ function send() {
 								const videoID = results.data[i][0]
 								const transcript = sanitize(results.data[i][2])
 								video.src = mentor.videoURL + videoID + isMobile + '.mp4';
-								document.getElementById("track").src = "/" + mentorID + "/tracks/" + videoID + ".vtt";
+								document.getElementById("track").src = mentor.trackUrlFor(videoID);
 								video.play();
 								video.controls = true;
 								document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
@@ -273,7 +276,7 @@ function videoSwitch(){
 socket.on("receiveAnswer", function(data) {		//got the answer
 	const transcript = sanitize(data.transcript)
 	video.src = mentor.videoURL+data.videoID + isMobile + '.mp4';
-	document.getElementById("track").src = "/"+mentorID+"/tracks/"+data.videoID+".vtt";
+	document.getElementById("track").src = mentor.trackUrlFor(data.videoID);
 	video.play();
 	video.controls = true;
 	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
