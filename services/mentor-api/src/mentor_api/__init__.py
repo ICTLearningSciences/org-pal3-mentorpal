@@ -2,9 +2,9 @@ import os
 import json
 from flask import Flask, jsonify
 from flask_cors import CORS
-from mentorpal_classifier_api.errors import InvalidUsage
-from mentorpal_classifier_api.mentors import find_mentor_classifier
-from mentorpal_classifier_api.config_default import Config
+from mentor_api.errors import InvalidUsage
+from mentor_api.mentors import find_mentor_classifier
+from mentor_api.config_default import Config
 
 def create_app(script_info=None):
 
@@ -33,14 +33,14 @@ def create_app(script_info=None):
         return response
 
     # register blueprints
-    from mentorpal_classifier_api.blueprints.ping import ping_blueprint
+    from mentor_api.blueprints.ping import ping_blueprint
     app.register_blueprint(ping_blueprint, url_prefix='/mentor-api/ping')
 
-    from mentorpal_classifier_api.blueprints.questions import questions_blueprint
+    from mentor_api.blueprints.questions import questions_blueprint
     app.register_blueprint(questions_blueprint, url_prefix='/mentor-api/questions')
 
 
-    from mentorpal_classifier_api.blueprints.mentors import mentors_blueprint
+    from mentor_api.blueprints.mentors import mentors_blueprint
     app.register_blueprint(mentors_blueprint, url_prefix='/mentor-api/mentors')
 
     return app

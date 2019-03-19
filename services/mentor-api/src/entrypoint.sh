@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export FLASK_APP=/app/mentorpal_classifier_api
+export FLASK_APP=/app/mentorpal_mentor-api
 
 cd /app && gunicorn -b 0.0.0.0:5000 manage:app
 # -h 0.0.0.0

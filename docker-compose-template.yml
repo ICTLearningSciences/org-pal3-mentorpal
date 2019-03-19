@@ -5,12 +5,12 @@ services:
     ports: 
       - "3000:3000"
     depends_on:
-      - classifier-api
+      - mentor-api
     environment:
       - WATSON_USER={{WATSON_USER}}
       - WATSON_PASSWORD={{WATSON_PASSWORD}}
-  classifier-api:
-    image: "uscictdocker/mentorpal-classifier-api"
+  mentor-api:
+    image: "uscictdocker/mentorpal-mentor-api"
     ports:
       - "5000:5000"
   proxy:
@@ -18,5 +18,5 @@ services:
     ports:
       - "8080:80"
     depends_on:
-      - classifier-api
+      - mentor-api
       - web-app

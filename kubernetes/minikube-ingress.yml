@@ -12,7 +12,7 @@ spec:
         backend:
           serviceName: web-app
           servicePort: 3000
-      - path: /questions
+      - path: /mentor-api
         backend:
-          serviceName: classifier-api
+          serviceName: mentor-api
           servicePort: 5000

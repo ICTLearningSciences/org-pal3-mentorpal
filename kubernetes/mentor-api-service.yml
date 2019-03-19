@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: classifier-api
+  name: mentor-api
   labels:
-    service: classifier-api
+    service: mentor-api
 spec:
   selector:
-    app: classifier-api
+    app: mentor-api
   ports:
   - port: 5000
     targetPort: 5000

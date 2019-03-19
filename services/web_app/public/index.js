@@ -55,11 +55,14 @@ if (mentorID == 'clint') {
 	};
 }
 
+
+const MENTOR_API_URL = '/mentor-api'
+
 mentor.videoURL = "https://pal3.ict.usc.edu/resources/mentor/"+mentorID+"/"
 mentor.idleURL = "https://pal3.ict.usc.edu/resources/mentor/"+mentorID+"/idle"
-mentor.topicsURL = "/"+mentorID+"/topics.csv"
-mentor.questions = "/"+mentorID+"/Questions_Paraphrases_Answers.csv"
-mentor.classifier = "/"+mentorID+"/classifier_data.csv"
+mentor.topicsURL = `${MENTOR_API_URL}/mentors/${mentorID}/data/topics.csv`
+mentor.questions = `${MENTOR_API_URL}/mentors/${mentorID}/data/Questions_Paraphrases_Answers.csv`
+mentor.classifier = `${MENTOR_API_URL}/mentors/${mentorID}/data/classifier_data.csv`
 
 //run everytime the window is resized to keep it responsive
 function resizeFix() {

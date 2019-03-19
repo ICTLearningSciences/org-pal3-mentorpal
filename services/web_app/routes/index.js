@@ -5,7 +5,7 @@ var router = express.Router()
 var io = require('socket.io')(http)
 var watson = require('watson-developer-cloud')
 const requireEnv = require('../utils/require_env')
-const CLASSIFIER_API_URL = process.env.CLASSIFIER_API_URL || 'http://classifier-api:5000'
+const MENTOR_API_URL = process.env.MENTOR_API_URL || 'http://mentor-api:5000/mentor-api'
 
 const createWatsonTokenGen = () => {
   try {
@@ -55,7 +55,7 @@ router.get('/carlos/embed', function(req, res, next){
 const queryMentor = async(mentorId, question) => {
   
   const res = await axios.get(
-    `${CLASSIFIER_API_URL}/mentor-api/questions`, {
+    `${MENTOR_API_URL}/questions`, {
       params: {
         mentor: mentorId,
         query: question

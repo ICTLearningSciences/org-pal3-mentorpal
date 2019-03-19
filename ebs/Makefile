@@ -26,7 +26,7 @@ DOCKER_ACCOUNT ?= uscictdocker
 DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_ACCOUNT).password"
 
 DOCKER_WEB_APP_TAG ?= $(DOCKER_ACCOUNT)/mentorpal-web-app:$(GIT_HASH)
-DOCKER_CLASSIFIER_API_TAG ?= $(DOCKER_ACCOUNT)/mentorpal-classifier-api:$(GIT_HASH)
+DOCKER_MENTOR_API_TAG ?= $(DOCKER_ACCOUNT)/mentorpal-mentor-api:$(GIT_HASH)
 DOCKER_PROXY_TAG ?= $(DOCKER_ACCOUNT)/mentorpal-proxy:$(GIT_HASH)
 DOCKER_CLASSIFIER_BASE_TAG ?= $(DOCKER_ACCOUNT)/mentorpal-classifier:$(GIT_HASH)
 
@@ -113,7 +113,7 @@ build/ebs/.elasticbeanstalk/config.yml: build/ebs/config.properties
 build/ebs/Dockerrun.aws.properties: build/clone
 	mkdir -p build/ebs
 
-	@echo "CLASSIFIER_API_IMAGE_TAG=${DOCKER_CLASSIFIER_API_TAG}" > build/ebs/Dockerrun.aws.properties
+	@echo "MENTOR_API_IMAGE_TAG=${DOCKER_MENTOR_API_TAG}" > build/ebs/Dockerrun.aws.properties
 	@echo "WEB_APP_IMAGE_TAG=${DOCKER_WEB_APP_TAG}" >> build/ebs/Dockerrun.aws.properties
 	@echo "PROXY_IMAGE_TAG=${DOCKER_PROXY_TAG}" >> build/ebs/Dockerrun.aws.properties
 	@echo "" >> build/ebs/Dockerrun.aws.properties
@@ -157,8 +157,8 @@ docker-build-tags: build/clone
 	cd build/clone/services/classifier && \
 		$(MAKE) docker-build DOCKER_IMAGE=${DOCKER_CLASSIFIER_BASE_TAG}
 
-	cd build/clone/services/classifier_api && \
-		$(MAKE) docker-build DOCKER_IMAGE=${DOCKER_CLASSIFIER_API_TAG} DOCKER_BASE_IMAGE=${DOCKER_CLASSIFIER_BASE_TAG}
+	cd build/clone/services/mentor-api && \
+		$(MAKE) docker-build DOCKER_IMAGE=${DOCKER_MENTOR_API_TAG} DOCKER_BASE_IMAGE=${DOCKER_CLASSIFIER_BASE_TAG}
 
 	cd build/clone/services/web_app && \
 		$(MAKE) docker-build DOCKER_IMAGE=${DOCKER_WEB_APP_TAG}
@@ -192,7 +192,7 @@ endif
 ##############################################################################
 docker-push-tags: docker-login
 	docker push ${DOCKER_CLASSIFIER_BASE_TAG}
-	docker push ${DOCKER_CLASSIFIER_API_TAG}
+	docker push ${DOCKER_MENTOR_API_TAG}
 	docker push ${DOCKER_WEB_APP_TAG}
 	docker push ${DOCKER_PROXY_TAG}
 

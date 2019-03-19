@@ -1,21 +1,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: classifier-api
+  name: mentor-api
   labels:
-    name: classifier-api
+    name: mentor-api
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: classifier-api
+        app: mentor-api
     spec:
       containers:
-      - name: classifier-api
-        image: uscictdocker/mentorpal-classifier-api
+      - name: mentor-api
+        image: uscictdocker/mentorpal-mentor-api
         imagePullPolicy: IfNotPresent
         env:
-        - name: classifier-api_ENV
+        - name: mentor-api_ENV
           value: "development"
       restartPolicy: Always

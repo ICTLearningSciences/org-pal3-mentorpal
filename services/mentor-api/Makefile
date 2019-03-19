@@ -1,5 +1,5 @@
 DOCKER_ACCOUNT?=uscictdocker
-DOCKER_REPO?=mentorpal-classifier-api
+DOCKER_REPO?=mentorpal-mentor-api
 DOCKER_TAG?=latest
 DOCKER_IMAGE=${DOCKER_ACCOUNT}/${DOCKER_REPO}:${DOCKER_TAG}
 DOCKER_CONTAINER=mentorpal-classifier-service
@@ -67,9 +67,7 @@ docker-run-dev:
 			--name ${DOCKER_CONTAINER} \
 			--shm-size 8G \
 			-p 5000:5000 \
-			-v ${CLASSIFIER_SERVICE_ROOT}/src/mentorpal_classifier:/app/mentorpal_classifier \
-			-v ${CLASSIFIER_SERVICE_ROOT}/src/mentorpal_classifier_api:/app/mentorpal_classifier_api \
-			-v ${CLASSIFIER_SERVICE_ROOT}/features:/test/features/mentorpal_classifier \
+			-v ${CLASSIFIER_SERVICE_ROOT}/src/mentor_api:/app/mentor_api \
 		${DOCKER_IMAGE} 
 
 docker-run-dev-shell:
@@ -79,9 +77,7 @@ docker-run-dev-shell:
 			--name ${DOCKER_CONTAINER} \
 			--shm-size 8G \
 			-p 5000:5000 \
-			-v ${CLASSIFIER_SERVICE_ROOT}/src/mentorpal_classifier:/app/mentorpal_classifier \
-			-v ${CLASSIFIER_SERVICE_ROOT}/src/mentorpal_classifier_api:/app/mentorpal_classifier_api \
-			-v ${CLASSIFIER_SERVICE_ROOT}/features:/test/features/mentorpal_classifier \
+			-v ${CLASSIFIER_SERVICE_ROOT}/src/mentor_api:/app/mentor_api \
 			--entrypoint /bin/bash \
 		${DOCKER_IMAGE} 
 
@@ -92,7 +88,7 @@ exec-shell:
 			bash
 
 
-TEST_ENV=mentorpal_classifier_service_testing
+TEST_ENV=mentorpal-mentor-api-test-env
 test-env-create:
 	cd tests && \
 		./conda_env_create.sh ${TEST_ENV}

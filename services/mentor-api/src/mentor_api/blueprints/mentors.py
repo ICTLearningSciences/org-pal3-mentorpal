@@ -4,8 +4,8 @@ import os
 from flask import Blueprint, current_app, jsonify, request, send_file
 from werkzeug.utils import secure_filename
 
-from mentorpal_classifier_api.errors import InvalidUsage
-from mentorpal_classifier_api.mentors import find_mentor_classifier
+from mentor_api.errors import InvalidUsage
+from mentor_api.mentors import find_mentor_classifier
 
 
 mentors_blueprint = Blueprint('mentors', __name__)

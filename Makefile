@@ -14,7 +14,7 @@ docker-build-services:
 	cd services/web_app && \
 		$(MAKE) docker-build
 
-	cd services/classifier_api && \
+	cd services/mentor-api && \
 		$(MAKE) docker-build
 
 	cd services/proxy && \
@@ -24,7 +24,7 @@ docker-push-tags-no-build:
 	cd services/web_app && \
 		$(MAKE) docker-push-tag
 	
-	cd services/classifier_api && \
+	cd services/mentor-api && \
 		$(MAKE) docker-push-tag
 
 

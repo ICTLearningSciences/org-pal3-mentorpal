@@ -1,7 +1,7 @@
 import json
 from flask import Blueprint, jsonify, request
-from mentorpal_classifier_api.errors import InvalidUsage
-from mentorpal_classifier_api.mentors import find_mentor_classifier
+from mentor_api.errors import InvalidUsage
+from mentor_api.mentors import find_mentor_classifier
 
 
 questions_blueprint = Blueprint('questions', __name__)
