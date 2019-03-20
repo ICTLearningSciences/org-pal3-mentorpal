@@ -11,7 +11,7 @@
   "containerDefinitions": [
     {
       "name": "web-app",
-      "image": "{{WEB_APP_IMAGE_TAG}}",
+      "image": "{{web-app}}",
       "portMappings": [
         {
           "hostPort": 3000,
@@ -21,7 +21,7 @@
       "essential": true,
       "memory": 1024,
       "links": [
-        "classifier-api"
+        "mentor-api"
       ],
       "environment": [
         {
@@ -35,8 +35,8 @@
       ]
     },
     {
-      "name": "classifier-api",
-      "image": "{{CLASSIFIER_API_IMAGE_TAG}}",
+      "name": "mentor-api",
+      "image": "{{mentor-api}}",
       "essential": true,
       "memory": 6144,
       "portMappings": [
@@ -59,7 +59,7 @@
       ],
       "links": [
         "web-app",
-        "classifier-api"
+        "mentor-api"
       ],
       "mountPoints": [
         {
