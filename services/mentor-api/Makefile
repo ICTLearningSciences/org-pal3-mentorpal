@@ -2,7 +2,7 @@ DOCKER_ACCOUNT?=uscictdocker
 DOCKER_REPO?=mentorpal-mentor-api
 DOCKER_TAG?=latest
 DOCKER_IMAGE=${DOCKER_ACCOUNT}/${DOCKER_REPO}:${DOCKER_TAG}
-DOCKER_CONTAINER=mentorpal-classifier-service
+DOCKER_CONTAINER=${DOCKER_REPO}
 DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_ACCOUNT).password"
 
 
