@@ -185,6 +185,8 @@ function send() {
 
 	if (question) {
 		stopWatson();
+
+		const cannonicalQ = cannonical(question)
 		Papa.parse(mentor.classifier, {
 			download: true,
 			complete: function(results) {
@@ -194,8 +196,8 @@ function send() {
 						var questions = results.data[i][3].replace('\n', '\r').split('\r')
 						// if direct match, use direct answer and don't bother with python tensorflow
 						for (var j = 0; j < questions.length; j++) {
-							var q = sanitize(questions[j]).toLowerCase()
-							if (q == sanitize(question).toLowerCase()) {
+							var q = cannonical(questions[j])
+							if (q === cannonicalQ) {
 								const videoID = results.data[i][0]
 								const transcript = sanitize(results.data[i][2])
 								video.src = mentor.videoURL + videoID + isMobile + '.mp4';
@@ -220,14 +222,20 @@ function send() {
 	}
 }
 
+/**
+ * Some incoming data has weird characters, like
+ * \uFFFD (question mark w black-diamond bkg)
+ * This is a patch to just strip them out
+ */
 function sanitize(str_input) {
-	str_input = str_input.replace(/\uFFFD/g, ' ')
-	str_input = str_input.replace(/\u00E5/g, ' ')
-	str_input = str_input.replace(/\u00CA/g, ' ')
-	str_input = str_input.replace(/\.|\?|\,| /g, '')
-	str_input = str_input.trim()
+	return str_input.trim().replace(/[\uFFFD\u00E5\u00CA]/g, '')
+}
 
-	return str_input
+function cannonical(str_input) {
+	return str_input.toLowerCase()
+		.trim()
+		.replace(/[^a-z0-9]/g, '_')
+		.replace(/[_]+/g, '_')
 }
 
 function addToBlacklist(response) {
