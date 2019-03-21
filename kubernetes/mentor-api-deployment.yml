@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mentor-api
+  labels:
+    name: mentor-api
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mentor-api
+    spec:
+      containers:
+      - name: mentor-api
+        image: uscictdocker/mentorpal-mentor-api
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: mentor-api_ENV
+          value: "development"
+      restartPolicy: Always

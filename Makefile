@@ -11,20 +11,20 @@ dev-env-create:
 		./create.sh ${DEV_ENV}
 
 docker-build-services:
-	cd services/web_app && \
+	cd services/web-app && \
 		$(MAKE) docker-build
 
-	cd services/classifier_api && \
+	cd services/mentor-api && \
 		$(MAKE) docker-build
 
 	cd services/proxy && \
 		$(MAKE) docker-build
 
 docker-push-tags-no-build:
-	cd services/web_app && \
+	cd services/web-app && \
 		$(MAKE) docker-push-tag
 	
-	cd services/classifier_api && \
+	cd services/mentor-api && \
 		$(MAKE) docker-push-tag
 
 
