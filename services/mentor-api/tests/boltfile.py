@@ -18,10 +18,10 @@ config = {
 	},
 	'behave-restful': {
 		'directory': 'features' # path to features folder
-		# ,'options' : {
-		# 	'i': 'features/serves_mentor_track.feature'
-		# }
-		# 'definition': 'yourdefinition',	# if you are using definitions for different environments
+		,'options' : {
+			'i': 'features/responds_to_off_topic_with_prompt.feature'
+		}
+		# ,'definition': 'yourdefinition',	# if you are using definitions for different environments
 	}
 }
 
