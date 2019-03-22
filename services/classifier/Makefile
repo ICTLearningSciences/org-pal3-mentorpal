@@ -25,7 +25,7 @@ build: clean
 	cp -r ${MENTORPAL_ROOT}/checkpoint/tests ${CLASSIFIER_ROOT}/build/checkpoint/tests
 	cp ${MENTORPAL_ROOT}/.netrc ${CLASSIFIER_ROOT}/build
 
-docker-build: build
+docker-build: clean build
 	docker build --build-arg CHECKPOINT=${CHECKPOINT} -t ${DOCKER_IMAGE} .
 
 docker-run:
