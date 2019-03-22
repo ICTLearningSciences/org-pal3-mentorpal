@@ -1,10 +1,8 @@
 import bolt
 import bolt_flask
-import bolt_wait_for_server_running
 import behave_restful.bolt_behave_restful as bbr
 
 bolt.register_module_tasks(bolt_flask)
-bolt.register_module_tasks(bolt_wait_for_server_running)
 bolt.register_module_tasks(bbr)
 
 # Bolt has a provided task sleep that is automatically registered

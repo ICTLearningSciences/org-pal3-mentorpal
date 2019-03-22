@@ -90,8 +90,8 @@ exec-shell:
 
 TEST_ENV=mentorpal-mentor-api-test-env
 test-env-create:
-	cd tests && \
-		./conda_env_create.sh ${TEST_ENV}
+	cd tests/venv && \
+		./create.sh ${TEST_ENV}
 
 
 test:
