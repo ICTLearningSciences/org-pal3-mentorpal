@@ -6,8 +6,9 @@ DOCKER_CONTAINER=${DOCKER_REPO}
 DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_ACCOUNT).password"
 
 
-CLASSIFIER_SERVICE_ROOT=$(shell pwd)
-MENTORPAL_ROOT=$(shell dirname ${CLASSIFIER_SERVICE_ROOT})
+THIS_SERVICE_ROOT=$(shell pwd)
+SERVICES_ROOT=$(shell dirname ${THIS_SERVICE_ROOT})
+PROJECT_ROOT=$(shell dirname ${SERVICES_ROOT})
 
 
 DOCKER_BASE_IMAGE?=uscictdocker/mentorpal-classifier
@@ -57,7 +58,6 @@ docker-run:
 			--name ${DOCKER_CONTAINER} \
 			--shm-size 8G \
 			-p 5000:5000 \
-			-v ${MENTORPAL_ROOT}:/workingcopy \
 		${DOCKER_IMAGE} 
 
 docker-run-dev:
@@ -67,7 +67,8 @@ docker-run-dev:
 			--name ${DOCKER_CONTAINER} \
 			--shm-size 8G \
 			-p 5000:5000 \
-			-v ${CLASSIFIER_SERVICE_ROOT}/src/mentor_api:/app/mentor_api \
+			-v ${THIS_SERVICE_ROOT}/src/mentor_api:/app/mentor_api \
+			-v ${PROJECT_ROOT}/src/mentorpal:/app/mentorpal \
 		${DOCKER_IMAGE} 
 
 docker-run-dev-shell:
@@ -77,7 +78,7 @@ docker-run-dev-shell:
 			--name ${DOCKER_CONTAINER} \
 			--shm-size 8G \
 			-p 5000:5000 \
-			-v ${CLASSIFIER_SERVICE_ROOT}/src/mentor_api:/app/mentor_api \
+			-v ${THIS_SERVICE_ROOT}/src/mentor_api:/app/mentor_api \
 			--entrypoint /bin/bash \
 		${DOCKER_IMAGE} 
 
@@ -90,8 +91,8 @@ exec-shell:
 
 TEST_ENV=mentorpal-mentor-api-test-env
 test-env-create:
-	cd tests && \
-		./conda_env_create.sh ${TEST_ENV}
+	cd tests/venv && \
+		./create.sh ${TEST_ENV}
 
 
 test:
