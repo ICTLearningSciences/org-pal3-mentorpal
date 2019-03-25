@@ -1,27 +1,43 @@
 # TODO:
 #   - disallow deploy if local changes in repo
 
-.PHONY: clean 
-
 SHELL:=/bin/bash
 
 CURDIR=$(shell pwd)
-PROJECT_ROOT=$(shell dirname ${CURDIR})
+PROJECT_ROOT=$(shell dirname $(CURDIR))
+PROJECT_NAME=$(shell basename "$(PROJECT_ROOT)" | tr [:upper:] [:lower:])
 BUILD=$(CURDIR)/build
 CONFIG=$(PROJECT_ROOT)/config
+HOME_DIR=$(shell cd ~; pwd)
 
-EB_APP ?= mentorpal
-EB_ENV ?= qa-mentorpal
-EB_REGION ?= us-east-1
-EB_PROFILE ?= eb-cli-${EB_APP}
-
-# GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
+GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 GIT_HASH := $(shell git rev-parse HEAD)
 GIT_STATUS = $(shell git status -s)
-GIT_TAG ?= v
-#sic fix repo name to ICTLearningSciences
-GIT_REPO_USER=beatthat
-GIT_REPO=MentorPAL
+
+###############################################################################
+# There should be an Elastic Beanstalk app having
+# the same name (lower case) as this project.
+# This helps enable eb rules that work withouthand configuration.
+###############################################################################
+EB_APP ?= $(PROJECT_NAME)
+
+###############################################################################
+# eb-deploy will by default deploy to an Elastic Beanstalk environment
+# having the same name as the locally checked out branch.
+# This helps enable eb rules that work withouthand configuration.
+###############################################################################
+EB_ENV ?= ${GIT_BRANCH}
+
+EB_REGION ?= us-east-1
+
+###############################################################################
+# eb-deploy will by default look for a profile (credentials)
+# having the name of the Elastic Beanstalk app with the prefix 'eb-cli'
+# This helps enable eb rules that work withouthand configuration.
+###############################################################################
+EB_PROFILE ?= eb-cli-${EB_APP}
+
+AWS_CONFIG=${HOME_DIR}/.aws/config
 
 DOCKER_ACCOUNT ?= uscictdocker
 DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_ACCOUNT).password"
@@ -29,10 +45,13 @@ DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_ACCOUNT).password"
 DATE := $(shell date +"%Y%m%dT%H%M")
 
 VENV=${EB_APP}-ebs
+
+
 .PHONY: venv-create
 venv-create:
 	cd venv && \
 		./create.sh -f -n ${VENV}
+
 
 .PHONY: venv-exists
 venv-exists:
@@ -49,6 +68,7 @@ EB=eb
 ###############################################################################
 SECRET_PROPERTIES_PATH=config/secrets.properties
 SECRET_PROPERTIES=${PROJECT_ROOT}/${SECRET_PROPERTIES_PATH}
+
 
 ##############################################################################
 # This rule, gives user an explanatory message if config/secret.properties
@@ -81,6 +101,7 @@ build/clone: venv-exists ${SECRET_PROPERTIES}
 		unzip clone.zip -d clone && \
 	 	rm clone.zip
 
+
 ##############################################################################
 # We must copy over the (unversioned) config/secret.properties
 # to build/clone/config/secret.properties
@@ -88,6 +109,7 @@ build/clone: venv-exists ${SECRET_PROPERTIES}
 CLONE_SECRET_PROPERTIES=build/clone/${SECRET_PROPERTIES_PATH}
 ${CLONE_SECRET_PROPERTIES}: build/clone ${SECRET_PROPERTIES}
 	cp ${SECRET_PROPERTIES} build/clone/${SECRET_PROPERTIES_PATH}
+
 
 ##############################################################################
 # Create a properties file that will be used to configure the final
@@ -132,6 +154,7 @@ build/ebs/.elasticbeanstalk/config.yml: venv-exists build/ebs/config/.elasticbea
 			${BUILD}/ebs/config/.elasticbeanstalk_config.properties \
 			${BUILD}/ebs/.elasticbeanstalk/config.yml
 
+
 build/ebs/.elasticbeanstalk: build/ebs/.elasticbeanstalk/config.yml
 
 
@@ -155,6 +178,7 @@ build/ebs/bundle: venv-exists build/ebs/config/Dockerrun.aws.properties
 			${BUILD}/ebs/config/Dockerrun.aws.properties \
 			${BUILD}/ebs/bundle/Dockerrun.aws.json
 
+
 ##############################################################################
 # build/ebs/{bundle-name}.zip is the actual file that gets published
 # to EBS. It will contain Dockerrun.aws.json
@@ -174,6 +198,7 @@ build: build/clone venv-exists ${CLONE_SECRET_PROPERTIES} \
 # These images will be tagged with the git commit hash 
 # that we have cloned into build/clone
 ##############################################################################
+.PHONY: docker-build 
 docker-build: build/clone
 	./bin/docker_services.sh ${DOCKER_ACCOUNT} -t ${GIT_HASH} build
 
@@ -188,6 +213,7 @@ docker-build: build/clone
 #
 # e.g. echo mypasswordhere > ~/.docker/uscict.password && chmod 600 ~/.docker/uscict.password
 ##############################################################################
+.PHONY: docker-login 
 docker-login:
 ifneq ("$(wildcard $(DOCKER_PASSWORD_FILE))","")
 	@echo "store your docker password at $(DOCKER_PASSWORD_FILE) so you won't have to enter it again"
@@ -196,15 +222,28 @@ else
 	cat $(DOCKER_PASSWORD_FILE) | docker login -u $(DOCKER_ACCOUNT) --password-stdin
 endif
 
+
 ##############################################################################
 # Push docker images (to dockerhub.io) for the services we're about to publish to ebs.
 # These images will be tagged with the git commit hash 
 # that we have cloned into build/clone
 ##############################################################################
+.PHONY: docker-push 
 docker-push: docker-login
 	./bin/docker_services.sh ${DOCKER_ACCOUNT} -t ${GIT_HASH} push
 
 
+${AWS_CONFIG}:
+	@echo "AWS Elastic Beanstalk:"
+	@echo "  No credentials file at ${AWS_CONFIG}..."
+	@echo "  Creating a stub credential with an entry for target ${EB_PROFILE} at ${AWS_CONFIG}..."
+	echo "[${EB_PROFILE}]" >> ${AWS_CONFIG}
+	echo "aws_access_key_id = PLACEHOLDER" >> ${AWS_CONFIG}
+	echo "aws_secret_access_key = PLACEHOLDER" >> ${AWS_CONFIG}
+	echo "" >> ${AWS_CONFIG}
+
+
+.PHONY: eb-deploy 
 eb-deploy: venv-exists ${EB_BUNDLE_ZIP}
 	source activate ${VENV} && \
 		cd build/ebs && \
