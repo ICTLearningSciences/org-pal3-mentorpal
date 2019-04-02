@@ -24,33 +24,53 @@ RUN apt-get install -y cadaver
 WORKDIR /app
 COPY build/src .
 COPY build/mentors mentors
-# COPY build/checkpoint checkpoint
 COPY build/.netrc /root/.netrc
 
+# Download vector models
 RUN bash -c "mkdir -p checkpoint/vector_models && \
     cd checkpoint/vector_models && \
 	printf \"mget checkpoint/vector_models/*\nexit\" >> cmd && \
 	cadaver -r cmd ${WEBDAV_PATH} && \
 	rm cmd"
 
+# Download test files
+RUN bash -c "mkdir -p checkpoint/tests/clint && \
+    cd checkpoint/tests/clint && \
+	printf \"mget checkpoint/tests/clint/*\nexit\" >> cmd && \
+	cadaver -r cmd ${WEBDAV_PATH} && \
+	rm cmd"
+RUN bash -c "mkdir -p checkpoint/tests/dan && \
+    cd checkpoint/tests/dan && \
+	printf \"mget checkpoint/tests/dan/*\nexit\" >> cmd && \
+	cadaver -r cmd ${WEBDAV_PATH} && \
+	rm cmd"
+RUN bash -c "mkdir -p checkpoint/tests/carlos && \
+    cd checkpoint/tests/carlos && \
+	printf \"mget checkpoint/tests/carlos/*\nexit\" >> cmd && \
+	cadaver -r cmd ${WEBDAV_PATH} && \
+	rm cmd"
+RUN bash -c "mkdir -p checkpoint/tests/julianne && \
+    cd checkpoint/tests/julianne && \
+	printf \"mget checkpoint/tests/julianne/*\nexit\" >> cmd && \
+	cadaver -r cmd ${WEBDAV_PATH} && \
+	rm cmd"
+
+# Download checkpoints
 RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint && \
 	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint && \
 	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint/*\nexit\" >> cmd && \
 	cadaver -r cmd ${WEBDAV_PATH} && \
 	rm cmd"
-
 RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan && \
 	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan && \
 	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan/*\nexit\" >> cmd && \
 	cadaver -r cmd ${WEBDAV_PATH} && \
 	rm cmd"
-
 RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos && \
 	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos && \
 	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos/*\nexit\" >> cmd && \
 	cadaver -r cmd ${WEBDAV_PATH} && \
 	rm cmd"
-
 RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne && \
 	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne && \
 	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne/*\nexit\" >> cmd && \

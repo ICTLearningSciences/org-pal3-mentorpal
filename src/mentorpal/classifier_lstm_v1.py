@@ -16,7 +16,7 @@ class LSTMClassifier(IClassifier):
     if 'CHECKPOINT' in os.environ:
         DEFAULT_CHECKPOINT = os.environ['CHECKPOINT']
     else:
-        DEFAULT_CHECKPOINT = '2019-2-21-220'
+        DEFAULT_CHECKPOINT = '2019-02-21-0220'
 
     '''
     Create a classifier instance for a mentor

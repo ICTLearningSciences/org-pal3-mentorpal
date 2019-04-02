@@ -2,7 +2,7 @@ CHECKPOINT_ROOT=$(shell pwd)
 MENTORPAL_ROOT=$(shell dirname ${CHECKPOINT_ROOT})
 
 WEBDAV_PATH=https://webdisk.ict.usc.edu/remote.php/webdav/
-CHECKPOINT?=2019-2-21-220
+CHECKPOINT ?= 2019-02-21-0220
 
 remove-checkpoints:
 	rm -r classifiers/*/*/*/*
