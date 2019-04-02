@@ -1,7 +1,4 @@
 
-//This way, content can be hosted elsewhere explicit
-var isMobile="";
-
 //run everytime the window is resized to keep it responsive
 function resizeFix(){
 
@@ -25,7 +22,6 @@ function resizeFix(){
 		document.getElementById("stop-button").style = 'display: none; height: 85px; width: 85px;  font-size: 30px';
 		document.getElementById("send-button").style = 'height: 170px; width: 140px;  font-size: 40px';
 		document.getElementById("mentor-title").style = "display: none";
-		isMobile = "_M";
 		document.getElementById("videoPlayer").textTracks[0].mode = "showing";
 	}
 
@@ -49,7 +45,6 @@ function resizeFix(){
 		document.getElementById("send-button").style = "display: block; height: 120px";
 		document.getElementById("videoPlayer").textTracks[0].mode = "hidden";
 		document.getElementById("mentor-title").style = "bottom: 0; margin-bottom: 18px;	position: absolute; left: 50%; transform: translateX(-50%); font-size: 25px;";
-		isMobile="";
 	}
 }
 

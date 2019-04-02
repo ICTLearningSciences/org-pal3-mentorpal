@@ -28,8 +28,10 @@ def data(mentor, data_file):
 @mentors_blueprint.route('/<mentor>/tracks/<track_file>', methods=['GET'])
 def tracks(mentor, track_file):
     mentor_data_root = current_app.config['MENTOR_DATA']
+    file_name = secure_filename(track_file)
+    file_ext = os.path.splitext(file_name)[1]
     file_path = os.path.join(
-        mentor_data_root, mentor, 'data', 'tracks', secure_filename(track_file)
+        mentor_data_root, mentor, 'data', 'tracks', file_name
     )
     if not os.path.exists(file_path):
         print(f'file not found: {file_path}')
@@ -37,4 +39,4 @@ def tracks(mentor, track_file):
             message=f'data file {track_file} not found for mentor {mentor}',
             status_code=404
         )
-    return send_file(file_path)
+    return send_file(file_path, attachment_filename=file_name, mimetype=f'text/{file_ext[1:]}')
