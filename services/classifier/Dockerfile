@@ -1,9 +1,10 @@
 FROM continuumio/miniconda3
 
 ARG CONDA_ENV=mentorpal
-ARG CHECKPOINT=2019-2-21-220
 ARG WEBDAV_PATH=https://webdisk.ict.usc.edu/remote.php/webdav/
+
 ENV MENTORPAL_CONDA_ENV=mentorpal
+ENV CHECKPOINT=2019-02-21-0220
 
 RUN conda create --name=${MENTORPAL_CONDA_ENV} python=3.6
 
@@ -30,28 +31,6 @@ COPY build/.netrc /root/.netrc
 RUN bash -c "mkdir -p checkpoint/vector_models && \
     cd checkpoint/vector_models && \
 	printf \"mget checkpoint/vector_models/*\nexit\" >> cmd && \
-	cadaver -r cmd ${WEBDAV_PATH} && \
-	rm cmd"
-
-# Download test files
-RUN bash -c "mkdir -p checkpoint/tests/clint && \
-    cd checkpoint/tests/clint && \
-	printf \"mget checkpoint/tests/clint/*\nexit\" >> cmd && \
-	cadaver -r cmd ${WEBDAV_PATH} && \
-	rm cmd"
-RUN bash -c "mkdir -p checkpoint/tests/dan && \
-    cd checkpoint/tests/dan && \
-	printf \"mget checkpoint/tests/dan/*\nexit\" >> cmd && \
-	cadaver -r cmd ${WEBDAV_PATH} && \
-	rm cmd"
-RUN bash -c "mkdir -p checkpoint/tests/carlos && \
-    cd checkpoint/tests/carlos && \
-	printf \"mget checkpoint/tests/carlos/*\nexit\" >> cmd && \
-	cadaver -r cmd ${WEBDAV_PATH} && \
-	rm cmd"
-RUN bash -c "mkdir -p checkpoint/tests/julianne && \
-    cd checkpoint/tests/julianne && \
-	printf \"mget checkpoint/tests/julianne/*\nexit\" >> cmd && \
 	cadaver -r cmd ${WEBDAV_PATH} && \
 	rm cmd"
 

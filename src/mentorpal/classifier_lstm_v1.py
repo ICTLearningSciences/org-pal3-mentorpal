@@ -14,7 +14,7 @@ from mentorpal.mentor import Mentor
 class LSTMClassifier(IClassifier):
     CLASSIFIER_NAME = "lstm_v1"
     if 'CHECKPOINT' in os.environ:
-        DEFAULT_CHECKPOINT = os.environ['CHECKPOINT']
+        DEFAULT_CHECKPOINT = os.getenv('CHECKPOINT')
     else:
         DEFAULT_CHECKPOINT = '2019-02-21-0220'
 

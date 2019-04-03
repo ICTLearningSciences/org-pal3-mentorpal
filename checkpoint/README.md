@@ -18,10 +18,10 @@ password [password]
 
 ## Download Checkpoints and Vector Models
 
-Download all vector models and download the current stable checkpoint:
+Download vector models and stable checkpoint:
 
 ```
-make init-checkpoint
+make init
 ```
 
 Download a specific checkpoint:
@@ -38,10 +38,10 @@ make download-vector-models
 
 ## Delete Checkpoints
 
-Remove all locally downloaded checkpoints:
+Remove locally downloaded checkpoints and vector models
 
 ```
-make remove-checkpoints
+make clean
 ```
 
 Remote checkpoints on webdisk must be deleted manually.
@@ -65,8 +65,16 @@ To train and create a new checkpoint for all mentors:
 
 A new checkpoint will be created under checkpoint/classifiers/[classifier_id]/[current_datetime]
 
-## Compare Checkpoints
+## Test Checkpoints
 
-To compare a checkpoint to the current stable build, edit and run src/test_classifier.py
+Get accuracy score for a specific checkpoint
 
-See comments in file for more help.
+```
+make test-checkpoint c=[CHECKPOINT]
+```
+
+Compare accuracy score between two checkpoints
+
+```
+make compare_checkpoints c1=[CHECKPOINT1] c2=[CHECKPOINT2]
+```
