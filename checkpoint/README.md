@@ -70,11 +70,11 @@ A new checkpoint will be created under checkpoint/classifiers/[classifier_id]/[c
 Get accuracy score for a specific checkpoint
 
 ```
-make test-checkpoint c=[CHECKPOINT]
+make test-checkpoint c=[CHECKPOINT] m=[MENTOR]
 ```
 
 Compare accuracy score between two checkpoints
 
 ```
-make compare_checkpoints c1=[CHECKPOINT1] c2=[CHECKPOINT2]
+make compare_checkpoints c1=[CHECKPOINT1] c2=[CHECKPOINT2] m=[MENTOR]
 ```

@@ -62,10 +62,10 @@ upload-checkpoint:
 	cp ${MENTORPAL_ROOT}/.netrc ~/.netrc
 	./davupload.sh "classifiers/$(classifier)/$(checkpoint)/" "https://webdisk.ict.usc.edu/remote.php/webdav/checkpoint/classifiers/$(classifier)/"
 
-# make c={CHECKPOINT} compare-checkpoints
+# make c={CHECKPOINT} m={MENTOR} compare-checkpoints
 test-checkpoint:
-	./checkpoint_test.sh ${c}
+	./checkpoint_test.sh ${c} ${m}
 
-# make c1={CHECKPOINT1} c2={CHECKPOINT2} compare-checkpoints
+# make c1={CHECKPOINT1} c2={CHECKPOINT2} m={MENTOR} compare-checkpoints
 compare-checkpoints:
-	./checkpoint_compare.sh ${c1} ${c2}
+	./checkpoint_compare.sh ${c1} ${c2} ${m}

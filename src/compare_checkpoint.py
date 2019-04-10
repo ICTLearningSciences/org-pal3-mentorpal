@@ -12,13 +12,7 @@ MENTOR = os.getenv('MENTOR')
 TEST_SET = os.getenv("TEST_SET")
 
 classifier = TrainLSTMClassifier(MENTOR, CHECKPOINT_1)
-
-# create and train a new checkpoint for a classifier
-# classifier_new = TrainLSTMClassifier(MENTOR)
-# CHECKPOINT_2 = create_checkpoint(classifier_new)
-
 classifier_other = TrainLSTMClassifier(MENTOR, CHECKPOINT_2)
-
 
 metrics = Metrics()
 accuracy = metrics.test_accuracy(classifier, TEST_SET)
@@ -26,7 +20,5 @@ accuracy_other = metrics.test_accuracy(classifier_other, TEST_SET)
 
 print('-- COMPARING CHECKPOINTS {0} AND {1} --'.format(CHECKPOINT_1, CHECKPOINT_2))
 print('-- {0} TEST ACCURACY --'.format(MENTOR))
-print('{0}:\n    {1}'.format(CHECKPOINT_1, accuracy))
-print('{0}:\n    {1}'.format(CHECKPOINT_2, accuracy_other))
-
-assert accuracy_other > accuracy
+print('{0}:    {1}'.format(CHECKPOINT_1, accuracy))
+print('{0}:    {1}'.format(CHECKPOINT_2, accuracy_other))

@@ -3,8 +3,13 @@ FROM continuumio/miniconda3
 ARG CONDA_ENV=mentorpal
 ARG WEBDAV_PATH=https://webdisk.ict.usc.edu/remote.php/webdav/
 
-ENV MENTORPAL_CONDA_ENV=mentorpal
 ENV CHECKPOINT=2019-02-21-0220
+ENV CHECKPOINT_1=2019-02-21-0220
+ENV CHECKPOINT_2=2019-02-21-0220
+ENV MENTOR=clint
+ENV TEST_SET=testing_data_full.csv
+ENV TRAIN_NEW_CHECKPOINT=False
+ENV MENTORPAL_CONDA_ENV=mentorpal
 
 RUN conda create --name=${MENTORPAL_CONDA_ENV} python=3.6
 
@@ -23,6 +28,7 @@ RUN apt-get update
 RUN apt-get install -y cadaver
 
 WORKDIR /app
+
 COPY build/src .
 COPY build/mentors mentors
 COPY build/.netrc /root/.netrc
