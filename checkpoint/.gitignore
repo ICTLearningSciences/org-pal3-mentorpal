@@ -1,5 +1,5 @@
 *.pkl
 *.h5
-*.txt
 *.bin
+w2v.txt
 lstm_model

@@ -1,18 +1,80 @@
-## Store checkpoint models here
+# Checkpoints
 
-The models can be downloaded from here: https://webdisk.ict.usc.edu/index.php/s/J7IJMxFuax3SiHo
+The checkpoint models can be found [here](https://webdisk.ict.usc.edu/index.php/s/J7IJMxFuax3SiHo): 
 
-To access webdisk, you must have a .netrc file:
+These models should not be committed to version control so they are ignored by git.
+
+## Accessing Webdisk
+
+In order to download checkpoints, you will need access to the ICT webdisk.
+
+To access webdisk, you must have a .netrc file in the main app folder. This will not be committed to git.
+
+```
 machine webdisk.ict.usc.edu
 login [username]
 password [password]
+```
 
-The models should not be committed to version control, so they are ignored by git.
+## Download Checkpoints and Vector Models
 
-To download the vector models, inside classifier run:
+Download vector models and stable checkpoint:
 
-make init-checkpoint
+```
+make init
+```
 
-or
+Download a specific checkpoint:
 
-make download-checkpoint classifier={classifier} checkpoint={checkpoint}
+```
+make download-checkpoint classifier=[CLASSIFIER_ID] checkpoint=[CHECKPOINT_ID]
+```
+
+Download all vector models:
+
+```
+make download-vector-models
+```
+
+## Delete Checkpoints
+
+Remove locally downloaded checkpoints and vector models
+
+```
+make clean
+```
+
+Remote checkpoints on webdisk must be deleted manually.
+
+## Upload Checkpoints
+
+Upload a specific checkpoint:
+
+```
+make upload-checkpoint classifier=[CLASSIFIER_ID] checkpoint=[CHECKPOINT_ID]
+```
+
+## Create a Checkpoint
+
+To train and create a new checkpoint for all mentors:
+
+1. Import checkpoint.py from src/mentorpal
+2. Call create_checkpoint(classifier) with the classifier you are creating a new checkpoint for
+	- classifier must implement train_model()
+	- classifier must have a CLASSIFIER_NAME unique id
+
+A new checkpoint will be created under checkpoint/classifiers/[classifier_id]/[current_datetime]
+
+## Test Checkpoints
+
+Get accuracy score for a specific checkpoint
+
+```
+make test-checkpoint c=[CHECKPOINT] m=[MENTOR]
+```
+
+Compare accuracy score between two checkpoints
+
+```
+make compare_checkpoints c1=[CHECKPOINT1] c2=[CHECKPOINT2] m=[MENTOR]
+```
