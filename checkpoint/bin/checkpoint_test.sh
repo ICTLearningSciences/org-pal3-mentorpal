@@ -17,11 +17,10 @@ docker run \
         --rm \
         --name ${DOCKER_CONTAINER} \
         -v ${CHECKPOINT_ROOT}:/app/checkpoint \
-        -v ${PROJECT_ROOT}/src:/app/bin \
-        -v ${PROJECT_ROOT}/bin/test_checkpoint.py:/app/bin/test_checkpoint.py \
         -v ${PROJECT_ROOT}/mentors:/app/mentors \
         -e CHECKPOINT=${C} \
         -e MENTOR=${MENTOR} \
         -e TEST_SET=${TEST_SET} \
-    ${DOCKER_IMAGE} \
-        python /app/bin/test_checkpoint.py 
+        --workdir /app \
+        --entrypoint /app/checkpoint/bin/test_checkpoint.py \
+    ${DOCKER_IMAGE}

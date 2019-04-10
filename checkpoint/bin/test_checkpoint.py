@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/usr/bin/env python
 import os
 from mentorpal.mentor import Mentor
 from mentorpal.metrics import Metrics
