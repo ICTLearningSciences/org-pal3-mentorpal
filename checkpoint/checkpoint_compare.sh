@@ -20,6 +20,7 @@ docker run \
         -v ${CHECKPOINT_ROOT}:/app/checkpoint \
         -v ${PROJECT_ROOT}/src:/app/src \
         -v ${PROJECT_ROOT}/mentors:/app/mentors \
+        -v ${PROJECT_ROOT}/bin/compare_checkpoint.py:/app/src/compare_checkpoint.py \
         -e CHECKPOINT_1=${C1} \
         -e CHECKPOINT_2=${C2} \
         -e MENTOR=${MENTOR} \

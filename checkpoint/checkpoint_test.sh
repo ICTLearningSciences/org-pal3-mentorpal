@@ -19,6 +19,7 @@ docker run \
         -v ${CHECKPOINT_ROOT}:/app/checkpoint \
         -v ${PROJECT_ROOT}/src:/app/src \
         -v ${PROJECT_ROOT}/mentors:/app/mentors \
+        -v ${PROJECT_ROOT}/bin/test_checkpoint.py:/app/src/test_checkpoint.py \
         -e CHECKPOINT=${C} \
         -e MENTOR=${MENTOR} \
         -e TEST_SET=${TEST_SET} \
