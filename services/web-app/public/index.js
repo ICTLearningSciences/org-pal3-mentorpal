@@ -21,7 +21,7 @@ const createMentor = function(mId, data) {
 		topicsURL: `${MENTOR_API_URL}/mentors/${mId}/data/topics.csv`,
 		questions: `${MENTOR_API_URL}/mentors/${mId}/data/Questions_Paraphrases_Answers.csv`,
 		classifier: `${MENTOR_API_URL}/mentors/${mId}/data/classifier_data.csv`,
-		idleURL: videoURLFor('idle'),
+		idleURL: function() {return videoURLFor('idle')},
 		trackUrlFor: function(id) {
 			return `${MENTOR_API_URL}/mentors/${mId}/tracks/${id}.vtt`
 		},
@@ -293,7 +293,7 @@ socket.on("token", function(data){
 });
 
 video.onended = function(){		//when the video playing finishes, play the idle video
-	video.src = mentor.idleURL;
+	video.src = mentor.idleURL();
 	document.getElementById("track").src = "";
 	video.play();
 	video.controls = false;
