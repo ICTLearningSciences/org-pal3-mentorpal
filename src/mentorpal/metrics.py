@@ -48,7 +48,9 @@ class Metrics:
     def test_accuracy(self, classifier, test_file, num=None):
         mentor = classifier.mentor
         path = os.path.join("checkpoint","tests",mentor.id,test_file)
-        user_questions = self.__read_test_data(path, mentor.question_ids, num)
+        user_questions = self.__read_test_data(path, num)
+
+        # return 0
 
         print("Loaded test set '{0}' of {1} questions for {2}".format(test_file, len(user_questions), mentor.id))
 
@@ -57,12 +59,14 @@ class Metrics:
 
         for q in user_questions:
             ID, text, confidence = self.answer_confidence(classifier, q)
-            if ID in user_questions[q]:
+            if sanitize_string(text) in user_questions[q]:
                 correct_predictions += 1
             else:
-                print("-- {0}. '{1}'".format(total_predictions + 1, q))
-                print("    Expected {0}".format(user_questions[q]))
-                print("    Got {0}".format(ID))
+                print("{0}. '{1}'".format(total_predictions + 1, q))
+                print("   Expected:")
+                for i in user_questions[q]:
+                    print("    - {0}".format(' '.join(i.split()[:15])))
+                print("   Got:\n    - {0}".format(' '.join(text.split()[:15])))
             total_predictions += 1
 
         print("{0}/{1} ({2:.1f}%) questions answered correctly".format(
@@ -71,7 +75,7 @@ class Metrics:
 
         return correct_predictions / total_predictions
 
-    def __read_test_data(self, file, question_ids, num):
+    def __read_test_data(self, file, num):
         # load 2D matrix of user questions vs actual questions
         test_data = list(csv.reader(open(file)))
         numrows = len(test_data)
@@ -90,13 +94,10 @@ class Metrics:
             for r in range(1, numrows):
                 match = sanitize_string(test_data[r][c + 2])
                 if match == 'i' or match == 'r':
+                    answer = sanitize_string(test_data[r][1])
                     try:
-                        ID = question_ids[test_data[r][0]]
+                        user_questions[user_question].append(answer)
                     except KeyError:
-                        ID = '_OFF_TOPIC_'
-                    try:
-                        user_questions[user_question].append(ID)
-                    except KeyError:
-                        user_questions[user_question] = [ID]
+                        user_questions[user_question] = [answer]
 
         return user_questions
