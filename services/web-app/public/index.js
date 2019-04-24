@@ -1,6 +1,6 @@
 var globalResults
 var socket = io()
-var video = document.getElementById("videoPlayer")
+const getVideoPlayer = () => document.getElementById('videoPlayer')
 var videoTargetType="web"
 urlp=[];u=location.search.replace("?","").split("&").forEach(function(d){e=d.split("=");urlp[e[0]]=e[1];})
 const isUnity=urlp["unity"]
@@ -101,10 +101,71 @@ Papa.parse(mentor.topicsURL, {
 	complete: function(results) {
 		globalResults = results;
 		resizeFix();	//run this after we get the button names
-		video.src = mentor.videoURLFor(mentor.introVideoId);
-		document.getElementById("track").src = mentor.trackUrlFor(mentor.introVideoId);
+		playVideoId(mentor.introVideoId)
 	}
-});
+})
+
+const videoPlayerInit = () => {
+	const video = getVideoPlayer()
+	video.onended = function(){		//when the video playing finishes, play the idle video
+		console.log(`onended`)
+		playVideo(mentor.idleURL())
+	}
+	video.onplay = () => {
+		console.log('onplay')
+	}
+	video.onpause = () => {
+		console.log('onpause')
+	}
+	// video.onclick = () => videoSwitch()
+}
+
+const recreateVideoPlayer = () => {
+	console.log('attempting to recreate video player...')
+	const wrapper = document.getElementById('videoWrapper')
+	wrapper.innerHTML = wrapper.innerHTML
+	videoPlayerInit()
+}
+
+const playVideo = (videoSrc, trackSrc, controlsEnabled, noRecreatePlayer) => {
+	console.log(`playVideo src=`, videoSrc)
+	const video = document.getElementById("videoPlayer")
+	if(videoSrc === null || typeof(videoSrc) === 'undefined') {
+		videoSrc = video.src
+		if(videoSrc === null || typeof(videoSrc) === 'undefined') {
+			return
+		}
+	}
+	video.src = videoSrc
+	video.play().then(function() { 
+		console.log('playVideo success: ', videoSrc)
+		video.controls = controlsEnabled === true
+		try {
+			const track = document.getElementById('track')
+			track.src = trackSrc
+		}
+		catch(trackErr) {
+			console.error(`error loading track for ${trackSrc}`, trackSrc)
+		}
+	}).catch(function(err) {
+		console.error('playVideo failed for ' + videoSrc, err)
+		if(!noRecreatePlayer) {
+			recreateVideoPlayer()
+			playVideo(videoSrc, trackSrc, controlsEnabled, true)
+		}
+	})
+}
+
+const playVideoId = (videoID, transcript) => {
+	const videoSrc = mentor.videoURLFor(videoID)
+	const trackSrc = mentor.trackUrlFor(videoID)
+	playVideo(videoSrc, trackSrc, true)
+	transcript = sanitize(transcript)
+	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
+	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>' + mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
+	document.getElementById("question-Box").value = '';
+	addToBlacklist(videoID)
+}
 
 function renderButtons(topics) {
 	document.getElementById("topic-box").innerHTML = '';
@@ -145,7 +206,6 @@ function findquestion(thisButton) {	//find the question that needs to be filled 
 					questions[topicQuestionSize++] = results.data[i][3]
 				}
 			}
-
 			//Keep track of which question in the topic list we're on
 			if (x[thisButton.value]) {
 				x[thisButton.value] = (x[thisButton.value] + 1) % topicQuestionSize
@@ -194,16 +254,10 @@ function send() {
 							var q = cannonical(questions[j])
 							if (q === cannonicalQ) {
 								const videoID = results.data[i][0]
-								const transcript = sanitize(results.data[i][2])
-								video.src = mentor.videoURLFor(videoID);
-								document.getElementById("track").src = mentor.trackUrlFor(videoID);
-								video.play();
-								video.controls = true;
-								document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
-								document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>' + mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
-								document.getElementById("question-Box").value = '';
-								addToBlacklist(videoID)
-								return;
+								const transcript = results.data[i][2]
+								playVideoId(videoID, transcript)
+								console.log('skip send question for exact match')
+								return
 							}
 						}
 					}
@@ -223,6 +277,9 @@ function send() {
  * This is a patch to just strip them out
  */
 function sanitize(str_input) {
+	if(str_input === null || typeof(str_input === 'undefined')) {
+		return ''
+	}
 	return str_input.trim().replace(/[\uFFFD\u00E5\u00CA]/g, '')
 }
 
@@ -267,24 +324,20 @@ function stopWatson(){
 	}
 }
 
-function videoSwitch(){
-	var videoPlayer = document.getElementById("videoPlayer")
-	if (videoPlayer.paused){
-		videoPlayer.play();
-	} else {
-		videoPlayer.pause();
-	}
-}
+// function videoSwitch(){
+// 	const video = getVideoPlayer()
+// 	if (video.paused){
+// 		console.log(`videoSwitch - will play`)
+// 		// video.play();
+// 	} else {
+// 		console.log(`videoSwitch - will pause`)
+// 		// video.pause();
+// 	}
+// }
 
 socket.on("receiveAnswer", function(data) {		//got the answer
-	const transcript = sanitize(data.transcript)
-	video.src = mentor.videoURLFor(data.videoID);
-	document.getElementById("track").src = mentor.trackUrlFor(data.videoID);
-	video.play();
-	video.controls = true;
-	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
-	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>'+mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
-	addToBlacklist(data.videoID)
+	console.log(`receiveAnswer`, data)
+	playVideoId(data.videoID, data.transcript)
 });
 
 var token;
@@ -292,12 +345,8 @@ socket.on("token", function(data){
 	token = data.token;
 });
 
-video.onended = function(){		//when the video playing finishes, play the idle video
-	video.src = mentor.idleURL();
-	document.getElementById("track").src = "";
-	video.play();
-	video.controls = false;
-}
+
+videoPlayerInit()
 
 document.getElementById("caption-box").innerHTML = '' + '<b>'+ mentor.shortName +': </b>' + '\xa0\xa0'  +  mentor.intro +'<br>';
 document.getElementById("mentor-title").textContent = mentor.title;
@@ -316,13 +365,15 @@ window.onload = function() {
 }
 
 function openNav() {
-    document.getElementById("myNav").style.height = "100%";
-		video.pause();
+	console.log(`openNav (will pause)`)
+	document.getElementById("myNav").style.height = "100%";
+	getVideoPlayer().pause()
 }
 
 function closeNav() {
-    document.getElementById("myNav").style.height = "0%";
-		video.play();
+	console.log(`closeNav (will play)`)
+	document.getElementById("myNav").style.height = "0%";
+	playVideo()
 }
 
 function clearInputContents(element) {
