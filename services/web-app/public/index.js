@@ -2,29 +2,25 @@ var globalResults
 var socket = io()
 const getVideoPlayer = () => document.getElementById('videoPlayer')
 var videoTargetType="web"
-urlp=[];u=location.search.replace("?","").split("&").forEach(function(d){e=d.split("=");urlp[e[0]]=e[1];})
+const urlp=[];u=location.search.replace("?","").split("&").forEach((d) => {e=d.split("=");urlp[e[0]]=e[1];})
 const isUnity=urlp["unity"]
 const mentorID = window.location.pathname.split("/")[1]
 const username = localStorage.getItem("username")
-var blacklist = []
+const blacklist = []
 const num_blacklisted_repeats = 5
 document.getElementById("user-display").textContent = username
 
 const MENTOR_API_URL = '/mentor-api'
 const MENTOR_VIDEO_HOST = 'https://video.mentorpal.org' // TODO: pass from server/env variable
-const createMentor = function(mId, data) {
-	const videoURLFor = function(id) {
-		return `${MENTOR_VIDEO_HOST}/videos/mentors/${mId}/${videoTargetType}/${id}.mp4`
-	}
+const createMentor = (mId, data) => {
+	const videoURLFor = id => `${MENTOR_VIDEO_HOST}/videos/mentors/${mId}/${videoTargetType}/${id}.mp4`
 	return { 
 		...data,
 		topicsURL: `${MENTOR_API_URL}/mentors/${mId}/data/topics.csv`,
 		questions: `${MENTOR_API_URL}/mentors/${mId}/data/Questions_Paraphrases_Answers.csv`,
 		classifier: `${MENTOR_API_URL}/mentors/${mId}/data/classifier_data.csv`,
-		idleURL: function() {return videoURLFor('idle')},
-		trackUrlFor: function(id) {
-			return `${MENTOR_API_URL}/mentors/${mId}/tracks/${id}.vtt`
-		},
+		idleURL: () => videoURLFor('idle'),
+		trackUrlFor: (id) => `${MENTOR_API_URL}/mentors/${mId}/tracks/${id}.vtt`,
 		videoURLFor: videoURLFor
 	}
 }
@@ -63,27 +59,25 @@ const mentorDataById = {
 const mentor = createMentor(mentorID, mentorDataById[mentorID] || mentorDataById['clint'])
 
 //run everytime the window is resized to keep it responsive
-function resizeFix() {
-	renderButtons(globalResults);
-
+const resizeFix = () => {
+	renderButtons(globalResults)
 	// if mobile, render this:
 	if (screen.width < 768 || isUnity == "true") {
-		videoTargetType = "mobile";
-		document.getElementById("main-holder").className = "container-fluid";	// make video and button area fill screen
-		document.getElementById("videoPlayer").textTracks[0].mode = "showing";	// show subtitles
+		videoTargetType = "mobile"
+		document.getElementById("main-holder").className = "container-fluid"	// make video and button area fill screen
+		document.getElementById("videoPlayer").textTracks[0].mode = "showing"	// show subtitles
 		document.getElementById("myOverlay").innerHTML = ''
 		document.getElementById("myOverlay").innerHTML += "<h2>Welcome to MentorPal!</h2>"
 		document.getElementById("myOverlay").innerHTML += "<h3>Click on the topic buttons to get suggested questions.</h3>"
-		toChoices();
+		toChoices()
 	}
 	// if desktop, render this
 	else {
-		videoTargetType="web";
-		document.getElementById("main-holder").className = "container";
-		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9';
-		document.getElementById("videoPlayer").textTracks[0].mode = "hidden";	// hide on-video captions
+		videoTargetType="web"
+		document.getElementById("main-holder").className = "container"
+		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9'
+		document.getElementById("videoPlayer").textTracks[0].mode = "hidden"	// hide on-video captions
 	}
-
 	// if inside unity (PAL3 app), render this:
 	if (isUnity == "true") {
 		document.getElementById("mic-button").style.display = 'none'	// hide mic button
@@ -92,43 +86,59 @@ function resizeFix() {
 }
 
 if (window.location.pathname.split("/")[2]=="embed") {
-		document.getElementById("navSize").style.display = "none";
+		document.getElementById("navSize").style.display = "none"
 }
 
-//setup the csv for buttons on desktop
-Papa.parse(mentor.topicsURL, {
-	download: true,
-	complete: function(results) {
-		globalResults = results;
-		resizeFix();	//run this after we get the button names
-		playVideoId(mentor.introVideoId)
-	}
-})
-
+/**
+ * When the html5 video player is created (or recreated)
+ * we need to wire it so that on the end of playing any video
+ * it plays the active mentor's idle
+ */
 const videoPlayerInit = () => {
 	const video = getVideoPlayer()
-	video.onended = function(){		//when the video playing finishes, play the idle video
-		console.log(`onended`)
-		playVideo(mentor.idleURL())
+	video.onended = () => {		//when the video playing finishes, play the idle video
+		playVideo(mentor.idleURL(), null, true, true)
 	}
-	video.onplay = () => {
-		console.log('onplay')
-	}
-	video.onpause = () => {
-		console.log('onpause')
-	}
-	// video.onclick = () => videoSwitch()
 }
 
+
+/**
+ * There are common scenarios that cause safari 
+ * to get into a state where it will no play videos.
+ * The simplest is to repeat a question twice in a row.
+ * So far, the simplest fix found is to just detect video.play errors (promise rejection),
+ * and recreate the video player.
+ */
 const recreateVideoPlayer = () => {
-	console.log('attempting to recreate video player...')
+	console.warn('attempting to recreate video player...')
 	const wrapper = document.getElementById('videoWrapper')
 	wrapper.innerHTML = wrapper.innerHTML
 	videoPlayerInit()
 }
 
-const playVideo = (videoSrc, trackSrc, controlsEnabled, noRecreatePlayer) => {
-	console.log(`playVideo src=`, videoSrc)
+/**
+ * Play a video given the url. Also plays the associated subtitles if they exist.
+ * @param {string} [videoSrc] - url for the video. By default calls play again on the current video (if any)
+ * @param {string} [trackSrc] - url for the subtitles, typically vtt 
+ * @param {boolean} [controlsHidden] - set true to hide play controls. Default is false (displays controls)
+ * @param {boolean} [loop] - loop the video, usually only for idles. Default is false
+ */
+const playVideo = (videoSrc, trackSrc, controlsHidden, loop) => {
+	_playVideo(videoSrc, trackSrc, controlsHidden, loop)
+}
+
+/**
+ * Internal/called only by `playVideo`
+ * Includes an additional param `noRecreatePlayer`,
+ * If a video fails to play with error, that sometimes
+ * leads to a bug in safari where the player will refuse to play 
+ * any videos thereafter.
+ * As a workaround, we catch video-play errors and recreate the 
+ * videoPlayer object to try to recover. 
+ * But we only want to do that at most once per `playVideo` call
+ * (not infinite loop of fail/recreate) 
+ */
+const _playVideo = (videoSrc, trackSrc, controlsHidden, loop, noRecreatePlayer) => {
 	const video = document.getElementById("videoPlayer")
 	if(videoSrc === null || typeof(videoSrc) === 'undefined') {
 		videoSrc = video.src
@@ -137,9 +147,9 @@ const playVideo = (videoSrc, trackSrc, controlsEnabled, noRecreatePlayer) => {
 		}
 	}
 	video.src = videoSrc
-	video.play().then(function() { 
-		console.log('playVideo success: ', videoSrc)
-		video.controls = controlsEnabled === true
+	video.play().then(() => { 
+		video.controls = controlsHidden !== true
+		video.loop = loop === true
 		try {
 			const track = document.getElementById('track')
 			track.src = trackSrc
@@ -147,115 +157,130 @@ const playVideo = (videoSrc, trackSrc, controlsEnabled, noRecreatePlayer) => {
 		catch(trackErr) {
 			console.error(`error loading track for ${trackSrc}`, trackSrc)
 		}
-	}).catch(function(err) {
+	}).catch((err) => {
 		console.error('playVideo failed for ' + videoSrc, err)
 		if(!noRecreatePlayer) {
 			recreateVideoPlayer()
-			playVideo(videoSrc, trackSrc, controlsEnabled, true)
+			_playVideo(videoSrc, trackSrc, controlsHidden, loop, true)
 		}
 	})
 }
 
+/**
+ * Play the video for a videoID, usually pulled from a classifier-api response,
+ * and also append the transcript for the video to the transcript box.
+ * @param {string} videoID 
+ * @param {string} transcript 
+ */
 const playVideoId = (videoID, transcript) => {
 	const videoSrc = mentor.videoURLFor(videoID)
 	const trackSrc = mentor.trackUrlFor(videoID)
-	playVideo(videoSrc, trackSrc, true)
+	playVideo(videoSrc, trackSrc)
 	transcript = sanitize(transcript)
-	document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight;
-	document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>' + mentor.shortName+': </b>\xa0\xa0' + transcript.split(/\\'/g).join("'").split("%HESITATION").join("") + '<br>';
-	document.getElementById("question-Box").value = '';
+	if(transcript.length > 0) {
+		document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight
+		appendTranscript(`<b>${mentor.shortName}: </b>\xa0\xa0${transcript.split(/\\'/g).join("'").split("%HESITATION").join("")}<br>`)
+	}
+	document.getElementById("question-Box").value = ''
 	addToBlacklist(videoID)
 }
 
-function renderButtons(topics) {
-	document.getElementById("topic-box").innerHTML = '';
+/**
+ * Append text to the transcript area, e.g.
+ * `User: what is your name?`
+ * or
+ * `Mentor: my name is Sue`
+ * @param {string} text 
+ */
+const appendTranscript = (text) => document.getElementById("caption-box").innerHTML += text
+
+const renderButtons = (topics) => {
+	document.getElementById("topic-box").innerHTML = ''
 	//parse the csv
 	Papa.parse(mentor.questions, {
 		download: true,
-		complete: function(results) {
+		complete: (results) => {
 			// loop through all topics (excluding Negative, Positive, Navy)
 			for (var i = 0; i < topics.data.length-3; i++) {
 				for (var j = 0; j < results.data.length; j++) {
 					// if a question for the topic exists
 					if (results.data[j][0].toLowerCase().includes(topics.data[i][0].toLowerCase())) {
-						var topicName = topics.data[i][0];
-						btn = document.createElement("BUTTON");
-						btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6";
-						btn.appendChild(document.createTextNode(topicName));
-						btn.value = topicName;
-						btn.onclick = function() {findquestion(this)};	//on click find a question
-						document.getElementById("topic-box").appendChild(btn);	//append button to row
-						break;
+						const topicName = topics.data[i][0]
+						const btn = document.createElement("BUTTON")
+						btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6"
+						btn.appendChild(document.createTextNode(topicName))
+						btn.value = topicName
+						btn.onclick = () => findquestion(btn) //on click find a question
+						document.getElementById("topic-box").appendChild(btn)	//append button to row
+						break
 					}
 				}
 			}
 		}
-	});
+	})
 }
 
-var x = {};	//hold the amount of times button has already been clicked
-function findquestion(thisButton) {	//find the question that needs to be filled into the send box
+const clickCountsByQuestionButton = {}	//hold the amount of times button has already been clicked
+const findquestion = (thisButton) => {	//find the question that needs to be filled into the send box
 	Papa.parse(mentor.questions, {	//parse the csv
 		download: true,
-		complete: function(results) {
-			var questions={}
-			var topicQuestionSize = 0
+		complete: (results) => {
+			const questions={}
+			let topicQuestionSize = 0
 			// get all the questions for the chosen topic
-			for (var i = 0; i < results.data.length; i++) {
+			for (let i = 0; i < results.data.length; i++) {
 				if (results.data[i][0].toLowerCase().includes(thisButton.value.toLowerCase())) {
 					questions[topicQuestionSize++] = results.data[i][3]
 				}
 			}
 			//Keep track of which question in the topic list we're on
-			if (x[thisButton.value]) {
-				x[thisButton.value] = (x[thisButton.value] + 1) % topicQuestionSize
+			if (clickCountsByQuestionButton[thisButton.value]) {
+				clickCountsByQuestionButton[thisButton.value] = (clickCountsByQuestionButton[thisButton.value] + 1) % topicQuestionSize
 			} else {
-				x[thisButton.value] = 1
+				clickCountsByQuestionButton[thisButton.value] = 1
 			}
-			document.getElementById("question-Box").value = questions[x[thisButton.value]]
+			document.getElementById("question-Box").value = questions[clickCountsByQuestionButton[thisButton.value]]
 		}
-	});
+	})
 }
 
 //switch view of box
-function toCaption() {
-	document.getElementById("topic-box").style.display = "none";
-	document.getElementById("caption-box").style.display = "block";
-	document.getElementById("button-caption").disabled = true;
-	document.getElementById("button-choice").disabled = false;
+const toCaption = () => {
+	document.getElementById("topic-box").style.display = "none"
+	document.getElementById("caption-box").style.display = "block"
+	document.getElementById("button-caption").disabled = true
+	document.getElementById("button-choice").disabled = false
 }
 
 //switch view of box
-function toChoices() {
-	document.getElementById("topic-box").style.display = "block";
-	document.getElementById("caption-box").style.display = "none";
-	document.getElementById("button-caption").disabled = false;
-	document.getElementById("button-choice").disabled = true;
+const toChoices = () => {
+	document.getElementById("topic-box").style.display = "block"
+	document.getElementById("caption-box").style.display = "none"
+	document.getElementById("button-caption").disabled = false
+	document.getElementById("button-choice").disabled = true
 }
 
 //send the question on enter or send key
-function send() {
-	question = document.getElementById("question-Box").value
-	question = question.trim().replace('\n', '\r')
-
-	if (question) {
-		stopWatson();
-
-		const cannonicalQ = cannonical(question)
+const send = () => {
+	const questionText = document.getElementById("question-Box").value.trim().replace('\n', '\r')
+	if (questionText) {
+		appendTranscript('<b>User:</b>\xa0\xa0' + questionText + '<br>')
+		stopWatson()
+		const cannonicalQ = cannonical(questionText)
 		Papa.parse(mentor.classifier, {
 			download: true,
-			complete: function(results) {
+			complete: (results) => {
 				// first check if the question has a direct match
-				for (var i = 0; i < results.data.length; i++) {
+				for (let i = 0; i < results.data.length; i++) {
 					try {
-						var questions = results.data[i][3].replace('\n', '\r').split('\r')
+						const questions = results.data[i][3].replace('\n', '\r').split('\r')
 						// if direct match, use direct answer and don't bother with python tensorflow
-						for (var j = 0; j < questions.length; j++) {
-							var q = cannonical(questions[j])
+						for (let j = 0; j < questions.length; j++) {
+							const q = cannonical(questions[j])
 							if (q === cannonicalQ) {
 								const videoID = results.data[i][0]
-								const transcript = results.data[i][2]
-								playVideoId(videoID, transcript)
+								const responseText = results.data[i][2]
+								playVideoId(videoID, responseText)
 								console.log('skip send question for exact match')
 								return
 							}
@@ -263,11 +288,10 @@ function send() {
 					}
 					catch (error) {}
 				}
-				socket.emit("sendQuestion", {"Question":(question),"Mentor":(mentorID),"UserID":(username),"Blacklist":(blacklist)});
-				document.getElementById("caption-box").innerHTML = document.getElementById("caption-box").innerHTML + '<b>User:</b>\xa0\xa0' + question + '<br>';
-				document.getElementById("question-Box").value = '';
+				socket.emit("sendQuestion", {"Question":(questionText),"Mentor":(mentorID),"UserID":(username),"Blacklist":(blacklist)})
+				document.getElementById("question-Box").value = ''
 			}
-		});
+		})
 	}
 }
 
@@ -276,106 +300,106 @@ function send() {
  * \uFFFD (question mark w black-diamond bkg)
  * This is a patch to just strip them out
  */
-function sanitize(str_input) {
-	if(str_input === null || typeof(str_input === 'undefined')) {
+const sanitize = (str_input) => {
+	if(str_input === null || typeof(str_input) === 'undefined') {
 		return ''
 	}
-	return str_input.trim().replace(/[\uFFFD\u00E5\u00CA]/g, '')
+	return str_input.toString().trim().replace(/[\uFFFD\u00E5\u00CA]/g, '')
 }
 
-function cannonical(str_input) {
+const cannonical = (str_input) => {
+	if(str_input === null || typeof(str_input) === 'undefined') {
+		return ''
+	}
 	return str_input.toLowerCase()
 		.trim()
 		.replace(/[^a-z0-9]/g, '_')
 		.replace(/[_]+/g, '_')
 }
 
-function addToBlacklist(response) {
+const addToBlacklist = (response) => {
 	if (blacklist.length == num_blacklisted_repeats) {
 		blacklist.shift()
 	}
 	blacklist.push(response)
 }
 
-var stream;
-function watson(){
+var stream
+const watson = () => {
 	// don't use mic in PAL3 unity mobile app
 	if (isUnity != "true") {
-		document.getElementById("mic-button").style.display = 'none';
-		document.getElementById("stop-button").style.display = 'block';
+		document.getElementById("mic-button").style.display = 'none'
+		document.getElementById("stop-button").style.display = 'block'
 		stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
 			 token: token,
 			 outputElement: '#question-Box' // CSS selector or DOM Element
-			});
-		 stream.on('error', function(err) {
-			 console.log(err);
-		 });
+			})
+		 stream.on('error', (err) => {
+			 console.error('watson error', err)
+		 })
 	}
 }
 
-function stopWatson(){
+
+const stopWatson = () => {
 	// don't use mic in PAL3 unity mobile app
 	if (isUnity != "true") {
-		document.getElementById("mic-button").style.display = 'block';
-		document.getElementById("stop-button").style.display = 'none';
+		document.getElementById("mic-button").style.display = 'block'
+		document.getElementById("stop-button").style.display = 'none'
 		if(stream){
-			stream.stop();
+			stream.stop()
 		}
 	}
 }
 
-// function videoSwitch(){
-// 	const video = getVideoPlayer()
-// 	if (video.paused){
-// 		console.log(`videoSwitch - will play`)
-// 		// video.play();
-// 	} else {
-// 		console.log(`videoSwitch - will pause`)
-// 		// video.pause();
-// 	}
-// }
 
-socket.on("receiveAnswer", function(data) {		//got the answer
+window.onload = () => {
+	if (!sessionStorage.loaded){
+		openNav()
+	}
+	sessionStorage.loaded = true
+}
+
+const openNav = () => {
+	document.getElementById("myNav").style.height = "100%"
+	getVideoPlayer().pause()
+}
+
+const closeNav = () => {
+	document.getElementById("myNav").style.height = "0%"
+	playVideo()
+}
+
+const clearInputContents = (element) => element.value = ''
+
+socket.on("receiveAnswer", (data) => {		//got the answer
 	console.log(`receiveAnswer`, data)
 	playVideoId(data.videoID, data.transcript)
-});
+})
 
-var token;
-socket.on("token", function(data){
-	token = data.token;
-});
+
+let token
+socket.on("token", data => token = data.token)
 
 
 videoPlayerInit()
 
-document.getElementById("caption-box").innerHTML = '' + '<b>'+ mentor.shortName +': </b>' + '\xa0\xa0'  +  mentor.intro +'<br>';
-document.getElementById("mentor-title").textContent = mentor.title;
-$('#question-Box').keydown(function(e) {
-    if (e.keyCode === 13) {
-        $(this).val('').focus();
-        return false;
-    }
+//setup the csv for buttons on desktop
+Papa.parse(mentor.topicsURL, {
+	download: true,
+	complete: (results) => {
+		globalResults = results
+		resizeFix()	//run this after we get the button names
+		playVideoId(mentor.introVideoId)
+	}
 })
 
-window.onload = function() {
-	if (!sessionStorage.loaded){
-		openNav();
-	}
-	sessionStorage.loaded = true;
-}
+appendTranscript(`<b>${mentor.shortName}: </b>\xa0\xa0${mentor.intro}<br>`)
 
-function openNav() {
-	console.log(`openNav (will pause)`)
-	document.getElementById("myNav").style.height = "100%";
-	getVideoPlayer().pause()
-}
-
-function closeNav() {
-	console.log(`closeNav (will play)`)
-	document.getElementById("myNav").style.height = "0%";
-	playVideo()
-}
-
-function clearInputContents(element) {
-	element.value = '';
-  }
+document.getElementById("mentor-title").textContent = mentor.title
+$('#question-Box').keydown((e) => {
+    if (e.keyCode === 13) {
+        $(this).val('').focus()
+        return false
+    }
+})
