@@ -85,7 +85,7 @@ ${DOCKER_COMPOSE_BUILD}: ${SECRET_PROPERTIES}
 # Once the server is running, you can open the local site in a browser at
 # http://localhost:3000
 ###############################################################################
-docker-compose-up-no-rebuild: ${DOCKER_COMPOSE_BUILD}
+local-run-no-rebuild: ${DOCKER_COMPOSE_BUILD}
 	source activate ${DEV_ENV} && \
 		cd build && \
 		docker-compose up
@@ -96,10 +96,13 @@ docker-compose-up-no-rebuild: ${DOCKER_COMPOSE_BUILD}
 # with a clean build of docker-compose.yml
 # (updated secrets and config)
 ###############################################################################
-docker-compose-up: clean docker-compose-up-no-rebuild
+local-run: clean local-run-no-rebuild
 
 
-
+local-stop: 
+	source activate ${DEV_ENV} && \
+		cd build && \
+		docker-compose down
 
 
 
