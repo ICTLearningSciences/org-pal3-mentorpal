@@ -49,3 +49,15 @@ class TextFeatureGenerator(object):
         if 'where' in question_text.lower().split():
             return 1
         return 0
+
+    def univariate_features(self, question_text):
+        negation_feature = self.any_negation(question_text)
+        wordcount_feature = self.log_wordcount(question_text)
+        negmod_feature = self.negation_mod(question_text)
+        whatques_feature = self.what_question(question_text)
+        howques_feature = self.how_question(question_text)
+        whyques_feature = self.why_question(question_text)
+        whenques_feature = self.when_question(question_text)
+        whereques_feature = self.where_question(question_text)
+
+        return [negation_feature, wordcount_feature, negmod_feature, whatques_feature, howques_feature, whyques_feature, whenques_feature, whereques_feature]
