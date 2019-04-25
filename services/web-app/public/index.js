@@ -8,6 +8,7 @@ const mentorID = window.location.pathname.split("/")[1]
 const username = localStorage.getItem("username")
 const blacklist = []
 const num_blacklisted_repeats = 5
+let navIsOpen = false
 document.getElementById("user-display").textContent = username
 
 const MENTOR_API_URL = '/mentor-api'
@@ -150,6 +151,9 @@ const _playVideo = (videoSrc, trackSrc, controlsHidden, loop, noRecreatePlayer) 
 	video.play().then(() => { 
 		video.controls = controlsHidden !== true
 		video.loop = loop === true
+		if(navIsOpen) {
+			video.pause()
+		}
 		try {
 			const track = document.getElementById('track')
 			track.src = trackSrc
@@ -361,11 +365,13 @@ window.onload = () => {
 }
 
 const openNav = () => {
+	navIsOpen = true
 	document.getElementById("myNav").style.height = "100%"
 	getVideoPlayer().pause()
 }
 
 const closeNav = () => {
+	navIsOpen = false
 	document.getElementById("myNav").style.height = "0%"
 	playVideo()
 }
