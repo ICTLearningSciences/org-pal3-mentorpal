@@ -1,8 +1,8 @@
 #!/bin/bash
 
 TESTS=$(pwd)
-CLASSIFIER_API=$(dirname ${TESTS})
-SERVICES=$(dirname ${CLASSIFIER_API})
+MENTOR_API=$(dirname ${TESTS})
+SERVICES=$(dirname ${MENTOR_API})
 ROOT=$(dirname ${SERVICES})
 
 IMAGE_NAME=uscictdocker/mentorpal-mentor-api:latest
@@ -20,7 +20,7 @@ docker run \
 		--rm \
 		--name ${CONTAINER_NAME} \
 		-p 5000:5000 \
-		-v ${CLASSIFIER_API}/src/mentorpal_mentor_api:/app/mentorpal_mentor_api \
+		-v ${MENTOR_API}/src/mentor_api:/app/mentor_api \
 		-v ${ROOT}/src/mentorpal:/app/mentorpal \
 		-v ${DOCKER_MOUNT_SRC}:${DOCKER_MOUNT_TGT} \
 		-e MENTORPAL_CLASSIFIER_API_SETTINGS=${FLASK_CONFIG_TGT} \
