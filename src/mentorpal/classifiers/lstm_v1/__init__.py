@@ -8,7 +8,7 @@ from keras.preprocessing.sequence import pad_sequences
 from sklearn.linear_model import RidgeClassifier
 
 from mentorpal.nltk_preprocessor import NLTKPreprocessor
-from mentorpal.iclassifier import IClassifier
+from mentorpal.classifiers import IClassifier
 from mentorpal.mentor import Mentor
 
 class LSTMClassifier(IClassifier):

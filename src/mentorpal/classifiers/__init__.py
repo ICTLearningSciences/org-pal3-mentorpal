@@ -19,3 +19,5 @@ class IClassifier(ABC):
             confidence: (float) 0.0-1.0 confidence score for the question-answer mapping
         """
         return "none", "none", 0.0
+
+

@@ -1,5 +1,5 @@
-from mentorpal.classifier_api import APIClassifier
-from mentorpal.classifier_lstm_v1 import LSTMClassifier
+from mentorpal.classifiers.api import APIClassifier
+from mentorpal.classifiers.lstm_v1 import LSTMClassifier
 
 mentor_classifiers_by_id = dict()
 

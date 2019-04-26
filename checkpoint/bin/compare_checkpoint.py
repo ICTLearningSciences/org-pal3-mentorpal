@@ -2,7 +2,7 @@
 import os
 from mentorpal.mentor import Mentor
 from mentorpal.metrics import Metrics
-from mentorpal.classifier_train_lstm_v1 import TrainLSTMClassifier
+from mentorpal.classifiers.lstm_v1.train import TrainLSTMClassifier
 from mentorpal.checkpoint import create_checkpoint
 
 CHECKPOINT_1 = os.getenv('CHECKPOINT_1')

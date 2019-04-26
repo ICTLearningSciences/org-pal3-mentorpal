@@ -1,6 +1,6 @@
 import random
 
-from mentorpal.iclassifier import IClassifier
+from mentorpal.classifiers import IClassifier
 
 
 class APIClassifier(IClassifier):
