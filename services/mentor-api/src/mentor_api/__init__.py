@@ -3,8 +3,9 @@ import json
 from flask import Flask, jsonify
 from flask_cors import CORS
 from mentor_api.errors import InvalidUsage
-from mentor_api.mentors import find_mentor_classifier
+from mentor_api.mentors import MentorClassifierRegistry
 from mentor_api.config_default import Config
+from mentorpal.classifiers import create_classifier_factory
 
 def create_app(script_info=None):
 
@@ -22,9 +23,11 @@ def create_app(script_info=None):
         print(f'config file not found for MENTORPAL_CLASSIFIER_API_SETTINGS val ${config_path}')
     else:
         app.config.from_envvar('MENTORPAL_CLASSIFIER_API_SETTINGS')
-
+    classifier_registry = MentorClassifierRegistry(
+        create_classifier_factory(app.config['CLASSIFIER_ARCH'], app.config['CLASSIFIER_CHECKPOINT'])
+    )
     for id in app.config['MENTOR_IDS_PRELOAD']:
-        find_mentor_classifier(id)
+        classifier_registry.find_or_create(id)
 
     @app.errorhandler(InvalidUsage)
     def handle_invalid_usage(error):
@@ -36,9 +39,8 @@ def create_app(script_info=None):
     from mentor_api.blueprints.ping import ping_blueprint
     app.register_blueprint(ping_blueprint, url_prefix='/mentor-api/ping')
 
-    from mentor_api.blueprints.questions import questions_blueprint
-    app.register_blueprint(questions_blueprint, url_prefix='/mentor-api/questions')
-
+    from mentor_api.blueprints.questions import create as create_questions_blueprint
+    app.register_blueprint(create_questions_blueprint(classifier_registry), url_prefix='/mentor-api/questions')
 
     from mentor_api.blueprints.mentors import mentors_blueprint
     app.register_blueprint(mentors_blueprint, url_prefix='/mentor-api/mentors')

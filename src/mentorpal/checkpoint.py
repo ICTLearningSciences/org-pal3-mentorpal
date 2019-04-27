@@ -2,11 +2,11 @@
 import datetime
 
 '''
-Trains and saves model to a new checkpoint for the given IClassifier
-IClassifier type must implement a train_model method
+Trains and saves model to a new checkpoint for the given Classifier
+Classifier type must implement a train_model method
 
 Args:
-    Classifier: IClassifier
+    Classifier: Classifier
         classifier to train and checkpoint
 Returns:
     checkpoint: string

@@ -8,7 +8,7 @@ DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_ACCOUNT).password"
 
 THIS_SERVICE_ROOT=$(shell pwd)
 SERVICES_ROOT=$(shell dirname ${THIS_SERVICE_ROOT})
-PROJECT_ROOT=$(shell dirname ${SERVICES_ROOT})
+PROJECT_ROOT=$(shell git rev-parse --show-toplevel 2> /dev/null)
 
 
 DOCKER_BASE_IMAGE?=uscictdocker/mentorpal-classifier
@@ -25,7 +25,6 @@ ifeq ("${DOCKER_BASE_IMAGE_ID}", "")
 else
 	@echo "Found base image with id '${DOCKER_BASE_IMAGE_ID}'"
 endif
-
 	docker build \
 		-t ${DOCKER_IMAGE} \
 		--build-arg MENTORPAL_CLASSIFIER_IMAGE=${DOCKER_BASE_IMAGE} \
