@@ -10,7 +10,7 @@ class Metrics:
     Get answer and answer confidence
 
     Args:
-        classifier: (IClassifier)
+        classifier: (Classifier)
         question: (str) the question text
     Returns:
         answer_id: (str) the id for the answer (typically from a predetermined set)
@@ -26,7 +26,7 @@ class Metrics:
     Train classifier and get accuracy score of training
 
     Args:
-        classifier: (IClassifier)
+        classifier: (Classifier)
     Returns:
         scores: (float array) cross validation scores for training data
         accuracy: (float) accuracy score for training data
@@ -40,7 +40,7 @@ class Metrics:
     Test classifier and get accuracy score of testing set
 
     Args:
-        classifier: (IClassifier)
+        classifier: (Classifier)
         test_file: (string) file name of the testing data to load
     Returns:
         accuracy: (float) accuracy score for training data (correct predictions out of total predictions)

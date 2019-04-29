@@ -14,7 +14,7 @@ from keras.callbacks import ModelCheckpoint
 
 from mentorpal.utils import normalize_topics
 from mentorpal.nltk_preprocessor import NLTKPreprocessor
-from mentorpal.classifier_lstm_v1 import LSTMClassifier
+from mentorpal.classifier.lstm_v1 import LSTMClassifier
 
 '''
 Wrapper class for LSTMClassifier that trains the classifier

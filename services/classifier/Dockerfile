@@ -7,6 +7,7 @@ ENV CHECKPOINT=2019-02-21-0220
 ENV CHECKPOINT_1=2019-02-21-0220
 ENV CHECKPOINT_2=2019-02-21-0220
 ENV MENTOR=clint
+ENV ARCH=${ARCH}
 ENV TEST_SET=testing_data_full.csv
 ENV TRAIN_NEW_CHECKPOINT=False
 ENV MENTORPAL_CONDA_ENV=mentorpal
@@ -41,24 +42,24 @@ RUN bash -c "mkdir -p checkpoint/vector_models && \
 	rm cmd"
 
 # Download checkpoints
-RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint && \
-	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint && \
-	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/clint/*\nexit\" >> cmd && \
+RUN bash -c "mkdir -p checkpoint/classifiers/${ARCH}/${CHECKPOINT}/clint && \
+	cd checkpoint/classifiers/${ARCH}/${CHECKPOINT}/clint && \
+	printf \"mget checkpoint/classifiers/${ARCH}/${CHECKPOINT}/clint/*\nexit\" >> cmd && \
 	cadaver -r cmd ${WEBDAV_PATH} && \
 	rm cmd"
-RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan && \
-	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan && \
-	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/dan/*\nexit\" >> cmd && \
+RUN bash -c "mkdir -p checkpoint/classifiers/${ARCH}/${CHECKPOINT}/dan && \
+	cd checkpoint/classifiers/${ARCH}/${CHECKPOINT}/dan && \
+	printf \"mget checkpoint/classifiers/${ARCH}/${CHECKPOINT}/dan/*\nexit\" >> cmd && \
 	cadaver -r cmd ${WEBDAV_PATH} && \
 	rm cmd"
-RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos && \
-	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos && \
-	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/carlos/*\nexit\" >> cmd && \
+RUN bash -c "mkdir -p checkpoint/classifiers/${ARCH}/${CHECKPOINT}/carlos && \
+	cd checkpoint/classifiers/${ARCH}/${CHECKPOINT}/carlos && \
+	printf \"mget checkpoint/classifiers/${ARCH}/${CHECKPOINT}/carlos/*\nexit\" >> cmd && \
 	cadaver -r cmd ${WEBDAV_PATH} && \
 	rm cmd"
-RUN bash -c "mkdir -p checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne && \
-	cd checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne && \
-	printf \"mget checkpoint/classifiers/lstm_v1/${CHECKPOINT}/julianne/*\nexit\" >> cmd && \
+RUN bash -c "mkdir -p checkpoint/classifiers/${ARCH}/${CHECKPOINT}/julianne && \
+	cd checkpoint/classifiers/${ARCH}/${CHECKPOINT}/julianne && \
+	printf \"mget checkpoint/classifiers/${ARCH}/${CHECKPOINT}/julianne/*\nexit\" >> cmd && \
 	cadaver -r cmd ${WEBDAV_PATH} && \
 	rm cmd"
 

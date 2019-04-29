@@ -5,7 +5,6 @@ from flask import Blueprint, current_app, jsonify, request, send_file
 from werkzeug.utils import secure_filename
 
 from mentor_api.errors import InvalidUsage
-from mentor_api.mentors import find_mentor_classifier
 
 mentors_blueprint = Blueprint('mentors', __name__)
 

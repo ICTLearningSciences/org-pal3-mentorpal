@@ -3,6 +3,9 @@ MENTORPAL_ROOT=$(shell dirname ${CHECKPOINT_ROOT})
 
 WEBDAV_PATH=https://webdisk.ict.usc.edu/remote.php/webdav/
 CHECKPOINT ?= 2019-02-21-0220
+CHECKPOINT_2 ?= $(CHECKPOINT)
+ARCH ?= lstm_v1
+ARCH_2 ?= $(ARCH)
 MENTOR ?= clint
 
 DOCKER_ACCOUNT?=uscictdocker
@@ -15,7 +18,7 @@ clean:
 	rm -r vector_models/*.bin
 
 init: vector-models
-	$(MAKE) download-checkpoint classifier=lstm_v1 checkpoint=${CHECKPOINT}
+	$(MAKE) download-checkpoint classifier=$(ARCH) checkpoint=$(CHECKPOINT)
 
 
 # make classifier={CLASSIFIER} checkpoint={CHECKPOINT} download-checkpoint
@@ -64,9 +67,13 @@ upload-checkpoint:
 	./bin/davupload.sh "classifiers/$(classifier)/$(checkpoint)/" "https://webdisk.ict.usc.edu/remote.php/webdav/checkpoint/classifiers/$(classifier)/"
 
 # CHECKPOINT={CHECKPOINT} MENTOR={MENTOR} make test-checkpoint
-test-checkpoint:
-	./bin/checkpoint_test.sh ${CHECKPOINT} ${MENTOR}
+checkpoint-test:
+	./bin/checkpoint_test.sh $(MENTOR) $(ARCH) $(CHECKPOINT) 
 
 # make c1={CHECKPOINT1} c2={CHECKPOINT2} m={MENTOR} compare-checkpoints
-compare-checkpoints:
-	./bin/checkpoint_compare.sh ${c1} ${c2} ${m}
+checkpoints-compare:
+	./bin/checkpoints_compare.sh $(MENTOR) $(ARCH) $(CHECKPOINT) $(ARCH_2) $(CHECKPOINT_2) 
+
+
+docker-run-dev:
+	

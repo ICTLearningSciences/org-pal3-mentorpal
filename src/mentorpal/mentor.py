@@ -17,7 +17,7 @@ class Mentor(object):
         self.answer_ids={}
         self.ids_questions={}
         self.question_ids={}
-
+        # TODO: the mentor <name,title> metadata below needs to come from data files
         if id == 'clint':
             self.name="Clinton Anderson"
             self.title="Nuclear Electrician's Mate"
@@ -30,14 +30,15 @@ class Mentor(object):
         elif id == 'carlos':
             self.name= "Carlos Rios"
             self.title="Marine Logistician"
-
         self.load()
+
 
     def load(self):
         self.topics = self.load_topics()
         self.utterances_prompts = self.load_utterances()
         self.suggestions = self.load_suggestions()
         self.ids_answers, self.answer_ids, self.ids_questions, self.question_ids = self.load_ids_answers()
+
 
     def load_topics(self):
         topics=[]
@@ -58,6 +59,7 @@ class Mentor(object):
                 topics[i]='STEM'
         return topics
     
+
     def load_utterances(self):
         utterances_prompts={}
         utterance_df=pd.read_csv(open(os.path.join("mentors",self.id,"data","utterance_data.csv"),'rb'))
@@ -70,6 +72,7 @@ class Mentor(object):
             else:
                 utterances_prompts[situation]=[(video_name, utterance)]
         return utterances_prompts
+
 
     def load_suggestions(self):
         suggestions={}
@@ -95,6 +98,7 @@ class Mentor(object):
                             suggestions[topic]=[(question, answer, answer_id)]
         return suggestions
 
+
     def load_ids_answers(self):
         classifier_data=pd.read_csv(os.path.join("mentors",self.id,"data","classifier_data.csv"))
         corpus=classifier_data.fillna('')
@@ -102,18 +106,15 @@ class Mentor(object):
         ids_answers={}
         question_ids={}
         ids_questions={}
-
         for i in range(0,len(corpus)):
             ID=corpus.iloc[i]['ID']
             answer=corpus.iloc[i]['text']
             answer=answer.replace('\u00a0',' ')
             answer_ids[answer]=ID
             ids_answers[ID]=answer
-
             questions=corpus.iloc[i]['question'].split('\n')
             for question in questions:
                 question=question.replace('\u00a0',' ')
                 question_ids[question]=ID
             ids_questions[ID]=questions
-
         return ids_answers, answer_ids, ids_questions, question_ids
