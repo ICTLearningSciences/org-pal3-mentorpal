@@ -66,6 +66,7 @@ docker-run-dev:
 			--name ${DOCKER_CONTAINER} \
 			--shm-size 8G \
 			-p 5000:5000 \
+			-v ${PROJECT_ROOT}/checkpoint:/app/checkpoint \
 			-v ${THIS_SERVICE_ROOT}/src/mentor_api:/app/mentor_api \
 			-v ${PROJECT_ROOT}/src/mentorpal:/app/mentorpal \
 		${DOCKER_IMAGE} 
@@ -77,7 +78,9 @@ docker-run-dev-shell:
 			--name ${DOCKER_CONTAINER} \
 			--shm-size 8G \
 			-p 5000:5000 \
+			-v ${PROJECT_ROOT}/checkpoint:/app/checkpoint \
 			-v ${THIS_SERVICE_ROOT}/src/mentor_api:/app/mentor_api \
+			-v ${PROJECT_ROOT}/src/mentorpal:/app/mentorpal \
 			--entrypoint /bin/bash \
 		${DOCKER_IMAGE} 
 

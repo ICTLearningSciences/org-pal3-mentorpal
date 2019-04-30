@@ -32,6 +32,8 @@ class Mentor(object):
             self.title="Marine Logistician"
         self.load()
 
+    def get_id(self):
+        return self.id
 
     def load(self):
         self.topics = self.load_topics()

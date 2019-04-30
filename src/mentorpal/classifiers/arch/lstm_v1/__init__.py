@@ -11,45 +11,46 @@ from mentorpal.nltk_preprocessor import NLTKPreprocessor
 from mentorpal.classifiers import CheckpointClassifierFactory, Classifier, register_classifier_factory
 from mentorpal.mentor import Mentor
 
-# store the CLASSIFIER_NAME because we use it several places
-CLASSIFIER_NAME = "lstm_v1"
+# store the ARCH because we use it several places
+ARCH = "lstm_v1"
 
 # CheckpointClassifierFactory impl that will get registered globally for this arch ('lstm_v1')
-class _ClassifierFactory(CheckpointClassifierFactory):
+class __ClassifierFactory(CheckpointClassifierFactory):
     def create(self, checkpoint, mentors):
         return LSTMClassifier(mentors, checkpoint)
 
 
-# NOTE: always make sure this module lives in `mentorpal.classifiers.arch.${CLASSIFIER_NAME}`
+# NOTE: always make sure this module lives in `mentorpal.classifiers.arch.${ARCH}`
 # so that it can be discovered/loaded by arch name
-register_classifier_factory(CLASSIFIER_NAME, _ClassifierFactory())
+register_classifier_factory(ARCH, __ClassifierFactory())
 
 
 # NOTE: classifiers MUST extend abstract base class `mentorpal.classifiers.Classifier`
 class LSTMClassifier(Classifier):
-    DEFAULT_CHECKPOINT = os.getenv('CHECKPOINT') or '2019-02-21-0220'
-
     '''
     Create a classifier instance for a mentor
 
     Args:
-        mentor: (string|Mentor)
+        mentor: (str|Mentor)
             A mentor instance or the id for a mentor to load
-        checkpoint: (string)
-            The dated version path of the classifier model checkpoint to use
+        data_path: (str)
+            path to the root of model data for this classifier
     '''
-    def __init__(self, mentor, checkpoint=DEFAULT_CHECKPOINT):
+    def __init__(self, mentor, data_path):
         if isinstance(mentor, str):
             print('loading mentor id {}...'.format(mentor))
             mentor = Mentor(mentor)
         assert isinstance(mentor, Mentor), \
             'invalid type for mentor (expected mentor.Mentor or string id for a mentor, encountered {}'.format(type(mentor))
         self.mentor = mentor
-        self.checkpoint = checkpoint
-        self.name = CLASSIFIER_NAME
-        model_path = self.get_model_path()
-        self.logistic_model, self.topic_model, self.w2v_model = self.__load_model(model_path)
+        self.__model_path = os.path.join(data_path, mentor.get_id())
+        self.name = ARCH
+        self.logistic_model, self.topic_model, self.w2v_model = self.__load_model(self.get_model_path())
 
+    @staticmethod
+    def get_arch():
+        global ARCH
+        return ARCH
 
     def get_answer(self, question):
         preprocessor = NLTKPreprocessor()
@@ -63,7 +64,7 @@ class LSTMClassifier(Classifier):
 
 
     def get_model_path(self):
-        return os.path.join("checkpoint","classifiers","{0}","{1}","{2}").format(self.name, self.checkpoint, self.mentor.id)
+        return self.__model_path
 
 
     def __load_model(self, model_path):
@@ -74,7 +75,7 @@ class LSTMClassifier(Classifier):
         if not os.path.exists(model_path) or not os.listdir(model_path):
             print('Local checkpoint {0} does not exist.'.format(model_path))
             print('Download checkpoint from webdisk using:')
-            print('make download-checkpoint classifier={0} checkpoint={1}'.format(self.name, self.checkpoint))
+            print('make download-checkpoint classifier={0} checkpoint={1}'.format(self.name, self.get_model_path()))
         try:
             path = os.path.join(model_path, 'lstm_topic_model.h5')
             topic_model = load_model(path)
