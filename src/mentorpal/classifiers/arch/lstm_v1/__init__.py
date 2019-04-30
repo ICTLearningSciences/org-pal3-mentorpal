@@ -3,13 +3,13 @@ import numpy as np
 
 from keras.models import load_model
 from sklearn.externals import joblib
-from gensim.models.keyedvectors import KeyedVectors
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.linear_model import RidgeClassifier
 
-from mentorpal.nltk_preprocessor import NLTKPreprocessor
 from mentorpal.classifiers import CheckpointClassifierFactory, Classifier, register_classifier_factory
 from mentorpal.mentor import Mentor
+from mentorpal.nltk_preprocessor import NLTKPreprocessor
+from mentorpal.w2v import W2V
 
 # store the ARCH because we use it several places
 ARCH = "lstm_v1"
@@ -55,7 +55,7 @@ class LSTMClassifier(Classifier):
     def get_answer(self, question):
         preprocessor = NLTKPreprocessor()
         processed_question = preprocessor.transform(question)
-        w2v_vector, lstm_vector = self.__get_w2v(processed_question)
+        w2v_vector, lstm_vector = self.w2v_model.w2v_for_question(processed_question)
         lstm_vector = [lstm_vector]
         padded_vector = pad_sequences(lstm_vector,maxlen = 25, dtype = 'float32',padding = 'post',truncating = 'post',value = 0.)
         topic_vector = self.__get_topic_vector(padded_vector)
@@ -86,34 +86,10 @@ class LSTMClassifier(Classifier):
             logistic_model = joblib.load(path)
         except:
             print('Unable to load logistic model from {0}. Classifier needs to be retrained before asking questions.'.format(path))
-        try:
-            path = os.path.join(model_path, 'w2v.txt')
-            with open(path, 'r') as myfile:
-                word2vec = myfile.read().replace('\n', '')
-                word2vec = os.path.join("checkpoint","vector_models","{0}").format(word2vec)
-                word2vec = KeyedVectors.load_word2vec_format(word2vec, binary = True)
-        except:
-            print('Unable to load word2vec model from {0}. Will use default slim version.'.format(path))
-            word2vec = os.path.join("checkpoint","vector_models","GoogleNews-vectors-negative300-SLIM.bin")
-            word2vec = KeyedVectors.load_word2vec_format(word2vec, binary = True)
-
-        assert isinstance(word2vec, KeyedVectors), \
-            'invalid type for word2vec (expected gensim.models.keyedvectors.KeyedVectors or path to binary, encountered {}'.format(type(word2vec))
-
+        word2vec = W2V()
         return logistic_model, topic_model, word2vec
 
 
-    def __get_w2v(self, question):
-        current_vector = np.zeros(300,dtype = 'float32')
-        lstm_vector = []
-        for word in question:
-            try:
-                word_vector = self.w2v_model[word]
-            except:
-                word_vector = np.zeros(300,dtype = 'float32')
-            lstm_vector.append(word_vector)
-            current_vector += word_vector
-        return current_vector, lstm_vector
     
 
     def __get_topic_vector(self, lstm_vector):
