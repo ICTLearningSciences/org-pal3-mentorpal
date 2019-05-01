@@ -2,12 +2,13 @@ import pandas as pd
 import os
 import csv
 
-from mentorpal.utils import normalize_topics
 from mentorpal.nltk_preprocessor import NLTKPreprocessor
+from mentorpal.utils import normalize_topics
 
 class Mentor(object):
-    def __init__(self, id):
+    def __init__(self, id, mentor_data_root=None):
         self.id = id
+        self.__mentor_data_root = mentor_data_root or os.path.join("mentors", self.id, "data")
         self.name=None
         self.title=None
         self.topics=[]
@@ -32,6 +33,12 @@ class Mentor(object):
             self.title="Marine Logistician"
         self.load()
 
+    def get_id(self):
+        return self.id
+
+
+    def mentor_data_path(self, p):
+        return os.path.join(self.__mentor_data_root, p)
 
     def load(self):
         self.topics = self.load_topics()
@@ -42,7 +49,7 @@ class Mentor(object):
 
     def load_topics(self):
         topics=[]
-        with open(os.path.join("mentors",self.id,"data","topics.csv")) as f:
+        with open(self.mentor_data_path("topics.csv")) as f:
             reader=csv.reader(f)
             for row in reader:
                 topics.append(row[0].lower())
@@ -62,7 +69,7 @@ class Mentor(object):
 
     def load_utterances(self):
         utterances_prompts={}
-        utterance_df=pd.read_csv(open(os.path.join("mentors",self.id,"data","utterance_data.csv"),'rb'))
+        utterance_df=pd.read_csv(open(self.mentor_data_path("utterance_data.csv"),'rb'))
         for i in range(len(utterance_df)):
             situation=utterance_df.iloc[i]['situation']
             video_name=utterance_df.iloc[i]['ID']
@@ -76,7 +83,7 @@ class Mentor(object):
 
     def load_suggestions(self):
         suggestions={}
-        classifier_data=pd.read_csv(os.path.join("mentors",self.id,"data","classifier_data.csv"))
+        classifier_data=pd.read_csv(self.mentor_data_path("classifier_data.csv"))
         corpus=classifier_data.fillna('')
         for i in range(0,len(corpus)):
             topics=corpus.iloc[i]['topics'].split(",")
@@ -100,7 +107,7 @@ class Mentor(object):
 
 
     def load_ids_answers(self):
-        classifier_data=pd.read_csv(os.path.join("mentors",self.id,"data","classifier_data.csv"))
+        classifier_data=pd.read_csv(self.mentor_data_path("classifier_data.csv"))
         corpus=classifier_data.fillna('')
         answer_ids={}
         ids_answers={}

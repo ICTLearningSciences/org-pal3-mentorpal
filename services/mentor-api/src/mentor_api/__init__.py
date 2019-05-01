@@ -24,7 +24,10 @@ def create_app(script_info=None):
     else:
         app.config.from_envvar('MENTORPAL_CLASSIFIER_API_SETTINGS')
     classifier_registry = MentorClassifierRegistry(
-        create_classifier_factory(app.config['CLASSIFIER_ARCH'], app.config['CLASSIFIER_CHECKPOINT'])
+        create_classifier_factory(
+            app.config['CLASSIFIER_ARCH'], 
+            app.config['CLASSIFIER_CHECKPOINT'], 
+            app.config['CLASSIFIER_CHECKPOINT_ROOT'])
     )
     for id in app.config['MENTOR_IDS_PRELOAD']:
         classifier_registry.find_or_create(id)
