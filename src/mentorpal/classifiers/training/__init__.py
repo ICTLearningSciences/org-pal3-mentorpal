@@ -7,10 +7,18 @@ class ClassifierTraining(ABC):
     """
 
     @abstractmethod
-    def train(self): pass
+    def train(self):
+        """
+        Trains the classifier updating trained weights to be saved later with save()
+    
+        Returns:
+            scores: (float array) cross validation scores for training data
+            accuracy: (float) accuracy score for training data
+        """
+        pass
 
     @abstractmethod
-    def save(self, checkpoint_path): pass
+    def save(self, to_path=None): pass
 
 
 class ClassifierTrainingFactory(ABC):
@@ -43,7 +51,7 @@ def register_classifier_training_factory(arch, fac):
 
         Args:
             arch: (str) id for the architecture
-        """
+    """
     assert isinstance(arch, str)
     assert isinstance(fac, ClassifierTrainingFactory)
     _factories_by_arch[arch] = fac
@@ -51,7 +59,7 @@ def register_classifier_training_factory(arch, fac):
 
 def find_classifier_training_factory(arch):
     """
-        Creates a mentorpal.classifiers.ClassifierFactory given an arch and checkpoint.
+        Creates a mentorpal.classifiers.training.ClassifierTrainingFactory given an arch and checkpoint.
 
         Args:
             arch: (str) id for the architecture
@@ -65,4 +73,4 @@ def find_classifier_training_factory(arch):
         import_module(f'mentorpal.classifiers.arch.{arch}.training')
     fac = _factories_by_arch[arch]
     assert isinstance(fac, ClassifierTrainingFactory)
-    return ClassifierFactory(checkpoint_fac, checkpoint)
+    return fac
