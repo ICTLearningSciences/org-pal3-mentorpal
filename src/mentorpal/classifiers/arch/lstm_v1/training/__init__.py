@@ -33,7 +33,7 @@ register_classifier_training_factory(LSTMClassifier.get_arch(), __ClassifierTrai
 Wrapper class for LSTMClassifier that trains the classifier
 '''
 class TrainLSTMClassifier(ClassifierTraining):
-    # TRAINING_DEFAULT_PATH = os.path.join('mentors','{0}','data','classifier_data.csv')
+    
     
     def __init__(self, mentor, checkpoint):
         assert isinstance(mentor, Mentor)
@@ -44,14 +44,14 @@ class TrainLSTMClassifier(ClassifierTraining):
         self.w2v = W2V()
 
 
-    '''
-    Trains the classifier updating trained weights to be saved later with save()
-    
-    Returns:
-        scores: (float array) cross validation scores for training data
-        accuracy: (float) accuracy score for training data
-    '''
     def train(self):
+        '''
+        Trains the classifier updating trained weights to be saved later with save()
+        
+        Returns:
+            scores: (float array) cross validation scores for training data
+            accuracy: (float) accuracy score for training data
+        '''
         if not os.path.exists(self.model_path):
             os.makedirs(self.model_path)
         training_data = self.__load_training_data(self.mentor.mentor_data_path('classifier_data.csv'))
