@@ -76,7 +76,7 @@ ${DOCKER_COMPOSE_BUILD}: ${SECRET_PROPERTIES}
 # Run the app locally with 'docker-compose up'
 # Does NOT clean the existing build directory first (if one exists)
 # Once the server is running, you can open the local site in a browser at
-# http://localhost:3000
+# http://localhost:8080
 ###############################################################################
 .PHONY: local-run-no-rebuild
 local-run-no-rebuild: ${DOCKER_COMPOSE_BUILD}
@@ -89,6 +89,8 @@ local-run-no-rebuild: ${DOCKER_COMPOSE_BUILD}
 # Run the app locally with 'docker-compose up'
 # with a clean build of docker-compose.yml
 # (updated secrets and config)
+# Once the server is running, you can open the local site in a browser at
+# http://localhost:8080
 ###############################################################################
 .PHONY: local-run
 local-run: clean local-run-no-rebuild

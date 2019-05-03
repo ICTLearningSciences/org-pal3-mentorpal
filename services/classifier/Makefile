@@ -42,7 +42,6 @@ docker-run:
 			--name ${DOCKER_CONTAINER} \
 			--shm-size 8G \
 			-p 8888:8888 \
-			-v ${MENTORPAL_ROOT}:/workingcopy \
 		${DOCKER_IMAGE} \
 			bash
 
@@ -54,7 +53,6 @@ docker-run-dev:
 			--name ${DOCKER_CONTAINER} \
 			--shm-size 8G \
 			-p 8888:8888 \
-			-v ${MENTORPAL_ROOT}:/workingcopy \
 			-v ${MENTORPAL_ROOT}:/app/mentorpal \
 		${DOCKER_IMAGE} \
 			bash

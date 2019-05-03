@@ -2,8 +2,8 @@ version: '3.0'
 services:
   web-app:
     image: "uscictdocker/mentorpal-web-app"
-    ports: 
-      - "3000:3000"
+    expose: 
+      - "3000"
     depends_on:
       - mentor-api
     environment:
@@ -11,8 +11,8 @@ services:
       - WATSON_PASSWORD={{WATSON_PASSWORD}}
   mentor-api:
     image: "uscictdocker/mentorpal-mentor-api"
-    ports:
-      - "5000:5000"
+    expose:
+      - "5000"
   proxy:
     image: "uscictdocker/mentorpal-proxy"
     ports:
