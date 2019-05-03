@@ -10,9 +10,11 @@ SERVICES_ROOT=$(shell dirname ${CLASSIFIER_ROOT})
 MENTORPAL_ROOT=$(shell dirname ${SERVICES_ROOT})
 
 CHECKPOINT=2019-02-21-0220
+ARCH=lstm_v1
 
 clean:
 	rm -rf build
+
 
 # The src for the MentorPAL classifier should live under the 'classifier' folder
 # but currently it lives are the root of the project.
@@ -24,8 +26,14 @@ build: clean
 	cp -r ${MENTORPAL_ROOT}/mentors ${CLASSIFIER_ROOT}/build
 	cp ${MENTORPAL_ROOT}/.netrc ${CLASSIFIER_ROOT}/build
 
+
 docker-build: clean build
-	docker build --build-arg CHECKPOINT=${CHECKPOINT} -t ${DOCKER_IMAGE} .
+	docker build \
+			--build-arg CHECKPOINT=$(CHECKPOINT) \
+			--build-arg ARCH=$(ARCH) \
+			-t $(DOCKER_IMAGE) \
+		.
+
 
 docker-run:
 	docker run \
@@ -34,9 +42,9 @@ docker-run:
 			--name ${DOCKER_CONTAINER} \
 			--shm-size 8G \
 			-p 8888:8888 \
-			-v ${MENTORPAL_ROOT}:/workingcopy \
 		${DOCKER_IMAGE} \
 			bash
+
 
 docker-run-dev:
 	docker run \
@@ -45,7 +53,6 @@ docker-run-dev:
 			--name ${DOCKER_CONTAINER} \
 			--shm-size 8G \
 			-p 8888:8888 \
-			-v ${MENTORPAL_ROOT}:/workingcopy \
 			-v ${MENTORPAL_ROOT}:/app/mentorpal \
 		${DOCKER_IMAGE} \
 			bash

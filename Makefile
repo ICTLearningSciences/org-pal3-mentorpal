@@ -1,25 +1,17 @@
-.PHONY: \
-	docker-build-services \
-	docker-push-tags-no-build \
-	clean \
-	docker-compose-up-no-rebuild \
-	docker-compose-up
-
+PROJECT_ROOT=$(shell git rev-parse --show-toplevel 2> /dev/null)
+DOCKER_SERVICES=$(PROJECT_ROOT)/bin/docker_services.sh
 DEV_ENV=mentorpal-dev
+
+.PHONY: dev-env-create
 dev-env-create:
 	cd dev-env && \
 		./create.sh ${DEV_ENV}
 
+.PHONY: docker-build-services
 docker-build-services:
-	cd services/web-app && \
-		$(MAKE) docker-build
+	$(DOCKER_SERVICES) --tag latest build
 
-	cd services/mentor-api && \
-		$(MAKE) docker-build
-
-	cd services/proxy && \
-		$(MAKE) docker-build
-
+.PHONY: docker-push-tags-no-build
 docker-push-tags-no-build:
 	cd services/web-app && \
 		$(MAKE) docker-push-tag
@@ -36,6 +28,7 @@ docker-push-tags-no-build:
 # 5) push tags to docker
 # 6) deploy to eb
 
+.PHONY: clean
 clean:
 	rm -rf build
 
@@ -83,8 +76,9 @@ ${DOCKER_COMPOSE_BUILD}: ${SECRET_PROPERTIES}
 # Run the app locally with 'docker-compose up'
 # Does NOT clean the existing build directory first (if one exists)
 # Once the server is running, you can open the local site in a browser at
-# http://localhost:3000
+# http://localhost:8080
 ###############################################################################
+.PHONY: local-run-no-rebuild
 local-run-no-rebuild: ${DOCKER_COMPOSE_BUILD}
 	source activate ${DEV_ENV} && \
 		cd build && \
@@ -95,10 +89,14 @@ local-run-no-rebuild: ${DOCKER_COMPOSE_BUILD}
 # Run the app locally with 'docker-compose up'
 # with a clean build of docker-compose.yml
 # (updated secrets and config)
+# Once the server is running, you can open the local site in a browser at
+# http://localhost:8080
 ###############################################################################
+.PHONY: local-run
 local-run: clean local-run-no-rebuild
 
 
+.PHONY: local-stop
 local-stop: 
 	source activate ${DEV_ENV} && \
 		cd build && \
