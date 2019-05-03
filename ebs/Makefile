@@ -4,7 +4,7 @@
 SHELL:=/bin/bash
 
 CURDIR=$(shell pwd)
-PROJECT_ROOT=$(shell dirname $(CURDIR))
+PROJECT_ROOT=$(shell git rev-parse --show-toplevel 2> /dev/null)
 PROJECT_NAME=$(shell basename "$(PROJECT_ROOT)" | tr [:upper:] [:lower:])
 BUILD=$(CURDIR)/build
 CONFIG=$(PROJECT_ROOT)/config
@@ -41,6 +41,7 @@ AWS_CONFIG=${HOME_DIR}/.aws/config
 
 DOCKER_ACCOUNT ?= uscictdocker
 DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_ACCOUNT).password"
+DOCKER_SERVICES=$(PROJECT_ROOT)/bin/docker_services.sh
 
 DATE := $(shell date +"%Y%m%dT%H%M")
 
@@ -133,8 +134,9 @@ build/ebs/config/.elasticbeanstalk_config.properties: build/clone
 build/ebs/config/Dockerrun.aws.properties: build/clone
 	mkdir -p build/ebs/config
 
-	./bin/docker_services.sh ${DOCKER_ACCOUNT} \
-			-t ${GIT_HASH} \
+	$(DOCKER_SERVICES) \
+			--account ${DOCKER_ACCOUNT)
+			--tag ${GIT_HASH} \
 			-o ${BUILD}/ebs/config/Dockerrun.aws.properties \
 		properties
 
@@ -200,7 +202,7 @@ build: build/clone venv-exists ${CLONE_SECRET_PROPERTIES} \
 ##############################################################################
 .PHONY: docker-build 
 docker-build: build/clone
-	./bin/docker_services.sh ${DOCKER_ACCOUNT} -t ${GIT_HASH} build
+	$(DOCKER_SERVICES) --account $(DOCKER_ACCOUNT) --tag $(GIT_HASH) build
 
 
 ##############################################################################
@@ -230,7 +232,7 @@ endif
 ##############################################################################
 .PHONY: docker-push 
 docker-push: docker-login
-	./bin/docker_services.sh ${DOCKER_ACCOUNT} -t ${GIT_HASH} push
+	$(DOCKER_SERVICES) --account $(DOCKER_ACCOUNT) -t ${GIT_HASH} push
 
 
 ${AWS_CONFIG}:
