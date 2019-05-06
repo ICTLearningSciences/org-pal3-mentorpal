@@ -1,100 +1,119 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="/papaparse.min.js"></script>
-	<script src="/socket.io.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
-	<script src="/watson-speech.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/index.css">
-	<title>ICT MentorPal</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+    integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/papaparse.min.js"></script>
+  <script src="/socket.io.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+  <script src="/watson-speech.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/index.css">
+  <title>ICT MentorPal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <style>
     /* Make the image fully responsive */
     .carousel-inner img {
-        width: 100%;
-        height: 100%;
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
-<body>
-	<div id="myNav" class="overlay">
-	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-	<div class="overlay-content">
-		<h2>Welcome to MentorPal!</h2>
-		<h3>MentorPal is an interactive system that lets you interview <br>Navy sailors to learn more about STEM fields and Navy careers.</h3><br>
-		<h5>By entering your username on the following screen, <br>you agree that your data will be anonymously logged for research purposes only.</h5><br>
-		<button class = "btn btn-primary button-color" onclick="closeNav()" style = "font-size: 24px">Enter MentorPal</button>
-	</div>
 
-	</div>
-  <nav id = navSize class="navbar navbar-light" style="background-color: #d9dbdf; height: 85px">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#"><img src ="/Logo_MentorPal.png"></a>
-      </div>
-      <div class="dropdown ml-auto">
-          <a href="http://ict.usc.edu" <class="navbar-brand" "mr-sm-2"><img src="/ICT.png"></a>
-      </div>
-  </nav>
-<div id = "col-centered" class = "wrap"> <!--https://getbootstrap.com/docs/4.0/components/carousel/-->
-	<div id = "mainSize" class="container">
-    <div class= "row" style="padding-top: 40px; padding-bottom: 30px;">
-      <div id="carousel" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%" data-interval='false'>
-        <!-- Indicators -->
-        <ul class="carousel-indicators" style="bottom: 5%;">
-          <li data-target="#demo" data-slide-to="0" class="active"></li>
-          <li data-target="#demo" data-slide-to="1"></li>
-          <li data-target="#demo" data-slide-to="2"></li>
-          <li data-target="#demo" data-slide-to="3"></li>
-        </ul>
-        <!-- The slideshow -->
-        <div class="carousel-inner">
-          <div class="carousel-item active" style="height: 100%; width: 100%">
-          	<div class = "embed-responsive embed-responsive-16by9">
-                <video src = "https://video.mentorpal.org/videos/mentors/clint/web/clintanderson_A1_1_1.mp4" class ="video" id = "video0" width="100%" height="720px" controls="false">
-								</video>
-            </div>
-          </div>
-          <div class="carousel-item" style="height: 100%; width: 100%">
-            <div class = "embed-responsive embed-responsive-16by9">
-              <video src = "https://video.mentorpal.org/videos/mentors/dan/web/dandavis_A1_1_1.mp4" class ="video" id = "video1" width="100%" height="720px" controls="false">
-              </video>
-            </div>
-          </div>
-          <div class="carousel-item" style="height: 100%; width: 100%">
-            <div class = "embed-responsive embed-responsive-16by9">
-              <video src = "https://video.mentorpal.org/videos/mentors/carlos/web/carlos_A1_1_1.mp4" class ="video" id = "video2" width="100%" height="720px" controls="false">
-              </video>
-            </div>
-          </div>
-          <div class="carousel-item" style="height: 100%; width: 100%">
-            <div class = "embed-responsive embed-responsive-16by9">
-              <video src = "https://video.mentorpal.org/videos/mentors/julianne/web/julianne_A1_1_1.mp4" class ="video" id = "video3" width="100%" height="720px" controls="false">
-              </video>
-            </div>
-          </div>
-        </div>
-        <!-- Left and right controls -->
-        <a class="carousel-control-prev" href="#carousel" data-slide="prev" style = "height: 80%; padding-top: 10%" >
-          <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#carousel" data-slide="next" style = "height: 80%; padding-top: 10%" >
-          <span class="carousel-control-next-icon"></span>
-        </a>
-      </div>
+<body onresize="resizeFix()">
+  <div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content">
+      <h2>Welcome to MentorPal!</h2>
+      <h3>MentorPal is an interactive system that lets you interview <br>Navy sailors to learn more about STEM fields
+        and Navy careers.</h3><br>
+      <h5>By entering your username on the following screen, <br>you agree that your data will be anonymously logged for
+        research purposes only.</h5><br>
+      <button class="btn btn-primary button-color" onclick="closeNav()" style="font-size: 24px">Enter MentorPal</button>
+    </div>
   </div>
-		<div style = "text-align:center;">
-				<h3>Enter your Username:</h3>
-				<input class="form-control input-lg" id="input-username" type="text"><br>
-				<h3>Choose your first Mentor below:</h3>
-				<button class="btn btn-primary select-mentor button-color" onclick="saveUserID('/clint')" role="button"><b>Clint:</b><br> Nuclear Electrician's Mate</button><br><br>
-				<a class="btn btn-primary select-mentor button-color" href="/dan" role="button"><b>Dan:</b><br> High Performance Computing Researcher</a><br><br>
-				<a class="btn btn-primary select-mentor button-color" href="/carlos" role="button" ><b>Carlos:</b><br> Marine Logistician</a><br><br>
-				<a class="btn btn-primary select-mentor button-color" href="/julianne" role="julianne" ><b>Julianne:</b><br> Student Naval Aviator</a><br><br>
-</div>
-<script src = "/home.js">
-/*Below is for Overlay Nav*/
-</script>
+
+  <nav id=navSize class="navbar navbar-light" style="background-color: #d9dbdf; height: 85px">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><img src="/Logo_MentorPal.png"></a>
+    </div>
+    <div class="dropdown ml-auto">
+      <a href="http://ict.usc.edu" <class="navbar-brand" "mr-sm-2"><img src="/ICT.png"></a>
+    </div>
+  </nav>
+
+  <div id="col-centered" class="wrap">
+    <!--https://getbootstrap.com/docs/4.0/components/carousel/-->
+    <div id="mainSize" class="container">
+      <div class="row" style="padding-top: 40px; padding-bottom: 30px;">
+        <div id="carousel" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%"
+          data-interval='false'>
+          <!-- Indicators -->
+          <ul class="carousel-indicators" style="bottom: 5%;">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+            <li data-target="#demo" data-slide-to="3"></li>
+          </ul>
+          <!-- The slideshow -->
+          <div class="carousel-inner">
+            <div class="carousel-item active" style="height: 100%; width: 100%">
+              <div class="embed-responsive embed-responsive-16by9">
+                <video src="https://video.mentorpal.org/videos/mentors/clint/web/clintanderson_A1_1_1.mp4" class="video"
+                  id="video0" width="100%" height="720px" controls="false">
+                </video>
+              </div>
+            </div>
+            <div class="carousel-item" style="height: 100%; width: 100%">
+              <div class="embed-responsive embed-responsive-16by9">
+                <video src="https://video.mentorpal.org/videos/mentors/dan/web/dandavis_A1_1_1.mp4" class="video"
+                  id="video1" width="100%" height="720px" controls="false">
+                </video>
+              </div>
+            </div>
+            <div class="carousel-item" style="height: 100%; width: 100%">
+              <div class="embed-responsive embed-responsive-16by9">
+                <video src="https://video.mentorpal.org/videos/mentors/carlos/web/carlos_A1_1_1.mp4" class="video"
+                  id="video2" width="100%" height="720px" controls="false">
+                </video>
+              </div>
+            </div>
+            <div class="carousel-item" style="height: 100%; width: 100%">
+              <div class="embed-responsive embed-responsive-16by9">
+                <video src="https://video.mentorpal.org/videos/mentors/julianne/web/julianne_A1_1_1.mp4" class="video"
+                  id="video3" width="100%" height="720px" controls="false">
+                </video>
+              </div>
+            </div>
+          </div>
+          <!-- Left and right controls -->
+          <a class="carousel-control-prev" href="#carousel" data-slide="prev" style="height: 80%; padding-top: 10%">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#carousel" data-slide="next" style="height: 80%; padding-top: 10%">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <h3>Enter your Username:</h3>
+        <input class="form-control input-lg" id="input-username" type="text"><br>
+        <h3>Choose your first Mentor below:</h3>
+        <button class="btn btn-primary select-mentor button-color" onclick="saveUserID('/clint')"
+          role="button"><b>Clint:</b><br> Nuclear Electrician's Mate</button><br><br>
+        <a class="btn btn-primary select-mentor button-color" href="/dan" role="button"><b>Dan:</b><br> High Performance
+          Computing Researcher</a><br><br>
+        <a class="btn btn-primary select-mentor button-color" href="/carlos" role="button"><b>Carlos:</b><br> Marine
+          Logistician</a><br><br>
+        <a class="btn btn-primary select-mentor button-color" href="/julianne" role="julianne"><b>Julianne:</b><br>
+          Student Naval Aviator</a><br><br>
+      </div>
 </body>
+<script src="/home.js"></script>
+
 </html>
