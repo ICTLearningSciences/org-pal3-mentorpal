@@ -1,8 +1,8 @@
 var globalResults
 var socket = io()
 const getVideoPlayer = () => document.getElementById('videoPlayer')
-var videoTargetType="web"
-const isUnity=location.href.includes('unity=true')
+var videoTargetType = "web"
+const isUnity = location.href.includes('unity=true')
 const mentorID = window.location.pathname.split("/")[1]
 const username = localStorage.getItem("username")
 const blacklist = []
@@ -72,11 +72,12 @@ const resizeFix = () => {
 		document.getElementById("myOverlay").innerHTML = ''
 		document.getElementById("myOverlay").innerHTML += "<h2>Welcome to MentorPal!</h2>"
 		document.getElementById("myOverlay").innerHTML += "<h3>Click on the topic buttons to get suggested questions.</h3>"
+		document.getElementById("navSize").style.display = "none"
 		toChoices()
 	}
 	// if desktop, render this
 	else {
-		videoTargetType="web"
+		videoTargetType = "web"
 		document.getElementById("main-holder").className = "container"
 		document.getElementById("videoWrapper").className = 'embed-responsive embed-responsive-16by9'
 		document.getElementById("videoPlayer").textTracks[0].mode = "hidden"	// hide on-video captions
@@ -88,8 +89,8 @@ const resizeFix = () => {
 	}
 }
 
-if (window.location.pathname.split("/")[2]=="embed") {
-		document.getElementById("navSize").style.display = "none"
+if (window.location.pathname.split("/")[2] == "embed") {
+	document.getElementById("navSize").style.display = "none"
 }
 
 /**
@@ -143,29 +144,29 @@ const playVideo = (videoSrc, trackSrc, controlsHidden, loop) => {
  */
 const _playVideo = (videoSrc, trackSrc, controlsHidden, loop, noRecreatePlayer) => {
 	const video = document.getElementById("videoPlayer")
-	if(videoSrc === null || typeof(videoSrc) === 'undefined') {
+	if (videoSrc === null || typeof (videoSrc) === 'undefined') {
 		videoSrc = video.src
-		if(videoSrc === null || typeof(videoSrc) === 'undefined') {
+		if (videoSrc === null || typeof (videoSrc) === 'undefined') {
 			return
 		}
 	}
 	video.src = videoSrc
-	video.play().then(() => { 
+	video.play().then(() => {
 		video.controls = controlsHidden !== true
 		video.loop = loop === true
-		if(navIsOpen) {
+		if (navIsOpen) {
 			video.pause()
 		}
 		try {
 			const track = document.getElementById('track')
 			track.src = trackSrc
 		}
-		catch(trackErr) {
+		catch (trackErr) {
 			console.error(`error loading track for ${trackSrc}`, trackSrc)
 		}
 	}).catch((err) => {
 		console.error('playVideo failed for ' + videoSrc, err)
-		if(!noRecreatePlayer) {
+		if (!noRecreatePlayer) {
 			recreateVideoPlayer()
 			_playVideo(videoSrc, trackSrc, controlsHidden, loop, true)
 		}
@@ -183,7 +184,7 @@ const playVideoId = (videoID, transcript) => {
 	const trackSrc = mentor.trackUrlFor(videoID)
 	playVideo(videoSrc, trackSrc)
 	transcript = sanitize(transcript)
-	if(transcript.length > 0) {
+	if (transcript.length > 0) {
 		document.getElementById("caption-box").scrollTop = document.getElementById("caption-box").scrollHeight
 		appendTranscript(`<b>${mentor.shortName}: </b>\xa0\xa0${transcript.split(/\\'/g).join("'").split("%HESITATION").join("")}<br>`)
 	}
@@ -207,7 +208,7 @@ const renderButtons = (topics) => {
 		download: true,
 		complete: (results) => {
 			// loop through all topics (excluding Negative, Positive, Navy)
-			for (var i = 0; i < topics.data.length-3; i++) {
+			for (var i = 0; i < topics.data.length - 3; i++) {
 				for (var j = 0; j < results.data.length; j++) {
 					// if a question for the topic exists
 					if (results.data[j][0].toLowerCase().includes(topics.data[i][0].toLowerCase())) {
@@ -231,7 +232,7 @@ const findquestion = (thisButton) => {	//find the question that needs to be fill
 	Papa.parse(mentor.questions, {	//parse the csv
 		download: true,
 		complete: (results) => {
-			const questions={}
+			const questions = {}
 			let topicQuestionSize = 0
 			// get all the questions for the chosen topic
 			for (let i = 0; i < results.data.length; i++) {
@@ -292,9 +293,9 @@ const send = () => {
 							}
 						}
 					}
-					catch (error) {}
+					catch (error) { }
 				}
-				socket.emit("sendQuestion", {"Question":(questionText),"Mentor":(mentorID),"UserID":(username),"Blacklist":(blacklist)})
+				socket.emit("sendQuestion", { "Question": (questionText), "Mentor": (mentorID), "UserID": (username), "Blacklist": (blacklist) })
 				document.getElementById("question-Box").value = ''
 			}
 		})
@@ -307,14 +308,14 @@ const send = () => {
  * This is a patch to just strip them out
  */
 const sanitize = (str_input) => {
-	if(str_input === null || typeof(str_input) === 'undefined') {
+	if (str_input === null || typeof (str_input) === 'undefined') {
 		return ''
 	}
 	return str_input.toString().trim().replace(/[\uFFFD\u00E5\u00CA]/g, '')
 }
 
 const cannonical = (str_input) => {
-	if(str_input === null || typeof(str_input) === 'undefined') {
+	if (str_input === null || typeof (str_input) === 'undefined') {
 		return ''
 	}
 	return str_input.toLowerCase()
@@ -337,12 +338,12 @@ const watson = () => {
 		document.getElementById("mic-button").style.display = 'none'
 		document.getElementById("stop-button").style.display = 'block'
 		stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-			 token: token,
-			 outputElement: '#question-Box' // CSS selector or DOM Element
-			})
-		 stream.on('error', (err) => {
-			 console.error('watson error', err)
-		 })
+			token: token,
+			outputElement: '#question-Box' // CSS selector or DOM Element
+		})
+		stream.on('error', (err) => {
+			console.error('watson error', err)
+		})
 	}
 }
 
@@ -352,7 +353,7 @@ const stopWatson = () => {
 	if (isUnity != "true") {
 		document.getElementById("mic-button").style.display = 'block'
 		document.getElementById("stop-button").style.display = 'none'
-		if(stream){
+		if (stream) {
 			stream.stop()
 		}
 	}
@@ -360,7 +361,7 @@ const stopWatson = () => {
 
 
 window.onload = () => {
-	if (!sessionStorage.loaded){
+	if (!sessionStorage.loaded) {
 		openNav()
 	}
 	sessionStorage.loaded = true
@@ -406,8 +407,8 @@ appendTranscript(`<b>${mentor.shortName}: </b>\xa0\xa0${mentor.intro}<br>`)
 
 document.getElementById("mentor-title").textContent = mentor.title
 $('#question-Box').keydown((e) => {
-    if (e.keyCode === 13) {
-        $(this).val('').focus()
-        return false
-    }
+	if (e.keyCode === 13) {
+		$(this).val('').focus()
+		return false
+	}
 })
