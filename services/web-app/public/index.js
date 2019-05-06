@@ -65,7 +65,7 @@ const mentor = createMentor(mentorID, mentorDataById[mentorID] || mentorDataById
 const resizeFix = () => {
 	renderButtons(globalResults)
 	// if mobile, render this:
-	if (screen.width < 768 || isUnity == "true") {
+	if (screen.width < 768 || isUnity) {
 		videoTargetType = "mobile"
 		document.getElementById("main-holder").className = "container-fluid"	// make video and button area fill screen
 		document.getElementById("videoPlayer").textTracks[0].mode = "showing"	// show subtitles
@@ -83,7 +83,7 @@ const resizeFix = () => {
 		document.getElementById("videoPlayer").textTracks[0].mode = "hidden"	// hide on-video captions
 	}
 	// if inside unity (PAL3 app), render this:
-	if (isUnity == "true") {
+	if (isUnity) {
 		document.getElementById("mic-button").style.display = 'none'	// hide mic button
 		document.getElementById("stop-button").style.display = 'none'
 	}
@@ -334,7 +334,7 @@ const addToBlacklist = (response) => {
 var stream
 const watson = () => {
 	// don't use mic in PAL3 unity mobile app
-	if (isUnity != "true") {
+	if (!isUnity) {
 		document.getElementById("mic-button").style.display = 'none'
 		document.getElementById("stop-button").style.display = 'block'
 		stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
@@ -350,7 +350,7 @@ const watson = () => {
 
 const stopWatson = () => {
 	// don't use mic in PAL3 unity mobile app
-	if (isUnity != "true") {
+	if (!isUnity) {
 		document.getElementById("mic-button").style.display = 'block'
 		document.getElementById("stop-button").style.display = 'none'
 		if (stream) {
