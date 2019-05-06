@@ -2,8 +2,7 @@ var globalResults
 var socket = io()
 const getVideoPlayer = () => document.getElementById('videoPlayer')
 var videoTargetType="web"
-const urlp=[];u=location.search.replace("?","").split("&").forEach((d) => {e=d.split("=");urlp[e[0]]=e[1];})
-const isUnity=urlp["unity"]
+const isUnity=location.href.includes('unity=true')
 const mentorID = window.location.pathname.split("/")[1]
 const username = localStorage.getItem("username")
 const blacklist = []
@@ -15,15 +14,18 @@ const MENTOR_API_URL = '/mentor-api'
 const MENTOR_VIDEO_HOST = 'https://video.mentorpal.org' // TODO: pass from server/env variable
 const createMentor = (mId, data) => {
 	const videoURLFor = id => `${MENTOR_VIDEO_HOST}/videos/mentors/${mId}/${videoTargetType}/${id}.mp4`
-	return { 
-		...data,
-		topicsURL: `${MENTOR_API_URL}/mentors/${mId}/data/topics.csv`,
-		questions: `${MENTOR_API_URL}/mentors/${mId}/data/Questions_Paraphrases_Answers.csv`,
-		classifier: `${MENTOR_API_URL}/mentors/${mId}/data/classifier_data.csv`,
-		idleURL: () => videoURLFor('idle'),
-		trackUrlFor: (id) => `${MENTOR_API_URL}/mentors/${mId}/tracks/${id}.vtt`,
-		videoURLFor: videoURLFor
-	}
+	return Object.assign(
+		{},
+		data,
+		{
+			topicsURL: `${MENTOR_API_URL}/mentors/${mId}/data/topics.csv`,
+			questions: `${MENTOR_API_URL}/mentors/${mId}/data/Questions_Paraphrases_Answers.csv`,
+			classifier: `${MENTOR_API_URL}/mentors/${mId}/data/classifier_data.csv`,
+			idleURL: () => videoURLFor('idle'),
+			trackUrlFor: (id) => `${MENTOR_API_URL}/mentors/${mId}/tracks/${id}.vtt`,
+			videoURLFor: videoURLFor
+		}
+	)
 }
 
 const mentorDataById = {

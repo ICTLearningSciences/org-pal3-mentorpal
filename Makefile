@@ -1,5 +1,7 @@
 PROJECT_ROOT=$(shell git rev-parse --show-toplevel 2> /dev/null)
 DOCKER_SERVICES=$(PROJECT_ROOT)/bin/docker_services.sh
+DOCKER_ACCOUNT?=uscictdocker
+DOCKER_TAG?=latest
 DEV_ENV=mentorpal-dev
 
 .PHONY: dev-env-create
@@ -9,7 +11,7 @@ dev-env-create:
 
 .PHONY: docker-build-services
 docker-build-services:
-	$(DOCKER_SERVICES) --tag latest build
+	$(DOCKER_SERVICES) --tag $(DOCKER_TAG) --account $(DOCKER_ACCOUNT) build
 
 .PHONY: docker-push-tags-no-build
 docker-push-tags-no-build:
