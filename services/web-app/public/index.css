@@ -108,11 +108,11 @@
 	}
 }
 
+#navSize {
+	background-color: #d9dbdf;
+	height: 85px;
+}
 .enter-button{
-	/* width: 100%;
-	height: 120px;
-	font-size: 20px;
-	min-width: 70px; */
 	color: #FFFFFF;
 }
 .button-settings{
