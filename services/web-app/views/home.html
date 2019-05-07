@@ -26,6 +26,7 @@
 </head>
 
 <body onresize="resizeFix()">
+
   <div id="myNav" class="overlay">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <div class="overlay-content">
@@ -38,21 +39,19 @@
     </div>
   </div>
 
-  <nav id=navSize class="navbar navbar-light" style="background-color: #d9dbdf; height: 85px">
+  <nav id=navSize class="navbar navbar-light">
     <div class="navbar-header">
       <a class="navbar-brand" href="#"><img src="/Logo_MentorPal.png"></a>
     </div>
     <div class="dropdown ml-auto">
-      <a href="http://ict.usc.edu" <class="navbar-brand" "mr-sm-2"><img src="/ICT.png"></a>
+      <a href="http://ict.usc.edu" class="navbar-brand mr-sm-2"><img src="/ICT.png"></a>
     </div>
   </nav>
 
-  <div id="col-centered" class="wrap">
-    <!--https://getbootstrap.com/docs/4.0/components/carousel/-->
-    <div id="mainSize" class="container">
-      <div class="row" style="padding-top: 40px; padding-bottom: 30px;">
-        <div id="carousel" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%"
-          data-interval='false'>
+  <div class="wrap">
+    <div id="main-holder" class="container">
+      <div class="row">
+        <div id="carousel" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%" data-interval='false'>
           <!-- Indicators -->
           <ul class="carousel-indicators" style="bottom: 5%;">
             <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -100,19 +99,26 @@
           </a>
         </div>
       </div>
-      <div style="text-align:center;">
-        <h3>Enter your Username:</h3>
-        <input class="form-control input-lg" id="input-username" type="text"><br>
-        <h3>Choose your first Mentor below:</h3>
-        <button class="btn btn-primary select-mentor button-color" onclick="saveUserID('/clint')"
-          role="button"><b>Clint:</b><br> Nuclear Electrician's Mate</button><br><br>
-        <a class="btn btn-primary select-mentor button-color" href="/dan" role="button"><b>Dan:</b><br> High Performance
-          Computing Researcher</a><br><br>
-        <a class="btn btn-primary select-mentor button-color" href="/carlos" role="button"><b>Carlos:</b><br> Marine
-          Logistician</a><br><br>
-        <a class="btn btn-primary select-mentor button-color" href="/julianne" role="julianne"><b>Julianne:</b><br>
-          Student Naval Aviator</a><br><br>
+
+      <div style="padding: 10px;">
+        <div class="row" style="margin-bottom: 10px;">
+          <h3 class="col-12">Enter your Username:</h3>
+          <input class="form-control input-lg col-12" id="input-username" type="text"><br>
+        </div>
+
+        <div class="row">
+          <h3 class="col-12">Choose your first Mentor:</h3>
+          <button class="col-xl-6 col-lg-6 col-12 btn btn-primary select-mentor button-color" style="margin-bottom: 10px;" onclick="saveUserID('/clint')" role="button">
+            <b>Clint:</b><br/> Nuclear Electrician's Mate
+          </button>
+          <a class="col-xl-6 col-lg-6 col-12 btn btn-primary select-mentor button-color" style="margin-bottom: 10px;" href="/dan" role="button"><b>Dan:</b><br/> High Performance Computing Researcher</a>
+          <a class="col-xl-6 col-lg-6 col-12 btn btn-primary select-mentor button-color" style="margin-bottom: 10px;" href="/carlos" role="button"><b>Carlos:</b><br/> Marine Logistician</a>
+          <a class="col-xl-6 col-lg-6 col-12 btn btn-primary select-mentor button-color" style="margin-bottom: 10px;" href="/julianne" role="julianne"><b>Julianne:</b><br/> Student Naval Aviator</a>
+        </div>
       </div>
+    </div>
+  </div>
+
 </body>
 <script src="/home.js"></script>
 
