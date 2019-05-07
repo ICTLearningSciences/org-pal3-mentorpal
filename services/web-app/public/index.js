@@ -1,13 +1,16 @@
-var globalResults
-var socket = io()
-const getVideoPlayer = () => document.getElementById('videoPlayer')
-var videoTargetType = "web"
-const isUnity = location.href.includes('unity=true')
-const mentorID = window.location.pathname.split("/")[1]
 const username = localStorage.getItem("username")
-const blacklist = []
+const mentorID = window.location.pathname.split("/")[1]
+const isUnity = location.href.includes('unity=true')
 const num_blacklisted_repeats = 5
+
+const getVideoPlayer = () => document.getElementById('videoPlayer')
+const socket = io()
+const blacklist = []
+const topicDict = {}
+
+var videoTargetType = "web"
 let navIsOpen = false
+
 document.getElementById("user-display").textContent = username
 
 const MENTOR_API_URL = '/mentor-api'
@@ -63,7 +66,7 @@ const mentor = createMentor(mentorID, mentorDataById[mentorID] || mentorDataById
 
 //run everytime the window is resized to keep it responsive
 const resizeFix = () => {
-	renderButtons(globalResults)
+	renderButtons()
 	// if mobile, render this:
 	if (screen.width < 768 || isUnity) {
 		videoTargetType = "mobile"
@@ -104,7 +107,6 @@ const videoPlayerInit = () => {
 		playVideo(mentor.idleURL(), null, true, true)
 	}
 }
-
 
 /**
  * There are common scenarios that cause safari 
@@ -201,30 +203,16 @@ const playVideoId = (videoID, transcript) => {
  */
 const appendTranscript = (text) => document.getElementById("caption-box").innerHTML += text
 
-const renderButtons = (topics) => {
+const renderButtons = () => {
 	document.getElementById("topic-box").innerHTML = ''
-	//parse the csv
-	Papa.parse(mentor.questions, {
-		download: true,
-		complete: (results) => {
-			// loop through all topics (excluding Negative, Positive, Navy)
-			for (var i = 0; i < topics.data.length - 3; i++) {
-				for (var j = 0; j < results.data.length; j++) {
-					// if a question for the topic exists
-					if (results.data[j][0].toLowerCase().includes(topics.data[i][0].toLowerCase())) {
-						const topicName = topics.data[i][0]
-						const btn = document.createElement("BUTTON")
-						btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6"
-						btn.appendChild(document.createTextNode(topicName))
-						btn.value = topicName
-						btn.onclick = () => findquestion(btn) //on click find a question
-						document.getElementById("topic-box").appendChild(btn)	//append button to row
-						break
-					}
-				}
-			}
-		}
-	})
+	for (var topicName in topicDict) {
+		const btn = document.createElement("BUTTON")
+		btn.className = "btn button-settings col-xl-2 col-lg-2 col-md-4 col-sm-4 col-6"
+		btn.appendChild(document.createTextNode(topicName))
+		btn.value = topicName
+		btn.onclick = () => findquestion(btn) //on click find a question
+		document.getElementById("topic-box").appendChild(btn)	//append button to row
+	}
 }
 
 const clickCountsByQuestionButton = {}	//hold the amount of times button has already been clicked
@@ -232,21 +220,24 @@ const findquestion = (thisButton) => {	//find the question that needs to be fill
 	Papa.parse(mentor.questions, {	//parse the csv
 		download: true,
 		complete: (results) => {
+			const topics = topicDict[thisButton.value]
+			const topic = topics[Math.floor(Math.random() * topics.length)]
 			const questions = {}
 			let topicQuestionSize = 0
+
 			// get all the questions for the chosen topic
 			for (let i = 0; i < results.data.length; i++) {
-				if (results.data[i][0].toLowerCase().includes(thisButton.value.toLowerCase())) {
+				if (results.data[i][0].toLowerCase().includes(topic.toLowerCase())) {
 					questions[topicQuestionSize++] = results.data[i][3]
 				}
 			}
 			//Keep track of which question in the topic list we're on
-			if (clickCountsByQuestionButton[thisButton.value]) {
-				clickCountsByQuestionButton[thisButton.value] = (clickCountsByQuestionButton[thisButton.value] + 1) % topicQuestionSize
+			if (clickCountsByQuestionButton[topic]) {
+				clickCountsByQuestionButton[topic] = (clickCountsByQuestionButton[topic] + 1) % topicQuestionSize
 			} else {
-				clickCountsByQuestionButton[thisButton.value] = 1
+				clickCountsByQuestionButton[topic] = 1
 			}
-			document.getElementById("question-Box").value = questions[clickCountsByQuestionButton[thisButton.value]]
+			document.getElementById("question-Box").value = questions[clickCountsByQuestionButton[topic]]
 		}
 	})
 }
@@ -397,7 +388,18 @@ videoPlayerInit()
 Papa.parse(mentor.topicsURL, {
 	download: true,
 	complete: (results) => {
-		globalResults = results
+		// loop through all topics (excluding Negative, Positive, Navy)
+		for (var i = 0; i < results.data.length - 3; i++) {
+			const topicName = results.data[i][0]
+			const topicLabel = results.data[i][1]
+
+			if (topicLabel in topicDict) {
+				topicDict[topicLabel].push(topicName)
+			} else {
+				topicDict[topicLabel] = [topicName]
+			}
+		}
+
 		resizeFix()	//run this after we get the button names
 		playVideoId(mentor.introVideoId)
 	}
