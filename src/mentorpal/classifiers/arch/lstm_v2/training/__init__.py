@@ -65,6 +65,7 @@ class TrainLSTMClassifier(ClassifierTraining):
         x_train, y_train = self.__load_xy_train(lstm_train_data)
         self.topic_model, new_vectors = self.__train_lstm(lstm_train_data, x_train, y_train)
         x_train_fused, y_train_fused, x_train_unfused, y_train_unfused = self.__load_fused_unfused(train_vectors, new_vectors)
+        print('TRAINING LR')
         scores, accuracy, self.logistic_model_fused, self.logistic_model_unfused = self.__train_lr(x_train_fused, y_train_fused, x_train_unfused, y_train_unfused)
         return scores, accuracy
 
@@ -99,15 +100,25 @@ class TrainLSTMClassifier(ClassifierTraining):
             univariate_features_question = textfeaturegen.univariate_features(current_question)          
             #add question to dataset
             processed_question=preprocessor.transform(current_question) # tokenize the question
+            # a row that will be added to train_data; because <list>.append([]) returns None
+            train_data_row = [current_question,processed_question,topics,answer_id,answer]
+            # extending the train_data_row with univariate features
+            train_data_row.extend(univariate_features_question)
             # ERROR BELOW: adding None to training_data because <list>.append([]) returns None
-            train_data.append([current_question,processed_question,topics,answer_id,answer].extend(univariate_features_question))
+            train_data.append(train_data_row)
             #look for paraphrases and add them to dataset
             paraphrases=questions[1:]
             for i in range(0,len(paraphrases)):
                 processed_paraphrase=preprocessor.transform(paraphrases[i])
                 univariate_features_paraphrase = textfeaturegen.univariate_features(paraphrases[i])
+                # a row that will be added to train_data; because <list>.append([]) returns None
+                train_data_row_paraphrase = [paraphrases[i],processed_paraphrase,topics,answer_id,answer]
+                # extending the train_data_row_paraphrase with univariate features
+                train_data_row_paraphrase.extend(univariate_features_paraphrase)
                 # ERROR BELOW: adding None to training_data because <list>.append([]) returns None
-                train_data.append([paraphrases[i],processed_paraphrase,topics,answer_id,answer].extend(univariate_features_paraphrase))
+                train_data.append(train_data_row_paraphrase)
+        print('########### train_data', train_data[0])
+
         return train_data
 
 
@@ -118,12 +129,16 @@ class TrainLSTMClassifier(ClassifierTraining):
         #instance=<question, processed_question, topic, answer_id, answer_text, univariate_features[5 to 12]>
         for instance in train_data:
             w2v_vector, lstm_vector = self.w2v.w2v_for_question(instance[1])
-            train_vectors.append([instance[0],w2v_vector.tolist(),instance[2],instance[4],instance[5:13]])
+            train_vectors_row = [instance[0],w2v_vector.tolist(),instance[2],instance[4]]
+            train_vectors_row.extend(instance[5:13])
+            train_vectors.append(train_vectors_row)
             lstm_train_vectors.append(lstm_vector)
         #For the LSTM, each training sample will have a max dimension of 300 x 25. For those that don't, the pad_sequences
         #function will pad sequences of [0, 0, 0, 0....] vectors to the end of each sample.
         padded_vectors=pad_sequences(lstm_train_vectors,maxlen=25, dtype='float32',padding='post',truncating='post',value=0.)
         lstm_train_vectors=padded_vectors
+        print('########### train_vectors', len(train_vectors[0]))
+        print('########### train_vectors', train_vectors[0])
         return train_vectors, lstm_train_vectors
 
 
@@ -148,6 +163,8 @@ class TrainLSTMClassifier(ClassifierTraining):
         x_train=[lstm_train_data[i][1] for i in range(len(lstm_train_data))] #no of utterances * no_of_sequences * 300
         y_train=[lstm_train_data[i][2] for i in range(len(lstm_train_data))] #No_of_utterances * no_of_classes (40)
         x_train=np.asarray(x_train)
+        print('########### x_train', x_train.shape)
+        print('########### x_train', x_train[0])
         return x_train, y_train
 
 
@@ -165,6 +182,7 @@ class TrainLSTMClassifier(ClassifierTraining):
             x_train_fused.append(np.concatenate((train_data[i][1], train_topic_vectors[i][1], train_data[i][5:13])))
         x_train_fused=np.asarray(x_train_fused)
         y_train_fused=[train_data[i][3] for i in range(len(train_data))]
+        print('########### X-train_fused', x_train_fused.shape)
 
         return x_train_fused, y_train_fused, x_train_unfused, y_train_unfused
 
@@ -196,6 +214,8 @@ class TrainLSTMClassifier(ClassifierTraining):
 
     def __train_lr(self, x_train_fused, y_train_fused, x_train_unfused, y_train_unfused):
         logistic_model_unfused=RidgeClassifier(alpha=1.0)
+        print('############ x_train_fused in LR', x_train_fused.shape)
+        print('############ x_train_fused in LR', x_train_fused[0])
         logistic_model_unfused.fit(x_train_unfused, y_train_unfused)
         logistic_model_fused=RidgeClassifier(alpha=1.0)
         logistic_model_fused.fit(x_train_fused, y_train_fused)

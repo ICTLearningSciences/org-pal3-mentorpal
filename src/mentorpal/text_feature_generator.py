@@ -52,7 +52,7 @@ class TextFeatureGenerator(object):
 
     def univariate_features(self, question_text):
         negation_feature = self.any_negation(question_text)
-        wordcount_feature = self.log_wordcount(question_text)
+        wordcount_feature = self.log_wordcount(question_text) or 0
         negmod_feature = self.negation_mod(question_text)
         whatques_feature = self.what_question(question_text)
         howques_feature = self.how_question(question_text)

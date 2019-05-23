@@ -119,9 +119,11 @@ class LSTMClassifier(Classifier):
             except:
                 raise Exception('Could not find logistic model under {0}. Please train classifier first.'.format(model_path))
         test_vector = np.concatenate((w2v_vector, topic_vector, text_features))
+        print('####### test_vector', len(test_vector))
+        print('####### test_vector', test_vector)
         test_vector = test_vector.reshape(1,-1)
         prediction = self.logistic_model.predict(test_vector)
-        highestConfidence = sorted(self.logistic_model.decision_function(test_vector)[0])[self.logistic_model.decision_function(test_vector).size-1]
+        highestConfidence = sorted(self.logistic_model.decision_function(test_vector))[self.logistic_model.decision_function(test_vector).size-1]
         if highestConfidence < -0.88:
             return "_OFF_TOPIC_", "_OFF_TOPIC_", highestConfidence
         return self.mentor.answer_ids[prediction[0]], prediction[0], highestConfidence

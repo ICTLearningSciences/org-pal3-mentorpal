@@ -185,6 +185,7 @@ class TrainLSTMClassifier(ClassifierTraining):
 
     def __train_lr(self, x_train_fused, y_train_fused, x_train_unfused, y_train_unfused):
         logistic_model_unfused=RidgeClassifier(alpha=1.0)
+        print('############ x_train_fused in LR', x_train_fused.shape)
         logistic_model_unfused.fit(x_train_unfused, y_train_unfused)
         logistic_model_fused=RidgeClassifier(alpha=1.0)
         logistic_model_fused.fit(x_train_fused, y_train_fused)
