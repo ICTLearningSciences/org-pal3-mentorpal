@@ -1,0 +1,40 @@
+body {
+  text-align: center;
+}
+
+
+#carousel {
+  width: 100%;
+  overflow-x: visible;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+#carousel .slide {
+  padding: 5px;
+  display: inline-block;
+}
+#carousel .selected {
+  background-color: orange;
+}
+
+#video-container {
+  position: relative;
+}
+.video {
+  position: absolute;
+  top: 0;
+}
+.video.fadeIn {
+  opacity:1;
+  transition: opacity 0.5s;
+}
+.video.fadeOut {
+  opacity:0;
+  transition: opacity 0.5s;
+}
+.visible {
+  opacity: 1;
+}
+.invisible {
+  opacity: 0;
+}
