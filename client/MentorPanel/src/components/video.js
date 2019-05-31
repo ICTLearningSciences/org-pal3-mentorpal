@@ -1,9 +1,53 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player'
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { idleUrl, videoUrl } from '../api/api'
 import { setIdle } from '../redux/actions'
+
+const IdleVideo = (width, isReady, onReady) => {
+    const mentor = useSelector(state => state.mentors[state.cur_mentor])
+    const src = mentor ? idleUrl(mentor) : ''
+
+    return (
+        <ReactPlayer
+            className={`${isReady ? 'visible' : 'invisible'}`}
+            url={src}
+            onReady={onReady}
+            width='100%'
+            height={width * 0.5625}
+            loop={true}
+            playing={true}
+            playsinline={true}
+            webkit-playsinline='true'
+            volume={0}
+            muted
+        />
+    )
+}
+
+const ResponseVideo = (width, isReady, onReady, onEnded) => {
+    const isIdle = useSelector(state => state.isIdle)
+    const mentor = useSelector(state => state.mentors[state.cur_mentor])
+
+    const isVideoVisible = !isIdle && isReady
+    const src = mentor ? videoUrl(mentor) : ''
+
+    return (
+        <ReactPlayer
+            className={`video ${isVideoVisible ? 'fadeIn' : 'fadeOut'}`}
+            url={src}
+            onEnded={onEnded}
+            onReady={onReady}
+            width='100%'
+            height={width * 0.5625}
+            loop={false}
+            controls={true}
+            playing={true}
+            playsinline={true}
+            webkit-playsinline='true' />
+    )
+}
 
 class Video extends Component {
     constructor(props) {
@@ -36,58 +80,21 @@ class Video extends Component {
         this.props.dispatch(setIdle())
     }
 
-    renderIdle() {
-        const src = this.props.mentor ? idleUrl(this.props.mentor) : ''
-
-        return (
-            <ReactPlayer
-                className={`${this.state.isIdleReady ? 'visible' : 'invisible'}`}
-                url={src}
-                onReady={this.onIdleReady}
-                width='100%'
-                height={this.state.width * 0.5625}
-                loop={true}
-                playing={true}
-                playsinline={true}
-                webkit-playsinline='true'
-                volume={0}
-                muted
-            />
-        )
-    }
-
     render() {
-        const isVideoVisible = !this.props.isIdle && this.state.isVideoReady
-        const src = this.props.mentor ? videoUrl(this.props.mentor) : ''
-
-        const video =
-            <ReactPlayer
-                className={`video ${isVideoVisible ? 'fadeIn' : 'fadeOut'}`}
-                url={src}
-                onEnded={this.onVideoEnded}
-                onReady={this.onVideoReady}
-                width='100%'
-                height={this.state.width * 0.5625}
-                loop={false}
-                controls={true}
-                playing={true}
-                playsinline={true}
-                webkit-playsinline='true' />
-
         return (
             <div id="video-container">
-                {this.renderIdle()}
-                {video}
+                <IdleVideo
+                    width={this.state.width}
+                    isReady={this.state.isIdleReady}
+                    onReady={this.onIdleReady} />
+                <ResponseVideo
+                    width={this.state.width}
+                    isReady={this.state.isVideoReady}
+                    onReady={this.onVideoReady}
+                    onEnded={this.onVideoEnded} />
             </div>
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        mentor: state.mentors[state.cur_mentor],
-        isIdle: state.isIdle,
-    }
-}
-
-export default connect(mapStateToProps)(Video);
+export default Video

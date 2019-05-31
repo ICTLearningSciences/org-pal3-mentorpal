@@ -1,10 +1,15 @@
 import React from 'react';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux'
+import thunk from 'redux-thunk';
 
 import reducer from './src/redux/reducer'
 
-const store = createStore(reducer)
+const middleware = [thunk]
+const store = createStore(
+  reducer,
+  applyMiddleware(...middleware)
+)
 
 export default ({ element }) => (
   <Provider store={store}>

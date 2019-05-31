@@ -6,7 +6,7 @@ import { setMentorResponse } from '../redux/actions'
 
 import Layout from "../components/layout"
 import Header from '../components/header'
-import InputField from '../components/input'
+import Input from '../components/input'
 import VideoPanel from '../components/video-panel'
 import Video from "../components/video"
 
@@ -26,7 +26,7 @@ class IndexPage extends React.Component {
         <VideoPanel />
         <Header />
         <Video />
-        <InputField />
+        <Input />
       </Layout>
     )
   }
@@ -45,6 +45,7 @@ export const MentorQuery = graphql`
           title
           answer_id
           answer_text
+          confidence
         }
       }
     }

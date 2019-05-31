@@ -1,34 +1,38 @@
 import React from "react"
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { setCurrentMentor } from '../redux/actions'
 import { videoUrl, RESPONSE_CUTOFF } from '../api/api'
 
 import VideoThumbnail from "./video-thumbnail"
 
-const VideoPanel = ({ ...props }) => {
+const VideoPanel = () => {
+  const dispatch = useDispatch()
+  const mentor = useSelector(state => state.cur_mentor)
+  const mentors = useSelector(state => state.mentors)
+
   const isDisabled = (id) => {
-    return props.mentors[id].confidence <= RESPONSE_CUTOFF
+    return mentors[id].confidence <= RESPONSE_CUTOFF
   }
 
   const onClick = (id) => {
     if (isDisabled(id)) {
       return
     }
-    props.dispatch(setCurrentMentor(id))
+    dispatch(setCurrentMentor(id))
   }
 
   return (
     <div id="carousel">
       {
-        Object.keys(props.mentors).map((id, i) =>
+        Object.keys(mentors).map((id, i) =>
           <div
-            className={`slide ${id === props.mentor ? 'selected' : ''}`}
+            className={`slide ${id === mentor ? 'selected' : ''}`}
             key={`${id}-${i}`}
             onClick={() => onClick(id)}
           >
             <VideoThumbnail
-              src={videoUrl(props.mentors[id])}
+              src={videoUrl(mentors[id])}
               disabled={isDisabled(id)} />
           </div>
         )
@@ -37,11 +41,4 @@ const VideoPanel = ({ ...props }) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    mentor: state.cur_mentor,
-    mentors: state.mentors,
-  }
-}
-
-export default connect(mapStateToProps)(VideoPanel);
+export default VideoPanel;

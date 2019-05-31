@@ -1,20 +1,36 @@
 import React from "react"
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Divider, InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import { queryPanel } from '../api/api'
+import { setMentorResponses } from '../redux/actions'
 
-class InputField extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: '',
-    };
+const SendButton = (text) => {
+  const dispatch = useDispatch()
+  const mentors = useSelector(state => state.mentors)
+
+  const onSend = async () => {
+    const responses = await queryPanel(mentors, text, useDispatch)
+    dispatch(setMentorResponses(responses))
   }
 
-  onSend = async () => {
-    queryPanel(this.props.mentors, this.state.text, this.props.dispatch)
+  return (
+    <Button
+      style={{ margin: 10 }}
+      onClick={() => { onSend() }}
+      disabled={text === ''}
+      variant='contained'
+      color='primary'>
+      Send
+    </Button>
+  )
+}
+
+class Input extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { text: '' };
   }
 
   clear = () => {
@@ -31,28 +47,15 @@ class InputField extends React.Component {
             className={classes.input}
             onChange={(e) => this.setState({ text: e.target.value })}
             onClick={() => this.clear()}
-            placeholder="Ask a question"
             value={this.state.text}
+            placeholder="Ask a question"
             multiline
             rows={2} />
           <Divider className={classes.divider} />
-          <Button
-            className={classes.button}
-            onClick={() => { this.onSend() }}
-            disabled={this.state.text === ''}
-            variant='contained'
-            color='primary'>Send
-          </Button>
+          <SendButton text={this.state.text} />
         </Paper>
       </div>
     )
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    mentor_id: state.cur_mentor,
-    mentors: state.mentors,
   }
 }
 
@@ -66,9 +69,6 @@ const styles = {
     marginLeft: 8,
     flex: 1,
   },
-  button: {
-    margin: 10,
-  },
   divider: {
     width: 1,
     height: 28,
@@ -76,4 +76,4 @@ const styles = {
   },
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(InputField))
+export default withStyles(styles)(Input)
