@@ -3,6 +3,14 @@ body {
 }
 
 
+#footer {
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  width: 100%;
+}
+
 #carousel {
   width: 100%;
   overflow-x: visible;
@@ -11,11 +19,13 @@ body {
 }
 #carousel .slide {
   padding: 5px;
+  border-radius: 5px;
   display: inline-block;
 }
 #carousel .selected {
   background-color: orange;
 }
+
 
 #video-container {
   position: relative;

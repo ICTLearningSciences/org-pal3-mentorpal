@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import { connect } from 'react-redux';
 
 const Header = ({ ...props }) => {
@@ -12,9 +12,8 @@ const Header = ({ ...props }) => {
 }
 
 const mapStateToProps = state => {
-  const mentor = state.mentors.find(m => { return m.id === state.mentor })
   return {
-    mentor: mentor,
+    mentor: state.mentors[state.cur_mentor]
   }
 }
 

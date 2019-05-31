@@ -27,5 +27,11 @@ module.exports = {
         path: `${__dirname}/src/data/`,
       },
     },
+    {
+      resolve: `gatsby-plugin-env-variables`,
+      options: {
+        whitelist: ["MENTOR_API_URL"]
+      },
+    },
   ],
 }

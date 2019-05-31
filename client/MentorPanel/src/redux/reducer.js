@@ -1,26 +1,30 @@
 import {
-  SET_MENTOR,
-  SET_MENTORS,
+  SET_CURRENT_MENTOR,
+  SET_MENTOR_RESPONSE,
   SET_IDLE,
 } from './actions'
 
 const initialState = {
-  mentor: 'clint',  // id of selected mentor
-  mentors: [],
+  cur_mentor: 'clint',  // id of selected mentor
+  mentors: {},
   isIdle: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_MENTORS:
+    case SET_CURRENT_MENTOR:
       return {
         ...state,
-        mentors: action.mentors,
+        cur_mentor: action.mentor,
+        isIdle: false,
       }
-    case SET_MENTOR:
+    case SET_MENTOR_RESPONSE:
       return {
         ...state,
-        mentor: action.mentor,
+        mentors: {
+          ...state.mentors,
+          [action.mentor.id]: action.mentor
+        },
         isIdle: false,
       }
     case SET_IDLE:

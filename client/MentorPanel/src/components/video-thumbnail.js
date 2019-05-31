@@ -1,10 +1,11 @@
 import React from "react"
 import ReactPlayer from 'react-player'
 
-const VideoThumbnail = ({ src, ...props }) => {
+const VideoThumbnail = ({ src, disabled, ...props }) => {
   const width = 95
   return (
     <ReactPlayer
+      style={{ opacity: disabled ? '0.25' : '1' }}
       url={src}
       height={width * 0.5625}
       width={width}

@@ -2,16 +2,22 @@ import React, { Component } from 'react';
 import ReactPlayer from 'react-player'
 import { connect } from 'react-redux';
 
-import { idleUrl, videoUrl } from '../funcs/funcs'
+import { idleUrl, videoUrl } from '../api/api'
 import { setIdle } from '../redux/actions'
 
 class Video extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            width: 0,
             isIdleReady: false,
             isVideoReady: false,
         };
+    }
+
+    componentDidMount() {
+        const width = Math.min(window.innerWidth, 640)
+        this.setState({ width })
     }
 
     onIdleReady = () => {
@@ -31,11 +37,6 @@ class Video extends Component {
     }
 
     renderIdle() {
-        const node = document.getElementById('video-container');
-        if (!node) {
-            return
-        }
-        const width = Math.min(window.innerWidth, video_width)
         const src = this.props.mentor ? idleUrl(this.props.mentor) : ''
 
         return (
@@ -44,7 +45,7 @@ class Video extends Component {
                 url={src}
                 onReady={this.onIdleReady}
                 width='100%'
-                height={width * 0.5625}
+                height={this.state.width * 0.5625}
                 loop={true}
                 playing={true}
                 playsinline={true}
@@ -57,7 +58,6 @@ class Video extends Component {
 
     render() {
         const isVideoVisible = !this.props.isIdle && this.state.isVideoReady
-        const width = Math.min(window.innerWidth, video_width)
         const src = this.props.mentor ? videoUrl(this.props.mentor) : ''
 
         const video =
@@ -67,7 +67,7 @@ class Video extends Component {
                 onEnded={this.onVideoEnded}
                 onReady={this.onVideoReady}
                 width='100%'
-                height={width * 0.5625}
+                height={this.state.width * 0.5625}
                 loop={false}
                 controls={true}
                 playing={true}
@@ -83,12 +83,9 @@ class Video extends Component {
     }
 }
 
-const video_width = 640
-
 const mapStateToProps = state => {
-    const mentor = state.mentors.find(m => { return m.id === state.mentor })
     return {
-        mentor: mentor,
+        mentor: state.mentors[state.cur_mentor],
         isIdle: state.isIdle,
     }
 }

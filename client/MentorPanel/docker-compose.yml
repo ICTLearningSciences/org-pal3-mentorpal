@@ -1,0 +1,21 @@
+version: '3.0'
+services:
+  mentor-api:
+    image: "uscictdocker/mentorpal-mentor-api"
+    expose:
+      - "5000"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mentor-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - /app/node_modules
+      - .:/app
+    environment:
+      - NODE_ENV=development
+      - GATSBY_WEBPACK_PUBLICPATH=/

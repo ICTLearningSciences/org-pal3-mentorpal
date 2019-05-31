@@ -2,19 +2,22 @@ import React from "react"
 import { graphql } from "gatsby"
 import { connect } from 'react-redux';
 
-import { setMentors } from '../redux/actions'
+import { setMentorResponse } from '../redux/actions'
 
 import Layout from "../components/layout"
 import Header from '../components/header'
+import InputField from '../components/input'
 import VideoPanel from '../components/video-panel'
 import Video from "../components/video"
 
 class IndexPage extends React.Component {
 
+  // Load the initial intro responses for each mentor
   componentDidMount() {
     const data = this.props.data.allMentorsCsv.edges
-    const mentors = data.map(item => { return item.node })
-    this.props.dispatch(setMentors(mentors))
+    data.forEach(item => {
+      this.props.dispatch(setMentorResponse(item.node))
+    });
   }
 
   render() {
@@ -23,6 +26,7 @@ class IndexPage extends React.Component {
         <VideoPanel />
         <Header />
         <Video />
+        <InputField />
       </Layout>
     )
   }
@@ -37,9 +41,10 @@ export const MentorQuery = graphql`
         node {
           id
           name
-          shortName
+          short_name
           title
-          videoId
+          answer_id
+          answer_text
         }
       }
     }
