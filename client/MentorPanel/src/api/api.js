@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setMentorResponse, setCurrentMentor } from '../redux/actions'
 
-const MENTOR_API_URL = process.env.MENTOR_API_URL || 'http://localhost:5000/mentor-api'
+const MENTOR_API_URL = process.env.MENTOR_API_URL || '/mentor-api'
 const MENTOR_VIDEO_HOST = 'https://video.mentorpal.org'
 export const RESPONSE_CUTOFF = -100
 
@@ -48,7 +48,7 @@ export const queryPanel = async (mentors, question, dispatch) => {
 export const queryMentor = async (mentor, question) => {
   try {
     const res = await axios.get(
-      `${MENTOR_API_URL}/questions`, {
+      `${MENTOR_API_URL}/questions/`, {
         params: {
           mentor: mentor.id,
           query: question
