@@ -1,20 +1,16 @@
 import React from 'react'
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux'
 
-const Header = ({ ...props }) => {
-  if (!props.mentor) {
+const Header = () => {
+  const mentor = useSelector(state => state.mentors[state.cur_mentor])
+
+  if (!mentor) {
     return <div></div>
   }
 
   return (
-    <h4>{`${props.mentor.name}: ${props.mentor.title}`}</h4>
+    <h4>{`${mentor.name}: ${mentor.title}`}</h4>
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    mentor: state.mentors[state.cur_mentor]
-  }
-}
-
-export default connect(mapStateToProps)(Header);
+export default Header
