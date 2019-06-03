@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: `/mentorpanel`,
   siteMetadata: {
     title: `MentorPanel`,
     description: ``,
