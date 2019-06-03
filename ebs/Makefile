@@ -179,12 +179,15 @@ build/ebs/bundle: venv-exists build/ebs/config/Dockerrun.aws.properties
 			$(BUILD)/ebs/bundle/Dockerrun.aws.json
 
 
+build/ebs: build/ebs/.elasticbeanstalk/config.yml build/ebs/bundle
+
+
 ##############################################################################
 # build/ebs/(bundle-name).zip is the actual file that gets published
 # to EBS. It will contain Dockerrun.aws.json
 ##############################################################################
 EB_BUNDLE_ZIP := $(EB_ENV)-$(GIT_HASH).zip
-$(EB_BUNDLE_ZIP): venv-exists build/ebs/.elasticbeanstalk/config.yml build/ebs/bundle
+$(EB_BUNDLE_ZIP): venv-exists build/ebs
 	source activate $(VENV) && \
 		cd build/ebs/bundle && \
 			zip ../$(EB_BUNDLE_ZIP) -r *
@@ -249,3 +252,18 @@ eb-deploy: venv-exists $(EB_BUNDLE_ZIP)
 		cd build/ebs && \
 		$(EB) use $(EB_ENV) && \
 		$(EB) deploy
+
+.PHONY: eb-ssh
+eb-ssh: clean build/ebs
+	source activate $(VENV) && \
+		cd build/ebs && \
+		$(EB) use $(EB_ENV) && \
+		$(EB) ssh
+
+
+.PHONY: eb-ssh-setup
+eb-ssh-setup: clean build/ebs
+	source activate $(VENV) && \
+		cd build/ebs && \
+		$(EB) use $(EB_ENV) && \
+		$(EB) ssh --setup
