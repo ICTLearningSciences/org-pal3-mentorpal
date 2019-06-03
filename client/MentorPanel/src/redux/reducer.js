@@ -2,12 +2,15 @@ import {
   SET_CURRENT_MENTOR,
   SET_MENTOR_RESPONSE,
   SET_IDLE,
+  SET_LOADING,
 } from './actions'
 
 const initialState = {
   cur_mentor: 'clint',  // id of selected mentor
   mentors: {},
+
   isIdle: false,
+  isLoading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,6 +34,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         isIdle: true,
+      }
+    case SET_LOADING:
+      return {
+        ...state,
+        isLoading: action.isLoading
       }
     default:
       return state

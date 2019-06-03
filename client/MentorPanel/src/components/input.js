@@ -4,15 +4,17 @@ import { Button, Divider, InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import { queryPanel } from '../api/api'
-import { setMentorResponses } from '../redux/actions'
+import { setMentorResponses, setLoading } from '../redux/actions'
 
 const SendButton = (text) => {
   const dispatch = useDispatch()
   const mentors = useSelector(state => state.mentors)
 
   const onSend = async () => {
-    const responses = await queryPanel(mentors, text, useDispatch)
+    dispatch(setLoading(true))
+    const responses = await queryPanel(mentors, text)
     dispatch(setMentorResponses(responses))
+    dispatch(setLoading(false))
   }
 
   return (

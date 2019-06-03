@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactPlayer from 'react-player'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { idleUrl, videoUrl } from '../api/api'
 import { setIdle } from '../redux/actions'
@@ -26,12 +26,16 @@ const IdleVideo = (width, isReady, onReady) => {
     )
 }
 
-const ResponseVideo = (width, isReady, onReady, onEnded) => {
+const ResponseVideo = (width, isReady, onReady) => {
+    const dispatch = useDispatch()
     const isIdle = useSelector(state => state.isIdle)
     const mentor = useSelector(state => state.mentors[state.cur_mentor])
 
     const isVideoVisible = !isIdle && isReady
     const src = mentor ? videoUrl(mentor) : ''
+    const onEnded = () => {
+        dispatch(setIdle())
+    }
 
     return (
         <ReactPlayer
@@ -76,10 +80,6 @@ class Video extends Component {
         })
     }
 
-    onVideoEnded = () => {
-        this.props.dispatch(setIdle())
-    }
-
     render() {
         return (
             <div id="video-container">
@@ -90,8 +90,7 @@ class Video extends Component {
                 <ResponseVideo
                     width={this.state.width}
                     isReady={this.state.isVideoReady}
-                    onReady={this.onVideoReady}
-                    onEnded={this.onVideoEnded} />
+                    onReady={this.onVideoReady} />
             </div>
         );
     }
