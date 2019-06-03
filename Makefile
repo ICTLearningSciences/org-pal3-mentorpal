@@ -1,4 +1,4 @@
-PROJECT_ROOT=$(shell git rev-parse --show-toplevel 2> /dev/null)
+PROJECT_ROOT=$(shell if [ -z "$${CIRCLE_BRANCH}" ]; then echo "/"; else git rev-parse --show-toplevel 2> /dev/null; fi)
 DOCKER_SERVICES=$(PROJECT_ROOT)/bin/docker_services.sh
 DOCKER_ACCOUNT?=uscictdocker
 DOCKER_TAG?=latest
@@ -104,3 +104,16 @@ local-stop:
 		cd build && \
 		docker-compose down
 
+
+local-run-ebs:
+	docker run \
+			--rm \
+			-it \
+			-e PROJECT_ROOT=/home/circleci/project \
+			-e PROJECT_NAME=mentorpal \
+			-e DOCKER_ACCOUNT=uscictdocker \
+			-e EB_ENV=qa-mentorpal \
+			-e BUILD_TAG=latest \
+			-v $(shell cd . && pwd):/home/circleci/project \
+			-v $(shell cd  ~/projects/circleci-elasticbeanstalk/ebs-tools && pwd):/ebs-tools \
+		larrykirschner/circleci-elasticbeanstalk:latest

@@ -1,12 +1,10 @@
 DOCKER_ACCOUNT?=uscictdocker
 DOCKER_REPO?=mentorpal-classifier
 DOCKER_TAG?=latest
-
 DOCKER_IMAGE?=$(DOCKER_ACCOUNT)/$(DOCKER_REPO):$(DOCKER_TAG)
 DOCKER_CONTAINER=mentorpal-classifier
-
 CLASSIFIER_ROOT=$(shell pwd)
-PROJECT_ROOT=$(shell git rev-parse --show-toplevel 2> /dev/null)
+PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 CHECKPOINT_ROOT=$(PROJECT_ROOT)/checkpoint
 CHECKPOINT=2019-02-21-0220
 ARCH=lstm_v1

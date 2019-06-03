@@ -1,8 +1,0 @@
-name: ebs
-dependencies:
-  - python=3.6
-  - pip
-  - curl
-  - unzip
-  - wget
-  - zip

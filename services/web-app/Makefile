@@ -6,10 +6,10 @@ DOCKER_IMAGE?=${DOCKER_ACCOUNT}/${DOCKER_REPO}:${DOCKER_TAG}
 DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_ACCOUNT).password"
 DOCKER_CONTAINER=mentorpal-web-app
 DIR=$(shell pwd)
-PROJECT=$(shell git rev-parse --show-toplevel 2> /dev/null)
-PROJECT_NAME=$(shell v='$(PROJECT)'; echo "$${v\#\#*/}")
+PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
+PROJECT_NAME=$(shell v='$(PROJECT_ROOT)'; echo "$${v\#\#*/}")
 SERVICE_NAME=$(shell v='$(DIR)'; echo "$${v\#\#*/}")
-CLIENT=${PROJECT}/client
+CLIENT=${PROJECT_ROOT}/client
 BUILD=${DIR}/build
 
 

@@ -8,7 +8,7 @@ DOCKER_PASSWORD_FILE := "$(HOME)/.docker/$(DOCKER_ACCOUNT).password"
 
 THIS_SERVICE_ROOT=$(shell pwd)
 SERVICES_ROOT=$(shell dirname ${THIS_SERVICE_ROOT})
-PROJECT_ROOT=$(shell git rev-parse --show-toplevel 2> /dev/null)
+PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 
 
 DOCKER_BASE_IMAGE?=uscictdocker/mentorpal-classifier
