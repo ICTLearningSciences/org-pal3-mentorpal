@@ -1,38 +1,36 @@
-import React from "react"
+import React, { useEffect } from "react"
+import { useDispatch } from 'react-redux';
 import { graphql } from "gatsby"
-import { connect } from 'react-redux';
 
-import { setMentorResponse } from '../redux/actions'
+import { onMentorLoaded } from '../redux/actions'
 
-import Layout from "../components/layout"
 import Header from '../components/header'
 import Input from '../components/input'
-import VideoPanel from '../components/video-panel'
+import Layout from "../components/layout"
 import Video from "../components/video"
+import VideoPanel from '../components/video-panel'
 
-class IndexPage extends React.Component {
+const IndexPage = ({ ...props }) => {
+  const dispatch = useDispatch()
 
-  // Load the initial intro responses for each mentor
-  componentDidMount() {
-    const data = this.props.data.allMentorsCsv.edges
+  useEffect(() => {
+    const data = props.data.allMentorsCsv.edges
     data.forEach(item => {
-      this.props.dispatch(setMentorResponse(item.node))
+      dispatch(onMentorLoaded(item.node))
     });
-  }
+  })
 
-  render() {
-    return (
-      <Layout>
-        <VideoPanel />
-        <Header />
-        <Video />
-        <Input />
-      </Layout>
-    )
-  }
+  return (
+    <Layout>
+      <VideoPanel />
+      <Header />
+      <Video />
+      <Input />
+    </Layout>
+  )
 }
 
-export default connect()(IndexPage);
+export default IndexPage;
 
 export const MentorQuery = graphql`
   query {

@@ -18,12 +18,23 @@ body {
   white-space: nowrap;
 }
 #carousel .slide {
-  padding: 5px;
-  border-radius: 5px;
+  position: relative;
   display: inline-block;
+  border-radius: 5px;
+  padding: 5px;
 }
 #carousel .selected {
   background-color: orange;
+}
+.spinner {
+  position: absolute;
+  top: 15%;
+  left: 30%;
+}
+.notice {
+  position: absolute;
+  top: 5px;
+  left: 5px;
 }
 
 

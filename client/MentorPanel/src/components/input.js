@@ -1,25 +1,22 @@
-import React from "react"
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react'
+import { useDispatch } from 'react-redux';
 import { Button, Divider, InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { queryPanel } from '../api/api'
-import { setMentorResponses } from '../redux/actions'
+import { sendQuestion } from '../redux/actions'
 
-const SendButton = (text) => {
+const SendButton = ({ text }) => {
   const dispatch = useDispatch()
-  const mentors = useSelector(state => state.mentors)
 
-  const onSend = async () => {
-    const responses = await queryPanel(mentors, text, useDispatch)
-    dispatch(setMentorResponses(responses))
+  const onSend = () => {
+    dispatch(sendQuestion(text))
   }
 
   return (
     <Button
       style={{ margin: 10 }}
       onClick={() => { onSend() }}
-      disabled={text === ''}
+      disabled={!text}
       variant='contained'
       color='primary'>
       Send

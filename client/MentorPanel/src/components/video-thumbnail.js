@@ -1,14 +1,17 @@
 import React from "react"
 import ReactPlayer from 'react-player'
 
-const VideoThumbnail = ({ src, disabled, ...props }) => {
-  const width = 95
+import { videoUrl } from '../api/api'
+
+const VideoThumbnail = ({ mentor, ...props }) => {
+  const src = videoUrl(mentor)
+
   return (
     <ReactPlayer
-      style={{ opacity: disabled ? '0.25' : '1' }}
+      style={{ opacity: mentor.is_off_topic ? '0.25' : '1' }}
       url={src}
-      height={width * 0.5625}
-      width={width}
+      height={80}
+      width={80}
       playing={false}
       controls={false} />
   )
