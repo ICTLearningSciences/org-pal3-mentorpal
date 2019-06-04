@@ -5,11 +5,11 @@ const MENTOR_VIDEO_HOST = 'https://video.mentorpal.org'
 const RESPONSE_CUTOFF = -100
 
 export const videoUrl = (mentor) => {
-  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/web/${mentor.answer_id}.mp4`
+  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/mobile/${mentor.answer_id}.mp4`
 }
 
 export const idleUrl = (mentor) => {
-  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/web/idle.mp4`
+  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/mobile/idle.mp4`
 }
 
 export const queryMentor = async (mentor_id, question) => {
