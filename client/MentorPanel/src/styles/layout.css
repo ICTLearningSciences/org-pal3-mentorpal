@@ -31,6 +31,11 @@ body {
   top: 15%;
   left: 30%;
 }
+.notice {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
 
 
 #video-container {

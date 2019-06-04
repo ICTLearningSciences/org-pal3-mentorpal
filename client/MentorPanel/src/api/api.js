@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-export const RESPONSE_CUTOFF = -100
-
 const MENTOR_API_URL = process.env.MENTOR_API_URL || '/mentor-api'
 const MENTOR_VIDEO_HOST = 'https://video.mentorpal.org'
+const RESPONSE_CUTOFF = -100
 
 export const videoUrl = (mentor) => {
   return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/web/${mentor.answer_id}.mp4`
@@ -29,6 +28,7 @@ export const queryMentor = async (mentor_id, question) => {
     answer_id: data.answer_id,
     answer_text: data.answer_text,
     confidence: data.confidence,
+    is_off_topic: data.confidence <= RESPONSE_CUTOFF,
   }
   return response
 }

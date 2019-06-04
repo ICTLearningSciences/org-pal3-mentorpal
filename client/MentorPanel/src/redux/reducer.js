@@ -63,6 +63,7 @@ const reducer = (state = initialState, action) => {
             answer_id: response.answer_id,
             answer_text: response.answer_text,
             confidence: response.confidence,
+            is_off_topic: response.is_off_topic,
             status: STATUS_READY
           }
         },
