@@ -18,6 +18,7 @@ body {
   white-space: nowrap;
 }
 #carousel .slide {
+  position: relative;
   display: inline-block;
   border-radius: 5px;
   padding: 5px;

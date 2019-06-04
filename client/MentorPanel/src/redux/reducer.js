@@ -1,45 +1,93 @@
 import {
-  SET_CURRENT_MENTOR,
-  SET_MENTOR_RESPONSE,
-  SET_IDLE,
-  SET_LOADING,
+  MENTOR_LOADED,
+  MENTOR_SELECTED,
+  QUESTION_SENT,
+  QUESTION_ANSWERED,
+  QUESTION_ERROR,
+  IDLE,
 } from './actions'
 
-const initialState = {
-  cur_mentor: 'clint',  // id of selected mentor
-  mentors: {},
+export const STATUS_READY = 'READY'
+export const STATUS_ANSWERED = 'ANSWERED'
+export const STATUS_ERROR = 'ERROR'
 
+const initialState = {
+  current_mentor: 'clint',  // id of selected mentor
+  current_question: '',
+  mentors_by_id: {},
   isIdle: false,
-  isLoading: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_CURRENT_MENTOR:
+
+    case MENTOR_LOADED:
       return {
         ...state,
-        cur_mentor: action.mentor,
-        isIdle: false,
-      }
-    case SET_MENTOR_RESPONSE:
-      return {
-        ...state,
-        mentors: {
-          ...state.mentors,
+        mentors_by_id: {
+          ...state.mentors_by_id,
           [action.mentor.id]: action.mentor
         },
         isIdle: false,
       }
-    case SET_IDLE:
+
+    case MENTOR_SELECTED:
+      return {
+        ...state,
+        current_mentor: action.id,
+        mentors_by_id: {
+          ...state.mentors_by_id,
+          [action.id]: {
+            ...state.mentors_by_id[action.id],
+            status: STATUS_ANSWERED,
+          }
+        },
+        isIdle: false,
+      }
+
+    case QUESTION_SENT:
+      return {
+        ...state,
+        current_question: action.question,
+      }
+
+    case QUESTION_ANSWERED:
+      const response = action.mentor
+      return {
+        ...state,
+        mentors_by_id: {
+          ...state.mentors_by_id,
+          [response.id]: {
+            ...state.mentors_by_id[response.id],
+            question: response.question,
+            answer_id: response.answer_id,
+            answer_text: response.answer_text,
+            confidence: response.confidence,
+            status: STATUS_READY
+          }
+        },
+        isIdle: false,
+      }
+
+    case QUESTION_ERROR:
+      return {
+        ...state,
+        mentors_by_id: {
+          ...state.mentors_by_id,
+          [action.mentor]: {
+            ...state.mentors_by_id[action.mentor],
+            question: action.question,
+            status: STATUS_ERROR,
+          }
+        }
+      }
+
+    case IDLE:
       return {
         ...state,
         isIdle: true,
       }
-    case SET_LOADING:
-      return {
-        ...state,
-        isLoading: action.isLoading
-      }
+
     default:
       return state
   }

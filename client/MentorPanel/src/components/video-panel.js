@@ -1,15 +1,17 @@
 import React from "react"
 import { useSelector, useDispatch } from 'react-redux';
+import { CircularProgress } from '@material-ui/core';
 
-import { setCurrentMentor } from '../redux/actions'
-import { videoUrl, RESPONSE_CUTOFF } from '../api/api'
+import { selectMentor } from '../redux/actions'
+import { RESPONSE_CUTOFF } from '../api/api'
 
 import VideoThumbnail from "./video-thumbnail"
 
 const VideoPanel = () => {
   const dispatch = useDispatch()
-  const mentor = useSelector(state => state.cur_mentor)
-  const mentors = useSelector(state => state.mentors)
+  const mentor = useSelector(state => state.current_mentor)
+  const mentors = useSelector(state => state.mentors_by_id)
+  const question = useSelector(state => state.current_question)
 
   const isDisabled = (id) => {
     return mentors[id].confidence <= RESPONSE_CUTOFF
@@ -19,7 +21,7 @@ const VideoPanel = () => {
     if (isDisabled(id)) {
       return
     }
-    dispatch(setCurrentMentor(id))
+    dispatch(selectMentor(id))
   }
 
   return (
@@ -31,9 +33,9 @@ const VideoPanel = () => {
             key={`${id}-${i}`}
             onClick={() => onClick(id)}
           >
-            <VideoThumbnail
-              src={videoUrl(mentors[id])}
-              disabled={isDisabled(id)} />
+            <VideoThumbnail mentor={mentors[id]} />
+            {question && question !== mentors[id].question ?
+              <CircularProgress className='spinner' /> : undefined}
           </div>
         )
       }
