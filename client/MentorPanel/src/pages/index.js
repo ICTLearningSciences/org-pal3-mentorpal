@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useDispatch } from 'react-redux';
 import { graphql } from "gatsby"
 
-import { onMentorLoaded } from '../redux/actions'
+import { loadMentor } from '../redux/actions'
 
 import Header from '../components/header'
 import Input from '../components/input'
@@ -16,7 +16,7 @@ const IndexPage = ({ ...props }) => {
   useEffect(() => {
     const data = props.data.allMentorsCsv.edges
     data.forEach(item => {
-      dispatch(onMentorLoaded(item.node))
+      dispatch(loadMentor(item.node))
     });
   })
 

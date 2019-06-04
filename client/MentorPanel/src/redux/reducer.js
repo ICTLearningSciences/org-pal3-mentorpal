@@ -1,6 +1,7 @@
 import {
   MENTOR_LOADED,
   MENTOR_SELECTED,
+  MENTOR_FAVED,
   QUESTION_SENT,
   QUESTION_ANSWERED,
   QUESTION_ERROR,
@@ -15,7 +16,9 @@ const initialState = {
   current_mentor: 'clint',  // id of selected mentor
   current_question: '',
   mentors_by_id: {},
+
   isIdle: false,
+  faved_mentor: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +46,12 @@ const reducer = (state = initialState, action) => {
           }
         },
         isIdle: false,
+      }
+
+    case MENTOR_FAVED:
+      return {
+        ...state,
+        faved_mentor: state.faved_mentor === action.id ? '' : action.id
       }
 
     case QUESTION_SENT:
