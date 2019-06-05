@@ -1,8 +1,8 @@
 # Checkpoints
 
-## Local Checkpoints
+## Checkpoints
 
-You can train and use checkpoints locally. Here are some common operations:
+You can train and use checkpoints. Here are some common operations:
 
 ### Train a New Checkpoint 
 
@@ -69,56 +69,18 @@ arch_2=my_arch_2 checkpoint_2=my_checkpoint_2
 
 ## Checkpoint Storage
 
-The checkpoint models can be found [here](https://webdisk.ict.usc.edu/index.php/s/J7IJMxFuax3SiHo): 
+Checkpoint trained weights are stored in github along with project code for now.
 
-These models should not be committed to version control so they are ignored by git.
+### Download Vector Models
 
-### Accessing Webdisk
-
-In order to download checkpoints, you will need access to the ICT webdisk.
-
-To access webdisk, you must have a .netrc file in the main app folder. This will not be committed to git.
-
-```bash
-machine webdisk.ict.usc.edu
-login [username]
-password [password]
-```
-
-### Download Checkpoints and Vector Models
-
-Download vector models and stable checkpoint:
+Download vector models:
 
 ```bash
 make init
-```
-
-Download a specific checkpoint:
-
-```bash
-make download-checkpoint classifier=[CLASSIFIER_ID] checkpoint=[CHECKPOINT_ID]
 ```
 
 Download all vector models:
 
 ```bash
 make download-vector-models
-```
-
-### Delete Checkpoints
-
-Remove locally downloaded checkpoints and vector models
-
-```bash
-make clean
-```
-
-Remote checkpoints on webdisk must be deleted manually.
-
-### Upload Checkpoints
-
-Upload a specific checkpoint:
-
-```bash
-make upload-checkpoint classifier=[CLASSIFIER_ID] checkpoint=[CHECKPOINT_ID]
 ```

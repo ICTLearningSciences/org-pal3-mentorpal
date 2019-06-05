@@ -1,80 +1,46 @@
 CHECKPOINT_ROOT=$(shell pwd)
 PROJECT_ROOT=$(shell git rev-parse --show-toplevel 2> /dev/null)
 
-WEBDAV_PATH=https://webdisk.ict.usc.edu/remote.php/webdav/
+VECTOR_MODEL_BASE_URL=http://mentorpal-vector-models.s3-website-us-east-1.amazonaws.com
 CHECKPOINT ?= 2019-02-21-0220
 ARCH ?= lstm_v1
 MENTOR ?= clint
+CHECKPOINT_PATH=${CHECKPOINT_ROOT}/classifiers/${ARCH}/${CHECKPOINT}
 
 DOCKER_ACCOUNT?=uscictdocker
 DOCKER_REPO?=mentorpal-classifier
 DOCKER_TAG?=latest
 DOCKER_IMAGE?=${DOCKER_ACCOUNT}/${DOCKER_REPO}:${DOCKER_TAG}
 
+.PHONY: clean
 clean:
-	rm -r classifiers/*/*/*/*
 	rm -r vector_models/*.bin
 
-init: vector-models
-	$(MAKE) download-checkpoint classifier=$(ARCH) checkpoint=$(CHECKPOINT)
+.PHONY: init
+init: checkpoint-vector-models
 
-
-# make classifier={CLASSIFIER} checkpoint={CHECKPOINT} download-checkpoint
-#
-# download a specific checkpoint from webdisk
-# must have a .netrc file with webdisk credentials to run this (see checkpoint/README.md)
-download-checkpoint:
-	cp ${PROJECT_ROOT}/.netrc ~/.netrc
-
-	mkdir -p classifiers/$(classifier)/$(checkpoint)/clint
-	cd classifiers/$(classifier)/$(checkpoint)/clint && \
-	printf "mget checkpoint/classifiers/$(classifier)/$(checkpoint)/clint/*\nexit" >> cmd && \
-	cadaver -r cmd ${WEBDAV_PATH} && \
-	rm cmd
-
-	mkdir -p classifiers/$(classifier)/$(checkpoint)/dan
-	cd classifiers/$(classifier)/$(checkpoint)/dan && \
-	printf "mget checkpoint/classifiers/$(classifier)/$(checkpoint)/dan/*\nexit" >> cmd && \
-	cadaver -r cmd ${WEBDAV_PATH} && \
-	rm cmd
-
-	mkdir -p classifiers/$(classifier)/$(checkpoint)/carlos
-	cd classifiers/$(classifier)/$(checkpoint)/carlos && \
-	printf "mget checkpoint/classifiers/$(classifier)/$(checkpoint)/carlos/*\nexit" >> cmd && \
-	cadaver -r cmd ${WEBDAV_PATH} && \
-	rm cmd
-
-	mkdir -p classifiers/$(classifier)/$(checkpoint)/julianne
-	cd classifiers/$(classifier)/$(checkpoint)/julianne && \
-	printf "mget checkpoint/classifiers/$(classifier)/$(checkpoint)/julianne/*\nexit" >> cmd && \
-	cadaver -r cmd ${WEBDAV_PATH} && \
-	rm cmd
-
-vector-models:
-	cp ${PROJECT_ROOT}/.netrc ~/.netrc
-	mkdir -p vector_models
-	cd vector_models && \
-	printf "mget checkpoint/vector_models/*\nexit" >> cmd && \
-	cadaver -r cmd ${WEBDAV_PATH} && \
-	rm cmd
-
-
-# make classifier={CLASSIFIER} checkpoint={CHECKPOINT} upload-checkpoint
-upload-checkpoint:
-	cp ${PROJECT_ROOT}/.netrc ~/.netrc
-	./bin/davupload.sh "classifiers/$(classifier)/$(checkpoint)/" "https://webdisk.ict.usc.edu/remote.php/webdav/checkpoint/classifiers/$(classifier)/"
+# downloads all vector models required by active CHECKPOINT/ARCH
+.PHONY: checkpoint-vector-models
+checkpoint-vector-models:
+	${CHECKPOINT_ROOT}/bin/checkpoint_vector_models_download.sh \
+            -o ${CHECKPOINT_ROOT}/vector_models \
+            -h ${VECTOR_MODEL_BASE_URL} \
+        ${CHECKPOINT_PATH}
+        
 
 # CHECKPOINT={CHECKPOINT} MENTOR={MENTOR} make test-checkpoint
-checkpoint-test:
+.PHONY: checkpoint-test
+checkpoint-test: checkpoint-vector-models
 	./bin/checkpoint_test.sh $(MENTOR) $(ARCH) $(CHECKPOINT) 
 
 # make c1={CHECKPOINT1} c2={CHECKPOINT2} m={MENTOR} compare-checkpoints
-checkpoints-compare:
+.PHONY: checkpoint-compare
+checkpoints-compare: checkpoint-vector-models
 	./bin/checkpoints_compare.sh $(mentor) $(arch_1) $(checkpoint_1) $(arch_2) $(checkpoint_2) 
 
-checkpoint-train:
+.PHONY: checkpoint-train
+checkpoint-train: checkpoint-vector-models
 	./bin/checkpoint_train.sh $(ARCH) ${checkpoint}
-
 
 .PHONY: docker-run-dev
 docker-run-dev:

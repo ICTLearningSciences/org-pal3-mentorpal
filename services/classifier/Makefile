@@ -2,30 +2,37 @@ DOCKER_ACCOUNT?=uscictdocker
 DOCKER_REPO?=mentorpal-classifier
 DOCKER_TAG?=latest
 
-DOCKER_IMAGE?=${DOCKER_ACCOUNT}/${DOCKER_REPO}:${DOCKER_TAG}
+DOCKER_IMAGE?=$(DOCKER_ACCOUNT)/$(DOCKER_REPO):$(DOCKER_TAG)
 DOCKER_CONTAINER=mentorpal-classifier
 
 CLASSIFIER_ROOT=$(shell pwd)
-SERVICES_ROOT=$(shell dirname ${CLASSIFIER_ROOT})
-MENTORPAL_ROOT=$(shell dirname ${SERVICES_ROOT})
-
+PROJECT_ROOT=$(shell git rev-parse --show-toplevel 2> /dev/null)
+CHECKPOINT_ROOT=$(PROJECT_ROOT)/checkpoint
 CHECKPOINT=2019-02-21-0220
 ARCH=lstm_v1
+CHECKPOINT_PATH_RELATIVE=checkpoint/classifiers/$(ARCH)/$(CHECKPOINT)
 
+.PHONY clean:
 clean:
 	rm -rf build
 
 
-# The src for the MentorPAL classifier should live under the 'classifier' folder
-# but currently it lives are the root of the project.
-# It will require some effort to move the folder and fix everything
-# dependent that breaks, so for now just soft link it.
-build: clean
-	mkdir -p ${CLASSIFIER_ROOT}/build
-	cp -r ${MENTORPAL_ROOT}/src ${CLASSIFIER_ROOT}/build
-	cp -r ${MENTORPAL_ROOT}/mentors ${CLASSIFIER_ROOT}/build
-	cp ${MENTORPAL_ROOT}/.netrc ${CLASSIFIER_ROOT}/build
+.PHONY checkpoint-vector-models:
+checkpoint-vector-models:
+	cd $(CHECKPOINT_ROOT) && \
+	CHECKPOINT=$(CHECKPOINT) ARCH=$(ARCH) $(MAKE) checkpoint-vector-models
 
+
+BUILD=$(CLASSIFIER_ROOT)/build
+build: clean checkpoint-vector-models
+	cd $(CHECKPOINT_ROOT)
+	mkdir -p $(BUILD)
+	cp -r $(PROJECT_ROOT)/src $(BUILD)
+	cp -r $(PROJECT_ROOT)/mentors $(BUILD)
+	mkdir -p $(BUILD)/$(CHECKPOINT_PATH_RELATIVE)
+	cp -r $(PROJECT_ROOT)/$(CHECKPOINT_PATH_RELATIVE)/* $(BUILD)/$(CHECKPOINT_PATH_RELATIVE)
+	cp -r $(PROJECT_ROOT)/checkpoint/vector_models $(BUILD)/checkpoint
+	cp -r $(PROJECT_ROOT)/checkpoint/bin $(BUILD)
 
 docker-build: clean build
 	docker build \
@@ -39,10 +46,10 @@ docker-run:
 	docker run \
 			-it \
 			--rm \
-			--name ${DOCKER_CONTAINER} \
+			--name $(DOCKER_CONTAINER) \
 			--shm-size 8G \
 			-p 8888:8888 \
-		${DOCKER_IMAGE} \
+		$(DOCKER_IMAGE) \
 			bash
 
 
@@ -50,9 +57,9 @@ docker-run-dev:
 	docker run \
 			-it \
 			--rm \
-			--name ${DOCKER_CONTAINER} \
+			--name $(DOCKER_CONTAINER) \
 			--shm-size 8G \
 			-p 8888:8888 \
-			-v ${MENTORPAL_ROOT}:/app/mentorpal \
-		${DOCKER_IMAGE} \
+			-v $(PROJECT_ROOT):/app/mentorpal \
+		$(DOCKER_IMAGE) \
 			bash
