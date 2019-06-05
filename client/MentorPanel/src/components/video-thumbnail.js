@@ -2,13 +2,15 @@ import React from "react"
 import ReactPlayer from 'react-player'
 
 import { videoUrl } from '../api/api'
+import { STATUS_ERROR } from '../redux/reducer'
 
-const VideoThumbnail = ({ mentor, ...props }) => {
+const VideoThumbnail = ({ mentor }) => {
   const src = videoUrl(mentor)
+  const isDisabled = mentor.is_off_topic || mentor.status === STATUS_ERROR
 
   return (
     <ReactPlayer
-      style={{ opacity: mentor.is_off_topic ? '0.25' : '1' }}
+      style={{ opacity: isDisabled ? '0.25' : '1' }}
       url={src}
       height={80}
       width={80}
