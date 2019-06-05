@@ -1,22 +1,27 @@
 import { queryMentor } from '../api/api'
+import { STATUS_READY } from './store'
 
-export const MENTOR_SELECTED = 'MENTOR_SELECTED'
-export const MENTOR_LOADED = 'MENTOR_LOADED'
-export const MENTOR_FAVED = 'MENTOR_FAVED'
-export const QUESTION_SENT = 'QUESTION_SENT'
-export const QUESTION_ANSWERED = 'QUESTION_ANSWERED'
-export const QUESTION_ERROR = 'QUESTION_ERROR'
-export const IDLE = 'IDLE'
+export const MENTOR_LOADED = 'MENTOR_LOADED'          // mentor info was loaded
+export const MENTOR_SELECTED = 'MENTOR_SELECTED'      // mentor video was selected
+export const MENTOR_FAVED = 'MENTOR_FAVED'            // mentor was favorited
+export const MENTOR_NEXT = 'MENTOR_NEXT'              // set next mentor to play after current
+export const QUESTION_SENT = 'QUESTION_SENT'          // question input was sent
+export const QUESTION_ANSWERED = 'QUESTION_ANSWERED'  // question was answered by mentor
+export const QUESTION_ERROR = 'QUESTION_ERROR'        // question could not be answered by mentor
+export const ANSWER_FINISHED = 'ANSWER_FINISHED'      // mentor video has finished playing
 
 export const loadMentor = mentor => ({
   type: MENTOR_LOADED,
   mentor: mentor,
 })
 
-export const selectMentor = mentor_id => ({
-  type: MENTOR_SELECTED,
-  id: mentor_id,
-})
+export const selectMentor = mentor_id => (dispatch) => {
+  dispatch(onInput())
+  dispatch({
+    type: MENTOR_SELECTED,
+    id: mentor_id,
+  })
+}
 
 export const faveMentor = mentor_id => ({
   type: MENTOR_FAVED,
@@ -46,7 +51,6 @@ export const sendQuestion = question => async (dispatch, getState) => {
   }
 
   if (responses.length === 0) {
-    console.error('Did not receive any answers to the question')
     return
   }
 
@@ -68,9 +72,54 @@ export const sendQuestion = question => async (dispatch, getState) => {
   dispatch(selectMentor(responses[0].id))
 }
 
-export const setIdle = () => ({
-  type: IDLE,
-})
+const NEXT_MENTOR_DELAY = 3000
+var timer = null
+export const answerFinished = () => (dispatch, getState) => {
+  dispatch(onIdle())
+
+  // order mentors by highest answer confidence
+  const state = getState()
+  const mentors = state.mentors_by_id
+  const responses = []
+  Object.keys(mentors).forEach(id => {
+    responses.push({
+      id: mentors[id].id,
+      confidence: mentors[id].confidence,
+      is_off_topic: mentors[id].is_off_topic,
+      status: mentors[id].status,
+    })
+  });
+  responses.sort((a, b) => (a.confidence > b.confidence) ? -1 : 1)
+
+  // get the most confident answer that has not been given
+  const next_mentor = responses.find(response => {
+    return response.status === STATUS_READY && !response.is_off_topic
+  })
+  
+  // set the next mentor to start playing, if there is one
+  if (!next_mentor) {
+    return
+  }
+  dispatch(nextMentor(next_mentor.id))
+
+  // play the next mentor after the timeout
+  if (timer) {
+    clearTimeout(timer)
+    timer = null
+  }
+  timer = setTimeout(() => {
+    dispatch(selectMentor(next_mentor.id))
+  }, NEXT_MENTOR_DELAY)
+}
+
+export const onInput = () => (dispatch) => {
+  if (timer) {
+    clearTimeout(timer)
+    timer = null
+  }
+  dispatch(nextMentor(''))
+}
+
 
 const onQuestionSent = question => ({
   type: QUESTION_SENT,
@@ -86,4 +135,13 @@ const onQuestionError = (id, question) => ({
   type: QUESTION_ERROR,
   mentor: id,
   question: question,
+})
+
+const onIdle = () => ({
+  type: ANSWER_FINISHED,
+})
+
+const nextMentor = (id) => ({
+  type: MENTOR_NEXT,
+  mentor: id,
 })

@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { useDispatch } from 'react-redux';
 import { graphql } from "gatsby"
 
-import { loadMentor } from '../redux/actions'
+import { loadMentor, selectMentor } from '../redux/actions'
 
 import Header from '../components/header'
 import Input from '../components/input'
@@ -18,6 +18,7 @@ const IndexPage = ({ ...props }) => {
     data.forEach(item => {
       dispatch(loadMentor(item.node))
     });
+    dispatch(selectMentor(data[0].node.id))
   })
 
   return (

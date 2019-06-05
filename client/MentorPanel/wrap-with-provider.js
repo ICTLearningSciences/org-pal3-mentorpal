@@ -3,16 +3,16 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import reducer from './src/redux/reducer'
+import store from './src/redux/store'
 
 const middleware = [thunk]
-const store = createStore(
-  reducer,
+const m_store = createStore(
+  store,
   applyMiddleware(...middleware)
 )
 
 export default ({ element }) => (
-  <Provider store={store}>
+  <Provider store={m_store}>
     {element}
   </Provider>
 );

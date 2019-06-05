@@ -4,7 +4,7 @@ import { CircularProgress } from '@material-ui/core';
 import { Sms, SmsFailed, Star } from '@material-ui/icons'
 
 import { selectMentor } from '../redux/actions'
-import { STATUS_READY, STATUS_ERROR } from '../redux/reducer'
+import { STATUS_READY, STATUS_ERROR } from '../redux/store'
 
 import VideoThumbnail from "./video-thumbnail"
 
@@ -25,6 +25,8 @@ const StarIcon = ({ mentor }) => {
 }
 
 const MessageStatus = ({ mentor }) => {
+  const next_mentor = useSelector(state => state.next_mentor)
+
   if (mentor.is_off_topic) {
     return <div></div>
   }
@@ -32,7 +34,11 @@ const MessageStatus = ({ mentor }) => {
     return <SmsFailed className='message-notice' fontSize='small' style={{ color: 'red' }} />
   }
   if (mentor.status === STATUS_READY) {
-    return <Sms className='message-notice' fontSize='small' style={{ color: 'green' }} />
+    const isNext = mentor.id === next_mentor
+    return <Sms
+      className={`message-notice ${isNext ? 'blink' : ''}`}
+      fontSize='small'
+      style={{ color: 'green' }} />
   }
   return <div></div>
 }

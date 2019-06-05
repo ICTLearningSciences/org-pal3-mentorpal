@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Star, StarBorder } from '@material-ui/icons'
 
 import { idleUrl, videoUrl } from '../api/api'
-import { setIdle, faveMentor } from '../redux/actions'
+import { answerFinished, faveMentor } from '../redux/actions'
 
 const FaveButton = () => {
     const dispatch = useDispatch()
@@ -22,7 +22,7 @@ const FaveButton = () => {
     )
 }
 
-const VideoPlayer = ({ width }) => {
+const Video = () => {
     const dispatch = useDispatch()
     const isIdle = useSelector(state => state.isIdle)
     const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
@@ -31,43 +31,29 @@ const VideoPlayer = ({ width }) => {
             isIdle ? idleUrl(mentor) : videoUrl(mentor)
             : ''
 
+    const maxWidth = 500
+    const windowWidth = typeof window !== 'undefined' ? window.innerWidth : maxWidth
+    const width = Math.min(windowWidth, maxWidth)
+
     const onEnded = () => {
-        dispatch(setIdle())
+        dispatch(answerFinished())
     }
 
     return (
-        <ReactPlayer
-            url={src}
-            onEnded={onEnded}
-            loop={isIdle}
-            width={width}
-            height={width * 0.895}
-            controls={true}
-            playing={true}
-            playsinline={true}
-            webkit-playsinline='true' />
+        <div id='video-container' style={{ width: width }}>
+            <ReactPlayer
+                url={src}
+                onEnded={onEnded}
+                loop={isIdle}
+                width={width}
+                height={width * 0.895}
+                controls={!isIdle}
+                playing={true}
+                playsinline={true}
+                webkit-playsinline='true' />
+            <FaveButton />
+        </div>
     )
-}
-
-class Video extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { width: 0 };
-    }
-
-    componentDidMount() {
-        const width = Math.min(window.innerWidth, 500)
-        this.setState({ width })
-    }
-
-    render() {
-        return (
-            <div id='video-container' style={{ width: this.state.width }}>
-                <VideoPlayer width={this.state.width} />
-                <FaveButton />
-            </div>
-        )
-    }
 }
 
 export default Video

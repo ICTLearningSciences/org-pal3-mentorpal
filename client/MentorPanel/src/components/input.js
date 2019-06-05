@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Button, Divider, InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { sendQuestion } from '../redux/actions'
+import { sendQuestion, onInput } from '../redux/actions'
 
 const SendButton = ({ text }) => {
   const dispatch = useDispatch()
@@ -46,8 +46,8 @@ const InputField = ({ text, onSelect, onChange }) => {
       multiline
       rows={2}
 
-      onChange={onChange}
-      onClick={onSelect}
+      onChange={(ev) => { dispatch(onInput()); onChange(ev) }}
+      onClick={() => { dispatch(onInput()); onSelect() }}
       onKeyPress={onKeyPress} />
   )
 }

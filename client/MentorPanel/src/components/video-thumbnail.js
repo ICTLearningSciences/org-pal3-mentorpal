@@ -2,7 +2,7 @@ import React from "react"
 import ReactPlayer from 'react-player'
 
 import { videoUrl } from '../api/api'
-import { STATUS_ERROR } from '../redux/reducer'
+import { STATUS_ERROR } from '../redux/store'
 
 const VideoThumbnail = ({ mentor }) => {
   const src = videoUrl(mentor)
