@@ -27,6 +27,17 @@ const SendButton = ({ text }) => {
 const InputField = ({ text, onSelect, onChange }) => {
   const dispatch = useDispatch()
 
+  const onKeyPress = (ev) => {
+    if (ev.key !== 'Enter') {
+      return
+    }
+    ev.preventDefault();
+
+    if (text) {
+      dispatch(sendQuestion(text))
+    }
+  }
+
   return (
     <InputBase
       style={{ flex: 1, marginLeft: 8 }}
@@ -37,12 +48,7 @@ const InputField = ({ text, onSelect, onChange }) => {
 
       onChange={onChange}
       onClick={onSelect}
-      onKeyPress={(ev) => {
-        if (ev.key === 'Enter') {
-          dispatch(sendQuestion(text))
-          ev.preventDefault();
-        }
-      }} />
+      onKeyPress={onKeyPress} />
   )
 }
 
