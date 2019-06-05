@@ -43,7 +43,7 @@ const VideoPanel = () => {
   const mentors = useSelector(state => state.mentors_by_id)
 
   const onClick = (mentor) => {
-    if (mentor.is_off_topic) {
+    if (mentor.is_off_topic || mentor.status === STATUS_ERROR) {
       return
     }
     dispatch(selectMentor(mentor.id))

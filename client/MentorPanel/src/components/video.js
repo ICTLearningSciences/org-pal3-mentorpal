@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactPlayer from 'react-player'
 import { useSelector, useDispatch } from 'react-redux';
-import { IconButton } from '@material-ui/core';
 import { Star, StarBorder } from '@material-ui/icons'
 
 import { idleUrl, videoUrl } from '../api/api'
