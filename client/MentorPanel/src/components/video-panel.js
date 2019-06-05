@@ -1,7 +1,7 @@
 import React from "react"
 import { useSelector, useDispatch } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
-import { Sms, SmsFailed } from '@material-ui/icons'
+import { Sms, SmsFailed, Star } from '@material-ui/icons'
 
 import { selectMentor } from '../redux/actions'
 import { STATUS_READY, STATUS_ERROR } from '../redux/reducer'
@@ -16,15 +16,23 @@ const LoadingSpinner = ({ mentor }) => {
   return <div></div>
 }
 
+const StarIcon = ({ mentor }) => {
+  const faved_mentor = useSelector(state => state.faved_mentor)
+  if (faved_mentor === mentor.id) {
+    return <Star className='star-icon' style={{ color: 'yellow' }} />
+  }
+  return <div></div>
+}
+
 const MessageStatus = ({ mentor }) => {
   if (mentor.is_off_topic) {
     return <div></div>
   }
   if (mentor.status === STATUS_ERROR) {
-    return <SmsFailed className='notice' style={{ color: 'red' }} />
+    return <SmsFailed className='message-notice' style={{ color: 'red' }} />
   }
   if (mentor.status === STATUS_READY) {
-    return <Sms className='notice' style={{ color: 'green' }} />
+    return <Sms className='message-notice' style={{ color: 'green' }} />
   }
   return <div></div>
 }
@@ -53,6 +61,7 @@ const VideoPanel = () => {
             <VideoThumbnail mentor={mentors[id]} />
             <LoadingSpinner mentor={mentors[id]} />
             <MessageStatus mentor={mentors[id]} />
+            <StarIcon mentor={mentors[id]} />
           </div>
         )
       }

@@ -2,7 +2,6 @@ body {
   text-align: center;
 }
 
-
 #footer {
   position: fixed;
   left: 0px;
@@ -26,36 +25,23 @@ body {
 #carousel .selected {
   background-color: orange;
 }
+
 .spinner {
   position: absolute;
-  top: 15%;
-  left: 30%;
+  top: 25%;
+  left: 25%;
 }
-.notice {
+.message-notice {
   position: absolute;
   top: 5px;
   left: 5px;
 }
-
+.star-icon {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+}
 
 #video-container {
   position: relative;
-}
-.video {
-  position: absolute;
-  top: 0;
-}
-.video.fadeIn {
-  opacity:1;
-  transition: opacity 0.5s;
-}
-.video.fadeOut {
-  opacity:0;
-  transition: opacity 0.5s;
-}
-.visible {
-  opacity: 1;
-}
-.invisible {
-  opacity: 0;
 }
