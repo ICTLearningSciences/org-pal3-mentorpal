@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  margin: 0;
 }
 
 #footer {
@@ -33,15 +34,16 @@ body {
 }
 .message-notice {
   position: absolute;
-  top: 5px;
-  left: 5px;
+  bottom: 10%;
+  right: 10%;
 }
 .star-icon {
   position: absolute;
-  top: 10%;
-  right: 10%;
+  top: 5%;
+  left: 5%;
 }
 
 #video-container {
   position: relative;
+  margin: 0 auto;
 }

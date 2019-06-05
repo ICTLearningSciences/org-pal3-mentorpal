@@ -19,7 +19,7 @@ const LoadingSpinner = ({ mentor }) => {
 const StarIcon = ({ mentor }) => {
   const faved_mentor = useSelector(state => state.faved_mentor)
   if (faved_mentor === mentor.id) {
-    return <Star className='star-icon' style={{ color: 'yellow' }} />
+    return <Star className='star-icon' fontSize='small' style={{ color: 'yellow' }} />
   }
   return <div></div>
 }
@@ -29,10 +29,10 @@ const MessageStatus = ({ mentor }) => {
     return <div></div>
   }
   if (mentor.status === STATUS_ERROR) {
-    return <SmsFailed className='message-notice' style={{ color: 'red' }} />
+    return <SmsFailed className='message-notice' fontSize='small' style={{ color: 'red' }} />
   }
   if (mentor.status === STATUS_READY) {
-    return <Sms className='message-notice' style={{ color: 'green' }} />
+    return <Sms className='message-notice' fontSize='small' style={{ color: 'green' }} />
   }
   return <div></div>
 }

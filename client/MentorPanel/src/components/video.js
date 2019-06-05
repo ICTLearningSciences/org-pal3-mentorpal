@@ -22,32 +22,52 @@ const FaveButton = () => {
     )
 }
 
-const Video = () => {
+const VideoPlayer = ({ width }) => {
     const dispatch = useDispatch()
     const isIdle = useSelector(state => state.isIdle)
     const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
-    var src = mentor ?
-        isIdle ? idleUrl(mentor) : videoUrl(mentor)
-        : ''
+    const src =
+        mentor ?
+            isIdle ? idleUrl(mentor) : videoUrl(mentor)
+            : ''
 
     const onEnded = () => {
         dispatch(setIdle())
     }
 
     return (
-        <div id='video-container'>
-            <ReactPlayer
-                url={src}
-                onEnded={onEnded}
-                width='100%'
-                loop={isIdle}
-                controls={true}
-                playing={true}
-                playsinline={true}
-                webkit-playsinline='true' />
-            <FaveButton />
-        </div>
+        <ReactPlayer
+            url={src}
+            onEnded={onEnded}
+            loop={isIdle}
+            width={width}
+            height={width * 0.895}
+            controls={true}
+            playing={true}
+            playsinline={true}
+            webkit-playsinline='true' />
     )
+}
+
+class Video extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { width: 0 };
+    }
+
+    componentDidMount() {
+        const width = Math.min(window.innerWidth, 500)
+        this.setState({ width })
+    }
+
+    render() {
+        return (
+            <div id='video-container' style={{ width: this.state.width }}>
+                <VideoPlayer width={this.state.width} />
+                <FaveButton />
+            </div>
+        )
+    }
 }
 
 export default Video

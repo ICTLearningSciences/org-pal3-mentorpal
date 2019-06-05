@@ -24,10 +24,36 @@ const SendButton = ({ text }) => {
   )
 }
 
+const InputField = ({ text, onSelect, onChange }) => {
+  const dispatch = useDispatch()
+
+  return (
+    <InputBase
+      style={{ flex: 1, marginLeft: 8 }}
+      value={text}
+      placeholder="Ask a question"
+      multiline
+      rows={2}
+
+      onChange={onChange}
+      onClick={onSelect}
+      onKeyPress={(ev) => {
+        if (ev.key === 'Enter') {
+          dispatch(sendQuestion(text))
+          ev.preventDefault();
+        }
+      }} />
+  )
+}
+
 class Input extends React.Component {
   constructor(props) {
     super(props);
     this.state = { text: '' };
+  }
+
+  onChange = (e) => {
+    this.setState({ text: e.target.value })
   }
 
   clear = () => {
@@ -40,14 +66,7 @@ class Input extends React.Component {
     return (
       <div id='footer'>
         <Paper className={classes.root}>
-          <InputBase
-            className={classes.input}
-            onChange={(e) => this.setState({ text: e.target.value })}
-            onClick={() => this.clear()}
-            value={this.state.text}
-            placeholder="Ask a question"
-            multiline
-            rows={2} />
+          <InputField text={this.state.text} onSelect={this.clear} onChange={this.onChange} />
           <Divider className={classes.divider} />
           <SendButton text={this.state.text} />
         </Paper>
@@ -61,10 +80,6 @@ const styles = {
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-  },
-  input: {
-    marginLeft: 8,
-    flex: 1,
   },
   divider: {
     width: 1,
