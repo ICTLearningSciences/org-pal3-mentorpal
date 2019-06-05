@@ -1,8 +1,8 @@
 # Checkpoints
 
-## Checkpoints
+## Local Checkpoints
 
-You can train and use checkpoints. Here are some common operations:
+You can train and use checkpoints locally. Here are some common operations:
 
 ### Train a New Checkpoint 
 
@@ -67,20 +67,12 @@ arch_1=my_arch_1 checkpoint_1=my_checkpoint_1 \
 arch_2=my_arch_2 checkpoint_2=my_checkpoint_2
 ```
 
-## Checkpoint Storage
+### Download Vector Models for the Current Checkpoint
 
-Checkpoint trained weights are stored in github along with project code for now.
+Classifiers may require vector models that aren't stored in git or with the classifier because they tend to be large and also used by many classifiers. 
 
-### Download Vector Models
-
-Download vector models:
+To download the vector models required for the active checkpoint (if any) do:
 
 ```bash
 make init
-```
-
-Download all vector models:
-
-```bash
-make download-vector-models
 ```
