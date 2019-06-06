@@ -5,11 +5,7 @@ import thunk from 'redux-thunk';
 
 import store from './src/redux/store'
 
-const middleware = [thunk]
-const m_store = createStore(
-  store,
-  applyMiddleware(...middleware)
-)
+const m_store = createStore(store, applyMiddleware(...[thunk]))
 
 export default ({ element }) => (
   <Provider store={m_store}>
