@@ -67,58 +67,12 @@ arch_1=my_arch_1 checkpoint_1=my_checkpoint_1 \
 arch_2=my_arch_2 checkpoint_2=my_checkpoint_2
 ```
 
-## Checkpoint Storage
+### Download Vector Models for the Current Checkpoint
 
-The checkpoint models can be found [here](https://webdisk.ict.usc.edu/index.php/s/J7IJMxFuax3SiHo): 
+Classifiers may require vector models that aren't stored in git or with the classifier because they tend to be large and also used by many classifiers. 
 
-These models should not be committed to version control so they are ignored by git.
-
-### Accessing Webdisk
-
-In order to download checkpoints, you will need access to the ICT webdisk.
-
-To access webdisk, you must have a .netrc file in the main app folder. This will not be committed to git.
-
-```bash
-machine webdisk.ict.usc.edu
-login [username]
-password [password]
-```
-
-### Download Checkpoints and Vector Models
-
-Download vector models and stable checkpoint:
+To download the vector models required for the active checkpoint (if any) do:
 
 ```bash
 make init
-```
-
-Download a specific checkpoint:
-
-```bash
-make download-checkpoint classifier=[CLASSIFIER_ID] checkpoint=[CHECKPOINT_ID]
-```
-
-Download all vector models:
-
-```bash
-make download-vector-models
-```
-
-### Delete Checkpoints
-
-Remove locally downloaded checkpoints and vector models
-
-```bash
-make clean
-```
-
-Remote checkpoints on webdisk must be deleted manually.
-
-### Upload Checkpoints
-
-Upload a specific checkpoint:
-
-```bash
-make upload-checkpoint classifier=[CLASSIFIER_ID] checkpoint=[CHECKPOINT_ID]
 ```
