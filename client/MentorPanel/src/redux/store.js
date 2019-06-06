@@ -2,10 +2,11 @@ import {
   MENTOR_LOADED,
   MENTOR_SELECTED,
   MENTOR_FAVED,
+  MENTOR_NEXT,
   QUESTION_SENT,
   QUESTION_ANSWERED,
   QUESTION_ERROR,
-  IDLE,
+  ANSWER_FINISHED,
 } from './actions'
 
 export const STATUS_READY = 'READY'
@@ -13,15 +14,15 @@ export const STATUS_ANSWERED = 'ANSWERED'
 export const STATUS_ERROR = 'ERROR'
 
 const initialState = {
-  current_mentor: 'clint',  // id of selected mentor
-  current_question: '',
+  current_mentor: '',       // id of selected mentor
+  current_question: '',     // question that was last asked
+  faved_mentor: '',         // id of the preferred mentor
+  next_mentor: '',          // id of the next mentor to speak after the current finishes
   mentors_by_id: {},
-
   isIdle: false,
-  faved_mentor: '',
 };
 
-const reducer = (state = initialState, action) => {
+const store = (state = initialState, action) => {
   switch (action.type) {
 
     case MENTOR_LOADED:
@@ -29,7 +30,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         mentors_by_id: {
           ...state.mentors_by_id,
-          [action.mentor.id]: action.mentor
+          [action.mentor.id]: {
+            ...action.mentor,
+            status: STATUS_READY,
+          }
         },
         isIdle: false,
       }
@@ -52,6 +56,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         faved_mentor: state.faved_mentor === action.id ? '' : action.id
+      }
+
+    case MENTOR_NEXT:
+      return {
+        ...state,
+        next_mentor: action.mentor,
       }
 
     case QUESTION_SENT:
@@ -92,7 +102,7 @@ const reducer = (state = initialState, action) => {
         }
       }
 
-    case IDLE:
+    case ANSWER_FINISHED:
       return {
         ...state,
         isIdle: true,
@@ -104,5 +114,5 @@ const reducer = (state = initialState, action) => {
 };
 
 export default (state = initialState, action) => {
-  return reducer(state, action)
+  return store(state, action)
 }

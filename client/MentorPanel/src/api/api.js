@@ -12,6 +12,10 @@ export const idleUrl = (mentor) => {
   return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/mobile/idle.mp4`
 }
 
+export const subtitleUrl = (mentor) => {
+  return `${MENTOR_API_URL}/mentors/${mentor.id}/tracks/${mentor.answer_id}.vtt`
+}
+
 export const queryMentor = async (mentor_id, question) => {
   const res = await axios.get(
     `${MENTOR_API_URL}/questions/`, {

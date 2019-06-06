@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Button, Divider, InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { sendQuestion } from '../redux/actions'
+import { sendQuestion, onInput } from '../redux/actions'
 
 const SendButton = ({ text }) => {
   const dispatch = useDispatch()
@@ -24,10 +24,42 @@ const SendButton = ({ text }) => {
   )
 }
 
+const InputField = ({ text, onSelect, onChange }) => {
+  const dispatch = useDispatch()
+
+  const onKeyPress = (ev) => {
+    if (ev.key !== 'Enter') {
+      return
+    }
+    ev.preventDefault();
+
+    if (text) {
+      dispatch(sendQuestion(text))
+    }
+  }
+
+  return (
+    <InputBase
+      style={{ flex: 1, marginLeft: 8 }}
+      value={text}
+      placeholder="Ask a question"
+      multiline
+      rows={2}
+
+      onChange={(ev) => { dispatch(onInput()); onChange(ev) }}
+      onClick={() => { dispatch(onInput()); onSelect() }}
+      onKeyPress={onKeyPress} />
+  )
+}
+
 class Input extends React.Component {
   constructor(props) {
     super(props);
     this.state = { text: '' };
+  }
+
+  onChange = (e) => {
+    this.setState({ text: e.target.value })
   }
 
   clear = () => {
@@ -40,14 +72,7 @@ class Input extends React.Component {
     return (
       <div id='footer'>
         <Paper className={classes.root}>
-          <InputBase
-            className={classes.input}
-            onChange={(e) => this.setState({ text: e.target.value })}
-            onClick={() => this.clear()}
-            value={this.state.text}
-            placeholder="Ask a question"
-            multiline
-            rows={2} />
+          <InputField text={this.state.text} onSelect={this.clear} onChange={this.onChange} />
           <Divider className={classes.divider} />
           <SendButton text={this.state.text} />
         </Paper>
@@ -61,10 +86,6 @@ const styles = {
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-  },
-  input: {
-    marginLeft: 8,
-    flex: 1,
   },
   divider: {
     width: 1,

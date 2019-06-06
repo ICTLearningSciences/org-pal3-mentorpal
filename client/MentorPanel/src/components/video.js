@@ -3,8 +3,8 @@ import ReactPlayer from 'react-player'
 import { useSelector, useDispatch } from 'react-redux';
 import { Star, StarBorder } from '@material-ui/icons'
 
-import { idleUrl, videoUrl } from '../api/api'
-import { setIdle, faveMentor } from '../redux/actions'
+import { idleUrl, videoUrl, subtitleUrl } from '../api/api'
+import { answerFinished, faveMentor } from '../redux/actions'
 
 const FaveButton = () => {
     const dispatch = useDispatch()
@@ -22,32 +22,61 @@ const FaveButton = () => {
     )
 }
 
-const Video = () => {
+const VideoPlayer = ({ width }) => {
     const dispatch = useDispatch()
     const isIdle = useSelector(state => state.isIdle)
     const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
-    var src = mentor ?
-        isIdle ? idleUrl(mentor) : videoUrl(mentor)
-        : ''
+    const video_url =
+        mentor ?
+            isIdle ? idleUrl(mentor) : videoUrl(mentor)
+            : ''
+    const subtitle_url = mentor ? subtitleUrl(mentor) : ''
 
     const onEnded = () => {
-        dispatch(setIdle())
+        dispatch(answerFinished())
     }
 
     return (
-        <div id='video-container'>
-            <ReactPlayer
-                url={src}
-                onEnded={onEnded}
-                width='100%'
-                loop={isIdle}
-                controls={true}
-                playing={true}
-                playsinline={true}
-                webkit-playsinline='true' />
-            <FaveButton />
-        </div>
+        <ReactPlayer
+            url={video_url}
+            onEnded={onEnded}
+            loop={isIdle}
+            width={width}
+            height={width * 0.895}
+            controls={!isIdle}
+            playing={true}
+            playsinline={true}
+            webkit-playsinline='true'
+            config={{
+                file: {
+                    tracks: [
+                        { kind: 'subtitles', src: subtitle_url, srcLang: 'en', default: true },
+                    ]
+                }
+            }}
+        />
     )
+}
+
+class Video extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { width: 0 };
+    }
+
+    componentDidMount() {
+        const width = Math.min(window.innerWidth, 500)
+        this.setState({ width })
+    }
+
+    render() {
+        return (
+            <div id='video-container' style={{ width: this.state.width }}>
+                <VideoPlayer width={this.state.width} />
+                <FaveButton />
+            </div>
+        )
+    }
 }
 
 export default Video

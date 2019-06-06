@@ -1,5 +1,6 @@
 body {
   text-align: center;
+  margin: 0;
 }
 
 #footer {
@@ -33,15 +34,31 @@ body {
 }
 .message-notice {
   position: absolute;
-  top: 5px;
-  left: 5px;
+  bottom: 10%;
+  right: 10%;
 }
 .star-icon {
   position: absolute;
-  top: 10%;
-  right: 10%;
+  top: 5%;
+  left: 5%;
+}
+
+.blink {
+  animation: blink-animation 0.5s steps(5, start) infinite;
+  -webkit-animation: blink-animation 0.5s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
 }
 
 #video-container {
   position: relative;
+  margin: 0 auto;
 }
