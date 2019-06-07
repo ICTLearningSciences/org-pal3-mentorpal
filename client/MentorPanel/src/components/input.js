@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Divider, InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -26,6 +26,7 @@ const SendButton = ({ text }) => {
 
 const InputField = ({ text, onSelect, onChange }) => {
   const dispatch = useDispatch()
+  const question = useSelector(state => state.current_question)
 
   const onKeyPress = (ev) => {
     if (ev.key !== 'Enter') {
@@ -42,7 +43,7 @@ const InputField = ({ text, onSelect, onChange }) => {
     <InputBase
       style={{ flex: 1, marginLeft: 8 }}
       value={text}
-      placeholder="Ask a question"
+      placeholder={question ? question : "Ask a question"}
       multiline
       rows={2}
 
