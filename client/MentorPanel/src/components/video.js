@@ -30,7 +30,7 @@ const VideoPlayer = ({ width }) => {
         mentor ?
             isIdle ? idleUrl(mentor) : videoUrl(mentor)
             : ''
-    const subtitle_url = mentor ? subtitleUrl(mentor) : ''
+    const subtitle_url = mentor && !isIdle ? subtitleUrl(mentor) : ''
 
     const onEnded = () => {
         dispatch(answerFinished())
