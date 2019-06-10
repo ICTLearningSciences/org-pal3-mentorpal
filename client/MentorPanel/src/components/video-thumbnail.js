@@ -1,22 +1,38 @@
 import React from "react"
 import ReactPlayer from 'react-player'
 
-import { videoUrl } from '../api/api'
+import { idleUrl } from '../api/api'
 import { STATUS_ERROR } from '../redux/store'
 
-const VideoThumbnail = ({ mentor }) => {
-  const src = videoUrl(mentor)
-  const isDisabled = mentor.is_off_topic || mentor.status === STATUS_ERROR
+class VideoThumbnail extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isPlaying: true };
+  }
 
-  return (
-    <ReactPlayer
-      style={{ opacity: isDisabled ? '0.25' : '1' }}
-      url={src}
-      height={80}
-      width={80}
-      playing={false}
-      controls={false} />
-  )
+  onStart = () => {
+    this.setState({ isPlaying: false })
+  }
+
+  render() {
+    const mentor = this.props.mentor
+    const src = idleUrl(mentor)
+    const isDisabled = mentor.is_off_topic || mentor.status === STATUS_ERROR
+
+    return (
+      <ReactPlayer
+        style={{ opacity: isDisabled ? '0.25' : '1' }}
+        url={src}
+        height={80}
+        width={80}
+        onStart={this.onStart}
+        playing={this.state.isPlaying}
+        preload={true}
+        volume={0.0}
+        muted={true}
+        controls={false} />
+    )
+  }
 }
 
 export default VideoThumbnail
