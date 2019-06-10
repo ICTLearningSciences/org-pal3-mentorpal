@@ -173,17 +173,14 @@ class TrainLSTMClassifier(ClassifierTraining):
         y_train_fused=[]
         x_train_unfused=[]
         y_train_unfused=[]
-
         x_train_unfused=[train_data[i][1] for i in range(len(train_data))]
         y_train_unfused=[train_data[i][3] for i in range(len(train_data))]
         x_train_unfused=np.asarray(x_train_unfused)
-
         for i in range(0,len(train_data)):
-            x_train_fused.append(np.concatenate((train_data[i][1], train_topic_vectors[i][1], train_data[i][5:13])))
+            # TODO: These should not be hardcoded magic numbers so features are more flexible
+            x_train_fused.append(np.concatenate((train_data[i][1], train_topic_vectors[i][1], train_data[i][4:13])))
         x_train_fused=np.asarray(x_train_fused)
         y_train_fused=[train_data[i][3] for i in range(len(train_data))]
-        print('########### X-train_fused', x_train_fused.shape)
-
         return x_train_fused, y_train_fused, x_train_unfused, y_train_unfused
 
 

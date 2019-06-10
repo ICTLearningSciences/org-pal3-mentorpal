@@ -26,6 +26,7 @@ class __ClassifierFactory(CheckpointClassifierFactory):
 # so that it can be discovered/loaded by arch name
 register_classifier_factory(ARCH, __ClassifierFactory())
 
+# NOTE: classifiers MUST extend abstract base class `mentorpal.classifiers.Classifier`
 class LSTMClassifier(Classifier):
     '''
     Create a classifier instance for a mentor
@@ -47,29 +48,25 @@ class LSTMClassifier(Classifier):
         self.name = ARCH
         self.logistic_model, self.topic_model, self.w2v_model = self.__load_model(self.get_model_path())
 
-
     @staticmethod
     def get_arch():
         global ARCH
         return ARCH
 
-    
-    def get_model_path(self):
-        return self.__model_path
-
-
     def get_answer(self, question):
-        # get text features on unprocessed question
-        text_features = self.__get_text_features(question)
         preprocessor = NLTKPreprocessor()
         processed_question = preprocessor.transform(question)
         w2v_vector, lstm_vector = self.w2v_model.w2v_for_question(processed_question)
         lstm_vector = [lstm_vector]
         padded_vector = pad_sequences(lstm_vector,maxlen = 25, dtype = 'float32',padding = 'post',truncating = 'post',value = 0.)
         topic_vector = self.__get_topic_vector(padded_vector)
+        # get text features on unprocessed question
+        text_features = self.__get_text_features(question)
         predicted_answer = self.__get_prediction(w2v_vector, topic_vector, text_features)
         return predicted_answer
 
+    def get_model_path(self):
+        return self.__model_path
 
     def __load_model(self, model_path):
         logistic_model = None
@@ -101,9 +98,10 @@ class LSTMClassifier(Classifier):
                 self.topic_model = load_model(os.path.join(model_path, 'lstm_topic_model.h5'))
             except:
                 raise Exception('Could not find topic model under {0}. Please train classifier first.'.format(model_path))
+
         predicted_vector = self.topic_model.predict(lstm_vector)
         return predicted_vector[0]
-    
+
 
     def __get_text_features(self, question):
         textfeaturesgen = TextFeatureGenerator()
@@ -119,11 +117,9 @@ class LSTMClassifier(Classifier):
             except:
                 raise Exception('Could not find logistic model under {0}. Please train classifier first.'.format(model_path))
         test_vector = np.concatenate((w2v_vector, topic_vector, text_features))
-        print('####### test_vector', len(test_vector))
-        print('####### test_vector', test_vector)
         test_vector = test_vector.reshape(1,-1)
         prediction = self.logistic_model.predict(test_vector)
-        highestConfidence = sorted(self.logistic_model.decision_function(test_vector))[self.logistic_model.decision_function(test_vector).size-1]
+        highestConfidence = sorted(self.logistic_model.decision_function(test_vector)[0])[self.logistic_model.decision_function(test_vector).size-1]
         if highestConfidence < -0.88:
             return "_OFF_TOPIC_", "_OFF_TOPIC_", highestConfidence
         return self.mentor.answer_ids[prediction[0]], prediction[0], highestConfidence
