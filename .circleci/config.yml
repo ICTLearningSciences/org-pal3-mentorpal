@@ -1,0 +1,38 @@
+version: 2.1
+executors:
+  ebs:
+    docker:
+      - image: larrykirschner/circleci-elasticbeanstalk
+jobs:
+  ebs-deploy:
+    executor: ebs
+    steps:
+      - checkout
+      - run:
+          name: eb build
+          command: cd ${EBS_TOOLS} && make clean eb-deploy
+  docker-build-push:
+    executor: ebs
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout
+      - run:
+          name: docker build
+          command: cd ${EBS_TOOLS} && make docker-build
+      - run:
+          name: docker push
+          command: cd ${EBS_TOOLS} && make docker-push
+workflows:
+  version: 2
+  deployment:
+    jobs:
+      - approve-deployment:
+         type: approval
+      - docker-build-push:
+          requires:
+            - approve-deployment
+      - ebs-deploy:
+          requires:
+            - docker-build-push
+

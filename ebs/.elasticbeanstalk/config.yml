@@ -1,21 +1,12 @@
 branch-defaults:
   default:
     environment: {{EB_ENV}}
-environment-defaults:
-  mentorpaltmp-test1:
-    branch: null
-    repository: null
 global:
   application_name: {{EB_APP}}
   default_ec2_keyname: aws-eb-us-east-1-pal
   default_platform: arn:aws:elasticbeanstalk:us-east-1::platform/Multi-container Docker
     running on 64bit Amazon Linux/2.11.2
   default_region: {{EB_REGION}}
-  include_git_submodules: true
-  instance_profile: null
-  platform_name: null
-  platform_version: null
-  profile: {{EB_PROFILE}}
   sc: null
   workspace_type: Application
 deploy:

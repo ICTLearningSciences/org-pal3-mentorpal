@@ -1,12 +1,10 @@
 CHECKPOINT_ROOT=$(shell pwd)
-PROJECT_ROOT=$(shell git rev-parse --show-toplevel 2> /dev/null)
-
+PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 VECTOR_MODEL_BASE_URL=http://mentorpal-vector-models.s3-website-us-east-1.amazonaws.com
 CHECKPOINT ?= 2019-02-21-0220
 ARCH ?= lstm_v1
 MENTOR ?= clint
 CHECKPOINT_PATH=${CHECKPOINT_ROOT}/classifiers/${ARCH}/${CHECKPOINT}
-
 DOCKER_ACCOUNT?=uscictdocker
 DOCKER_REPO?=mentorpal-classifier
 DOCKER_TAG?=latest
