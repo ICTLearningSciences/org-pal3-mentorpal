@@ -30,7 +30,9 @@ class VideoThumbnail extends React.Component {
         preload={true}
         volume={0.0}
         muted={true}
-        controls={false} />
+        controls={false}
+        playsinline={true}
+        webkit-playsinline='true' />
     )
   }
 }
