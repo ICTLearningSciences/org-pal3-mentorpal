@@ -6,7 +6,7 @@ import { Sms, SmsFailed, Star } from '@material-ui/icons'
 import { selectMentor } from '../redux/actions'
 import { STATUS_READY, STATUS_ERROR } from '../redux/store'
 
-import VideoThumbnail from "./video-thumbnail"
+import VideoThumbnail from "./video-thumbnail";
 
 const LoadingSpinner = ({ mentor }) => {
   const question = useSelector(state => state.current_question)

@@ -39,6 +39,11 @@ const InputField = ({ text, onSelect, onChange }) => {
     }
   }
 
+  const onBlur = () => {
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+  }
+
   return (
     <InputBase
       style={{ flex: 1, marginLeft: 8 }}
@@ -49,6 +54,7 @@ const InputField = ({ text, onSelect, onChange }) => {
 
       onChange={(ev) => { dispatch(onInput()); onChange(ev) }}
       onClick={() => { dispatch(onInput()); onSelect() }}
+      onBlur={onBlur}
       onKeyPress={onKeyPress} />
   )
 }
