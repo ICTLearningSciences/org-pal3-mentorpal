@@ -1,4 +1,4 @@
-PROJECT_ROOT=$(shell if [ -z "$${CIRCLE_BRANCH}" ]; then echo "/"; else git rev-parse --show-toplevel 2> /dev/null; fi)
+PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 DOCKER_SERVICES=$(PROJECT_ROOT)/bin/docker_services.sh
 DOCKER_ACCOUNT?=uscictdocker
 DOCKER_TAG?=latest
