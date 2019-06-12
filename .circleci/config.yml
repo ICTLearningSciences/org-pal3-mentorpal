@@ -5,7 +5,7 @@ executors:
       - image: larrykirschner/circleci-elasticbeanstalk
 aliases:
   # setup env vars for ebs tools
-  - &ebs-env-init
+  - &branch-env-init
     name: ebs env init
     command: eval $EBS_TOOLS_ENV_INIT
   - &dev-mentorpal-env-init
@@ -18,44 +18,68 @@ aliases:
     name: docker push
     command: cd ${EBS_TOOLS} && make docker-push
   - &eb-deploy
-    name: eb build
+    name: eb deploy
     command: cd ${EBS_TOOLS} && make clean eb-deploy
+  - &ignore-ebs-env-branches
+    branches:
+      ignore:
+        - qa-mentorpal
+        - prod-mentorpal
+  - &only-ebs-env-branches
+    branches:
+      only:
+        - qa-mentorpal
+        - prod-mentorpal
 jobs:
-  test-env:
-    executor: ebs
-    steps:
-      - run: *dev-mentorpal-env-init
-      - run:
-          name: test env vars
-          command: echo "PROJECT_ROOT=${PROJECT_ROOT}, BUILD_TAG=${BUILD_TAG}, EB_ENV=${EB_ENV}"
-  dev-ebs-deploy:
-    executor: ebs
-    steps:
-      - checkout
-      - run: *dev-mentorpal-env-init
-      - run: *eb-deploy
-  dev-docker-build-push:
+  docker-build-push:
     executor: ebs
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
       - checkout
-      - run: *dev-mentorpal-env-init
+      - run: *branch-env-init
       - run: *docker-build
       - run: *docker-push
+  ebs-deploy-dev:
+    executor: ebs
+    steps:
+      - checkout
+      - run: *dev-mentorpal-env-init
+      - run: *eb-deploy
+  ebs-deploy-branch-env:
+    executor: ebs
+    steps:
+      - checkout
+      - run: *branch-env-init
+      - run: *eb-deploy
 workflows:
   version: 2
-  test:
-    jobs:
-      - test-env
-  deployment:
+  deploy-to-dev:
     jobs:
       - deploy-to-dev:
-         type: approval
-      - dev-docker-build-push:
+          type: approval
+          filters: *ignore-ebs-env-branches
+      - docker-build-push:
           requires:
             - deploy-to-dev
-      - dev-ebs-deploy:
+          filters: *ignore-ebs-env-branches
+      - ebs-deploy-dev:
           requires:
-            - dev-docker-build-push
+            - docker-build-push
+          filters: *ignore-ebs-env-branches
+  deploy-to-branch-env:
+    jobs:
+      - deploy-to-branch-env:
+          type: approval
+          filters: *only-ebs-env-branches
+      - docker-build-push:
+          requires:
+            - deploy-to-branch-env
+          filters: *only-ebs-env-branches
+      - ebs-deploy-branch-env:
+          requires:
+            - docker-build-push
+          filters: *only-ebs-env-branches
+  
+            
             
