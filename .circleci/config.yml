@@ -3,36 +3,59 @@ executors:
   ebs:
     docker:
       - image: larrykirschner/circleci-elasticbeanstalk
+aliases:
+  # setup env vars for ebs tools
+  - &ebs-env-init
+    name: ebs env init
+    command: eval $EBS_TOOLS_ENV_INIT
+  - &dev-mentorpal-env-init
+    name: dev-mentorpal env init
+    command: eval $EBS_TOOLS_ENV_INIT && echo 'export EB_ENV=dev-mentorpal' >> $BASH_ENV
+  - &docker-build
+    name: docker build
+    command: cd ${EBS_TOOLS} && make docker-build
+  - &docker-push
+    name: docker push
+    command: cd ${EBS_TOOLS} && make docker-push
+  - &eb-deploy
+    name: eb build
+    command: cd ${EBS_TOOLS} && make clean eb-deploy
 jobs:
-  ebs-deploy:
+  test-env:
+    executor: ebs
+    steps:
+      - run: *dev-mentorpal-env-init
+      - run:
+          name: test env vars
+          command: echo "PROJECT_ROOT=${PROJECT_ROOT}, BUILD_TAG=${BUILD_TAG}, EB_ENV=${EB_ENV}"
+  dev-ebs-deploy:
     executor: ebs
     steps:
       - checkout
-      - run:
-          name: eb build
-          command: cd ${EBS_TOOLS} && make clean eb-deploy
-  docker-build-push:
+      - run: *dev-mentorpal-env-init
+      - run: *eb-deploy
+  dev-docker-build-push:
     executor: ebs
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
       - checkout
-      - run:
-          name: docker build
-          command: cd ${EBS_TOOLS} && make docker-build
-      - run:
-          name: docker push
-          command: cd ${EBS_TOOLS} && make docker-push
+      - run: *dev-mentorpal-env-init
+      - run: *docker-build
+      - run: *docker-push
 workflows:
   version: 2
+  test:
+    jobs:
+      - test-env
   deployment:
     jobs:
-      - approve-deployment:
+      - deploy-to-dev:
          type: approval
-      - docker-build-push:
+      - dev-docker-build-push:
           requires:
-            - approve-deployment
-      - ebs-deploy:
+            - deploy-to-dev
+      - dev-ebs-deploy:
           requires:
-            - docker-build-push
-
+            - dev-docker-build-push
+            
