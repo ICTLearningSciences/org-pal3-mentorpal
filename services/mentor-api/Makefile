@@ -11,7 +11,7 @@ SERVICES_ROOT=$(shell dirname ${THIS_SERVICE_ROOT})
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 
 
-DOCKER_BASE_IMAGE?=uscictdocker/mentorpal-classifier
+DOCKER_BASE_IMAGE?=uscictdocker/mentorpal-classifier:${DOCKER_TAG}
 DOCKER_BASE_IMAGE_ID=$(shell docker images -q ${DOCKER_BASE_IMAGE} 2> /dev/null)
 
 .PHONY: docker-build-base
