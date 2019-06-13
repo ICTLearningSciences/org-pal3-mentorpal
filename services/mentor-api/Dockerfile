@@ -1,4 +1,4 @@
-ARG MENTORPAL_CLASSIFIER_IMAGE=uscictdocker/mentorpal-classifier
+ARG MENTORPAL_CLASSIFIER_IMAGE=mentorpal-classifier
 FROM ${MENTORPAL_CLASSIFIER_IMAGE}
 
 # this should be set by the base image, mainly here for documentation purpose
@@ -14,7 +14,6 @@ ENV FLASK_APP=mentorpal_classifier_service
 
 WORKDIR /app
 COPY src .
-
 
 # add detectron_extra to PATH and PYTHONPATH
 ENV PATH /app/bin:${PATH}

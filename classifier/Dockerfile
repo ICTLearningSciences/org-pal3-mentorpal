@@ -21,7 +21,7 @@ RUN bash -c "source activate ${MENTORPAL_CONDA_ENV} && \
 
 WORKDIR /app
 
-COPY build/src .
+COPY src .
 COPY build/mentors mentors
 RUN mkdir -p /app/${CHECKPOINT_PATH_RELATIVE}
 COPY build/${CHECKPOINT_PATH_RELATIVE} /app/${CHECKPOINT_PATH_RELATIVE}

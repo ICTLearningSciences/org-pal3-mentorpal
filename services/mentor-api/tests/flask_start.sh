@@ -2,10 +2,11 @@
 
 TESTS=$(pwd)
 MENTOR_API=$(dirname ${TESTS})
-SERVICES=$(dirname ${MENTOR_API})
-ROOT=$(dirname ${SERVICES})
+if [ -z ${PROJECT_ROOT} ]; then
+	PROJECT_ROOT=$(git rev-parse --show-toplevel 2> /dev/null)
+fi
 
-IMAGE_NAME=uscictdocker/mentorpal-mentor-api:latest
+IMAGE_NAME=mentorpal-mentor-api
 CONTAINER_NAME=mentorpal-mentor-api-testing
 
 # The flask docker image/api we're running
@@ -21,7 +22,7 @@ docker run \
 		--name ${CONTAINER_NAME} \
 		-p 5000:5000 \
 		-v ${MENTOR_API}/src/mentor_api:/app/mentor_api \
-		-v ${ROOT}/src/mentorpal:/app/mentorpal \
+		-v ${PROJECT_ROOT}/classifier/src/mentorpal:/app/mentorpal \
 		-v ${DOCKER_MOUNT_SRC}:${DOCKER_MOUNT_TGT} \
 		-e MENTORPAL_CLASSIFIER_API_SETTINGS=${FLASK_CONFIG_TGT} \
 	${IMAGE_NAME}

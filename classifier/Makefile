@@ -1,7 +1,4 @@
-DOCKER_ACCOUNT?=uscictdocker
-DOCKER_REPO?=mentorpal-classifier
-DOCKER_TAG?=latest
-DOCKER_IMAGE?=$(DOCKER_ACCOUNT)/$(DOCKER_REPO):$(DOCKER_TAG)
+DOCKER_IMAGE?=mentorpal-classifier
 DOCKER_CONTAINER=mentorpal-classifier
 CLASSIFIER_ROOT=$(shell pwd)
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
@@ -25,7 +22,6 @@ BUILD=$(CLASSIFIER_ROOT)/build
 build: clean checkpoint-vector-models
 	cd $(CHECKPOINT_ROOT)
 	mkdir -p $(BUILD)
-	cp -r $(PROJECT_ROOT)/src $(BUILD)
 	cp -r $(PROJECT_ROOT)/mentors $(BUILD)
 	mkdir -p $(BUILD)/$(CHECKPOINT_PATH_RELATIVE)
 	cp -r $(PROJECT_ROOT)/$(CHECKPOINT_PATH_RELATIVE)/* $(BUILD)/$(CHECKPOINT_PATH_RELATIVE)
@@ -47,6 +43,9 @@ docker-run:
 			--name $(DOCKER_CONTAINER) \
 			--shm-size 8G \
 			-p 8888:8888 \
+			-e ARCH=${ARCH} \
+			-e CHECKPOINT=${CHECKPOINT} \
+			-e MENTOR=${MENTOR} \
 		$(DOCKER_IMAGE) \
 			bash
 
@@ -59,5 +58,8 @@ docker-run-dev:
 			--shm-size 8G \
 			-p 8888:8888 \
 			-v $(PROJECT_ROOT):/app/mentorpal \
+			-e ARCH=${ARCH} \
+			-e CHECKPOINT=${CHECKPOINT} \
+			-e MENTOR=${MENTOR} \
 		$(DOCKER_IMAGE) \
 			bash
