@@ -33,7 +33,6 @@ docker-run:
 			--rm \
 			--name ${DOCKER_CONTAINER} \
 			-p 3000:3000 \
-			-e WATSON_PASSWORD=${WATSON_PASSWORD} \
 		${DOCKER_IMAGE} 
 
 
@@ -49,8 +48,6 @@ docker-run-dev:
 			-v ${SERVICE_ROOT}/routes:/app/routes \
 			-v ${SERVICE_ROOT}/views:/app/views \
 			-v ${SERVICE_ROOT}/utils:/app/utils \
-			-e WATSON_USER=${WATSON_USER} \
-			-e WATSON_PASSWORD=${WATSON_PASSWORD} \
 		${DOCKER_IMAGE} 
 
 

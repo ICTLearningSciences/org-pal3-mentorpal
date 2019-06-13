@@ -3,25 +3,8 @@ const axios = require('axios')
 var http = require('http')
 var router = express.Router()
 var io = require('socket.io')(http)
-var watson = require('watson-developer-cloud')
 const requireEnv = require('../utils/require_env')
 const MENTOR_API_URL = process.env.MENTOR_API_URL || 'http://mentor-api:5000/mentor-api'
-
-const createWatsonTokenGen = () => {
-  try {
-    return new watson.AuthorizationV1({
-      username: requireEnv('WATSON_USER'),
-      password: requireEnv('WATSON_PASSWORD'),
-      url: 'https://stream.watsonplatform.net/authorization/api'
-    })
-  }
-  catch(err) {
-    console.error(`Watson Error: ${err.message}`)
-    return null
-  }
-}
-
-const watsonTokenGen = createWatsonTokenGen()
 
 //********add a mentor here: copy paste the pattern*/
 router.get('/', function(req, res, next) {
@@ -68,21 +51,6 @@ const queryMentor = async(mentorId, question) => {
 // TODO: why are web-browser clients using sockets????
 //***********add above*/
 io.on('connection', function(socket){
-
-    if(watsonTokenGen) {
-      watsonTokenGen.getToken(
-        {
-            url: 'https://gateway.watsonplatform.net/speech-to-text/api'
-        }, 
-        (err, token) => {  //get watson token
-          if (!token) {
-              console.log('Watson Token error:', err)
-          } else {
-              socket.emit('token',{'token':token})
-          }
-        }
-      )
-    }
     
     socket.on("sendQuestion", async function(data) {
         console.log(`socket rcved: sendQuestion ${JSON.stringify(data)}`)
