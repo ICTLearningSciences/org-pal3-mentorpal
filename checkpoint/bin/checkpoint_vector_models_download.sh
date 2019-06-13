@@ -33,7 +33,7 @@ done
 shift $((OPTIND -1))
 
 CHECKPOINT_PATH=$1; shift;
-if [ -z "${CHECKPOINT_PATH}"]; then
+if [ -z "${CHECKPOINT_PATH}" ]; then
     usage
     exit 1
 fi

@@ -10,5 +10,5 @@ class Config(object):
     MENTOR_DATA = '/app/mentors'
 
     CLASSIFIER_ARCH = os.environ.get('CLASSIFIER_ARCH') or 'lstm_v1'
-    CLASSIFIER_CHECKPOINT = os.environ.get('CLASSIFIER_CHECKPOINT') or '2019-02-21-0220'
+    CLASSIFIER_CHECKPOINT = os.environ.get('CLASSIFIER_CHECKPOINT') or '2019-06-13-1900'
     CLASSIFIER_CHECKPOINT_ROOT = os.environ.get('CLASSIFIER_CHECKPOINT_ROOT') or '/app/checkpoint'

@@ -1,0 +1,19 @@
+version: '3.0'
+services:
+  web-app:
+    image: "mentorpal-web-app"
+    expose: 
+      - "3000"
+    depends_on:
+      - mentor-api
+  mentor-api:
+    image: "mentorpal-mentor-api"
+    expose:
+      - "5000"
+  proxy:
+    image: "mentorpal-proxy"
+    ports:
+      - "8080:80"
+    depends_on:
+      - mentor-api
+      - web-app

@@ -1,14 +1,11 @@
 CHECKPOINT_ROOT=$(shell pwd)
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 VECTOR_MODEL_BASE_URL=http://mentorpal-vector-models.s3-website-us-east-1.amazonaws.com
-CHECKPOINT ?= 2019-02-21-0220
-ARCH ?= lstm_v1
-MENTOR ?= clint
+CHECKPOINT?=2019-06-13-1900
+ARCH?=lstm_v1
+MENTOR?=clint
 CHECKPOINT_PATH=${CHECKPOINT_ROOT}/classifiers/${ARCH}/${CHECKPOINT}
-DOCKER_ACCOUNT?=uscictdocker
-DOCKER_REPO?=mentorpal-classifier
-DOCKER_TAG?=latest
-DOCKER_IMAGE?=${DOCKER_ACCOUNT}/${DOCKER_REPO}:${DOCKER_TAG}
+DOCKER_IMAGE?=mentorpal-classifier
 
 .PHONY: clean
 clean:
@@ -43,13 +40,16 @@ checkpoint-train: checkpoint-vector-models
 .PHONY: docker-run-dev
 docker-run-dev:
 	docker run \
-        -it \
-        --rm \
-        --name ${DOCKER_REPO} \
-        -v ${CHECKPOINT_ROOT}:/app/checkpoint \
-        -v ${PROJECT_ROOT}/mentors:/app/mentors \
-        -v ${PROJECT_ROOT}/src/mentorpal:/app/mentorpal \
-        --workdir /app \
-        --entrypoint /bin/bash \
-    ${DOCKER_IMAGE}
+            -it \
+            --rm \
+            --name mentorpal-classifier \
+            -v ${CHECKPOINT_ROOT}:/app/checkpoint \
+            -v ${PROJECT_ROOT}/mentors:/app/mentors \
+            -v ${PROJECT_ROOT}/classifier/src/mentorpal:/app/mentorpal \
+            -e ARCH=${ARCH} \
+            -e CHECKPOINT=${CHECKPOINT} \
+            -e MENTOR=${MENTOR} \
+            --workdir /app \
+            --entrypoint /bin/bash \
+        ${DOCKER_IMAGE}
 	

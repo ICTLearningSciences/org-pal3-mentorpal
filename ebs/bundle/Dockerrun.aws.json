@@ -22,16 +22,6 @@
       "memory": 1024,
       "links": [
         "mentor-api"
-      ],
-      "environment": [
-        {
-          "name": "WATSON_USER",
-          "value": "{{WATSON_USER}}"
-        },
-        {
-          "name": "WATSON_PASSWORD",
-          "value": "{{WATSON_PASSWORD}}"
-        }
       ]
     },
     {

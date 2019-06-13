@@ -10,11 +10,7 @@ TEST_SET=testing_data_full.csv
 PROJECT_ROOT=$(git rev-parse --show-toplevel 2> /dev/null)
 CHECKPOINT_ROOT=${PROJECT_ROOT}/checkpoint
 
-DOCKER_ACCOUNT=uscictdocker
-DOCKER_REPO=mentorpal-classifier
-DOCKER_TAG=latest
-
-DOCKER_IMAGE=${DOCKER_ACCOUNT}/${DOCKER_REPO}:${DOCKER_TAG}
+DOCKER_IMAGE=mentorpal-classifier
 DOCKER_CONTAINER=mentorpal-classifier
 
 docker run \
@@ -22,7 +18,7 @@ docker run \
         --rm \
         --name ${DOCKER_CONTAINER} \
         -v ${CHECKPOINT_ROOT}:/app/checkpoint \
-        -v ${PROJECT_ROOT}/src/mentorpal:/app/mentorpal \
+        -v ${PROJECT_ROOT}/classifier/src/mentorpal:/app/mentorpal \
         -v ${PROJECT_ROOT}/mentors:/app/mentors \
         -e CHECKPOINT_1=${C1} \
         -e CHECKPOINT_2=${C2} \

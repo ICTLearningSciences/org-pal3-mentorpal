@@ -1,7 +1,4 @@
-DOCKER_ACCOUNT?=uscictdocker
-DOCKER_REPO?=mentorpal-proxy
-DOCKER_TAG?=latest
-DOCKER_IMAGE?=${DOCKER_ACCOUNT}/${DOCKER_REPO}:${DOCKER_TAG}
+DOCKER_IMAGE?=mentorpal-proxy
 
 docker-build:
 	docker build \
