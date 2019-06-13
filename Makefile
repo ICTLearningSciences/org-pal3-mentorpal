@@ -7,8 +7,14 @@ dev-env-create:
 	cd dev-env && \
 		./create.sh ${DEV_ENV}
 
+
+.PHONY: docker-build-classifier
+docker-build-classifier:
+	cd classifier && $(MAKE) docker-build
+
+
 .PHONY: docker-build-services
-docker-build-services:
+docker-build-services: docker-build-classifier
 	$(DOCKER_SERVICES) build
 
 	
