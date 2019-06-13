@@ -69,6 +69,8 @@ class TrainLSTMClassifier(ClassifierTraining):
         self.topic_model.save(os.path.join(to_path,"lstm_topic_model.h5"))
         joblib.dump(self.logistic_model_fused, os.path.join(to_path,"fused_model.pkl"))
         joblib.dump(self.logistic_model_unfused, os.path.join(to_path,"unfused_model.pkl"))
+        with open(os.path.join(to_path,"w2v.txt"), 'w') as f:
+            f.write(self.w2v.get_w2v_file_name())
 
 
     def __load_training_data(self, data_file):
