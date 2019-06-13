@@ -3,7 +3,7 @@ DOCKER_CONTAINER=mentorpal-classifier
 CLASSIFIER_ROOT=$(shell pwd)
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 CHECKPOINT_ROOT=$(PROJECT_ROOT)/checkpoint
-CHECKPOINT=2019-02-21-0220
+CHECKPOINT=2019-06-13-1900
 ARCH=lstm_v1
 CHECKPOINT_PATH_RELATIVE=checkpoint/classifiers/$(ARCH)/$(CHECKPOINT)
 
@@ -57,7 +57,8 @@ docker-run-dev:
 			--name $(DOCKER_CONTAINER) \
 			--shm-size 8G \
 			-p 8888:8888 \
-			-v $(PROJECT_ROOT):/app/mentorpal \
+			-v $(CLASSIFIER_ROOT)/src/mentorpal:/app/mentorpal \
+			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
 			-e ARCH=${ARCH} \
 			-e CHECKPOINT=${CHECKPOINT} \
 			-e MENTOR=${MENTOR} \
