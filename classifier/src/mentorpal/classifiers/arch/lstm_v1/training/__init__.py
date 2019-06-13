@@ -172,7 +172,7 @@ class TrainLSTMClassifier(ClassifierTraining):
         lstm_model_path = os.path.join(self.model_path,'lstm_model')
         checkpoint = ModelCheckpoint(lstm_model_path, monitor='val_acc',verbose=1, save_best_only=True, mode='max')
         callbacks_list=[checkpoint]
-        topic_model.fit(np.array(x_train), np.array(y_train), batch_size=32, epochs=30, validation_split=0.1, callbacks=callbacks_list, verbose=1)
+        topic_model.fit(np.array(x_train), np.array(y_train), batch_size=32, epochs=3, validation_split=0.1, callbacks=callbacks_list, verbose=1)
         new_vectors=[]
         topic_model.load_weights(lstm_model_path)
         topic_model.compile(loss='categorical_crossentropy',optimizer='adam',metrics=['accuracy'])
