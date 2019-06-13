@@ -56,8 +56,7 @@ class LSTMClassifier(Classifier):
         preprocessor = NLTKPreprocessor()
         processed_question = preprocessor.transform(question)
         w2v_vector, lstm_vector = self.w2v_model.w2v_for_question(processed_question)
-        lstm_vector = [lstm_vector]
-        padded_vector = pad_sequences(lstm_vector,maxlen = 25, dtype = 'float32',padding = 'post',truncating = 'post',value = 0.)
+        padded_vector = pad_sequences([lstm_vector],maxlen = 25, dtype = 'float32',padding = 'post',truncating = 'post',value = 0.)
         topic_vector = self.__get_topic_vector(padded_vector)
         predicted_answer = self.__get_prediction(w2v_vector, topic_vector)
         return predicted_answer
@@ -74,8 +73,6 @@ class LSTMClassifier(Classifier):
         print('loading model from path {}...'.format(model_path))
         if not os.path.exists(model_path) or not os.listdir(model_path):
             print('Local checkpoint {0} does not exist.'.format(model_path))
-            print('Download checkpoint from webdisk using:')
-            print('make download-checkpoint classifier={0} checkpoint={1}'.format(self.name, self.get_model_path()))
         try:
             path = os.path.join(model_path, 'lstm_topic_model.h5')
             topic_model = load_model(path)
