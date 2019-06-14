@@ -1,4 +1,4 @@
-import { queryMentor } from '../api/api'
+import { topicsUrl, questionsUrl, queryMentor } from '../api/api'
 import { STATUS_READY } from './store'
 
 export const MENTOR_LOADED = 'MENTOR_LOADED'          // mentor info was loaded
@@ -10,10 +10,30 @@ export const QUESTION_ANSWERED = 'QUESTION_ANSWERED'  // question was answered b
 export const QUESTION_ERROR = 'QUESTION_ERROR'        // question could not be answered by mentor
 export const ANSWER_FINISHED = 'ANSWER_FINISHED'      // mentor video has finished playing
 
-export const loadMentor = mentor => ({
-  type: MENTOR_LOADED,
-  mentor: mentor,
-})
+export const loadMentor = mentor => (dispatch) => {
+  const Papa = require("papaparse/papaparse.min.js")
+  const topics_url = topicsUrl(mentor.id)
+  const topics = {}
+
+  Papa.parse(topics_url, {
+    download: true,
+    complete: (results) => {
+      for (var i = 0; i < results.data.length - 3; i++) {
+        const topicName = results.data[i][0]
+        const topicGroup = results.data[i][1]
+        if (topicGroup in topics) {
+          topics[topicGroup].push(topicName)
+        } else {
+          topics[topicGroup] = [topicName]
+        }
+      }
+      dispatch({
+        type: MENTOR_LOADED,
+        mentor: { ...mentor, topics: topics },
+      })
+    }
+  })
+}
 
 export const selectMentor = mentor_id => (dispatch) => {
   dispatch(onInput())
@@ -95,7 +115,7 @@ export const answerFinished = () => (dispatch, getState) => {
   const next_mentor = responses.find(response => {
     return response.status === STATUS_READY && !response.is_off_topic
   })
-  
+
   // set the next mentor to start playing, if there is one
   if (!next_mentor) {
     return
@@ -118,6 +138,27 @@ export const onInput = () => (dispatch) => {
     timer = null
   }
   dispatch(nextMentor(''))
+}
+
+export const getQuestionForTopic = (topic) => (dispatch, getState) => {
+  const Papa = require("papaparse/papaparse.min.js")
+  const state = getState()
+  const mentor_id = state.current_mentor
+  const questions_url = questionsUrl(mentor_id)
+
+  Papa.parse(questions_url, {
+    download: true,
+    complete: (results) => {
+      const questions = []
+      for (let i = 0; i < results.data.length; i++) {
+        if (results.data[i][0].toLowerCase().includes(topic.toLowerCase())) {
+          questions.push(results.data[i][3])
+        }
+      }
+      const question = questions[Math.floor(Math.random() * questions.length)]
+      dispatch(sendQuestion(question))
+    }
+  })
 }
 
 

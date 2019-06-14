@@ -27,7 +27,6 @@ class VideoThumbnail extends React.Component {
         width={80}
         onStart={this.onStart}
         playing={this.state.isPlaying}
-        preload={true}
         volume={0.0}
         muted={true}
         controls={false}
