@@ -16,6 +16,9 @@ class Topic extends React.Component {
 
   selectQuestion = (question) => {
     this.setState({ anchor: null })
+    if (!question) {
+      return
+    }
     this.props.onQuestionSelected(question)
   }
 
@@ -37,7 +40,7 @@ class Topic extends React.Component {
           id="simple-menu"
           anchorEl={this.state.anchor}
           open={this.state.anchor !== null}
-          onClose={this.selectQuestion}
+          onClose={() => this.selectQuestion(null)}
         >
           {
             questions.map((question, i) =>
