@@ -1,6 +1,5 @@
 DOCKER_IMAGE?=mentorpal-mentor-api
-DOCKER_CONTAINER=${DOCKER_REPO}
-
+DOCKER_CONTAINER?=mentorpal-mentor-api
 BUILD_TAG?=
 THIS_SERVICE_ROOT=$(shell pwd)
 SERVICES_ROOT=$(shell dirname ${THIS_SERVICE_ROOT})
