@@ -3,6 +3,7 @@ import {
   MENTOR_SELECTED,
   MENTOR_FAVED,
   MENTOR_NEXT,
+  MENTOR_TOPIC_QUESTIONS_LOADED,
   QUESTION_SENT,
   QUESTION_ANSWERED,
   QUESTION_ERROR,
@@ -20,14 +21,11 @@ const initialState = {
   next_mentor: '',          // id of the next mentor to speak after the current finishes
   mentors_by_id: {},
   /**
-   * id: {
+   * mentor: {
    *  id
    *  name
    *  short_name
    *  title
-   * 
-   *  topics
-   *  questions
    * 
    *  question
    *  answer_id
@@ -35,6 +33,8 @@ const initialState = {
    *  confidence
    *  is_off_topic
    *  status: READY | ANSWERED | ERROR
+   * 
+   *  topic_questions
    * }
    */
   isIdle: false,
@@ -80,6 +80,18 @@ const store = (state = initialState, action) => {
       return {
         ...state,
         next_mentor: action.mentor,
+      }
+
+    case MENTOR_TOPIC_QUESTIONS_LOADED:
+      return {
+        ...state,
+        mentors_by_id: {
+          ...state.mentors_by_id,
+          [action.id]: {
+            ...state.mentors_by_id[action.id],
+            topic_questions: action.topic_questions
+          }
+        }
       }
 
     case QUESTION_SENT:
