@@ -5,6 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 import { sendQuestion, onInput } from '../redux/actions'
 
+import Topics from '../components/topics'
+
 const SendButton = ({ text }) => {
   const dispatch = useDispatch()
 
@@ -65,12 +67,16 @@ class Input extends React.Component {
     this.state = { text: '' };
   }
 
-  onChange = (e) => {
+  onInputChanged = (e) => {
     this.setState({ text: e.target.value })
   }
 
-  clear = () => {
+  onInputSelected = () => {
     this.setState({ text: '' })
+  }
+
+  onQuestionSelected = (question) => {
+    this.setState({ text: question })
   }
 
   render() {
@@ -78,8 +84,9 @@ class Input extends React.Component {
 
     return (
       <div id='footer'>
+        <Topics onQuestionSelected={this.onQuestionSelected}/>
         <Paper className={classes.root}>
-          <InputField text={this.state.text} onSelect={this.clear} onChange={this.onChange} />
+          <InputField text={this.state.text} onSelect={this.onInputSelected} onChange={this.onInputChanged} />
           <Divider className={classes.divider} />
           <SendButton text={this.state.text} />
         </Paper>

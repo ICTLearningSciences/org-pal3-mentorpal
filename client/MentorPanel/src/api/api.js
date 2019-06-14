@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const MENTOR_API_URL = 'https://qa.mentorpal.org/mentor-api'//process.env.MENTOR_API_URL || '/mentor-api'
+const MENTOR_API_URL = process.env.MENTOR_API_URL || '/mentor-api'
 const MENTOR_VIDEO_HOST = 'https://video.mentorpal.org'
 const RESPONSE_CUTOFF = -100
 

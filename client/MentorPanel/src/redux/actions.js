@@ -10,10 +10,46 @@ export const QUESTION_ANSWERED = 'QUESTION_ANSWERED'  // question was answered b
 export const QUESTION_ERROR = 'QUESTION_ERROR'        // question could not be answered by mentor
 export const ANSWER_FINISHED = 'ANSWER_FINISHED'      // mentor video has finished playing
 
+export const MENTOR_TOPIC_QUESTIONS_LOADED = 'MENTOR_TOPIC_QUESTIONS_LOADED'
+
 export const loadMentor = mentor => (dispatch) => {
-  const Papa = require("papaparse/papaparse.min.js")
-  const topics_url = topicsUrl(mentor.id)
-  const topics = {}
+  dispatch({
+    type: MENTOR_LOADED,
+    mentor: mentor,
+  })
+  dispatch(loadQuestions(mentor.id))
+}
+
+export const loadQuestions = mentor_id => (dispatch) => {
+  const Papa = require('papaparse/papaparse.min.js')
+  const questions_url = questionsUrl(mentor_id)
+  const questions = {}
+
+  Papa.parse(questions_url, {
+    download: true,
+    complete: (results) => {
+      for (let i = 1; i < results.data.length; i++) {
+        const topics = results.data[i][0].split(', ')
+        const question = results.data[i][3]
+        if (!question) { continue }
+        topics.forEach(topic => {
+          if (!topic) { return }
+          try {
+            questions[topic].push(question)
+          } catch {
+            questions[topic] = [question]
+          }
+        });
+      }
+      dispatch(loadTopics(mentor_id, questions))
+    }
+  })
+}
+
+const loadTopics = (mentor_id, questions) => (dispatch) => {
+  const Papa = require('papaparse/papaparse.min.js')
+  const topics_url = topicsUrl(mentor_id)
+  const topic_questions = {}
 
   Papa.parse(topics_url, {
     download: true,
@@ -21,15 +57,16 @@ export const loadMentor = mentor => (dispatch) => {
       for (var i = 0; i < results.data.length - 3; i++) {
         const topicName = results.data[i][0]
         const topicGroup = results.data[i][1]
-        if (topicGroup in topics) {
-          topics[topicGroup].push(topicName)
-        } else {
-          topics[topicGroup] = [topicName]
+        try {
+          topic_questions[topicGroup] = topic_questions[topicGroup].concat(questions[topicName])
+        } catch {
+          topic_questions[topicGroup] = questions[topicName]
         }
       }
       dispatch({
-        type: MENTOR_LOADED,
-        mentor: { ...mentor, topics: topics },
+        type: MENTOR_TOPIC_QUESTIONS_LOADED,
+        id: mentor_id,
+        topic_questions: topic_questions
       })
     }
   })
@@ -139,28 +176,6 @@ export const onInput = () => (dispatch) => {
   }
   dispatch(nextMentor(''))
 }
-
-export const getQuestionForTopic = (topic) => (dispatch, getState) => {
-  const Papa = require("papaparse/papaparse.min.js")
-  const state = getState()
-  const mentor_id = state.current_mentor
-  const questions_url = questionsUrl(mentor_id)
-
-  Papa.parse(questions_url, {
-    download: true,
-    complete: (results) => {
-      const questions = []
-      for (let i = 0; i < results.data.length; i++) {
-        if (results.data[i][0].toLowerCase().includes(topic.toLowerCase())) {
-          questions.push(results.data[i][3])
-        }
-      }
-      const question = questions[Math.floor(Math.random() * questions.length)]
-      dispatch(sendQuestion(question))
-    }
-  })
-}
-
 
 const onQuestionSent = question => ({
   type: QUESTION_SENT,

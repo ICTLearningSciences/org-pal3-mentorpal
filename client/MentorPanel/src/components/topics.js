@@ -2,8 +2,6 @@ import React from "react"
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Menu, MenuItem } from '@material-ui/core';
 
-import { getQuestionForTopic } from '../redux/actions'
-
 class Topic extends React.Component {
   constructor(props) {
     super(props);
@@ -12,33 +10,41 @@ class Topic extends React.Component {
     };
   }
 
-  handleClick = (event) => {
+  selectTopic = (event) => {
     this.setState({ anchor: event.currentTarget })
   }
 
-  selectTopic = (topic) => {
+  selectQuestion = (question) => {
     this.setState({ anchor: null })
-    this.props.onTopicSelected(topic)
+    this.props.onQuestionSelected(question)
   }
 
   render() {
     const topic = this.props.topic
-    const subtopics = this.props.subtopics
+    const questions = this.props.questions
 
     return (
       <div className='slide topic-slide'>
-        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+        <Button
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          variant='contained'
+          onClick={this.selectTopic}
+        >
           {topic}
         </Button>
         <Menu
           id="simple-menu"
           anchorEl={this.state.anchor}
           open={this.state.anchor !== null}
-          onClose={this.selectTopic}
+          onClose={this.selectQuestion}
         >
           {
-            subtopics.map((subtopic) =>
-              <MenuItem key={subtopic} onClick={() => { this.selectTopic(subtopic) }}>{subtopic}</MenuItem>)
+            questions.map((question, i) =>
+              <MenuItem key={i} onClick={() => { this.selectQuestion(question) }}>
+                {question}
+              </MenuItem>
+            )
           }
         </Menu>
       </div>
@@ -46,25 +52,20 @@ class Topic extends React.Component {
   }
 }
 
-const Topics = () => {
-  const dispatch = useDispatch()
+const Topics = ({ onQuestionSelected }) => {
   const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
 
-  const onTopicSelected = (topic) => {
-    dispatch(getQuestionForTopic(topic))
-  }
-
   try {
-    const topics = mentor.topics
+    const topic_questions = mentor.topic_questions
     return (
       <div id="carousel">
         {
-          Object.keys(topics).map((topic, i) =>
+          Object.keys(topic_questions).map((topic, i) =>
             <Topic
-              key={`${topic}-${i}`}
+              key={i}
               topic={topic}
-              subtopics={topics[topic]}
-              onTopicSelected={onTopicSelected} />
+              questions={topic_questions[topic]}
+              onQuestionSelected={onQuestionSelected} />
           )
         }
       </div>

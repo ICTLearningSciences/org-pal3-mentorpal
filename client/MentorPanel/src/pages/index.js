@@ -7,7 +7,6 @@ import { loadMentor, selectMentor } from '../redux/actions'
 import Header from '../components/header'
 import Input from '../components/input'
 import Layout from '../components/layout'
-import Topics from '../components/topics'
 import Video from '../components/video'
 import VideoPanel from '../components/video-panel'
 
@@ -27,7 +26,6 @@ const IndexPage = ({ ...props }) => {
       <VideoPanel />
       <Header />
       <Video />
-      <Topics />
       <Input />
     </Layout>
   )
