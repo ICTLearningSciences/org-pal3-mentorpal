@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const MENTOR_API_URL = process.env.MENTOR_API_URL || '/mentor-api'
+const MENTOR_API_URL = 'https://qa.mentorpal.org/mentor-api'//process.env.MENTOR_API_URL || '/mentor-api'
 const MENTOR_VIDEO_HOST = 'https://video.mentorpal.org'
 const RESPONSE_CUTOFF = -100
 
@@ -14,6 +14,14 @@ export const idleUrl = (mentor) => {
 
 export const subtitleUrl = (mentor) => {
   return `${MENTOR_API_URL}/mentors/${mentor.id}/tracks/${mentor.answer_id}.vtt`
+}
+
+export const topicsUrl = (mentor_id) => {
+  return `${MENTOR_API_URL}/mentors/${mentor_id}/data/topics.csv`
+}
+
+export const questionsUrl = (mentor_id) => {
+  return `${MENTOR_API_URL}/mentors/${mentor_id}/data/Questions_Paraphrases_Answers.csv`
 }
 
 export const queryMentor = async (mentor_id, question) => {

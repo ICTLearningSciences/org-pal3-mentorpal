@@ -19,6 +19,24 @@ const initialState = {
   faved_mentor: '',         // id of the preferred mentor
   next_mentor: '',          // id of the next mentor to speak after the current finishes
   mentors_by_id: {},
+  /**
+   * id: {
+   *  id
+   *  name
+   *  short_name
+   *  title
+   * 
+   *  topics
+   *  questions
+   * 
+   *  question
+   *  answer_id
+   *  answer_text
+   *  confidence
+   *  is_off_topic
+   *  status: READY | ANSWERED | ERROR
+   * }
+   */
   isIdle: false,
 };
 

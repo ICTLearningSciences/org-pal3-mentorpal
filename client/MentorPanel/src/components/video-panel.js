@@ -60,7 +60,7 @@ const VideoPanel = () => {
       {
         Object.keys(mentors).map((id, i) =>
           <div
-            className={`slide ${id === mentor ? 'selected' : ''}`}
+            className={`slide video-slide ${id === mentor ? 'selected' : ''}`}
             key={`${id}-${i}`}
             onClick={() => onClick(mentors[id])}
           >
