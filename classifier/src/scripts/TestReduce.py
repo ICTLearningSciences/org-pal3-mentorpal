@@ -14,7 +14,7 @@ COSINE_METHOD = 'cos'
 
 
 if __name__ == '__main__':
-	def exampleTest2():
+	# def exampleTest2():
 	#set up corpus from classifier data file
 	known=set()
 	corpus=pd.read_csv(os.path.join("data","classifier_data.csv"))

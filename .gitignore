@@ -11,3 +11,5 @@ dist
 terraform.tfstate
 .vscode
 resources
+*.log
+.venv
