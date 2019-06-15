@@ -23,8 +23,8 @@ class VideoThumbnail extends React.Component {
       <ReactPlayer
         style={{ opacity: isDisabled ? '0.25' : '1' }}
         url={src}
-        height={80}
-        width={80}
+        height={60}
+        width={60}
         onStart={this.onStart}
         playing={this.state.isPlaying}
         volume={0.0}

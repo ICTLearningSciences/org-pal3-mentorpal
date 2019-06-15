@@ -5,7 +5,7 @@ const Header = () => {
   const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
 
   try {
-    return <h4>{`${mentor.name}: ${mentor.title}`}</h4>
+    return <div>{`${mentor.name}: ${mentor.title}`}</div>
   }
   catch (err) {
     return <div></div>

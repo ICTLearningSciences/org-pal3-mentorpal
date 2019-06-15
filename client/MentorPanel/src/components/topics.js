@@ -1,82 +1,38 @@
 import React from "react"
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Menu, MenuItem } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
-class Topic extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      anchor: null,
-    };
-  }
+import { selectTopic } from '../redux/actions'
 
-  selectTopic = (event) => {
-    this.setState({ anchor: event.currentTarget })
-  }
-
-  selectQuestion = (question) => {
-    this.setState({ anchor: null })
-    if (!question) {
-      return
-    }
-    this.props.onQuestionSelected(question)
-  }
-
-  render() {
-    const topic = this.props.topic
-    const questions = this.props.questions
-
-    return (
-      <div className='slide topic-slide'>
-        <Button
-          aria-controls="simple-menu"
-          aria-haspopup="true"
-          variant='contained'
-          onClick={this.selectTopic}
-        >
-          {topic}
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={this.state.anchor}
-          open={this.state.anchor !== null}
-          onClose={() => this.selectQuestion(null)}
-        >
-          {
-            questions.map((question, i) =>
-              <MenuItem key={i} onClick={() => { this.selectQuestion(question) }}>
-                {question}
-              </MenuItem>
-            )
-          }
-        </Menu>
-      </div>
-    )
-  }
-}
-
-const Topics = ({ onQuestionSelected }) => {
+const Topics = () => {
+  const dispatch = useDispatch()
+  const current_topic = useSelector(state => state.current_topic)
   const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
-
-  try {
-    const topic_questions = mentor.topic_questions
-    return (
-      <div id="carousel">
-        {
-          Object.keys(topic_questions).map((topic, i) =>
-            <Topic
-              key={i}
-              topic={topic}
-              questions={topic_questions[topic]}
-              onQuestionSelected={onQuestionSelected} />
-          )
-        }
-      </div>
-    )
-  }
-  catch (err) {
+  if (!mentor || !mentor.topic_questions) {
     return <div></div>
   }
+  const topic_questions = mentor.topic_questions
+
+  const onTopicSelected = (topic) => {
+    dispatch(selectTopic(topic))
+  }
+
+  return (
+    <div id="carousel">
+      {
+        Object.keys(topic_questions).map((topic, i) =>
+          <div className='slide topic-slide' key={i}>
+            <Button
+              variant='contained'
+              color={current_topic === topic ? 'primary' : 'default'}
+              onClick={() => onTopicSelected(topic)}>
+              {topic}
+            </Button>
+          </div>
+        )
+      }
+    </div>
+  )
 }
 
 export default Topics

@@ -11,6 +11,7 @@ export const QUESTION_ERROR = 'QUESTION_ERROR'        // question could not be a
 export const ANSWER_FINISHED = 'ANSWER_FINISHED'      // mentor video has finished playing
 
 export const MENTOR_TOPIC_QUESTIONS_LOADED = 'MENTOR_TOPIC_QUESTIONS_LOADED'
+export const TOPIC_SELECTED = 'TOPIC_SELECTED'
 
 export const loadMentor = mentor => (dispatch) => {
   dispatch({
@@ -79,6 +80,11 @@ export const selectMentor = mentor_id => (dispatch) => {
     id: mentor_id,
   })
 }
+
+export const selectTopic = topic => ({
+  type: TOPIC_SELECTED,
+  topic: topic,
+})
 
 export const faveMentor = mentor_id => ({
   type: MENTOR_FAVED,

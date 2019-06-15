@@ -4,6 +4,7 @@ import {
   MENTOR_FAVED,
   MENTOR_NEXT,
   MENTOR_TOPIC_QUESTIONS_LOADED,
+  TOPIC_SELECTED,
   QUESTION_SENT,
   QUESTION_ANSWERED,
   QUESTION_ERROR,
@@ -17,6 +18,7 @@ export const STATUS_ERROR = 'ERROR'
 const initialState = {
   current_mentor: '',       // id of selected mentor
   current_question: '',     // question that was last asked
+  current_topic: '',        // topic to show recommended questions for
   faved_mentor: '',         // id of the preferred mentor
   next_mentor: '',          // id of the next mentor to speak after the current finishes
   mentors_by_id: {},
@@ -136,6 +138,12 @@ const store = (state = initialState, action) => {
       return {
         ...state,
         isIdle: true,
+      }
+
+    case TOPIC_SELECTED:
+      return {
+        ...state,
+        current_topic: action.topic,
       }
 
     default:
