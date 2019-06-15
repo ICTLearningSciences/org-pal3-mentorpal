@@ -15,18 +15,20 @@ from stomp.test.testutils import *
 class MQ(object):
     def __init__(self):
         self.connection = stomp.Connection(get_default_host())
-        self.connection.set_listener('', None)
+        self.connection.set_listener("", None)
         self.connection.start()
-        self.connection.connect('admin', 'password', wait=True)
+        self.connection.connect("admin", "password", wait=True)
 
-    def send(self, topic, msg, persistent='true', retry=False):
-        self.connection.send(destination="/topic/%s" % topic, body=msg,
-                             persistent=persistent)
+    def send(self, topic, msg, persistent="true", retry=False):
+        self.connection.send(
+            destination="/topic/%s" % topic, body=msg, persistent=persistent
+        )
+
+
 mq = MQ()
 
 
 class TestThreading(unittest.TestCase):
-
     def setUp(self):
         """Test that mq sends don't wedge their threads.
 
@@ -45,8 +47,7 @@ class TestThreading(unittest.TestCase):
         self.threads = []
         self.runfor = 20
         for i in range(0, self.clients):
-            t = threading.Thread(name="client %s" % i,
-                                 target=self.make_sender(i))
+            t = threading.Thread(name="client %s" % i, target=self.make_sender(i))
             t.setDaemon(1)
             self.threads.append(t)
 
@@ -54,7 +55,7 @@ class TestThreading(unittest.TestCase):
         for t in self.threads:
             if not t.isAlive:
                 print("thread", t, "died")
-            self.Cmd.put('stop')
+            self.Cmd.put("stop")
         for t in self.threads:
             t.join()
         print()
@@ -88,8 +89,7 @@ class TestThreading(unittest.TestCase):
                 while 1:
                     # print "%s sending %s" % (i, counter)
                     try:
-                        mq.send('testclientwedge',
-                                'Message %s:%s' % (i, counter))
+                        mq.send("testclientwedge", "Message %s:%s" % (i, counter))
                     except:
                         Error.put(sys.exc_info())
                         # thread will die
@@ -108,6 +108,7 @@ class TestThreading(unittest.TestCase):
                         counter += 1
             finally:
                 print("final", i, counter)
+
         return send
 
     def test_threads_dont_wedge(self):

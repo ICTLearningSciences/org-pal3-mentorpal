@@ -27,6 +27,7 @@ def get_errno(e):
 try:
     from fractions import gcd
 except ImportError:
+
     def gcd(a, b):
         """Calculate the Greatest Common Divisor of a and b.
 

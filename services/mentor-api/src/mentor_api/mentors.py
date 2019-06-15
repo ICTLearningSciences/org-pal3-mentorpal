@@ -3,6 +3,7 @@ from mentorpal.classifiers import ClassifierFactory
 from mentorpal.mentor import Mentor
 from mentorpal.classifiers import Classifier
 
+
 class _APIClassifier(Classifier):
     """
     Wrapper classifier that applies some post processing we want in an API classifier.
@@ -12,17 +13,19 @@ class _APIClassifier(Classifier):
     """
 
     def __init__(self, classifier, mentor):
-        '''
+        """
         Create an _APIClassifier instance that wraps/decorates another classifier
 
         Args:
             classifier: (Classifier)
-        '''
-        assert isinstance(classifier, Classifier), \
-            'invalid type for classifier (expected mentorpal.Classifier, encountered {}'.format(type(classifier))
+        """
+        assert isinstance(
+            classifier, Classifier
+        ), "invalid type for classifier (expected mentorpal.Classifier, encountered {}".format(
+            type(classifier)
+        )
         self.classifier = classifier
         self.mentor = mentor
-
 
     def get_answer(self, question):
         answer = self.classifier.get_answer(question)
@@ -31,8 +34,11 @@ class _APIClassifier(Classifier):
 
     def _off_topic_to_prompt(self, cls_answer):
         assert len(cls_answer) == 3
-        if cls_answer[0] == '_OFF_TOPIC_' and '_OFF_TOPIC_' in self.mentor.utterances_prompts:
-            prompts = self.mentor.utterances_prompts['_OFF_TOPIC_']
+        if (
+            cls_answer[0] == "_OFF_TOPIC_"
+            and "_OFF_TOPIC_" in self.mentor.utterances_prompts
+        ):
+            prompts = self.mentor.utterances_prompts["_OFF_TOPIC_"]
             i = random.randint(0, len(prompts) - 1)
             a_id, a_txt = prompts[i]
             return (a_id, a_txt, -100.0)
@@ -53,7 +59,6 @@ class MentorClassifierRegistry:
         assert isinstance(classifier_factory, ClassifierFactory)
         self.classifier_factory = classifier_factory
         self.mentor_classifiers_by_id = dict()
-
 
     def find_or_create(self, mentor_id):
         """

@@ -1,7 +1,6 @@
-
 import datetime
 
-'''
+"""
 Trains and saves model to a new checkpoint for the given Classifier
 Classifier type must implement a train_model method
 
@@ -12,21 +11,23 @@ Returns:
     checkpoint: string
         name of checkpoint
 
-'''
+"""
+
+
 def create_checkpoint(classifier):
     date = datetime.datetime.now()
-    checkpoint = date.strftime('%Y-%m-%d-%H%M')
+    checkpoint = date.strftime("%Y-%m-%d-%H%M")
 
-    classifier.__init__('clint', checkpoint)
+    classifier.__init__("clint", checkpoint)
     classifier.train_model()
 
-    classifier.__init__('dan', checkpoint)
+    classifier.__init__("dan", checkpoint)
     classifier.train_model()
 
-    classifier.__init__('carlos', checkpoint)
+    classifier.__init__("carlos", checkpoint)
     classifier.train_model()
 
-    classifier.__init__('julianne', checkpoint)
+    classifier.__init__("julianne", checkpoint)
     classifier.train_model()
 
     return checkpoint

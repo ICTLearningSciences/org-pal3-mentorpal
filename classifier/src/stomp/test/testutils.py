@@ -11,12 +11,12 @@ import threading
 from stomp.backward import *
 
 
-log = logging.getLogger('testutils.py')
+log = logging.getLogger("testutils.py")
 
 config = RawConfigParser()
-config.read(os.path.join(os.path.dirname(__file__), 'setup.ini'))
+config.read(os.path.join(os.path.dirname(__file__), "setup.ini"))
 
-header_re = re.compile(r'[^:]+:.*')
+header_re = re.compile(r"[^:]+:.*")
 
 
 def get_environ(name):
@@ -27,53 +27,63 @@ def get_environ(name):
 
 
 def get_default_host():
-    host = config.get('default', 'host')
-    port = config.get('default', 'port')
-    return [(get_environ('STD_HOST') or host, int(get_environ('STD_PORT') or port))]
+    host = config.get("default", "host")
+    port = config.get("default", "port")
+    return [(get_environ("STD_HOST") or host, int(get_environ("STD_PORT") or port))]
 
 
 def get_default_user():
-    user = config.get('default', 'user')
-    return get_environ('STD_USER') or user
+    user = config.get("default", "user")
+    return get_environ("STD_USER") or user
 
 
 def get_default_password():
-    password = config.get('default', 'password')
-    return get_environ('STD_PASSWORD') or password
+    password = config.get("default", "password")
+    return get_environ("STD_PASSWORD") or password
 
 
 def get_ipv6_host():
-    host = config.get('ipv6', 'host')
-    port = config.get('ipv6', 'port')
-    return [(get_environ('IPV6_HOST') or host, int(get_environ('IPV6_PORT') or port))]
+    host = config.get("ipv6", "host")
+    port = config.get("ipv6", "port")
+    return [(get_environ("IPV6_HOST") or host, int(get_environ("IPV6_PORT") or port))]
 
 
 def get_default_ssl_host():
-    host = config.get('default', 'host')
-    port = config.get('default', 'ssl_port')
-    return [(get_environ('STD_HOST') or host, int(get_environ('STD_SSL_PORT') or port))]
+    host = config.get("default", "host")
+    port = config.get("default", "ssl_port")
+    return [(get_environ("STD_HOST") or host, int(get_environ("STD_SSL_PORT") or port))]
 
 
 def get_rabbitmq_host():
-    host = config.get('rabbitmq', 'host')
-    port = config.get('rabbitmq', 'port')
-    return [(get_environ('RABBITMQ_HOST') or host, int(get_environ('RABBITMQ_PORT') or port))]
+    host = config.get("rabbitmq", "host")
+    port = config.get("rabbitmq", "port")
+    return [
+        (
+            get_environ("RABBITMQ_HOST") or host,
+            int(get_environ("RABBITMQ_PORT") or port),
+        )
+    ]
 
 
 def get_rabbitmq_user():
-    user = config.get('rabbitmq', 'user')
-    return get_environ('RABBITMQ_USER') or user
+    user = config.get("rabbitmq", "user")
+    return get_environ("RABBITMQ_USER") or user
 
 
 def get_rabbitmq_password():
-    password = config.get('rabbitmq', 'password')
-    return get_environ('RABBITMQ_PASSWORD') or password
+    password = config.get("rabbitmq", "password")
+    return get_environ("RABBITMQ_PASSWORD") or password
 
 
 def get_stompserver_host():
-    host = config.get('stompserver', 'host')
-    port = config.get('stompserver', 'port')
-    return [(get_environ('STOMPSERVER_HOST') or host, int(get_environ('STOMPSERVER_PORT') or port))]
+    host = config.get("stompserver", "host")
+    port = config.get("stompserver", "port")
+    return [
+        (
+            get_environ("STOMPSERVER_HOST") or host,
+            int(get_environ("STOMPSERVER_PORT") or port),
+        )
+    ]
 
 
 class TestStompServer(object):
@@ -83,7 +93,7 @@ class TestStompServer(object):
         self.frames = []
 
     def start(self):
-        log.debug('Starting stomp server')
+        log.debug("Starting stomp server")
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.s.bind((self.host, self.port))
@@ -93,10 +103,10 @@ class TestStompServer(object):
         thread.daemon = True
         thread.start()
         self.stopped = False
-        log.debug('Stomp server started')
+        log.debug("Stomp server started")
 
     def stop(self):
-        log.debug('Stopping test server')
+        log.debug("Stopping test server")
         if self.conn:
             try:
                 self.conn.shutdown(socket.SHUT_WR)
@@ -109,7 +119,7 @@ class TestStompServer(object):
         self.conn = None
         self.s = None
         self.stopped = True
-        log.debug('Connection stopped')
+        log.debug("Connection stopped")
 
     def get_next_frame(self):
         if len(self.frames) > 0:
@@ -117,7 +127,7 @@ class TestStompServer(object):
             del self.frames[0]
             return rtn
         else:
-            return ''
+            return ""
 
     def add_frame(self, frame):
         self.frames.append(frame)
@@ -141,7 +151,7 @@ class TestStompServer(object):
         except:
             pass
         self.stopped = True
-        log.debug('Run loop completed')
+        log.debug("Run loop completed")
 
 
 class TestStdin(object):
@@ -158,9 +168,9 @@ class TestStdout(object):
 
     def write(self, txt):
         txt = txt.rstrip()
-        if txt != '':
+        if txt != "":
             print(txt)
-        if txt == '>' or txt == '' or header_re.match(txt):
+        if txt == ">" or txt == "" or header_re.match(txt):
             return
         if len(self.expects) == 0:
             self.test.fail('No expectations - actual "%s"' % txt)

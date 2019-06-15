@@ -2,7 +2,7 @@
 Python3-specific versions of various functions used by stomp.py
 """
 
-NULL = b'\x00'
+NULL = b"\x00"
 
 
 def input_prompt(prompt):
@@ -36,7 +36,7 @@ def encode(char_data):
     elif type(char_data) is bytes:
         return char_data
     else:
-        raise TypeError('message should be a string or bytes')
+        raise TypeError("message should be a string or bytes")
 
 
 def pack(pieces=[]):
@@ -46,7 +46,7 @@ def pack(pieces=[]):
     :param pieces: list of strings
     """
     encoded_pieces = (encode(piece) for piece in pieces)
-    return b''.join(encoded_pieces)
+    return b"".join(encoded_pieces)
 
 
 def join(chars=[]):
@@ -55,4 +55,4 @@ def join(chars=[]):
 
     :param chars: list of chars
     """
-    return b''.join(chars).decode()
+    return b"".join(chars).decode()

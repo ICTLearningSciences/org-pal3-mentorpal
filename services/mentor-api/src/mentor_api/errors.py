@@ -1,5 +1,6 @@
 from flask import jsonify
 
+
 class InvalidUsage(Exception):
     status_code = 400
 
@@ -12,5 +13,5 @@ class InvalidUsage(Exception):
 
     def to_dict(self):
         rv = dict(self.payload or ())
-        rv['message'] = self.message
+        rv["message"] = self.message
         return rv
