@@ -1,11 +1,18 @@
+SHELL:=/bin/bash
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 DOCKER_SERVICES=$(PROJECT_ROOT)/bin/docker_services.sh
-DEV_ENV=mentorpal-dev
+DEV_VIRTUAL_ENV=.venv
+BLACK_EXCLUDES="/(\.venv|build|behave-restful)/"
+
+$(DEV_VIRTUAL_ENV):
+	$(MAKE) dev-env-create
 
 .PHONY: dev-env-create
 dev-env-create:
-	cd dev-env && \
-		./create.sh ${DEV_ENV}
+	[ -d $(DEV_VIRTUAL_ENV) ] || virtualenv -p python3 $(DEV_VIRTUAL_ENV)
+	$(DEV_VIRTUAL_ENV)/bin/pip install --upgrade pip
+	$(DEV_VIRTUAL_ENV)/bin/pip install -r dev-env/requirements.txt
+
 
 
 .PHONY: docker-build-classifier
@@ -26,12 +33,26 @@ docker-build-services: docker-build-classifier
 # http://localhost:8080
 ###############################################################################
 .PHONY: local-run
-local-run:
-	source activate ${DEV_ENV} && \
-		docker-compose up
+local-run: $(DEV_VIRTUAL_ENV)
+	$(DEV_VIRTUAL_ENV)/bin/docker-compose up
 
 
 .PHONY: local-stop
-local-stop: 
-	source activate ${DEV_ENV} && \
-		docker-compose down
+local-stop: $(DEV_VIRTUAL_ENV)
+	$(DEV_VIRTUAL_ENV)/bin/docker-compose down
+
+.PHONY: format-python
+format-python: $(DEV_VIRTUAL_ENV)
+	$(DEV_VIRTUAL_ENV)/bin/black --exclude $(BLACK_EXCLUDES) .
+
+.PHONY: format
+format: format-python
+
+
+.PHONY: test-format-python
+test-format-python: $(DEV_VIRTUAL_ENV)
+	$(DEV_VIRTUAL_ENV)/bin/black --check --exclude $(BLACK_EXCLUDES) .
+
+
+.PHONY: test-format
+test-format: test-format-python

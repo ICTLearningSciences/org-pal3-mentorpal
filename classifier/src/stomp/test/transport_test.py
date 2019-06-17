@@ -9,19 +9,19 @@ class TestThreading(unittest.TestCase):
         self.transport = stomp.transport.BaseTransport(None)
 
     def test_process_frame_unknown_command_empty_body(self):
-        fr = stomp.utils.Frame('test', {}, None)
+        fr = stomp.utils.Frame("test", {}, None)
         self.transport.process_frame(fr, None)
 
     def test_process_frame_empty_body(self):
         stomp.transport.log.setLevel(logging.INFO)
-        fr = stomp.utils.Frame('error', {}, None)
+        fr = stomp.utils.Frame("error", {}, None)
         self.transport.process_frame(fr, None)
 
     def test_process_frame_unknown_command(self):
-        fr = stomp.utils.Frame('test', {}, 'test message')
+        fr = stomp.utils.Frame("test", {}, "test message")
         self.transport.process_frame(fr, None)
 
     def test_process_frame(self):
         stomp.transport.log.setLevel(logging.INFO)
-        fr = stomp.utils.Frame('error', {}, 'test message')
+        fr = stomp.utils.Frame("error", {}, "test message")
         self.transport.process_frame(fr, None)

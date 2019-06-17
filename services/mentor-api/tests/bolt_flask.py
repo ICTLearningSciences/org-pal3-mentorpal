@@ -1,8 +1,8 @@
 import subprocess
 import bolt.api as btapi
 
+
 class StartFlaskServiceTask(btapi.Task):
-    
     def __init__(self):
         super(StartFlaskServiceTask, self).__init__()
         self.process = None
@@ -10,14 +10,15 @@ class StartFlaskServiceTask(btapi.Task):
     def tear_down(self):
         if self.process:
             self._terminate(self.process)
-            
+
     def _configure(self):
-        self.startup_script = self.config.get('startup-script')
-        self.terminate_script = self.config.get('terminate-script')
-        if not self.startup_script: raise StartupScriptNotSpecifiedError()
+        self.startup_script = self.config.get("startup-script")
+        self.terminate_script = self.config.get("terminate-script")
+        if not self.startup_script:
+            raise StartupScriptNotSpecifiedError()
 
     def _execute(self):
-        args = ['sh', self.startup_script]
+        args = ["sh", self.startup_script]
         self.process = self._popen_script(args)
 
     def _popen_script(self, args):
@@ -26,13 +27,13 @@ class StartFlaskServiceTask(btapi.Task):
     def _terminate(self, process):
         process.terminate()
         if self.terminate_script:
-            subprocess.call(['sh', self.terminate_script])
-        
-        
+            subprocess.call(["sh", self.terminate_script])
+
+
 def register_tasks(registry):
-	registry.register_task('start-flask', StartFlaskServiceTask())
-        
-        
+    registry.register_task("start-flask", StartFlaskServiceTask())
+
+
 class StartupScriptNotSpecifiedError(btapi.RequiredConfigurationError):
     def __init__(self):
-        super(StartupScriptNotSpecifiedError, self).__init__('startup-script')
+        super(StartupScriptNotSpecifiedError, self).__init__("startup-script")

@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from importlib import import_module
 
+
 class ClassifierTraining(ABC):
     """
     Trains a classifier for a mentor
@@ -18,7 +19,8 @@ class ClassifierTraining(ABC):
         pass
 
     @abstractmethod
-    def save(self, to_path=None): pass
+    def save(self, to_path=None):
+        pass
 
 
 class ClassifierTrainingFactory(ABC):
@@ -70,7 +72,7 @@ def find_classifier_training_factory(arch):
     """
     assert isinstance(arch, str)
     if not arch in _factories_by_arch:
-        import_module(f'mentorpal.classifiers.arch.{arch}.training')
+        import_module(f"mentorpal.classifiers.arch.{arch}.training")
     fac = _factories_by_arch[arch]
     assert isinstance(fac, ClassifierTrainingFactory)
     return fac

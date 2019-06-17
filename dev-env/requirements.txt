@@ -1,1 +1,2 @@
 docker-compose
+black==19.3b0

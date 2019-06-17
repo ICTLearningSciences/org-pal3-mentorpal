@@ -32,17 +32,17 @@ except:
 ##
 # Used to parse STOMP header lines in the format "key:value",
 #
-HEADER_LINE_RE = re.compile('(?P<key>[^:]+)[:](?P<value>.*)')
+HEADER_LINE_RE = re.compile("(?P<key>[^:]+)[:](?P<value>.*)")
 
 ##
 # As of STOMP 1.2, lines can end with either line feed, or carriage return plus line feed.
 #
-PREAMBLE_END_RE = re.compile(b'\n\n|\r\n\r\n')
+PREAMBLE_END_RE = re.compile(b"\n\n|\r\n\r\n")
 
 ##
 # As of STOMP 1.2, lines can end with either line feed, or carriage return plus line feed.
 #
-LINE_END_RE = re.compile('\n|\r\n')
+LINE_END_RE = re.compile("\n|\r\n")
 
 
 def default_create_thread(callback):
@@ -83,11 +83,21 @@ def parse_headers(lines, offset=0):
     for header_line in lines[offset:]:
         header_match = HEADER_LINE_RE.match(header_line)
         if header_match:
-            key = header_match.group('key')
-            key = key.replace('\\n', '\n').replace('\\r', '\r').replace('\\\\', '\\').replace('\\c', ':')
+            key = header_match.group("key")
+            key = (
+                key.replace("\\n", "\n")
+                .replace("\\r", "\r")
+                .replace("\\\\", "\\")
+                .replace("\\c", ":")
+            )
             if key not in headers:
-                value = header_match.group('value')
-                value = value.replace('\\n', '\n').replace('\\r', '\r').replace('\\\\', '\\').replace('\\c', ':')
+                value = header_match.group("value")
+                value = (
+                    value.replace("\\n", "\n")
+                    .replace("\\r", "\r")
+                    .replace("\\\\", "\\")
+                    .replace("\\c", ":")
+                )
                 headers[key] = value
     return headers
 
@@ -102,8 +112,8 @@ def parse_frame(frame):
     :param frame: the frame received from the server (as a string)
     """
     f = Frame()
-    if frame == b'\x0a':
-        f.cmd = 'heartbeat'
+    if frame == b"\x0a":
+        f.cmd = "heartbeat"
         return f
 
     mat = PREAMBLE_END_RE.search(frame)
@@ -114,7 +124,7 @@ def parse_frame(frame):
         preamble_end = len(frame)
     preamble = decode(frame[0:preamble_end])
     preamble_lines = LINE_END_RE.split(preamble)
-    f.body = frame[preamble_end + 2:]
+    f.body = frame[preamble_end + 2 :]
 
     # Skip any leading newlines
     first_line = 0
@@ -154,9 +164,9 @@ def calculate_heartbeats(shb, chb):
     (cx, cy) = chb
     x = 0
     y = 0
-    if cx != 0 and sy != '0':
+    if cx != 0 and sy != "0":
         x = max(cx, int(sy))
-    if cy != 0 and sx != '0':
+    if cy != 0 and sx != "0":
         y = max(cy, int(sx))
     return x, y
 
@@ -206,10 +216,11 @@ class Frame(object):
     :param headers: a map of headers for the frame
     :param body: the content of the frame.
     """
+
     def __init__(self, cmd=None, headers={}, body=None):
         self.cmd = cmd
         self.headers = headers
         self.body = body
 
     def __str__(self):
-        return '{cmd=%s,headers=[%s],body=%s}' % (self.cmd, self.headers, self.body)
+        return "{cmd=%s,headers=[%s],body=%s}" % (self.cmd, self.headers, self.body)

@@ -1,19 +1,23 @@
 from mentorpal import interface, mentor
 
-#mode='npceditor' will fetch answers only from npceditor.
-#mode='classifier' will fetch answers only from classifier.
-#mode='ensemble' will fetch answers from both classifier and ensemble and decide the best
+# mode='npceditor' will fetch answers only from npceditor.
+# mode='classifier' will fetch answers only from classifier.
+# mode='ensemble' will fetch answers from both classifier and ensemble and decide the best
 def start(answer_mode):
     global bi
-    bi=interface.BackendInterface(mode=answer_mode)
+    bi = interface.BackendInterface(mode=answer_mode)
+
 
 def preload(mentor_ids):
     for mentor in mentor_ids:
         bi.preload(mentor)
 
+
 def print_instructions():
     print("Interface is ready:")
-    print("  Start a session:   _START_SESSION_     <mentor id>     <use repeat answers Y/N>")
+    print(
+        "  Start a session:   _START_SESSION_     <mentor id>     <use repeat answers Y/N>"
+    )
     print("  End session:       _END_SESSION_")
     print("  Run training:      _TRAIN_             <mentor id>")
     print("  Get topics:        _TOPICS_            <mentor id>")
@@ -25,8 +29,9 @@ def print_instructions():
     print("  Get redirect:      _REDIRECT_          <mentor id>     <question>")
     print("  Close the program and shut down all processes: _QUIT_")
 
+
 def process_input(user_input):
-    inputs = user_input.split(' ')
+    inputs = user_input.split(" ")
     tag = inputs[0]
     print(user_input)
 
@@ -58,7 +63,7 @@ def process_input(user_input):
         id = inputs[1]
         bi.set_mentor(id)
         results = bi.train()
-        return '_TRAINED_ {0}\n{1}'.format(id, results)
+        return "_TRAINED_ {0}\n{1}".format(id, results)
 
     # Get the list of topics for a mentor:  _TOPICS_ id
     #   id: id of mentor
@@ -68,7 +73,7 @@ def process_input(user_input):
         id = inputs[1]
         bi.set_mentor(id)
         topics = bi.get_topics()
-        return '_TOPICS_\n{0}'.format('\n'.join(topics))
+        return "_TOPICS_\n{0}".format("\n".join(topics))
 
     # Get a question from the given topic for a mentor: _QUESTION_ id topic
     #   id: id of mentor
@@ -79,8 +84,8 @@ def process_input(user_input):
         id = inputs[1]
         topic = inputs[2]
         bi.set_mentor(id)
-        suggested_question=bi.suggest_question(topic)
-        return '_QUESTION_\n{0}'.format(suggested_question[0])
+        suggested_question = bi.suggest_question(topic)
+        return "_QUESTION_\n{0}".format(suggested_question[0])
 
     # Get a unique redirect video: _REDIRECT_ id
     #   id: id of mentor
@@ -118,8 +123,9 @@ def process_input(user_input):
             bi.process_input_from_ui("_END_SESSION_")
         bi.quit()
         global end_flag
-        end_flag=True
-        return '_QUIT_'
+        end_flag = True
+        return "_QUIT_"
+
 
 bi = None
-end_flag=False
+end_flag = False

@@ -3,6 +3,7 @@ import os
 from abc import ABC, abstractmethod
 from importlib import import_module
 
+
 class Classifier(ABC):
     """
     A (MentorPAL) classifer takes a text-string question and returns an answer
@@ -44,6 +45,7 @@ class CheckpointClassifierFactory(ABC):
         """
         return None
 
+
 class ClassifierFactory:
     """
     A factory that creates a mentorpal.classifiers.Classifier given mentor[s].
@@ -55,7 +57,6 @@ class ClassifierFactory:
         assert isinstance(checkpoint, str)
         self.checkpoint_classifier_factory = checkpoint_classifier_factory
         self.checkpoint = checkpoint
-
 
     def create(self, mentors):
         """
@@ -69,11 +70,13 @@ class ClassifierFactory:
         """
         return self.checkpoint_classifier_factory.create(self.checkpoint, mentors)
 
+
 _factories_by_arch = {}
 
 
 def checkpoint_path(arch, checkpoint, checkpoint_root):
-    return os.path.join(checkpoint_root, 'classifiers', arch, checkpoint)
+    return os.path.join(checkpoint_root, "classifiers", arch, checkpoint)
+
 
 def create_classifier(arch, checkpoint, mentors, checkpoint_root):
     """
@@ -117,7 +120,9 @@ def create_classifier_factory(arch, checkpoint, checkpoint_root):
     assert isinstance(checkpoint, str)
     assert isinstance(checkpoint_root, str)
     if not arch in _factories_by_arch:
-        import_module(f'mentorpal.classifiers.arch.{arch}')
+        import_module(f"mentorpal.classifiers.arch.{arch}")
     checkpoint_fac = _factories_by_arch[arch]
     assert isinstance(checkpoint_fac, CheckpointClassifierFactory)
-    return ClassifierFactory(checkpoint_fac, checkpoint_path(arch, checkpoint, checkpoint_root))
+    return ClassifierFactory(
+        checkpoint_fac, checkpoint_path(arch, checkpoint, checkpoint_root)
+    )

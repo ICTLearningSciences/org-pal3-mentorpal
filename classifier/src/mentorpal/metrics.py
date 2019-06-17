@@ -4,9 +4,10 @@ import os
 from mentorpal.mentor import Mentor
 from mentorpal.utils import sanitize_string
 
+
 class Metrics:
-    
-    '''
+
+    """
     Get answer and answer confidence
 
     Args:
@@ -16,13 +17,14 @@ class Metrics:
         answer_id: (str) the id for the answer (typically from a predetermined set)
         answer_text: (str) the text of the answer
         confidence: (float) 0.0-1.0 confidence score for the question-answer mapping
-    '''
+    """
+
     def answer_confidence(self, classifier, question):
         answer_id, answer, confidence = classifier.get_answer(question)
 
         return answer_id, answer, confidence
 
-    '''
+    """
     Train classifier and get accuracy score of training
 
     Args:
@@ -30,13 +32,14 @@ class Metrics:
     Returns:
         scores: (float array) cross validation scores for training data
         accuracy: (float) accuracy score for training data
-    '''
+    """
+
     def train_accuracy(self, classifier):
         scores, accuracy = classifier.train_model()
 
         return scores, accuracy
-    
-    '''
+
+    """
     Test classifier and get accuracy score of testing set
 
     Args:
@@ -44,15 +47,20 @@ class Metrics:
         test_file: (string) file name of the testing data to load
     Returns:
         accuracy: (float) accuracy score for training data (correct predictions out of total predictions)
-    '''
+    """
+
     def test_accuracy(self, classifier, test_file, num=None):
         mentor = classifier.mentor
-        path = os.path.join("checkpoint","tests",mentor.id,test_file)
+        path = os.path.join("checkpoint", "tests", mentor.id, test_file)
         user_questions = self.__read_test_data(path, num)
 
         # return 0
 
-        print("Loaded test set '{0}' of {1} questions for {2}".format(test_file, len(user_questions), mentor.id))
+        print(
+            "Loaded test set '{0}' of {1} questions for {2}".format(
+                test_file, len(user_questions), mentor.id
+            )
+        )
 
         correct_predictions = 0
         total_predictions = 0
@@ -65,13 +73,17 @@ class Metrics:
                 print("{0}. '{1}'".format(total_predictions + 1, q))
                 print("   Expected:")
                 for i in user_questions[q]:
-                    print("    - {0}".format(' '.join(i.split()[:15])))
-                print("   Got:\n    - {0}".format(' '.join(text.split()[:15])))
+                    print("    - {0}".format(" ".join(i.split()[:15])))
+                print("   Got:\n    - {0}".format(" ".join(text.split()[:15])))
             total_predictions += 1
 
-        print("{0}/{1} ({2:.1f}%) questions answered correctly".format(
-            correct_predictions, total_predictions,
-            (correct_predictions / total_predictions) * 100))
+        print(
+            "{0}/{1} ({2:.1f}%) questions answered correctly".format(
+                correct_predictions,
+                total_predictions,
+                (correct_predictions / total_predictions) * 100,
+            )
+        )
 
         return correct_predictions / total_predictions
 
@@ -93,7 +105,7 @@ class Metrics:
             # get ideal and reasonable matches for user questions
             for r in range(1, numrows):
                 match = sanitize_string(test_data[r][c + 2])
-                if match == 'i' or match == 'r':
+                if match == "i" or match == "r":
                     answer = sanitize_string(test_data[r][1])
                     try:
                         user_questions[user_question].append(answer)

@@ -1,4 +1,3 @@
-
 """
 apply_properties:
 
@@ -25,7 +24,8 @@ from os.path import isfile
 import sys
 import base64
 
-def load_props(filepath, sep='=', comment_char='#'):
+
+def load_props(filepath, sep="=", comment_char="#"):
     """
     Read the file passed as parameter as a properties file.
 
@@ -54,12 +54,13 @@ def load_props(filepath, sep='=', comment_char='#'):
             if l and not l.startswith(comment_char):
                 key_value = l.split(sep)
                 key = key_value[0].strip()
-                value = sep.join(key_value[1:]).strip().strip('"') 
-                props[key] = value 
+                value = sep.join(key_value[1:]).strip().strip('"')
+                props[key] = value
     return props
 
-def apply_props(props_or_path, *tgts, replace_prop_format='{{0}}'):
-   """
+
+def apply_props(props_or_path, *tgts, replace_prop_format="{{0}}"):
+    """
    Search and replace all the prop key/values from props
    on all files that match the to_path_glob
 
@@ -77,35 +78,38 @@ def apply_props(props_or_path, *tgts, replace_prop_format='{{0}}'):
          Must have a '0' character, which is where the prop-name
          will go.
    """
-   props = load_props(props_or_path) if isinstance(props_or_path, str) else props_or_path
+    props = (
+        load_props(props_or_path) if isinstance(props_or_path, str) else props_or_path
+    )
 
-   for f in tgts:
+    for f in tgts:
 
-      if not isfile(f):
-         continue
-      
-      with open(f, "rt") as fin:
-         content = fin.read()
+        if not isfile(f):
+            continue
 
-      for k, v in props.items():
-         p = replace_prop_format.replace('0', k) # turn my_prop into {{my_prop}}
-         
-         # TODO: values for kubernetes secrets need to be base64 encoded
-         # don't want to make props file users base64 encode values
-         # maybe better to have a separate config-build step just for secrets
-         # rather than the detection hack below
-         isKubernetesSecretFile = 'kind: Secret' in content
+        with open(f, "rt") as fin:
+            content = fin.read()
 
-         if isKubernetesSecretFile:
-            v = base64.b64encode(v.encode("utf-8")).decode("utf-8")
+        for k, v in props.items():
+            p = replace_prop_format.replace("0", k)  # turn my_prop into {{my_prop}}
 
-         content = content.replace(p, v)
+            # TODO: values for kubernetes secrets need to be base64 encoded
+            # don't want to make props file users base64 encode values
+            # maybe better to have a separate config-build step just for secrets
+            # rather than the detection hack below
+            isKubernetesSecretFile = "kind: Secret" in content
 
-      with open(f, "wt") as fout:
-         fout.write(content)
+            if isKubernetesSecretFile:
+                v = base64.b64encode(v.encode("utf-8")).decode("utf-8")
+
+            content = content.replace(p, v)
+
+        with open(f, "wt") as fout:
+            fout.write(content)
+
 
 if __name__ == "__main__":
-   props_file = sys.argv[1]
-   tgt_glob = sys.argv[2]
+    props_file = sys.argv[1]
+    tgt_glob = sys.argv[2]
 
-   apply_props(props_file, *sys.argv[2:])
+    apply_props(props_file, *sys.argv[2:])

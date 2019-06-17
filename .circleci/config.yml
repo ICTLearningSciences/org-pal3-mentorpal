@@ -31,6 +31,14 @@ aliases:
         - qa-mentorpal
         - prod-mentorpal
 jobs:
+  test:
+    docker:
+      - image: circleci/python:3.7.3
+    steps:
+      - checkout
+      - run:
+          name: Test Format
+          command: make test-format
   docker-build-push:
     executor: ebs
     steps:
@@ -56,9 +64,12 @@ workflows:
   version: 2
   deploy-to-dev:
     jobs:
+      - test
       - deploy-to-dev:
           type: approval
           filters: *ignore-ebs-env-branches
+          requires:
+            - test
       - docker-build-push:
           requires:
             - deploy-to-dev
@@ -69,9 +80,12 @@ workflows:
           filters: *ignore-ebs-env-branches
   deploy-to-branch-env:
     jobs:
+      - test
       - deploy-to-branch-env:
           type: approval
           filters: *only-ebs-env-branches
+          requires:
+            - test
       - docker-build-push:
           requires:
             - deploy-to-branch-env
