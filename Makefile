@@ -2,7 +2,7 @@ SHELL:=/bin/bash
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 DOCKER_SERVICES=$(PROJECT_ROOT)/bin/docker_services.sh
 DEV_VIRTUAL_ENV=.venv
-BLACK_EXCLUDES="/(\.venv|behave-restful)/"
+BLACK_EXCLUDES="/(\.venv|build|behave-restful)/"
 
 $(DEV_VIRTUAL_ENV):
 	$(MAKE) dev-env-create
