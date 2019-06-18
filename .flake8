@@ -15,3 +15,5 @@ exclude =
     .vscode,
     build,
     behave-restful,
+    classifier/src/scripts
+
