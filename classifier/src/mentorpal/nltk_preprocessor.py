@@ -27,7 +27,6 @@ class NLTKPreprocessor(object):
     def tokenize(self, sentence):
         tokenizer = RegexpTokenizer(r"\w+")
         # Break the sentence into part of speech tagged tokens
-        tokenized_words = []
         for token, tag in pos_tag(tokenizer.tokenize(sentence)):
             token = token.lower()
             token = token.strip()
@@ -39,7 +38,7 @@ class NLTKPreprocessor(object):
             # Stem the token and yield
             try:
                 stemmed_token = self.stemmer.stem(token)
-            except:
+            except BaseException:
                 print(
                     "Unicode error. File encoding was changed when you opened it in Excel. ",
                     end=" ",
