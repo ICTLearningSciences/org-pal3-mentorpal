@@ -18,7 +18,7 @@ const Topics = () => {
   }
 
   return (
-    <div id="carousel">
+    <div className="carousel">
       {
         Object.keys(topic_questions).map((topic, i) =>
           <div className='slide topic-slide' key={i}>

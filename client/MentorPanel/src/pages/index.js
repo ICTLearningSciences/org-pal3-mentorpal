@@ -6,9 +6,11 @@ import { loadMentor, selectMentor } from '../redux/actions'
 
 import Header from '../components/header'
 import Input from '../components/input'
-import Layout from '../components/layout'
 import Video from '../components/video'
 import VideoPanel from '../components/video-panel'
+import Topics from '../components/topics'
+import Questions from '../components/questions'
+import "../styles/layout.css"
 
 const IndexPage = ({ ...props }) => {
   const dispatch = useDispatch()
@@ -22,12 +24,20 @@ const IndexPage = ({ ...props }) => {
   })
 
   return (
-    <Layout>
-      <VideoPanel />
-      <Header />
-      <Video />
-      <Input />
-    </Layout>
+    <div className='flex'>
+      <div className='content'>
+        <VideoPanel />
+        <Header />
+        <Video />
+        <Topics />
+      </div>
+      <div className='expand' id='question-container'>
+        <Questions />
+      </div>
+      <div className='footer'>
+        <Input />
+      </div>
+    </div>
   )
 }
 

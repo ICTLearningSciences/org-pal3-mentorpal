@@ -1,17 +1,23 @@
 body {
-  text-align: center;
+  height: 100%;
   margin: 0;
+  text-align: center;
 }
 
-#footer {
-  position: fixed;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  width: 100%;
+.flex {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+}
+.content {
+  flex: 0 1;
+}
+.expand {
+  flex: 1 1;
 }
 
-#carousel {
+.carousel {
   width: 100%;
   overflow-x: visible;
   overflow-y: hidden;
@@ -19,19 +25,19 @@ body {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-#carousel .slide {
+.carousel .slide {
   position: relative;
   display: inline-block;
 }
-#carousel .video-slide {
+.carousel .video-slide {
   border-radius: 5px;
   padding-left: 5px;
   padding-right: 5px;
 }
-#carousel .topic-slide {
+.carousel .topic-slide {
   margin: 5px;
 }
-#carousel .selected {
+.carousel .selected {
   background-color: orange;
 }
 

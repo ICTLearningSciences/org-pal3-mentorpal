@@ -9,14 +9,14 @@ import { answerFinished, faveMentor } from '../redux/actions'
 const FaveButton = () => {
     const dispatch = useDispatch()
     const mentor = useSelector(state => state.current_mentor)
-    const fave_mentor = useSelector(state => state.faved_mentor)
+    const faved_mentor = useSelector(state => state.faved_mentor)
 
     const onClick = () => {
         dispatch(faveMentor(mentor))
     }
 
     return (
-        fave_mentor === mentor ?
+        faved_mentor === mentor ?
             <Star className='star-icon' onClick={onClick} style={{ color: 'yellow' }} /> :
             <StarBorder className='star-icon' onClick={onClick} style={{ color: 'grey' }} />
     )
@@ -26,10 +26,7 @@ const VideoPlayer = ({ width }) => {
     const dispatch = useDispatch()
     const isIdle = useSelector(state => state.isIdle)
     const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
-    const video_url =
-        mentor ?
-            isIdle ? idleUrl(mentor) : videoUrl(mentor)
-            : ''
+    const video_url = mentor ? (isIdle ? idleUrl(mentor) : videoUrl(mentor)) : ''
     const subtitle_url = mentor && !isIdle ? subtitleUrl(mentor) : ''
 
     const onEnded = () => {

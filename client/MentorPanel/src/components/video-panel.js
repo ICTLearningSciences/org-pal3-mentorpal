@@ -56,7 +56,7 @@ const VideoPanel = () => {
   }
 
   return (
-    <div id="carousel">
+    <div className="carousel">
       {
         Object.keys(mentors).map((id, i) =>
           <div
