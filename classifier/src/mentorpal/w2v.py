@@ -23,7 +23,7 @@ class W2V(object):
         for word in question:
             try:
                 word_vector = self.__w2v_model[word]
-            except:
+            except BaseException:
                 word_vector = np.zeros(300, dtype="float32")
             lstm_vector.append(word_vector)
             current_vector += word_vector
