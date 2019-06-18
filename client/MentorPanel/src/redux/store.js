@@ -15,30 +15,31 @@ export const STATUS_READY = 'READY'
 export const STATUS_ANSWERED = 'ANSWERED'
 export const STATUS_ERROR = 'ERROR'
 
+/**
+ * mentor: {
+ *  id
+ *  name
+ *  short_name
+ *  title
+ *  topic_questions
+
+ *  question
+ *  answer_id
+ *  answer_text
+ *  confidence
+ *  is_off_topic
+ *  status: READY | ANSWERED | ERROR
+ * }
+ */
+
 const initialState = {
   current_mentor: '',       // id of selected mentor
   current_question: '',     // question that was last asked
-  current_topic: '',        // topic to show recommended questions for
+  current_topic: '',        // topic to show questions for
   faved_mentor: '',         // id of the preferred mentor
   next_mentor: '',          // id of the next mentor to speak after the current finishes
   mentors_by_id: {},
-  /**
-   * mentor: {
-   *  id
-   *  name
-   *  short_name
-   *  title
-   * 
-   *  question
-   *  answer_id
-   *  answer_text
-   *  confidence
-   *  is_off_topic
-   *  status: READY | ANSWERED | ERROR
-   * 
-   *  topic_questions
-   * }
-   */
+  questions_asked: [],
   isIdle: false,
 };
 
@@ -100,6 +101,10 @@ const store = (state = initialState, action) => {
       return {
         ...state,
         current_question: action.question,
+        questions_asked: [
+          ...state.questions_asked,
+          action.question.normalize()
+        ]
       }
 
     case QUESTION_ANSWERED:

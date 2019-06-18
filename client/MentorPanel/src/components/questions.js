@@ -11,10 +11,11 @@ import { sendQuestion } from '../redux/actions'
 const Questions = ({ ...props }) => {
   const { classes } = props;
   const dispatch = useDispatch()
-  const current_topic = useSelector(state => state.current_topic)
   const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
+  const current_topic = useSelector(state => state.current_topic)
+  const questions_asked = useSelector(state => state.questions_asked)
 
-  if (!mentor || !mentor.topic_questions || !mentor.topic_questions[current_topic]) {
+  if (!mentor || !current_topic || !mentor.topic_questions  || !mentor.topic_questions[current_topic]) {
     return <div></div>
   }
 
@@ -32,6 +33,7 @@ const Questions = ({ ...props }) => {
             <ListItem key={i}>
               <Button
                 className={classNames(classes.button)}
+                style={{ color: questions_asked.includes(question.normalize()) ? 'blue' : 'black' }}
                 onClick={() => onQuestionSelected(question)}>
                 {question}
               </Button>

@@ -33,6 +33,7 @@ export const loadQuestions = mentor_id => (dispatch) => {
         const topics = results.data[i][0].split(', ')
         const question = results.data[i][3]
         if (!question) { continue }
+
         topics.forEach(topic => {
           if (!topic) { return }
           try {
@@ -58,12 +59,15 @@ const loadTopics = (mentor_id, questions) => (dispatch) => {
       for (var i = 0; i < results.data.length - 3; i++) {
         const topicName = results.data[i][0]
         const topicGroup = results.data[i][1]
+        const topicQuestions = questions[topicName] ? questions[topicName] : []
+
         try {
-          topic_questions[topicGroup] = topic_questions[topicGroup].concat(questions[topicName])
+          topic_questions[topicGroup] = topic_questions[topicGroup].concat(topicQuestions)
         } catch {
-          topic_questions[topicGroup] = questions[topicName]
+          topic_questions[topicGroup] = topicQuestions
         }
       }
+
       dispatch({
         type: MENTOR_TOPIC_QUESTIONS_LOADED,
         id: mentor_id,
@@ -92,6 +96,7 @@ export const faveMentor = mentor_id => ({
 })
 
 export const sendQuestion = question => async (dispatch, getState) => {
+  dispatch(onInput())
   dispatch(onQuestionSent(question))
 
   const state = getState()
