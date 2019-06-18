@@ -1,5 +1,4 @@
-# -- FILE: features/steps/example_steps.py
-from behave import given, when, then, step
+from behave import given
 
 
 @given("an api request to {path}")
