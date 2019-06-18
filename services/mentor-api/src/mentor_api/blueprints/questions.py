@@ -1,4 +1,3 @@
-import json
 from flask import Blueprint, jsonify, request
 from mentor_api.errors import InvalidUsage
 from mentor_api.mentors import MentorClassifierRegistry
@@ -23,7 +22,7 @@ def create(mentor_classifier_registry):
         mc = None
         try:
             mc = mentor_classifier_registry.find_or_create(mentor_id)
-        except:
+        except BaseException:
             pass
 
         if mc is None:
