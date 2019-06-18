@@ -3,7 +3,6 @@
 import datetime
 import os
 from mentorpal.mentor import Mentor
-from mentorpal.metrics import Metrics
 from mentorpal.classifiers import checkpoint_path
 from mentorpal.classifiers.training import find_classifier_training_factory
 
