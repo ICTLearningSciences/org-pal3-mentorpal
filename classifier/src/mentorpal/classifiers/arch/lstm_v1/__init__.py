@@ -4,7 +4,6 @@ import numpy as np
 from keras.models import load_model
 from sklearn.externals import joblib
 from keras.preprocessing.sequence import pad_sequences
-from sklearn.linear_model import RidgeClassifier
 
 from mentorpal.classifiers import (
     CheckpointClassifierFactory,
@@ -17,6 +16,7 @@ from mentorpal.w2v import W2V
 
 # store the ARCH because we use it several places
 ARCH = "lstm_v1"
+
 
 # CheckpointClassifierFactory impl that will get registered globally for this arch ('lstm_v1')
 class __ClassifierFactory(CheckpointClassifierFactory):
@@ -91,7 +91,7 @@ class LSTMClassifier(Classifier):
         try:
             path = os.path.join(model_path, "lstm_topic_model.h5")
             topic_model = load_model(path)
-        except:
+        except BaseException:
             print(
                 "Unable to load topic model from {0}. Classifier needs to be retrained before asking questions.".format(
                     path
@@ -100,7 +100,7 @@ class LSTMClassifier(Classifier):
         try:
             path = os.path.join(model_path, "fused_model.pkl")
             logistic_model = joblib.load(path)
-        except:
+        except BaseException:
             print(
                 "Unable to load logistic model from {0}. Classifier needs to be retrained before asking questions.".format(
                     path
@@ -116,7 +116,7 @@ class LSTMClassifier(Classifier):
                 self.topic_model = load_model(
                     os.path.join(model_path, "lstm_topic_model.h5")
                 )
-            except:
+            except BaseException:
                 raise Exception(
                     "Could not find topic model under {0}. Please train classifier first.".format(
                         model_path
@@ -133,7 +133,7 @@ class LSTMClassifier(Classifier):
                 self.logistic_model = joblib.load(
                     os.path.join(model_path, "fused_model.pkl")
                 )
-            except:
+            except BaseException:
                 raise Exception(
                     "Could not find logistic model under {0}. Please train classifier first.".format(
                         model_path

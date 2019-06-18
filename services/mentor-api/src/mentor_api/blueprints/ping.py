@@ -1,7 +1,6 @@
-import json
 import os
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify
 
 ping_blueprint = Blueprint("ping", __name__)
 

@@ -18,8 +18,6 @@ Usage:
 
    ...where glob_exp like /path/*.yml
 """
-
-from glob import glob
 from os.path import isfile
 import sys
 import base64
@@ -31,7 +29,7 @@ def load_props(filepath, sep="=", comment_char="#"):
 
     Why not use ConfigParser? Because for now
     trying to avoid requiring python modules (or a conda env)
-    for running the build process. 
+    for running the build process.
     We are assuming users have python, but that will
     be true out of the box for OSX and Ubuntu.
     Assuming Windows users will use WSL/Ubuntu to run builds.
@@ -41,7 +39,7 @@ def load_props(filepath, sep="=", comment_char="#"):
 
       sep: (str) separator character (default =)
 
-      comment_char: (char) comment character 
+      comment_char: (char) comment character
          (won't read lines that start with this character)
          (default=#)
 
@@ -50,9 +48,9 @@ def load_props(filepath, sep="=", comment_char="#"):
     props = {}
     with open(filepath, "rt") as f:
         for line in f:
-            l = line.strip()
-            if l and not l.startswith(comment_char):
-                key_value = l.split(sep)
+            line = line.strip()
+            if line and not line.startswith(comment_char):
+                key_value = line.split(sep)
                 key = key_value[0].strip()
                 value = sep.join(key_value[1:]).strip().strip('"')
                 props[key] = value

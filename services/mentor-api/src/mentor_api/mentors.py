@@ -9,7 +9,7 @@ class _APIClassifier(Classifier):
     Wrapper classifier that applies some post processing we want in an API classifier.
     Specifically:
 
-     - Translates OFF_TOPIC responses to prompts 
+     - Translates OFF_TOPIC responses to prompts
     """
 
     def __init__(self, classifier, mentor):

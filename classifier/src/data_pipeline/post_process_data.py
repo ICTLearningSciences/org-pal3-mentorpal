@@ -1,10 +1,10 @@
-import ffmpy
-import csv
-import sys
 import os
+from threading import Thread
+import sys
+
+import ffmpy
 import fnmatch
 import pandas as pd
-from threading import Thread
 
 """
 Converts the video format to ogv and mp4's cropped for the website
@@ -261,7 +261,6 @@ class PostProcessData(object):
         metadata_df = None
         if os.path.exists(os.path.join("data", "metadata.csv")):
             metadata_df = pd.read_csv(open(os.path.join("data", "metadata.csv"), "rb"))
-            startrow = len(metadata_df) + 1
             for i in range(0, len(metadata_df)):
                 if metadata_df.iloc[i]["Mentor Name"] == self.mentor_name:
                     metadata_df.set_value(
@@ -309,7 +308,6 @@ class PostProcessData(object):
                 open(os.path.join("data", "NPCEditor_data.xlsx"), "rb"),
                 sheetname="Sheet1",
             )
-            startrow = len(curr_npceditor_df) + 1
             npc_header = False
 
         npceditor_df = pd.DataFrame(
@@ -343,7 +341,6 @@ def main():
     sessions = []
     for i in range(start_session, end_session + 1):
         sessions.append("session" + str(i))
-    number_of_sessions = len(sessions)
     # store answer video chunks in this folder.
     answer_chunks = dirname + "answer_videos"
     # Create answer_videos directory if it doesn't exist

@@ -86,7 +86,7 @@ def create_classifier(arch, checkpoint, mentors, checkpoint_root):
             arch: (str) id for the architecture
             checkpoint: (str) id for the checkpoint
             mentors: (str|mentorpal.mentor.Mentor|list of mentors/mentor ids) mentor[s] used in classifier
-            checkpoint_root: (str) root path of checkpoints. 
+            checkpoint_root: (str) root path of checkpoints.
         Returns:
             classifier: (mentorpal.classifiers.Classifier)
     """
@@ -119,7 +119,7 @@ def create_classifier_factory(arch, checkpoint, checkpoint_root):
     assert isinstance(arch, str)
     assert isinstance(checkpoint, str)
     assert isinstance(checkpoint_root, str)
-    if not arch in _factories_by_arch:
+    if arch not in _factories_by_arch:
         import_module(f"mentorpal.classifiers.arch.{arch}")
     checkpoint_fac = _factories_by_arch[arch]
     assert isinstance(checkpoint_fac, CheckpointClassifierFactory)

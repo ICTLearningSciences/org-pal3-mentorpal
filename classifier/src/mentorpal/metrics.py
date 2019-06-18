@@ -1,7 +1,6 @@
 import csv
 import os
 
-from mentorpal.mentor import Mentor
 from mentorpal.utils import sanitize_string
 
 

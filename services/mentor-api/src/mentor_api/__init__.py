@@ -1,5 +1,4 @@
 import os
-import json
 from flask import Flask, jsonify
 from flask_cors import CORS
 from mentor_api.errors import InvalidUsage

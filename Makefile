@@ -56,3 +56,7 @@ test-format-python: $(DEV_VIRTUAL_ENV)
 
 .PHONY: test-format
 test-format: test-format-python
+
+.PHONY: lint
+lint: $(DEV_VIRTUAL_ENV)
+	$(DEV_VIRTUAL_ENV)/bin/flake8 .

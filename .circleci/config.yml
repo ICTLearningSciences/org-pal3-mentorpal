@@ -39,6 +39,9 @@ jobs:
       - run:
           name: Test Format
           command: make test-format
+      - run:
+          name: Lint
+          command: make lint
   docker-build-push:
     executor: ebs
     steps:
