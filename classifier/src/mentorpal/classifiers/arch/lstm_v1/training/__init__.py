@@ -22,6 +22,7 @@ from mentorpal.nltk_preprocessor import NLTKPreprocessor
 from mentorpal.utils import normalize_topics
 from mentorpal.w2v import W2V
 
+
 # CheckpointClassifierFactory impl that will get registered globally for this arch ('lstm_v1')
 class __ClassifierTrainingFactory(ClassifierTrainingFactory):
     def create(self, checkpoint, mentors):
@@ -53,7 +54,7 @@ class TrainLSTMClassifier(ClassifierTraining):
 
     """
     Trains the classifier updating trained weights to be saved later with save()
-    
+
     Returns:
         scores: (float array) cross validation scores for training data
         accuracy: (float) accuracy score for training data
