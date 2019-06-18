@@ -2,7 +2,6 @@ import pandas as pd
 import os
 import csv
 
-from mentorpal.nltk_preprocessor import NLTKPreprocessor
 from mentorpal.utils import normalize_topics
 
 
