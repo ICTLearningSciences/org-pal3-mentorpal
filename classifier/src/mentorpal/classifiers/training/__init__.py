@@ -11,7 +11,7 @@ class ClassifierTraining(ABC):
     def train(self):
         """
         Trains the classifier updating trained weights to be saved later with save()
-    
+
         Returns:
             scores: (float array) cross validation scores for training data
             accuracy: (float) accuracy score for training data
@@ -71,7 +71,7 @@ def find_classifier_training_factory(arch):
             classifier: (mentorpal.classifiers.ClassifierFactory)
     """
     assert isinstance(arch, str)
-    if not arch in _factories_by_arch:
+    if arch not in _factories_by_arch:
         import_module(f"mentorpal.classifiers.arch.{arch}.training")
     fac = _factories_by_arch[arch]
     assert isinstance(fac, ClassifierTrainingFactory)
