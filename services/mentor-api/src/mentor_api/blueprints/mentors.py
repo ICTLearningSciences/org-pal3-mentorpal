@@ -1,7 +1,6 @@
-import json
 import os
 
-from flask import Blueprint, current_app, jsonify, request, send_file
+from flask import Blueprint, current_app, send_file
 from werkzeug.utils import secure_filename
 
 from mentor_api.errors import InvalidUsage
