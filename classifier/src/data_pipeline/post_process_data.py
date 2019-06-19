@@ -227,7 +227,7 @@ class PostProcessData(object):
     Write all the data to file.
     classifier_data.csv: data for use by the classifier
     metadata.txt: data about the data preparation process. This helps when new sessions are added. No need to start from scratch
-    NPCEditor_data.xlsx: data for NPCEditor
+    npceditor_data.xlsx: data for NPCEditor
     """
 
     def write_data(self):
@@ -303,9 +303,9 @@ class PostProcessData(object):
 
         # data for NPCEditor
         npc_header = True
-        if os.path.exists(os.path.join("data", "NPCEditor_data.xlsx")):
+        if os.path.exists(os.path.join("data", "npceditor_data.xlsx")):
             curr_npceditor_df = pd.read_excel(
-                open(os.path.join("data", "NPCEditor_data.xlsx"), "rb"),
+                open(os.path.join("data", "npceditor_data.xlsx"), "rb"),
                 sheetname="Sheet1",
             )
             npc_header = False
@@ -320,7 +320,7 @@ class PostProcessData(object):
             df_to_write = npceditor_df
 
         npceditor_writer = pd.ExcelWriter(
-            os.path.join("data", "NPCEditor_data.xlsx"), engine="openpyxl"
+            os.path.join("data", "npceditor_data.xlsx"), engine="openpyxl"
         )
         df_to_write.to_excel(npceditor_writer, "Sheet1", index=False, header=npc_header)
         npceditor_writer.save()
@@ -395,11 +395,11 @@ def main():
 
     # Load the answer corpus which contains questions, paraphrases and answers
     answer_corpus = pd.read_excel(
-        open(os.path.join("data", "Questions_Paraphrases_Answers.xlsx"), "rb"),
+        open(os.path.join("data", "questions_paraphrases_answers.xlsx"), "rb"),
         sheetname="official",
     )
     utterance_corpus = pd.read_excel(
-        open(os.path.join("data", "Prompts_Utterances.xlsx"), "rb"),
+        open(os.path.join("data", "prompts_utterances.xlsx"), "rb"),
         sheetname="official",
     )
     ppd = PostProcessData(

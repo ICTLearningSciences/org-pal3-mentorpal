@@ -22,7 +22,7 @@ const createMentor = (mId, data) => {
 		data,
 		{
 			topicsURL: `${MENTOR_API_URL}/mentors/${mId}/data/topics.csv`,
-			questions: `${MENTOR_API_URL}/mentors/${mId}/data/Questions_Paraphrases_Answers.csv`,
+			questions: `${MENTOR_API_URL}/mentors/${mId}/data/questions_paraphrases_answers.csv`,
 			classifier: `${MENTOR_API_URL}/mentors/${mId}/data/classifier_data.csv`,
 			idleURL: () => videoURLFor('idle'),
 			trackUrlFor: (id) => `${MENTOR_API_URL}/mentors/${mId}/tracks/${id}.vtt`,

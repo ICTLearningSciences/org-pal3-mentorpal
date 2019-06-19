@@ -21,7 +21,7 @@ export const topicsUrl = (mentor_id) => {
 }
 
 export const questionsUrl = (mentor_id) => {
-  return `${MENTOR_API_URL}/mentors/${mentor_id}/data/Questions_Paraphrases_Answers.csv`
+  return `${MENTOR_API_URL}/mentors/${mentor_id}/data/questions_paraphrases_answers.csv`
 }
 
 export const queryMentor = async (mentor_id, question) => {
