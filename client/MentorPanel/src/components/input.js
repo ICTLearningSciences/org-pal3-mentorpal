@@ -3,10 +3,10 @@ import { useSelector, useDispatch, connect } from 'react-redux';
 import { Button, Divider, InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { sendQuestion, onInput } from '../redux/actions'
+import { sendQuestion, onInput } from 'src/redux/actions'
 
-import Topics from '../components/topics'
-import Questions from '../components/questions'
+import Topics from 'src/components/topics'
+import Questions from 'src/components/questions'
 
 const SendButton = ({ text }) => {
   const dispatch = useDispatch()

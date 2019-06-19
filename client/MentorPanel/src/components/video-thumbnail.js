@@ -1,8 +1,8 @@
 import React from "react"
 import ReactPlayer from 'react-player'
 
-import { idleUrl } from '../api/api'
-import { STATUS_ERROR } from '../redux/store'
+import { idleUrl } from 'src/api/api'
+import { STATUS_ERROR } from 'src/redux/store'
 
 class VideoThumbnail extends React.Component {
   constructor(props) {

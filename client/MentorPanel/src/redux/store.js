@@ -9,8 +9,8 @@ import {
   QUESTION_ANSWERED,
   QUESTION_ERROR,
   ANSWER_FINISHED,
-} from './actions'
-import { normalizeString } from '../funcs/funcs'
+} from 'src/redux/actions'
+import { normalizeString } from 'src/funcs/funcs'
 
 export const STATUS_READY = 'READY'
 export const STATUS_ANSWERED = 'ANSWERED'

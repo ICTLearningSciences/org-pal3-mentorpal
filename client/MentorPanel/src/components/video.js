@@ -3,8 +3,8 @@ import ReactPlayer from 'react-player'
 import { useSelector, useDispatch } from 'react-redux';
 import { Star, StarBorder } from '@material-ui/icons'
 
-import { idleUrl, videoUrl, subtitleUrl } from '../api/api'
-import { answerFinished, faveMentor } from '../redux/actions'
+import { idleUrl, videoUrl, subtitleUrl } from 'src/api/api'
+import { answerFinished, faveMentor } from 'src/redux/actions'
 
 const FaveButton = () => {
     const dispatch = useDispatch()

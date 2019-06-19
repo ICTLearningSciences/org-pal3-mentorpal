@@ -2,8 +2,8 @@ import React from "react"
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@material-ui/core';
 
-import { selectTopic } from '../redux/actions'
-import { normalizeString } from '../funcs/funcs'
+import { selectTopic } from 'src/redux/actions'
+import { normalizeString } from 'src/funcs/funcs'
 
 const Topics = ({ onSelected }) => {
   const dispatch = useDispatch()

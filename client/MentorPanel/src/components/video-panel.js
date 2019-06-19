@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
 import { Sms, SmsFailed, Star } from '@material-ui/icons'
 
-import { selectMentor } from '../redux/actions'
-import { STATUS_READY, STATUS_ERROR } from '../redux/store'
+import { selectMentor } from 'src/redux/actions'
+import { STATUS_READY, STATUS_ERROR } from 'src/redux/store'
 
-import VideoThumbnail from "./video-thumbnail";
+import VideoThumbnail from "src/components/video-thumbnail";
 
 const LoadingSpinner = ({ mentor }) => {
   const question = useSelector(state => state.current_question)

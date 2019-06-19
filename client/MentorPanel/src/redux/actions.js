@@ -1,5 +1,5 @@
-import { topicsUrl, questionsUrl, queryMentor } from '../api/api'
-import { STATUS_READY } from './store'
+import { topicsUrl, questionsUrl, queryMentor } from 'src/api/api'
+import { STATUS_READY } from 'src/redux/store'
 
 export const MENTOR_LOADED = 'MENTOR_LOADED'          // mentor info was loaded
 export const MENTOR_SELECTED = 'MENTOR_SELECTED'      // mentor video was selected

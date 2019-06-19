@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button, List, ListItem } from '@material-ui/core'
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
-import { sendQuestion } from '../redux/actions'
-import { normalizeString } from '../funcs/funcs'
+import { sendQuestion } from 'src/redux/actions'
+import { normalizeString } from 'src/funcs/funcs'
 
 const Questions = ({ ...props }) => {
   const { classes } = props;
