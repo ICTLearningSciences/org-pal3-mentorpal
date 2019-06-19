@@ -63,4 +63,5 @@ lint: $(DEV_VIRTUAL_ENV)
 
 .PHONY: test
 test:
-	cd services/mentor-api/tests
+	cd services/mentor-api && \
+		$(MAKE) test
