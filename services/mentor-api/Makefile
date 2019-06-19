@@ -1,12 +1,27 @@
-DOCKER_IMAGE?=mentorpal-mentor-api
+SHELL:=/bin/bash
 DOCKER_CONTAINER?=mentorpal-mentor-api
 BUILD_TAG?=
-THIS_SERVICE_ROOT=$(shell pwd)
-SERVICES_ROOT=$(shell dirname $(THIS_SERVICE_ROOT))
+DOCKER_ACCOUNT?=
+PWD=$(shell pwd)
+SERVICE_NAME=$(shell v='$(PWD)'; echo "$${v\#\#*/}")
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
-
+PROJECT_NAME?=mentorpal
 DOCKER_BASE_IMAGE?=mentorpal-classifier$(shell echo "$${BUILD_TAG:+:}$${BUILD_TAG}")
 DOCKER_BASE_IMAGE_ID=$(shell docker images -q ${DOCKER_BASE_IMAGE} 2> /dev/null)
+DOCKER_IMAGE?=$(shell \
+	export BUILD_TAG=$(BUILD_TAG) \
+		PROJECT_ROOT=$(PROJECT_ROOT) \
+		PROJECT_NAME=$(PROJECT_NAME) \
+		DOCKER_ACCOUNT=$(DOCKER_ACCOUNT) && \
+	$(PROJECT_ROOT)/bin/print_service_tag.sh "$(SERVICE_NAME)"\
+)
+
+echo-docker-image:
+	@echo "BUILD_TAG=$(BUILD_TAG)"
+	@echo "DOCKER_ACCOUNT=$(DOCKER_ACCOUNT)"
+	@echo "PROJECT_NAME=$(PROJECT_NAME)"
+	@echo "SERVICE_NAME=$(SERVICE_NAME)"
+	@echo "DOCKER_IMAGE=$(DOCKER_IMAGE)"
 
 .PHONY: docker-build-base
 docker-build-base:
@@ -47,7 +62,7 @@ docker-run-dev:
 			--shm-size 8G \
 			-p 5000:5000 \
 			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
-			-v $(THIS_SERVICE_ROOT)/src/mentor_api:/app/mentor_api \
+			-v $(PWD)/src/mentor_api:/app/mentor_api \
 			-v $(PROJECT_ROOT)/src/mentorpal:/app/mentorpal \
 		$(DOCKER_IMAGE) 
 
@@ -61,7 +76,7 @@ docker-run-dev-shell:
 			--shm-size 8G \
 			-p 5000:5000 \
 			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
-			-v $(THIS_SERVICE_ROOT)/src/mentor_api:/app/mentor_api \
+			-v $(PWD)/src/mentor_api:/app/mentor_api \
 			-v $(PROJECT_ROOT)/src/mentorpal:/app/mentorpal \
 			--entrypoint /bin/bash \
 		$(DOCKER_IMAGE) 
@@ -78,11 +93,8 @@ BEHAVE_RESTFUL=$(PROJECT_ROOT)/behave-restful
 $(BEHAVE_RESTFUL)/setup.py:
 	@echo "initializing submodule behave-restful..."
 	cd $(PROJECT_ROOT) && \
-        git submodule init $(BEHAVE_RESTFUL) && \
-        git submodule update --remote $(BEHAVE_RESTFUL) && \
-		cd $(BEHAVE_RESTFUL) && \
-		git reset --hard && \
-		git pull
+        git submodule init && \
+        git submodule update --remote 
 
 
 TEST_VIRTUAL_ENV=.venv
@@ -100,7 +112,8 @@ test-env-create: $(PROJECT_ROOT)/behave-restful/setup.py
 
 
 .PHONY: test
-test:
+test: $(TEST_VIRTUAL_ENV)
 	source $(TEST_VIRTUAL_ENV)/bin/activate  && \
 		cd tests && \
+		export DOCKER_IMAGE=$(DOCKER_IMAGE) && \
 		bolt test-features

@@ -2,7 +2,7 @@ version: 2.1
 executors:
   ebs:
     docker:
-      - image: larrykirschner/circleci-elasticbeanstalk
+      - image: larrykirschner/circleci-elasticbeanstalk:7c095b9738d0baaea97acbaf1738db40fb0e5892
 aliases:
   # setup env vars for ebs tools
   - &branch-env-init
@@ -31,6 +31,14 @@ aliases:
         - qa-mentorpal
         - prod-mentorpal
 jobs:
+  tmp:
+    executor: ebs
+    steps:
+      - checkout
+      - run: *branch-env-init
+      - run:
+          name: get that tag
+          command: /ebs-tools/bin/docker_services.sh print-service-tag mentor-api
   test:
     docker:
       - image: circleci/python:3.7.3
@@ -42,7 +50,7 @@ jobs:
       - run:
           name: Lint
           command: make lint
-  docker-build-push:
+  docker-build-test:
     executor: ebs
     steps:
       - setup_remote_docker:
@@ -53,6 +61,13 @@ jobs:
       - run:
           name: Test
           command: make test
+  docker-push:
+    executor: ebs
+    steps:
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - checkout
+      - run: *branch-env-init
       - run: *docker-push
   ebs-deploy-dev:
     executor: ebs
@@ -70,36 +85,50 @@ workflows:
   version: 2
   deploy-to-dev:
     jobs:
-      - test
+      - tmp:
+          filters: *ignore-ebs-env-branches
+      - test:
+          filters: *ignore-ebs-env-branches
+      - docker-build-test:
+          requires:
+            - test
+          filters: *ignore-ebs-env-branches
       - deploy-to-dev:
           type: approval
           filters: *ignore-ebs-env-branches
           requires:
-            - test
-      - docker-build-push:
+            - docker-build-test
+      - docker-push:
           requires:
             - deploy-to-dev
           filters: *ignore-ebs-env-branches
       - ebs-deploy-dev:
           requires:
-            - docker-build-push
+            - docker-push
           filters: *ignore-ebs-env-branches
-  deploy-to-branch-env:
-    jobs:
-      - test
-      - deploy-to-branch-env:
-          type: approval
-          filters: *only-ebs-env-branches
-          requires:
-            - test
-      - docker-build-push:
-          requires:
-            - deploy-to-branch-env
-          filters: *only-ebs-env-branches
-      - ebs-deploy-branch-env:
-          requires:
-            - docker-build-push
-          filters: *only-ebs-env-branches
+#   deploy-to-branch-env:
+#     jobs:
+#       - test
+#       - docker-build-test:
+#           requires:
+#             - test
+#           filters: *only-ebs-env-branches
+#       - deploy-to-branch-env:
+#           type: approval
+#           filters: *only-ebs-env-branches
+#           requires:
+#             - docker-build-test
+#       - docker-push:
+#           requires:
+#             - deploy-to-branch-env
+#           filters: *only-ebs-env-branches
+#       - ebs-deploy-branch-env:
+#           requires:
+#             - docker-push
+#           filters: *only-ebs-env-branches
   
+            
+            
+            
             
             
