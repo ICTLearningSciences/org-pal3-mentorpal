@@ -7,6 +7,7 @@ import { Button, List, ListItem } from '@material-ui/core'
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import { sendQuestion } from '../redux/actions'
+import { normalizeString } from '../funcs/funcs'
 
 const Questions = ({ ...props }) => {
   const { classes } = props;
@@ -33,7 +34,7 @@ const Questions = ({ ...props }) => {
             <ListItem key={i}>
               <Button
                 className={classNames(classes.button)}
-                style={{ color: questions_asked.includes(question.normalize()) ? 'blue' : 'black' }}
+                style={{ color: questions_asked.includes(normalizeString(question)) ? 'gray' : 'black' }}
                 onClick={() => onQuestionSelected(question)}>
                 {question}
               </Button>

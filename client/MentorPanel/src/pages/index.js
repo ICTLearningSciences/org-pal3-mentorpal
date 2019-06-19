@@ -8,8 +8,6 @@ import Header from '../components/header'
 import Input from '../components/input'
 import Video from '../components/video'
 import VideoPanel from '../components/video-panel'
-import Topics from '../components/topics'
-import Questions from '../components/questions'
 import "../styles/layout.css"
 
 const IndexPage = ({ ...props }) => {
@@ -24,19 +22,13 @@ const IndexPage = ({ ...props }) => {
   })
 
   return (
-    <div className='flex'>
-      <div className='content'>
+    <div>
+      <div id='player'>
         <VideoPanel />
         <Header />
         <Video />
-        <Topics />
       </div>
-      <div className='expand' id='question-container'>
-        <Questions />
-      </div>
-      <div className='footer'>
-        <Input />
-      </div>
+      <Input />
     </div>
   )
 }

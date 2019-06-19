@@ -36,10 +36,12 @@ export const loadQuestions = mentor_id => (dispatch) => {
 
         topics.forEach(topic => {
           if (!topic) { return }
-          try {
+          
+          if (!questions[topic]) {
+            questions[topic] = []
+          }
+          if (!questions[topic].includes(question)) {
             questions[topic].push(question)
-          } catch {
-            questions[topic] = [question]
           }
         });
       }
@@ -61,11 +63,14 @@ const loadTopics = (mentor_id, questions) => (dispatch) => {
         const topicGroup = results.data[i][1]
         const topicQuestions = questions[topicName] ? questions[topicName] : []
 
-        try {
-          topic_questions[topicGroup] = topic_questions[topicGroup].concat(topicQuestions)
-        } catch {
-          topic_questions[topicGroup] = topicQuestions
+        if (!topic_questions[topicGroup]) {
+          topic_questions[topicGroup] = []
         }
+        topicQuestions.forEach(question => {
+          if (!topic_questions[topicGroup].includes(question)) {
+            topic_questions[topicGroup].push(question)
+          }
+        });
       }
 
       dispatch({

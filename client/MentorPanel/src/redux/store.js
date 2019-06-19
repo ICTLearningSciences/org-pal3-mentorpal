@@ -10,6 +10,7 @@ import {
   QUESTION_ERROR,
   ANSWER_FINISHED,
 } from './actions'
+import { normalizeString } from '../funcs/funcs'
 
 export const STATUS_READY = 'READY'
 export const STATUS_ANSWERED = 'ANSWERED'
@@ -103,7 +104,7 @@ const store = (state = initialState, action) => {
         current_question: action.question,
         questions_asked: [
           ...state.questions_asked,
-          action.question.normalize()
+          normalizeString(action.question)
         ]
       }
 
