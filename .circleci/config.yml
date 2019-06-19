@@ -50,6 +50,9 @@ jobs:
       - checkout
       - run: *branch-env-init
       - run: *docker-build
+      - run:
+          name: Test
+          command: make test
       - run: *docker-push
   ebs-deploy-dev:
     executor: ebs
