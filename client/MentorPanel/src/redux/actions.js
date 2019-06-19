@@ -1,3 +1,5 @@
+import Papa from 'papaparse'
+
 import { topicsUrl, questionsUrl, queryMentor } from 'src/api/api'
 import { STATUS_READY } from 'src/redux/store'
 
@@ -22,21 +24,16 @@ export const loadMentor = mentor => (dispatch) => {
 }
 
 export const loadQuestions = mentor_id => (dispatch) => {
-  const Papa = require('papaparse/papaparse.min.js')
   const questions_url = questionsUrl(mentor_id)
-  const questions = {}
 
   Papa.parse(questions_url, {
     download: true,
     complete: (results) => {
-      for (let i = 1; i < results.data.length; i++) {
-        const topics = results.data[i][0].split(', ')
-        const question = results.data[i][3]
-        if (!question) { continue }
+      const questions = results.data.reduce((questions, data) => {
+        const topics = data[0].split(', ')
+        const question = data[3]
 
         topics.forEach(topic => {
-          if (!topic) { return }
-          
           if (!questions[topic]) {
             questions[topic] = []
           }
@@ -44,34 +41,38 @@ export const loadQuestions = mentor_id => (dispatch) => {
             questions[topic].push(question)
           }
         });
-      }
+
+        return questions
+      }, {})
+
       dispatch(loadTopics(mentor_id, questions))
     }
   })
 }
 
 const loadTopics = (mentor_id, questions) => (dispatch) => {
-  const Papa = require('papaparse/papaparse.min.js')
   const topics_url = topicsUrl(mentor_id)
-  const topic_questions = {}
 
   Papa.parse(topics_url, {
     download: true,
     complete: (results) => {
-      for (var i = 0; i < results.data.length - 3; i++) {
-        const topicName = results.data[i][0]
-        const topicGroup = results.data[i][1]
-        const topicQuestions = questions[topicName] ? questions[topicName] : []
+      const topic_questions = results.data.reduce((topic_questions, data) => {
+        const topicName = data[0]
+        const topicGroup = data[1]
+        const topicQuestions = questions[topicName]
+
+        if (!topicName || !topicGroup || !topicQuestions) {
+          return topic_questions
+        }
 
         if (!topic_questions[topicGroup]) {
           topic_questions[topicGroup] = []
         }
-        topicQuestions.forEach(question => {
-          if (!topic_questions[topicGroup].includes(question)) {
-            topic_questions[topicGroup].push(question)
-          }
-        });
-      }
+        topic_questions[topicGroup] = topic_questions[topicGroup].concat(topicQuestions)
+        topic_questions[topicGroup] = Array.from(new Set(topic_questions[topicGroup]))
+
+        return topic_questions
+      }, {})
 
       dispatch({
         type: MENTOR_TOPIC_QUESTIONS_LOADED,
