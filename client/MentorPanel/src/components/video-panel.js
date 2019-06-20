@@ -1,6 +1,6 @@
 import React from "react"
 import { useSelector, useDispatch } from 'react-redux';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Paper } from '@material-ui/core';
 import { Sms, SmsFailed, Star } from '@material-ui/icons'
 
 import { selectMentor } from 'src/redux/actions'
@@ -56,22 +56,24 @@ const VideoPanel = () => {
   }
 
   return (
-    <div className="carousel">
-      {
-        Object.keys(mentors).map((id, i) =>
-          <div
-            className={`slide video-slide ${id === mentor ? 'selected' : ''}`}
-            key={`${id}-${i}`}
-            onClick={() => onClick(mentors[id])}
-          >
-            <VideoThumbnail mentor={mentors[id]} />
-            <LoadingSpinner mentor={mentors[id]} />
-            <MessageStatus mentor={mentors[id]} />
-            <StarIcon mentor={mentors[id]} />
-          </div>
-        )
-      }
-    </div>
+    <Paper elevation={1} square={true}>
+      <div className="carousel">
+        {
+          Object.keys(mentors).map((id, i) =>
+            <div
+              className={`slide video-slide ${id === mentor ? 'selected' : ''}`}
+              key={`${id}-${i}`}
+              onClick={() => onClick(mentors[id])}
+            >
+              <VideoThumbnail mentor={mentors[id]} />
+              <LoadingSpinner mentor={mentors[id]} />
+              <MessageStatus mentor={mentors[id]} />
+              <StarIcon mentor={mentors[id]} />
+            </div>
+          )
+        }
+      </div>
+    </Paper>
   )
 }
 
