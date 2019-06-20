@@ -1,14 +1,15 @@
 import React, { useEffect } from "react"
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 import { graphql } from "gatsby"
 
-import { loadMentor, selectMentor } from '../redux/actions'
+import { loadMentor, selectMentor } from 'src/redux/actions'
 
-import Header from '../components/header'
-import Input from '../components/input'
-import Layout from "../components/layout"
-import Video from "../components/video"
-import VideoPanel from '../components/video-panel'
+import Header from 'src/components/header'
+import Input from 'src/components/input'
+import Video from 'src/components/video'
+import VideoPanel from 'src/components/video-panel'
+
+import "src/styles/layout.css"
 
 const IndexPage = ({ ...props }) => {
   const dispatch = useDispatch()
@@ -22,12 +23,14 @@ const IndexPage = ({ ...props }) => {
   })
 
   return (
-    <Layout>
-      <VideoPanel />
-      <Header />
-      <Video />
+    <div>
+      <div id='player'>
+        <VideoPanel />
+        <Header />
+        <Video />
+      </div>
       <Input />
-    </Layout>
+    </div>
   )
 }
 

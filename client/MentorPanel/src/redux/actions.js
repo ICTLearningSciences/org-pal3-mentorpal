@@ -1,5 +1,7 @@
-import { queryMentor } from '../api/api'
-import { STATUS_READY } from './store'
+import Papa from 'papaparse'
+
+import { topicsUrl, questionsUrl, queryMentor } from 'src/api/api'
+import { STATUS_READY } from 'src/redux/store'
 
 export const MENTOR_LOADED = 'MENTOR_LOADED'          // mentor info was loaded
 export const MENTOR_SELECTED = 'MENTOR_SELECTED'      // mentor video was selected
@@ -10,10 +12,76 @@ export const QUESTION_ANSWERED = 'QUESTION_ANSWERED'  // question was answered b
 export const QUESTION_ERROR = 'QUESTION_ERROR'        // question could not be answered by mentor
 export const ANSWER_FINISHED = 'ANSWER_FINISHED'      // mentor video has finished playing
 
-export const loadMentor = mentor => ({
-  type: MENTOR_LOADED,
-  mentor: mentor,
-})
+export const MENTOR_TOPIC_QUESTIONS_LOADED = 'MENTOR_TOPIC_QUESTIONS_LOADED'
+export const TOPIC_SELECTED = 'TOPIC_SELECTED'
+
+export const loadMentor = mentor => (dispatch) => {
+  dispatch({
+    type: MENTOR_LOADED,
+    mentor: mentor,
+  })
+  dispatch(loadQuestions(mentor.id))
+}
+
+export const loadQuestions = mentor_id => (dispatch) => {
+  const questions_url = questionsUrl(mentor_id)
+
+  Papa.parse(questions_url, {
+    download: true,
+    complete: (results) => {
+      const questions = results.data.reduce((questions, data) => {
+        const topics = data[0].split(', ')
+        const question = data[3]
+
+        topics.forEach(topic => {
+          if (!questions[topic]) {
+            questions[topic] = []
+          }
+          if (!questions[topic].includes(question)) {
+            questions[topic].push(question)
+          }
+        });
+
+        return questions
+      }, {})
+
+      dispatch(loadTopics(mentor_id, questions))
+    }
+  })
+}
+
+const loadTopics = (mentor_id, questions) => (dispatch) => {
+  const topics_url = topicsUrl(mentor_id)
+
+  Papa.parse(topics_url, {
+    download: true,
+    complete: (results) => {
+      const topic_questions = results.data.reduce((topic_questions, data) => {
+        const topicName = data[0]
+        const topicGroup = data[1]
+        const topicQuestions = questions[topicName]
+
+        if (!topicName || !topicGroup || !topicQuestions) {
+          return topic_questions
+        }
+
+        if (!topic_questions[topicGroup]) {
+          topic_questions[topicGroup] = []
+        }
+        topic_questions[topicGroup] = topic_questions[topicGroup].concat(topicQuestions)
+        topic_questions[topicGroup] = Array.from(new Set(topic_questions[topicGroup]))
+
+        return topic_questions
+      }, {})
+
+      dispatch({
+        type: MENTOR_TOPIC_QUESTIONS_LOADED,
+        id: mentor_id,
+        topic_questions: topic_questions
+      })
+    }
+  })
+}
 
 export const selectMentor = mentor_id => (dispatch) => {
   dispatch(onInput())
@@ -23,12 +91,18 @@ export const selectMentor = mentor_id => (dispatch) => {
   })
 }
 
+export const selectTopic = topic => ({
+  type: TOPIC_SELECTED,
+  topic: topic,
+})
+
 export const faveMentor = mentor_id => ({
   type: MENTOR_FAVED,
   id: mentor_id,
 })
 
 export const sendQuestion = question => async (dispatch, getState) => {
+  dispatch(onInput())
   dispatch(onQuestionSent(question))
 
   const state = getState()
@@ -95,7 +169,7 @@ export const answerFinished = () => (dispatch, getState) => {
   const next_mentor = responses.find(response => {
     return response.status === STATUS_READY && !response.is_off_topic
   })
-  
+
   // set the next mentor to start playing, if there is one
   if (!next_mentor) {
     return
@@ -119,7 +193,6 @@ export const onInput = () => (dispatch) => {
   }
   dispatch(nextMentor(''))
 }
-
 
 const onQuestionSent = question => ({
   type: QUESTION_SENT,

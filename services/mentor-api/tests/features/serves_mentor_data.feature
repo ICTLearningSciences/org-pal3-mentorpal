@@ -8,14 +8,14 @@ Feature: Serves mentor data
   Examples: Queries
     | mentor    | data_file                           |
     | clint     | topics.csv                          |
-    | clint     | Questions_Paraphrases_Answers.csv   |
+    | clint     | questions_paraphrases_answers.csv   |
     | clint     | classifier_data.csv                 |
     | dan       | topics.csv                          |
-    | dan       | Questions_Paraphrases_Answers.csv   |
+    | dan       | questions_paraphrases_answers.csv   |
     | dan       | classifier_data.csv                 |
     | carlos    | topics.csv                          |
-    | carlos    | Questions_Paraphrases_Answers.csv   |
+    | carlos    | questions_paraphrases_answers.csv   |
     | carlos    | classifier_data.csv                 |
     | julianne  | topics.csv                          |
-    | julianne  | Questions_Paraphrases_Answers.csv   |
+    | julianne  | questions_paraphrases_answers.csv   |
     | julianne  | classifier_data.csv                 |

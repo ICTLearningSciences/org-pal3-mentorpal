@@ -1,9 +1,12 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, connect } from 'react-redux';
 import { Button, Divider, InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
-import { sendQuestion, onInput } from '../redux/actions'
+import { sendQuestion, onInput } from 'src/redux/actions'
+
+import Topics from 'src/components/topics'
+import Questions from 'src/components/questions'
 
 const SendButton = ({ text }) => {
   const dispatch = useDispatch()
@@ -62,27 +65,53 @@ const InputField = ({ text, onSelect, onChange }) => {
 class Input extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { text: '' };
+    this.state = { text: '', height: 0 };
   }
 
-  onChange = (e) => {
+  componentDidUpdate(prevProps) {
+    if (prevProps.current_question !== this.props.current_question && this.state.text) {
+      this.setState({ text: '' })
+    }
+
+    const node = document.getElementById('player')
+    if (node) {
+      const height = window.innerHeight - node.clientHeight
+      if (height !== this.state.height) {
+        this.setState({ height: window.innerHeight - node.clientHeight })
+      }
+    }
+  }
+
+  onInputChanged = (e) => {
     this.setState({ text: e.target.value })
   }
 
-  clear = () => {
+  onInputSelected = () => {
     this.setState({ text: '' })
+  }
+
+  onTopicSelected = (question) => {
+    this.setState({ text: question })
   }
 
   render() {
     const { classes } = this.props;
 
     return (
-      <div id='footer'>
-        <Paper className={classes.root}>
-          <InputField text={this.state.text} onSelect={this.clear} onChange={this.onChange} />
-          <Divider className={classes.divider} />
-          <SendButton text={this.state.text} />
-        </Paper>
+      <div className='flex' style={{ minHeight: this.state.height }}>
+        <div className='content'>
+          <Topics onSelected={this.onTopicSelected} />
+        </div>
+        <div className='expand' id='question-container'>
+          <Questions />
+        </div>
+        <div className='footer'>
+          <Paper className={classes.root}>
+            <InputField text={this.state.text} onSelect={this.onInputSelected} onChange={this.onInputChanged} />
+            <Divider className={classes.divider} />
+            <SendButton text={this.state.text} />
+          </Paper>
+        </div>
       </div>
     )
   }
@@ -101,4 +130,11 @@ const styles = {
   },
 }
 
-export default withStyles(styles)(Input)
+const mapStateToProps = (state) => {
+  return {
+    current_question: state.current_question,
+    current_mentor: state.current_mentor,
+  }
+}
+
+export default withStyles(styles)(connect(mapStateToProps)(Input))

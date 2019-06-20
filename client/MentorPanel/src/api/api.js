@@ -16,6 +16,14 @@ export const subtitleUrl = (mentor) => {
   return `${MENTOR_API_URL}/mentors/${mentor.id}/tracks/${mentor.answer_id}.vtt`
 }
 
+export const topicsUrl = (mentor_id) => {
+  return `${MENTOR_API_URL}/mentors/${mentor_id}/data/topics.csv`
+}
+
+export const questionsUrl = (mentor_id) => {
+  return `${MENTOR_API_URL}/mentors/${mentor_id}/data/questions_paraphrases_answers.csv`
+}
+
 export const queryMentor = async (mentor_id, question) => {
   const res = await axios.get(
     `${MENTOR_API_URL}/questions/`, {

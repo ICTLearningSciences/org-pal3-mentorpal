@@ -1,8 +1,8 @@
 import React from "react"
 import ReactPlayer from 'react-player'
 
-import { idleUrl } from '../api/api'
-import { STATUS_ERROR } from '../redux/store'
+import { idleUrl } from 'src/api/api'
+import { STATUS_ERROR } from 'src/redux/store'
 
 class VideoThumbnail extends React.Component {
   constructor(props) {
@@ -23,11 +23,10 @@ class VideoThumbnail extends React.Component {
       <ReactPlayer
         style={{ opacity: isDisabled ? '0.25' : '1' }}
         url={src}
-        height={80}
-        width={80}
+        height={60}
+        width={60}
         onStart={this.onStart}
         playing={this.state.isPlaying}
-        preload={true}
         volume={0.0}
         muted={true}
         controls={false}
