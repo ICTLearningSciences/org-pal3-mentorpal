@@ -1,22 +1,20 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import FlipMove from 'react-flip-move';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, List, ListItem } from '@material-ui/core'
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { List } from '@material-ui/core'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import { sendQuestion } from 'src/redux/actions'
-import { normalizeString } from 'src/funcs/funcs'
 
-const Questions = ({ ...props }) => {
-  const { classes } = props;
+import ScrollingQuestions from 'src/components/scrolling_questions'
+
+const Questions = () => {
   const dispatch = useDispatch()
   const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
   const current_topic = useSelector(state => state.current_topic)
   const questions_asked = useSelector(state => state.questions_asked)
 
-  if (!mentor || !current_topic || !mentor.topic_questions  || !mentor.topic_questions[current_topic]) {
+  if (!mentor || !current_topic || !mentor.topic_questions || !mentor.topic_questions[current_topic]) {
     return <div></div>
   }
 
@@ -30,28 +28,15 @@ const Questions = ({ ...props }) => {
     <MuiThemeProvider theme={theme}>
       <List style={{ maxHeight: height * 0.9, overflow: 'auto' }}>
         <FlipMove>
-          {questions.map((question, i) =>
-            <ListItem key={i}>
-              <Button
-                className={classNames(classes.button)}
-                style={{ color: questions_asked.includes(normalizeString(question)) ? 'gray' : 'black' }}
-                onClick={() => onQuestionSelected(question)}>
-                {question}
-              </Button>
-            </ListItem>
-          )}
+          <ScrollingQuestions
+            questions={questions}
+            questions_asked={questions_asked}
+            onQuestionSelected={onQuestionSelected} />
         </FlipMove>
       </List>
     </MuiThemeProvider>
   )
 }
-
-const styles = ({
-  button: {
-    textTransform: 'none',
-    textAlign: 'left',
-  },
-});
 
 const theme = createMuiTheme({
   palette: {
@@ -60,8 +45,4 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
-Questions.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Questions);
+export default Questions

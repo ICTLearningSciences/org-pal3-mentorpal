@@ -100,13 +100,15 @@ class Input extends React.Component {
     return (
       <div className='flex' style={{ minHeight: this.state.height }}>
         <div className='content'>
-          <Topics onSelected={this.onTopicSelected} />
+          <Paper elevation={1} square={true}>
+            <Topics onSelected={this.onTopicSelected} />
+          </Paper>
         </div>
         <div className='expand' id='question-container'>
           <Questions />
         </div>
         <div className='footer'>
-          <Paper className={classes.root}>
+          <Paper className={classes.root} elevation={3} square={true}>
             <InputField text={this.state.text} onSelect={this.onInputSelected} onChange={this.onInputChanged} />
             <Divider className={classes.divider} />
             <SendButton text={this.state.text} />
