@@ -7,23 +7,22 @@ export const MENTOR_LOADED = 'MENTOR_LOADED'          // mentor info was loaded
 export const MENTOR_SELECTED = 'MENTOR_SELECTED'      // mentor video was selected
 export const MENTOR_FAVED = 'MENTOR_FAVED'            // mentor was favorited
 export const MENTOR_NEXT = 'MENTOR_NEXT'              // set next mentor to play after current
+export const MENTOR_TOPIC_QUESTIONS_LOADED = 'MENTOR_TOPIC_QUESTIONS_LOADED'
+export const TOPIC_SELECTED = 'TOPIC_SELECTED'
+
 export const QUESTION_SENT = 'QUESTION_SENT'          // question input was sent
 export const QUESTION_ANSWERED = 'QUESTION_ANSWERED'  // question was answered by mentor
 export const QUESTION_ERROR = 'QUESTION_ERROR'        // question could not be answered by mentor
 export const ANSWER_FINISHED = 'ANSWER_FINISHED'      // mentor video has finished playing
-
-export const MENTOR_TOPIC_QUESTIONS_LOADED = 'MENTOR_TOPIC_QUESTIONS_LOADED'
-export const TOPIC_SELECTED = 'TOPIC_SELECTED'
 
 export const loadMentor = mentor => (dispatch) => {
   dispatch({
     type: MENTOR_LOADED,
     mentor: mentor,
   })
-  dispatch(loadQuestions(mentor.id))
 }
 
-export const loadQuestions = mentor_id => (dispatch) => {
+export const loadQuestions = (mentor_id, recommended) => (dispatch) => {
   const questions_url = questionsUrl(mentor_id)
 
   Papa.parse(questions_url, {
@@ -45,18 +44,18 @@ export const loadQuestions = mentor_id => (dispatch) => {
         return questions
       }, {})
 
-      dispatch(loadTopics(mentor_id, questions))
+      dispatch(loadTopics(mentor_id, questions, recommended))
     }
   })
 }
 
-const loadTopics = (mentor_id, questions) => (dispatch) => {
+const loadTopics = (mentor_id, questions, recommended) => (dispatch) => {
   const topics_url = topicsUrl(mentor_id)
 
   Papa.parse(topics_url, {
     download: true,
     complete: (results) => {
-      const topic_questions = results.data.reduce((topic_questions, data) => {
+      var topic_questions = results.data.reduce((topic_questions, data) => {
         const topicName = data[0]
         const topicGroup = data[1]
         const topicQuestions = questions[topicName]
@@ -73,6 +72,16 @@ const loadTopics = (mentor_id, questions) => (dispatch) => {
 
         return topic_questions
       }, {})
+
+      if (recommended) {
+        topic_questions = {
+          ['Recommended']: recommended,
+          ...topic_questions
+        }
+      }
+
+      const firstTopic = Object.keys(topic_questions)[0]
+      dispatch(selectTopic(firstTopic))
 
       dispatch({
         type: MENTOR_TOPIC_QUESTIONS_LOADED,

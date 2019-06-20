@@ -19,7 +19,9 @@ const Questions = () => {
   }
 
   const questions = mentor.topic_questions[current_topic]
+  const recommended = mentor.topic_questions['Recommended'] ? mentor.topic_questions['Recommended'] : []
   const height = document.getElementById('question-container').clientHeight
+
   const onQuestionSelected = (question) => {
     dispatch(sendQuestion(question))
   }
@@ -31,6 +33,7 @@ const Questions = () => {
           <ScrollingQuestions
             questions={questions}
             questions_asked={questions_asked}
+            recommended={recommended}
             onQuestionSelected={onQuestionSelected} />
         </FlipMove>
       </List>

@@ -6,19 +6,34 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { normalizeString } from 'src/funcs/funcs'
 
-const ScrollingQuestions = ({ questions, questions_asked, onQuestionSelected, ...props }) => {
+const ScrollingQuestions = ({ questions, questions_asked, recommended, onQuestionSelected, ...props }) => {
   const { classes } = props;
 
   useEffect(() => {
     const top_question = questions.find(q => {
       return !questions_asked.includes(normalizeString(q))
     })
-
-    const node = document.getElementById(top_question);
+    const node = document.getElementById(top_question)
+    if (!top_question || !node) {
+      return
+    }
     node.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
     })
+  })
+
+  questions.sort((a, b) => {
+    if (recommended.includes(a) && recommended.includes(b)) {
+      return 0
+    }
+    if (recommended.includes(a)) {
+      return -1
+    }
+    if (recommended.includes(b)) {
+      return 1
+    }
+    return 0
   })
 
   return (
@@ -26,9 +41,14 @@ const ScrollingQuestions = ({ questions, questions_asked, onQuestionSelected, ..
       <ListItem key={i} id={question}>
         <Button
           className={classNames(classes.button)}
+          fullWidth={true}
           style={{ color: questions_asked.includes(normalizeString(question)) ? 'gray' : 'black' }}
-          onClick={() => onQuestionSelected(question)}>
-          {question}
+          onClick={() => onQuestionSelected(question)}
+        >
+          <div style={{ width: '100%' }}>
+            {recommended.includes(question) ? ' * ' : ''}
+            {question}
+          </div>
         </Button>
       </ListItem>
     )
