@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from "react"
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { Button, ListItem } from '@material-ui/core'
@@ -6,36 +6,33 @@ import { withStyles } from '@material-ui/core/styles'
 
 import { normalizeString } from 'src/funcs/funcs'
 
-class ScrollingQuestions extends React.Component {
+const ScrollingQuestions = ({ questions, questions_asked, onQuestionSelected, ...props }) => {
+  const { classes } = props;
 
-  componentDidUpdate() {
-    const top_question = this.props.questions.find(q => {
-      return !this.props.questions_asked.includes(normalizeString(q))
+  useEffect(() => {
+    const top_question = questions.find(q => {
+      return !questions_asked.includes(normalizeString(q))
     })
-    
+
     const node = document.getElementById(top_question);
     node.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
     })
-  }
+  })
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      this.props.questions.map((question, i) =>
-        <ListItem key={i} id={question}>
-          <Button
-            className={classNames(classes.button)}
-            style={{ color: this.props.questions_asked.includes(normalizeString(question)) ? 'gray' : 'black' }}
-            onClick={() => this.props.onQuestionSelected(question)}>
-            {question}
-          </Button>
-        </ListItem>
-      )
+  return (
+    questions.map((question, i) =>
+      <ListItem key={i} id={question}>
+        <Button
+          className={classNames(classes.button)}
+          style={{ color: questions_asked.includes(normalizeString(question)) ? 'gray' : 'black' }}
+          onClick={() => onQuestionSelected(question)}>
+          {question}
+        </Button>
+      </ListItem>
     )
-  }
+  )
 }
 
 const styles = ({
