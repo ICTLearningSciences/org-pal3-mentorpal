@@ -22,73 +22,57 @@ export const loadMentor = mentor => (dispatch) => {
   })
 }
 
-export const loadQuestions = (mentor_id, recommended) => (dispatch) => {
+export const loadQuestions = (mentor_id, recommended) => async (dispatch) => {
   const questions_url = questionsUrl(mentor_id)
+  const results = await papaParseAsync(questions_url)
 
-  Papa.parse(questions_url, {
-    download: true,
-    complete: (results) => {
-      const questions = results.data.reduce((questions, data) => {
-        const topics = data[0].split(', ')
-        const question = data[3]
+  const questions = results.data.reduce((questions, data) => {
+    const topics = data[0].split(', ')
+    const question = data[3]
+    
+    topics.forEach(topic => {
+      questions[topic] = questions[topic] || []
+      if (!questions[topic].includes(question)) {
+        questions[topic].push(question)
+      }
+    });
+    return questions
+  }, {})
 
-        topics.forEach(topic => {
-          if (!questions[topic]) {
-            questions[topic] = []
-          }
-          if (!questions[topic].includes(question)) {
-            questions[topic].push(question)
-          }
-        });
-
-        return questions
-      }, {})
-
-      dispatch(loadTopics(mentor_id, questions, recommended))
-    }
-  })
+  dispatch(loadTopics(mentor_id, questions, recommended))
 }
 
-const loadTopics = (mentor_id, questions, recommended) => (dispatch) => {
+const loadTopics = (mentor_id, questions, recommended) => async (dispatch) => {
   const topics_url = topicsUrl(mentor_id)
+  const results = await papaParseAsync(topics_url)
 
-  Papa.parse(topics_url, {
-    download: true,
-    complete: (results) => {
-      var topic_questions = results.data.reduce((topic_questions, data) => {
-        const topicName = data[0]
-        const topicGroup = data[1]
-        const topicQuestions = questions[topicName]
+  var topic_questions = results.data.reduce((topic_questions, data) => {
+    const topicName = data[0]
+    const topicGroup = data[1]
+    const topicQuestions = questions[topicName]
 
-        if (!topicName || !topicGroup || !topicQuestions) {
-          return topic_questions
-        }
-
-        if (!topic_questions[topicGroup]) {
-          topic_questions[topicGroup] = []
-        }
-        topic_questions[topicGroup] = topic_questions[topicGroup].concat(topicQuestions)
-        topic_questions[topicGroup] = Array.from(new Set(topic_questions[topicGroup]))
-
-        return topic_questions
-      }, {})
-
-      if (recommended) {
-        topic_questions = {
-          ['Recommended']: recommended,
-          ...topic_questions
-        }
-      }
-
-      const firstTopic = Object.keys(topic_questions)[0]
-      dispatch(selectTopic(firstTopic))
-
-      dispatch({
-        type: MENTOR_TOPIC_QUESTIONS_LOADED,
-        id: mentor_id,
-        topic_questions: topic_questions
-      })
+    if (!(topicName && topicGroup && topicQuestions)) {
+      return topic_questions
     }
+    topic_questions[topicGroup] = topic_questions[topicGroup] || []
+    topic_questions[topicGroup] = topic_questions[topicGroup].concat(topicQuestions)
+    topic_questions[topicGroup] = Array.from(new Set(topic_questions[topicGroup]))
+    return topic_questions
+  }, {})
+
+  if (recommended) {
+    topic_questions = {
+      ['Recommended']: recommended,
+      ...topic_questions
+    }
+  }
+
+  const firstTopic = Object.keys(topic_questions)[0]
+  dispatch(selectTopic(firstTopic))
+  dispatch({
+    type: MENTOR_TOPIC_QUESTIONS_LOADED,
+    id: mentor_id,
+    topic_questions: topic_questions
   })
 }
 
@@ -203,6 +187,7 @@ export const onInput = () => (dispatch) => {
   dispatch(nextMentor(''))
 }
 
+
 const onQuestionSent = question => ({
   type: QUESTION_SENT,
   question: question
@@ -227,3 +212,9 @@ const nextMentor = (id) => ({
   type: MENTOR_NEXT,
   mentor: id,
 })
+
+const papaParseAsync = (url) => {
+  return new Promise(function (complete, error) {
+    Papa.parse(url, { download: true, complete, error });
+  });
+}

@@ -28,7 +28,7 @@ const Questions = () => {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <List style={{ maxHeight: height * 0.9, overflow: 'auto' }}>
+      <List disablePadding={true} style={{ maxHeight: height * 0.95, overflow: 'auto' }}>
         <FlipMove>
           <ScrollingQuestions
             questions={questions}
