@@ -14,12 +14,12 @@ const Questions = () => {
   const current_topic = useSelector(state => state.current_topic)
   const questions_asked = useSelector(state => state.questions_asked)
 
-  if (!mentor || !current_topic || !mentor.topic_questions || !mentor.topic_questions[current_topic]) {
+  if (!(mentor && current_topic && mentor.topic_questions)) {
     return <div></div>
   }
 
-  const questions = mentor.topic_questions[current_topic]
-  const recommended = mentor.topic_questions['Recommended'] ? mentor.topic_questions['Recommended'] : []
+  const questions = mentor.topic_questions[current_topic] || []
+  const recommended = mentor.topic_questions['Recommended'] || []
   const height = document.getElementById('question-container').clientHeight
 
   const onQuestionSelected = (question) => {
