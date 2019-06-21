@@ -7,6 +7,7 @@
   "dependencies": {
     "@material-ui/core": "^4.0.1",
     "@material-ui/icons": "^4.0.1",
+    "@reach/router": "^1.2.1",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "gatsby": "^2.7.3",
@@ -22,6 +23,7 @@
     "gatsby-transformer-sharp": "^2.1.19",
     "papaparse": "^5.0.0",
     "prop-types": "^15.7.2",
+    "query-string": "^6.8.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-flip-move": "^3.0.3",

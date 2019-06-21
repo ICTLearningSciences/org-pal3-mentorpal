@@ -1,6 +1,6 @@
 import React from "react"
 import { useSelector, useDispatch } from 'react-redux';
-import { CircularProgress, Paper } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
 import { Sms, SmsFailed, Star } from '@material-ui/icons'
 
 import { selectMentor } from 'src/redux/actions'
@@ -56,7 +56,6 @@ const VideoPanel = () => {
   }
 
   return (
-    <Paper elevation={1} square={true}>
       <div className="carousel">
         {
           Object.keys(mentors).map((id, i) =>
@@ -73,7 +72,6 @@ const VideoPanel = () => {
           )
         }
       </div>
-    </Paper>
   )
 }
 
