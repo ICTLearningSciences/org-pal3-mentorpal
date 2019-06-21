@@ -24,56 +24,66 @@ export const loadMentor = mentor => (dispatch) => {
 
 export const loadQuestions = (mentor_id, recommended) => async (dispatch) => {
   const questions_url = questionsUrl(mentor_id)
-  const results = await papaParseAsync(questions_url)
 
-  const questions = results.data.reduce((questions, data) => {
-    const topics = data[0].split(', ')
-    const question = data[3]
-    
-    topics.forEach(topic => {
-      questions[topic] = questions[topic] || []
-      if (!questions[topic].includes(question)) {
-        questions[topic].push(question)
-      }
-    });
-    return questions
-  }, {})
+  try {
+    const results = await papaParseAsync(questions_url)
+    const questions = results.data.reduce((questions, data) => {
+      const topics = data[0].split(', ')
+      const question = data[3]
 
-  dispatch(loadTopics(mentor_id, questions, recommended))
+      topics.forEach(topic => {
+        questions[topic] = questions[topic] || []
+        if (!questions[topic].includes(question)) {
+          questions[topic].push(question)
+        }
+      });
+      return questions
+    }, {})
+
+    dispatch(loadTopics(mentor_id, questions, recommended))
+  }
+  catch (err) {
+    console.error(err)
+  }
 }
 
 const loadTopics = (mentor_id, questions, recommended) => async (dispatch) => {
   const topics_url = topicsUrl(mentor_id)
-  const results = await papaParseAsync(topics_url)
 
-  var topic_questions = results.data.reduce((topic_questions, data) => {
-    const topicName = data[0]
-    const topicGroup = data[1]
-    const topicQuestions = questions[topicName]
+  try {
+    const results = await papaParseAsync(topics_url)
+    var topic_questions = results.data.reduce((topic_questions, data) => {
+      const topicName = data[0]
+      const topicGroup = data[1]
+      const topicQuestions = questions[topicName]
 
-    if (!(topicName && topicGroup && topicQuestions)) {
+      if (!(topicName && topicGroup && topicQuestions)) {
+        return topic_questions
+      }
+      topic_questions[topicGroup] = topic_questions[topicGroup] || []
+      topic_questions[topicGroup] = topic_questions[topicGroup].concat(topicQuestions)
+      topic_questions[topicGroup] = Array.from(new Set(topic_questions[topicGroup]))
       return topic_questions
-    }
-    topic_questions[topicGroup] = topic_questions[topicGroup] || []
-    topic_questions[topicGroup] = topic_questions[topicGroup].concat(topicQuestions)
-    topic_questions[topicGroup] = Array.from(new Set(topic_questions[topicGroup]))
-    return topic_questions
-  }, {})
+    }, {})
 
-  if (recommended) {
-    topic_questions = {
-      ['Recommended']: recommended,
-      ...topic_questions
+    if (recommended) {
+      topic_questions = {
+        ['Recommended']: recommended,
+        ...topic_questions
+      }
     }
+
+    const firstTopic = Object.keys(topic_questions)[0]
+    dispatch(selectTopic(firstTopic))
+    dispatch({
+      type: MENTOR_TOPIC_QUESTIONS_LOADED,
+      id: mentor_id,
+      topic_questions: topic_questions
+    })
   }
-
-  const firstTopic = Object.keys(topic_questions)[0]
-  dispatch(selectTopic(firstTopic))
-  dispatch({
-    type: MENTOR_TOPIC_QUESTIONS_LOADED,
-    id: mentor_id,
-    topic_questions: topic_questions
-  })
+  catch (err) {
+    console.error(err)
+  }
 }
 
 export const selectMentor = mentor_id => (dispatch) => {
