@@ -65,3 +65,8 @@ lint: $(DEV_VIRTUAL_ENV)
 test:
 	cd services/mentor-api && \
 		$(MAKE) test
+
+.PHONY: test-images
+test-images:
+	cd services/mentor-api && \
+		$(MAKE) test-image

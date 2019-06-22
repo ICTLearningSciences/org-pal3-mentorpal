@@ -31,14 +31,6 @@ aliases:
         - qa-mentorpal
         - prod-mentorpal
 jobs:
-  tmp:
-    executor: ebs
-    steps:
-      - checkout
-      - run: *branch-env-init
-      - run:
-          name: get that tag
-          command: /ebs-tools/bin/docker_services.sh print-service-tag mentor-api
   test:
     docker:
       - image: circleci/python:3.7.3
@@ -50,7 +42,7 @@ jobs:
       - run:
           name: Lint
           command: make lint
-  docker-build-test:
+  docker-build-test-push:
     executor: ebs
     steps:
       - setup_remote_docker:
@@ -60,14 +52,7 @@ jobs:
       - run: *docker-build
       - run:
           name: Test
-          command: make test
-  docker-push:
-    executor: ebs
-    steps:
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - checkout
-      - run: *branch-env-init
+          command: make test-images
       - run: *docker-push
   ebs-deploy-dev:
     executor: ebs
@@ -85,11 +70,11 @@ workflows:
   version: 2
   deploy-to-dev:
     jobs:
-      - tmp:
-          filters: *ignore-ebs-env-branches
+      # - tmp:
+      #     filters: *ignore-ebs-env-branches
       - test:
           filters: *ignore-ebs-env-branches
-      - docker-build-test:
+      - docker-build-test-push:
           requires:
             - test
           filters: *ignore-ebs-env-branches
@@ -97,14 +82,10 @@ workflows:
           type: approval
           filters: *ignore-ebs-env-branches
           requires:
-            - docker-build-test
-      - docker-push:
-          requires:
-            - deploy-to-dev
-          filters: *ignore-ebs-env-branches
+            - docker-build-test-push
       - ebs-deploy-dev:
           requires:
-            - docker-push
+            - deploy-to-dev
           filters: *ignore-ebs-env-branches
 #   deploy-to-branch-env:
 #     jobs:

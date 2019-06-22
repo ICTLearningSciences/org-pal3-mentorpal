@@ -1,6 +1,7 @@
 SHELL:=/bin/bash
 DOCKER_CONTAINER?=mentorpal-mentor-api
 BUILD_TAG?=
+BUILD_TAG_SUFFIX=$(shell v=$(BUILD_TAG); echo "$${v:+:}$${v}")
 DOCKER_ACCOUNT?=
 PWD=$(shell pwd)
 SERVICE_NAME=$(shell v='$(PWD)'; echo "$${v\#\#*/}")
@@ -15,6 +16,7 @@ DOCKER_IMAGE?=$(shell \
 		DOCKER_ACCOUNT=$(DOCKER_ACCOUNT) && \
 	$(PROJECT_ROOT)/bin/print_service_tag.sh "$(SERVICE_NAME)"\
 )
+TEST_IMAGE?=mentorpal-mentor-api-test$(BUILD_TAG_SUFFIX)
 
 echo-docker-image:
 	@echo "BUILD_TAG=$(BUILD_TAG)"
@@ -22,6 +24,7 @@ echo-docker-image:
 	@echo "PROJECT_NAME=$(PROJECT_NAME)"
 	@echo "SERVICE_NAME=$(SERVICE_NAME)"
 	@echo "DOCKER_IMAGE=$(DOCKER_IMAGE)"
+	@echo "BUILD_TAG_SUFFIX=$(BUILD_TAG_SUFFIX)"
 
 .PHONY: docker-build-base
 docker-build-base:
@@ -116,4 +119,18 @@ test: $(TEST_VIRTUAL_ENV)
 	source $(TEST_VIRTUAL_ENV)/bin/activate  && \
 		cd tests && \
 		export DOCKER_IMAGE=$(DOCKER_IMAGE) && \
-		bolt test-features
+		bolt start-api-then-test-features
+
+.PHONY: test-image-build
+test-image-build:
+	cd test-image && \
+		MENTOR_API_IMAGE=$(DOCKER_IMAGE) \
+		TEST_IMAGE=$(TEST_IMAGE) \
+		$(MAKE) docker-build
+
+.PHONY: test-image
+test-image:
+	cd test-image && \
+		MENTOR_API_IMAGE=$(DOCKER_IMAGE) \
+		TEST_IMAGE=$(TEST_IMAGE) \
+		$(MAKE) test
