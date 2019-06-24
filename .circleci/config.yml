@@ -6,19 +6,19 @@ executors:
 aliases:
   # setup env vars for ebs tools
   - &branch-env-init
-    name: ebs env init
+    name: Init EBS ENV
     command: eval $EBS_TOOLS_ENV_INIT
   - &dev-mentorpal-env-init
     name: dev-mentorpal env init
     command: eval $EBS_TOOLS_ENV_INIT && echo 'export EB_ENV=dev-mentorpal' >> $BASH_ENV
   - &docker-build
-    name: docker build
+    name: Docker Build
     command: cd ${EBS_TOOLS} && make docker-build
   - &docker-push
-    name: docker push
+    name: Docker Push
     command: cd ${EBS_TOOLS} && make docker-push
   - &eb-deploy
-    name: eb deploy
+    name: EBS Deploy
     command: cd ${EBS_TOOLS} && make clean eb-deploy
   - &ignore-ebs-env-branches
     branches:
@@ -51,7 +51,7 @@ jobs:
       - run: *branch-env-init
       - run: *docker-build
       - run:
-          name: Test
+          name: Test Images
           command: make test-images
       - run: *docker-push
   ebs-deploy-dev:
@@ -68,16 +68,12 @@ jobs:
       - run: *eb-deploy
 workflows:
   version: 2
-  deploy-to-dev:
+  build-test-deploy:
     jobs:
-      # - tmp:
-      #     filters: *ignore-ebs-env-branches
-      - test:
-          filters: *ignore-ebs-env-branches
+      - test
       - docker-build-test-push:
           requires:
             - test
-          filters: *ignore-ebs-env-branches
       - deploy-to-dev:
           type: approval
           filters: *ignore-ebs-env-branches
@@ -87,29 +83,12 @@ workflows:
           requires:
             - deploy-to-dev
           filters: *ignore-ebs-env-branches
-#   deploy-to-branch-env:
-#     jobs:
-#       - test
-#       - docker-build-test:
-#           requires:
-#             - test
-#           filters: *only-ebs-env-branches
-#       - deploy-to-branch-env:
-#           type: approval
-#           filters: *only-ebs-env-branches
-#           requires:
-#             - docker-build-test
-#       - docker-push:
-#           requires:
-#             - deploy-to-branch-env
-#           filters: *only-ebs-env-branches
-#       - ebs-deploy-branch-env:
-#           requires:
-#             - docker-push
-#           filters: *only-ebs-env-branches
-  
-            
-            
-            
-            
-            
+      - deploy-to-branch-env:
+          type: approval
+          filters: *only-ebs-env-branches
+          requires:
+            - docker-build-test-push
+      - ebs-deploy-branch-env:
+          requires:
+            - deploy-to-branch-env
+          filters: *only-ebs-env-branches
