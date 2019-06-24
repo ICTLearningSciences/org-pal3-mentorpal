@@ -1,6 +1,5 @@
 assertpy
 behave==1.2.6
-# behave-restful==0.1.9
 bolt-ta
 requests
 

@@ -60,3 +60,13 @@ test-format: test-format-python
 .PHONY: lint
 lint: $(DEV_VIRTUAL_ENV)
 	$(DEV_VIRTUAL_ENV)/bin/flake8 .
+
+.PHONY: test
+test:
+	cd services/mentor-api && \
+		$(MAKE) test
+
+.PHONY: test-images
+test-images:
+	cd services/mentor-api && \
+		$(MAKE) test-image

@@ -1,5 +1,5 @@
 [submodule "behave-restful"]
 	path = behave-restful
 	url = https://github.com/beatthat/behave-restful.git
-	branch = then_json_path_matches_regex
+	branch = master
 

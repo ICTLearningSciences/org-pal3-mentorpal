@@ -28,5 +28,8 @@ config = {
 # Register a task to invoke all that here:
 
 bolt.register_task(
-    "test-features", ["start-flask", "wait-for-server-running", "behave-restful"]
+    "start-api-then-test-features",
+    ["start-flask", "wait-for-server-running", "behave-restful"],
 )
+
+bolt.register_task("test-features", ["wait-for-server-running", "behave-restful"])
