@@ -22,7 +22,7 @@ const FaveButton = () => {
     )
 }
 
-const VideoPlayer = ({ width }) => {
+const VideoPlayer = ({ width, height }) => {
     const dispatch = useDispatch()
     const isIdle = useSelector(state => state.isIdle)
     const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
@@ -39,7 +39,7 @@ const VideoPlayer = ({ width }) => {
             onEnded={onEnded}
             loop={isIdle}
             width={width}
-            height={width * 0.895}
+            height={height}
             controls={!isIdle}
             playing={true}
             playsinline={true}
@@ -55,25 +55,15 @@ const VideoPlayer = ({ width }) => {
     )
 }
 
-class Video extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { width: 0 };
-    }
+const Video = () => {
+    const height = (window.innerHeight * 0.5) - 90
 
-    componentDidMount() {
-        const width = Math.min(window.innerWidth, 500)
-        this.setState({ width })
-    }
-
-    render() {
-        return (
-            <div id='video-container' style={{ width: this.state.width }}>
-                <VideoPlayer width={this.state.width} />
-                <FaveButton />
-            </div>
-        )
-    }
+    return (
+        <div id='video-container' style={{ width: height / 0.895 }}>
+            <VideoPlayer width={height / 0.895} height={height} />
+            <FaveButton />
+        </div>
+    )
 }
 
 export default Video

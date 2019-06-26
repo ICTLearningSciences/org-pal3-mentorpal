@@ -1,11 +1,14 @@
 import React, { useEffect } from "react"
 import { useDispatch } from 'react-redux'
 import { graphql } from "gatsby"
+import { Paper } from '@material-ui/core';
 
 import { loadMentor, loadQuestions, selectMentor } from 'src/redux/actions'
 
 import Header from 'src/components/header'
 import Input from 'src/components/input'
+import Questions from 'src/components/questions'
+import Topics from 'src/components/topics'
 import Video from 'src/components/video'
 import VideoPanel from 'src/components/video-panel'
 import withLocation from 'src/wrap-with-location'
@@ -27,11 +30,16 @@ const IndexPage = ({ search, ...props }) => {
 
   return (
     <div>
-      <div id='player'>
-        <VideoPanel />
-        <Header />
-        <Video />
+      <div className='flex' style={{ height: window.innerHeight * 0.5 }}>
+        <div className='content' style={{ height: '90px' }}>
+          <VideoPanel />
+          <Header />
+        </div>
+        <div className='expand'>
+          <Video />
+        </div>
       </div>
+
       <Input />
     </div>
   )

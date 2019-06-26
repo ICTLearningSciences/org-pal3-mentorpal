@@ -1,5 +1,4 @@
 import React from 'react'
-import FlipMove from 'react-flip-move';
 import { useSelector, useDispatch } from 'react-redux';
 import { List } from '@material-ui/core'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
@@ -20,7 +19,7 @@ const Questions = () => {
 
   const questions = mentor.topic_questions[current_topic] || []
   const recommended = mentor.topic_questions['Recommended'] || []
-  const height = document.getElementById('question-container').clientHeight
+  const height = (window.innerHeight * 0.5) - 120
 
   const onQuestionSelected = (question) => {
     dispatch(sendQuestion(question))
@@ -28,14 +27,12 @@ const Questions = () => {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <List disablePadding={true} style={{ maxHeight: height * 0.95, overflow: 'auto' }}>
-        <FlipMove>
-          <ScrollingQuestions
-            questions={questions}
-            questions_asked={questions_asked}
-            recommended={recommended}
-            onQuestionSelected={onQuestionSelected} />
-        </FlipMove>
+      <List disablePadding={true} style={{ maxHeight: height, overflow: 'auto' }}>
+        <ScrollingQuestions
+          questions={questions}
+          questions_asked={questions_asked}
+          recommended={recommended}
+          onQuestionSelected={onQuestionSelected} />
       </List>
     </MuiThemeProvider>
   )

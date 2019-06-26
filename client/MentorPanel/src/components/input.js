@@ -65,20 +65,12 @@ const InputField = ({ text, onSelect, onChange }) => {
 class Input extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { text: '', height: 0 };
+    this.state = { text: '' };
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.current_question !== this.props.current_question && this.state.text) {
       this.setState({ text: '' })
-    }
-
-    const node = document.getElementById('player')
-    if (node) {
-      const height = window.innerHeight - node.clientHeight
-      if (height !== this.state.height) {
-        this.setState({ height: window.innerHeight - node.clientHeight })
-      }
     }
   }
 
@@ -98,16 +90,16 @@ class Input extends React.Component {
     const { classes } = this.props;
 
     return (
-      <div className='flex' style={{ minHeight: this.state.height }}>
-        <div className='content'>
+      <div className='flex' style={{ height: window.innerHeight * 0.5 }}>
+        <div className='content' style={{ height: '60px' }}>
           <Paper elevation={1} square={true}>
             <Topics onSelected={this.onTopicSelected} />
           </Paper>
         </div>
-        <div className='expand' id='question-container'>
+        <div className='expand'>
           <Questions />
         </div>
-        <div className='footer'>
+        <div className='footer' style={{ height: '60px' }}>
           <Paper className={classes.root} elevation={3} square={true}>
             <InputField text={this.state.text} onSelect={this.onInputSelected} onChange={this.onInputChanged} />
             <Divider className={classes.divider} />

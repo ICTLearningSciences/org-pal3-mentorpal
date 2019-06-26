@@ -1,7 +1,11 @@
+html {
+  overflow: hidden;
+}
 body {
   height: 100%;
   margin: 0;
   text-align: center;
+  overflow: hidden;
 }
 #video-container {
   position: relative;
