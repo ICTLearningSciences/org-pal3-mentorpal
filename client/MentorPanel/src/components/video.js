@@ -6,19 +6,12 @@ import { Star, StarBorder } from '@material-ui/icons'
 import { idleUrl, videoUrl, subtitleUrl } from 'src/api/api'
 import { answerFinished, faveMentor } from 'src/redux/actions'
 
-const FaveButton = () => {
-    const dispatch = useDispatch()
-    const mentor = useSelector(state => state.current_mentor)
-    const faved_mentor = useSelector(state => state.faved_mentor)
-
-    const onClick = () => {
-        dispatch(faveMentor(mentor))
-    }
-
+const Video = ({ height }) => {
     return (
-        faved_mentor === mentor ?
-            <Star className='star-icon' onClick={onClick} style={{ color: 'yellow' }} /> :
-            <StarBorder className='star-icon' onClick={onClick} style={{ color: 'grey' }} />
+        <div id='video-container' style={{ width: height / 0.895 }}>
+            <VideoPlayer width={height / 0.895} height={height} />
+            <FaveButton />
+        </div>
     )
 }
 
@@ -55,14 +48,19 @@ const VideoPlayer = ({ width, height }) => {
     )
 }
 
-const Video = () => {
-    const height = (window.innerHeight * 0.5) - 90
+const FaveButton = () => {
+    const dispatch = useDispatch()
+    const mentor = useSelector(state => state.current_mentor)
+    const faved_mentor = useSelector(state => state.faved_mentor)
+
+    const onClick = () => {
+        dispatch(faveMentor(mentor))
+    }
 
     return (
-        <div id='video-container' style={{ width: height / 0.895 }}>
-            <VideoPlayer width={height / 0.895} height={height} />
-            <FaveButton />
-        </div>
+        faved_mentor === mentor ?
+            <Star className='star-icon' onClick={onClick} style={{ color: 'yellow' }} /> :
+            <StarBorder className='star-icon' onClick={onClick} style={{ color: 'grey' }} />
     )
 }
 

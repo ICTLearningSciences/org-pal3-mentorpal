@@ -7,7 +7,7 @@ import { sendQuestion } from 'src/redux/actions'
 
 import ScrollingQuestions from 'src/components/scrolling_questions'
 
-const Questions = () => {
+const Questions = ({ height }) => {
   const dispatch = useDispatch()
   const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
   const current_topic = useSelector(state => state.current_topic)
@@ -19,7 +19,6 @@ const Questions = () => {
 
   const questions = mentor.topic_questions[current_topic] || []
   const recommended = mentor.topic_questions['Recommended'] || []
-  const height = (window.innerHeight * 0.5) - 120
 
   const onQuestionSelected = (question) => {
     dispatch(sendQuestion(question))

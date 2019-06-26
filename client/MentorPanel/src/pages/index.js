@@ -1,7 +1,6 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch } from 'react-redux'
 import { graphql } from "gatsby"
-import { Paper } from '@material-ui/core';
 
 import { loadMentor, loadQuestions, selectMentor } from 'src/redux/actions'
 
@@ -17,6 +16,7 @@ import "src/styles/layout.css"
 
 const IndexPage = ({ search, ...props }) => {
   const dispatch = useDispatch()
+  const [height, setHeight] = useState(0)
   const { recommended } = search
 
   useEffect(() => {
@@ -26,21 +26,34 @@ const IndexPage = ({ search, ...props }) => {
       dispatch(loadQuestions(item.node.id, recommended))
     });
     dispatch(selectMentor(data[0].node.id))
+    setHeight(window.innerHeight * 0.5)
   })
 
   return (
     <div>
-      <div className='flex' style={{ height: window.innerHeight * 0.5 }}>
-        <div className='content' style={{ height: '90px' }}>
+      <div className='flex' style={{ height: height }}>
+        <div className='content' style={{ height: '60px' }}>
           <VideoPanel />
+        </div>
+        <div className='content' style={{ height: '30px' }}>
           <Header />
         </div>
         <div className='expand'>
-          <Video />
+          <Video height={height - 90} />
         </div>
       </div>
 
-      <Input />
+      <div className='flex' style={{ height: height }}>
+        <div className='content' style={{ height: '60px' }}>
+          <Topics />
+        </div>
+        <div className='expand'>
+          <Questions height={height - 120} />
+        </div>
+        <div className='footer' style={{ height: '60px' }}>
+          <Input />
+        </div>
+      </div>
     </div>
   )
 }

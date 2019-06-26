@@ -1,45 +1,67 @@
-import React from 'react'
-import { useSelector, useDispatch, connect } from 'react-redux';
+import React, { useState, useEffect, useRef } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Divider, InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import { sendQuestion, onInput } from 'src/redux/actions'
+import { normalizeString } from 'src/funcs/funcs'
 
-import Topics from 'src/components/topics'
-import Questions from 'src/components/questions'
-
-const SendButton = ({ text }) => {
-  const dispatch = useDispatch()
-
-  const onSend = () => {
-    dispatch(sendQuestion(text))
-  }
-
-  return (
-    <Button
-      style={{ margin: 10 }}
-      onClick={() => { onSend() }}
-      disabled={!text}
-      variant='contained'
-      color='primary'>
-      Send
-    </Button>
-  )
-}
-
-const InputField = ({ text, onSelect, onChange }) => {
+const Input = ({ ...props }) => {
   const dispatch = useDispatch()
   const question = useSelector(state => state.current_question)
+  const topic = useSelector(state => state.current_topic)
+  const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
+  const questions_asked = useSelector(state => state.questions_asked)
+  const [text, setText] = useState('')
+
+  const prevQuestion = useRef()
+  const prevTopic = useRef()
+  const { classes } = props
+
+  useEffect(() => {
+    if (prevQuestion.current !== question && text) {
+      setText('')
+    }
+
+    if (prevTopic.current !== topic && mentor && mentor.topic_questions) {
+      const topic_questions = mentor.topic_questions[topic]
+      const top_question = topic_questions.find(q => {
+        return !questions_asked.includes(normalizeString(q))
+      })
+      if (top_question) {
+        dispatch(onInput())
+        setText(top_question)
+      }
+    }
+
+    prevQuestion.current = question
+    prevTopic.current = topic
+  })
+
+  const onInputChanged = (e) => {
+    dispatch(onInput())
+    setText(e.target.value)
+  }
+
+  const onInputSelected = () => {
+    dispatch(onInput())
+    setText('')
+  }
+
+  const onInputSend = () => {
+    if (!text) {
+      return
+    }
+    dispatch(sendQuestion(text))
+    setText('')
+  }
 
   const onKeyPress = (ev) => {
     if (ev.key !== 'Enter') {
       return
     }
-    ev.preventDefault();
-
-    if (text) {
-      dispatch(sendQuestion(text))
-    }
+    ev.preventDefault()
+    onInputSend()
   }
 
   const onBlur = () => {
@@ -48,67 +70,30 @@ const InputField = ({ text, onSelect, onChange }) => {
   }
 
   return (
-    <InputBase
-      style={{ flex: 1, marginLeft: 8 }}
-      value={text}
-      placeholder={question ? question : "Ask a question"}
-      multiline
-      rows={2}
+    <Paper className={classes.root} elevation={3} square={true}>
+      <InputBase
+        style={{ flex: 1, marginLeft: 8 }}
+        value={text}
+        placeholder={question ? question : "Ask a question"}
+        multiline
+        rows={2}
+        onChange={onInputChanged}
+        onClick={onInputSelected}
+        onBlur={onBlur}
+        onKeyPress={onKeyPress} />
 
-      onChange={(ev) => { dispatch(onInput()); onChange(ev) }}
-      onClick={() => { dispatch(onInput()); onSelect() }}
-      onBlur={onBlur}
-      onKeyPress={onKeyPress} />
+      <Divider className={classes.divider} />
+
+      <Button
+        style={{ margin: 10 }}
+        onClick={onInputSend}
+        disabled={!text}
+        variant='contained'
+        color='primary'>
+        Send
+      </Button>
+    </Paper>
   )
-}
-
-class Input extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: '' };
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.current_question !== this.props.current_question && this.state.text) {
-      this.setState({ text: '' })
-    }
-  }
-
-  onInputChanged = (e) => {
-    this.setState({ text: e.target.value })
-  }
-
-  onInputSelected = () => {
-    this.setState({ text: '' })
-  }
-
-  onTopicSelected = (question) => {
-    this.setState({ text: question })
-  }
-
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div className='flex' style={{ height: window.innerHeight * 0.5 }}>
-        <div className='content' style={{ height: '60px' }}>
-          <Paper elevation={1} square={true}>
-            <Topics onSelected={this.onTopicSelected} />
-          </Paper>
-        </div>
-        <div className='expand'>
-          <Questions />
-        </div>
-        <div className='footer' style={{ height: '60px' }}>
-          <Paper className={classes.root} elevation={3} square={true}>
-            <InputField text={this.state.text} onSelect={this.onInputSelected} onChange={this.onInputChanged} />
-            <Divider className={classes.divider} />
-            <SendButton text={this.state.text} />
-          </Paper>
-        </div>
-      </div>
-    )
-  }
 }
 
 const styles = {
@@ -124,11 +109,4 @@ const styles = {
   },
 }
 
-const mapStateToProps = (state) => {
-  return {
-    current_question: state.current_question,
-    current_mentor: state.current_mentor,
-  }
-}
-
-export default withStyles(styles)(connect(mapStateToProps)(Input))
+export default withStyles(styles)(Input)

@@ -8,6 +8,38 @@ import { STATUS_READY, STATUS_ERROR } from 'src/redux/store'
 
 import VideoThumbnail from "src/components/video-thumbnail";
 
+const VideoPanel = () => {
+  const dispatch = useDispatch()
+  const mentor = useSelector(state => state.current_mentor)
+  const mentors = useSelector(state => state.mentors_by_id)
+
+  const onClick = (mentor) => {
+    if (mentor.is_off_topic || mentor.status === STATUS_ERROR) {
+      return
+    }
+    dispatch(selectMentor(mentor.id))
+  }
+
+  return (
+      <div className="carousel">
+        {
+          Object.keys(mentors).map((id, i) =>
+            <div
+              className={`slide video-slide ${id === mentor ? 'selected' : ''}`}
+              key={`${id}-${i}`}
+              onClick={() => onClick(mentors[id])}
+            >
+              <VideoThumbnail mentor={mentors[id]} />
+              <LoadingSpinner mentor={mentors[id]} />
+              <MessageStatus mentor={mentors[id]} />
+              <StarIcon mentor={mentors[id]} />
+            </div>
+          )
+        }
+      </div>
+  )
+}
+
 const LoadingSpinner = ({ mentor }) => {
   const question = useSelector(state => state.current_question)
   if (question && question !== mentor.question) {
@@ -41,38 +73,6 @@ const MessageStatus = ({ mentor }) => {
       style={{ color: 'green' }} />
   }
   return <div></div>
-}
-
-const VideoPanel = () => {
-  const dispatch = useDispatch()
-  const mentor = useSelector(state => state.current_mentor)
-  const mentors = useSelector(state => state.mentors_by_id)
-
-  const onClick = (mentor) => {
-    if (mentor.is_off_topic || mentor.status === STATUS_ERROR) {
-      return
-    }
-    dispatch(selectMentor(mentor.id))
-  }
-
-  return (
-      <div className="carousel">
-        {
-          Object.keys(mentors).map((id, i) =>
-            <div
-              className={`slide video-slide ${id === mentor ? 'selected' : ''}`}
-              key={`${id}-${i}`}
-              onClick={() => onClick(mentors[id])}
-            >
-              <VideoThumbnail mentor={mentors[id]} />
-              <LoadingSpinner mentor={mentors[id]} />
-              <MessageStatus mentor={mentors[id]} />
-              <StarIcon mentor={mentors[id]} />
-            </div>
-          )
-        }
-      </div>
-  )
 }
 
 export default VideoPanel;
