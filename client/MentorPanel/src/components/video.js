@@ -1,10 +1,11 @@
-import React from 'react';
+import React from 'react'
 import ReactPlayer from 'react-player'
 import { useSelector, useDispatch } from 'react-redux';
 import { Star, StarBorder } from '@material-ui/icons'
 
 import { idleUrl, videoUrl, subtitleUrl } from 'src/api/api'
 import { answerFinished, faveMentor } from 'src/redux/actions'
+import { chromeVersion } from 'src/funcs/funcs'
 
 const Video = ({ height }) => {
     return (
@@ -21,6 +22,9 @@ const VideoPlayer = ({ width, height }) => {
     const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
     const video_url = mentor ? (isIdle ? idleUrl(mentor) : videoUrl(mentor)) : ''
     const subtitle_url = mentor && !isIdle ? subtitleUrl(mentor) : ''
+
+    const chrome_version = chromeVersion()
+    console.log(chrome_version)
 
     const onEnded = () => {
         dispatch(answerFinished())
@@ -39,9 +43,10 @@ const VideoPlayer = ({ width, height }) => {
             webkit-playsinline='true'
             config={{
                 file: {
-                    tracks: [
-                        { kind: 'subtitles', src: subtitle_url, srcLang: 'en', default: true },
-                    ]
+                    tracks:
+                        chrome_version === 58
+                            ? []
+                            : [{ kind: 'subtitles', src: subtitle_url, srcLang: 'en', default: true }]
                 }
             }}
         />
