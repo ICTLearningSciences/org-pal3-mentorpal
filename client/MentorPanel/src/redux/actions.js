@@ -68,7 +68,7 @@ const loadTopics = (mentor_id, questions, recommended) => async (dispatch) => {
 
     if (recommended) {
       topic_questions = {
-        ['Recommended']: recommended,
+        ['Recommended']: recommended.constructor === Array ? recommended : [recommended],
         ...topic_questions
       }
     }

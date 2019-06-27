@@ -1,54 +1,33 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Divider, InputBase, Paper } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import { sendQuestion, onInput } from 'src/redux/actions'
-import { normalizeString } from 'src/funcs/funcs'
 
-const Input = ({ ...props }) => {
+import Topics from 'src/components/topics'
+import Questions from 'src/components/questions'
+
+const Input = ({ height, ...props }) => {
   const dispatch = useDispatch()
   const question = useSelector(state => state.current_question)
-  const topic = useSelector(state => state.current_topic)
-  const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
-  const questions_asked = useSelector(state => state.questions_asked)
   const [text, setText] = useState('')
-
-  const prevQuestion = useRef()
-  const prevTopic = useRef()
   const { classes } = props
 
-  useEffect(() => {
-    if (prevQuestion.current !== question && text) {
-      setText('')
-    }
-
-    if (prevTopic.current !== topic && mentor && mentor.topic_questions) {
-      const topic_questions = mentor.topic_questions[topic]
-      const top_question = topic_questions.find(q => {
-        return !questions_asked.includes(normalizeString(q))
-      })
-      if (top_question) {
-        dispatch(onInput())
-        setText(top_question)
-      }
-    }
-
-    prevQuestion.current = question
-    prevTopic.current = topic
-  })
-
-  const onInputChanged = (e) => {
+  // Input field should be updated (user typed a question or selected a topic)
+  const onInputChanged = (text) => {
     dispatch(onInput())
-    setText(e.target.value)
+    setText(text)
   }
 
+  // Input field was clicked on
   const onInputSelected = () => {
     dispatch(onInput())
     setText('')
   }
 
-  const onInputSend = () => {
+  // Input is being sent (user hit send button or recommended question button)
+  const onInputSend = (text) => {
     if (!text) {
       return
     }
@@ -56,43 +35,47 @@ const Input = ({ ...props }) => {
     setText('')
   }
 
+  // Input field key was entered (check if user hit enter)
   const onKeyPress = (ev) => {
     if (ev.key !== 'Enter') {
       return
     }
     ev.preventDefault()
-    onInputSend()
+    onInputSend(text)
   }
 
+  // Input field keyboard was lowered
   const onBlur = () => {
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
+    window.scrollTo(0, 0)
+    document.body.scrollTop = 0
   }
 
   return (
-    <Paper className={classes.root} elevation={3} square={true}>
-      <InputBase
-        style={{ flex: 1, marginLeft: 8 }}
-        value={text}
-        placeholder={question ? question : "Ask a question"}
-        multiline
-        rows={2}
-        onChange={onInputChanged}
-        onClick={onInputSelected}
-        onBlur={onBlur}
-        onKeyPress={onKeyPress} />
-
-      <Divider className={classes.divider} />
-
-      <Button
-        style={{ margin: 10 }}
-        onClick={onInputSend}
-        disabled={!text}
-        variant='contained'
-        color='primary'>
-        Send
-      </Button>
-    </Paper>
+    <div className='flex' style={{ height: height }}>
+      <div className='content' style={{ height: '60px' }}>
+        <Topics onSelected={onInputChanged}/>
+      </div>
+      <div className='expand'>
+        <Questions height={height - 120} onSelected={onInputSend}/>
+      </div>
+      <div className='footer' style={{ height: '60px' }}>
+        <Paper className={classes.root} elevation={3} square={true}>
+          <InputBase className={classes.inputField}
+            value={text} multiline rows={2}
+            placeholder={question || "Ask a question"}
+            onChange={(e) => {onInputChanged(e.target.value)}}
+            onClick={onInputSelected}
+            onBlur={onBlur}
+            onKeyPress={onKeyPress} />
+          <Divider className={classes.divider} />
+          <Button className={classes.button}
+            onClick={() => onInputSend(text)}
+            disabled={!text}
+            variant='contained'
+            color='primary'> Send </Button>
+        </Paper>
+      </div>
+    </div>
   )
 }
 
@@ -101,6 +84,13 @@ const styles = {
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
+  },
+  inputField: {
+    flex: 1,
+    marginLeft: 8,
+  },
+  button: {
+    margin: 10,
   },
   divider: {
     width: 1,

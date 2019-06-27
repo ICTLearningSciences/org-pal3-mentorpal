@@ -3,11 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button, Paper } from '@material-ui/core';
 
 import { selectTopic } from 'src/redux/actions'
+import { normalizeString } from 'src/funcs/funcs'
 
-const Topics = () => {
+const Topics = ({ onSelected }) => {
   const dispatch = useDispatch()
-  const current_topic = useSelector(state => state.current_topic)
   const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
+  const current_topic = useSelector(state => state.current_topic)
+  const questions_asked = useSelector(state => state.questions_asked)
 
   if (!(mentor && mentor.topic_questions)) {
     return <div></div>
@@ -16,6 +18,10 @@ const Topics = () => {
 
   const onTopicSelected = (topic) => {
     dispatch(selectTopic(topic))
+    const top_question = topic_questions[topic].find(q => {
+      return !questions_asked.includes(normalizeString(q))
+    })
+    onSelected(top_question || '')
   }
 
   return (

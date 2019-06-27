@@ -6,8 +6,6 @@ import { loadMentor, loadQuestions, selectMentor } from 'src/redux/actions'
 
 import Header from 'src/components/header'
 import Input from 'src/components/input'
-import Questions from 'src/components/questions'
-import Topics from 'src/components/topics'
 import Video from 'src/components/video'
 import VideoPanel from 'src/components/video-panel'
 import withLocation from 'src/wrap-with-location'
@@ -57,18 +55,7 @@ const IndexPage = ({ search, ...props }) => {
           <Video height={height - 90} width={width} />
         </div>
       </div>
-
-      <div className='flex' style={{ height: height }}>
-        <div className='content' style={{ height: '60px' }}>
-          <Topics />
-        </div>
-        <div className='expand'>
-          <Questions height={height - 120} />
-        </div>
-        <div className='footer' style={{ height: '60px' }}>
-          <Input />
-        </div>
-      </div>
+      <Input height={height} />
     </div>
   )
 }
