@@ -22,7 +22,7 @@ const VideoPlayer = ({ width, height }) => {
     const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
     const video_url = mentor ? (isIdle ? idleUrl(mentor) : videoUrl(mentor)) : ''
     const subtitle_url = mentor && !isIdle ? subtitleUrl(mentor) : ''
-    const chrome_version = chromeVersion()
+    const showSubtitles = !chromeVersion() || chromeVersion() >= 62
 
     const onEnded = () => {
         dispatch(answerFinished())
@@ -41,10 +41,7 @@ const VideoPlayer = ({ width, height }) => {
             webkit-playsinline='true'
             config={{
                 file: {
-                    tracks:
-                        chrome_version === 58
-                            ? []
-                            : [{ kind: 'subtitles', src: subtitle_url, srcLang: 'en', default: true }]
+                    tracks: showSubtitles ? [{ kind: 'subtitles', src: subtitle_url, srcLang: 'en', default: true }] : []
                 }
             }}
         />
