@@ -17,6 +17,7 @@ import "src/styles/layout.css"
 const IndexPage = ({ search, ...props }) => {
   const dispatch = useDispatch()
   const [height, setHeight] = useState(0)
+  const [width, setWidth] = useState(0)
   const { recommended } = search
 
   useEffect(() => {
@@ -26,8 +27,22 @@ const IndexPage = ({ search, ...props }) => {
       dispatch(loadQuestions(item.node.id, recommended))
     });
     dispatch(selectMentor(data[0].node.id))
+
     setHeight(window.innerHeight * 0.5)
-  })
+    setWidth(window.innerWidth)
+    window.addEventListener('resize', handleWindowResize)
+    return () => {
+      window.removeEventListener('resize', handleWindowResize)
+    }
+  }, [])
+
+  const handleWindowResize = () => {
+    if (typeof window === `undefined`) {
+      return
+    }
+    setHeight(window.innerHeight * 0.5)
+    setWidth(window.innerWidth)
+  }
 
   return (
     <div>
@@ -39,7 +54,7 @@ const IndexPage = ({ search, ...props }) => {
           <Header />
         </div>
         <div className='expand'>
-          <Video height={height - 90} />
+          <Video height={height - 90} width={width} />
         </div>
       </div>
 

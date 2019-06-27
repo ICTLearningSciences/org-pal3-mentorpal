@@ -6,7 +6,7 @@ import { STATUS_ERROR } from 'src/redux/store'
 
 const VideoThumbnail = ({ mentor }) => {
   const [isPlaying, setPlaying] = useState(true)
-  const src = idleUrl(mentor)
+  const src = idleUrl(mentor, 'mobile')
   const isDisabled = mentor.is_off_topic || mentor.status === STATUS_ERROR
 
   const onStart = () => {
