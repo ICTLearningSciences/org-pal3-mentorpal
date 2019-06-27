@@ -1,10 +1,9 @@
 import React, { useEffect } from "react"
-import { ListItem, ListItemIcon, ListItemText } from '@material-ui/core'
-import { Whatshot } from '@material-ui/icons'
+import { ListItem, ListItemText } from '@material-ui/core'
 
 import { normalizeString } from 'src/funcs/funcs'
 
-const ScrollingQuestions = ({ questions, questions_asked, recommended, onQuestionSelected, ...props }) => {
+const ScrollingQuestions = ({ questions, questions_asked, recommended, onQuestionSelected }) => {
   useEffect(() => {
     const top_question = questions.find(q => {
       return !questions_asked.includes(normalizeString(q))
