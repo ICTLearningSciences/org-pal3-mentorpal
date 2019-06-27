@@ -22,9 +22,7 @@ const VideoPlayer = ({ width, height }) => {
     const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
     const video_url = mentor ? (isIdle ? idleUrl(mentor) : videoUrl(mentor)) : ''
     const subtitle_url = mentor && !isIdle ? subtitleUrl(mentor) : ''
-
     const chrome_version = chromeVersion()
-    console.log(chrome_version)
 
     const onEnded = () => {
         dispatch(answerFinished())
