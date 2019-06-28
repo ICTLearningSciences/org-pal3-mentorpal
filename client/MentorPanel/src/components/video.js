@@ -7,20 +7,25 @@ import { idleUrl, videoUrl, subtitleUrl } from 'src/api/api'
 import { answerFinished, faveMentor } from 'src/redux/actions'
 import { chromeVersion } from 'src/funcs/funcs'
 
-const Video = ({ height }) => {
+const Video = ({ height, width }) => {
+    const mobileWidth = height / 0.895
+    const webWidth = height / 0.5625
+    const format = Math.abs(width - mobileWidth) > Math.abs(width - webWidth) ? 'web' : 'mobile'
+    width = Math.min(width, format === 'mobile' ? mobileWidth : webWidth)
+
     return (
-        <div id='video-container' style={{ width: height / 0.895 }}>
-            <VideoPlayer width={height / 0.895} height={height} />
+        <div id='video-container' style={{ width: width }}>
+            <VideoPlayer width={width} height={height} format={format} />
             <FaveButton />
         </div>
     )
 }
 
-const VideoPlayer = ({ width, height }) => {
+const VideoPlayer = ({ width, height, format='mobile' }) => {
     const dispatch = useDispatch()
     const isIdle = useSelector(state => state.isIdle)
     const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
-    const video_url = mentor ? (isIdle ? idleUrl(mentor) : videoUrl(mentor)) : ''
+    const video_url = mentor ? (isIdle ? idleUrl(mentor, format) : videoUrl(mentor, format)) : ''
     const subtitle_url = mentor && !isIdle ? subtitleUrl(mentor) : ''
     const showSubtitles = !chromeVersion() || chromeVersion() >= 62
 

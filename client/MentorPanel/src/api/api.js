@@ -4,12 +4,12 @@ const MENTOR_API_URL = process.env.MENTOR_API_URL || '/mentor-api'
 const MENTOR_VIDEO_HOST = 'https://video.mentorpal.org'
 const RESPONSE_CUTOFF = -100
 
-export const videoUrl = (mentor) => {
-  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/mobile/${mentor.answer_id}.mp4`
+export const videoUrl = (mentor, format) => {
+  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/${format}/${mentor.answer_id}.mp4`
 }
 
-export const idleUrl = (mentor) => {
-  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/mobile/idle.mp4`
+export const idleUrl = (mentor, format) => {
+  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/${format}/idle.mp4`
 }
 
 export const subtitleUrl = (mentor) => {
