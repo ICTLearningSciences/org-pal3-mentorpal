@@ -14,14 +14,24 @@ const Topics = ({ onSelected }) => {
   if (!(mentor && mentor.topic_questions)) {
     return <div></div>
   }
-  const topic_questions = mentor.topic_questions
 
+  const topic_questions = mentor.topic_questions
   const onTopicSelected = (topic) => {
     dispatch(selectTopic(topic))
     const top_question = topic_questions[topic].find(q => {
       return !questions_asked.includes(normalizeString(q))
     })
     onSelected(top_question || '')
+  }
+
+  if (!current_topic) {
+    const first_topic = Object.keys(topic_questions)[0]
+    if (first_topic === 'Recommended') {
+      onTopicSelected(first_topic)
+    }
+    else {
+      dispatch(selectTopic(first_topic))
+    }
   }
 
   return (
