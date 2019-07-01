@@ -1,14 +1,11 @@
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { List } from '@material-ui/core'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
-import { sendQuestion } from 'src/redux/actions'
-
 import ScrollingQuestions from 'src/components/scrolling_questions'
 
-const Questions = ({ height }) => {
-  const dispatch = useDispatch()
+const Questions = ({ height, onSelected }) => {
   const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
   const current_topic = useSelector(state => state.current_topic)
   const questions_asked = useSelector(state => state.questions_asked)
@@ -20,10 +17,6 @@ const Questions = ({ height }) => {
   const questions = mentor.topic_questions[current_topic] || []
   const recommended = mentor.topic_questions['Recommended'] || []
 
-  const onQuestionSelected = (question) => {
-    dispatch(sendQuestion(question))
-  }
-
   return (
     <MuiThemeProvider theme={theme}>
       <List disablePadding={true} style={{ maxHeight: height, overflow: 'auto' }}>
@@ -31,7 +24,7 @@ const Questions = ({ height }) => {
           questions={questions}
           questions_asked={questions_asked}
           recommended={recommended}
-          onQuestionSelected={onQuestionSelected} />
+          onQuestionSelected={onSelected} />
       </List>
     </MuiThemeProvider>
   )

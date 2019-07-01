@@ -68,13 +68,11 @@ const loadTopics = (mentor_id, questions, recommended) => async (dispatch) => {
 
     if (recommended) {
       topic_questions = {
-        ['Recommended']: recommended,
+        ['Recommended']: Array.isArray(recommended) ? recommended : [recommended],
         ...topic_questions
       }
     }
 
-    const firstTopic = Object.keys(topic_questions)[0]
-    dispatch(selectTopic(firstTopic))
     dispatch({
       type: MENTOR_TOPIC_QUESTIONS_LOADED,
       id: mentor_id,
