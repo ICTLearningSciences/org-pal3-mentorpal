@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react"
-import { useDispatch } from 'react-redux'
-import { graphql } from "gatsby"
+import React, { useEffect, useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { graphql } from 'gatsby'
+import { CircularProgress } from '@material-ui/core'
 
 import { loadMentor, loadQuestions, selectMentor } from 'src/redux/actions'
 
@@ -10,10 +11,11 @@ import Video from 'src/components/video'
 import VideoPanel from 'src/components/video-panel'
 import withLocation from 'src/wrap-with-location'
 
-import "src/styles/layout.css"
+import 'src/styles/layout.css'
 
 const IndexPage = ({ search, ...props }) => {
   const dispatch = useDispatch()
+  const mentors = useSelector(state => state.mentors_by_id)
   const [height, setHeight] = useState(0)
   const [width, setWidth] = useState(0)
   const { recommended } = search
@@ -40,6 +42,10 @@ const IndexPage = ({ search, ...props }) => {
     }
     setHeight(window.innerHeight * 0.5)
     setWidth(window.innerWidth)
+  }
+
+  if (mentors === {} || height === 0 || width === 0) {
+    return <CircularProgress />
   }
 
   return (
