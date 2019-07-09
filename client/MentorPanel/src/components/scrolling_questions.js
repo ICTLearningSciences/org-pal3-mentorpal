@@ -1,5 +1,6 @@
 import React, { useEffect } from "react"
 import { ListItem, ListItemText } from '@material-ui/core'
+import { Whatshot } from '@material-ui/icons'
 
 import { normalizeString } from 'src/funcs/funcs'
 
@@ -38,11 +39,10 @@ const ScrollingQuestions = ({ questions, questions_asked, recommended, onQuestio
       <ListItem
         key={i}
         id={question}
-        divider={true}
         onClick={() => onQuestionSelected(question)}
-        style={{ backgroundColor: recommended.includes(question) ? '#f1f9fd' : 'inherit' }}
       >
         <ListItemText style={{ paddingLeft: 0, color: questions_asked.includes(normalizeString(question)) ? 'gray' : 'black' }}>
+          {recommended.includes(question) ? <Whatshot style={{ 'marginRight': '5px' }} fontSize='small' /> : undefined}
           {question}
         </ListItemText>
       </ListItem>

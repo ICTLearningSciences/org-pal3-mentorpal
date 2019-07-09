@@ -53,17 +53,17 @@ const Input = ({ height, ...props }) => {
   return (
     <div className='flex' style={{ height: height }}>
       <div className='content' style={{ height: '60px' }}>
-        <Topics onSelected={onInputChanged}/>
+        <Topics onSelected={onInputChanged} />
       </div>
       <div className='expand'>
-        <Questions height={height - 120} onSelected={onInputSend}/>
+        <Questions height={height - 120} onSelected={onInputSend} />
       </div>
       <div className='footer' style={{ height: '60px' }}>
-        <Paper className={classes.root} elevation={3} square={true}>
+        <Paper className={classes.root} square={true}>
           <InputBase className={classes.inputField}
             value={text} multiline rows={2}
             placeholder={question || "Ask a question"}
-            onChange={(e) => {onInputChanged(e.target.value)}}
+            onChange={(e) => { onInputChanged(e.target.value) }}
             onClick={onInputSelected}
             onBlur={onBlur}
             onKeyPress={onKeyPress} />
@@ -84,6 +84,7 @@ const styles = {
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
+    boxShadow: '0 -3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
   },
   inputField: {
     flex: 1,

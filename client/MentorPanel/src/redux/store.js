@@ -102,27 +102,38 @@ const store = (state = initialState, action) => {
       return {
         ...state,
         current_question: action.question,
-        questions_asked: [
+        questions_asked: Array.from(new Set([
           ...state.questions_asked,
           normalizeString(action.question)
-        ]
+        ]))
       }
 
     case QUESTION_ANSWERED:
       const response = action.mentor
+      const history = state.mentors_by_id[response.id].topic_questions['History']
+      if (!history.includes(response.question)) {
+        history.push(response.question)
+      }
+
+      const mentor = {
+        ...state.mentors_by_id[response.id],
+        question: response.question,
+        answer_id: response.answer_id,
+        answer_text: response.answer_text,
+        confidence: response.confidence,
+        is_off_topic: response.is_off_topic,
+        status: STATUS_READY,
+        topic_questions: {
+          ...state.mentors_by_id[response.id].topic_questions,
+          ['History']: history
+        }
+      }
+
       return {
         ...state,
         mentors_by_id: {
           ...state.mentors_by_id,
-          [response.id]: {
-            ...state.mentors_by_id[response.id],
-            question: response.question,
-            answer_id: response.answer_id,
-            answer_text: response.answer_text,
-            confidence: response.confidence,
-            is_off_topic: response.is_off_topic,
-            status: STATUS_READY
-          }
+          [response.id]: mentor,
         },
         isIdle: false,
       }
