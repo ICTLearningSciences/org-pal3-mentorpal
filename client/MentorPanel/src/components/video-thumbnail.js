@@ -15,7 +15,7 @@ const VideoThumbnail = ({ mentor }) => {
 
   return (
     <ReactPlayer
-      style={{ opacity: isDisabled ? '0.25' : '1' }}
+      style={{ opacity: isDisabled ? '0.25' : '1', backgroundColor: 'black' }}
       url={src}
       height={50}
       width={50 / 0.895}
