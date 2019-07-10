@@ -49,12 +49,10 @@ export const loadQuestions = (mentor_id, recommended) => async (dispatch) => {
 
 const loadTopics = (mentor_id, questions, recommended) => async (dispatch) => {
   const topics_url = topicsUrl(mentor_id)
-  const init = {}
-
+  const init = {'History': []}
   if (recommended) {
     init['Recommended'] = Array.isArray(recommended) ? recommended : [recommended]
   }
-  init['History'] = []
 
   try {
     const results = await papaParseAsync(topics_url)
