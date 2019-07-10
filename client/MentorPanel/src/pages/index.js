@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { graphql } from 'gatsby'
 import { CircularProgress } from '@material-ui/core'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 import { loadMentor, loadQuestions, selectMentor } from 'src/redux/actions'
 
@@ -20,7 +21,12 @@ const IndexPage = ({ search, ...props }) => {
   const [width, setWidth] = useState(0)
   const { recommended } = search
 
+  const isMobile = width < 768
+  const videoHeight = isMobile ? height * 0.5 : Math.min(width * 0.5625, 700)
+  const inputHeight = isMobile ? height * 0.5 : Math.max(height - videoHeight, 250)
+
   useEffect(() => {
+    // Load the list of mentors and questions
     const data = props.data.allMentorsCsv.edges
     data.forEach(item => {
       dispatch(loadMentor(item.node))
@@ -28,7 +34,8 @@ const IndexPage = ({ search, ...props }) => {
     });
     dispatch(selectMentor(data[0].node.id))
 
-    setHeight(window.innerHeight * 0.5)
+    // Media queries for layout
+    setHeight(window.innerHeight)
     setWidth(window.innerWidth)
     window.addEventListener('resize', handleWindowResize)
     return () => {
@@ -40,7 +47,7 @@ const IndexPage = ({ search, ...props }) => {
     if (typeof window === `undefined`) {
       return
     }
-    setHeight(window.innerHeight * 0.5)
+    setHeight(window.innerHeight)
     setWidth(window.innerWidth)
   }
 
@@ -49,8 +56,8 @@ const IndexPage = ({ search, ...props }) => {
   }
 
   return (
-    <div>
-      <div className='flex' style={{ height: height }}>
+    <MuiThemeProvider theme={theme}>
+      <div className='flex' style={{ height: videoHeight }}>
         <div className='content' style={{ height: '60px' }}>
           <VideoPanel />
         </div>
@@ -58,13 +65,21 @@ const IndexPage = ({ search, ...props }) => {
           <Header />
         </div>
         <div className='expand'>
-          <Video height={height - 90} width={width} />
+          <Video height={videoHeight - 90} width={width} />
         </div>
       </div>
-      <Input height={height} />
-    </div>
+      <Input height={inputHeight} />
+    </MuiThemeProvider>
   )
 }
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#1b6a9c'
+    }
+  }
+})
 
 export default withLocation(IndexPage)
 
