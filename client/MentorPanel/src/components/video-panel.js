@@ -8,7 +8,7 @@ import { STATUS_READY, STATUS_ERROR } from 'src/redux/store'
 
 import VideoThumbnail from "src/components/video-thumbnail";
 
-const VideoPanel = () => {
+const VideoPanel = ({ isMobile }) => {
   const dispatch = useDispatch()
   const mentor = useSelector(state => state.current_mentor)
   const mentors = useSelector(state => state.mentors_by_id)
@@ -21,22 +21,22 @@ const VideoPanel = () => {
   }
 
   return (
-      <div className="carousel">
-        {
-          Object.keys(mentors).map((id, i) =>
-            <div
-              className={`slide video-slide ${id === mentor ? 'selected' : ''}`}
-              key={`${id}-${i}`}
-              onClick={() => onClick(mentors[id])}
-            >
-              <VideoThumbnail mentor={mentors[id]} />
-              <LoadingSpinner mentor={mentors[id]} />
-              <MessageStatus mentor={mentors[id]} />
-              <StarIcon mentor={mentors[id]} />
-            </div>
-          )
-        }
-      </div>
+    <div className="carousel">
+      {
+        Object.keys(mentors).map((id, i) =>
+          <div
+            className={`slide video-slide ${id === mentor ? 'selected' : ''}`}
+            key={`${id}-${i}`}
+            onClick={() => onClick(mentors[id])}
+          >
+            <VideoThumbnail mentor={mentors[id]} isMobile={isMobile} />
+            <LoadingSpinner mentor={mentors[id]} />
+            <MessageStatus mentor={mentors[id]} />
+            <StarIcon mentor={mentors[id]} />
+          </div>
+        )
+      }
+    </div>
   )
 }
 
