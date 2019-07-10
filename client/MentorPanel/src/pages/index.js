@@ -59,7 +59,7 @@ const IndexPage = ({ search, ...props }) => {
     <MuiThemeProvider theme={theme}>
       <div className='flex' style={{ height: videoHeight }}>
         <div className='content' style={{ height: '60px' }}>
-          <VideoPanel />
+          <VideoPanel isMobile={isMobile} />
         </div>
         <div className='content' style={{ height: '30px' }}>
           <Header />
