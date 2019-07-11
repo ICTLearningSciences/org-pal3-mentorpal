@@ -7,7 +7,11 @@ import { idleUrl, videoUrl, subtitleUrl } from 'src/api/api'
 import { answerFinished, faveMentor } from 'src/redux/actions'
 import { chromeVersion } from 'src/funcs/funcs'
 
+import LoadingSpinner from 'src/components/video-spinner'
+import MessageStatus from 'src/components/video-status'
+
 const Video = ({ height, width }) => {
+    const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
     const mobileWidth = height / 0.895
     const webWidth = height / 0.5625
     const format = Math.abs(width - mobileWidth) > Math.abs(width - webWidth) ? 'web' : 'mobile'
@@ -17,6 +21,8 @@ const Video = ({ height, width }) => {
         <div id='video-container' style={{ width: width }}>
             <VideoPlayer width={width} height={height} format={format} />
             <FaveButton />
+            <LoadingSpinner mentor={mentor} />
+            <MessageStatus mentor={mentor} />
         </div>
     )
 }

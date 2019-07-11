@@ -21,19 +21,6 @@ const ScrollingQuestions = ({ questions, questions_asked, recommended, onQuestio
     })
   })
 
-  questions.sort((a, b) => {
-    if (recommended.includes(a) && recommended.includes(b)) {
-      return questions.indexOf(a) - questions.indexOf(b)
-    }
-    if (recommended.includes(a)) {
-      return -1
-    }
-    if (recommended.includes(b)) {
-      return 1
-    }
-    return 0
-  })
-
   return (
     questions.map((question, i) =>
       <ListItem

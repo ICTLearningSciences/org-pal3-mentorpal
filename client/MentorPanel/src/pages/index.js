@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { graphql } from 'gatsby'
 import { CircularProgress } from '@material-ui/core'
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 
 import { loadMentor, loadQuestions, selectMentor } from 'src/redux/actions'
 
@@ -19,20 +19,32 @@ const IndexPage = ({ search, ...props }) => {
   const mentors = useSelector(state => state.mentors_by_id)
   const [height, setHeight] = useState(0)
   const [width, setWidth] = useState(0)
-  const { recommended } = search
+  const { recommended, mentor } = search
 
   const isMobile = width < 768
   const videoHeight = isMobile ? height * 0.5 : Math.min(width * 0.5625, 700)
   const inputHeight = isMobile ? height * 0.5 : Math.max(height - videoHeight, 250)
 
   useEffect(() => {
-    // Load the list of mentors and questions
     const data = props.data.allMentorsCsv.edges
-    data.forEach(item => {
-      dispatch(loadMentor(item.node))
-      dispatch(loadQuestions(item.node.id, recommended))
-    });
-    dispatch(selectMentor(data[0].node.id))
+    const mentorData = data.find((item) => {
+      return item.node.id === mentor
+    })
+
+    // Load the data for a single mentor
+    if (mentorData) {
+      dispatch(loadMentor(mentorData.node))
+      dispatch(loadQuestions(mentor, recommended))
+      dispatch(selectMentor(mentor))
+    }
+    // Load the list of mentors and questions
+    else {
+      data.forEach(item => {
+        dispatch(loadMentor(item.node))
+        dispatch(loadQuestions(item.node.id, recommended))
+      });
+      dispatch(selectMentor(data[0].node.id))  
+    }
 
     // Media queries for layout
     setHeight(window.innerHeight)
@@ -58,14 +70,14 @@ const IndexPage = ({ search, ...props }) => {
   return (
     <MuiThemeProvider theme={theme}>
       <div className='flex' style={{ height: videoHeight }}>
-        <div className='content' style={{ height: '60px' }}>
-          <VideoPanel isMobile={isMobile} />
-        </div>
-        <div className='content' style={{ height: '30px' }}>
-          <Header />
-        </div>
+        { mentor ? undefined :
+            <div className='content' style={{ height: '100px' }}>
+              <VideoPanel isMobile={isMobile} />
+              <Header />
+            </div>
+        }
         <div className='expand'>
-          <Video height={videoHeight - 90} width={width} />
+          <Video height={videoHeight - (mentor ? 0 : 100)} width={width} />
         </div>
       </div>
       <Input height={inputHeight} />
