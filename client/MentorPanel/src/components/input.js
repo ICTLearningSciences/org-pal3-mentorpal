@@ -93,7 +93,7 @@ const styles = {
     borderStyle: 'solid',
     borderWidth: '1px',
     borderRadius: '5px',
-    borderColor: 'rgba(0, 0, 0, 0.12)',
+    borderColor: 'rgba(0, 0, 0, 0.20)',
   },
   button: {
     margin: 10,
