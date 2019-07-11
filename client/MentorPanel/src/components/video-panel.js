@@ -14,6 +14,9 @@ const VideoPanel = ({ isMobile }) => {
   const mentor = useSelector(state => state.current_mentor)
   const mentors = useSelector(state => state.mentors_by_id)
 
+  const height = 50
+  const width = isMobile ? height / 0.895 : height / 0.5625
+
   const onClick = (mentor) => {
     if (mentor.is_off_topic || mentor.status === STATUS_ERROR) {
       return
@@ -30,8 +33,8 @@ const VideoPanel = ({ isMobile }) => {
             key={`${id}-${i}`}
             onClick={() => onClick(mentors[id])}
           >
-            <VideoThumbnail mentor={mentors[id]} isMobile={isMobile} />
-            <LoadingSpinner mentor={mentors[id]} />
+            <VideoThumbnail mentor={mentors[id]} isMobile={isMobile} height={height} width={width} />
+            <LoadingSpinner mentor={mentors[id]} height={height} width={width} />
             <MessageStatus mentor={mentors[id]} />
             <StarIcon mentor={mentors[id]} />
           </div>

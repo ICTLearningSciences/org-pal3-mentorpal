@@ -19,9 +19,9 @@ const Video = ({ height, width }) => {
 
     return (
         <div id='video-container' style={{ width: width }}>
-            <VideoPlayer width={width} height={height} format={format} />
+            <VideoPlayer height={height} width={width} format={format} />
             <FaveButton />
-            <LoadingSpinner mentor={mentor} />
+            <LoadingSpinner mentor={mentor} height={height} width={width} />
             <MessageStatus mentor={mentor} />
         </div>
     )
