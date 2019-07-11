@@ -1,5 +1,5 @@
 node_modules
-password.txt
+*password.txt
 .netrc
 __pycache__
 *.pyc

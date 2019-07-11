@@ -9,14 +9,14 @@ Place the text file containing the private key in the root of the website versio
 Contact Madhusudhan Krishnamachari at madhusudhank@icloud.com to get assistance on how to use Watson. (IBM Documentation should help)
 """
 passphrase = ""
-with open("../../website_version/password.txt", "r") as password:
+with open("src/data_pipeline/secrets/password.txt", "r") as password:
     passphrase = password.read()
     print(passphrase)
 speech_to_text = SpeechToTextV1(
     username="b339aacb-e633-4e40-b10d-6f5b300f59bf",
-    password=passphrase,
-    x_watson_learning_opt_out=True,  # tells IBM Watson not to collect our data, hence keeping our data confidential and secure.
+    password=passphrase
 )
+speech_to_text.set_default_headers({'x-watson-learning-opt-out': "true"}) # tells IBM Watson not to collect our data, hence keeping our data confidential and secure.
 
 """
 Opens an audio .ogg file and calls the recognize function which transcribes the audio to text. That is stored in the `result` variable.
@@ -31,7 +31,7 @@ def watson(file_name):
     with open(file_name, "rb") as audio_file:
         result = speech_to_text.recognize(
             audio_file, content_type="audio/ogg", continuous=True
-        )["results"]
+        ).result["results"]
         transcript = ""
         for item in result:
             transcript += item["alternatives"][0]["transcript"]
