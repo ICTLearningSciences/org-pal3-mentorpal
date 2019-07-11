@@ -49,6 +49,10 @@ export const loadQuestions = (mentor_id, recommended) => async (dispatch) => {
 
 const loadTopics = (mentor_id, questions, recommended) => async (dispatch) => {
   const topics_url = topicsUrl(mentor_id)
+  const init = {'History': []}
+  if (recommended) {
+    init['Recommended'] = Array.isArray(recommended) ? recommended : [recommended]
+  }
 
   try {
     const results = await papaParseAsync(topics_url)
@@ -64,14 +68,7 @@ const loadTopics = (mentor_id, questions, recommended) => async (dispatch) => {
       topic_questions[topicGroup] = topic_questions[topicGroup].concat(topicQuestions)
       topic_questions[topicGroup] = Array.from(new Set(topic_questions[topicGroup]))
       return topic_questions
-    }, {})
-
-    if (recommended) {
-      topic_questions = {
-        ['Recommended']: Array.isArray(recommended) ? recommended : [recommended],
-        ...topic_questions
-      }
-    }
+    }, init)
 
     dispatch({
       type: MENTOR_TOPIC_QUESTIONS_LOADED,

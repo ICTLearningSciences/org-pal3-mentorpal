@@ -1,6 +1,7 @@
 import React from "react"
-import { useSelector, useDispatch } from 'react-redux';
-import { Button, Paper } from '@material-ui/core';
+import { useSelector, useDispatch } from 'react-redux'
+import { Button, Paper } from '@material-ui/core'
+import { History, Whatshot } from '@material-ui/icons'
 
 import { selectTopic } from 'src/redux/actions'
 import { normalizeString } from 'src/funcs/funcs'
@@ -35,7 +36,7 @@ const Topics = ({ onSelected }) => {
   }
 
   return (
-    <Paper elevation={1} square={true}>
+    <Paper elevation={2} square={true}>
       <div className="carousel">
         {
           Object.keys(topic_questions).map((topic, i) =>
@@ -43,7 +44,10 @@ const Topics = ({ onSelected }) => {
               <Button
                 variant='contained'
                 color={current_topic === topic ? 'primary' : 'default'}
-                onClick={() => onTopicSelected(topic)}>
+                onClick={() => onTopicSelected(topic)}
+              >
+                {topic === 'History' ? <History style={{ 'marginRight': '5px' }} /> : undefined}
+                {topic === 'Recommended' ? <Whatshot style={{ 'marginRight': '5px' }} /> : undefined}
                 {topic}
               </Button>
             </div>
