@@ -63,10 +63,15 @@ const VideoPlayer = ({ width, height, format = 'mobile' }) => {
 const FaveButton = () => {
     const dispatch = useDispatch()
     const mentor = useSelector(state => state.current_mentor)
+    const mentors = useSelector(state => state.mentors_by_id)
     const faved_mentor = useSelector(state => state.faved_mentor)
 
     const onClick = () => {
         dispatch(faveMentor(mentor))
+    }
+
+    if (Object.keys(mentors).length === 1) {
+        return <div></div>
     }
 
     return (

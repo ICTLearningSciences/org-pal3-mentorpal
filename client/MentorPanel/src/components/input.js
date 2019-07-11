@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Divider, InputBase, Paper } from '@material-ui/core';
+import { Button, Divider, Paper, InputBase } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 
 import { sendQuestion, onInput } from 'src/redux/actions'
@@ -60,8 +60,9 @@ const Input = ({ height, ...props }) => {
       </div>
       <div className='footer' style={{ height: '60px' }}>
         <Paper className={classes.root} square={true}>
-          <InputBase className={classes.inputField}
-            value={text} multiline rows={2}
+          <InputBase
+            className={classes.inputField}
+            value={text} multiline rows={2} rowsMax={2}
             placeholder={question || "Ask a question"}
             onChange={(e) => { onInputChanged(e.target.value) }}
             onClick={onInputSelected}
@@ -84,11 +85,15 @@ const styles = {
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    boxShadow: '0 -3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)'
+    boxShadow: '0 -3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)',
   },
   inputField: {
     flex: 1,
-    marginLeft: 8,
+    paddingLeft: '8px',
+    borderStyle: 'solid',
+    borderWidth: '1px',
+    borderRadius: '5px',
+    borderColor: 'rgba(0, 0, 0, 0.12)',
   },
   button: {
     margin: 10,
@@ -96,8 +101,8 @@ const styles = {
   divider: {
     width: 1,
     height: 28,
-    margin: 4,
-  },
+    marginLeft: 10,
+  }
 }
 
 export default withStyles(styles)(Input)
