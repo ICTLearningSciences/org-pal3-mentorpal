@@ -2,15 +2,18 @@ version: 2.1
 executors:
   ebs:
     docker:
-      - image: larrykirschner/circleci-elasticbeanstalk:7c095b9738d0baaea97acbaf1738db40fb0e5892
+      - image: larrykirschner/circleci-elasticbeanstalk:e9f1c61a9c863a520f88172e076615966a12f383
 aliases:
   # setup env vars for ebs tools
-  - &branch-env-init
-    name: Init EBS ENV
-    command: eval $EBS_TOOLS_ENV_INIT
   - &dev-mentorpal-env-init
     name: dev-mentorpal env init
     command: eval $EBS_TOOLS_ENV_INIT && echo 'export EB_ENV=dev-mentorpal' >> $BASH_ENV
+  - &qa-mentorpal-env-init
+    name: qa-mentorpal env init
+    command: eval $EBS_TOOLS_ENV_INIT && echo 'export EB_ENV=qa-mentorpal' >> $BASH_ENV
+  - &prod-mentorpal-env-init
+    name: qa-mentorpal env init
+    command: eval $EBS_TOOLS_ENV_INIT && echo 'export EB_ENV=prod-mentorpal' >> $BASH_ENV
   - &docker-build
     name: Docker Build
     command: cd ${EBS_TOOLS} && make docker-build
@@ -20,16 +23,15 @@ aliases:
   - &eb-deploy
     name: EBS Deploy
     command: cd ${EBS_TOOLS} && make clean eb-deploy
-  - &ignore-ebs-env-branches
-    branches:
-      ignore:
-        - qa-mentorpal
-        - prod-mentorpal
-  - &only-ebs-env-branches
+  - &only-master
     branches:
       only:
-        - qa-mentorpal
-        - prod-mentorpal
+        - master
+  - &only-prod-releases
+    tags:
+      only: /v[0-9]+(\.[0-9]+)*(-prod)/
+    branches:
+      ignore: /.*/
 jobs:
   test:
     docker:
@@ -48,23 +50,29 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - checkout
-      - run: *branch-env-init
+      - run: *qa-mentorpal-env-init
       - run: *docker-build
       - run:
           name: Test Images
           command: make test-images
       - run: *docker-push
-  ebs-deploy-dev:
+  dev-ebs-deploy:
     executor: ebs
     steps:
       - checkout
       - run: *dev-mentorpal-env-init
       - run: *eb-deploy
-  ebs-deploy-branch-env:
+  qa-ebs-deploy:
     executor: ebs
     steps:
       - checkout
-      - run: *branch-env-init
+      - run: *qa-mentorpal-env-init
+      - run: *eb-deploy
+  prod-ebs-deploy:
+    executor: ebs
+    steps:
+      - checkout
+      - run: *prod-mentorpal-env-init
       - run: *eb-deploy
 workflows:
   version: 2
@@ -76,19 +84,16 @@ workflows:
             - test
       - deploy-to-dev:
           type: approval
-          filters: *ignore-ebs-env-branches
           requires:
             - docker-build-test-push
-      - ebs-deploy-dev:
+      - dev-ebs-deploy:
           requires:
             - deploy-to-dev
-          filters: *ignore-ebs-env-branches
-      - deploy-to-branch-env:
-          type: approval
-          filters: *only-ebs-env-branches
+      - qa-ebs-deploy:
+          filters: *only-master
           requires:
             - docker-build-test-push
-      - ebs-deploy-branch-env:
+      - prod-ebs-deploy:
+          filters: *only-prod-releases
           requires:
-            - deploy-to-branch-env
-          filters: *only-ebs-env-branches
+            - docker-build-test-push
