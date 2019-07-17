@@ -2,7 +2,7 @@ version: 2.1
 executors:
   ebs:
     docker:
-      - image: larrykirschner/circleci-elasticbeanstalk:7c095b9738d0baaea97acbaf1738db40fb0e5892
+      - image: larrykirschner/circleci-elasticbeanstalk:e9f1c61a9c863a520f88172e076615966a12f383
 aliases:
   # setup env vars for ebs tools
   - &dev-mentorpal-env-init
