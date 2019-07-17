@@ -11,7 +11,6 @@ ADD requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt && \
     rm /tmp/requirements.txt
 
-COPY recordings /app/recordings
 COPY src /app/src
 
 WORKDIR /app

@@ -1,6 +1,5 @@
 import ffmpy
 import csv
-import sys
 import os
 import fnmatch
 import pandas as pd

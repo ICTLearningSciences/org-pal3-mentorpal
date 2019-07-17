@@ -1,9 +1,7 @@
 import argparse
 import os
-import csv
 
 import preprocess_data
-import ibm_transcript_service as transcript_service
 
 """
 This file serves as the entrypoint for the mentor panel video processing pipeline
@@ -52,7 +50,7 @@ def get_mentor_data(mentor, url):
         else:
             print(
                 "ERROR: Audiofiles for {} don't exist locally and url is not provided".format(
-                    args.mentor
+                    mentor
                 )
             )
             mentor_dir = None
