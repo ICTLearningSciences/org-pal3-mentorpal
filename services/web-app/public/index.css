@@ -1,0 +1,263 @@
+/* Small devices (phones) */
+@media (max-width: 767.98px) {
+	.topic-box {
+		overflow-y:scroll;
+		overflow-x:hidden;
+		background-color:#B0BEC8;
+		border: 10px #B0BEC8;
+		padding-top: 0.5%;
+		white-space: normal;
+	}
+	#mentor-title, #button-row {
+		display: none;
+	}
+	video::-webkit-media-text-track-display{
+		font-size: 200%;
+	}
+	html, body {
+		height: 100%;
+		width: 100%;
+		margin: 0px;
+		padding: 0px;
+	}
+	#main-holder, #main-box, #topic-box, #caption-box, #videoWrapper, #input-box, .text-box-setup {
+		height: 100%;
+		width: 100%;
+	}
+	#video-holder {
+		position: absolute;
+		width: 100%;
+		bottom: 50%;
+		top: 0;
+		left: 15px;
+		right: 15px;
+	}
+	#topic-holder {
+		position: absolute;
+		width: 100%;
+		top: 50%;
+		bottom: 85px;
+		left: 15px;
+		right: 15px;
+	}
+	#input-holder {
+		position: absolute;
+		width: 100%;
+		height: 75px;
+		bottom: 10px;
+		left: 0;
+		right: 0;
+	}
+	#question-Box {
+		height: 75px;
+		font-size: 15px;
+		width: 100%;
+	}
+	#send-button {
+		height: 75px;
+		width: 100px;
+		font-size: 20px;
+	}
+	.mic-setup {
+		position: absolute;
+		top: 12px;
+		bottom: 12px;
+		right: 30px;
+		height: 50px;
+		width: 50px;
+		border-radius: 50%;
+	}
+}
+
+/* Medium+ devices */
+@media (min-width: 768px) {
+	.topic-box {
+		height:165px;
+		overflow-y:scroll;
+		overflow-x:hidden;
+		background-color:#B0BEC8;
+		border: 10px #B0BEC8;
+		padding-top: 0.5%;
+		white-space: normal;
+	}
+	#mentor-title {
+		bottom: 0;
+		margin-bottom: 18px;
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		font-size: 25px;
+	}
+	#question-Box {
+		width: 100%;
+		height: 120px;
+		font-size: 20px;
+	}
+	#send-button {
+		height: 120px;
+		width: 120px;
+		font-size: 30px;
+	}
+	.mic-setup{
+		position:absolute;
+		top: 30px;
+		right: 30px;
+		height: 60px;
+		width: 60px;
+		border-radius: 50%;
+	}
+}
+
+#navSize {
+	background-color: #d9dbdf;
+	height: 85px;
+}
+.enter-button{
+	color: #FFFFFF;
+}
+.button-settings{
+	background-color: #5c84a4;
+	border-radius: 40px;
+	margin-top: 5px;
+	height: 45px;
+	color: #f4f4f4;
+	font-size: 18px;
+}
+.navbar-pad{
+	padding-top: 0.5%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	padding-bottom: 1.5%;
+}
+.mentor-title{
+	padding: 10px;
+}
+.hide {
+	visibility: hidden;
+}
+.choose-mentor{
+	border-radius: 30px;
+}
+.button-row-enter{
+	height: 120px;
+}
+.button-row-cap{
+	padding-top: 5.5%;
+	padding-bottom: 5.5%;
+	height: 82px;
+}
+.button-row-choice{
+	padding-top: 5.5%;
+	padding-bottom: 5.5%;
+	height: 82px;
+}
+.button-color{
+	background-color: #1b6a9c;
+}
+.caption-box{
+	height:165px;
+	width:100%;
+	overflow-y:scroll;
+	overflow-x:hidden;
+	border:10px #B0BEC8;
+	background-color:#B0BEC8;
+	display:none;
+}
+.text-box-setup{
+	width: 100%;
+}
+.mic-off{
+	background-color: #e0e0e0;
+	color: #8b8b8b;
+}
+.mic-on{
+	background-color: #9C1B1B;
+	color: #ecd2d2;
+}
+body{
+	background-color: #C1C1C1;
+}
+textarea {
+	resize: none;
+}
+.button-caption{
+	width: 100%;
+	padding: 8px;
+	min-width: 70px;
+	background-color: #e0e0e0;
+}
+.button-choice{
+	width: 100%;
+	padding: 8px;
+	min-width: 70px;
+	background-color: #e0e0e0;
+}
+::-webkit-scrollbar{
+	width: 14px;
+	height: 15px;
+	background-color: #A5A5A5;
+}
+::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb{
+	background-color: #C5C5C5;
+	background-image: -webkit-gradient(linear, 0 0, 0 0%,
+						 color-stop(.5, rgba(255, 255, 255, .2)),
+						 color-stop(.5, transparent), to(transparent));
+}
+.select-mentor{
+	width: 400px;
+	height: 75px;
+	font-size: 19px;
+}
+
+/* Below is for the overlay*/
+.overlay {
+	height: 0%;
+	width: 100%;
+	position: fixed;
+	z-index: 1;
+	bottom: 0;
+	left: 0;
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0, 0.7);
+	overflow-y: hidden;
+	transition: 0.5s;
+}
+.overlay-content {
+	position: relative;
+	top: 25%;
+	width: 100%;
+	text-align: center;
+	margin-top: 30px;
+	color: #D1D1D1;
+}
+.overlay a {
+	padding: 8px;
+	text-decoration: none;
+	font-size: 36px;
+	color: #818181;
+	display: block;
+	transition: 0.5s;
+}
+.overlay a:hover, .overlay a:focus {
+	color: #f1f1f1;
+}
+.overlay .closebtn {
+	position: absolute;
+	top: 20px;
+	right: 45px;
+	font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+	.overlay {overflow-y: auto;}
+	.overlay a {font-size: 20px}
+	.overlay .closebtn {
+	font-size: 40px;
+	top: 15px;
+	right: 35px;
+	}
+}

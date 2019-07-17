@@ -1,0 +1,13 @@
+branch-defaults:
+  default:
+    environment: {{EB_ENV}}
+global:
+  application_name: {{EB_APP}}
+  default_ec2_keyname: aws-eb-us-east-1-pal
+  default_platform: arn:aws:elasticbeanstalk:us-east-1::platform/Multi-container Docker
+    running on 64bit Amazon Linux/2.11.2
+  default_region: {{EB_REGION}}
+  sc: null
+  workspace_type: Application
+deploy:
+  artifact: {{EB_BUNDLE_ZIP}}

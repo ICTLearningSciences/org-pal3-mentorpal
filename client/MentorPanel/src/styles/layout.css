@@ -1,0 +1,83 @@
+body {
+  height: 100%;
+  margin: 0;
+  text-align: center;
+}
+#video-container {
+  position: relative;
+  margin: 0 auto;
+}
+#header {
+  padding: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.content {
+  flex: 0 1;
+}
+.expand {
+  flex: 1 1;
+  -webkit-overflow-scrolling: touch;
+}
+
+.carousel {
+  width: 100%;
+  overflow-x: visible;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.carousel .slide {
+  position: relative;
+  display: inline-block;
+}
+.carousel .video-slide {
+  padding: 5px;
+}
+.carousel .topic-slide {
+  padding: 10px;
+}
+.carousel .selected {
+  background-color: orange;
+}
+
+.question-button {
+  text-transform: none;
+  text-align: left;
+}
+
+.spinner {
+  position: absolute;
+}
+.message-notice {
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
+}
+.star-icon {
+  position: absolute;
+  top: 15%;
+  left: 5%;
+}
+
+.blink {
+  animation: blink-animation 0.5s steps(5, start) infinite;
+  -webkit-animation: blink-animation 0.5s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
