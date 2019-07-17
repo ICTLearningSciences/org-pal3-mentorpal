@@ -23,10 +23,23 @@ def convert_to_wav(input_file, output_file):
     Parameters:
     input_file: Examples are /example/path/to/session1/session1part1.mp4, /example/path/to/session1/session1part2.mp4
     output_file: Examples are /example/path/to/session1/session1part1.ogg, /example/path/to/session1/session1part2.ogg
+
+    Returns:
+    error_code: if conversion fails, return 1
     """
-    output_command = "-loglevel quiet -y"
-    ff = ffmpy.FFmpeg(inputs={input_file: None}, outputs={output_file: output_command})
-    ff.run()
+    error_code = 0
+
+    if os.path.exists(input_file):
+        output_command = "-loglevel quiet -y"
+        ff = ffmpy.FFmpeg(
+            inputs={input_file: None}, outputs={output_file: output_command}
+        )
+        ff.run()
+    else:
+        print("ERROR: Can't chunk audio, {} doesn't exist".format(input_file))
+        error_code = 1
+
+    return error_code
 
 
 def ffmpeg_split_audio(audiochunks, input_file, index, start_time, end_time):
@@ -144,7 +157,12 @@ def process_raw_data(dirname):
     number_of_parts = len(fnmatch.filter(os.listdir(dirname), "*.mp4"))
     session_number = dirname[-2]
 
-    print("Started processing the session...")
+    if not number_of_parts > 0:
+        print("WARNING: Session {} contains no files".format(session_number))
+        return
+    else:
+        print("INFO: Started processing Session {}".format(session_number))
+
     for i in range(number_of_parts):
         video_file = (
             dirname + "session" + str(session_number) + "part" + str(i + 1) + ".mp4"
@@ -172,7 +190,8 @@ def process_raw_data(dirname):
             offset = len(fnmatch.filter(os.listdir(audiochunks), "*.ogg"))
         print("Processing part " + str(i + 1) + "...")
         print("Converting video to audio...")
-        convert_to_wav(video_file, audio_file)
+        if convert_to_wav(video_file, audio_file):
+            continue
         print("Completed converting to wav")
         print("Chunking the audio into smaller parts...")
         questions = split_into_chunks(audiochunks, audio_file, timestamps, offset)
