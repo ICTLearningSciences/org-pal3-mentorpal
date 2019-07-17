@@ -16,6 +16,20 @@ const Questions = ({ height, onSelected }) => {
 
   const questions = mentor.topic_questions[current_topic] || []
   const recommended = mentor.topic_questions['Recommended'] || []
+  if (current_topic !== 'History') {
+    questions.sort((a, b) => {
+      if (recommended.includes(a) && recommended.includes(b)) {
+        return questions.indexOf(a) - questions.indexOf(b)
+      }
+      if (recommended.includes(a)) {
+        return -1
+      }
+      if (recommended.includes(b)) {
+        return 1
+      }
+      return 0
+    })
+  }
 
   return (
     <MuiThemeProvider theme={theme}>

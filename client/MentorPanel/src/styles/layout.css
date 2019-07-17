@@ -8,7 +8,7 @@ body {
   margin: 0 auto;
 }
 #header {
-  padding: 5px;
+  padding: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -55,8 +55,6 @@ body {
 
 .spinner {
   position: absolute;
-  top: 25%;
-  left: 25%;
 }
 .message-notice {
   position: absolute;

@@ -7,7 +7,11 @@ import { idleUrl, videoUrl, subtitleUrl } from 'src/api/api'
 import { answerFinished, faveMentor } from 'src/redux/actions'
 import { chromeVersion } from 'src/funcs/funcs'
 
+import LoadingSpinner from 'src/components/video-spinner'
+import MessageStatus from 'src/components/video-status'
+
 const Video = ({ height, width }) => {
+    const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
     const mobileWidth = height / 0.895
     const webWidth = height / 0.5625
     const format = Math.abs(width - mobileWidth) > Math.abs(width - webWidth) ? 'web' : 'mobile'
@@ -15,8 +19,10 @@ const Video = ({ height, width }) => {
 
     return (
         <div id='video-container' style={{ width: width }}>
-            <VideoPlayer width={width} height={height} format={format} />
+            <VideoPlayer height={height} width={width} format={format} />
             <FaveButton />
+            <LoadingSpinner mentor={mentor} height={height} width={width} />
+            <MessageStatus mentor={mentor} />
         </div>
     )
 }
@@ -57,10 +63,15 @@ const VideoPlayer = ({ width, height, format = 'mobile' }) => {
 const FaveButton = () => {
     const dispatch = useDispatch()
     const mentor = useSelector(state => state.current_mentor)
+    const mentors = useSelector(state => state.mentors_by_id)
     const faved_mentor = useSelector(state => state.faved_mentor)
 
     const onClick = () => {
         dispatch(faveMentor(mentor))
+    }
+
+    if (Object.keys(mentors).length === 1) {
+        return <div></div>
     }
 
     return (

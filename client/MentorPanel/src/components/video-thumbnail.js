@@ -4,9 +4,9 @@ import ReactPlayer from 'react-player'
 import { idleUrl } from 'src/api/api'
 import { STATUS_ERROR } from 'src/redux/store'
 
-const VideoThumbnail = ({ mentor }) => {
+const VideoThumbnail = ({ mentor, isMobile, width, height }) => {
   const [isPlaying, setPlaying] = useState(true)
-  const src = idleUrl(mentor, 'mobile')
+  const src = idleUrl(mentor, isMobile ? 'mobile' : 'web')
   const isDisabled = mentor.is_off_topic || mentor.status === STATUS_ERROR
 
   const onStart = () => {
@@ -17,8 +17,8 @@ const VideoThumbnail = ({ mentor }) => {
     <ReactPlayer
       style={{ opacity: isDisabled ? '0.25' : '1', backgroundColor: 'black' }}
       url={src}
-      height={50}
-      width={50 / 0.895}
+      height={height}
+      width={width}
       onStart={onStart}
       playing={isPlaying}
       volume={0.0}
