@@ -14,3 +14,5 @@ RUN pip3 install -r /tmp/requirements.txt && \
 COPY src /app/src
 
 WORKDIR /app
+
+ENTRYPOINT ["python3", "src/data_pipeline/pipeline_entrypoint.py"]

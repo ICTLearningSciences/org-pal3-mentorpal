@@ -1,6 +1,5 @@
 import argparse
 import os
-
 import preprocess_data
 
 """
@@ -27,7 +26,7 @@ def process_session_data(sessions, mentor_dir):
                     preprocess_data.process_raw_data(session_dir)
                     session_dir = get_session_dir(mentor_dir, session_number)
             else:
-                session_dir = get_session_dir(mentor_dir, session_number)
+                session_dir = get_session_dir(mentor_dir, session)
                 preprocess_data.process_raw_data(session_dir)
 
 

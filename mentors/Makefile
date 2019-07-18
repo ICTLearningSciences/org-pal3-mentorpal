@@ -1,8 +1,9 @@
 DOCKER_IMAGE?=mentor-processing-pipeline
 DOCKER_CONTAINER=mentor-processing-pipeline
 MENTOR?=julianne
-PIPELINE_PATH=src/data_pipeline/pipeline_entrypoint.py
 SESSION?=1
+WATSON_USERNAME=`head -n 1 secrets/watson_credentials.txt`
+WATSON_PASSWORD=`tail -n 1 secrets/watson_credentials.txt`
 
 # Removes all mentor files from the local file system
 .PHONY clean:
@@ -10,55 +11,67 @@ clean:
 	rm -rf recordings/*
 
 # Builds the data processing pipeline dockerfile
-docker-build:
+.PHONY build:
+build:
 	docker build -t $(DOCKER_IMAGE) .
 
 # Runs a shell inside the data processing pipeline dockerfile
-docker-run:
+.PHONY shell:
+shell:
 	docker run \
 			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
+			--entrypoint /bin/bash \
 			-v $(shell pwd)/recordings:/app/recordings \
-			$(DOCKER_IMAGE) \
-			/bin/bash
+			$(DOCKER_IMAGE)
 
 # Fully pre-processes mentor data inside docker container
 # Generates audiochunks and transcripts for all sessions
-docker-build-mentor:
+build-mentor:
 	docker run \
 			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/recordings:/app/recordings \
-			--entrypoint python3 $(DOCKER_IMAGE) $(PIPELINE_PATH) -m $(MENTOR) -t
+			$(DOCKER_IMAGE) -m $(MENTOR) -t
 
 # Partially pre-processes mentor data inside docker container
 # Generates only audiochunks for all sessions
-docker-build-audiochunks:
+build-audiochunks:
 	docker run \
 			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/recordings:/app/recordings \
-			--entrypoint python3 $(DOCKER_IMAGE) $(PIPELINE_PATH) -m $(MENTOR)
+			$(DOCKER_IMAGE) -m $(MENTOR)
 
 # Partially pre-processes mentor data inside docker container
 # Generates audiochunks and transcripts for one session
-docker-build-session:
+build-session:
 	docker run \
 			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/recordings:/app/recordings \
-			--entrypoint python3 $(DOCKER_IMAGE) $(PIPELINE_PATH) -m $(MENTOR) -s $(SESSION)
+			$(DOCKER_IMAGE) -m $(MENTOR) -s $(SESSION) -t
 
 # Partially pre-processes mentor data inside docker container
 # Generates only audiochunks for one session
-docker-build-session-audiochunks:
+build-session-audiochunks:
 	docker run \
 			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/recordings:/app/recordings \
-			--entrypoint python3 $(DOCKER_IMAGE) $(PIPELINE_PATH) -m $(MENTOR) -s $(SESSION)
+			$(DOCKER_IMAGE) -m $(MENTOR) -s $(SESSION)
