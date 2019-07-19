@@ -31,6 +31,7 @@ shell:
 
 # Fully pre-processes mentor data inside docker container
 # Generates audiochunks and transcripts for all sessions
+.PHONY build-mentor:
 build-mentor:
 	docker run \
 			-it \
@@ -43,6 +44,7 @@ build-mentor:
 
 # Partially pre-processes mentor data inside docker container
 # Generates only audiochunks for all sessions
+.PHONY build-audiochunks:
 build-audiochunks:
 	docker run \
 			-it \
@@ -55,6 +57,7 @@ build-audiochunks:
 
 # Partially pre-processes mentor data inside docker container
 # Generates audiochunks and transcripts for one session
+.PHONY build-session:
 build-session:
 	docker run \
 			-it \
@@ -66,6 +69,7 @@ build-session:
 
 # Partially pre-processes mentor data inside docker container
 # Generates only audiochunks for one session
+.PHONY build-session-audiochunks:
 build-session-audiochunks:
 	docker run \
 			-it \

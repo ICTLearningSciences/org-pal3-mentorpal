@@ -18,7 +18,7 @@ ERR_MISSING_FILE = "ERROR: Missing {} file for session {} part {}"
 ERR_NO_URL = "ERROR: Data files for {} don't exist locally and url is not provided"
 
 
-def process_session_data(sessions, mentor_dir):
+def process_session_data(args, mentor_dir):
     """
     Process raw session data by leveraging preprocess_data script
 
@@ -26,18 +26,18 @@ def process_session_data(sessions, mentor_dir):
     sessions: list of session numbers to process (or 'all')
     mentor_dir: directory containing raw data for mentor
     """
-    if sessions:
-        for session in sessions:
+    if args.sessions:
+        for session in args.sessions:
             if session == "all":
                 session_number = 1
                 session_dir = get_session_dir(mentor_dir, session_number)
                 while os.path.isdir(session_dir):
                     session_number += 1
-                    preprocess_data.process_raw_data(session_dir)
+                    preprocess_data.process_raw_data(args.transcripts, session_dir)
                     session_dir = get_session_dir(mentor_dir, session_number)
             else:
                 session_dir = get_session_dir(mentor_dir, session)
-                preprocess_data.process_raw_data(session_dir)
+                preprocess_data.process_raw_data(args.transcripts, session_dir)
 
 
 def get_session_dir(mentor_dir, session_number):
@@ -65,6 +65,15 @@ def get_mentor_data(args):
 
 
 def download_mentor_data(url, mentor_dir):
+    """
+    This function controls the download of mentor data. Iterate through all
+    parts of all sessions. If download of a part fails, move to beginning of the
+    the next session. If download of the first part in a session fails, return.
+
+    Parameters:
+    url: address pointing to the top level of raw files for a single mentor
+    mentor_dir: target directory to store mentor files locally
+    """
     session = 1
     session_found = True
 
@@ -91,15 +100,24 @@ def download_mentor_data(url, mentor_dir):
 
 
 def download_session_data(url, mentor_dir, session, part, filename):
+    """
+    This function performs the download of mentor data. If target directory does
+    not exist, create target directory. If download fails, return part_found=False.
+    If download fails on first part, also return session_found=False.
+
+    Parameters:
+    url: address pointing to the top level of raw files for a single mentor
+    mentor_dir: target directory to store mentor files locally
+    session: session number
+    part: part number
+    filename: ""
+    """
     session_found = True
     part_found = True
 
     save_dir = os.path.join(mentor_dir, SESSION_PATH.format(session))
     save_path = os.path.join(mentor_dir, FILE_PATH.format(session, part, filename))
-    full_url = os.path.join(url, FILE_PATH.format(session, part, filename))
-    print("DEBUG: Full URL {}".format(full_url))
-    res = requests.get(full_url)
-    print("DEBUG: Status Code {}".format(res.status_code))
+    res = requests.get(os.path.join(url, FILE_PATH.format(session, part, filename)))
     if res.status_code == 200:
         if not os.path.isdir(save_dir):
             os.makedirs(save_dir)
@@ -146,7 +164,7 @@ def main():
     mentor_dir = get_mentor_data(args)
     if mentor_dir:
         print("INFO: Processing session data for {}".format(args.mentor))
-        process_session_data(args.sessions, mentor_dir)
+        process_session_data(args, mentor_dir)
 
 
 if __name__ == "__main__":

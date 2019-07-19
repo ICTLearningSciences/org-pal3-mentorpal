@@ -12,6 +12,7 @@ TRANSCRIPT_FILE = utils.TRANSCRIPT_FILE
 VIDEO_FILE = utils.VIDEO_FILE
 AUDIO_FILE = utils.AUDIO_FILE
 TIMESTAMP_FILE = utils.TIMESTAMP_FILE
+FILENAME = utils.FILENAME
 
 
 def convert_to_wav(input_file, output_file):
@@ -75,13 +76,11 @@ def convert_to_seconds(time):
     Parameters:
     time: time string
     """
-    print("DEBUG: Time {}".format(time))
     time_adjustments = [3600, 60, 1]
     time_split = time.split(":")
     if len(time_split) == 2:  # TODO: Remove this when data is standardized
         time_split.insert(0, 00)
     result = sum(s * int(a) for s, a in zip(time_adjustments, time_split))
-    print("DEBUG: Result {}".format(result))
     return result
 
 
@@ -112,8 +111,8 @@ def split_into_chunks(audiochunks, audio_file, timestamps, offset):
     start_times = [convert_to_seconds(time) for time in start_times]
     end_times = [convert_to_seconds(time) for time in end_times]
 
+    print("INFO: Processing {} chunk(s) ".format(len(start_times)))
     for i in range(0, len(start_times)):
-        print("INFO: Processing chunk {}".format(i))
         ffmpeg_split_audio(
             audiochunks, audio_file, offset + i, start_times[i], end_times[i]
         )
@@ -140,11 +139,17 @@ def get_transcript(dirname, questions, offset):
                 dirname, "audiochunks", "q{}.ogg".format(offset + i)
             )
             transcript = transcript_service.generate_transcript(ogg_file)
-            print("DEBUG: {}".format(transcript))
-            csvwriter.writerow([questions[i], transcript])
+
+            if not transcript:
+                print("ERROR: Could not connect to IBM Watson")
+                return 0
+            else:
+                print("DEBUG: {}".format(transcript))
+                csvwriter.writerow([questions[i], transcript])
+        return 1
 
 
-def process_raw_data(dirname):
+def process_raw_data(transcripts, dirname):
     # Checks if dirname has '/' at end. If not, adds it. Just a sanity check
     if dirname[-1] != os.sep:
         dirname += os.sep
@@ -160,9 +165,9 @@ def process_raw_data(dirname):
 
     for i in range(number_of_parts):
         part = i + 1
-        video_file = dirname + "part{}_{}".format(part, VIDEO_FILE)
-        audio_file = dirname + "part{}_{}".format(part, AUDIO_FILE)
-        timestamps = dirname + "part{}_{}".format(part, TIMESTAMP_FILE)
+        video_file = dirname + FILENAME.format(part, VIDEO_FILE)
+        audio_file = dirname + FILENAME.format(part, AUDIO_FILE)
+        timestamps = dirname + FILENAME.format(part, TIMESTAMP_FILE)
         audiochunks = dirname + "audiochunks"
         offset = 0
 
@@ -176,12 +181,13 @@ def process_raw_data(dirname):
         print("INFO: Converting video to audio")
         if convert_to_wav(video_file, audio_file):
             continue
-        print("INFO: Completed converting to wav")
         print("INFO: Chunking the audio into smaller parts")
         questions = split_into_chunks(audiochunks, audio_file, timestamps, offset)
-        print("INFO: Finished chunking")
-        print("INFO: Talking to IBM Watson to get transcripts")
-        get_transcript(dirname, questions, offset)
-        print("INFO: Finished getting the transcripts")
+        if transcripts:
+            print("INFO: Talking to IBM Watson to get transcripts")
+            if get_transcript(dirname, questions, offset):
+                print("INFO: Finished getting the transcripts")
+            else:
+                transcripts = False
 
-    print("INFO: Video fully processed")
+    print("INFO: Video processing complete")

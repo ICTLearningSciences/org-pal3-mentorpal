@@ -24,6 +24,10 @@ def generate_transcript(file_name):
     Note: Please make sure that the audio file is less than 100 MB in size. IBM Watson can't handle files larger than 100 MB.
     For this project, the duration of each Q-A won't exceed 5 minutes and in that case, it will be well within 100 MB.
     """
+    if not username or password:
+        print("ERROR: Missing Watson Credentials File")
+        return None
+
     with open(file_name, "rb") as audio_file:
         result = speech_to_text.recognize(
             audio_file, content_type="audio/ogg", continuous=True
