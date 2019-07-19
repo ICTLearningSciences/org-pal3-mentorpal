@@ -2,6 +2,7 @@ DOCKER_IMAGE?=mentor-processing-pipeline
 DOCKER_CONTAINER=mentor-processing-pipeline
 MENTOR?=julianne
 SESSION?=1
+URL?=http://mentorpal-source-video.s3-website-us-west-1.amazonaws.com/julianne
 WATSON_USERNAME=`head -n 1 secrets/watson_credentials.txt`
 WATSON_PASSWORD=`tail -n 1 secrets/watson_credentials.txt`
 
@@ -38,7 +39,7 @@ build-mentor:
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/recordings:/app/recordings \
-			$(DOCKER_IMAGE) -m $(MENTOR) -t
+			$(DOCKER_IMAGE) -m $(MENTOR) -t -u $(URL)
 
 # Partially pre-processes mentor data inside docker container
 # Generates only audiochunks for all sessions
@@ -50,7 +51,7 @@ build-audiochunks:
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/recordings:/app/recordings \
-			$(DOCKER_IMAGE) -m $(MENTOR)
+			$(DOCKER_IMAGE) -m $(MENTOR) -u $(URL)
 
 # Partially pre-processes mentor data inside docker container
 # Generates audiochunks and transcripts for one session
@@ -61,8 +62,7 @@ build-session:
 			--name $(DOCKER_CONTAINER) \
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
-			-v $(shell pwd)/recordings:/app/recordings \
-			$(DOCKER_IMAGE) -m $(MENTOR) -s $(SESSION) -t
+			$(DOCKER_IMAGE) -m $(MENTOR) -s $(SESSION) -t -u $(URL)
 
 # Partially pre-processes mentor data inside docker container
 # Generates only audiochunks for one session
@@ -74,4 +74,4 @@ build-session-audiochunks:
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/recordings:/app/recordings \
-			$(DOCKER_IMAGE) -m $(MENTOR) -s $(SESSION)
+			$(DOCKER_IMAGE) -m $(MENTOR) -s $(SESSION) -u $(URL)

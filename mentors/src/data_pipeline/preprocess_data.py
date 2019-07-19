@@ -5,9 +5,13 @@ import fnmatch
 import pandas as pd
 
 import ibm_transcript_service as transcript_service
+import utils
 
 
-TRANSCRIPT_FILENAME = "transcript.csv"
+TRANSCRIPT_FILE = utils.TRANSCRIPT_FILE
+VIDEO_FILE = utils.VIDEO_FILE
+AUDIO_FILE = utils.AUDIO_FILE
+TIMESTAMP_FILE = utils.TIMESTAMP_FILE
 
 
 def convert_to_wav(input_file, output_file):
@@ -74,7 +78,7 @@ def convert_to_seconds(time):
     print("DEBUG: Time {}".format(time))
     time_adjustments = [3600, 60, 1]
     time_split = time.split(":")
-    if len(time_split) == 2:
+    if len(time_split) == 2:  # TODO: Remove this when data is standardized
         time_split.insert(0, 00)
     result = sum(s * int(a) for s, a in zip(time_adjustments, time_split))
     print("DEBUG: Result {}".format(result))
@@ -128,15 +132,15 @@ def get_transcript(dirname, questions, offset):
     questions: list of questions which was returned by the split_into_chunks(...) function
     offset: Question number offset as described before
     """
-    with open(dirname + TRANSCRIPT_FILENAME, "a") as transcript_csv:
+    with open(dirname + TRANSCRIPT_FILE, "a") as transcript_csv:
         csvwriter = csv.writer(transcript_csv)
 
         for i in range(0, len(questions)):
             ogg_file = os.path.join(
-                dirname, "audiochunks", "q" + str(offset + i) + ".ogg"
+                dirname, "audiochunks", "q{}.ogg".format(offset + i)
             )
             transcript = transcript_service.generate_transcript(ogg_file)
-            print("DEBUG: " + transcript)
+            print("DEBUG: {}".format(transcript))
             csvwriter.writerow([questions[i], transcript])
 
 
@@ -155,11 +159,10 @@ def process_raw_data(dirname):
         print("INFO: Started processing Session {}".format(session_number))
 
     for i in range(number_of_parts):
-        video_file = dirname + "session{}part{}.mp4".format(session_number, i + 1)
-        audio_file = dirname + "session{}part{}.wav".format(session_number, i + 1)
-        timestamps = dirname + "session{}part{}_timestamps.csv".format(
-            session_number, i + 1
-        )
+        part = i + 1
+        video_file = dirname + "part{}_{}".format(part, VIDEO_FILE)
+        audio_file = dirname + "part{}_{}".format(part, AUDIO_FILE)
+        timestamps = dirname + "part{}_{}".format(part, TIMESTAMP_FILE)
         audiochunks = dirname + "audiochunks"
         offset = 0
 
