@@ -26,6 +26,8 @@ def process_session_data(args, mentor_dir):
     sessions: list of session numbers to process (or 'all')
     mentor_dir: directory containing raw data for mentor
     """
+    process_summary = {"transcripts": [], "audiochunks": []}
+
     if args.sessions:
         for session in args.sessions:
             if session == "all":
@@ -33,11 +35,21 @@ def process_session_data(args, mentor_dir):
                 session_dir = get_session_dir(mentor_dir, session_number)
                 while os.path.isdir(session_dir):
                     session_number += 1
-                    preprocess_data.process_raw_data(args.transcripts, session_dir)
+                    summary = preprocess_data.process_raw_data(
+                        args.transcripts, session_dir
+                    )
                     session_dir = get_session_dir(mentor_dir, session_number)
+                    process_summary["transcripts"].extend(summary["transcripts"])
+                    process_summary["audiochunks"].extend(summary["audiochunks"])
             else:
                 session_dir = get_session_dir(mentor_dir, session)
-                preprocess_data.process_raw_data(args.transcripts, session_dir)
+                summary = preprocess_data.process_raw_data(
+                    args.transcripts, session_dir
+                )
+                process_summary["transcripts"].extend(summary["transcripts"])
+                process_summary["audiochunks"].extend(summary["audiochunks"])
+
+    return process_summary
 
 
 def get_session_dir(mentor_dir, session_number):
@@ -136,6 +148,21 @@ def download_session_data(url, mentor_dir, session, part, filename):
     return session_found, part_found
 
 
+def print_preprocess_summary(summary):
+    print("Video Pre-processing Complete")
+    print("")
+    print("SUMMARY:")
+    print("")
+    print("Audiochunks Generated: ")
+    print(summary["audiochunks"])
+    print("Transcripts Generated: ")
+    print(summary["transcripts"])
+    if not summary["transcripts"]:
+        print(
+            "WARN: If transcripts were requested, please check that your Watson credentials file exists."
+        )
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -164,7 +191,8 @@ def main():
     mentor_dir = get_mentor_data(args)
     if mentor_dir:
         print("INFO: Processing session data for {}".format(args.mentor))
-        process_session_data(args, mentor_dir)
+        summary = process_session_data(args, mentor_dir)
+        print_preprocess_summary(summary)
 
 
 if __name__ == "__main__":

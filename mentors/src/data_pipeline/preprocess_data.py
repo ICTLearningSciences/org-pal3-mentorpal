@@ -149,7 +149,13 @@ def get_transcript(dirname, questions, offset):
         return 1
 
 
+def flatten_list(l):
+    return [item for sublist in l for item in sublist]
+
+
 def process_raw_data(transcripts, dirname):
+    process_summary = {"transcripts": [], "audiochunks": []}
+
     # Checks if dirname has '/' at end. If not, adds it. Just a sanity check
     if dirname[-1] != os.sep:
         dirname += os.sep
@@ -183,11 +189,18 @@ def process_raw_data(transcripts, dirname):
             continue
         print("INFO: Chunking the audio into smaller parts")
         questions = split_into_chunks(audiochunks, audio_file, timestamps, offset)
+        if questions:
+            process_summary["audiochunks"].append(
+                "s{} p{}".format(session_number, part)
+            )
         if transcripts:
             print("INFO: Talking to IBM Watson to get transcripts")
             if get_transcript(dirname, questions, offset):
                 print("INFO: Finished getting the transcripts")
+                process_summary["transcripts"].append(
+                    "s{} p{}".format(session_number, part)
+                )
             else:
                 transcripts = False
 
-    print("INFO: Video processing complete")
+    return process_summary
