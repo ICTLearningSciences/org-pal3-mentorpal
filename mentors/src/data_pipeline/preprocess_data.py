@@ -13,6 +13,7 @@ VIDEO_FILE = utils.VIDEO_FILE
 AUDIO_FILE = utils.AUDIO_FILE
 TIMESTAMP_FILE = utils.TIMESTAMP_FILE
 FILENAME = utils.FILENAME
+AUDIOCHUNK_DIR = utils.AUDIOCHUNK_DIR
 
 
 def convert_to_wav(input_file, output_file):
@@ -111,7 +112,6 @@ def split_into_chunks(audiochunks, audio_file, timestamps, offset):
     start_times = [convert_to_seconds(time) for time in start_times]
     end_times = [convert_to_seconds(time) for time in end_times]
 
-    print("INFO: Processing {} chunk(s) ".format(len(start_times)))
     for i in range(0, len(start_times)):
         ffmpeg_split_audio(
             audiochunks, audio_file, offset + i, start_times[i], end_times[i]
@@ -136,7 +136,7 @@ def get_transcript(dirname, questions, offset):
 
         for i in range(0, len(questions)):
             ogg_file = os.path.join(
-                dirname, "audiochunks", "q{}.ogg".format(offset + i)
+                dirname, AUDIOCHUNK_DIR, "q{}.ogg".format(offset + i)
             )
             transcript = transcript_service.generate_transcript(ogg_file)
 
@@ -174,12 +174,12 @@ def process_raw_data(transcripts, dirname):
         video_file = dirname + FILENAME.format(part, VIDEO_FILE)
         audio_file = dirname + FILENAME.format(part, AUDIO_FILE)
         timestamps = dirname + FILENAME.format(part, TIMESTAMP_FILE)
-        audiochunks = dirname + "audiochunks"
+        audiochunks = dirname + AUDIOCHUNK_DIR
         offset = 0
 
         # Create audiochunks directory if it doesn't exist.
         if not os.path.isdir(audiochunks):
-            os.mkdir(audiochunks)
+            os.makedirs(audiochunks)
         # if audiochunks directory exists, then there is an offset
         else:
             offset = len(fnmatch.filter(os.listdir(audiochunks), "*.ogg"))
@@ -194,9 +194,8 @@ def process_raw_data(transcripts, dirname):
                 "s{} p{}".format(session_number, part)
             )
         if transcripts:
-            print("INFO: Talking to IBM Watson to get transcripts")
+            print("INFO: Getting transcripts from IBM Watson")
             if get_transcript(dirname, questions, offset):
-                print("INFO: Finished getting the transcripts")
                 process_summary["transcripts"].append(
                     "s{} p{}".format(session_number, part)
                 )

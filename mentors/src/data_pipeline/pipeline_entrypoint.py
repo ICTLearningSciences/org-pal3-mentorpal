@@ -136,7 +136,9 @@ def download_session_data(url, mentor_dir, session, part, filename):
         open(save_path, "wb").write(res.content)
     else:
         if part == 1:
-            print("WARN: Session {} not found".format(session))
+            print(
+                "WARN: Session {} part {} {} not found".format(session, part, filename)
+            )
             part_found = False
             session_found = False
         else:

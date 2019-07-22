@@ -1,5 +1,7 @@
 VIDEO_FILE = "video.mp4"
 AUDIO_FILE = "audio.wav"
 TIMESTAMP_FILE = "timestamps.csv"
-TRANSCRIPT_FILE = "transcript.csv"
+OUTPUT_DIR = "out"
+TRANSCRIPT_FILE = OUTPUT_DIR + "/transcript.csv"
+AUDIOCHUNK_DIR = OUTPUT_DIR + "/audiochunks"
 FILENAME = "part{}_{}"
