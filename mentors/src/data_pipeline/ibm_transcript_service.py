@@ -25,7 +25,9 @@ def generate_transcript(file_name):
     For this project, the duration of each Q-A won't exceed 5 minutes and in that case, it will be well within 100 MB.
     """
     if not (username and password):
-        print("ERROR: Missing Watson credentials. Env vars WATSON_USERNAME and WATSON_PASSWORD must be set")
+        print(
+            "ERROR: Missing Watson credentials. Env vars WATSON_USERNAME and WATSON_PASSWORD must be set"
+        )
         return None
 
     with open(file_name, "rb") as audio_file:
