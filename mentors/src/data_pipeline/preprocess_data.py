@@ -5,15 +5,15 @@ import fnmatch
 import pandas as pd
 
 import ibm_transcript_service as transcript_service
-import utils
+import constants
 
 
-TRANSCRIPT_FILE = utils.TRANSCRIPT_FILE
-VIDEO_FILE = utils.VIDEO_FILE
-AUDIO_FILE = utils.AUDIO_FILE
-TIMESTAMP_FILE = utils.TIMESTAMP_FILE
-FILENAME = utils.FILENAME
-AUDIOCHUNK_DIR = utils.AUDIOCHUNK_DIR
+TRANSCRIPT_FILE = constants.TRANSCRIPT_FILE
+VIDEO_FILE = constants.VIDEO_FILE
+AUDIO_FILE = constants.AUDIO_FILE
+TIMESTAMP_FILE = constants.TIMESTAMP_FILE
+FILENAME = constants.FILENAME
+AUDIOCHUNK_DIR = constants.AUDIOCHUNK_DIR
 
 
 def convert_to_wav(input_file, output_file):
@@ -131,7 +131,7 @@ def get_transcript(dirname, questions, offset):
     questions: list of questions which was returned by the split_into_chunks(...) function
     offset: Question number offset as described before
     """
-    with open(dirname + TRANSCRIPT_FILE, "a") as transcript_csv:
+    with open(os.path.join(dirname, TRANSCRIPT_FILE), "a") as transcript_csv:
         csvwriter = csv.writer(transcript_csv)
 
         for i in range(0, len(questions)):
@@ -171,10 +171,10 @@ def process_raw_data(transcripts, dirname):
 
     for i in range(number_of_parts):
         part = i + 1
-        video_file = dirname + FILENAME.format(part, VIDEO_FILE)
-        audio_file = dirname + FILENAME.format(part, AUDIO_FILE)
-        timestamps = dirname + FILENAME.format(part, TIMESTAMP_FILE)
-        audiochunks = dirname + AUDIOCHUNK_DIR
+        video_file = os.path.join(dirname, FILENAME.format(part, VIDEO_FILE))
+        audio_file = os.path.join(dirname, FILENAME.format(part, AUDIO_FILE))
+        timestamps = os.path.join(dirname, FILENAME.format(part, TIMESTAMP_FILE))
+        audiochunks = os.path.join(dirname, AUDIOCHUNK_DIR)
         offset = 0
 
         # Create audiochunks directory if it doesn't exist.

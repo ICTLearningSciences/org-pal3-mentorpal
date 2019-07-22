@@ -3,17 +3,17 @@ import os
 import requests
 
 import preprocess_data
-import utils
+import constants
 
 """
 This file serves as the entrypoint for the mentor panel video processing pipeline
 """
 RECORDINGS_PATH = "recordings"
 SESSION_PATH = "session{}"
-FILE_PATH = SESSION_PATH + "/part{}_{}"
-VIDEO_FILE = utils.VIDEO_FILE
-AUDIO_FILE = utils.AUDIO_FILE
-TIMESTAMP_FILE = utils.TIMESTAMP_FILE
+FILE_PATH = os.path.join(SESSION_PATH, "part{}_{}")
+VIDEO_FILE = constants.VIDEO_FILE
+AUDIO_FILE = constants.AUDIO_FILE
+TIMESTAMP_FILE = constants.TIMESTAMP_FILE
 ERR_MISSING_FILE = "ERROR: Missing {} file for session {} part {}"
 ERR_NO_URL = "ERROR: Data files for {} don't exist locally and url is not provided"
 
