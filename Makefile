@@ -82,3 +82,8 @@ test:
 test-images:
 	cd services/mentor-api && \
 		$(MAKE) test-image
+
+.PHONY: audit-js
+audit-js:
+	cd client/MentorPanel && npm run test:audit
+	cd services/web-app && $(MAKE) audit-js

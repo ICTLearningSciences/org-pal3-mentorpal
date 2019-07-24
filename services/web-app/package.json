@@ -6,7 +6,8 @@
     "start": "node app",
     "start-dev": "node app dev",
     "version": "git add -A",
-    "postversion": "git push"
+    "postversion": "git push",
+    "test:audit": "npm audit --audit-level=moderate"
   },
   "dependencies": {
     "app-root-path": "^2.1.0",

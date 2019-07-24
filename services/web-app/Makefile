@@ -57,3 +57,7 @@ exec-shell:
 			-it \
 		${DOCKER_CONTAINER} \
 			bash
+
+.PHONY: audit-js
+audit-js:
+	npm run test:audit

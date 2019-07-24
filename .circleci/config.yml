@@ -44,7 +44,7 @@ jobs:
       - run:
           name: Lint python
           command: make lint-python
-  format-and-lint-js:
+  format-lint-and-audit-js:
     docker:
       - image: circleci/node:12.4
     steps:
@@ -52,6 +52,9 @@ jobs:
       - run:
           name: Test format for js and json
           command: make test-format-js
+      - run:
+          name: Audit js
+          command: make audit-js
   docker-build-test-push:
     executor: ebs
     steps:
@@ -87,11 +90,11 @@ workflows:
   build-test-deploy:
     jobs:
       - format-and-lint-python
-      - format-and-lint-js
+      - format-lint-and-audit-js
       - docker-build-test-push:
           requires:
             - format-and-lint-python
-            - format-and-lint-js
+            - format-lint-and-audit-js
       - deploy-to-dev:
           type: approval
           requires:
