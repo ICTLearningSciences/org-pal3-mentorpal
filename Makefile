@@ -69,8 +69,8 @@ test-format-js: node_modules/prettier
 .PHONY: test-format
 test-format: test-format-python test-format-js
 
-.PHONY: lint
-lint-js: $(DEV_VIRTUAL_ENV)
+.PHONY: lint-python
+lint-python: $(DEV_VIRTUAL_ENV)
 	$(DEV_VIRTUAL_ENV)/bin/flake8 .
 
 .PHONY: test
