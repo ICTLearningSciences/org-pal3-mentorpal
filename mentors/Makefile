@@ -1,7 +1,7 @@
 DOCKER_IMAGE?=mentor-processing-pipeline
 DOCKER_IMAGE_ID=$(shell docker images -q $(DOCKER_IMAGE))
 DOCKER_CONTAINER=mentor-processing-pipeline
-MENTOR?=julianne
+MENTOR?=juliannenordhagen
 SESSION?=1
 URL?=http://mentorpal-source-video.s3-website-us-west-1.amazonaws.com/julianne
 WATSON_CREDENTIALS=secrets/watson_credentials.txt
@@ -48,7 +48,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
-			-v $(shell pwd)/recordings:/app/recordings \
+			-v $(shell pwd)/data:/app/data \
 			-v $(shell pwd)/src:/app/src \
 		$(DOCKER_IMAGE)
 
@@ -62,18 +62,20 @@ build-mentor: docker-image-exists $(WATSON_CREDENTIALS)
 			--name $(DOCKER_CONTAINER) \
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
-			-v $(shell pwd)/recordings:/app/recordings \
+			-v $(shell pwd)/data:/app/data \
 			$(DOCKER_IMAGE) -m $(MENTOR) -t -u $(URL)
 
 # Partially pre-processes mentor data inside docker container
 # Generates only audiochunks for all sessions
 .PHONY build-audiochunks:
-build-audiochunks: docker-image-exists
+build-audiochunks: docker-image-exists $(WATSON_CREDENTIALS)
 	docker run \
 			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
-			-v $(shell pwd)/recordings:/app/recordings \
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
+			-v $(shell pwd)/data:/app/data \
 			$(DOCKER_IMAGE) -m $(MENTOR) -u $(URL)
 
 # Partially pre-processes mentor data inside docker container
@@ -91,10 +93,24 @@ build-session: docker-image-exists $(WATSON_CREDENTIALS)
 # Partially pre-processes mentor data inside docker container
 # Generates only audiochunks for one session
 .PHONY build-session-audiochunks:
-build-session-audiochunks: docker-image-exists
+build-session-audiochunks: docker-image-exists $(WATSON_CREDENTIALS)
 	docker run \
 			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
-			-v $(shell pwd)/recordings:/app/recordings \
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
+			-v $(shell pwd)/data:/app/data \
 			$(DOCKER_IMAGE) -m $(MENTOR) -s $(SESSION) -u $(URL)
+
+# Adapts transcript files to questions_paraphrases_answers and prompts_utterances files
+.PHONY build-qpa-pu-data:
+build-qpa-pu-data: docker-image-exists $(WATSON_CREDENTIALS)
+	docker run \
+			-it \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
+			-v $(shell pwd)/data:/app/data \
+			$(DOCKER_IMAGE) -m $(MENTOR) -q

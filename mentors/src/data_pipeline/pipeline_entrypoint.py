@@ -3,12 +3,13 @@ import os
 import requests
 
 import preprocess_data
+import transcript_adapter
 import constants
 
 """
 This file serves as the entrypoint for the mentor panel video processing pipeline
 """
-RECORDINGS_PATH = "recordings"
+RECORDINGS_PATH = "data/recordings"
 SESSION_PATH = "session{}"
 FILE_PATH = os.path.join(SESSION_PATH, "part{}_{}")
 VIDEO_FILE = constants.VIDEO_FILE
@@ -175,26 +176,46 @@ def main():
     )
     parser.add_argument("-u", "--url", help="location of raw video and timestamp files")
     parser.add_argument(
-        "-t",
-        "--transcripts",
-        action="store_true",
-        help="enable generation of transcripts",
-    )
-    parser.add_argument(
         "-s",
         "--sessions",
         nargs="+",
         default=["all"],
         help="session numbers to process, or 'all' to process all sessions",
     )
+    parser.add_argument(
+        "-a",
+        "--audiochunks",
+        action="store_true",
+        help="enable generation of audiochunks",
+    )
+    parser.add_argument(
+        "-t",
+        "--transcripts",
+        action="store_true",
+        help="enable generation of transcripts",
+    )
+    parser.add_argument(
+        "-q",
+        "--qpa_pu_data",
+        action="store_true",
+        help="enable generation of questions_paraphrase_answers and prompts_utterances csv file",
+    )
     args = parser.parse_args()
 
-    print("INFO: Collecting data for {}".format(args.mentor))
-    mentor_dir = get_mentor_data(args)
-    if mentor_dir:
-        print("INFO: Processing session data for {}".format(args.mentor))
-        summary = process_session_data(args, mentor_dir)
-        print_preprocess_summary(summary)
+    if args.audiochunks or args.transcripts:
+        print("INFO: Collecting data for {}".format(args.mentor))
+        mentor_dir = get_mentor_data(args)
+
+        if mentor_dir:
+            print("INFO: Processing session data for {}".format(args.mentor))
+            summary = process_session_data(args, mentor_dir)
+            print_preprocess_summary(summary)
+
+    if args.qpa_pu_data:
+        print(
+            "INFO: Building Questions Paraphrases Answers and Prompts Utterance Files"
+        )
+        transcript_adapter.build_data(args.mentor)
 
 
 if __name__ == "__main__":
