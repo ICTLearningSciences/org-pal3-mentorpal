@@ -46,19 +46,30 @@ format-python: $(DEV_VIRTUAL_ENV)
 	$(DEV_VIRTUAL_ENV)/bin/black --exclude $(BLACK_EXCLUDES) .
 
 .PHONY: format
-format: format-python
-
+format:
+	$(MAKE) format-python
+	$(MAKE) format-js
 
 .PHONY: test-format-python
 test-format-python: $(DEV_VIRTUAL_ENV)
 	$(DEV_VIRTUAL_ENV)/bin/black --check --exclude $(BLACK_EXCLUDES) .
 
+node_modules/prettier:
+	npm install
+
+.PHONY: format-js
+format-js: node_modules/prettier
+	npm run format
+
+.PHONY: test-format-js
+test-format-js: node_modules/prettier
+	npm run test:format
 
 .PHONY: test-format
-test-format: test-format-python
+test-format: test-format-python test-format-js
 
-.PHONY: lint
-lint: $(DEV_VIRTUAL_ENV)
+.PHONY: lint-python
+lint-python: $(DEV_VIRTUAL_ENV)
 	$(DEV_VIRTUAL_ENV)/bin/flake8 .
 
 .PHONY: test
@@ -70,3 +81,8 @@ test:
 test-images:
 	cd services/mentor-api && \
 		$(MAKE) test-image
+
+.PHONY: audit-js
+audit-js:
+	cd client && npm run test:audit
+	cd services/web-app && $(MAKE) audit-js

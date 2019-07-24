@@ -33,17 +33,28 @@ aliases:
     branches:
       ignore: /.*/
 jobs:
-  test:
+  format-and-lint-python:
     docker:
       - image: circleci/python:3.7.3
     steps:
       - checkout
       - run:
-          name: Test Format
-          command: make test-format
+          name: Test format for python
+          command: make test-format-python
       - run:
-          name: Lint
-          command: make lint
+          name: Lint python
+          command: make lint-python
+  format-lint-and-audit-js:
+    docker:
+      - image: circleci/node:12.4
+    steps:
+      - checkout
+      - run:
+          name: Test format for js and json
+          command: make test-format-js
+      - run:
+          name: Audit js
+          command: make audit-js
   docker-build-test-push:
     executor: ebs
     steps:
@@ -78,10 +89,12 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
-      - test
+      - format-and-lint-python
+      - format-lint-and-audit-js
       - docker-build-test-push:
           requires:
-            - test
+            - format-and-lint-python
+            - format-lint-and-audit-js
       - deploy-to-dev:
           type: approval
           requires:

@@ -11,7 +11,7 @@ RUN apt-get update && \
 RUN npm install -g gatsby-cli
 WORKDIR /
 COPY . .
-RUN cd /build/client/MentorPanel && \
+RUN cd /build/client && \
     npm install && \
     npm run build
 
@@ -22,7 +22,7 @@ RUN chmod +x /tini
 WORKDIR /app
 COPY . .
 RUN rm -rf build
-COPY --from=builder /build/client/MentorPanel/public /app/public/mentorpanel
+COPY --from=builder /build/client/public /app/public/mentorpanel
 RUN npm install
 RUN chmod +x /app/entrypoint.sh
 ENTRYPOINT ["/tini", "--", "/app/entrypoint.sh"]

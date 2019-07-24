@@ -20,9 +20,7 @@
       ],
       "essential": true,
       "memory": 1024,
-      "links": [
-        "mentor-api"
-      ]
+      "links": ["mentor-api"]
     },
     {
       "name": "mentor-api",
@@ -47,10 +45,7 @@
           "containerPort": 80
         }
       ],
-      "links": [
-        "web-app",
-        "mentor-api"
-      ],
+      "links": ["web-app", "mentor-api"],
       "mountPoints": [
         {
           "sourceVolume": "nginx-proxy-conf",
