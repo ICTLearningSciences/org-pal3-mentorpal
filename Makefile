@@ -84,5 +84,5 @@ test-images:
 
 .PHONY: audit-js
 audit-js:
-	cd client/MentorPanel && npm run test:audit
+	cd client && npm run test:audit
 	cd services/web-app && $(MAKE) audit-js
