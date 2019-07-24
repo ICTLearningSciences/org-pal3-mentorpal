@@ -59,7 +59,6 @@ node_modules/prettier:
 
 .PHONY: format-js
 format-js: node_modules/prettier
-	@echo "FORMAT JS!"
 	npm run format
 
 .PHONY: test-format-js
