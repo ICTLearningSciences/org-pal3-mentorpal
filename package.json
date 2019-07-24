@@ -1,0 +1,24 @@
+{
+  "name": "mentorpal",
+  "version": "1.0.0",
+  "description": "- [Data Prep](README_dataprep.md)  - [Testing and training checkpoints](checkpoint/README.md)  - [Deploying to Elastic Beanstalk](ebs/README.md)",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  },
+  "scripts": {
+    "test:format": "prettier --check '**/*.{js,jsx,json}'",
+    "format": "prettier --write '**/*.{js,jsx,json}'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benjamid/MentorPAL.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benjamid/MentorPAL/issues"
+  },
+  "homepage": "https://github.com/benjamid/MentorPAL#readme"
+}
