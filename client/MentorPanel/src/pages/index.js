@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { graphql } from 'gatsby'
-import { CircularProgress } from '@material-ui/core'
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import React, { useEffect, useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { graphql } from "gatsby"
+import { CircularProgress } from "@material-ui/core"
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
-import { loadMentor, loadQuestions, selectMentor } from 'src/redux/actions'
+import { loadMentor, loadQuestions, selectMentor } from "src/redux/actions"
 
-import Header from 'src/components/header'
-import Input from 'src/components/input'
-import Video from 'src/components/video'
-import VideoPanel from 'src/components/video-panel'
-import withLocation from 'src/wrap-with-location'
+import Header from "src/components/header"
+import Input from "src/components/input"
+import Video from "src/components/video"
+import VideoPanel from "src/components/video-panel"
+import withLocation from "src/wrap-with-location"
 
-import 'src/styles/layout.css'
+import "src/styles/layout.css"
 
 const IndexPage = ({ search, ...props }) => {
   const dispatch = useDispatch()
@@ -23,11 +23,13 @@ const IndexPage = ({ search, ...props }) => {
 
   const isMobile = width < 768
   const videoHeight = isMobile ? height * 0.5 : Math.min(width * 0.5625, 700)
-  const inputHeight = isMobile ? height * 0.5 : Math.max(height - videoHeight, 250)
+  const inputHeight = isMobile
+    ? height * 0.5
+    : Math.max(height - videoHeight, 250)
 
   useEffect(() => {
     const data = props.data.allMentorsCsv.edges
-    const mentorData = data.find((item) => {
+    const mentorData = data.find(item => {
       return item.node.id === mentor
     })
 
@@ -42,16 +44,16 @@ const IndexPage = ({ search, ...props }) => {
       data.forEach(item => {
         dispatch(loadMentor(item.node))
         dispatch(loadQuestions(item.node.id, recommended))
-      });
-      dispatch(selectMentor(data[0].node.id))  
+      })
+      dispatch(selectMentor(data[0].node.id))
     }
 
     // Media queries for layout
     setHeight(window.innerHeight)
     setWidth(window.innerWidth)
-    window.addEventListener('resize', handleWindowResize)
+    window.addEventListener("resize", handleWindowResize)
     return () => {
-      window.removeEventListener('resize', handleWindowResize)
+      window.removeEventListener("resize", handleWindowResize)
     }
   }, [])
 
@@ -69,14 +71,16 @@ const IndexPage = ({ search, ...props }) => {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <div className='flex' style={{ height: videoHeight }}>
-        { mentor ? undefined :
-            <div className='content' style={{ height: '100px' }}>
-              <VideoPanel isMobile={isMobile} />
-              <Header />
-            </div>
-        }
-        <div className='expand'>
+      <div className="flex" style={{ height: videoHeight }}>
+        {mentor ? (
+          undefined
+        ) : (
+          <div className="content" style={{ height: "100px" }}>
+            <VideoPanel isMobile={isMobile} />
+            <Header />
+          </div>
+        )}
+        <div className="expand">
           <Video height={videoHeight - (mentor ? 0 : 100)} width={width} />
         </div>
       </div>
@@ -88,9 +92,9 @@ const IndexPage = ({ search, ...props }) => {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#1b6a9c'
-    }
-  }
+      main: "#1b6a9c",
+    },
+  },
 })
 
 export default withLocation(IndexPage)

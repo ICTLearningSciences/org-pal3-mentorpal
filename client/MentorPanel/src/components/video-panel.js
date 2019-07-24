@@ -1,13 +1,13 @@
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { Star } from '@material-ui/icons'
+import React from "react"
+import { useSelector, useDispatch } from "react-redux"
+import { Star } from "@material-ui/icons"
 
-import { selectMentor } from 'src/redux/actions'
-import { STATUS_ERROR } from 'src/redux/store'
+import { selectMentor } from "src/redux/actions"
+import { STATUS_ERROR } from "src/redux/store"
 
-import VideoThumbnail from 'src/components/video-thumbnail'
-import LoadingSpinner from 'src/components/video-spinner'
-import MessageStatus from 'src/components/video-status'
+import VideoThumbnail from "src/components/video-thumbnail"
+import LoadingSpinner from "src/components/video-spinner"
+import MessageStatus from "src/components/video-status"
 
 const VideoPanel = ({ isMobile }) => {
   const dispatch = useDispatch()
@@ -17,7 +17,7 @@ const VideoPanel = ({ isMobile }) => {
   const height = 50
   const width = isMobile ? height / 0.895 : height / 0.5625
 
-  const onClick = (mentor) => {
+  const onClick = mentor => {
     if (mentor.is_off_topic || mentor.status === STATUS_ERROR) {
       return
     }
@@ -26,20 +26,23 @@ const VideoPanel = ({ isMobile }) => {
 
   return (
     <div className="carousel">
-      {
-        Object.keys(mentors).map((id, i) =>
-          <div
-            className={`slide video-slide ${id === mentor ? 'selected' : ''}`}
-            key={`${id}-${i}`}
-            onClick={() => onClick(mentors[id])}
-          >
-            <VideoThumbnail mentor={mentors[id]} isMobile={isMobile} height={height} width={width} />
-            <LoadingSpinner mentor={mentors[id]} height={height} width={width} />
-            <MessageStatus mentor={mentors[id]} />
-            <StarIcon mentor={mentors[id]} />
-          </div>
-        )
-      }
+      {Object.keys(mentors).map((id, i) => (
+        <div
+          className={`slide video-slide ${id === mentor ? "selected" : ""}`}
+          key={`${id}-${i}`}
+          onClick={() => onClick(mentors[id])}
+        >
+          <VideoThumbnail
+            mentor={mentors[id]}
+            isMobile={isMobile}
+            height={height}
+            width={width}
+          />
+          <LoadingSpinner mentor={mentors[id]} height={height} width={width} />
+          <MessageStatus mentor={mentors[id]} />
+          <StarIcon mentor={mentors[id]} />
+        </div>
+      ))}
     </div>
   )
 }
@@ -47,9 +50,15 @@ const VideoPanel = ({ isMobile }) => {
 const StarIcon = ({ mentor }) => {
   const faved_mentor = useSelector(state => state.faved_mentor)
   if (faved_mentor === mentor.id) {
-    return <Star className='star-icon' fontSize='small' style={{ color: 'yellow' }} />
+    return (
+      <Star
+        className="star-icon"
+        fontSize="small"
+        style={{ color: "yellow" }}
+      />
+    )
   }
   return <div></div>
 }
 
-export default VideoPanel;
+export default VideoPanel

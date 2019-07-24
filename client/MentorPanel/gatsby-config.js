@@ -32,7 +32,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-env-variables`,
       options: {
-        whitelist: ["MENTOR_API_URL"]
+        whitelist: ["MENTOR_API_URL"],
       },
     },
   ],

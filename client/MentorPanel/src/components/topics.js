@@ -1,10 +1,10 @@
 import React from "react"
-import { useSelector, useDispatch } from 'react-redux'
-import { Button, Paper } from '@material-ui/core'
-import { History, Whatshot } from '@material-ui/icons'
+import { useSelector, useDispatch } from "react-redux"
+import { Button, Paper } from "@material-ui/core"
+import { History, Whatshot } from "@material-ui/icons"
 
-import { selectTopic } from 'src/redux/actions'
-import { normalizeString } from 'src/funcs/funcs'
+import { selectTopic } from "src/redux/actions"
+import { normalizeString } from "src/funcs/funcs"
 
 const Topics = ({ onSelected }) => {
   const dispatch = useDispatch()
@@ -17,20 +17,19 @@ const Topics = ({ onSelected }) => {
   }
 
   const topic_questions = mentor.topic_questions
-  const onTopicSelected = (topic) => {
+  const onTopicSelected = topic => {
     dispatch(selectTopic(topic))
     const top_question = topic_questions[topic].find(q => {
       return !questions_asked.includes(normalizeString(q))
     })
-    onSelected(top_question || '')
+    onSelected(top_question || "")
   }
 
   if (!current_topic) {
     const first_topic = Object.keys(topic_questions)[0]
-    if (first_topic === 'Recommended') {
+    if (first_topic === "Recommended") {
       onTopicSelected(first_topic)
-    }
-    else {
+    } else {
       dispatch(selectTopic(first_topic))
     }
   }
@@ -38,21 +37,27 @@ const Topics = ({ onSelected }) => {
   return (
     <Paper elevation={2} square={true}>
       <div className="carousel">
-        {
-          Object.keys(topic_questions).map((topic, i) =>
-            <div className='slide topic-slide' key={i}>
-              <Button
-                variant='contained'
-                color={current_topic === topic ? 'primary' : 'default'}
-                onClick={() => onTopicSelected(topic)}
-              >
-                {topic === 'History' ? <History style={{ 'marginRight': '5px' }} /> : undefined}
-                {topic === 'Recommended' ? <Whatshot style={{ 'marginRight': '5px' }} /> : undefined}
-                {topic}
-              </Button>
-            </div>
-          )
-        }
+        {Object.keys(topic_questions).map((topic, i) => (
+          <div className="slide topic-slide" key={i}>
+            <Button
+              variant="contained"
+              color={current_topic === topic ? "primary" : "default"}
+              onClick={() => onTopicSelected(topic)}
+            >
+              {topic === "History" ? (
+                <History style={{ marginRight: "5px" }} />
+              ) : (
+                undefined
+              )}
+              {topic === "Recommended" ? (
+                <Whatshot style={{ marginRight: "5px" }} />
+              ) : (
+                undefined
+              )}
+              {topic}
+            </Button>
+          </div>
+        ))}
       </div>
     </Paper>
   )

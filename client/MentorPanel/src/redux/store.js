@@ -9,12 +9,12 @@ import {
   QUESTION_ANSWERED,
   QUESTION_ERROR,
   ANSWER_FINISHED,
-} from 'src/redux/actions'
-import { normalizeString } from 'src/funcs/funcs'
+} from "src/redux/actions"
+import { normalizeString } from "src/funcs/funcs"
 
-export const STATUS_READY = 'READY'
-export const STATUS_ANSWERED = 'ANSWERED'
-export const STATUS_ERROR = 'ERROR'
+export const STATUS_READY = "READY"
+export const STATUS_ANSWERED = "ANSWERED"
+export const STATUS_ERROR = "ERROR"
 
 /**
  * mentor: {
@@ -34,19 +34,18 @@ export const STATUS_ERROR = 'ERROR'
  */
 
 const initialState = {
-  current_mentor: '',       // id of selected mentor
-  current_question: '',     // question that was last asked
-  current_topic: '',        // topic to show questions for
-  faved_mentor: '',         // id of the preferred mentor
-  next_mentor: '',          // id of the next mentor to speak after the current finishes
+  current_mentor: "", // id of selected mentor
+  current_question: "", // question that was last asked
+  current_topic: "", // topic to show questions for
+  faved_mentor: "", // id of the preferred mentor
+  next_mentor: "", // id of the next mentor to speak after the current finishes
   mentors_by_id: {},
   questions_asked: [],
   isIdle: false,
-};
+}
 
 const store = (state = initialState, action) => {
   switch (action.type) {
-
     case MENTOR_LOADED:
       return {
         ...state,
@@ -55,7 +54,7 @@ const store = (state = initialState, action) => {
           [action.mentor.id]: {
             ...action.mentor,
             status: STATUS_READY,
-          }
+          },
         },
         isIdle: false,
       }
@@ -69,7 +68,7 @@ const store = (state = initialState, action) => {
           [action.id]: {
             ...state.mentors_by_id[action.id],
             status: STATUS_ANSWERED,
-          }
+          },
         },
         isIdle: false,
       }
@@ -77,7 +76,7 @@ const store = (state = initialState, action) => {
     case MENTOR_FAVED:
       return {
         ...state,
-        faved_mentor: state.faved_mentor === action.id ? '' : action.id
+        faved_mentor: state.faved_mentor === action.id ? "" : action.id,
       }
 
     case MENTOR_NEXT:
@@ -93,24 +92,24 @@ const store = (state = initialState, action) => {
           ...state.mentors_by_id,
           [action.id]: {
             ...state.mentors_by_id[action.id],
-            topic_questions: action.topic_questions
-          }
-        }
+            topic_questions: action.topic_questions,
+          },
+        },
       }
 
     case QUESTION_SENT:
       return {
         ...state,
         current_question: action.question,
-        questions_asked: Array.from(new Set([
-          ...state.questions_asked,
-          normalizeString(action.question)
-        ]))
+        questions_asked: Array.from(
+          new Set([...state.questions_asked, normalizeString(action.question)])
+        ),
       }
 
     case QUESTION_ANSWERED:
       const response = action.mentor
-      const history = state.mentors_by_id[response.id].topic_questions['History']
+      const history =
+        state.mentors_by_id[response.id].topic_questions["History"]
       if (!history.includes(response.question)) {
         history.push(response.question)
       }
@@ -125,8 +124,8 @@ const store = (state = initialState, action) => {
         status: STATUS_READY,
         topic_questions: {
           ...state.mentors_by_id[response.id].topic_questions,
-          ['History']: history
-        }
+          ["History"]: history,
+        },
       }
 
       return {
@@ -147,8 +146,8 @@ const store = (state = initialState, action) => {
             ...state.mentors_by_id[action.mentor],
             question: action.question,
             status: STATUS_ERROR,
-          }
-        }
+          },
+        },
       }
 
     case ANSWER_FINISHED:
@@ -166,7 +165,7 @@ const store = (state = initialState, action) => {
     default:
       return state
   }
-};
+}
 
 export default (state = initialState, action) => {
   return store(state, action)

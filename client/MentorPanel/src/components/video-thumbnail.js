@@ -1,12 +1,12 @@
 import React, { useState } from "react"
-import ReactPlayer from 'react-player'
+import ReactPlayer from "react-player"
 
-import { idleUrl } from 'src/api/api'
-import { STATUS_ERROR } from 'src/redux/store'
+import { idleUrl } from "src/api/api"
+import { STATUS_ERROR } from "src/redux/store"
 
 const VideoThumbnail = ({ mentor, isMobile, width, height }) => {
   const [isPlaying, setPlaying] = useState(true)
-  const src = idleUrl(mentor, isMobile ? 'mobile' : 'web')
+  const src = idleUrl(mentor, isMobile ? "mobile" : "web")
   const isDisabled = mentor.is_off_topic || mentor.status === STATUS_ERROR
 
   const onStart = () => {
@@ -15,7 +15,7 @@ const VideoThumbnail = ({ mentor, isMobile, width, height }) => {
 
   return (
     <ReactPlayer
-      style={{ opacity: isDisabled ? '0.25' : '1', backgroundColor: 'black' }}
+      style={{ opacity: isDisabled ? "0.25" : "1", backgroundColor: "black" }}
       url={src}
       height={height}
       width={width}
@@ -25,7 +25,8 @@ const VideoThumbnail = ({ mentor, isMobile, width, height }) => {
       muted={true}
       controls={false}
       playsinline={true}
-      webkit-playsinline='true' />
+      webkit-playsinline="true"
+    />
   )
 }
 

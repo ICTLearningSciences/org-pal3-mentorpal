@@ -1,8 +1,8 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { Sms, SmsFailed } from '@material-ui/icons'
+import React from "react"
+import { useSelector } from "react-redux"
+import { Sms, SmsFailed } from "@material-ui/icons"
 
-import { STATUS_READY, STATUS_ERROR } from 'src/redux/store'
+import { STATUS_READY, STATUS_ERROR } from "src/redux/store"
 
 const MessageStatus = ({ mentor }) => {
   const next_mentor = useSelector(state => state.next_mentor)
@@ -11,14 +11,23 @@ const MessageStatus = ({ mentor }) => {
     return <div></div>
   }
   if (mentor.status === STATUS_ERROR) {
-    return <SmsFailed className='message-notice' fontSize='small' style={{ color: 'red' }} />
+    return (
+      <SmsFailed
+        className="message-notice"
+        fontSize="small"
+        style={{ color: "red" }}
+      />
+    )
   }
   if (mentor.status === STATUS_READY) {
     const isNext = mentor.id === next_mentor
-    return <Sms
-      className={`message-notice ${isNext ? 'blink' : ''}`}
-      fontSize='small'
-      style={{ color: 'green' }} />
+    return (
+      <Sms
+        className={`message-notice ${isNext ? "blink" : ""}`}
+        fontSize="small"
+        style={{ color: "green" }}
+      />
+    )
   }
   return <div></div>
 }
