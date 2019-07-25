@@ -4,6 +4,7 @@ import { actions as cmi5Actions } from "redux-cmi5"
 import { graphql } from "gatsby"
 import { CircularProgress } from "@material-ui/core"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import { Helmet } from "react-helmet"
 
 import { loadMentor, loadQuestions, selectMentor } from "src/redux/actions"
 
@@ -31,8 +32,8 @@ const IndexPage = ({ search, ...props }) => {
     : Math.max(height - videoHeight, 250)
 
   useEffect(() => {
-    cmi5Start()
-  }, []) // run only on first render
+    dispatch(cmi5Start())
+  }) // run only on first render
 
   useEffect(() => {
     const data = props.data.allMentorsCsv.edges
@@ -78,6 +79,7 @@ const IndexPage = ({ search, ...props }) => {
 
   return (
     <MuiThemeProvider theme={theme}>
+      <Helmet script={[{ src: "/cmi5.js", type: "text/javascript" }]} />
       <div className="flex" style={{ height: videoHeight }}>
         {mentor ? (
           undefined
