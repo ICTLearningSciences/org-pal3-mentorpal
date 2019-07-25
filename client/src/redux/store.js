@@ -1,3 +1,4 @@
+import { reducers as cmi5Reducer } from 'redux-cmi5';
 import {
   MENTOR_LOADED,
   MENTOR_SELECTED,
@@ -33,7 +34,7 @@ export const STATUS_ERROR = "ERROR"
  * }
  */
 
-const initialState = {
+const initialState = cmi5Reducer({
   current_mentor: "", // id of selected mentor
   current_question: "", // question that was last asked
   current_topic: "", // topic to show questions for
@@ -42,9 +43,10 @@ const initialState = {
   mentors_by_id: {},
   questions_asked: [],
   isIdle: false,
-}
+});
 
 const store = (state = initialState, action) => {
+  state = cmi5Reducer(state, action);
   switch (action.type) {
     case MENTOR_LOADED:
       return {
@@ -168,5 +170,8 @@ const store = (state = initialState, action) => {
 }
 
 export default (state = initialState, action) => {
-  return store(state, action)
-}
+  const s = store(state, action);
+  console.log('reduce action', action);
+  console.log('reduce state', s);
+  return s;
+};

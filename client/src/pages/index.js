@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { actions as cmi5Actions } from "redux-cmi5"
 import { graphql } from "gatsby"
 import { CircularProgress } from "@material-ui/core"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
@@ -14,6 +15,8 @@ import withLocation from "src/wrap-with-location"
 
 import "src/styles/layout.css"
 
+const { start: cmi5Start } = cmi5Actions
+
 const IndexPage = ({ search, ...props }) => {
   const dispatch = useDispatch()
   const mentors = useSelector(state => state.mentors_by_id)
@@ -26,6 +29,10 @@ const IndexPage = ({ search, ...props }) => {
   const inputHeight = isMobile
     ? height * 0.5
     : Math.max(height - videoHeight, 250)
+
+  useEffect(() => {
+    cmi5Start()
+  }, []) // run only on first render
 
   useEffect(() => {
     const data = props.data.allMentorsCsv.edges
