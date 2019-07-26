@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 
+import constants
+
 """
 This script will adapt the transcript.csv into questions_paraphrases_answers.csv
 The transcript.csv file is output by the data pre-processing stage of our data
@@ -8,13 +10,13 @@ pipeline.  which is output by our data
 pre-processing stage
 """
 QPA_ORDER = ["Topics", "Helpers", "Mentor", "Question", "text"]
-DATA_FOLDER = "data"
-TOPIC_MAP_FILE = os.path.join(DATA_FOLDER, "master_topic_map.csv")
-PARAPHRASE_MAP_FILE = os.path.join(DATA_FOLDER, "master_paraphrase_map.csv")
-QPA_TARGET_FILE = os.path.join(DATA_FOLDER, "questions_paraphrases_answers.csv")
-PU_TARGET_FILE = os.path.join(DATA_FOLDER, "prompts_utterances.csv")
+DATA_DIR = constants.DATA_DIR
+TOPIC_MAP_FILE = constants.TOPIC_MAP_FILE
+PARAPHRASE_MAP_FILE = constants.PARAPHRASE_MAP_FILE
+QPA_TARGET_FILE = constants.QPA_FILE
+PU_TARGET_FILE = constants.PU_FILE
 TIMESTAMP_FILE = os.path.join(
-    DATA_FOLDER, "recordings/{}/session{}/part{}_timestamps.csv"
+    constants.RECORDINGS_DIR, "{}/session{}/part{}_timestamps.csv"
 )
 
 

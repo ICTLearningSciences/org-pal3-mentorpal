@@ -9,17 +9,18 @@ import constants
 """
 This file serves as the entrypoint for the mentor panel video processing pipeline
 """
-RECORDINGS_PATH = "data/recordings"
+RECORDINGS_PATH = constants.RECORDINGS_DIR
 SESSION_PATH = "session{}"
-FILE_PATH = os.path.join(SESSION_PATH, "part{}_{}")
+FILE_PATH = os.path.join(SESSION_PATH, constants.FILENAME)
 VIDEO_FILE = constants.VIDEO_FILE
 AUDIO_FILE = constants.AUDIO_FILE
 TIMESTAMP_FILE = constants.TIMESTAMP_FILE
+MENTOR_DIR = constants.MENTOR_DIR
 ERR_MISSING_FILE = "ERROR: Missing {} file for session {} part {}"
 ERR_NO_URL = "ERROR: Data files for {} don't exist locally and url is not provided"
 
 
-def process_session_data(args, mentor_dir):
+def process_session_data(args):
     """
     Process raw session data by leveraging preprocess_data script
 
@@ -28,6 +29,7 @@ def process_session_data(args, mentor_dir):
     mentor_dir: directory containing raw data for mentor
     """
     process_summary = {"transcripts": [], "audiochunks": []}
+    mentor_dir = MENTOR_DIR.format(args.mentor)
 
     if args.sessions:
         for session in args.sessions:
@@ -64,17 +66,23 @@ def get_mentor_data(args):
     Parameters:
     mentor: name of mentor
     mentor_dir: url of mentor data
+
+    Returns:
+    download_successful: True if some files are downloaded
     """
+    download_successful = True
+
     mentor_dir = os.path.join(os.getcwd(), RECORDINGS_PATH, args.mentor)
     if not os.path.exists(mentor_dir):
         if args.url:
             print("INFO: Mentor data not found locally. Downloading from S3.")
-            download_mentor_data(args.url, mentor_dir)
+            if not download_mentor_data(args.url, mentor_dir):
+                download_successful = False
         else:
             print(ERR_NO_URL.format(args.mentor))
-            mentor_dir = None
+            download_successful = False
 
-    return mentor_dir
+    return download_successful
 
 
 def download_mentor_data(url, mentor_dir):
@@ -86,16 +94,22 @@ def download_mentor_data(url, mentor_dir):
     Parameters:
     url: address pointing to the top level of raw files for a single mentor
     mentor_dir: target directory to store mentor files locally
+
+    Returns:
+    download_successful: True if some data has been downloaded
     """
-    session = 1
+    download_successful = True
+    session = 0
     session_found = True
 
     while session_found:
-        part = 1
+        session += 1
+        part = 0
         part_found = True
 
         while part_found:
-            print("INFO: Downloading session {} part {}".format(session, part))
+            part += 1
+            print(f"INFO: Downloading session {session} part {part}")
             t_session_flag, t_part_flag = download_session_data(
                 url, mentor_dir, session, part, TIMESTAMP_FILE
             )
@@ -107,9 +121,10 @@ def download_mentor_data(url, mentor_dir):
             )
             part_found = t_part_flag & v_part_flag & a_part_flag
             session_found = t_session_flag & v_session_flag & a_session_flag
-            part += 1
 
-        session += 1
+    if session == 1 and part == 1:
+        download_successful = False
+    return download_successful
 
 
 def download_session_data(url, mentor_dir, session, part, filename):
@@ -137,16 +152,9 @@ def download_session_data(url, mentor_dir, session, part, filename):
         open(save_path, "wb").write(res.content)
     else:
         if part == 1:
-            print(
-                "WARN: Session {} part {} {} not found".format(session, part, filename)
-            )
-            part_found = False
             session_found = False
-        else:
-            print(
-                "WARN: Session {} part {} {} not found".format(session, part, filename)
-            )
-            part_found = False
+        part_found = False
+        print(f"WARN: Session {session} part {part} {filename} not found")
 
     return session_found, part_found
 
@@ -204,11 +212,9 @@ def main():
 
     if args.audiochunks or args.transcripts:
         print("INFO: Collecting data for {}".format(args.mentor))
-        mentor_dir = get_mentor_data(args)
-
-        if mentor_dir:
+        if get_mentor_data(args):
             print("INFO: Processing session data for {}".format(args.mentor))
-            summary = process_session_data(args, mentor_dir)
+            summary = process_session_data(args)
             print_preprocess_summary(summary)
 
     if args.qpa_pu_data:
