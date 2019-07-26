@@ -5,6 +5,8 @@
 	@echo "This file should not be committed. "
 	@echo "Feel free to change to point to a local server if you're running one."
 
+node_modules/gatsby-cli:
+	npm install
 
-develop: .env.development
-	gatsby develop
+develop: .env.development node_modules/gatsby-cli
+	npx gatsby develop

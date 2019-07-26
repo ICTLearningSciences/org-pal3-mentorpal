@@ -35,6 +35,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "gatsby-cli": "^2.7.20",
     "gatsby-plugin-root-import": "^2.0.5",
     "prettier": "^1.17.1",
     "react-video-thumbnail": "^0.1.3"
