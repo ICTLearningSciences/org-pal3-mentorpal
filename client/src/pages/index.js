@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { actions as cmi5Actions } from "redux-cmi5"
-import { graphql } from "gatsby"
+import { graphql, withPrefix } from "gatsby"
 import { CircularProgress } from "@material-ui/core"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { Helmet } from "react-helmet"
@@ -17,6 +17,8 @@ import withLocation from "src/wrap-with-location"
 import "src/styles/layout.css"
 
 const { start: cmi5Start } = cmi5Actions
+
+console.log('IN INDEX, env', JSON.stringify(process.env, null, 2))
 
 const IndexPage = ({ search, ...props }) => {
   const dispatch = useDispatch()
@@ -79,7 +81,9 @@ const IndexPage = ({ search, ...props }) => {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <Helmet script={[{ src: "/cmi5.js", type: "text/javascript" }]} />
+      <Helmet>
+        <script src={withPrefix('cmi5.js')} type="text/javascript" />
+      </Helmet>
       <div className="flex" style={{ height: videoHeight }}>
         {mentor ? (
           undefined
