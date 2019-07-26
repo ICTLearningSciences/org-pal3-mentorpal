@@ -1,9 +1,9 @@
 DOCKER_IMAGE?=mentor-processing-pipeline
 DOCKER_IMAGE_ID=$(shell docker images -q $(DOCKER_IMAGE))
 DOCKER_CONTAINER=mentor-processing-pipeline
-MENTOR?=juliannenordhagen
+MENTOR?=julianne
 SESSION?=1
-URL?=http://mentorpal-source-video.s3-website-us-west-1.amazonaws.com/julianne
+URL?=http://mentorpal-source-videos.s3-website-us-east-1.amazonaws.com/julianne
 WATSON_CREDENTIALS=secrets/watson_credentials.txt
 WATSON_USERNAME?=$(shell if [ -f $(WATSON_CREDENTIALS) ]; then head -n 1 $(WATSON_CREDENTIALS); else echo ""; fi)
 WATSON_PASSWORD?=$(shell if [ -f $(WATSON_CREDENTIALS) ]; then tail -n 1 $(WATSON_CREDENTIALS); else echo ""; fi)
@@ -31,7 +31,7 @@ $(WATSON_CREDENTIALS):
 # Removes all mentor files from the local file system
 .PHONY clean:
 clean:
-	rm -rf recordings/*
+	rm -rf data/recordings/*
 
 # Builds the data processing pipeline dockerfile
 .PHONY build:
@@ -63,7 +63,7 @@ build-mentor: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/data:/app/data \
-			$(DOCKER_IMAGE) -m $(MENTOR) -t -u $(URL)
+			$(DOCKER_IMAGE) -m $(MENTOR) -t -u $(URL) -q
 
 # Partially pre-processes mentor data inside docker container
 # Generates only audiochunks for all sessions
@@ -80,8 +80,8 @@ build-audiochunks: docker-image-exists $(WATSON_CREDENTIALS)
 
 # Partially pre-processes mentor data inside docker container
 # Generates audiochunks and transcripts for one session
-.PHONY build-session:
-build-session: docker-image-exists $(WATSON_CREDENTIALS)
+.PHONY pre-process-session:
+pre-process-session: docker-image-exists $(WATSON_CREDENTIALS)
 	docker run \
 			-it \
 			--rm \
