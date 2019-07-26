@@ -1,4 +1,5 @@
 import Papa from "papaparse"
+import { actions as cmi5Actions } from "redux-cmi5"
 
 import { topicsUrl, questionsUrl, queryMentor } from "src/api/api"
 import { STATUS_READY } from "src/redux/store"
@@ -21,6 +22,8 @@ export const loadMentor = mentor => dispatch => {
     mentor: mentor,
   })
 }
+
+const { sendStatement: sendXapiStatement } = cmi5Actions
 
 export const loadQuestions = (mentor_id, recommended) => async dispatch => {
   const questions_url = questionsUrl(mentor_id)
@@ -103,7 +106,33 @@ export const faveMentor = mentor_id => ({
   id: mentor_id,
 })
 
+const xapiSessionState = state => {
+  return {
+    mentor_current: state.current_mentor,
+    question_current: state.current_question,
+    topic_current: state.current_topic,
+    mentor_faved: state.faved_mentor,
+    mentor_next: state.next_mentor,
+    questions_asked: state.questions_asked,
+  }
+}
+
 export const sendQuestion = question => async (dispatch, getState) => {
+  dispatch(
+    sendXapiStatement({
+      verb: "https://mentorpal.org/xapi/verb/asked",
+      activityExtensions: {
+        "https://mentorpal.org/xapi/activity/extensions/actor-question": {
+          text: question,
+        },
+      },
+      contextExtensions: {
+        "https://mentorpal.org/xapi/context/extensions/session-state": xapiSessionState(
+          getState()
+        ),
+      },
+    })
+  )
   dispatch(onInput())
   dispatch(onQuestionSent(question))
 

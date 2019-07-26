@@ -33,7 +33,7 @@ const IndexPage = ({ search, ...props }) => {
 
   useEffect(() => {
     dispatch(cmi5Start())
-  }) // run only on first render
+  }, []) // run only on first render
 
   useEffect(() => {
     const data = props.data.allMentorsCsv.edges

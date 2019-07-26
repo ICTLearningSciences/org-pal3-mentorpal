@@ -17252,6 +17252,7 @@ var Cmi5;
             @param {Function} [callback] Function to run on success/failure of statement save
         */
         sendStatement: function (st, callback) {
+            console.log(`cmi5::sendStatement`, st)
             var cbWrapper,
                 result;
 
