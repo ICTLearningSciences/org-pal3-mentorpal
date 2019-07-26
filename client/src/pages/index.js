@@ -18,8 +18,6 @@ import "src/styles/layout.css"
 
 const { start: cmi5Start } = cmi5Actions
 
-console.log('IN INDEX, env', JSON.stringify(process.env, null, 2))
-
 const IndexPage = ({ search, ...props }) => {
   const dispatch = useDispatch()
   const mentors = useSelector(state => state.mentors_by_id)
@@ -82,7 +80,7 @@ const IndexPage = ({ search, ...props }) => {
   return (
     <MuiThemeProvider theme={theme}>
       <Helmet>
-        <script src={withPrefix('cmi5.js')} type="text/javascript" />
+        <script src={withPrefix("cmi5.js")} type="text/javascript" />
       </Helmet>
       <div className="flex" style={{ height: videoHeight }}>
         {mentor ? (
