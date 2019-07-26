@@ -19,7 +19,7 @@ echo-watson:
 .PHONY: docker-image-exists
 docker-image-exists:
 ifeq ("$(DOCKER_IMAGE_ID)", "")
-	$(MAKE) build
+	$(MAKE) docker-build
 endif
 
 
@@ -34,8 +34,8 @@ clean:
 	rm -rf data/recordings/*
 
 # Builds the data processing pipeline dockerfile
-.PHONY build:
-build:
+.PHONY docker-build:
+docker-build:
 	docker build -t $(DOCKER_IMAGE) .
 
 # Runs a shell inside the data processing pipeline dockerfile
@@ -51,6 +51,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-v $(shell pwd)/data:/app/data \
 			-v $(shell pwd)/src:/app/src \
 		$(DOCKER_IMAGE)
+
 
 # Fully pre-processes mentor data inside docker container
 # Generates audiochunks and transcripts for all sessions
