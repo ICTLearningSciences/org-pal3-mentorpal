@@ -65,7 +65,10 @@ def format_and_save_pu_data(mentor, pu_data):
 def format_and_save_qpa_data(mentor, qpa_data):
     # Topic
     topic_map = get_master_map(TOPIC_MAP_FILE)
-    qpa_data = qpa_data.join(topic_map.set_index("Question"), on="Question")
+    if topic_map.empty:
+        qpa_data["Topics"] = "Advice"
+    else:
+        qpa_data = qpa_data.join(topic_map.set_index("Question"), on="Question")
 
     # Helpers, Mentor
     qpa_data["Helpers"] = ""
@@ -74,7 +77,8 @@ def format_and_save_qpa_data(mentor, qpa_data):
 
     # Paraphrase
     paraphrase_map = get_master_map(PARAPHRASE_MAP_FILE)
-    qpa_data = qpa_data.join(paraphrase_map.set_index("Question"), on="Question")
+    if not paraphrase_map.empty:
+        qpa_data = qpa_data.join(paraphrase_map.set_index("Question"), on="Question")
 
     qpa_data.set_index("Question", inplace=True)
     qpa_data.to_csv(os.path.join(os.getcwd(), QPA_TARGET_FILE))
@@ -133,9 +137,7 @@ def aggregate_transcript_data(mentor):
     session = 1
 
     while transcript_exists:
-        filename = "data/recordings/{}/session{}/out/transcript.csv".format(
-            mentor, session
-        )
+        filename = f"data/recordings/{mentor}/session{session}/out/transcript.csv"
         if os.path.isfile(filename):
             if session == 1:
                 qpa_data = get_transcript_data(filename)
@@ -155,6 +157,7 @@ def get_transcript_data(transcript_file):
 
 
 def get_master_map(map_file):
-    os.path.join(os.getcwd(), map_file)
-    map_data = pd.read_csv(map_file).fillna("")
+    map_data = pd.DataFrame()
+    if os.path.isfile(map_file):
+        map_data = pd.read_csv(map_file).fillna("")
     return map_data
