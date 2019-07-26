@@ -1,0 +1,434 @@
+Question,Topics
+Long bio,Background
+What is your name?,Background
+What year were you born?,Background
+How old are you now?,Background
+When is your birthday? ,Background
+Where did you grow up?,Background
+Tell me about your family growing up.,Background
+Tell me about your childhood,Background
+When did you join the Navy?,Background
+Are you currently serving in the military?,Background
+What is your current rank and duty position now?,Military|Navy
+How will you spend most of your time at work?,Military|Navy
+What kind of decisions will you be making?,Military|Navy
+What are the major benefits of doing this type of work?,Military|Navy
+What are the negatives about being a Navy pilot?,Military|Navy|JobSpecific
+How much do Navy pilots travel in a year?,Military|Navy|JobSpecific
+To what extent will you understand the overall goals of the work you are doing?,Military|Navy
+How stable is the employment of your job?,Military|Navy
+Do you know members of your job that have high stress syndromes or problems?,Military|Navy|JobSpecific|Lifestyle
+What if someone finds out that they do not like being a pilot?,Military|Navy|JobSpecific
+How did you come to join JROTC and ROTC?,Military|Navy|JobSpecific
+What is JROTC?,Military|Navy|JobSpecific
+What is ROTC?,Military|Navy|JobSpecific
+What does NROTC stand for?,Military|Navy|JobSpecific
+What does JROTC stand for?,Military|Navy|JobSpecific
+What is the different between JROTC and ROTC?,Military|Navy|JobSpecific
+What does a typical day in ROTC look like?,Military|Navy|JobSpecific
+Is there a sense of community within ROTC?,Military|Navy|JobSpecific
+Were you worried about starting college?,Education|Challenges
+What is your favorite color?,Background
+What is your favorite food?,Background
+Can I be in a relationship in the military?,Military|Navy|Culture
+How do relationships last in the military?,Military|Navy|Culture
+Where were you commissioned?,Background
+How much money do you earn working for the Navy?,Military|Navy|Money
+Do you recommend I apply for the ROTC program?,Military|Navy|Advice
+When do you sign your service commitment?,Military|Navy
+What's the minimum commitment of service for the Navy?,Military|Navy
+What's the minimum commitment of service for aviation?,Military|Navy|JobSpecific
+Are you scared of the commitment of service for aviation?,Military|Navy|JobSpecific|Challenges|Risk
+How do I apply for the ROTC program?,Military|Navy|JobSpecific
+What is your biggest takeaway from ROTC?,Military|Navy|Recognition
+How do I succeed in school?,Education|Advice
+Do you reccommend studying abroad?,Education|Advice
+How can I study abroad?,Education|Advice
+Have you ever felt discriminated in a male dominated field?,Challenges
+How do you deal with your cowokers in a male dominated field?,Challenges
+"If you had the chance to do school over, what would you do differently?",Education|Advice
+What have you done that you are most proud of?,Growth/learning
+What kind of people do not do well in your line of work?,Background
+What was your biggest failure and how did you learn from it?,failure|Recognition
+What kind of risks do you need to take in your field?,Risk|Recognition
+What courses in college have you found to be the most useful so far?,Education|Advice
+When is breaking the rules okay?,Advice
+What were some of the most diffucult courses you had to take in college?,Education|Advice|Challenges
+How has your job affected your lifestyle,Military|Navy|JobSpecific|Lifestyle
+What was a pivitol moment in your life?,background
+What is important when choosing a college?,Education|Advice
+How might your job change over the next 10 years?,Opportunities|JobSpecific
+What are you really passionate about in your career?,Job Specific
+How much do you use Math in your job?,STEM|JobSpecific
+How can you change careers?,JobSpecific
+Who are you and what do you do?,Background
+When is your birthday?,Background
+Tell me about your childhood.,Background
+Tell me about your family.,Background
+Can you tell me more about Michigan?,Background
+What kind of student were you?,Background|Education
+"Besides LA, what other places in California have you lived in?",Background|Travel
+What was it like being in war? What did you do?,Background|Combat
+I want to join the Navy but I'm afraid of going into battle...,Combat|Risk
+"Though you were an Electrician's Mate, did you work on other things besides electronics?",JobSpecific|STEM
+What is the training progression and what is it like?,Training
+What does EMC stand for?,Jargon
+Are you an officer?,Background
+"You have a college degree, so why aren't you an officer?",Education|JobSpecific|Military
+What is the difference between an officer and an enlisted person?,Jargon
+How do you spend most of your time on deployment?,JobSpecific
+What did you do during your off time while deployed?,Lifestyle|JobSpecific
+How do you spend most of your time off deployment?,Lifestyle|JobSpecific
+Describe the work you do on a typical day.,JobSpecific
+What are you doing now that you aren't active duty Navy?,Background|Lifestyle
+How much do you earn working for the Navy?,Money
+How many hours do you work in a typical day?,JobSpecific
+What types of problems do you deal with on a daily basis?,JobSpecific|STEM
+What kind of issues are there with alcohol in the Navy?,Lifestyle|Culture
+What is the Navy doing to combat heavy alcohol use?,Lifestyle
+How much did your friends impact where you ended up in your career?,Lifestyle|Colleagues
+What are the major benefits of doing this kind of work?,JobSpecific|STEM
+What do most people do after leaving active duty?,Future
+What are the major negatives of doing this kind of work?,STEM|JobSpecific
+Was it worth it?,Decisions
+What are the main things that new employees must learn and adjust to?,Challenges|Fit|Lifestyle
+How much travel did you do during active duty?,Travel
+What countries did you visit on Port Calls?,Travel|Jargon
+How much travel do you do now that you're out of the Navy?,Travel
+What lifestyle changes does being in the Navy involve?,Lifestyle
+Did you like wearing the same uniform?,Lifestyle
+Who are the most important people in the Navy?,Management
+How much do you understand the overall goals of what you are doing?,JobSpecific|STEM
+How much of your private time is spent doing your job?,JobSpecific|Lifestyle
+"Off of active duty, do you still take work home with you?",Lifestyle
+How much turnover is there in the Navy?,Opportunities
+How stable is employment in the Navy?,JobSpecific|Benefits
+What opportunities do you have to alter your own work schedule?,JobSpecific|Opportunities
+How many Navy members have high stress symptoms?,Lifestyle
+What happens if I don't like this line of work?,Fit
+What opportunities do you have to change career field?,Opportunities
+What experiences do you have with nukes?,JobSpecific
+What is the role of nuclear technology in the Navy?,JobSpecific
+What does your startup do?,Background
+Do you speak any other languages?,Background
+Describe a particular technical issue you've had to solve on the job.,JobSpecific|STEM
+How much of your time is spent with people versus with technology?,JobSpecific
+What's up?,Miscellaneous
+How is the weather?,Miscellaneous
+How are you?,Miscellaneous
+Where are you?,Miscellaneous|Background
+What are your hobbies?,Background
+How did you get into archery?,Background
+What is a chief?,Jargon
+"What does ""in port"" mean?",Jargon
+What is a rate?,Jargon
+What experience do you have with nuclear bombs?,JobSpecific
+How often have you been deployed?,JobSpecific
+What was 9-11 like for you?,Background
+Why do you love your job?,JobSpecific|Motivation
+What gets romanticized about your career field that really isn't that great?,Misconceptions
+What makes the Navy different than other branches of the military?,Culture
+What are some of the common misconceptions about your field?,Misconceptions
+What are some of the common misconceptions about working in nuclear technologies?,Misconceptions|JobSpecific|STEM
+What do you do in the Navy that is different from what you expected?,Misconceptions
+How did your work day change over your career?,JobSpecific
+How has your view of this line of work changed over time?,JobSpecific
+"Where did you have to move in your career, and how did that change things each time?",Travel|Background
+What do you find unique about your career field?,Culture|STEM
+Are great practitioners in this field made or born?,Fit|STEM|Growth/learning
+What priorities would you recommend for a person entering this field?,Priorities|STEM|Advice
+How fair are the expectations of you as an employee?,JobSpecific|Management
+How accepting of failure is this work environment when a good and honest effort was made?,JobSpecific|Failure
+What range of tasks and opportunities does this field present to allow me to grow?,Growth/learning|STEM|JobSpecific
+How satisfied have you been with your bosses in your career?,Management
+Describe the technological environment in which you've worked.,STEM|JobSpecific
+What is your opinion on nuclear energy and its future?,STEM|Future
+What organizations were most helpful to you in your career?,Culture
+What is MWR?,Jargon
+What is USO?,Jargon
+What kind of risks do you need to take in this field?,Risk|JobSpecific
+Should I go to college before or after serving?,Education|Growth/learning|Advice
+How can your work change the world?,Impact|JobSpecific
+What's your favorite book of all time? Why?,Miscellaneous|Background
+What's your favorite movie of all time? Why?,
+"If you could meet anyone in the world today, who would it be and why? What would you say to that person?",Miscellaneous
+What kind of personal satisfaction do you get from your job?,Motivation
+What qualifications and experience do recruiters look for when choosing new people for this field?,Military|Fit
+What do you see as the major problems for those working in this field today?,Challenges|STEM
+What person do you most admire and why?,Miscellaneous|Motivation
+Tell me a funny story.,Miscellaneous
+Where were you born?,Background
+What is Japan like?,Background|Miscellaneous|Travel
+What do you do in computer science/programming?,STEM|Background
+What is your strategy for overcoming your hardships?,Advice|Challenges
+What advice do you have for someone who is growing up surrounded by drugs and crime when sometimes it seems like it's too hard to get through school?,Advice|Challenges
+Were you ever bullied in high school? What did you do?,Background|Challenges
+What advice do you have for people who are being bullied in high school?,Advice|Challenges
+Do you have a family?,Background
+What advice do you have for spouses who don't understand the career demands of the Navy?,Advice|Military|Lifestyle
+Did you like wearing the same uniform every day? Why or why not?,Military|Culture
+What is a regulator?,STEM|Jargon
+Tell me about Naval Postgraduate School.,Education
+Where is the Naval Postgraduate School?,Education
+What are the most important things on a resume?,Advice|Skills
+Where can I find an internship that will give me skills for the engineering field?,Skills|Resources|STEM
+What do you advise me to do in picking the right career field for me?,Advice|Fit
+How do I find what I love to do?,Advice|Fit|Motivation
+What should I do if I don't know what job I want to do?,Advice|Fit|Motivation
+Who are the best people to talk to when making a career choice?,Resources|Advice|Mentor|Decisions
+Who first introduced you to the military lifestyle?,Advice|Mentor|Lifestyle|Military
+What is one piece of advice that you wished you had taken?,Advice|Background
+What is one question you wish you had asked earlier?,Advice|Background
+What is something you wish you had known before choosing your career?,Advice|STEM|Decisions
+What is the most challenging part about your job?,Challenges|JobSpecific
+What is the biggest barrier to entry in this field?,Challenges|Military
+How did you become interested in this type of work?,Motivation|Background|Military
+How did you first become interested in computer science?,Motivation|Background|STEM
+Why did you choose this career?,Decisions|Background|Motivation
+"If you could do it all over, would you choose this career again?",Decisions|Military
+"When you were a kid, what did you want to be when you grew up?",Background
+What sports did you play in high school?,Background
+Are you married?,Background|Lifestyle
+Do you have siblings?,Background
+Do you have any pets?,Background
+What is your least favorite food?,Background
+What is the food like in the military?,Military|Lifestyle
+Do you shoot guns?,Combat|Military
+Can you explain the ribbon system?,Recognition|Military|Jargon
+What are the ribbons/awards that you've gotten?,Recognition|Military|Jargon
+Do you have any tattoos?,Military|Culture|Background
+Do you get to swim in the ocean?,Military|Miscellaneous
+Do you have to be a good swimmer to join the Navy?,Military|Fit|Skills
+What is deployment?,Military|Jargon
+What's something that most people don't know about computer science?,STEM|Misconceptions
+Who gave you the best advice about your career?,Mentor|Advice
+How can I work smarter?,Advice|Skills
+What would you advice a person in this field to do in order to create good relationships with bosses?,Advice|Management|Military
+Does the Navy give you housing?,Military|Lifestyle|Benefits
+What has been your favorite place to live?,Travel|Background
+Did the Navy give you a chance to live overseas?,Military|Travel
+What was your promotion track throughout your Navy service?,Military|Growth/learning|Recognition
+What was your salary throughout your Navy service?,Military|Money
+Can you explain the ranking system E and numbers?,Military|Jargon
+Can you explain the ranking system O and numbers?,Military|Jargon
+What were your living quarters like in the Navy?,Military|Lifestyle
+What are common crimes that military people commit?,Military|Risk|Culture
+Did you receive a monetary bonus for enlisting?,Military|Money|Benefits
+Can you tell me about military retirement?,Military|Benefits
+Describe the hiring process.,Military|Opportunities|Resources
+Describe the initial training.,Training|Military
+What is boot camp like?,Training|Military
+Who do I talk to if I'm interested in this computer science?,Advice|Resources|STEM
+What is dress attire in the Navy?,Military|Culture
+To what extent does the military adhere to tight schedules both long term and daily?,Military|Culture
+How can I request to work in a certain area or field?,Opportunities|Fit|Military
+What was the most difficult part of your training?,Military|Training|Challenges
+What is the most difficult part of computer science?,STEM|Challenges
+How would you describe the work culture of the Navy?,Military|Culture
+How does an officer's/non-officer's salary compare to civilian salaries?,Money|Military
+How significant is there a chance of being deployed?,Military|JobSpecific|Travel
+What things are there for me to do on a ship?,Lifestyle|Military|Benefits
+Why should someone choose to be a part of the Navy?,Advice|Decisions|Military
+Why should someone choose to go into CS?,STEM|Decisions|Advice
+What are the long-term impacts of entering computer science or STEM fields?,STEM|Impact|Future
+How do you and your work colleagues socialize outside of work?,Colleagues|Lifestyle
+What is the gender mix of your workplace?,Demographics|Military
+What are the ethnic percentages of your workplace?,Demographics|Military
+Why do people leave this field or company?,Decisions|Military
+Why do people leave the CS/STEM field?,STEM|Decisions
+"How will my relationship with my friends or family members be affected if I join the Navy, and what advice should i give them?",Lifestyle|Military|Advice
+How do the educational benefits of the military work?,Education|Benefits|Military
+What is the advancement potential in the field? What is a typical path?,Growth/learning|Future
+How will my experience transfer to civilian life after my Navy tour of duty?,Skills|Future|Military
+What is a story that really shows what it is like being in the Navy?,Military|Culture
+What do Navy reservists do and what benefits do they get?,Military|Benefits
+What experience is necessary to become an officer?,Growth/learning|Skills|Military
+How do you get good feedback?,Management|Advice
+What are the most important decisions that you faced as a leader in your organization?,Decisions|Military
+Who gave you the best advice about your life?,Advice|Background
+What is the most important lesson about life you have learned?,Background|Growth/learning|Advice
+What do you think is really important in life?,Advice|Priorities
+What problem are you looking to solve?,Motivation|Impact
+How and where do you find inspiration?,Motivation
+"How often do you ever get in a ""state of flow"" when doing your job?",Motivation|JobSpecific
+What makes you proud?,Motivation
+What keeps you up at night?,Motivation
+Whom do you see as the main beneficiaries of the work you do in computer science?,Impact|STEM
+Why are you motivated and inspired to go to work as a programmer?,Motivation|JobSpecific|STEM
+How did you manage both career and personal life effectively?,Lifestyle
+How strongly would you recommend this profession to others or to me personally?,JobSpecific|Advice
+"If you could change one thing about your job, what would it be?",JobSpecific
+What is STEM?,STEM|Jargon
+What STEM positions are available in the military?,STEM|JobSpecific|Military|Opportunities
+What are the benefits of your STEM career?,STEM|JobSpecific|Benefits
+Who do I talk to if I'm interested in this field?,Advice|Mentor|Resources
+What is the difference between working in the public vs private sectors?,Opportunities|Benefits|Culture
+What is your favorite coding language and why?,STEM|Background
+How much free time do you have in your career?,Lifestyle|JobSpecific
+How ethnically diverse is this career field?,Demographics|Culture|JobSpecific
+Why are there fewer minorities in STEM?,Demographics|Culture|STEM
+Why are there fewer females in STEM?,Demographics|Culture|STEM
+"How does someone recover from a professional ""bump in the road""?",Challenges|Failure
+Who has influenced you the most?,Mentor|Background
+Tell me about a mentor that you have or had. How did that person positively influence your academic decisions?,Mentor|Background|Decisions
+Who is a person that you considered as a role model early in your life? How and why does this person impact your life?,Mentor|Background|Impact
+Describe an experience that illuminates STEM culture,STEM|Culture
+Describe an experience that illuminates Navy culture,Military|Culture
+Describe the physical environments in which you've worked.,JobSpecific|Military
+What struggles did you overcome to get where you are?,Challenges|Background
+What was a pivotal moment in your career/life?,Background|Impact
+What are the failures for which you are the most unhappy?,Failure|Background
+What is the most dangerous thing you've ever done on the job?,Risk
+Tell me about a time when your priorities conflicted with the priorities of your management,Priorities|Management|Conflict
+Describe any instances of sexual impropriety in your workplace,Ethics|JobSpecific
+What is your current position and how did you get there?,Background|JobSpecific
+What is your plan to reach your career/life goal?,Future|Background
+What were some of your fears entering college and your career?,Risk|Background
+What internships did you have? How did they prepare you?,Background|JobSpecific|Skills|Growth/Learning
+What used to be your biggest weakness? How did you improve it?,Skills|Challenges|Growth/Learning
+How have your priorities changed as your career progresses?,Priorities|Background
+What do you like to do the most?,Motivation
+Are too many or too few people entering this profession?,Future|JobSpecific
+What sorts of changes are occurring in your occupation?,Future|JobSpecific
+How do you proactively prepare for a decline in your field?,Future|Skills
+What do you believe will be the most important factors that will shape your future?,Future
+What was the coolest thing you did in the Navy?,Military|Culture
+How do you handle fatigue at work?,Challenges|JobSpecific
+What branch of the military should I go into?,Military|Decisions|Advice|Culture
+How do you handle self doubt?,Challenges|Advice
+Have you seen the button?,JobSpecific|Military
+How do you define success?,Motivation|Lifestyle
+What has been your greatest success?,Background
+Do you need to be good at math or science to go into STEM?,Skills|STEM|Education|Fit
+How interesting is your work? Is it boring?,Motivation|JobSpecific
+Where will a STEM degree take me?,STEM|Future|Opportunities|Education
+What factors should I consider when deciding where I want to study?,Education|Decisions|Advice
+What if I can't go or can't afford to go to a 4 year college?,Education|Decisions|Advice
+How does your college matter?,Education
+What did you learn for your career that you truly never used?,Training|Education|JobSpecific
+What specific courses do you recommend?,Education|Advice|Growth/Learning
+What courses are good indicators of whether I fit in this field?,Fit|Education|STEM
+What courses were just a waste of time for you?,Education
+What influenced you the most in your college decision?,Background|Decisions|Education
+What extracurriculars did you do in college?,Background|Education
+What was the most difficult part of your education?,Education|Challenges
+"Given the chance to do school over, what would you do differently?",Education|Background|Decisions
+What opportunities are there for future education and training?,Education|Training|Military|Opportunities
+How do you continue to improve your skills during your career?,Skills|Growth/Learning|JobSpecific
+How do you stay in touch with family?,Lifestyle|Military
+Can you change branches? Can you switch to the Army or Air Force?,Military|Opportunities|JobSpecific|Decisions
+Do you need to exercise all the time or be in great shape?,Lifestyle|Military
+What types of uniforms do you wear?,Lifestyle|Military|Culture
+How transferable is your job to the civilian sector?,Opportunities|JobSpecific|Military|STEM
+Do you get to fly in helicopters or planes?,Miscellaneous|Military
+"Is it possible to quit the military? (Either deployment, or the service?)",Military|Decisions
+What happens if you get into trouble in the Navy?,Military|Risk
+Have you killed anyone?,Combat|Military
+Are you happy with your job?,Motivation|JobSpecific
+What is the best military perk you experienced?,Benefits|Military
+Is the military like it is in video games?,Military|Combat
+"Can you use outside communication on a deployment, like using the internet and email, calling by phone, and writing mail?",Lifestyle|Military
+Can you have a cell phone or laptop while in the military?,Lifestyle|Military
+Can you drink alcohol when deployed?,Lifestyle|Military|Culture
+Where have you been in port?,Travel
+"How important is it to have the right training, degree or experience?",Education|Training|Opportunities|Skills
+Why shouldn't I join the Navy?,Military|Decisions|Advice
+How can I study STEM and another area?,STEM|Education
+What is the typical education level at each stage of a career in the military?,Education|Military|Management
+In what ways did your education prepare you for your career?,Education|JobSpecific|Skills
+Is sexual harassment common in the military?,Ethics|Military|Culture
+What kinds of people succeed in STEM fields?,STEM|Fit|Recognition
+What kinds of new skills have you learned recently?,Skills|Growth/Learning
+How much does GPA affect job outcomes?,Education|Opportunities|Recognition
+"If I did poorly in high school, can I join the military?",Education|Military|Fit
+How do I pay for education?,Education|Money
+"Should I still go to college, if I need to take out a loan?",Education|Money|Decisions|Advice
+How often have you been presented with challenging new skills to learn?,Skills|Growth/Learning|Challenges
+How much of your free time do you spend learning new tasks?,Skills|Growth/Learning|Lifestyle
+What are you doing daily to ensure your growth and development continues?,Skills|Growth/Learning|Lifestyle
+How is college different than high school?,Education|Culture
+What part of your future are you most worried about?,Future|Challenges|Risk
+When were you active duty?,Military|Background
+How long have you been in the reserves?,Military|Background
+Where do you see yourself in 5 years? 10?,Future
+Tell me about the CS project that you are most proud of.,STEM|Background
+What is a STEM career like?,STEM|JobSpecific|Lifestyle
+What are the different types of STEM that people can practice?,STEM|JobSpecific|Opportunities
+What are the different types of careers in computer science?,STEM|JobSpecific|Opportunities
+Have you been the victim of favoritism?,Management|Ethics
+What is A School?,Education|Military|Growth/learning
+What is the best career to go into?,Advice|Opportunities|Future
+What is the best STEM field to go into?,STEM|Advice
+What STEM field makes the most money?,STEM|Money
+What Navy position makes the most money?,Military|Money
+What excites you most about the future?,Future|Opportunities
+What is the most important thing I should learn from you?,Growth/learning|Advice
+How does this work?,Project
+What's your favorite joke?,Miscellaneous
+How does this NLP work?,Project|STEM
+Where should I go to find more information?,Resources
+Where should I go to find more advice?,Advice|Resources
+Who should I talk to?,Resources|Mentor
+How do you feel about becoming digital?,Project
+What should I do now?,Advice|Future
+What is your favorite thing to talk about?,Miscellaneous
+What are you?,Project
+Are you human?,Project|Miscellaneous
+Are you there?,Miscellaneous
+Are you real?,Project|Miscellaneous
+How can you help me?,Project
+What time is it?,Miscellaneous
+Can you sing a song?,Miscellaneous
+What am I doing right now?,Miscellaneous
+For what in your life do you feel most grateful?,Lifestyle|Motivation
+What did you get your undergraduate degree in?,Education|Background|STEM
+Why did you get a minor in education?,Education|Background
+What did you get your master's degree in?,Education|Background|STEM
+Why did you go to college and grad school?,Education|Decisions|Background
+Why should anyone go to grad school?,Education|Decisions
+How do you balance going to school while being in the military?,Education|Military
+What path would you recommend for someone who wants to go to college but also be in the military?,Advice|Education|Military
+How do I become an officer?,Management|Military|Advice
+What is ROTC and why should I do it?,Education|Military
+What does ROTC stand for?,Education|Military|Jargon
+What's the difference between undergraduate and graduate school or education?,Education
+What is the most important principle for academic success?,Education|Skills|Growth/learning
+Do you have any advice for high school students?,Advice|Education
+Did you work while in college?,Background|Education|Challenges|Money
+What was your favorite class in college?,Education
+How do I get into a good college?,Advice|Education
+Are there any military focused extracurricular activities for high school students?,Education|Military
+Tell me about your education and college experience.,Education|Background|Lifestyle
+What if I am not smart enough to succeed at a college?,Advice|Education
+Would you recommend studying abroad? As a STEM major?,Advice|Education|Travel
+How is computer science and STEM different in Japan and other nations?,STEM|Demographics
+What do you give up to study STEM?,Decisions|Challenges|STEM
+How is college different from the navy?,Education|Military|Lifestyle|Culture
+What is your favorite college memory?,Education|Lifestyle
+What was your favorite job or internship?,STEM
+What characterizes a good career?,Advice|Priorities|Lifestyle|Fit
+What don't you like about STEM/CS?,STEM|Challenges
+How would you recommend overcoming bad teachers or difficult subjects?,Advice|Challenges|Education|Growth/learning
+How has combat or the Navy changed you?,Combat|Military
+What types of questions can I ask you about?,Project
+What do you do?,Background
+Can you briefly tell me about yourself?,Background
+What distracts you and how do you overcome it?,Advice|Challenges|Priorities
+What are your strengths?,Background|Skills
+What do you not like to do?,Background
+Do you have any regrets?,Background|Challenges|Failure
+Do you get to take vacations in the military?,Benefits|Military|Lifestyle|Travel
+Does it get claustrophobic and sea sick on the ship?,Challenges|Fit|JobSpecific
+How long are you on the ship for?,JobSpecific|Military
+Did you miss home while in the Navy and how did you handle it?,Challenges|Military
+What is the age limit to join the Navy?,JobSpecific|Military
+Who was your best friend in the Navy?,Colleagues|Combat|Military
+What are the reserves?,Jargon|Miltary|JobSpecific
+Do you know anyone who died in the military?,Combat|Risk|Military
+What was your first position in the Navy?,Background|Military
+How do you meet people in the Navy?,Culture|Colleagues|Lifestyle|Military
+Have you ever worked with someone you didn't get along with and how did you handle it?,Colleagues|Conflict|Ethics|Military
+Who is the military a good option for?,Advice|Benefits|Military|Fit
+Why are you in Japan?,Background|Travel
+How much do you have to study in college?,Education
+Do you want to be a professor?,Background|Education

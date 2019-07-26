@@ -1,6 +1,4 @@
 node_modules
-*password.txt
-# *credentials.txt
 .netrc
 __pycache__
 *.pyc
@@ -14,5 +12,13 @@ terraform.tfstate
 resources
 *.log
 .venv
+
+# Secret Config Files
 */secrets/*
+*password.txt
+
+# Mentor Data Files
 */recordings/*
+*/temp/*
+*prompts_utterances.csv
+*gquestions_paraphrases_answers.csv
