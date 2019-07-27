@@ -6,8 +6,8 @@ DIR=$(shell pwd)
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 PROJECT_NAME=$(shell v='$(PROJECT_ROOT)'; echo "$${v\#\#*/}")
 SERVICE_NAME=$(shell v='$(DIR)'; echo "$${v\#\#*/}")
-CLIENT=${PROJECT_ROOT}/client
-BUILD=${DIR}/build
+CLIENT=$(PROJECT_ROOT)/client
+BUILD=$(DIR)/build
 
 
 .PHONY clean:
@@ -17,13 +17,13 @@ clean:
 
 build/client:
 	mkdir -p build
-	rsync -rv --exclude=node_modules ${CLIENT} build
+	rsync -rv --exclude=node_modules $(CLIENT) build
 
 
 .PHONY docker-build:
 docker-build: clean build/client
 	docker build \
-		-t ${DOCKER_IMAGE} \
+		-t $(DOCKER_IMAGE) \
 	.
 
 .PHONY docker-run:
@@ -31,9 +31,9 @@ docker-run:
 	docker run \
 			-it \
 			--rm \
-			--name ${DOCKER_CONTAINER} \
+			--name $(DOCKER_CONTAINER) \
 			-p 3000:3000 \
-		${DOCKER_IMAGE} 
+		$(DOCKER_IMAGE) 
 
 
 .PHONY docker-run-dev:
@@ -41,13 +41,13 @@ docker-run-dev:
 	docker run \
 			-it \
 			--rm \
-			--name ${DOCKER_CONTAINER} \
+			--name $(DOCKER_CONTAINER) \
 			-p 3000:3000 \
-			-v ${SERVICE_ROOT}/bin:/app/bin \
-			-v ${SERVICE_ROOT}/public:/app/public \
-			-v ${SERVICE_ROOT}/routes:/app/routes \
-			-v ${SERVICE_ROOT}/views:/app/views \
-			-v ${SERVICE_ROOT}/utils:/app/utils \
+			-v $(SERVICE_ROOT)/bin:/app/bin \
+			-v $(SERVICE_ROOT)/public:/app/public \
+			-v $(SERVICE_ROOT)/routes:/app/routes \
+			-v $(SERVICE_ROOT)/views:/app/views \
+			-v $(SERVICE_ROOT)/utils:/app/utils \
 		${DOCKER_IMAGE} 
 
 
@@ -55,7 +55,7 @@ docker-run-dev:
 exec-shell:
 	docker exec \
 			-it \
-		${DOCKER_CONTAINER} \
+		$(DOCKER_CONTAINER) \
 			bash
 
 .PHONY: audit-js

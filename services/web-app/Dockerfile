@@ -6,15 +6,14 @@ RUN apt-get update && \
         libglu1 \
         libjpeg-dev \
         libpng-dev \
-        libtiff-dev && \
+        libtiff-dev \
+        libxi-dev && \
     rm -rf /var/lib/apt/lists/*
-RUN npm install -g gatsby-cli
 WORKDIR /
 COPY . .
 RUN cd /build/client && \
     npm install && \
     npm run build
-
 FROM node:12.4-slim
 ENV TINI_VERSION=v0.16.1
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
@@ -23,6 +22,6 @@ WORKDIR /app
 COPY . .
 RUN rm -rf build
 COPY --from=builder /build/client/public /app/public/mentorpanel
-RUN npm install
+RUN npm install --production 
 RUN chmod +x /app/entrypoint.sh
 ENTRYPOINT ["/tini", "--", "/app/entrypoint.sh"]
