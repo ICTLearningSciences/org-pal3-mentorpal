@@ -126,7 +126,7 @@ export const sendQuestion = question => async (dispatch, getState) => {
           "https://mentorpal.org/xapi/activity/extensions/actor-question": {
             text: question,
           },
-        }
+        },
       },
       contextExtensions: {
         "https://mentorpal.org/xapi/context/extensions/session-state": xapiSessionState(
