@@ -121,10 +121,12 @@ export const sendQuestion = question => async (dispatch, getState) => {
   dispatch(
     sendXapiStatement({
       verb: "https://mentorpal.org/xapi/verb/asked",
-      activityExtensions: {
-        "https://mentorpal.org/xapi/activity/extensions/actor-question": {
-          text: question,
-        },
+      result: {
+        extensions: {
+          "https://mentorpal.org/xapi/activity/extensions/actor-question": {
+            text: question,
+          },
+        }
       },
       contextExtensions: {
         "https://mentorpal.org/xapi/context/extensions/session-state": xapiSessionState(
