@@ -117,6 +117,15 @@ const xapiSessionState = state => {
   }
 }
 
+const sessionStateExt = (state, ext) => {
+  return {
+    ...(ext || {}),
+    "https://mentorpal.org/xapi/context/extensions/session-state": xapiSessionState(
+      state
+    ),
+  }
+}
+
 export const sendQuestion = question => async (dispatch, getState) => {
   dispatch(
     sendXapiStatement({
@@ -128,11 +137,7 @@ export const sendQuestion = question => async (dispatch, getState) => {
           },
         },
       },
-      contextExtensions: {
-        "https://mentorpal.org/xapi/context/extensions/session-state": xapiSessionState(
-          getState()
-        ),
-      },
+      contextExtensions: sessionStateExt(getState()),
     })
   )
   dispatch(onInput())
@@ -140,11 +145,28 @@ export const sendQuestion = question => async (dispatch, getState) => {
 
   const state = getState()
   const mentor_ids = Object.keys(state.mentors_by_id)
+  const tick = Date.now()
   // query all the mentors without waiting for the answers one by one
   const promises = mentor_ids.map(mentor => {
     return new Promise((resolve, reject) => {
       queryMentor(mentor, question)
         .then(response => {
+          dispatch(
+            sendXapiStatement({
+              verb: "https://mentorpal.org/xapi/verb/answered",
+              result: {
+                extensions: {
+                  "https://mentorpal.org/xapi/activity/extensions/mentor-response": {
+                    ...response,
+                    question_text: question,
+                    mentor: mentor,
+                    response_time: Date.now() - tick,
+                  },
+                },
+              },
+              contextExtensions: sessionStateExt(getState()),
+            })
+          )
           dispatch(onQuestionAnswered(response))
           resolve(response)
         })
