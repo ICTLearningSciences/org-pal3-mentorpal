@@ -109,21 +109,26 @@ export const sendQuestion = question => async (dispatch, getState) => {
 
   const state = getState()
   const mentor_ids = Object.keys(state.mentors_by_id)
-  const responses = []
+  // query all the mentors without waiting for the answers one by one
+  const promises = mentor_ids.map(mentor => {
+    return new Promise((resolve, reject) => {
+      queryMentor(mentor, question)
+        .then(response => {
+          dispatch(onQuestionAnswered(response))
+          resolve(response)
+        })
+        .catch(err => {
+          dispatch(onQuestionError(mentor, question))
+          reject(err)
+        })
+    })
+  })
 
-  // Get responses from the panel of mentors
-  for (let i = 0; i < mentor_ids.length; i++) {
-    const id = mentor_ids[i]
-    try {
-      const response = await queryMentor(id, question)
-      responses.push(response)
-      dispatch(onQuestionAnswered(response))
-      console.log(response)
-    } catch (err) {
-      dispatch(onQuestionError(id, question))
-      console.error(err)
-    }
-  }
+  // ...but still don't move forward till we have all the answers,
+  // because we will prefer the user's fav and then highest confidence
+  const responses = (await Promise.all(
+    promises.map(p => p.catch(e => e))
+  )).filter(r => !(r instanceof Error))
 
   if (responses.length === 0) {
     return
