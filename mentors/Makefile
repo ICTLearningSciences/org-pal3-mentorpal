@@ -56,7 +56,11 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
+<<<<<<< HEAD
 			-v $(shell pwd)/$(MENTOR):/app/mounts/$(MENTOR) \
+=======
+			-v $(shell pwd)/$(MENTOR):/app/$(MENTOR) \
+>>>>>>> update make
 			-v $(shell pwd)/src:/app/src \
 		$(DOCKER_IMAGE)
 
@@ -65,7 +69,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 # Generates audiochunks and transcripts for one mentor
 %/build: $(WATSON_CREDENTIALS)
 	@echo "creating $*/build ..."
-	$(MAKE) docker-image-exists 
+	$(MAKE) docker-image-exists
 	docker run \
 			-it \
 			--rm \
