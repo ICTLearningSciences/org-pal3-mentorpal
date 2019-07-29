@@ -9,15 +9,17 @@ import constants
 """
 This file serves as the entrypoint for the mentor panel video processing pipeline
 """
-RECORDINGS_PATH = constants.RECORDINGS_DIR
-SESSION_PATH = "session{}"
-FILE_PATH = os.path.join(SESSION_PATH, constants.FILENAME)
+MENTOR_BUILD = constants.MENTOR_BUILD
+MENTOR_DATA = constants.MENTOR_DATA
+SESSION_DATA = constants.SESSION_DATA
+DATA_FILENAME = constants.DATA_FILENAME
 VIDEO_FILE = constants.VIDEO_FILE
 AUDIO_FILE = constants.AUDIO_FILE
 TIMESTAMP_FILE = constants.TIMESTAMP_FILE
-MENTOR_DIR = constants.MENTOR_DIR
 ERR_MISSING_FILE = "ERROR: Missing {} file for session {} part {}"
 ERR_NO_URL = "ERROR: Data files for {} don't exist locally and url is not provided"
+
+DATA_DIR = os.environ["DATA_MOUNT"] or os.getcwd()
 
 
 def process_session_data(args):
@@ -29,7 +31,7 @@ def process_session_data(args):
     mentor_dir: directory containing raw data for mentor
     """
     process_summary = {"transcripts": [], "audiochunks": []}
-    mentor_dir = MENTOR_DIR.format(args.mentor)
+    mentor_dir = os.path.join(DATA_DIR, MENTOR_BUILD.format(args.mentor))
 
     if args.sessions:
         for session in args.sessions:
@@ -37,17 +39,17 @@ def process_session_data(args):
                 session_number = 1
                 session_dir = get_session_dir(mentor_dir, session_number)
                 while os.path.isdir(session_dir):
-                    session_number += 1
                     summary = preprocess_data.process_raw_data(
-                        args.transcripts, session_dir
+                        args.transcripts, session_dir, session_number
                     )
+                    session_number += 1
                     session_dir = get_session_dir(mentor_dir, session_number)
                     process_summary["transcripts"].extend(summary["transcripts"])
                     process_summary["audiochunks"].extend(summary["audiochunks"])
             else:
                 session_dir = get_session_dir(mentor_dir, session)
                 summary = preprocess_data.process_raw_data(
-                    args.transcripts, session_dir
+                    args.transcripts, session_dir, session
                 )
                 process_summary["transcripts"].extend(summary["transcripts"])
                 process_summary["audiochunks"].extend(summary["audiochunks"])
@@ -56,7 +58,7 @@ def process_session_data(args):
 
 
 def get_session_dir(mentor_dir, session_number):
-    return os.path.join(mentor_dir, "session{}".format(session_number))
+    return os.path.join(mentor_dir, SESSION_DATA.format(session_number))
 
 
 def get_mentor_data(args):
@@ -64,28 +66,28 @@ def get_mentor_data(args):
     Get directory of mentor data, download if necessary
 
     Parameters:
-    mentor: name of mentor
-    mentor_dir: url of mentor data
+    args: script input arguments
 
     Returns:
-    download_successful: True if some files are downloaded
+    data_present: True if mentor data is locally available
     """
-    download_successful = True
-
-    mentor_dir = os.path.join(os.getcwd(), RECORDINGS_PATH, args.mentor)
-    if not os.path.exists(mentor_dir):
+    data_present = True
+    mentor_build_path = MENTOR_BUILD.format(args.mentor)
+    # Check if first session folder exists to see if any data is present
+    if not os.path.exists(
+        os.path.join(DATA_DIR, mentor_build_path, SESSION_DATA.format(1))
+    ):
         if args.url:
             print("INFO: Mentor data not found locally. Downloading from S3.")
-            if not download_mentor_data(args.url, mentor_dir):
-                download_successful = False
+            data_present = download_mentor_data(args.url, args.mentor)
         else:
             print(ERR_NO_URL.format(args.mentor))
-            download_successful = False
+            data_present = False
 
-    return download_successful
+    return data_present
 
 
-def download_mentor_data(url, mentor_dir):
+def download_mentor_data(url, mentor):
     """
     This function controls the download of mentor data. Iterate through all
     parts of all sessions. If download of a part fails, move to beginning of the
@@ -93,7 +95,7 @@ def download_mentor_data(url, mentor_dir):
 
     Parameters:
     url: address pointing to the top level of raw files for a single mentor
-    mentor_dir: target directory to store mentor files locally
+    mentor: mentor name
 
     Returns:
     download_successful: True if some data has been downloaded
@@ -111,13 +113,13 @@ def download_mentor_data(url, mentor_dir):
             part += 1
             print(f"INFO: Downloading session {session} part {part}")
             t_session_flag, t_part_flag = download_session_data(
-                url, mentor_dir, session, part, TIMESTAMP_FILE
+                url, mentor, session, part, TIMESTAMP_FILE
             )
             v_session_flag, v_part_flag = download_session_data(
-                url, mentor_dir, session, part, VIDEO_FILE
+                url, mentor, session, part, VIDEO_FILE
             )
             a_session_flag, a_part_flag = download_session_data(
-                url, mentor_dir, session, part, AUDIO_FILE
+                url, mentor, session, part, AUDIO_FILE
             )
             part_found = t_part_flag & v_part_flag & a_part_flag
             session_found = t_session_flag & v_session_flag & a_session_flag
@@ -127,7 +129,7 @@ def download_mentor_data(url, mentor_dir):
     return download_successful
 
 
-def download_session_data(url, mentor_dir, session, part, filename):
+def download_session_data(url, mentor, session, part, filename):
     """
     This function performs the download of mentor data. If target directory does
     not exist, create target directory. If download fails, return part_found=False.
@@ -135,17 +137,25 @@ def download_session_data(url, mentor_dir, session, part, filename):
 
     Parameters:
     url: address pointing to the top level of raw files for a single mentor
-    mentor_dir: target directory to store mentor files locally
+    mentor: mentor name
     session: session number
     part: part number
     filename: ""
     """
     session_found = True
     part_found = True
-
-    save_dir = os.path.join(mentor_dir, SESSION_PATH.format(session))
-    save_path = os.path.join(mentor_dir, FILE_PATH.format(session, part, filename))
-    res = requests.get(os.path.join(url, FILE_PATH.format(session, part, filename)))
+    save_dir = os.path.join(
+        DATA_DIR, MENTOR_BUILD.format(mentor), SESSION_DATA.format(session)
+    )
+    save_path = os.path.join(save_dir, DATA_FILENAME.format(part, filename))
+    res = requests.get(
+        os.path.join(
+            url,
+            MENTOR_DATA.format(mentor),
+            SESSION_DATA.format(session),
+            DATA_FILENAME.format(part, filename),
+        )
+    )
     if res.status_code == 200:
         if not os.path.isdir(save_dir):
             os.makedirs(save_dir)

@@ -12,8 +12,9 @@ TRANSCRIPT_FILE = constants.TRANSCRIPT_FILE
 VIDEO_FILE = constants.VIDEO_FILE
 AUDIO_FILE = constants.AUDIO_FILE
 TIMESTAMP_FILE = constants.TIMESTAMP_FILE
-FILENAME = constants.FILENAME
-AUDIOCHUNK_DIR = constants.AUDIOCHUNK_DIR
+FILENAME = constants.DATA_FILENAME
+SESSION_OUTPUT = constants.SESSION_OUTPUT
+AUDIOCHUNKS = constants.AUDIOCHUNKS
 
 
 def convert_to_wav(input_file, output_file):
@@ -119,24 +120,26 @@ def split_into_chunks(audiochunks, audio_file, timestamps, offset):
     return questions
 
 
-def get_transcript(dirname, questions, offset):
+def get_transcript(session_dir, questions, offset):
     """
     Call transcript service to get transcript for each audiochunk and append to
     the transcript file. This function is called once per part of the session.
     The offset variable handles sessions with multiple parts.
 
     Parameters:
-    dirname: session directory /example/path/to/session1
+    session_dir: session directory /example/path/to/session1
     audiochunks: audiochunks directory /example/path/to/session1/audiochunks
     questions: list of questions which was returned by the split_into_chunks(...) function
     offset: Question number offset as described before
     """
-    with open(os.path.join(dirname, TRANSCRIPT_FILE), "a") as transcript_csv:
+    with open(
+        os.path.join(session_dir, SESSION_OUTPUT, TRANSCRIPT_FILE), "a"
+    ) as transcript_csv:
         csvwriter = csv.writer(transcript_csv)
 
         for i in range(0, len(questions)):
             ogg_file = os.path.join(
-                dirname, AUDIOCHUNK_DIR, "q{}.ogg".format(offset + i)
+                session_dir, SESSION_OUTPUT, AUDIOCHUNKS, "q{}.ogg".format(offset + i)
             )
             transcript = transcript_service.generate_transcript(ogg_file)
 
@@ -153,15 +156,11 @@ def flatten_list(l):
     return [item for sublist in l for item in sublist]
 
 
-def process_raw_data(transcripts, dirname):
+def process_raw_data(transcripts, session_dir, session_number):
     process_summary = {"transcripts": [], "audiochunks": []}
 
-    # Checks if dirname has '/' at end. If not, adds it. Just a sanity check
-    if dirname[-1] != os.sep:
-        dirname += os.sep
     # Finds out how many parts are there in the session
-    number_of_parts = len(fnmatch.filter(os.listdir(dirname), "*.mp4"))
-    session_number = dirname[-2]
+    number_of_parts = len(fnmatch.filter(os.listdir(session_dir), "*.mp4"))
 
     if not number_of_parts > 0:
         print("WARNING: Session {} contains no files".format(session_number))
@@ -171,10 +170,10 @@ def process_raw_data(transcripts, dirname):
 
     for i in range(number_of_parts):
         part = i + 1
-        video_file = os.path.join(dirname, FILENAME.format(part, VIDEO_FILE))
-        audio_file = os.path.join(dirname, FILENAME.format(part, AUDIO_FILE))
-        timestamps = os.path.join(dirname, FILENAME.format(part, TIMESTAMP_FILE))
-        audiochunks = os.path.join(dirname, AUDIOCHUNK_DIR)
+        video_file = os.path.join(session_dir, FILENAME.format(part, VIDEO_FILE))
+        audio_file = os.path.join(session_dir, FILENAME.format(part, AUDIO_FILE))
+        timestamps = os.path.join(session_dir, FILENAME.format(part, TIMESTAMP_FILE))
+        audiochunks = os.path.join(session_dir, SESSION_OUTPUT, AUDIOCHUNKS)
         offset = 0
 
         # Create audiochunks directory if it doesn't exist.
@@ -195,7 +194,7 @@ def process_raw_data(transcripts, dirname):
             )
         if transcripts:
             print("INFO: Getting transcripts from IBM Watson")
-            if get_transcript(dirname, questions, offset):
+            if get_transcript(session_dir, questions, offset):
                 process_summary["transcripts"].append(
                     "s{} p{}".format(session_number, part)
                 )
