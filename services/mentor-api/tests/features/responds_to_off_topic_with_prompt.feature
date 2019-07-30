@@ -17,14 +17,16 @@ Feature: Mentors responds to off-topic question with a prompt
                   "answer_id": {"type": "string"},
                   "answer_text": {"type": "string"},
                   "mentor": {"type":"string"},
-                  "query": {"type": "string"}
+                  "query": {"type": "string"},
+                  "classifier": {"type": "string"}
               },
-              "required": ["answer_id", "query", "mentor"]
+              "required": ["answer_id", "query", "mentor", "classifier"]
             }
             """
         And the response json at $.mentor is equal to "<mentor>"
         And the response json at $.query is equal to "<query>"
         And the response json at $.answer_id matches "<answer_id_regex>"
+        And the response json at $.classifier is equal to "lstm_v1/2019-06-13-1900"
   
   # for now listing all the PROMPT answers in the regex'es below. Could alternatively test that the answer just isn't garbage, e.g clintanderson_u*
   Examples: Queries

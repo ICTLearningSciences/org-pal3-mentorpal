@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, current_app, jsonify, request
 from mentor_api.errors import InvalidUsage
 from mentor_api.mentors import MentorClassifierRegistry
 
@@ -11,27 +11,21 @@ def create(mentor_classifier_registry):
     @questions_blueprint.route("/", methods=["GET", "POST"])
     def queries():
         query = request.args["query"].strip()
-
         if not query:
             raise InvalidUsage(message="missing required param 'query'")
-
         mentor_id = request.args["mentor"].strip()
         if not mentor_id:
             raise InvalidUsage(message="missing required param 'mentor'")
-
         mc = None
         try:
             mc = mentor_classifier_registry.find_or_create(mentor_id)
         except BaseException:
             pass
-
         if mc is None:
             raise InvalidUsage(
                 message=f"mentor not found for {mentor_id}", status_code=404
             )
-
         answer_id, answer_text, confidence = mc.get_answer(query)
-
         return jsonify(
             {
                 "answer_id": answer_id,
@@ -39,6 +33,10 @@ def create(mentor_classifier_registry):
                 "confidence": confidence,
                 "mentor": mentor_id,
                 "query": query,
+                "classifier": "{}/{}".format(
+                    current_app.config["CLASSIFIER_ARCH"] or "arch_unknown",
+                    current_app.config["CLASSIFIER_CHECKPOINT"] or "checkpoint_unknown",
+                ),
             }
         )
 

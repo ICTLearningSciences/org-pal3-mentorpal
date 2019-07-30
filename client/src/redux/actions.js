@@ -1,4 +1,5 @@
 import Papa from "papaparse"
+import { actions as cmi5Actions } from "redux-cmi5"
 
 import { topicsUrl, questionsUrl, queryMentor } from "src/api/api"
 import { STATUS_READY } from "src/redux/store"
@@ -15,12 +16,17 @@ export const QUESTION_ANSWERED = "QUESTION_ANSWERED" // question was answered by
 export const QUESTION_ERROR = "QUESTION_ERROR" // question could not be answered by mentor
 export const ANSWER_FINISHED = "ANSWER_FINISHED" // mentor video has finished playing
 
+export const MENTOR_SELECTION_TRIGGER_AUTO = "auto"
+export const MENTOR_SELECTION_TRIGGER_USER = "user"
+
 export const loadMentor = mentor => dispatch => {
   dispatch({
     type: MENTOR_LOADED,
     mentor: mentor,
   })
 }
+
+const { sendStatement: sendXapiStatement } = cmi5Actions
 
 export const loadQuestions = (mentor_id, recommended) => async dispatch => {
   const questions_url = questionsUrl(mentor_id)
@@ -85,11 +91,15 @@ const loadTopics = (mentor_id, questions, recommended) => async dispatch => {
   }
 }
 
-export const selectMentor = mentor_id => dispatch => {
+export const selectMentor = (
+  mentor_id,
+  { trigger = MENTOR_SELECTION_TRIGGER_AUTO } = {}
+) => dispatch => {
   dispatch(onInput())
   dispatch({
     type: MENTOR_SELECTED,
     id: mentor_id,
+    trigger: trigger,
   })
 }
 
@@ -103,17 +113,67 @@ export const faveMentor = mentor_id => ({
   id: mentor_id,
 })
 
+const xapiSessionState = state => {
+  return {
+    mentor_current: state.current_mentor,
+    question_current: state.current_question,
+    topic_current: state.current_topic,
+    mentor_faved: state.faved_mentor,
+    mentor_next: state.next_mentor,
+    questions_asked: state.questions_asked,
+  }
+}
+
+const sessionStateExt = (state, ext) => {
+  return {
+    ...(ext || {}),
+    "https://mentorpal.org/xapi/context/extensions/session-state": xapiSessionState(
+      state
+    ),
+  }
+}
+
 export const sendQuestion = question => async (dispatch, getState) => {
+  dispatch(
+    sendXapiStatement({
+      verb: "https://mentorpal.org/xapi/verb/asked",
+      result: {
+        extensions: {
+          "https://mentorpal.org/xapi/activity/extensions/actor-question": {
+            text: question,
+          },
+        },
+      },
+      contextExtensions: sessionStateExt(getState()),
+    })
+  )
   dispatch(onInput())
   dispatch(onQuestionSent(question))
 
   const state = getState()
   const mentor_ids = Object.keys(state.mentors_by_id)
+  const tick = Date.now()
   // query all the mentors without waiting for the answers one by one
   const promises = mentor_ids.map(mentor => {
     return new Promise((resolve, reject) => {
       queryMentor(mentor, question)
         .then(response => {
+          dispatch(
+            sendXapiStatement({
+              verb: "https://mentorpal.org/xapi/verb/answered",
+              result: {
+                extensions: {
+                  "https://mentorpal.org/xapi/activity/extensions/mentor-response": {
+                    ...response,
+                    question_text: question,
+                    mentor: mentor,
+                    response_time: Date.now() - tick,
+                  },
+                },
+              },
+              contextExtensions: sessionStateExt(getState()),
+            })
+          )
           dispatch(onQuestionAnswered(response))
           resolve(response)
         })

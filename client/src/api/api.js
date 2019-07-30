@@ -39,6 +39,7 @@ export const queryMentor = async (mentor_id, question) => {
     answer_text: data.answer_text,
     confidence: data.confidence,
     is_off_topic: data.confidence <= RESPONSE_CUTOFF,
+    classifier: data.classifier,
   }
   return response
 }

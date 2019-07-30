@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { graphql } from "gatsby"
+import { actions as cmi5Actions } from "redux-cmi5"
+import { graphql, withPrefix } from "gatsby"
 import { CircularProgress } from "@material-ui/core"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import { Helmet } from "react-helmet"
 
 import { loadMentor, loadQuestions, selectMentor } from "src/redux/actions"
 
@@ -13,6 +15,8 @@ import VideoPanel from "src/components/video-panel"
 import withLocation from "src/wrap-with-location"
 
 import "src/styles/layout.css"
+
+const { start: cmi5Start } = cmi5Actions
 
 const IndexPage = ({ search, ...props }) => {
   const dispatch = useDispatch()
@@ -26,6 +30,10 @@ const IndexPage = ({ search, ...props }) => {
   const inputHeight = isMobile
     ? height * 0.5
     : Math.max(height - videoHeight, 250)
+
+  useEffect(() => {
+    dispatch(cmi5Start())
+  }, []) // run only on first render
 
   useEffect(() => {
     const data = props.data.allMentorsCsv.edges
@@ -71,6 +79,9 @@ const IndexPage = ({ search, ...props }) => {
 
   return (
     <MuiThemeProvider theme={theme}>
+      <Helmet>
+        <script src={withPrefix("cmi5.js")} type="text/javascript" />
+      </Helmet>
       <div className="flex" style={{ height: videoHeight }}>
         {mentor ? (
           undefined
