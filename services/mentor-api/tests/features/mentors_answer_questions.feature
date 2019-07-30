@@ -17,15 +17,17 @@ Feature: Mentors answer questions
                   "answer_id": {"type": "string"},
                   "answer_text": {"type": "string"},
                   "mentor": {"type":"string"},
-                  "query": {"type": "string"}
+                  "query": {"type": "string"},
+                  "classifier": {"type": "string"}
               },
-              "required": ["answer_id", "query", "mentor"]
+              "required": ["answer_id", "query", "mentor", "classifier"]
             }
             """
         And the response json at $.mentor is equal to "<mentor>"
         And the response json at $.query is equal to "<query>"
         And the response json at $.answer_id is equal to "<answer_id>"
         And the response json at $.answer_text starts with "<answer_text_start>"
+        And the response json at $.classifier is equal to "lstm_v1/2019-06-13-1900"
   
   Examples: Queries
     | mentor    | query                                               | answer_id                     | answer_text_start                                                                                                   |
