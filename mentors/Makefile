@@ -48,7 +48,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
-			-v $(shell pwd)/data:/app/data \
+			-v $(shell pwd)/$(MENTOR):/app/$(MENTOR) \
 			-v $(shell pwd)/src:/app/src \
 		$(DOCKER_IMAGE)
 

@@ -157,7 +157,6 @@ def aggregate_transcript_data(mentor):
             SESSION_OUTPUT,
             TRANSCRIPT_FILE,
         )
-        print(filename)
         if os.path.isfile(filename):
             if session == 1:
                 qpa_data = get_transcript_data(filename)
