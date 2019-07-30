@@ -4,21 +4,18 @@ import requests
 
 import preprocess_data
 import transcript_adapter
-import constants
+import utils
 
 """
 This file serves as the entrypoint for the mentor panel video processing pipeline
 """
-<<<<<<< HEAD
-MENTOR_BUILD = constants.MENTOR_BUILD
-=======
->>>>>>> simplify data path and constants
-MENTOR_DATA = constants.MENTOR_DATA
-SESSION_DATA = constants.SESSION_DATA
-DATA_FILENAME = constants.DATA_FILENAME
-VIDEO_FILE = constants.VIDEO_FILE
-AUDIO_FILE = constants.AUDIO_FILE
-TIMESTAMP_FILE = constants.TIMESTAMP_FILE
+MENTOR_BUILD = utils.MENTOR_BUILD
+MENTOR_DATA = utils.MENTOR_DATA
+SESSION_DATA = utils.SESSION_DATA
+DATA_FILENAME = utils.DATA_FILENAME
+VIDEO_FILE = utils.VIDEO_FILE
+AUDIO_FILE = utils.AUDIO_FILE
+TIMESTAMP_FILE = utils.TIMESTAMP_FILE
 ERR_MISSING_FILE = "ERROR: Missing {} file for session {} part {}"
 ERR_NO_URL = "ERROR: Data files for {} don't exist locally and url is not provided"
 
@@ -34,11 +31,7 @@ def process_session_data(args):
     mentor_dir: directory containing raw data for mentor
     """
     process_summary = {"transcripts": [], "audiochunks": []}
-<<<<<<< HEAD
     mentor_dir = os.path.join(DATA_DIR, MENTOR_BUILD.format(args.mentor))
-=======
-    mentor_dir = os.path.join(os.getcwd(), MENTOR_DATA.format(args.mentor))
->>>>>>> simplify data path and constants
 
     if args.sessions:
         for session in args.sessions:
@@ -79,7 +72,6 @@ def get_mentor_data(args):
     data_present: True if mentor data is locally available
     """
     data_present = True
-<<<<<<< HEAD
     mentor_build_path = MENTOR_BUILD.format(args.mentor)
     # Check if first session folder exists to see if any data is present
     if not os.path.exists(
@@ -88,13 +80,6 @@ def get_mentor_data(args):
         if args.url:
             print("INFO: Mentor data not found locally. Downloading from S3.")
             data_present = download_mentor_data(args.url, args.mentor)
-=======
-    mentor_data_path = MENTOR_DATA.format(args.mentor)
-    if not os.path.exists(os.path.join(os.getcwd(), mentor_data_path)):
-        if args.url:
-            print("INFO: Mentor data not found locally. Downloading from S3.")
-            data_present = download_mentor_data(args.url, mentor_data_path)
->>>>>>> simplify data path and constants
         else:
             print(ERR_NO_URL.format(args.mentor))
             data_present = False
@@ -102,11 +87,7 @@ def get_mentor_data(args):
     return data_present
 
 
-<<<<<<< HEAD
 def download_mentor_data(url, mentor):
-=======
-def download_mentor_data(url, mentor_data_path):
->>>>>>> simplify data path and constants
     """
     This function controls the download of mentor data. Iterate through all
     parts of all sessions. If download of a part fails, move to beginning of the
@@ -114,11 +95,7 @@ def download_mentor_data(url, mentor_data_path):
 
     Parameters:
     url: address pointing to the top level of raw files for a single mentor
-<<<<<<< HEAD
     mentor: mentor name
-=======
-    mentor_data_path: target path to download and store mentor files
->>>>>>> simplify data path and constants
 
     Returns:
     download_successful: True if some data has been downloaded
@@ -136,7 +113,6 @@ def download_mentor_data(url, mentor_data_path):
             part += 1
             print(f"INFO: Downloading session {session} part {part}")
             t_session_flag, t_part_flag = download_session_data(
-<<<<<<< HEAD
                 url, mentor, session, part, TIMESTAMP_FILE
             )
             v_session_flag, v_part_flag = download_session_data(
@@ -144,15 +120,6 @@ def download_mentor_data(url, mentor_data_path):
             )
             a_session_flag, a_part_flag = download_session_data(
                 url, mentor, session, part, AUDIO_FILE
-=======
-                url, mentor_data_path, session, part, TIMESTAMP_FILE
-            )
-            v_session_flag, v_part_flag = download_session_data(
-                url, mentor_data_path, session, part, VIDEO_FILE
-            )
-            a_session_flag, a_part_flag = download_session_data(
-                url, mentor_data_path, session, part, AUDIO_FILE
->>>>>>> simplify data path and constants
             )
             part_found = t_part_flag & v_part_flag & a_part_flag
             session_found = t_session_flag & v_session_flag & a_session_flag
@@ -162,11 +129,7 @@ def download_mentor_data(url, mentor_data_path):
     return download_successful
 
 
-<<<<<<< HEAD
 def download_session_data(url, mentor, session, part, filename):
-=======
-def download_session_data(url, mentor_data_path, session, part, filename):
->>>>>>> simplify data path and constants
     """
     This function performs the download of mentor data. If target directory does
     not exist, create target directory. If download fails, return part_found=False.
@@ -174,33 +137,21 @@ def download_session_data(url, mentor_data_path, session, part, filename):
 
     Parameters:
     url: address pointing to the top level of raw files for a single mentor
-<<<<<<< HEAD
     mentor: mentor name
-=======
-    mentor_data_path: target path to download and store mentor files
->>>>>>> simplify data path and constants
     session: session number
     part: part number
     filename: ""
     """
     session_found = True
     part_found = True
-<<<<<<< HEAD
     save_dir = os.path.join(
         DATA_DIR, MENTOR_BUILD.format(mentor), SESSION_DATA.format(session)
     )
-=======
-    save_dir = os.path.join(os.getcwd(), mentor_data_path, SESSION_DATA.format(session))
->>>>>>> simplify data path and constants
     save_path = os.path.join(save_dir, DATA_FILENAME.format(part, filename))
     res = requests.get(
         os.path.join(
             url,
-<<<<<<< HEAD
             MENTOR_DATA.format(mentor),
-=======
-            mentor_data_path,
->>>>>>> simplify data path and constants
             SESSION_DATA.format(session),
             DATA_FILENAME.format(part, filename),
         )

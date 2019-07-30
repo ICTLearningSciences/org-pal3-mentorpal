@@ -6,12 +6,23 @@ import ffmpy
 import fnmatch
 import pandas as pd
 
-"""
-Converts the video format to ogv and mp4's cropped for the website
-"""
+import utils
+
+MENTOR_DATA = utils.MENTOR_DATA
+SESSION_DATA = utils.SESSION_DATA
+
+PU_FILENAME = utils.PU_FILENAME
+QPA_FILENAME = utils.QPA_FILENAME
+DATA_FILENAME = utils.DATA_FILENAME
+VIDEO_FILE = utils.VIDEO_FILE
+AUDIO_FILE = utils.AUDIO_FILE
+TIMESTAMP_FILE = utils.TIMESTAMP_FILE
 
 
 def ffmpeg_convert_video(input_file):
+    """
+    Converts the video format to ogv and mp4's cropped for the website
+    """
     output_file = input_file[0:-4]
     ff2 = ffmpy.FFmpeg(
         inputs={input_file: None},
@@ -63,28 +74,22 @@ class PostProcessData(object):
             []
         )  # utterance data to write to file, for use by ensemble.py when checking question status
 
-    """
-    Splits the large .mp4 file into chunks based on the start_time and end_time of chunk.
-    This function is equivalent to running `ffmpeg -i input_file -ss start_time -to end_time output_file -loglevel quiet` on the command line.
-    start_time and end_time must be in seconds. For example, a time 01:03:45 is 01*3600 + 03*60 + 45 = 3825 seconds.
-    See convert_to_seconds(time) function which does this for you.
-    FFMpeg will automatically recognize whether the result must be audio or video, based on the extension of the output_file.
-
-    Parameters:
-    input_file: /example/path/to/mentor/session1/session1part1.mp4, /example/path/to/mentor/session1/session1part2.mp4
-    output_file: /example/path/to/mentor/session1/answer_videos/answer_1.ogv
-    start_time: Start time of answer
-    end_time: End time of answer
-    """
 
     def ffmpeg_split_video(self, input_file, output_file, start_time, end_time):
-        output_command = (
-            "-ss "
-            + str(start_time)
-            + " -to "
-            + str(end_time)
-            + "  -loglevel quiet -threads 0"
-        )
+        """
+        Splits the large .mp4 file into chunks based on the start_time and end_time of chunk.
+        This function is equivalent to running `ffmpeg -i input_file -ss start_time -to end_time output_file -loglevel quiet` on the command line.
+        start_time and end_time must be in seconds. For example, a time 01:03:45 is 01*3600 + 03*60 + 45 = 3825 seconds.
+        See convert_to_seconds(time) function which does this for you.
+        FFMpeg will automatically recognize whether the result must be audio or video, based on the extension of the output_file.
+
+        Parameters:
+        input_file: /example/path/to/mentor/session1/session1part1.mp4, /example/path/to/mentor/session1/session1part2.mp4
+        output_file: /example/path/to/mentor/session1/answer_videos/answer_1.ogv
+        start_time: Start time of answer
+        end_time: End time of answer
+        """
+        output_command = f"-ss {start_time} -to {end_time} -loglevel quiet -threads 0"
         ff = ffmpy.FFmpeg(
             inputs={input_file: None}, outputs={output_file: output_command}
         )
@@ -96,28 +101,6 @@ class PostProcessData(object):
         thread2 = Thread(target=ffmpeg_convert_mobile, args=(output_file,))
         thread2.start()
 
-    """
-    Converts a timestamp from HH:MM:SS or MM:SS to seconds.
-    For example, a time 01:03:45 is 01*3600 + 03*60 + 45 = 3825 seconds
-
-    Parameters:
-    time: time string
-    """
-
-    def convert_to_seconds(self, time):
-        time = time.split(":")
-        hours = 0
-        minutes = 0
-        seconds = 0
-        if len(time) == 2:
-            minutes, seconds = time[0], time[1]
-        else:
-            hours, minutes, seconds = time[0], time[1], time[2]
-        hours = int(hours)
-        minutes = int(minutes)
-        seconds = float(seconds)
-        result = int(3600 * hours + 60 * minutes + seconds)
-        return result
 
     def get_video_chunks(
         self, video_file, timestamps, mentor_name, session_number, part_number
@@ -138,13 +121,8 @@ class PostProcessData(object):
             start_times.append(timestamps_file.iloc[i]["Response start"])
             end_times.append(timestamps_file.iloc[i]["Response end"])
 
-        # convert all start times to seconds
-        for i in range(0, len(start_times)):
-            start_times[i] = self.convert_to_seconds(start_times[i])
-
-        # convert all end times to seconds
-        for i in range(0, len(end_times)):
-            end_times[i] = self.convert_to_seconds(end_times[i])
+        start_times = [utils.convert_to_seconds(time) for time in start_times]
+        end_times = [utils.convert_to_seconds(time) for time in end_times]
 
         # get all the chunks
         for i in range(0, len(start_times)):
@@ -155,33 +133,24 @@ class PostProcessData(object):
                 text_type[i] == "A"
                 and len(self.answer_corpus) > self.answer_corpus_index
             ):
-                answer_id = (
-                    self.mentor_name
-                    + "_A"
-                    + str(self.answer_number)
-                    + "_"
-                    + str(session_number)
-                    + "_"
-                    + str(part_number)
-                )
+                answer_id = f"{self.mentor_name}_A{self.answer_number}_{session_number}_{part_number}"
                 output_file = os.path.join(self.answer_chunks, answer_id + ".mp4")
                 answer_sample["ID"] = answer_id
-                answer_sample["topics"] = (
-                    self.answer_corpus.iloc[self.answer_corpus_index]["Topics"]
-                    + ","
-                    + self.answer_corpus.iloc[self.answer_corpus_index]["Helpers"]
+                answer_sample["topics"] = ",".join(
+                    [
+                        self.answer_corpus.iloc[self.answer_corpus_index]["Topics"],
+                        self.answer_corpus.iloc[self.answer_corpus_index]["Helpers"],
+                    ]
                 )
                 if answer_sample["topics"][-1] == ",":
                     answer_sample["topics"] = answer_sample["topics"][:-1]
-                answer_sample["question"] = (
+                answer_sample["question"] = "{}\r\n".format(
                     self.answer_corpus.iloc[self.answer_corpus_index]["Question"]
-                    + "\r\n"
                 )
                 for j in range(1, 26):
-                    index = "P" + str(j)
-                    answer_sample["question"] += (
-                        str(self.answer_corpus.iloc[self.answer_corpus_index][index])
-                        + "\r\n"
+                    index = f"P{j}"
+                    answer_sample["question"] += "{}\r\n".format(
+                        self.answer_corpus.iloc[self.answer_corpus_index][index]
                     )
                 answer_sample["question"] = answer_sample["question"].strip()
                 answer_sample["text"] = self.answer_corpus.iloc[
@@ -194,15 +163,7 @@ class PostProcessData(object):
                 text_type[i] == "U"
                 and len(self.utterance_corpus) > self.utterance_corpus_index
             ):
-                utterance_id = (
-                    self.mentor_name
-                    + "_U"
-                    + str(self.utterance_number)
-                    + "_"
-                    + str(session_number)
-                    + "_"
-                    + str(part_number)
-                )
+                utterance_id = f"{self.mentor_name}_U{self.utterance_number}_{session_number}_{part_number}"
                 output_file = os.path.join(self.utterance_chunks, utterance_id + ".mp4")
                 utterance_sample["ID"] = utterance_id
                 utterance_sample["utterance"] = self.utterance_corpus.iloc[
@@ -218,18 +179,18 @@ class PostProcessData(object):
             Uncomment this line when you want to get the actual cut answers. This takes a long time so this isn't needed
             when testing the code for the other parts
             """
-            print("OUTPUT FILE:" + output_file)
+            print(f"OUTPUT FILE: {output_file}")
             self.ffmpeg_split_video(
                 video_file, output_file, start_times[i], end_times[i]
             )
 
-    """
-    Write all the data to file.
-    classifier_data.csv: data for use by the classifier
-    metadata.txt: data about the data preparation process. This helps when new sessions are added. No need to start from scratch
-    """
 
     def write_data(self):
+        """
+        Write all the data to file.
+        classifier_data.csv: data for use by the classifier
+        metadata.txt: data about the data preparation process. This helps when new sessions are added. No need to start from scratch
+        """
         # data for Classifier
         classifier_header = True
         if os.path.exists(os.path.join("data", "classifier_data.csv")):
@@ -315,7 +276,7 @@ def main():
     mentor_name = dirname.split(os.sep)[-2]
     sessions = []
     for i in range(start_session, end_session + 1):
-        sessions.append("session" + str(i))
+        sessions.append(str(i))
     # store answer video chunks in this folder.
     answer_chunks = dirname + "answer_videos"
     # Create answer_videos directory if it doesn't exist
@@ -369,13 +330,11 @@ def main():
                 utterance_corpus_index = 0
 
     # Load the answer corpus which contains questions, paraphrases and answers
-    answer_corpus = pd.read_excel(
-        open(os.path.join("data", "questions_paraphrases_answers.xlsx"), "rb"),
-        sheetname="official",
+    answer_corpus = pd.read_csv(
+        open(os.path.join(MENTOR_DATA.format(mentor_name), QPA_FILENAME), "rb")
     )
-    utterance_corpus = pd.read_excel(
-        open(os.path.join("data", "prompts_utterances.xlsx"), "rb"),
-        sheetname="official",
+    utterance_corpus = pd.read_csv(
+        open(os.path.join(MENTOR_DATA.format(mentor_name), PU_FILENAME), "rb")
     )
     ppd = PostProcessData(
         answer_chunks,
@@ -390,15 +349,20 @@ def main():
     )
     # Walk into each session directory and get the answer chunks from each session
     for session in sessions:
-        session_path = dirname + session + os.sep
+        session_path = os.path.join(
+            os.getcwd(), MENTOR_DATA.format(mentor_name), SESSION_DATA.format(session)
+        )
         number_of_parts = len(fnmatch.filter(os.listdir(session_path), "*.mp4"))
         for j in range(number_of_parts):
-            video_file = session_path + session + "part" + str(j + 1) + ".mp4"
-            timestamp_file = (
-                session_path + session + "part" + str(j + 1) + "_timestamps.csv"
+            video_file = os.path.join(
+                session_path, DATA_FILENAME.format(j + 1, VIDEO_FILE)
             )
+            timestamp_file = os.path.join(
+                session_path, DATA_FILENAME.format(j + 1, TIMESTAMP_FILE)
+            )
+
             ppd.get_video_chunks(
-                video_file, timestamp_file, mentor_name, int(session[7:]), j + 1
+                video_file, timestamp_file, mentor_name, int(session), j + 1
             )
     # write the data to file, for use by classifier
     ppd.write_data()

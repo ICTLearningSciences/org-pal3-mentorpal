@@ -56,11 +56,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
-<<<<<<< HEAD
 			-v $(shell pwd)/$(MENTOR):/app/mounts/$(MENTOR) \
-=======
-			-v $(shell pwd)/$(MENTOR):/app/$(MENTOR) \
->>>>>>> update make
 			-v $(shell pwd)/src:/app/src \
 		$(DOCKER_IMAGE)
 
