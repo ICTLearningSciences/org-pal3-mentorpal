@@ -227,7 +227,6 @@ class PostProcessData(object):
     Write all the data to file.
     classifier_data.csv: data for use by the classifier
     metadata.txt: data about the data preparation process. This helps when new sessions are added. No need to start from scratch
-    npceditor_data.xlsx: data for NPCEditor
     """
 
     def write_data(self):
@@ -300,30 +299,6 @@ class PostProcessData(object):
             metadata_df.to_csv(
                 metadata_file, header=True, index=False, encoding="utf-8"
             )
-
-        # data for NPCEditor
-        npc_header = True
-        if os.path.exists(os.path.join("data", "npceditor_data.xlsx")):
-            curr_npceditor_df = pd.read_excel(
-                open(os.path.join("data", "npceditor_data.xlsx"), "rb"),
-                sheetname="Sheet1",
-            )
-            npc_header = False
-
-        npceditor_df = pd.DataFrame(
-            self.training_data, columns=["ID", "text", "question"]
-        )
-        if not npc_header:
-            frames = [curr_npceditor_df, npceditor_df]
-            df_to_write = pd.concat(frames)
-        else:
-            df_to_write = npceditor_df
-
-        npceditor_writer = pd.ExcelWriter(
-            os.path.join("data", "npceditor_data.xlsx"), engine="openpyxl"
-        )
-        df_to_write.to_excel(npceditor_writer, "Sheet1", index=False, header=npc_header)
-        npceditor_writer.save()
 
 
 def main():
@@ -425,7 +400,7 @@ def main():
             ppd.get_video_chunks(
                 video_file, timestamp_file, mentor_name, int(session[7:]), j + 1
             )
-    # write the data to file, for use by classifier and NPCEditor
+    # write the data to file, for use by classifier
     ppd.write_data()
 
 
