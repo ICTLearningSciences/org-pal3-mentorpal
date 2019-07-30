@@ -1,1 +1,1 @@
-tincan
+tincan==0.0.5
