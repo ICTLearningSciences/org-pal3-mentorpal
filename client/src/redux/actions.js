@@ -92,17 +92,14 @@ const loadTopics = (mentor_id, questions, recommended) => async dispatch => {
 }
 
 export const selectMentor = (
-  mentor_id, 
-  {
-    trigger = MENTOR_SELECTION_TRIGGER_AUTO
-  } = {}
- ) => dispatch => {
-  
+  mentor_id,
+  { trigger = MENTOR_SELECTION_TRIGGER_AUTO } = {}
+) => dispatch => {
   dispatch(onInput())
   dispatch({
     type: MENTOR_SELECTED,
     id: mentor_id,
-    trigger: trigger
+    trigger: trigger,
   })
 }
 
