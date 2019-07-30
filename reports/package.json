@@ -1,0 +1,16 @@
+{
+  "name": "@mentorpal/reports",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "xapi": "node scripts/xapi"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "tincanjs": "^0.50.0"
+  }
+}
