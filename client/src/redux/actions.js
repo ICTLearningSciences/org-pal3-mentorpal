@@ -16,6 +16,9 @@ export const QUESTION_ANSWERED = "QUESTION_ANSWERED" // question was answered by
 export const QUESTION_ERROR = "QUESTION_ERROR" // question could not be answered by mentor
 export const ANSWER_FINISHED = "ANSWER_FINISHED" // mentor video has finished playing
 
+export const MENTOR_SELECTION_TRIGGER_AUTO = "auto"
+export const MENTOR_SELECTION_TRIGGER_USER = "user"
+
 export const loadMentor = mentor => dispatch => {
   dispatch({
     type: MENTOR_LOADED,
@@ -88,11 +91,18 @@ const loadTopics = (mentor_id, questions, recommended) => async dispatch => {
   }
 }
 
-export const selectMentor = mentor_id => dispatch => {
+export const selectMentor = (
+  mentor_id, 
+  {
+    trigger = MENTOR_SELECTION_TRIGGER_AUTO
+  } = {}
+ ) => dispatch => {
+  
   dispatch(onInput())
   dispatch({
     type: MENTOR_SELECTED,
     id: mentor_id,
+    trigger: trigger
   })
 }
 

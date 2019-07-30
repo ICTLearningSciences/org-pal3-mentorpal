@@ -2,7 +2,7 @@ import React from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { Star } from "@material-ui/icons"
 
-import { selectMentor } from "src/redux/actions"
+import { selectMentor, MENTOR_SELECTION_TRIGGER_USER } from "src/redux/actions"
 import { STATUS_ERROR } from "src/redux/store"
 
 import VideoThumbnail from "src/components/video-thumbnail"
@@ -21,7 +21,9 @@ const VideoPanel = ({ isMobile }) => {
     if (mentor.is_off_topic || mentor.status === STATUS_ERROR) {
       return
     }
-    dispatch(selectMentor(mentor.id))
+    dispatch(
+      selectMentor(mentor.id, { trigger: MENTOR_SELECTION_TRIGGER_USER })
+    )
   }
 
   return (
