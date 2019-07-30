@@ -17,7 +17,6 @@ export const STATUS_READY = "READY"
 export const STATUS_ANSWERED = "ANSWERED"
 export const STATUS_ERROR = "ERROR"
 
-console.log("cmi5Reducer=", cmi5Reducer)
 /**
  * mentor: {
  *  id
