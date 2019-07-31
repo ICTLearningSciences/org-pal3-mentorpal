@@ -108,13 +108,12 @@ class PostProcessData(object):
     ):
         print(video_file, timestamps, mentor_name, session_number, part_number)
         text_type = []
-        start_times = []  # list of start times
-        end_times = []  # list of end times
-        text = []  # list of text
+        start_times = []
+        end_times = []
+        text = []
 
-        timestamps_file = pd.read_csv(timestamps)
-        # by default, pandas reads empty cells as 0. Since we are dealing with text,we put empty string instead of 0
-        timestamps_file = timestamps_file.fillna("")
+        # Pandas reads empty cells as 0, replace with empty string
+        timestamps_file = pd.read_csv(timestamps).fillna("")
 
         for i in range(0, len(timestamps_file)):
             text_type.append(timestamps_file.iloc[i]["Answer/Utterance"])
