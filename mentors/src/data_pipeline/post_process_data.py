@@ -126,7 +126,6 @@ class PostProcessData(object):
 
         # get all the chunks
         for i in range(0, len(start_times)):
-            print("Processed chunk " + str(i))
             answer_sample = {}
             utterance_sample = {}
             if (
@@ -182,7 +181,6 @@ class PostProcessData(object):
             Uncomment this line when you want to get the actual cut answers. This takes a long time so this isn't needed
             when testing the code for the other parts
             """
-            print(f"OUTPUT FILE: {output_file}")
             # self.ffmpeg_split_video(
             #     video_file, output_file, start_times[i], end_times[i]
             # )
@@ -271,9 +269,6 @@ class PostProcessData(object):
 def build_post_processing_data(args):
     mentor_data = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor))
 
-    # TODO: Fix this
-    sessions = [1, 2]
-
     # store answer video chunks in this folder.
     answer_chunks = os.path.join(mentor_data, "answer_videos")
     # Create answer_videos directory if it doesn't exist
@@ -343,11 +338,13 @@ def build_post_processing_data(args):
         utterance_corpus,
         utterance_corpus_index,
     )
+
     # Walk into each session directory and get the answer chunks from each session
-    for session in sessions:
-        session_path = os.path.join(
-            DATA_DIR, MENTOR_BUILD.format(args.mentor), SESSION_DATA.format(session)
-        )
+    session = 1
+    mentor_build = os.path.join(DATA_DIR, MENTOR_BUILD.format(args.mentor))
+    session_path = os.path.join(mentor_build, SESSION_DATA.format(session))
+    while os.path.isdir(session_path):
+        print("INFO: Processing session {}".format(session))
         number_of_parts = len(fnmatch.filter(os.listdir(session_path), "*.mp4"))
         for j in range(number_of_parts):
             video_file = os.path.join(
@@ -360,6 +357,10 @@ def build_post_processing_data(args):
             ppd.get_video_chunks(
                 video_file, timestamp_file, args.mentor, int(session), j + 1
             )
+
+        session += 1
+        session_path = os.path.join(mentor_build, SESSION_DATA.format(session))
+
     # write the data to file, for use by classifier
     ppd.write_data(args.mentor)
 
