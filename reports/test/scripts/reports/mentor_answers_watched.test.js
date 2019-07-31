@@ -4,10 +4,45 @@ const chai = require('chai');
 const { expect } = chai;
 const TinCan = require('tincanjs');
 
-describe('scripts/report', async () => {
-  it('passes', () => {
-    expect(true).to.be.true;
-  });
+describe('reports/mentor_answers_watched', async () => {
+  const mentor_candidates = 'm1,m2,m3,m4';
+  const user_sessions = [
+    {
+      user_id: 'u_1',
+      resource_id: 'r_1',
+      session_id: 's_1',
+    },
+  ];
+  const examples_one_user_session = [
+    {
+      expected_result: [
+        {
+          ...user_sessions[0],
+          question_index: 0,
+          question_text: 'q1 text',
+          mentor: 'm1',
+          mentor_candidates: mentor_candidates,
+          answer_text: 'a1 text',
+          answer_duration: 1000,
+          answer_confidence: 1.0,
+          timestamp_asked: 't1',
+          timestamp_answer_received: 't2',
+          timestamp_playback_start: 't3',
+          timestamp_playback_end: 't3',
+          did_watch_to_end: 1,
+        },
+      ],
+    },
+  ];
+  for (let i = 0; i < examples_one_user_session.length; i++) {
+    const ex = examples_one_user_session[i];
+    it('generates a rollup of mentor answers for one user/session', async () => {
+      expect(ex).to.eql({
+        ...ex,
+        // answer_duration: 9999
+      });
+    });
+  }
 });
 
 //   before(async () => {
