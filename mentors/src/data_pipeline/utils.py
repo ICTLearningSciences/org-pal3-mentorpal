@@ -2,6 +2,7 @@ import os
 
 SHARED_DATA = "data"
 MENTOR_DATA = "{}/data"
+MENTOR_BUILD = "{}/build"
 SESSION_DATA = "recordings/session{}"
 SESSION_OUTPUT = "out"
 AUDIOCHUNKS = "audiochunks"

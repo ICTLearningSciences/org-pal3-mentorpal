@@ -89,3 +89,12 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			--name $(DOCKER_CONTAINER) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			$(DOCKER_IMAGE) -m $* -q
+
+.PHONY: %/classifier
+%/classifier:
+	docker run \
+			-it \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-v $(shell pwd)/$*:/app/mounts/$* \
+			$(DOCKER_IMAGE) -m $* -c

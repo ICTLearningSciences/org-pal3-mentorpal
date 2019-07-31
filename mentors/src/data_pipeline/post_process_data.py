@@ -18,6 +18,8 @@ VIDEO_FILE = utils.VIDEO_FILE
 AUDIO_FILE = utils.AUDIO_FILE
 TIMESTAMP_FILE = utils.TIMESTAMP_FILE
 
+DATA_DIR = os.environ["DATA_MOUNT"] or os.getcwd()
+
 
 def ffmpeg_convert_video(input_file):
     """
@@ -262,29 +264,20 @@ class PostProcessData(object):
             )
 
 
-def main():
-    # dirname must be /example/path/to/mentor/ - top level directory for all sessions of that mentor
-    dirname = sys.argv[1]
-    # If you want to do only one session, then give both start_session and end_session as same number.
-    # If you want to do sessions 2,3,4, then give start_session=2 and end_session=4.
-    # Program will do all sessions in range [start_session,end_session]. Both inclusive.
-    start_session = int(sys.argv[2])
-    end_session = int(sys.argv[3])
-    # Checks if dirname has '/' at end. If not, adds it. Just a sanity check
-    if dirname[-1] != os.sep:
-        dirname += os.sep
-    mentor_name = dirname.split(os.sep)[-2]
+def build_post_processing_data(args):
+    mentor_dir = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor))
+
     sessions = []
     for i in range(start_session, end_session + 1):
         sessions.append(str(i))
     # store answer video chunks in this folder.
-    answer_chunks = dirname + "answer_videos"
+    answer_chunks = mentor_dir + "answer_videos"
     # Create answer_videos directory if it doesn't exist
     if not os.path.isdir(answer_chunks):
         os.mkdir(answer_chunks)
 
     # store prompts and repeat-after-me videos in this folder
-    utterance_chunks = dirname + "utterance_videos"
+    utterance_chunks = mentor_dir + "utterance_videos"
     # Create utterance_videos directory if it doesn't exist
     if not os.path.isdir(utterance_chunks):
         os.mkdir(utterance_chunks)
@@ -306,7 +299,7 @@ def main():
                 utterance_corpus_index = int(
                     curr_metadata_df.iloc[i]["Utterance Corpus Index"]
                 )
-                if curr_metadata_df.iloc[i]["Mentor Name"] == mentor_name:
+                if curr_metadata_df.iloc[i]["Mentor Name"] == args.mentor:
                     mentor_found = True
                     next_answer = int(curr_metadata_df.iloc[i]["Next Answer Number"])
                     next_utterance = int(
@@ -330,18 +323,14 @@ def main():
                 utterance_corpus_index = 0
 
     # Load the answer corpus which contains questions, paraphrases and answers
-    answer_corpus = pd.read_csv(
-        open(os.path.join(MENTOR_DATA.format(mentor_name), QPA_FILENAME), "rb")
-    )
-    utterance_corpus = pd.read_csv(
-        open(os.path.join(MENTOR_DATA.format(mentor_name), PU_FILENAME), "rb")
-    )
+    answer_corpus = pd.read_csv(os.path.join(os.getcwd(), "julianne/data", "questions_paraphrases_answers.csv"))
+    utterance_corpus = pd.read_csv(os.path.join(os.getcwd(), "julianne/data", "prompts_utterances.csv"))
     ppd = PostProcessData(
         answer_chunks,
         utterance_chunks,
         next_answer,
         next_utterance,
-        mentor_name,
+        args.mentor,
         answer_corpus,
         answer_corpus_index,
         utterance_corpus,
@@ -350,7 +339,7 @@ def main():
     # Walk into each session directory and get the answer chunks from each session
     for session in sessions:
         session_path = os.path.join(
-            os.getcwd(), MENTOR_DATA.format(mentor_name), SESSION_DATA.format(session)
+            os.getcwd(), MENTOR_DATA.format(args.mentor), SESSION_DATA.format(session)
         )
         number_of_parts = len(fnmatch.filter(os.listdir(session_path), "*.mp4"))
         for j in range(number_of_parts):
@@ -362,7 +351,7 @@ def main():
             )
 
             ppd.get_video_chunks(
-                video_file, timestamp_file, mentor_name, int(session), j + 1
+                video_file, timestamp_file, args.mentor, int(session), j + 1
             )
     # write the data to file, for use by classifier
     ppd.write_data()
