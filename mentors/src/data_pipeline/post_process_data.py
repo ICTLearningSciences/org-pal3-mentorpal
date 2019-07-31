@@ -9,6 +9,7 @@ import pandas as pd
 import utils
 
 MENTOR_DATA = utils.MENTOR_DATA
+MENTOR_BUILD = utils.MENTOR_BUILD
 SESSION_DATA = utils.SESSION_DATA
 
 PU_FILENAME = utils.PU_FILENAME
@@ -146,14 +147,11 @@ class PostProcessData(object):
                 )
                 if answer_sample["topics"][-1] == ",":
                     answer_sample["topics"] = answer_sample["topics"][:-1]
-                answer_sample["question"] = "{}\r\n".format(
-                    self.answer_corpus.iloc[self.answer_corpus_index]["Question"]
-                )
+                answer_sample["question"] = (self.answer_corpus.iloc[self.answer_corpus_index]["Question"] + "\r\n")
+                # TODO: This is the hardcoded number of paraphrases lol
                 for j in range(1, 26):
-                    index = f"P{j}"
-                    answer_sample["question"] += "{}\r\n".format(
-                        self.answer_corpus.iloc[self.answer_corpus_index][index]
-                    )
+                    index = "P" + str(j)
+                    answer_sample["question"] += (self.answer_corpus.iloc[self.answer_corpus_index][index] + "\r\n")
                 answer_sample["question"] = answer_sample["question"].strip()
                 answer_sample["text"] = self.answer_corpus.iloc[
                     self.answer_corpus_index
@@ -182,12 +180,12 @@ class PostProcessData(object):
             when testing the code for the other parts
             """
             print(f"OUTPUT FILE: {output_file}")
-            self.ffmpeg_split_video(
-                video_file, output_file, start_times[i], end_times[i]
-            )
+            # self.ffmpeg_split_video(
+            #     video_file, output_file, start_times[i], end_times[i]
+            # )
 
 
-    def write_data(self):
+    def write_data(self, mentor):
         """
         Write all the data to file.
         classifier_data.csv: data for use by the classifier
@@ -195,34 +193,38 @@ class PostProcessData(object):
         """
         # data for Classifier
         classifier_header = True
-        if os.path.exists(os.path.join("data", "classifier_data.csv")):
+        mentor_data = os.path.join(DATA_DIR, MENTOR_DATA.format(mentor))
+        classifier_file_path = os.path.join(mentor_data, "classifier_data.csv")
+        if os.path.exists(classifier_file_path):
             classifier_header = False
 
         classifier_df = pd.DataFrame(
             self.training_data, columns=["ID", "topics", "text", "question"]
         )
-        with open(os.path.join("data", "classifier_data.csv"), "a") as classifier_file:
+        with open(os.path.join(classifier_file_path), "a") as classifier_file:
             classifier_df.to_csv(
                 classifier_file, header=classifier_header, index=False, encoding="utf-8"
             )
 
         # data for prompts and utterances
         utterance_header = True
-        if os.path.exists(os.path.join("data", "utterance_data.csv")):
+        utterance_file_path = os.path.join(mentor_data, "utterance_data.csv")
+        if os.path.exists(utterance_file_path):
             utterance_header = False
 
         utterance_df = pd.DataFrame(
             self.utterance_data, columns=["ID", "utterance", "situation"]
         )
-        with open(os.path.join("data", "utterance_data.csv"), "a") as utterance_file:
+        with open(utterance_file_path, "a") as utterance_file:
             utterance_df.to_csv(
                 utterance_file, header=utterance_header, index=False, encoding="utf-8"
             )
 
         # store meta-data for later use
         metadata_df = None
-        if os.path.exists(os.path.join("data", "metadata.csv")):
-            metadata_df = pd.read_csv(open(os.path.join("data", "metadata.csv"), "rb"))
+        metadata_file_path = os.path.join(mentor_data, "metadata.csv")
+        if os.path.exists(metadata_file_path):
+            metadata_df = pd.read_csv(open(metadata_file_path, "rb"))
             for i in range(0, len(metadata_df)):
                 if metadata_df.iloc[i]["Mentor Name"] == self.mentor_name:
                     metadata_df.set_value(
@@ -258,38 +260,39 @@ class PostProcessData(object):
             )
 
         # write metadata to file
-        with open(os.path.join("data", "metadata.csv"), "w") as metadata_file:
+        with open(metadata_file_path, "w") as metadata_file:
             metadata_df.to_csv(
                 metadata_file, header=True, index=False, encoding="utf-8"
             )
 
 
 def build_post_processing_data(args):
-    mentor_dir = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor))
+    mentor_data = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor))
 
-    sessions = []
-    for i in range(start_session, end_session + 1):
-        sessions.append(str(i))
+    # TODO: Fix this
+    sessions = [1, 2]
+
     # store answer video chunks in this folder.
-    answer_chunks = mentor_dir + "answer_videos"
+    answer_chunks = os.path.join(mentor_data, "answer_videos")
     # Create answer_videos directory if it doesn't exist
     if not os.path.isdir(answer_chunks):
         os.mkdir(answer_chunks)
 
     # store prompts and repeat-after-me videos in this folder
-    utterance_chunks = mentor_dir + "utterance_videos"
+    utterance_chunks = os.path.join(mentor_data, "utterance_videos")
     # Create utterance_videos directory if it doesn't exist
     if not os.path.isdir(utterance_chunks):
         os.mkdir(utterance_chunks)
 
     # Load older metadata, to see where to continue numbering answers and utterances from, for the current mentor
-    if not os.path.exists(os.path.join("data", "metadata.csv")):
+    metadata_file = os.path.join(mentor_data, "metadata.csv")
+    if not os.path.exists(metadata_file):
         next_answer = 1
         next_utterance = 1
         answer_corpus_index = 0
         utterance_corpus_index = 0
     else:
-        curr_metadata_df = pd.read_csv(open(os.path.join("data", "metadata.csv"), "rb"))
+        curr_metadata_df = pd.read_csv(open(metadata_file, "rb"))
         if len(curr_metadata_df) > 0:
             mentor_found = False
             for i in range(0, len(curr_metadata_df)):
@@ -323,8 +326,8 @@ def build_post_processing_data(args):
                 utterance_corpus_index = 0
 
     # Load the answer corpus which contains questions, paraphrases and answers
-    answer_corpus = pd.read_csv(os.path.join(os.getcwd(), "julianne/data", "questions_paraphrases_answers.csv"))
-    utterance_corpus = pd.read_csv(os.path.join(os.getcwd(), "julianne/data", "prompts_utterances.csv"))
+    answer_corpus = pd.read_csv(os.path.join(mentor_data, "questions_paraphrases_answers.csv"))
+    utterance_corpus = pd.read_csv(os.path.join(mentor_data, "prompts_utterances.csv"))
     ppd = PostProcessData(
         answer_chunks,
         utterance_chunks,
@@ -339,7 +342,7 @@ def build_post_processing_data(args):
     # Walk into each session directory and get the answer chunks from each session
     for session in sessions:
         session_path = os.path.join(
-            os.getcwd(), MENTOR_DATA.format(args.mentor), SESSION_DATA.format(session)
+            DATA_DIR, MENTOR_BUILD.format(args.mentor), SESSION_DATA.format(session)
         )
         number_of_parts = len(fnmatch.filter(os.listdir(session_path), "*.mp4"))
         for j in range(number_of_parts):
@@ -354,7 +357,7 @@ def build_post_processing_data(args):
                 video_file, timestamp_file, args.mentor, int(session), j + 1
             )
     # write the data to file, for use by classifier
-    ppd.write_data()
+    ppd.write_data(args.mentor)
 
 
 if __name__ == "__main__":
