@@ -5,11 +5,10 @@ const { expect } = chai;
 const TinCan = require('tincanjs');
 
 describe('scripts/report', async () => {
-  it("passes", () => {
-    expect(true).to.be.true
-  })
-})
-
+  it('passes', () => {
+    expect(true).to.be.true;
+  });
+});
 
 //   before(async () => {
 //     mockAuthentication();
