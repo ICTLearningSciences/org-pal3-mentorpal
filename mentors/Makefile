@@ -63,7 +63,6 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 
 # Pre-processes mentor data inside docker container
 # Generates audiochunks and transcripts for one mentor
-.PHONY: %/build
 %/build: $(WATSON_CREDENTIALS)
 	@echo "creating $*/build ..."
 	$(MAKE) docker-image-exists 
@@ -78,9 +77,12 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 
 
 # Adapts transcript files to questions_paraphrases_answers and prompts_utterances files
-.PHONY: %/data
-%/data: %/build $(WATSON_CREDENTIALS)
-	$(MAKE) docker-image-exists 
+%/data:
+	$(MAKE) $*/data/update
+
+.PHONY: %/data/update
+%/data/update: %/build docker-image-exists $(WATSON_CREDENTIALS)
+	$(MAKE)  
 	docker run \
 			-it \
 			--rm \
@@ -89,17 +91,4 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			$(DOCKER_IMAGE) -m $* -q
-
-
-# Build mentor data inside docker container
-# Generates audiochunks, transcripts, question/answer list, prompt/utterance list
-.PHONY build-mentor:
-build-mentor: docker-image-exists $(WATSON_CREDENTIALS)
-	docker run \
-			-it \
-			--rm \
-			--name $(DOCKER_CONTAINER) \
-			-e WATSON_USERNAME=$(WATSON_USERNAME) \
-			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
-			-v $(shell pwd)/$(MENTOR):/app/mounts/$(MENTOR) \
-			$(DOCKER_IMAGE) -m $(MENTOR) -t -u $(MENTOR_SOURCE_VIDEOS) -q
+			
