@@ -77,6 +77,22 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-v $(shell pwd)/data:/app/mounts/data \
 			$(DOCKER_IMAGE) -m $* -t -u $(MENTOR_SOURCE_VIDEOS)
 
+# Pre-processes mentor data inside docker container
+# Generates audiochunks and transcripts for one mentor
+.PHONY: %/build/update
+%/build/update: $(WATSON_CREDENTIALS)
+	@echo "creating $*/build ..."
+	$(MAKE) docker-image-exists
+	docker run \
+			-it \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
+			-v $(shell pwd)/$*:/app/mounts/$* \
+			-v $(shell pwd)/data:/app/mounts/data \
+			$(DOCKER_IMAGE) -m $* -t -u $(MENTOR_SOURCE_VIDEOS)
+
 
 # Adapts transcript files to questions_paraphrases_answers and prompts_utterances files
 %/data:
