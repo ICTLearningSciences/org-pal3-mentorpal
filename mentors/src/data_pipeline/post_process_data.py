@@ -77,7 +77,6 @@ class PostProcessData(object):
             []
         )  # utterance data to write to file, for use by ensemble.py when checking question status
 
-
     def ffmpeg_split_video(self, input_file, output_file, start_time, end_time):
         """
         Splits the large .mp4 file into chunks based on the start_time and end_time of chunk.
@@ -103,7 +102,6 @@ class PostProcessData(object):
         thread.start()
         thread2 = Thread(target=ffmpeg_convert_mobile, args=(output_file,))
         thread2.start()
-
 
     def get_video_chunks(
         self, video_file, timestamps, mentor_name, session_number, part_number
@@ -147,11 +145,17 @@ class PostProcessData(object):
                 )
                 if answer_sample["topics"][-1] == ",":
                     answer_sample["topics"] = answer_sample["topics"][:-1]
-                answer_sample["question"] = (self.answer_corpus.iloc[self.answer_corpus_index]["Question"] + "\r\n")
-                # TODO: This is the hardcoded number of paraphrases lol
+                answer_sample["question"] = (
+                    self.answer_corpus.iloc[self.answer_corpus_index]["Question"]
+                    + "\r\n"
+                )
+                # TODO: This is the hardcoded number of paraphrases
                 for j in range(1, 26):
                     index = "P" + str(j)
-                    answer_sample["question"] += (self.answer_corpus.iloc[self.answer_corpus_index][index] + "\r\n")
+                    answer_sample["question"] += (
+                        self.answer_corpus.iloc[self.answer_corpus_index][index]
+                        + "\r\n"
+                    )
                 answer_sample["question"] = answer_sample["question"].strip()
                 answer_sample["text"] = self.answer_corpus.iloc[
                     self.answer_corpus_index
@@ -183,7 +187,6 @@ class PostProcessData(object):
             # self.ffmpeg_split_video(
             #     video_file, output_file, start_times[i], end_times[i]
             # )
-
 
     def write_data(self, mentor):
         """
@@ -326,7 +329,9 @@ def build_post_processing_data(args):
                 utterance_corpus_index = 0
 
     # Load the answer corpus which contains questions, paraphrases and answers
-    answer_corpus = pd.read_csv(os.path.join(mentor_data, "questions_paraphrases_answers.csv"))
+    answer_corpus = pd.read_csv(
+        os.path.join(mentor_data, "questions_paraphrases_answers.csv")
+    )
     utterance_corpus = pd.read_csv(os.path.join(mentor_data, "prompts_utterances.csv"))
     ppd = PostProcessData(
         answer_chunks,

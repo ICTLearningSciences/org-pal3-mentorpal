@@ -241,9 +241,7 @@ def main():
         transcript_adapter.build_data(args.mentor)
 
     if args.classification_data:
-        print(
-            "INFO: Building Classification Data"
-        )
+        print("INFO: Building Classification Data")
         post_process_data.build_post_processing_data(args)
 
 
