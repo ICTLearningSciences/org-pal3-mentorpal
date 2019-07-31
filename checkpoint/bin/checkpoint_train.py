@@ -19,13 +19,14 @@ print(f"MENTORS_ROOT {MENTORS_ROOT}")
 fac = find_classifier_training_factory(ARCH)
 cp = checkpoint_path(ARCH, CHECKPOINT, CHECKPOINT_ROOT)
 for mentor_id in os.listdir(MENTORS_ROOT):
-    mp = os.path.join(MENTORS_ROOT, mentor_id, "data")
-    if not os.path.isdir(mp):
-        continue
-    print(f"train mentor {mp}...")
-    m = Mentor(mentor_id, mp)
-    training = fac.create(cp, m)
-    scores, accuracy = training.train()
-    training.save()
-    print(f"  CHECKPOINT: {cp}")
-    print(f"  ACCURACY: {accuracy}")
+    if mentor_id == "julianne":
+        mp = os.path.join(MENTORS_ROOT, mentor_id, "data")
+        if not os.path.isdir(mp):
+            continue
+        print(f"train mentor {mp}...")
+        m = Mentor(mentor_id, mp)
+        training = fac.create(cp, m)
+        scores, accuracy = training.train()
+        training.save()
+        print(f"  CHECKPOINT: {cp}")
+        print(f"  ACCURACY: {accuracy}")
