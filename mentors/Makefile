@@ -57,6 +57,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
 			-v $(shell pwd)/$(MENTOR):/app/mounts/$(MENTOR) \
+			-v $(shell pwd)/data:/app/mounts/data \
 			-v $(shell pwd)/src:/app/src \
 		$(DOCKER_IMAGE)
 
@@ -73,6 +74,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
+			-v $(shell pwd)/data:/app/mounts/data \
 			$(DOCKER_IMAGE) -m $* -t -u $(MENTOR_SOURCE_VIDEOS)
 
 
@@ -88,6 +90,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
+			-v $(shell pwd)/data:/app/mounts/data \
 			$(DOCKER_IMAGE) -m $* -q
 
 .PHONY: %/classifier
@@ -97,4 +100,5 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
+			-v $(shell pwd)/data:/app/mounts/data \
 			$(DOCKER_IMAGE) -m $* -c
