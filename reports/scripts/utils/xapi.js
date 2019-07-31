@@ -43,4 +43,4 @@ function queryStatements(params) {
   });
 }
 
-export 
+module.exports = queryStatements;
