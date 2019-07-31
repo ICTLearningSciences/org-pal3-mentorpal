@@ -2,18 +2,30 @@ import os
 from watson_developer_cloud import SpeechToTextV1
 
 
-"""
-API credentials for the IBM Watson service are given below
-Web login credentials for https://console.ng.bluemix.net/
-Credentials File: Ask Ben Nye for it
-Place the text file containing the credentials file in the root of the website version code
-Contact Madhusudhan Krishnamachari at madhusudhank@icloud.com to get assistance on how to use Watson. (IBM Documentation should help)
-"""
-username = os.environ["WATSON_USERNAME"]
-password = os.environ["WATSON_PASSWORD"]
-speech_to_text = SpeechToTextV1(username=username, password=password)
-# tell IBM Watson not to collect our data
-speech_to_text.set_default_headers({"x-watson-learning-opt-out": "true"})
+def authenticate_with_watson():
+    """
+    API credentials for the IBM Watson service are given below
+    Web login credentials for https://console.ng.bluemix.net/
+    Credentials File: Ask Ben Nye for it
+    Place the text file containing the credentials file in the root of the website version code
+    Contact Madhusudhan Krishnamachari at madhusudhank@icloud.com to get assistance on how to use Watson. (IBM Documentation should help)
+
+    Returns:
+    speech_to_text: watson service
+    """
+    speech_to_text = None
+    username = os.environ["WATSON_USERNAME"]
+    password = os.environ["WATSON_PASSWORD"]
+
+    if not (username and password):
+        print(
+            "ERROR: Missing Watson credentials. Env vars WATSON_USERNAME and WATSON_PASSWORD must be set"
+        )
+    else:
+        speech_to_text = SpeechToTextV1(username=username, password=password)
+        # tell IBM Watson not to collect our data
+        speech_to_text.set_default_headers({"x-watson-learning-opt-out": "true"})
+    return speech_to_text
 
 
 def generate_transcript(file_name):
@@ -24,15 +36,13 @@ def generate_transcript(file_name):
     Note: Please make sure that the audio file is less than 100 MB in size. IBM Watson can't handle files larger than 100 MB.
     For this project, the duration of each Q-A won't exceed 5 minutes and in that case, it will be well within 100 MB.
     """
-    if not (username and password):
-        print(
-            "ERROR: Missing Watson credentials. Env vars WATSON_USERNAME and WATSON_PASSWORD must be set"
-        )
-        return None
-
-    with open(file_name, "rb") as audio_file:
-        result = speech_to_text.recognize(
-            audio_file, content_type="audio/ogg", continuous=True
-        ).result["results"]
-        transcript = "".join(item["alternatives"][0]["transcript"] for item in result)
-        return transcript
+    speech_to_text = authenticate_with_watson()
+    if speech_to_text:
+        with open(file_name, "rb") as audio_file:
+            result = speech_to_text.recognize(
+                audio_file, content_type="audio/ogg", continuous=True
+            ).result["results"]
+            transcript = "".join(
+                item["alternatives"][0]["transcript"] for item in result
+            )
+            return transcript

@@ -18,7 +18,5 @@ resources
 *password.txt
 
 # Mentor Data Files
-*/recordings/*
 */temp/*
-*prompts_utterances.csv
-*gquestions_paraphrases_answers.csv
+*/build/*

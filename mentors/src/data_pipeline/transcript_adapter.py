@@ -9,15 +9,23 @@ The transcript.csv file is output by the data pre-processing stage of our data
 pipeline.  which is output by our data
 pre-processing stage
 """
+SHARED_DATA = constants.SHARED_DATA
+MENTOR_DATA = constants.MENTOR_DATA
+MENTOR_BUILD = constants.MENTOR_BUILD
+SESSION_DATA = constants.SESSION_DATA
+SESSION_OUTPUT = constants.SESSION_OUTPUT
+
+PU_FILENAME = constants.PU_FILENAME
+QPA_FILENAME = constants.QPA_FILENAME
+DATA_FILENAME = constants.DATA_FILENAME
+TIMESTAMP_FILE = constants.TIMESTAMP_FILE
+TRANSCRIPT_FILE = constants.TRANSCRIPT_FILE
+TOPIC_MAP = constants.TOPIC_MAP
+PARAPHRASE_MAP = constants.PARAPHRASE_MAP
+
 QPA_ORDER = ["Topics", "Helpers", "Mentor", "Question", "text"]
-DATA_DIR = constants.DATA_DIR
-TOPIC_MAP_FILE = constants.TOPIC_MAP_FILE
-PARAPHRASE_MAP_FILE = constants.PARAPHRASE_MAP_FILE
-QPA_TARGET_FILE = constants.QPA_FILE
-PU_TARGET_FILE = constants.PU_FILE
-TIMESTAMP_FILE = os.path.join(
-    constants.RECORDINGS_DIR, "{}/session{}/part{}_timestamps.csv"
-)
+
+DATA_DIR = os.environ["DATA_MOUNT"] or os.getcwd()
 
 
 def build_data(mentor):
@@ -61,12 +69,14 @@ def format_and_save_pu_data(mentor, pu_data):
     del pu_data["text"]
     del pu_data["Question"]
 
-    pu_data.to_csv(os.path.join(os.getcwd(), PU_TARGET_FILE))
+    target_dir = os.path.join(DATA_DIR, MENTOR_DATA.format(mentor))
+    os.makedirs(target_dir, exist_ok=True)
+    pu_data.to_csv(os.path.join(target_dir, PU_FILENAME))
 
 
 def format_and_save_qpa_data(mentor, qpa_data):
     # Topic
-    topic_map = get_master_map(TOPIC_MAP_FILE)
+    topic_map = get_master_map(os.path.join(DATA_DIR, SHARED_DATA, TOPIC_MAP))
     if topic_map.empty:
         qpa_data["Topics"] = "Advice"
     else:
@@ -78,12 +88,14 @@ def format_and_save_qpa_data(mentor, qpa_data):
     qpa_data = qpa_data.reindex(columns=QPA_ORDER)
 
     # Paraphrase
-    paraphrase_map = get_master_map(PARAPHRASE_MAP_FILE)
+    paraphrase_map = get_master_map(os.path.join(DATA_DIR, SHARED_DATA, PARAPHRASE_MAP))
     if not paraphrase_map.empty:
         qpa_data = qpa_data.join(paraphrase_map.set_index("Question"), on="Question")
 
     qpa_data.set_index("Question", inplace=True)
-    qpa_data.to_csv(os.path.join(os.getcwd(), QPA_TARGET_FILE))
+    target_dir = os.path.join(DATA_DIR, MENTOR_DATA.format(mentor))
+    os.makedirs(target_dir, exist_ok=True)
+    qpa_data.to_csv(os.path.join(target_dir, QPA_FILENAME))
 
 
 def split_answers_and_utterances(transcript_data, timestamp_data):
@@ -108,7 +120,12 @@ def aggregate_timestamp_data(mentor):
         file_exists = True
         part = 1
         while file_exists:
-            filename = TIMESTAMP_FILE.format(mentor, session, part)
+            filename = os.path.join(
+                DATA_DIR,
+                MENTOR_BUILD.format(mentor),
+                SESSION_DATA.format(session),
+                DATA_FILENAME.format(part, TIMESTAMP_FILE),
+            )
             if os.path.isfile(filename):
                 if session == 1 & part == 1:
                     timestamp_data = get_timestamp_data(filename)
@@ -139,7 +156,14 @@ def aggregate_transcript_data(mentor):
     session = 1
 
     while transcript_exists:
-        filename = f"data/recordings/{mentor}/session{session}/out/transcript.csv"
+        filename = os.path.join(
+            DATA_DIR,
+            MENTOR_BUILD.format(mentor),
+            SESSION_DATA.format(session),
+            SESSION_OUTPUT,
+            TRANSCRIPT_FILE,
+        )
+        print(filename)
         if os.path.isfile(filename):
             if session == 1:
                 qpa_data = get_transcript_data(filename)
@@ -153,9 +177,7 @@ def aggregate_transcript_data(mentor):
 
 
 def get_transcript_data(transcript_file):
-    os.path.join(os.getcwd(), transcript_file)
-    transcript_file = pd.read_csv(transcript_file, names=["Question", "text"])
-    return transcript_file
+    return pd.read_csv(transcript_file, names=["Question", "text"])
 
 
 def get_master_map(map_file):

@@ -11,7 +11,9 @@ ADD requirements.txt /tmp/requirements.txt
 RUN pip3 install -r /tmp/requirements.txt && \
     rm /tmp/requirements.txt
 
+
 COPY src /app/src
+ENV DATA_MOUNT=/app/mounts/
 
 WORKDIR /app
 
