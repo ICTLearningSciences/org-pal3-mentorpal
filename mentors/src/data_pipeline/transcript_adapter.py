@@ -69,7 +69,9 @@ def format_and_save_pu_data(mentor, pu_data):
     del pu_data["text"]
     del pu_data["Question"]
 
-    pu_data.to_csv(os.path.join(DATA_DIR, MENTOR_DATA.format(mentor), PU_FILENAME))
+    target_dir = os.path.join(DATA_DIR, MENTOR_DATA.format(mentor))
+    os.makedirs(target_dir, exist_ok=True)
+    pu_data.to_csv(os.path.join(target_dir, PU_FILENAME))
 
 
 def format_and_save_qpa_data(mentor, qpa_data):
@@ -91,7 +93,9 @@ def format_and_save_qpa_data(mentor, qpa_data):
         qpa_data = qpa_data.join(paraphrase_map.set_index("Question"), on="Question")
 
     qpa_data.set_index("Question", inplace=True)
-    qpa_data.to_csv(os.path.join(DATA_DIR, MENTOR_DATA.format(mentor), QPA_FILENAME))
+    target_dir = os.path.join(DATA_DIR, MENTOR_DATA.format(mentor))
+    os.makedirs(target_dir, exist_ok=True)
+    qpa_data.to_csv(os.path.join(target_dir, QPA_FILENAME))
 
 
 def split_answers_and_utterances(transcript_data, timestamp_data):

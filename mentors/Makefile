@@ -81,14 +81,11 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 	$(MAKE) $*/data/update
 
 .PHONY: %/data/update
-%/data/update: %/build docker-image-exists $(WATSON_CREDENTIALS)
-	$(MAKE)  
+%/data/update: %/build docker-image-exists
+	$(MAKE)
 	docker run \
 			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
-			-e WATSON_USERNAME=$(WATSON_USERNAME) \
-			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			$(DOCKER_IMAGE) -m $* -q
-			
