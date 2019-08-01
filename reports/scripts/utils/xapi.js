@@ -79,6 +79,10 @@ function getQuestionText(statement) {
   return statementMentorResponseValue(statement, 'question_text');
 }
 
+function getObjectId(statement) {
+  return jsonpath.value(statement, '$.object.id')
+}
+
 function queryStatements(params) {
   return new Promise((resolve, reject) => {
     lrs.queryStatements({
@@ -104,6 +108,7 @@ function queryStatements(params) {
 }
 
 module.exports = {
+  getObjectId,
   getQuestionText,
   groupStatementsByQuestionIndex,
   queryStatements,

@@ -1,10 +1,10 @@
 const xapi = require('./xapi');
 const {
+  getObjectId,
   groupStatementsByQuestionIndex,
   statementsToSessions,
   statementMentorResponseValue,
 } = require('../../utils/xapi');
-const jsonpath = require('jsonpath');
 
 async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
   const statements = await xapi.queryXapi({ since });
@@ -38,7 +38,7 @@ async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
             (qsAcc, qsCur) => {
               console.log(`qsCur[${i}]=${JSON.stringify(qsCur, null, 2)}`);
               qsAcc = qsAcc || {};
-              const curVals = statementMentorResponseValue(qsCur, [
+              const curStMentorpalVals = statementMentorResponseValue(qsCur, [
                 'answer_duration',
                 'answer_text',
                 'confidence',
@@ -47,13 +47,14 @@ async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
               ]);
               return {
                 answer_confidence:
-                  qsAcc.answer_confidence || curVals.confidence,
+                  qsAcc.answer_confidence || curStMentorpalVals.confidence,
                 answer_duration:
-                  qsAcc.answer_duration || curVals.answer_duration,
-                answer_text: qsAcc.answer_text || curVals.answer_text,
-                mentor: qsAcc.mentor || curVals.mentor,
+                  qsAcc.answer_duration || curStMentorpalVals.answer_duration,
+                answer_text: qsAcc.answer_text || curStMentorpalVals.answer_text,
+                mentor: qsAcc.mentor || curStMentorpalVals.mentor,
                 question_index: i,
-                question_text: qsAcc.question_text || curVals.question_text,
+                question_text: qsAcc.question_text || curStMentorpalVals.question_text,
+                resource_id: qsAcc.resource_id || getObjectId(qsCur),
                 session_id: sessionId,
               };
             }
