@@ -74,7 +74,6 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 	@echo "creating $*/build ..."
 	$(MAKE) docker-image-exists
 	docker run \
-			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
@@ -93,7 +92,6 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 	mkdir -p $(shell pwd)/$*/data
 	cp $(shell pwd)/data/topics.csv $(shell pwd)/$*/data/topics.csv
 	docker run \
-			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
