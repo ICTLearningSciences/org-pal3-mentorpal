@@ -6,7 +6,6 @@ import constants
 import preprocess_data
 import post_process_data
 import transcript_adapter
-import utils
 
 """
 This file serves as the entrypoint for the mentor panel video processing pipeline
