@@ -148,16 +148,14 @@ class PostProcessData(object):
                 )
                 if answer_sample["topics"][-1] == ",":
                     answer_sample["topics"] = answer_sample["topics"][:-1]
-                answer_sample["question"] = (
+                answer_sample["question"] = "{}\r\n".format(
                     self.answer_corpus.iloc[self.answer_corpus_index]["Question"]
-                    + "\r\n"
                 )
                 # TODO: This is the hardcoded number of paraphrases
                 for j in range(1, 26):
                     index = "P" + str(j)
-                    answer_sample["question"] += (
+                    answer_sample["question"] += "{}\r\n".format(
                         self.answer_corpus.iloc[self.answer_corpus_index][index]
-                        + "\r\n"
                     )
                 answer_sample["question"] = answer_sample["question"].strip()
                 answer_sample["text"] = self.answer_corpus.iloc[
