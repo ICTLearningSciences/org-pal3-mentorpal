@@ -57,6 +57,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
 			-v $(shell pwd)/$(MENTOR):/app/mounts/$(MENTOR) \
+			-v $(shell pwd)/data:/app/mounts/data \
 			-v $(shell pwd)/src:/app/src \
 		$(DOCKER_IMAGE)
 
@@ -64,15 +65,21 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 # Pre-processes mentor data inside docker container
 # Generates audiochunks and transcripts for one mentor
 %/build: $(WATSON_CREDENTIALS)
+	$(MAKE) $*/build/update
+
+# Pre-processes mentor data inside docker container
+# Generates audiochunks and transcripts for one mentor
+.PHONY: %/build/update
+%/build/update: docker-image-exists $(WATSON_CREDENTIALS)
 	@echo "creating $*/build ..."
-	$(MAKE) docker-image-exists 
 	docker run \
-			-it \
 			--rm \
+			-t \
 			--name $(DOCKER_CONTAINER) \
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
+			-v $(shell pwd)/data:/app/mounts/data \
 			$(DOCKER_IMAGE) -m $* -t -u $(MENTOR_SOURCE_VIDEOS)
 
 
@@ -82,10 +89,11 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 
 .PHONY: %/data/update
 %/data/update: %/build docker-image-exists
-	$(MAKE)
+	mkdir -p $(shell pwd)/$*/data
+	cp $(shell pwd)/data/topics.csv $(shell pwd)/$*/data/topics.csv
 	docker run \
-			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
-			$(DOCKER_IMAGE) -m $* -q
+			-v $(shell pwd)/data:/app/mounts/data \
+			$(DOCKER_IMAGE) -m $* -q -c

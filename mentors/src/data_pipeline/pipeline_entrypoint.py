@@ -2,9 +2,10 @@ import argparse
 import os
 import requests
 
-import preprocess_data
-import transcript_adapter
 import constants
+import preprocess_data
+import post_process_data
+import transcript_adapter
 
 """
 This file serves as the entrypoint for the mentor panel video processing pipeline
@@ -187,10 +188,28 @@ def print_preprocess_summary(summary):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
+        "-a",
+        "--audiochunks",
+        action="store_true",
+        help="enable generation of audiochunks",
+    )
+    parser.add_argument(
+        "-c",
+        "--classification_data",
+        action="store_true",
+        help="enable generation of classification data csv file",
+    )
+    parser.add_argument(
         "-m",
         "--mentor",
         required=True,
         help="enter the name of the mentor you want to process",
+    )
+    parser.add_argument(
+        "-q",
+        "--qpa_pu_data",
+        action="store_true",
+        help="enable generation of questions_paraphrase_answers and prompts_utterances csv file",
     )
     parser.add_argument("-u", "--url", help="location of raw video and timestamp files")
     parser.add_argument(
@@ -201,22 +220,10 @@ def main():
         help="session numbers to process, or 'all' to process all sessions",
     )
     parser.add_argument(
-        "-a",
-        "--audiochunks",
-        action="store_true",
-        help="enable generation of audiochunks",
-    )
-    parser.add_argument(
         "-t",
         "--transcripts",
         action="store_true",
         help="enable generation of transcripts",
-    )
-    parser.add_argument(
-        "-q",
-        "--qpa_pu_data",
-        action="store_true",
-        help="enable generation of questions_paraphrase_answers and prompts_utterances csv file",
     )
     args = parser.parse_args()
 
@@ -232,6 +239,10 @@ def main():
             "INFO: Building Questions Paraphrases Answers and Prompts Utterance Files"
         )
         transcript_adapter.build_data(args.mentor)
+
+    if args.classification_data:
+        print("INFO: Building Classification Data")
+        post_process_data.build_post_processing_data(args)
 
 
 if __name__ == "__main__":

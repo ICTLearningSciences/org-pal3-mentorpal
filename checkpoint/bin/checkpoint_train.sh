@@ -1,5 +1,6 @@
 ARCH=$1
 CHECKPOINT=$2
+TEST_MENTOR=$3
 
 PROJECT_ROOT=$(git rev-parse --show-toplevel 2> /dev/null)
 CHECKPOINT_ROOT=${PROJECT_ROOT}/checkpoint
@@ -18,6 +19,7 @@ docker run \
         -e ARCH=${ARCH} \
         -e CHECKPOINT=${CHECKPOINT} \
         -e MENTOR_ROOT=${MENTOR_ROOT} \
+        -e TEST_MENTOR=${TEST_MENTOR} \
         --workdir /app \
         --entrypoint /app/checkpoint/bin/checkpoint_train.py \
     ${DOCKER_IMAGE}
