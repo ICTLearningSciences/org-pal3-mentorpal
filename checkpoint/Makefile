@@ -41,7 +41,6 @@ checkpoint-train: checkpoint-vector-models
 checkpoint-train/mentor/%: checkpoint-vector-models
 	./bin/checkpoint_train.sh $(ARCH) ${CHECKPOINT}-$* $*
 
-
 .PHONY: docker-run-dev
 docker-run-dev:
 	docker run \
