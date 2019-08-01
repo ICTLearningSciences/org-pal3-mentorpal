@@ -11,6 +11,8 @@ import utils
 MENTOR_DATA = utils.MENTOR_DATA
 MENTOR_BUILD = utils.MENTOR_BUILD
 SESSION_DATA = utils.SESSION_DATA
+ANSWER_VIDEOS = utils.ANSWER_VIDEOS
+UTTERANCE_VIDEOS = utils.UTTERANCE_VIDEOS
 
 PU_FILENAME = utils.PU_FILENAME
 QPA_FILENAME = utils.QPA_FILENAME
@@ -18,6 +20,9 @@ DATA_FILENAME = utils.DATA_FILENAME
 VIDEO_FILE = utils.VIDEO_FILE
 AUDIO_FILE = utils.AUDIO_FILE
 TIMESTAMP_FILE = utils.TIMESTAMP_FILE
+UTTERANCE_DATA = utils.UTTERANCE_DATA
+CLASSIFIER_DATA = utils.CLASSIFIER_DATA
+METADATA = utils.METADATA
 
 DATA_DIR = os.environ["DATA_MOUNT"] or os.getcwd()
 
@@ -194,7 +199,7 @@ class PostProcessData(object):
         # data for Classifier
         classifier_header = True
         mentor_data = os.path.join(DATA_DIR, MENTOR_DATA.format(mentor))
-        classifier_file_path = os.path.join(mentor_data, "classifier_data.csv")
+        classifier_file_path = os.path.join(mentor_data, CLASSIFIER_DATA)
         if os.path.exists(classifier_file_path):
             classifier_header = False
 
@@ -208,7 +213,7 @@ class PostProcessData(object):
 
         # data for prompts and utterances
         utterance_header = True
-        utterance_file_path = os.path.join(mentor_data, "utterance_data.csv")
+        utterance_file_path = os.path.join(mentor_data, UTTERANCE_DATA)
         if os.path.exists(utterance_file_path):
             utterance_header = False
 
@@ -222,7 +227,7 @@ class PostProcessData(object):
 
         # store meta-data for later use
         metadata_df = None
-        metadata_file_path = os.path.join(mentor_data, "metadata.csv")
+        metadata_file_path = os.path.join(mentor_data, METADATA)
         if os.path.exists(metadata_file_path):
             metadata_df = pd.read_csv(open(metadata_file_path, "rb"))
             for i in range(0, len(metadata_df)):
@@ -270,19 +275,19 @@ def build_post_processing_data(args):
     mentor_data = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor))
 
     # store answer video chunks in this folder.
-    answer_chunks = os.path.join(mentor_data, "answer_videos")
+    answer_chunks = os.path.join(mentor_data, ANSWER_VIDEOS)
     # Create answer_videos directory if it doesn't exist
     if not os.path.isdir(answer_chunks):
         os.mkdir(answer_chunks)
 
     # store prompts and repeat-after-me videos in this folder
-    utterance_chunks = os.path.join(mentor_data, "utterance_videos")
+    utterance_chunks = os.path.join(mentor_data, UTTERANCE_VIDEOS)
     # Create utterance_videos directory if it doesn't exist
     if not os.path.isdir(utterance_chunks):
         os.mkdir(utterance_chunks)
 
     # Load older metadata, to see where to continue numbering answers and utterances from, for the current mentor
-    metadata_file = os.path.join(mentor_data, "metadata.csv")
+    metadata_file = os.path.join(mentor_data, METADATA)
     if not os.path.exists(metadata_file):
         next_answer = 1
         next_utterance = 1
@@ -324,9 +329,9 @@ def build_post_processing_data(args):
 
     # Load the answer corpus which contains questions, paraphrases and answers
     answer_corpus = pd.read_csv(
-        os.path.join(mentor_data, "questions_paraphrases_answers.csv")
+        os.path.join(mentor_data, QPA_FILENAME)
     )
-    utterance_corpus = pd.read_csv(os.path.join(mentor_data, "prompts_utterances.csv"))
+    utterance_corpus = pd.read_csv(os.path.join(mentor_data, PU_FILENAME))
     ppd = PostProcessData(
         answer_chunks,
         utterance_chunks,
@@ -363,7 +368,3 @@ def build_post_processing_data(args):
 
     # write the data to file, for use by classifier
     ppd.write_data(args.mentor)
-
-
-if __name__ == "__main__":
-    main()

@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-import constants
+import utils
 
 """
 This script will adapt the transcript.csv into questions_paraphrases_answers.csv
@@ -9,19 +9,19 @@ The transcript.csv file is output by the data pre-processing stage of our data
 pipeline.  which is output by our data
 pre-processing stage
 """
-SHARED_DATA = constants.SHARED_DATA
-MENTOR_DATA = constants.MENTOR_DATA
-MENTOR_BUILD = constants.MENTOR_BUILD
-SESSION_DATA = constants.SESSION_DATA
-SESSION_OUTPUT = constants.SESSION_OUTPUT
+SHARED_DATA = utils.SHARED_DATA
+MENTOR_DATA = utils.MENTOR_DATA
+MENTOR_BUILD = utils.MENTOR_BUILD
+SESSION_DATA = utils.SESSION_DATA
+SESSION_OUTPUT = utils.SESSION_OUTPUT
 
-PU_FILENAME = constants.PU_FILENAME
-QPA_FILENAME = constants.QPA_FILENAME
-DATA_FILENAME = constants.DATA_FILENAME
-TIMESTAMP_FILE = constants.TIMESTAMP_FILE
-TRANSCRIPT_FILE = constants.TRANSCRIPT_FILE
-TOPIC_MAP = constants.TOPIC_MAP
-PARAPHRASE_MAP = constants.PARAPHRASE_MAP
+PU_FILENAME = utils.PU_FILENAME
+QPA_FILENAME = utils.QPA_FILENAME
+DATA_FILENAME = utils.DATA_FILENAME
+TIMESTAMP_FILE = utils.TIMESTAMP_FILE
+TRANSCRIPT_FILE = utils.TRANSCRIPT_FILE
+TOPIC_MAP = utils.TOPIC_MAP
+PARAPHRASE_MAP = utils.PARAPHRASE_MAP
 
 QPA_ORDER = ["Topics", "Helpers", "Mentor", "Question", "text"]
 

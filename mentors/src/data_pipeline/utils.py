@@ -6,6 +6,8 @@ MENTOR_BUILD = "{}/build"
 SESSION_DATA = "recordings/session{}"
 SESSION_OUTPUT = "out"
 AUDIOCHUNKS = "audiochunks"
+ANSWER_VIDEOS = "answer_videos"
+UTTERANCE_VIDEOS = "utterance_videos"
 
 DATA_FILENAME = "part{}_{}"
 VIDEO_FILE = "video.mp4"
@@ -13,10 +15,12 @@ AUDIO_FILE = "audio.wav"
 TIMESTAMP_FILE = "timestamps.csv"
 TOPIC_MAP = "master_topic_map.csv"
 PARAPHRASE_MAP = "master_paraphrase_map.csv"
-
 PU_FILENAME = "prompts_utterances.csv"
 QPA_FILENAME = "questions_paraphrases_answers.csv"
 TRANSCRIPT_FILE = "transcript.csv"
+UTTERANCE_DATA = "utterance_data.csv"
+CLASSIFIER_DATA = "classifier_data.csv"
+METADATA = "metadata.csv"
 
 
 def convert_to_seconds(time):
