@@ -1,4 +1,5 @@
 require('dotenv').config();
+const jsonpath = require('jsonpath');
 const TinCan = require('tincanjs');
 
 function requireEnv(name) {
@@ -18,6 +19,65 @@ const lrs = new TinCan.LRS({
   password: requireEnv('XAPI_PASSWORD'),
   allowFail: false,
 });
+
+function statementsToSessions(statements) {
+  return statements.reduce((acc, cur) => {
+    const sid = jsonpath.value(cur, '$..context.registration');
+    acc[sid] = Array.isArray(acc[sid]) ? acc[sid] : [];
+    acc[sid].push(cur);
+    return acc;
+  }, {});
+}
+
+function groupStatementsByQuestionIndex(statements) {
+  return statements.reduce((sqAcc, sqCur) => {
+    const qix = Number(
+      jsonpath.value(sqCur, '$..context.extensions..question_index')
+    );
+    // console.log('questionix=' + qix);
+    if (isNaN(qix)) {
+      return sqAcc;
+    }
+    sqAcc[qix] = Array.isArray(sqAcc[qix]) ? sqAcc[qix] : [];
+    sqAcc[qix].push(sqCur);
+    return sqAcc;
+  }, []);
+}
+
+function statementMentorResponseValue(statement, propertyOrProps) {
+  const mpresponse = 'mentorpal_response';
+  const st = JSON.parse(
+    JSON.stringify(statement).replace(
+      'https://mentorpal.org/xapi/activity/extensions/mentor-response',
+      mpresponse
+    )
+  );
+  if (typeof propertyOrProps === 'string') {
+    return jsonpath.value(st, `$..${mpresponse}.${property}`);
+  }
+  if (!Array.isArray(propertyOrProps)) {
+    throw new Error(
+      'statementMentorResponseValue arg propertyOrProps must be string or array'
+    );
+  }
+  const responseObjArr = jsonpath.query(st, `$..${mpresponse}`);
+  if (!Array.isArray(responseObjArr) || responseObjArr.length === 0) {
+    return {};
+  }
+  const responseObj = responseObjArr[0];
+  return propertyOrProps.reduce((acc, cur) => {
+    return {
+      ...acc,
+      [cur]: responseObj[cur]
+    }
+  }, {});
+}
+
+function _statementMentorResponseValue(statement, property) {}
+
+function getQuestionText(statement) {
+  return statementMentorResponseValue(statement, 'question_text');
+}
 
 function queryStatements(params) {
   return new Promise((resolve, reject) => {
@@ -43,4 +103,10 @@ function queryStatements(params) {
   });
 }
 
-module.exports = queryStatements;
+module.exports = {
+  getQuestionText,
+  groupStatementsByQuestionIndex,
+  queryStatements,
+  statementMentorResponseValue,
+  statementsToSessions,
+};

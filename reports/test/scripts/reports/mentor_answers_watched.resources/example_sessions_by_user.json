@@ -40,6 +40,7 @@
             "topic_current": "Recommended",
             "mentor_faved": "",
             "mentor_next": "",
+            "question_index": 0,
             "questions_asked": [
               "whatmakesagoodleader"
             ]
@@ -87,6 +88,7 @@
           "https://mentorpal.org/xapi/context/extensions/session-state": {
             "mentor_current": "clint",
             "question_current": "What makes a good leader?",
+            "question_index": 0,
             "topic_current": "Recommended",
             "mentor_faved": "",
             "mentor_next": "",
@@ -137,6 +139,7 @@
           "https://mentorpal.org/xapi/context/extensions/session-state": {
             "mentor_current": "clint",
             "question_current": "What makes a good leader?",
+            "question_index": 0,
             "topic_current": "Recommended",
             "mentor_faved": "",
             "mentor_next": "",
@@ -187,6 +190,7 @@
           "https://mentorpal.org/xapi/context/extensions/session-state": {
             "mentor_current": "clint",
             "question_current": "What makes a good leader?",
+            "question_index": 0,
             "topic_current": "Recommended",
             "mentor_faved": "",
             "mentor_next": "",
@@ -228,6 +232,7 @@
           "https://mentorpal.org/xapi/context/extensions/session-state": {
             "mentor_current": "clint",
             "question_current": "",
+            "question_index": 0,
             "topic_current": "Recommended",
             "mentor_faved": "",
             "mentor_next": "",
