@@ -4,6 +4,7 @@ VECTOR_MODEL_BASE_URL=http://mentorpal-vector-models.s3-website-us-east-1.amazon
 CHECKPOINT?=2019-06-13-1900
 ARCH?=lstm_v1
 MENTOR?=clint
+VALIDATION_MENTOR?=""
 CHECKPOINT_PATH=${CHECKPOINT_ROOT}/classifiers/${ARCH}/${CHECKPOINT}
 DOCKER_IMAGE?=mentorpal-classifier
 
@@ -35,7 +36,7 @@ checkpoints-compare: checkpoint-vector-models
 
 .PHONY: checkpoint-train
 checkpoint-train: checkpoint-vector-models
-	./bin/checkpoint_train.sh $(ARCH) ${checkpoint}
+	./bin/checkpoint_train.sh ${ARCH} ${checkpoint} ${VALIDATION_MENTOR}
 
 .PHONY: docker-run-dev
 docker-run-dev:

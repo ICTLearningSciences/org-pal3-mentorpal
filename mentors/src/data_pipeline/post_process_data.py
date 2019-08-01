@@ -1,6 +1,5 @@
 import os
 from threading import Thread
-import sys
 
 import ffmpy
 import fnmatch
@@ -138,7 +137,8 @@ class PostProcessData(object):
                 and len(self.answer_corpus) > self.answer_corpus_index
             ):
                 answer_id = f"{self.mentor_name}_A{self.answer_number}_{session_number}_{part_number}"
-                output_file = os.path.join(self.answer_chunks, answer_id + ".mp4")
+                # Uncomment for splitting video
+                # output_file = os.path.join(self.answer_chunks, answer_id + ".mp4")
                 answer_sample["ID"] = answer_id
                 answer_sample["topics"] = ",".join(
                     [
@@ -169,7 +169,8 @@ class PostProcessData(object):
                 and len(self.utterance_corpus) > self.utterance_corpus_index
             ):
                 utterance_id = f"{self.mentor_name}_U{self.utterance_number}_{session_number}_{part_number}"
-                output_file = os.path.join(self.utterance_chunks, utterance_id + ".mp4")
+                # Uncomment for splitting video
+                # output_file = os.path.join(self.utterance_chunks, utterance_id + ".mp4")
                 utterance_sample["ID"] = utterance_id
                 utterance_sample["utterance"] = self.utterance_corpus.iloc[
                     self.utterance_corpus_index
@@ -181,6 +182,7 @@ class PostProcessData(object):
                 self.utterance_number += 1
                 self.utterance_data.append(utterance_sample)
             """
+            TODO: Add flag for this
             Uncomment this line when you want to get the actual cut answers. This takes a long time so this isn't needed
             when testing the code for the other parts
             """
