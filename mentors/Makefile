@@ -90,7 +90,6 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 
 .PHONY: %/data/update
 %/data/update: %/build docker-image-exists
-	$(MAKE)
 	mkdir -p $(shell pwd)/$*/data
 	cp $(shell pwd)/data/topics.csv $(shell pwd)/$*/data/topics.csv
 	docker run \
