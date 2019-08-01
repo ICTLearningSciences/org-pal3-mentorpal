@@ -328,9 +328,7 @@ def build_post_processing_data(args):
                 utterance_corpus_index = 0
 
     # Load the answer corpus which contains questions, paraphrases and answers
-    answer_corpus = pd.read_csv(
-        os.path.join(mentor_data, QPA_FILENAME)
-    )
+    answer_corpus = pd.read_csv(os.path.join(mentor_data, QPA_FILENAME))
     utterance_corpus = pd.read_csv(os.path.join(mentor_data, PU_FILENAME))
     ppd = PostProcessData(
         answer_chunks,
