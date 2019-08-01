@@ -1,6 +1,9 @@
 const xapi = require('./xapi');
 const {
   getObjectId,
+  getUserDomain,
+  getUserId,
+  getUserName,
   groupStatementsByQuestionIndex,
   statementsToSessions,
   statementMentorResponseValue,
@@ -16,13 +19,6 @@ async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
     acc[cur] = groupStatementsByQuestionIndex(sessionsById[cur]);
     return acc;
   }, {});
-  // console.log(
-  //   `sessionQuestionsBySessionId=${JSON.stringify(
-  //     sessionQuestionsBySessionId,
-  //     null,
-  //     2
-  //   )}`
-  // );
   const result = Object.getOwnPropertyNames(sessionQuestionsBySessionId).reduce(
     (acc, sessionId) => {
       const questions = sessionQuestionsBySessionId[sessionId];
@@ -48,14 +44,19 @@ async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
               return {
                 answer_confidence:
                   qsAcc.answer_confidence || curStMentorpalVals.confidence,
-                answer_duration:
-                  qsAcc.answer_duration || curStMentorpalVals.answer_duration,
-                answer_text: qsAcc.answer_text || curStMentorpalVals.answer_text,
+                // answer_duration:
+                //   qsAcc.answer_duration || curStMentorpalVals.answer_duration,
+                answer_text:
+                  qsAcc.answer_text || curStMentorpalVals.answer_text,
                 mentor: qsAcc.mentor || curStMentorpalVals.mentor,
                 question_index: i,
-                question_text: qsAcc.question_text || curStMentorpalVals.question_text,
+                question_text:
+                  qsAcc.question_text || curStMentorpalVals.question_text,
                 resource_id: qsAcc.resource_id || getObjectId(qsCur),
                 session_id: sessionId,
+                user_domain: qsAcc.user_domain || getUserDomain(qsCur),
+                user_id: qsAcc.user_id || getUserId(qsCur),
+                user_name: qsAcc.user_name || getUserName(qsCur),
               };
             }
           );

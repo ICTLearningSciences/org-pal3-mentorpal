@@ -83,6 +83,18 @@ function getObjectId(statement) {
   return jsonpath.value(statement, '$.object.id')
 }
 
+function getUserDomain(statement) {
+  return jsonpath.value(statement, '$.actor.account.homePage')
+}
+
+function getUserId(statement) {
+  return jsonpath.value(statement, '$.actor.account.name')
+}
+
+function getUserName(statement) {
+  return jsonpath.value(statement, '$.actor.name')
+}
+
 function queryStatements(params) {
   return new Promise((resolve, reject) => {
     lrs.queryStatements({
@@ -110,6 +122,9 @@ function queryStatements(params) {
 module.exports = {
   getObjectId,
   getQuestionText,
+  getUserDomain,
+  getUserId,
+  getUserName,
   groupStatementsByQuestionIndex,
   queryStatements,
   statementMentorResponseValue,

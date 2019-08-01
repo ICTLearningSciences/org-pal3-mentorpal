@@ -22,7 +22,9 @@ describe('reports/mentor_answers_watched', async () => {
   const mentor_candidates = 'm1,m2,m3,m4';
   const user_sessions = [
     {
-      user_id: 'https://dev.pal3.org/xapi/users/5d3f924240631b0013f723dc',
+      user_id: '5d3f924240631b0013f723dc',
+      user_domain: 'https://dev.pal3.org/xapi/users',
+      user_name: 'larry201907291740',
       resource_id:
         'https://dev.pal3.org/xapi/resources/5d1bc549becb4e208dd0188b',
       session_id: '57e21ad1-81cc-4746-9b31-25a26f2a377b',
@@ -39,16 +41,15 @@ describe('reports/mentor_answers_watched', async () => {
             question_index: 0,
             question_text: 'What makes a good leader?',
             mentor: 'carlos',
-            mentor_candidates: mentor_candidates,
+            // mentor_candidates: mentor_candidates,
             answer_text:
               "The most important decisions I feel that I make throughout the day as a leader is the well being of my support, the team that we currently work with and their opportunities to continue to advance.  Some of our contracts end and then they have to either move on or we try to find other positions for them, and we're very successful in doing that, and you build relationships with your team, you wanna make sure of their well being not only professional but also personal.",
-            answer_duration: 1000,
-            answer_confidence: 1.0,
-            timestamp_asked: 't1',
-            timestamp_answer_received: 't2',
-            timestamp_playback_start: 't3',
-            timestamp_playback_end: 't3',
-            did_watch_to_end: 1,
+            answer_confidence: -0.6764202566510205,
+            // timestamp_asked: 't1',
+            // timestamp_answer_received: 't2',
+            // timestamp_playback_start: 't3',
+            // timestamp_playback_end: 't3',
+            // did_watch_to_end: 1,
           },
         ],
       },
