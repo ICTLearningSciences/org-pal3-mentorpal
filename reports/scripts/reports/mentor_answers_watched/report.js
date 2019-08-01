@@ -45,8 +45,10 @@ async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
                 'question_text',
               ]);
               return {
-                answer_confidence: qsAcc.answer_confidence || curVals.answer_confidence,
-                answer_duration: qsAcc.answer_duration || curVals.answer_duration,
+                answer_confidence:
+                  qsAcc.answer_confidence || curVals.answer_confidence,
+                answer_duration:
+                  qsAcc.answer_duration || curVals.answer_duration,
                 answer_text: qsAcc.answer_text || curVals.answer_text,
                 question_index: i,
                 question_text: qsAcc.question_text || curVals.question_text,

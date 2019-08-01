@@ -1,6 +1,5 @@
-
 {
-    "larry201907291740": [
+  "larry201907291740": [
     {
       "id": "57f1e329-03e1-49e1-8d0d-ca11624c7b05",
       "timestamp": "2019-07-31T19:05:39.740Z",
@@ -41,9 +40,7 @@
             "mentor_faved": "",
             "mentor_next": "",
             "question_index": 0,
-            "questions_asked": [
-              "whatmakesagoodleader"
-            ]
+            "questions_asked": ["whatmakesagoodleader"]
           }
         }
       },
@@ -92,9 +89,7 @@
             "topic_current": "Recommended",
             "mentor_faved": "",
             "mentor_next": "",
-            "questions_asked": [
-              "whatmakesagoodleader"
-            ]
+            "questions_asked": ["whatmakesagoodleader"]
           }
         }
       },
@@ -143,9 +138,7 @@
             "topic_current": "Recommended",
             "mentor_faved": "",
             "mentor_next": "",
-            "questions_asked": [
-              "whatmakesagoodleader"
-            ]
+            "questions_asked": ["whatmakesagoodleader"]
           }
         }
       },
@@ -194,9 +187,7 @@
             "topic_current": "Recommended",
             "mentor_faved": "",
             "mentor_next": "",
-            "questions_asked": [
-              "whatmakesagoodleader"
-            ]
+            "questions_asked": ["whatmakesagoodleader"]
           }
         }
       },

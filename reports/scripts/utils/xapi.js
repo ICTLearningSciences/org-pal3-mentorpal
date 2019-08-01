@@ -68,8 +68,8 @@ function statementMentorResponseValue(statement, propertyOrProps) {
   return propertyOrProps.reduce((acc, cur) => {
     return {
       ...acc,
-      [cur]: responseObj[cur]
-    }
+      [cur]: responseObj[cur],
+    };
   }, {});
 }
 

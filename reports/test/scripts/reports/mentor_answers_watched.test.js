@@ -15,7 +15,7 @@ describe('reports/mentor_answers_watched', async () => {
   });
 
   beforeEach(() => {
-    queryXapiStub = sinon.stub()
+    queryXapiStub = sinon.stub();
     sinon.replace(xapi, 'queryXapi', queryXapiStub);
   });
 
