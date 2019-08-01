@@ -112,7 +112,7 @@ def download_mentor_data(url, mentor):
 
         while part_found:
             part += 1
-            print(f"INFO: Downloading session {session} part {part}")
+            print(f"INFO: Looking for session {session} part {part} data")
             t_session_flag, t_part_flag = download_session_data(
                 url, mentor, session, part, TIMESTAMP_FILE
             )
@@ -124,6 +124,8 @@ def download_mentor_data(url, mentor):
             )
             part_found = t_part_flag & v_part_flag & a_part_flag
             session_found = t_session_flag & v_session_flag & a_session_flag
+            if not (part_found and session_found):
+                print(f"INFO: Session {session} part {part} not found")
 
     if session == 1 and part == 1:
         download_successful = False
@@ -165,7 +167,6 @@ def download_session_data(url, mentor, session, part, filename):
         if part == 1:
             session_found = False
         part_found = False
-        print(f"WARN: Session {session} part {part} {filename} not found")
 
     return session_found, part_found
 
