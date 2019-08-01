@@ -35,7 +35,7 @@ checkpoints-compare: checkpoint-vector-models
 
 .PHONY: checkpoint-train
 checkpoint-train: checkpoint-vector-models
-	./bin/checkpoint_train.sh ${ARCH} ${checkpoint}
+	./bin/checkpoint_train.sh $(ARCH) ${checkpoint}
 
 .PHONY: docker-run-dev
 docker-run-dev:
