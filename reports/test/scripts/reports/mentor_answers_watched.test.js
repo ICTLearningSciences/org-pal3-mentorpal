@@ -37,10 +37,10 @@ describe('reports/mentor_answers_watched', async () => {
           {
             ...user_sessions[0],
             question_index: 0,
-            question_text: 'q1 text',
-            mentor: 'm1',
+            question_text: 'What makes a good leader?',
+            mentor: 'carlos',
             mentor_candidates: mentor_candidates,
-            answer_text: 'a1 text',
+            answer_text: 'The most important decisions I feel that I make throughout the day as a leader is the well being of my support, the team that we currently work with and their opportunities to continue to advance.  Some of our contracts end and then they have to either move on or we try to find other positions for them, and we're very successful in doing that, and you build relationships with your team, you wanna make sure of their well being not only professional but also personal.',
             answer_duration: 1000,
             answer_confidence: 1.0,
             timestamp_asked: 't1',

@@ -39,17 +39,19 @@ async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
               console.log(`qsCur[${i}]=${JSON.stringify(qsCur, null, 2)}`);
               qsAcc = qsAcc || {};
               const curVals = statementMentorResponseValue(qsCur, [
-                'answer_confidence',
                 'answer_duration',
                 'answer_text',
+                'confidence',
+                'mentor',
                 'question_text',
               ]);
               return {
                 answer_confidence:
-                  qsAcc.answer_confidence || curVals.answer_confidence,
+                  qsAcc.answer_confidence || curVals.confidence,
                 answer_duration:
                   qsAcc.answer_duration || curVals.answer_duration,
                 answer_text: qsAcc.answer_text || curVals.answer_text,
+                mentor: qsAcc.mentor || curVals.mentor,
                 question_index: i,
                 question_text: qsAcc.question_text || curVals.question_text,
                 session_id: sessionId,
