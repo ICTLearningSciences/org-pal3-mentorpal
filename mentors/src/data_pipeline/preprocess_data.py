@@ -4,17 +4,18 @@ import os
 import fnmatch
 import pandas as pd
 
+import constants
 import ibm_transcript_service as transcript_service
 import utils
 
 
-TRANSCRIPT_FILE = utils.TRANSCRIPT_FILE
-VIDEO_FILE = utils.VIDEO_FILE
-AUDIO_FILE = utils.AUDIO_FILE
-TIMESTAMP_FILE = utils.TIMESTAMP_FILE
-FILENAME = utils.DATA_FILENAME
-SESSION_OUTPUT = utils.SESSION_OUTPUT
-AUDIOCHUNKS = utils.AUDIOCHUNKS
+TRANSCRIPT_FILE = constants.TRANSCRIPT_FILE
+VIDEO_FILE = constants.VIDEO_FILE
+AUDIO_FILE = constants.AUDIO_FILE
+TIMESTAMP_FILE = constants.TIMESTAMP_FILE
+FILENAME = constants.DATA_FILENAME
+SESSION_OUTPUT = constants.SESSION_OUTPUT
+AUDIOCHUNKS = constants.AUDIOCHUNKS
 
 """
 This script manages the data preprocessing stage of our pipeline. The entrypoint

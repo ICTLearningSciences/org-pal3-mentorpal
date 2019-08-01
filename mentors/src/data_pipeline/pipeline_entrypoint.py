@@ -2,6 +2,7 @@ import argparse
 import os
 import requests
 
+import constants
 import preprocess_data
 import post_process_data
 import transcript_adapter
@@ -10,13 +11,13 @@ import utils
 """
 This file serves as the entrypoint for the mentor panel video processing pipeline
 """
-MENTOR_BUILD = utils.MENTOR_BUILD
-MENTOR_DATA = utils.MENTOR_DATA
-SESSION_DATA = utils.SESSION_DATA
-DATA_FILENAME = utils.DATA_FILENAME
-VIDEO_FILE = utils.VIDEO_FILE
-AUDIO_FILE = utils.AUDIO_FILE
-TIMESTAMP_FILE = utils.TIMESTAMP_FILE
+MENTOR_BUILD = constants.MENTOR_BUILD
+MENTOR_DATA = constants.MENTOR_DATA
+SESSION_DATA = constants.SESSION_DATA
+DATA_FILENAME = constants.DATA_FILENAME
+VIDEO_FILE = constants.VIDEO_FILE
+AUDIO_FILE = constants.AUDIO_FILE
+TIMESTAMP_FILE = constants.TIMESTAMP_FILE
 ERR_MISSING_FILE = "ERROR: Missing {} file for session {} part {}"
 ERR_NO_URL = "ERROR: Data files for {} don't exist locally and url is not provided"
 
