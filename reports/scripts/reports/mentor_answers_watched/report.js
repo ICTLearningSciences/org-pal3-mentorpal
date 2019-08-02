@@ -19,6 +19,7 @@ function toQuesMentorResult(statements, sessId) {
       'confidence',
       'mentor',
       'question_text',
+      'question',
       'question_index',
     ]);
     return {
@@ -31,7 +32,9 @@ function toQuesMentorResult(statements, sessId) {
       question_index:
         accResult.question_index || curStMentorpalVals.question_index,
       question_text:
-        accResult.question_text || curStMentorpalVals.question_text,
+        accResult.question_text ||
+        curStMentorpalVals.question_text ||
+        curStMentorpalVals.question,
       resource_id: accResult.resource_id || getObjectId(curStmt),
       session_id: sessId,
       user_domain: accResult.user_domain || getUserDomain(curStmt),
