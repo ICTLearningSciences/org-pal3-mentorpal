@@ -107,6 +107,7 @@ function getUserName(statement) {
 }
 
 function queryStatements(params) {
+  console.log(`queryStatements with params ${JSON.stringify(params, null, 2)}`);
   return new Promise((resolve, reject) => {
     lrs.queryStatements({
       params: params,

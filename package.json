@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "- [Data Prep](README_dataprep.md)  - [Testing and training checkpoints](checkpoint/README.md)  - [Deploying to Elastic Beanstalk](ebs/README.md)",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "fs-extra": "^8.1.0"
+  },
   "devDependencies": {
     "prettier": "^1.18.2"
   },
