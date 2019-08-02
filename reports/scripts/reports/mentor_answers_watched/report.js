@@ -28,7 +28,7 @@ function toQuesMentorResult(statements, sessId) {
       //   qsAcc.answer_duration || curStMentorpalVals.answer_duration,
       answer_text: accResult.answer_text || curStMentorpalVals.answer_text,
       mentor: accResult.mentor || curStMentorpalVals.mentor,
-      question_index: 
+      question_index:
         accResult.question_index || curStMentorpalVals.question_index,
       question_text:
         accResult.question_text || curStMentorpalVals.question_text,
@@ -41,7 +41,6 @@ function toQuesMentorResult(statements, sessId) {
   }, {});
   return result;
 }
-
 
 async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
   const statements = await xapi.queryXapi({ since });
@@ -57,19 +56,27 @@ async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
   const result = Object.getOwnPropertyNames(sessQuesBySessId).reduce(
     (accResult, curSessId) => {
       const sessStmtsByQuestionIx = sessQuesBySessId[curSessId];
-      const sessResults = sessStmtsByQuestionIx.reduce((accSessResults, quesStmts) => {
-        if (!Array.isArray(quesStmts) || quesStmts.length == 0) {
-          return accSessResults;
-        }
-        const byMentor = groupStatementsByMentor(quesStmts);
+      const sessResults = sessStmtsByQuestionIx.reduce(
+        (accSessResults, quesStmts) => {
+          if (!Array.isArray(quesStmts) || quesStmts.length == 0) {
+            return accSessResults;
+          }
+          const byMentor = groupStatementsByMentor(quesStmts);
 
-        const sessQuesMentorResults = Object.getOwnPropertyNames(byMentor).reduce((allMentors, curMentor) => {
-          const curMentorResult = toQuesMentorResult(byMentor[curMentor], curSessId)
-          return [...allMentors, curMentorResult];
-        }, []);
+          const sessQuesMentorResults = Object.getOwnPropertyNames(
+            byMentor
+          ).reduce((allMentors, curMentor) => {
+            const curMentorResult = toQuesMentorResult(
+              byMentor[curMentor],
+              curSessId
+            );
+            return [...allMentors, curMentorResult];
+          }, []);
 
-        return [...accSessResults, ...sessQuesMentorResults];
-      }, []);
+          return [...accSessResults, ...sessQuesMentorResults];
+        },
+        []
+      );
       return [...accResult, ...sessResults];
     },
     []
