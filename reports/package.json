@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "npx mocha --full-trace --recursive --reporter spec",
-    "report": "node scripts/report"
+    "report:query-xapi": "node scripts/query-xapi"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "commander": "^2.20.0",
     "dotenv": "^8.0.0",
     "jsonpath": "^1.0.2",
     "tincanjs": "^0.50.0"
