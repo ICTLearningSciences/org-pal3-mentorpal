@@ -14,6 +14,7 @@
     "commander": "^2.20.0",
     "dotenv": "^8.0.0",
     "fs-extra": "^8.1.0",
+    "json2csv": "^4.5.2",
     "jsonpath": "^1.0.2",
     "path": "^0.12.7",
     "tincanjs": "^0.50.0"

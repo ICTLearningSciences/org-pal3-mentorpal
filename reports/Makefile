@@ -6,20 +6,27 @@ clean:
 	rm -rf report
 
 .SECONDARY:
-report/mentor-answered-watched/since-%/result.json: report/mentor-answered-watched/since-%/xapi-statements.json
-	mkdir -p report/mentor-answered-watched/since-$*
-	npm run report:xapi2json -- \
-		--dir=report/mentor-answered-watched/since-$*
-
-.SECONDARY:
 report/mentor-answered-watched/since-%/xapi-statements.json:
 	mkdir -p report/mentor-answered-watched/since-$*
 	npm run report:query-xapi -- \
 		--since=$* \
 		--output=report/mentor-answered-watched/since-$*/xapi-statements.json
+
+
+.SECONDARY:
+report/mentor-answered-watched/since-%/report.json: report/mentor-answered-watched/since-%/xapi-statements.json
+	mkdir -p report/mentor-answered-watched/since-$*
+	npm run report:xapi2json -- \
+		--dir=report/mentor-answered-watched/since-$*
+
+
+.SECONDARY:
+report/mentor-answered-watched/since-%/report.csv: report/mentor-answered-watched/since-%/report.json
+	npx json2csv -i report/mentor-answered-watched/since-$*/report.json > \
+		report/mentor-answered-watched/since-$*/report.csv
 	
 
-report/mentor-answered-watched/since-%: report/mentor-answered-watched/since-%/result.json
+report/mentor-answered-watched/since-%: report/mentor-answered-watched/since-%/report.csv
 	mkdir -p report/mentor-answered-watched/since-$*
 		
 
