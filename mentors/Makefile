@@ -80,7 +80,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			-v $(shell pwd)/data:/app/mounts/data \
-			$(DOCKER_IMAGE) -m $* -t -u $(MENTOR_SOURCE_VIDEOS)
+			$(DOCKER_IMAGE) --mentor $* --transcripts --url $(MENTOR_SOURCE_VIDEOS)
 
 
 # Adapts transcript files to questions_paraphrases_answers and prompts_utterances files
@@ -96,4 +96,4 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			--name $(DOCKER_CONTAINER) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			-v $(shell pwd)/data:/app/mounts/data \
-			$(DOCKER_IMAGE) -m $* -q -c
+			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data

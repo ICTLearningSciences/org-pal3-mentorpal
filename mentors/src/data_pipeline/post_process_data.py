@@ -233,18 +233,14 @@ class PostProcessData(object):
             metadata_df = pd.read_csv(open(metadata_file_path, "rb"))
             for i in range(0, len(metadata_df)):
                 if metadata_df.iloc[i]["Mentor Name"] == self.mentor_name:
-                    metadata_df.set_value(
-                        i, "Next Answer Number", str(self.answer_number)
-                    )
-                    metadata_df.set_value(
-                        i, "Next Utterance Number", str(self.utterance_number)
+                    metadata_df.at[i, "Next Answer Number"] = str(self.answer_number)
+                    metadata_df.at[i, "Next Utterance Number"] = str(
+                        self.utterance_number
                     )
                 # answer_corpus index is common for all mentors
-                metadata_df.set_value(
-                    i, "Answer Corpus Index", str(self.answer_corpus_index)
-                )
-                metadata_df.set_value(
-                    i, "Utterance Corpus Index", str(self.utterance_corpus_index)
+                metadata_df.at[i, "Answer Corpus Index"] = str(self.answer_corpus_index)
+                metadata_df.at[i, "Utterance Corpus Index"] = str(
+                    self.utterance_corpus_index
                 )
         else:
             metadata = {}
