@@ -1,4 +1,4 @@
-// const xapiQueryStatements = require('../utils/xapi');
+// const xapiQueryStatements = require('../xapi');
 
 // xapiQueryStatements({
 //   // verb: new TinCan.Verb({

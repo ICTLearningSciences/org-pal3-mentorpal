@@ -1,7 +1,7 @@
 require('dotenv').config();
 const TinCan = require('tincanjs');
 
-const queryStatements = require('./utils/xapi');
+const queryStatements = require('./xapi');
 
 queryStatements({
   // verb: new TinCan.Verb({

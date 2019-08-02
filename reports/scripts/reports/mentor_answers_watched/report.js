@@ -8,7 +8,7 @@ const {
   groupStatementsByMentor,
   statementsToSessions,
   statementMentorResponseValue,
-} = require('../../utils/xapi');
+} = require('../../xapi');
 
 function toQuesMentorResult(statements, sessId) {
   const result = statements.reduce((accResult, curStmt) => {
