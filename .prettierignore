@@ -6,3 +6,4 @@ public
 static
 build
 .venv
+reports/report
