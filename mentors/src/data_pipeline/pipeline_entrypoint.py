@@ -112,7 +112,7 @@ def download_mentor_data(url, mentor):
 
         while part_found:
             part += 1
-            print(f"INFO: Downloading session {session} part {part} data")
+            print(f"INFO: Downloading session {session} part {part} data (if exists)")
             t_session_flag, t_part_flag = download_session_data(
                 url, mentor, session, part, TIMESTAMP_FILE
             )
