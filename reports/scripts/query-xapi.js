@@ -5,13 +5,11 @@ const fs = require('fs-extra');
 
 const { queryStatements } = require('./xapi');
 
-
 program
   .version('1.0.0')
   .option('-s, --since [since]', 'since')
   .option('-o, --output [output]', 'output')
   .parse(process.argv);
-
 
 function queryAll(queries) {
   return new Promise((resolve, reject) => {
