@@ -44,6 +44,19 @@ function groupStatementsByQuestionIndex(statements) {
   }, []);
 }
 
+function groupStatementsByMentor(statements) {
+  return statements.reduce((acc, cur) => {
+    const mentor = jsonpath.value(cur, '$..result.extensions..mentor');
+    // console.log('questionix=' + qix);
+    if (!mentor) {
+      return acc;
+    }
+    acc[mentor] = Array.isArray(acc[mentor]) ? acc[mentor] : [];
+    acc[mentor].push(cur);
+    return acc;
+  }, {});
+}
+
 function statementMentorResponseValue(statement, propertyOrProps) {
   const mpresponse = 'mentorpal_response';
   const st = JSON.parse(
@@ -80,19 +93,19 @@ function getQuestionText(statement) {
 }
 
 function getObjectId(statement) {
-  return jsonpath.value(statement, '$.object.id')
+  return jsonpath.value(statement, '$.object.id');
 }
 
 function getUserDomain(statement) {
-  return jsonpath.value(statement, '$.actor.account.homePage')
+  return jsonpath.value(statement, '$.actor.account.homePage');
 }
 
 function getUserId(statement) {
-  return jsonpath.value(statement, '$.actor.account.name')
+  return jsonpath.value(statement, '$.actor.account.name');
 }
 
 function getUserName(statement) {
-  return jsonpath.value(statement, '$.actor.name')
+  return jsonpath.value(statement, '$.actor.name');
 }
 
 function queryStatements(params) {
@@ -126,6 +139,7 @@ module.exports = {
   getUserId,
   getUserName,
   groupStatementsByQuestionIndex,
+  groupStatementsByMentor,
   queryStatements,
   statementMentorResponseValue,
   statementsToSessions,
