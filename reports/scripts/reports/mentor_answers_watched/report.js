@@ -91,4 +91,5 @@ async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
 
 module.exports = {
   runReport,
+  statementsToReportJson
 };
