@@ -42,8 +42,7 @@ function toQuesMentorResult(statements, sessId) {
   return result;
 }
 
-async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
-  const statements = await xapi.queryXapi({ since });
+function statementsToReportJson(statements) {
   const sessionsById = statementsToSessions(statements);
   // console.log(`sessionsById=${JSON.stringify(sessionsById, null, 2)}`);
   const sessQuesBySessId = Object.getOwnPropertyNames(sessionsById).reduce(
@@ -81,11 +80,13 @@ async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
     },
     []
   );
-
-  console.log('--- RESULT START ---');
-  console.log(JSON.stringify(result, null, 2));
-  console.log('--- RESULT END ---');
   return result;
+}
+
+async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
+  const statements = await xapi.queryXapi({ since });
+  const reportJson = statementsToReportJson(statements);
+  return reportJson;
 }
 
 module.exports = {

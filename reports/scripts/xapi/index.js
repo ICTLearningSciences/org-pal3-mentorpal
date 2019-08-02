@@ -86,8 +86,6 @@ function statementMentorResponseValue(statement, propertyOrProps) {
   }, {});
 }
 
-function _statementMentorResponseValue(statement, property) {}
-
 function getQuestionText(statement) {
   return statementMentorResponseValue(statement, 'question_text');
 }
