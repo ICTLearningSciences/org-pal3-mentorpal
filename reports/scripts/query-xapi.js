@@ -23,25 +23,6 @@ function queryAll(queries) {
   });
 }
 
-// queryStatements({
-//   // verb: new TinCan.Verb({
-//   //   id: 'https://mentorpal.org/xapi/verb/asked',
-//   // }),
-//   activity: 'https://dev.pal3.org/xapi/resources/5d1bc549becb4e208dd0188b',
-//   since: program.since,
-// })
-//   .then(statements => {
-//     if (program.output) {
-//       console.log(`writing to ${program.output}`);
-//       fs.writeFileSync(program.output, JSON.stringify(statements, null, 2));
-//       return;
-//     }
-//     console.log(`${JSON.stringify(statements, null, 2)}`);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//   });
-
 queryAll([
   { verb: 'https://mentorpal.org/xapi/verb/asked', since: program.since },
   { verb: 'https://mentorpal.org/xapi/verb/answered', since: program.since },
