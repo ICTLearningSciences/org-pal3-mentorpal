@@ -113,7 +113,8 @@ export const faveMentor = mentor_id => ({
   id: mentor_id,
 })
 
-const currentQuestionIndex = state => Array.isArray(state.questions_asked)? state.questions_asked.length: -1;
+const currentQuestionIndex = state =>
+  Array.isArray(state.questions_asked) ? state.questions_asked.length : -1
 
 const xapiSessionState = state => {
   return {
@@ -123,7 +124,7 @@ const xapiSessionState = state => {
     mentor_faved: state.faved_mentor,
     mentor_next: state.next_mentor,
     questions_asked: state.questions_asked,
-    question_index: currentQuestionIndex(state)
+    question_index: currentQuestionIndex(state),
   }
 }
 
@@ -144,7 +145,7 @@ export const sendQuestion = question => async (dispatch, getState) => {
         extensions: {
           "https://mentorpal.org/xapi/activity/extensions/actor-question": {
             text: question,
-            question_index: currentQuestionIndex(getState()) + 1
+            question_index: currentQuestionIndex(getState()) + 1,
           },
         },
       },
