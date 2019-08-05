@@ -1,7 +1,43 @@
-Data Preparation
+### Classification Data Pipeline Info
 ---------------
-To obtain transcripts for a particular video, do the following:
+#### Pipeline Overview
+The classification data pipeline can be used to create all data needed for a usable
+mentor from raw recording files.
 
+As a prerequisite of running the pipeline the following files are needed for each
+part of each session. These files should be uploaded into the `mentorpal-source-videos`
+S3 bucket in `usc-ict-aws-mentor-pal` AWS account:
+- {mentor}/data/recordings/session{session#}/part{part#}_video.mp4
+- {mentor}/data/recordings/session{session#}/part{part#}_audio.wav
+- {mentor}/data/recordings/session{session#}/part{part#}_transcripts.csv
+
+After running the pipeline the following files will be generated:
+- {mentor}/data/classifier_data.csv
+- {mentor}/data/metadata.csv
+- {mentor}/data/topics.csv
+- {mentor}/data/utterance_data.csv
+
+Additionally the following intermediate build files will be generated. These can
+be used to debug different parts of a pipeline
+- {mentor}/build/recordings/session{session#}/out/audiochunks/*
+- {mentor}/build/recordings/session{session#}/out/transcript.csv
+- {mentor}/data/questions_paraphrases_answers.csv
+- {mentor}/data/prompts_utterances.csv
+
+#### Pipeline Usage
+Pipeline usage is fully documented in the Makefile.
+- `make {mentor}/data` runs a full build of {mentor} if data folder is not present
+- `make {mentor}/data/update` runs a full build of {mentor} regardless of whether data folder is present
+- `make {mentor}/build` downloads and preprocesses {mentor} data if build folder is not present
+- `make {mentor}/build/update` downloads and preprocesses {mentor} data  regardless of whether build folder is present
+- `make shell` opens an interactive terminal in the data pipeline docker image.
+Useful for debugging these scripts
+- `make docker-build` rebuilds the data pipeline docker container. Useful for developing these scripts.
+- `make clean` removes all build data for all mentors
+- `make clean/{mentor}` removes build data for {mentor}
+
+##### Outdated Documentation -> Provides insights on scripts but unreliable
+To obtain transcripts for a particular video, do the following:
   1. After the interview is done, watch it fully and note down the start and end timestamps for each question. Format: HH:MM:SS. Download the timestamps sheet and video. Look at existing timestamp sheets for exact format of the sheet.
   2. Place the video and the timestamps file inside **recordings/session1/**, **recordings/session2/**, etc.
   3. The video must be named as **session1part1.mp4**. The timestamps file must be **session1part1_timestamps.csv**. The session number and part number will change based on what you have. If a session has only one part, then it will be session3part1.mp4, session3part1_timestamps.csv. Part numbering begins at 1.
@@ -29,3 +65,5 @@ To obtain transcripts for a particular video, do the following:
 
   **If using LibreOffice Calc, the default encoding seems to be UTF-8. Hence, it should be safe to open the csv/xlsx files in LibreOffice**
 
+
+-----
