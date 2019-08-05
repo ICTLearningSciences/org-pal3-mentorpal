@@ -1,8 +1,5 @@
 ## Classification Data Pipeline Info
 ---------------
-### Pipeline Overview
-The classification data pipeline can be used to create all data needed for a usable
-mentor from raw recording files.
 
 ### Quick Start
 
@@ -19,6 +16,11 @@ below), we can use the following commands to build a classifier for the mentor:
 ##### Train {mentor} Classifier (after the data folder has been generated)
 - `cd ../checkpoint`
 - `make checkpoint-train/mentor/{mentor}`
+
+---------------
+### Pipeline Overview
+The classification data pipeline can be used to create all data needed for a usable
+mentor from raw recording files.
 
 ### Pipeline Prerequisites
 As a prerequisite of running the pipeline the following files are needed for each
