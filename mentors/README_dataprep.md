@@ -40,6 +40,7 @@ Useful for debugging these scripts
 ##### Generating Timestamp Files
 After the interview is done, watch it fully and note down the start and end timestamps
 for each question. Timestamp files should be in a CSV file of the following format:
+
 | Notes    | Answer/Utterance | Question | Response start       | Response end         |
 |----------|------------------|----------|----------------------|----------------------|
 | (string) | (char: A/U)      | (string) | (timestamp HH:MM:SS) | (timestamp HH:MM:SS) |
