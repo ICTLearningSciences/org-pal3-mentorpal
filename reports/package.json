@@ -6,7 +6,8 @@
   "scripts": {
     "test": "npx mocha --full-trace --recursive --reporter spec",
     "report:query-xapi": "node scripts/query-xapi",
-    "report:xapi2json": "node scripts/xapi2json"
+    "report:xapi2json": "node scripts/xapi2json",
+    "report:json2csv": "node scripts/json2csv"
   },
   "author": "",
   "license": "ISC",
