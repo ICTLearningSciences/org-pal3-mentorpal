@@ -24,23 +24,23 @@ below), we can use the following commands to build a classifier for the mentor:
 As a prerequisite of running the pipeline the following files are needed for each
 part of each session. These files should be uploaded into the `mentorpal-source-videos`
 S3 bucket in `usc-ict-aws-mentor-pal` AWS account:
-- {mentor}/data/recordings/session{session#}/part{part#}_video.mp4
-- {mentor}/data/recordings/session{session#}/part{part#}_audio.wav
-- {mentor}/data/recordings/session{session#}/part{part#}_timestamps.csv
+- `{mentor}/data/recordings/session{session#}/part{part#}_video.mp4`
+- `{mentor}/data/recordings/session{session#}/part{part#}_audio.wav`
+- `{mentor}/data/recordings/session{session#}/part{part#}_timestamps.csv`
 
 #### Pipeline Output
 After running the pipeline the following files will be generated:
-- {mentor}/data/classifier_data.csv
-- {mentor}/data/metadata.csv
-- {mentor}/data/topics.csv
-- {mentor}/data/utterance_data.csv
+- `{mentor}/data/classifier_data.csv`
+- `{mentor}/data/metadata.csv`
+- `{mentor}/data/topics.csv`
+- `{mentor}/data/utterance_data.csv`
 
 Additionally the following intermediate build files will be generated. These can
 be used to debug different parts of a pipeline
-- {mentor}/build/recordings/session{session#}/out/audiochunks/*
-- {mentor}/build/recordings/session{session#}/out/transcript.csv
-- {mentor}/data/questions_paraphrases_answers.csv
-- {mentor}/data/prompts_utterances.csv
+- `{mentor}/build/recordings/session{session#}/out/audiochunks/*`
+- `{mentor}/build/recordings/session{session#}/out/transcript.csv`
+- `{mentor}/data/questions_paraphrases_answers.csv`
+- `{mentor}/data/prompts_utterances.csv`
 
 #### Pipeline Usage
 Pipeline usage is fully documented in the Makefile.
@@ -75,4 +75,4 @@ our transcript service's (currently IBM Watson) interpretation of the audiochunk
 These may not be completely accurate, especially with proper nouns. Thus, to ensure
 accuracy, users may want to manually edit these files. Users have the option to
 edit the mentor's responses, topics, tags and paraphrases in the following files:
-- Edit {mentor}/data/questions_paraphrases_answers.csv and {mentor}/data/prompts_utterances.csv after running `make {mentor}/data`
+- Edit `{mentor}/data/questions_paraphrases_answers.csv` and `{mentor}/data/prompts_utterances.csv` after running `make {mentor}/data`
