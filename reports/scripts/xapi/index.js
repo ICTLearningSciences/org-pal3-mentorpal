@@ -1,4 +1,3 @@
-require('dotenv').config();
 const jsonpath = require('jsonpath');
 const TinCan = require('tincanjs');
 
@@ -13,12 +12,23 @@ function requireEnv(name) {
 }
 // TinCan.DEBUG = true;
 
-const lrs = new TinCan.LRS({
-  endpoint: requireEnv('XAPI_ENDPOINT'),
-  username: requireEnv('XAPI_USERNAME'),
-  password: requireEnv('XAPI_PASSWORD'),
-  allowFail: false,
-});
+let _lrs;
+const lrs = () => {
+  if (_lrs instanceof TinCan.LRS) {
+    return _lrs;
+  }
+  // normally require `dotenv` as early as possible,
+  // but here we want to support test envs
+  // that mock the LRS server and have no credentials
+  require('dotenv').config();
+  _lrs = new TinCan.LRS({
+    endpoint: requireEnv('XAPI_ENDPOINT'),
+    username: requireEnv('XAPI_USERNAME'),
+    password: requireEnv('XAPI_PASSWORD'),
+    allowFail: false,
+  });
+  return _lrs;
+};
 
 function statementsToSessions(statements) {
   return statements.reduce((acc, cur) => {
@@ -109,7 +119,7 @@ function getUserName(statement) {
 function queryStatements(params) {
   console.log(`queryStatements with params ${JSON.stringify(params, null, 2)}`);
   return new Promise((resolve, reject) => {
-    lrs.queryStatements({
+    lrs().queryStatements({
       params: params,
       callback: function(err, sr) {
         if (err) {
