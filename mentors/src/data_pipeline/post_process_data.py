@@ -284,15 +284,10 @@ def build_post_processing_data(args):
 
     # store answer video chunks in this folder.
     answer_chunks = os.path.join(mentor_data, ANSWER_VIDEOS)
-    # Create answer_videos directory if it doesn't exist
-    if not os.path.isdir(answer_chunks):
-        os.mkdir(answer_chunks)
-
+    os.makedirs(answer_chunks, exist_ok=True)
     # store prompts and repeat-after-me videos in this folder
     utterance_chunks = os.path.join(mentor_data, UTTERANCE_VIDEOS)
-    # Create utterance_videos directory if it doesn't exist
-    if not os.path.isdir(utterance_chunks):
-        os.mkdir(utterance_chunks)
+    os.makedirs(utterance_chunks, exist_ok=True)
 
     # Load older metadata, to see where to continue numbering answers and utterances from, for the current mentor
     metadata_file = os.path.join(mentor_data, METADATA)
