@@ -8,6 +8,13 @@ import pandas as pd
 import constants
 import utils
 
+
+"""
+This script will generate classifier data, utterance data, and metadata used to
+train a classifier for a mentor. This script requires that the build folder with
+mentor data has been generated.
+"""
+
 MENTOR_DATA = constants.MENTOR_DATA
 MENTOR_BUILD = constants.MENTOR_BUILD
 SESSION_DATA = constants.SESSION_DATA
