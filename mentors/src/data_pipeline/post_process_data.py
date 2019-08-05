@@ -353,15 +353,16 @@ def build_post_processing_data(args):
         print("INFO: Processing session {}".format(session))
         number_of_parts = len(fnmatch.filter(os.listdir(session_path), "*.mp4"))
         for j in range(number_of_parts):
+            part = j + 1
             video_file = os.path.join(
-                session_path, DATA_FILENAME.format(j + 1, VIDEO_FILE)
+                session_path, DATA_FILENAME.format(part, VIDEO_FILE)
             )
             timestamp_file = os.path.join(
-                session_path, DATA_FILENAME.format(j + 1, TIMESTAMP_FILE)
+                session_path, DATA_FILENAME.format(part, TIMESTAMP_FILE)
             )
 
             ppd.get_video_chunks(
-                video_file, timestamp_file, args.mentor, int(session), j + 1
+                video_file, timestamp_file, args.mentor, session, part
             )
 
         session += 1
