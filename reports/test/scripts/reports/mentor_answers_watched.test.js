@@ -47,17 +47,20 @@ describe('reports/mentor_answers_watched', async () => {
             question_text: 'What makes a good leader?',
             resource_id:
               'https://dev.pal3.org/xapi/resources/5d1bc549becb4e208dd0188b',
+            timestamp_asked: '2019-07-31T19:05:24.649Z',
+            timestamp_answered: '2019-07-31T19:05:39.740Z',
           },
           {
             ...user_sessions[0],
-            question_index: 0,
-            question_text: 'What makes a good leader?',
-            mentor: 'carlos',
-            mentor_list: mentor_list,
+            answer_confidence: -0.6764202566510205,
             answer_text:
               "The most important decisions I feel that I make throughout the day as a leader is the well being of my support, the team that we currently work with and their opportunities to continue to advance.  Some of our contracts end and then they have to either move on or we try to find other positions for them, and we're very successful in doing that, and you build relationships with your team, you wanna make sure of their well being not only professional but also personal.",
-            answer_confidence: -0.6764202566510205,
-            // timestamp_asked: 't1',
+            mentor: 'carlos',
+            mentor_list: mentor_list,
+            question_index: 0,
+            question_text: 'What makes a good leader?',
+            timestamp_answered: '2019-07-31T19:05:34.985Z',
+            timestamp_asked: '2019-07-31T19:05:24.649Z',
             // timestamp_answer_received: 't2',
             // timestamp_playback_start: 't3',
             // timestamp_playback_end: 't3',
@@ -74,10 +77,8 @@ describe('reports/mentor_answers_watched', async () => {
             question_text: 'What makes a good leader?',
             resource_id:
               'https://dev.pal3.org/xapi/resources/5d1bc549becb4e208dd0188b',
-            session_id: '57e21ad1-81cc-4746-9b31-25a26f2a377b',
-            user_domain: 'https://dev.pal3.org/xapi/users',
-            user_id: '5d3f924240631b0013f723dc',
-            user_name: 'larry201907291740',
+            timestamp_answered: '2019-07-31T19:05:30.040Z',
+            timestamp_asked: '2019-07-31T19:05:24.649Z',
           },
           {
             ...user_sessions[0],
@@ -90,6 +91,8 @@ describe('reports/mentor_answers_watched', async () => {
             question_text: 'What makes a good leader?',
             resource_id:
               'https://dev.pal3.org/xapi/resources/5d1bc549becb4e208dd0188b',
+            timestamp_answered: '2019-07-31T19:05:24.767Z',
+            timestamp_asked: '2019-07-31T19:05:24.649Z',
           },
         ],
       },

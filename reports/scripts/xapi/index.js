@@ -118,6 +118,35 @@ function statementExtValues(statement, { context, result } = {}) {
   };
 }
 
+function timestampOfStatementWithVerb(statementList, verb, ord = 1) {
+  const list = statementList.filter(
+    s => jsonpath.value(s, '$.verb.id') === verb
+  );
+  if (!Array.isArray(list) || list.length < 1) {
+    return undefined;
+  }
+  const st = list.sort((a, b) =>
+    a.timestamp > b.timestamp ? 1 * ord : -1 * ord
+  )[0];
+  return st.timestamp;
+}
+
+function timestampAsked(statementList, ord = 1) {
+  return timestampOfStatementWithVerb(
+    statementList,
+    'https://mentorpal.org/xapi/verb/asked',
+    ord
+  );
+}
+
+function timestampAnswered(statementList, ord = 1) {
+  return timestampOfStatementWithVerb(
+    statementList,
+    'https://mentorpal.org/xapi/verb/answered',
+    ord
+  );
+}
+
 function getQuestionText(statement) {
   return statementResultExtValues(statement, 'question_text');
 }
@@ -175,4 +204,7 @@ module.exports = {
   statementExtValues,
   statementResultExtValues,
   statementsToSessions,
+  timestampOfStatementWithVerb,
+  timestampAnswered,
+  timestampAsked,
 };

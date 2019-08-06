@@ -9,6 +9,8 @@ const {
   groupStatementsByMentor,
   statementsToSessions,
   statementExtValues,
+  timestampAnswered,
+  timestampAsked,
 } = require('../../xapi');
 
 function toQuesMentorResult(statements, sessId) {
@@ -71,14 +73,16 @@ function statementsToReportJson(statements) {
             return accSessResults;
           }
           const byMentor = groupStatementsByMentor(quesStmts);
-
+          const tsAsked = timestampAsked(quesStmts);
           const sessQuesMentorResults = Object.getOwnPropertyNames(
             byMentor
           ).reduce((allMentors, curMentor) => {
-            const curMentorResult = toQuesMentorResult(
-              byMentor[curMentor],
-              curSessId
-            );
+            const tsAnswered = timestampAnswered(byMentor[curMentor]);
+            const curMentorResult = {
+              ...toQuesMentorResult(byMentor[curMentor], curSessId),
+              timestamp_asked: tsAsked,
+              timestamp_answered: tsAnswered,
+            };
             return [...allMentors, curMentorResult];
           }, []);
 
