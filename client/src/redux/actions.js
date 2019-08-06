@@ -122,6 +122,10 @@ const xapiSessionState = state => {
     question_current: state.current_question,
     topic_current: state.current_topic,
     mentor_faved: state.faved_mentor,
+    mentor_list:
+      state.mentors_by_id && typeof (state.mentors_by_id === "object")
+        ? Object.getOwnPropertyNames(state.mentors_by_id).sort()
+        : [],
     mentor_next: state.next_mentor,
     questions_asked: state.questions_asked,
     question_index: currentQuestionIndex(state),
