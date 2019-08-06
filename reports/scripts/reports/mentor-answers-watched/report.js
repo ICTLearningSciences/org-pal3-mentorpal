@@ -8,21 +8,41 @@ const {
   groupStatementsByQuestionIndex,
   groupStatementsByMentor,
   statementsToSessions,
-  statementMentorResponseValue,
+  statementExtValues,
+  timestampAnswered,
+  timestampAsked,
 } = require('../../xapi');
+
+const CSV_FIELDS = [
+  'answer_confidence',
+  'answer_text',
+  'mentor',
+  'mentor_list',
+  'question_index',
+  'question_text',
+  'resource_id',
+  'session_id',
+  'timestamp_answered',
+  'timestamp_asked',
+  'user_domain',
+  'user_id',
+  'user_name',
+];
 
 function toQuesMentorResult(statements, sessId) {
   const result = statements.reduce((accResult, curStmt) => {
-    // console.log(`curStmt[${i}]=${JSON.stringify(curStmt, null, 2)}`);
-    const curStMentorpalVals = statementMentorResponseValue(curStmt, [
-      'answer_duration',
-      'answer_text',
-      'confidence',
-      'mentor',
-      'question_text',
-      'question',
-      'question_index',
-    ]);
+    const curStMentorpalVals = statementExtValues(curStmt, {
+      context: ['mentor_list'],
+      result: [
+        'answer_duration',
+        'answer_text',
+        'confidence',
+        'mentor',
+        'question_text',
+        'question',
+        'question_index',
+      ],
+    });
     return {
       answer_confidence:
         accResult.answer_confidence || curStMentorpalVals.confidence,
@@ -30,6 +50,11 @@ function toQuesMentorResult(statements, sessId) {
       //   qsAcc.answer_duration || curStMentorpalVals.answer_duration,
       answer_text: accResult.answer_text || curStMentorpalVals.answer_text,
       mentor: accResult.mentor || curStMentorpalVals.mentor,
+      mentor_list:
+        typeof curStMentorpalVals.mentor_list === 'string' &&
+        curStMentorpalVals.mentor_list.length > 0
+          ? curStMentorpalVals.mentor_list
+          : (curStMentorpalVals.mentor_list || []).sort().join(','),
       question_index:
         accResult.question_index || curStMentorpalVals.question_index,
       question_text:
@@ -48,7 +73,6 @@ function toQuesMentorResult(statements, sessId) {
 
 function statementsToReportJson(statements) {
   const sessionsById = statementsToSessions(statements);
-  // console.log(`sessionsById=${JSON.stringify(sessionsById, null, 2)}`);
   const sessQuesBySessId = Object.getOwnPropertyNames(sessionsById).reduce(
     (acc, cur) => {
       acc[cur] = groupStatementsByQuestionIndex(sessionsById[cur]);
@@ -65,14 +89,16 @@ function statementsToReportJson(statements) {
             return accSessResults;
           }
           const byMentor = groupStatementsByMentor(quesStmts);
-
+          const tsAsked = timestampAsked(quesStmts);
           const sessQuesMentorResults = Object.getOwnPropertyNames(
             byMentor
           ).reduce((allMentors, curMentor) => {
-            const curMentorResult = toQuesMentorResult(
-              byMentor[curMentor],
-              curSessId
-            );
+            const tsAnswered = timestampAnswered(byMentor[curMentor]);
+            const curMentorResult = {
+              ...toQuesMentorResult(byMentor[curMentor], curSessId),
+              timestamp_asked: tsAsked,
+              timestamp_answered: tsAnswered,
+            };
             return [...allMentors, curMentorResult];
           }, []);
 
@@ -87,22 +113,9 @@ function statementsToReportJson(statements) {
   return result;
 }
 
-const FIELDS = [
-  'answer_confidence',
-  'answer_text',
-  'mentor',
-  'question_index',
-  'question_text',
-  'resource_id',
-  'session_id',
-  'user_domain',
-  'user_id',
-  'user_name',
-];
-
 function reportJsonToCsv(reportJson) {
   try {
-    const csv = parse(reportJson, { fields: FIELDS });
+    const csv = parse(reportJson, { fields: CSV_FIELDS });
     return csv;
   } catch (err) {
     console.error(err);

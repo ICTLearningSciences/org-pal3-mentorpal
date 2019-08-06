@@ -44,7 +44,6 @@ function groupStatementsByQuestionIndex(statements) {
     const qix = Number(
       jsonpath.value(sqCur, '$..context.extensions..question_index')
     );
-    // console.log('questionix=' + qix);
     if (isNaN(qix)) {
       return sqAcc;
     }
@@ -57,7 +56,6 @@ function groupStatementsByQuestionIndex(statements) {
 function groupStatementsByMentor(statements) {
   return statements.reduce((acc, cur) => {
     const mentor = jsonpath.value(cur, '$..result.extensions..mentor');
-    // console.log('questionix=' + qix);
     if (!mentor) {
       return acc;
     }
@@ -67,23 +65,20 @@ function groupStatementsByMentor(statements) {
   }, {});
 }
 
-function statementMentorResponseValue(statement, propertyOrProps) {
-  const mpresponse = 'mentorpal_response';
+function _statementExtValues(statement, extProp, propertyOrProps) {
+  // we won't be able to use jsonpath to search for XAPI IRI props,
+  // which are urls, so we need to repalce the prop first
+  const extPropReplacement = '___ext_prop_replacement___';
   const st = JSON.parse(
-    JSON.stringify(statement).replace(
-      'https://mentorpal.org/xapi/activity/extensions/mentor-response',
-      mpresponse
-    )
+    JSON.stringify(statement).replace(extProp, extPropReplacement)
   );
   if (typeof propertyOrProps === 'string') {
-    return jsonpath.value(st, `$..${mpresponse}.${property}`);
+    return jsonpath.value(st, `$..${extPropReplacement}.${property}`);
   }
   if (!Array.isArray(propertyOrProps)) {
-    throw new Error(
-      'statementMentorResponseValue arg propertyOrProps must be string or array'
-    );
+    throw new Error('arg propertyOrProps must be string or array');
   }
-  const responseObjArr = jsonpath.query(st, `$..${mpresponse}`);
+  const responseObjArr = jsonpath.query(st, `$..${extPropReplacement}`);
   if (!Array.isArray(responseObjArr) || responseObjArr.length === 0) {
     return {};
   }
@@ -96,8 +91,64 @@ function statementMentorResponseValue(statement, propertyOrProps) {
   }, {});
 }
 
+function statementResultExtValues(statement, propertyOrProps) {
+  return _statementExtValues(
+    statement,
+    'https://mentorpal.org/xapi/activity/extensions/mentor-response',
+    propertyOrProps
+  );
+}
+
+function statementContextMentorValues(statement, propertyOrProps) {
+  return _statementExtValues(
+    statement,
+    'https://mentorpal.org/xapi/context/extensions/session-state',
+    propertyOrProps
+  );
+}
+
+function statementExtValues(statement, { context, result } = {}) {
+  const contextVals = context
+    ? statementContextMentorValues(statement, context)
+    : {};
+  const resultVals = result ? statementResultExtValues(statement, result) : {};
+  return {
+    ...contextVals,
+    ...resultVals,
+  };
+}
+
+function timestampOfStatementWithVerb(statementList, verb, ord = 1) {
+  const list = statementList.filter(
+    s => jsonpath.value(s, '$.verb.id') === verb
+  );
+  if (!Array.isArray(list) || list.length < 1) {
+    return undefined;
+  }
+  const st = list.sort((a, b) =>
+    a.timestamp > b.timestamp ? 1 * ord : -1 * ord
+  )[0];
+  return st.timestamp;
+}
+
+function timestampAsked(statementList, ord = 1) {
+  return timestampOfStatementWithVerb(
+    statementList,
+    'https://mentorpal.org/xapi/verb/asked',
+    ord
+  );
+}
+
+function timestampAnswered(statementList, ord = 1) {
+  return timestampOfStatementWithVerb(
+    statementList,
+    'https://mentorpal.org/xapi/verb/answered',
+    ord
+  );
+}
+
 function getQuestionText(statement) {
-  return statementMentorResponseValue(statement, 'question_text');
+  return statementResultExtValues(statement, 'question_text');
 }
 
 function getObjectId(statement) {
@@ -117,7 +168,6 @@ function getUserName(statement) {
 }
 
 function queryStatements(params) {
-  console.log(`queryStatements with params ${JSON.stringify(params, null, 2)}`);
   return new Promise((resolve, reject) => {
     lrs().queryStatements({
       params: params,
@@ -150,6 +200,11 @@ module.exports = {
   groupStatementsByQuestionIndex,
   groupStatementsByMentor,
   queryStatements,
-  statementMentorResponseValue,
+  statementContextMentorValues,
+  statementExtValues,
+  statementResultExtValues,
   statementsToSessions,
+  timestampOfStatementWithVerb,
+  timestampAnswered,
+  timestampAsked,
 };

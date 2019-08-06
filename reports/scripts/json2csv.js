@@ -2,7 +2,7 @@ const path = require('path');
 const program = require('commander');
 const fs = require('fs-extra');
 
-const { reportJsonToCsv } = require('./reports/mentor_answers_watched/report');
+const { reportJsonToCsv } = require('./reports/mentor-answers-watched/report');
 
 program
   .version('1.0.0')
