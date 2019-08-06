@@ -228,6 +228,9 @@ def main():
         action="store_true",
         help="enable generation of transcripts",
     )
+    parser.add_argument(
+        "-v", "--videos", action="store_true", help="enable generation of videos"
+    )
     args = parser.parse_args()
 
     if args.audiochunks or args.transcripts:

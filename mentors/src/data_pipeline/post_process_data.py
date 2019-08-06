@@ -115,10 +115,8 @@ class PostProcessData(object):
         thread2 = Thread(target=ffmpeg_convert_mobile, args=(output_file,))
         thread2.start()
 
-    def get_video_chunks(
-        self, video_file, timestamps, mentor_name, session_number, part_number
-    ):
-        print(video_file, timestamps, mentor_name, session_number, part_number)
+    def get_video_chunks(self, video_file, timestamps, mentor, session, part, videos):
+        print(video_file, timestamps, mentor, session, part)
         text_type = []
         start_times = []
         end_times = []
@@ -144,9 +142,8 @@ class PostProcessData(object):
                 text_type[i] == "A"
                 and len(self.answer_corpus) > self.answer_corpus_index
             ):
-                answer_id = f"{self.mentor_name}_A{self.answer_number}_{session_number}_{part_number}"
-                # Uncomment for splitting video
-                # output_file = os.path.join(self.answer_chunks, answer_id + ".mp4")
+                answer_id = f"{mentor}_A{self.answer_number}_{session}_{part}"
+                output_file = os.path.join(self.answer_chunks, answer_id + ".mp4")
                 answer_sample["ID"] = answer_id
                 answer_sample["topics"] = ",".join(
                     [
@@ -154,7 +151,6 @@ class PostProcessData(object):
                         self.answer_corpus.iloc[self.answer_corpus_index]["Helpers"],
                     ]
                 )
-
                 if answer_sample["topics"][-1] == ",":
                     answer_sample["topics"] = answer_sample["topics"][:-1]
                 answer_sample["question"] = "{}\r\n".format(
@@ -180,9 +176,8 @@ class PostProcessData(object):
                 text_type[i] == "U"
                 and len(self.utterance_corpus) > self.utterance_corpus_index
             ):
-                utterance_id = f"{self.mentor_name}_U{self.utterance_number}_{session_number}_{part_number}"
-                # Uncomment for splitting video
-                # output_file = os.path.join(self.utterance_chunks, utterance_id + ".mp4")
+                utterance_id = f"{mentor}_U{self.utterance_number}_{session}_{part}"
+                output_file = os.path.join(self.utterance_chunks, utterance_id + ".mp4")
                 utterance_sample["ID"] = utterance_id
                 utterance_sample["utterance"] = self.utterance_corpus.iloc[
                     self.utterance_corpus_index
@@ -193,14 +188,11 @@ class PostProcessData(object):
                 self.utterance_corpus_index += 1
                 self.utterance_number += 1
                 self.utterance_data.append(utterance_sample)
-            """
-            TODO: Add flag for this
-            Uncomment this line when you want to get the actual cut answers. This takes a long time so this isn't needed
-            when testing the code for the other parts
-            """
-            # self.ffmpeg_split_video(
-            #     video_file, output_file, start_times[i], end_times[i]
-            # )
+
+            if videos:
+                self.ffmpeg_split_video(
+                    video_file, output_file, start_times[i], end_times[i]
+                )
 
     def write_data(self, mentor):
         """
@@ -362,7 +354,7 @@ def build_post_processing_data(args):
             )
 
             ppd.get_video_chunks(
-                video_file, timestamp_file, args.mentor, session, part
+                video_file, timestamp_file, args.mentor, session, part, args.videos
             )
 
         session += 1
