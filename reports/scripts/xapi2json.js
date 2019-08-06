@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 
 const {
   statementsToReportJson,
-} = require('./reports/mentor_answers_watched/report');
+} = require('./reports/mentor-answers-watched/report');
 
 program
   .version('1.0.0')
