@@ -161,6 +161,7 @@ class PostProcessData(object):
                     self.answer_corpus.iloc[self.answer_corpus_index]["Question"]
                 )
 
+                # Add all paraphrases to answer_sample object
                 paraphrase_pattern = re.compile(r"[P]\d+")
                 for col in self.answer_corpus.columns:
                     if re.match(paraphrase_pattern, col):
