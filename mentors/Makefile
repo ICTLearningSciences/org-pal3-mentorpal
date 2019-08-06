@@ -65,6 +65,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 # Pre-processes mentor data inside docker container
 # Downloads missing files
 # Generates audiochunks and transcripts for one mentor
+.SECONDARY:
 %/build: $(WATSON_CREDENTIALS)
 	$(MAKE) $*/build/update
 
