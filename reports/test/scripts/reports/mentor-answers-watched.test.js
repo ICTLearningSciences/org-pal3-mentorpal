@@ -21,7 +21,6 @@ describe("reports/mentor-answers-watched", async () => {
   });
 
   it(`generates json and csv rollups of mentor answers for one user/session - example`, async () => {
-    console.log(`D1`);
     function readMAWResource(rpath) {
       return fs.readFileSync(path.join(__dirname, rpath), "utf8");
     }

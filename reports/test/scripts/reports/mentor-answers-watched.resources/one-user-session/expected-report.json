@@ -10,6 +10,8 @@
     "resource_id": "https://dev.pal3.org/xapi/resources/5d1bc549becb4e208dd0188b",
     "timestamp_asked": "2019-07-31T19:05:24.649Z",
     "timestamp_answered": "2019-07-31T19:05:39.740Z",
+    "timestamp_playback_ended": "2019-07-31T19:05:39.740Z",
+    "timestamp_playback_started": "2019-07-31T19:05:39.740Z",
     "user_domain": "https://dev.pal3.org/xapi/users",
     "user_id": "5d3f924240631b0013f723dc",
     "user_name": "larry201907291740"
@@ -25,6 +27,8 @@
     "session_id": "57e21ad1-81cc-4746-9b31-25a26f2a377b",
     "timestamp_answered": "2019-07-31T19:05:34.985Z",
     "timestamp_asked": "2019-07-31T19:05:24.649Z",
+    "timestamp_playback_ended": "2019-07-31T19:09:43.634Z",
+    "timestamp_playback_started": "2019-07-31T19:07:19.534Z",
     "user_domain": "https://dev.pal3.org/xapi/users",
     "user_id": "5d3f924240631b0013f723dc",
     "user_name": "larry201907291740"
@@ -40,6 +44,8 @@
     "session_id": "57e21ad1-81cc-4746-9b31-25a26f2a377b",
     "timestamp_answered": "2019-07-31T19:05:30.040Z",
     "timestamp_asked": "2019-07-31T19:05:24.649Z",
+    "timestamp_playback_ended": "2019-07-31T19:06:12.140Z",
+    "timestamp_playback_started": "2019-07-31T19:06:15.999Z",
     "user_domain": "https://dev.pal3.org/xapi/users",
     "user_id": "5d3f924240631b0013f723dc",
     "user_name": "larry201907291740"
@@ -55,6 +61,8 @@
     "session_id": "57e21ad1-81cc-4746-9b31-25a26f2a377b",
     "timestamp_answered": "2019-07-31T19:05:24.767Z",
     "timestamp_asked": "2019-07-31T19:05:24.649Z",
+    "timestamp_playback_ended": "2019-07-31T19:16:39.740Z",
+    "timestamp_playback_started": "2019-07-31T19:15:39.740Z",
     "user_domain": "https://dev.pal3.org/xapi/users",
     "user_id": "5d3f924240631b0013f723dc",
     "user_name": "larry201907291740"
