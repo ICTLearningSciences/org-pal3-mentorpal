@@ -8,21 +8,23 @@ const {
   groupStatementsByQuestionIndex,
   groupStatementsByMentor,
   statementsToSessions,
-  statementMentorResponseValue,
+  statementExtValues,
 } = require('../../xapi');
 
 function toQuesMentorResult(statements, sessId) {
   const result = statements.reduce((accResult, curStmt) => {
-    // console.log(`curStmt[${i}]=${JSON.stringify(curStmt, null, 2)}`);
-    const curStMentorpalVals = statementMentorResponseValue(curStmt, [
-      'answer_duration',
-      'answer_text',
-      'confidence',
-      'mentor',
-      'question_text',
-      'question',
-      'question_index',
-    ]);
+    const curStMentorpalVals = statementExtValues(curStmt, {
+      context: ['mentor_list'],
+      result: [
+        'answer_duration',
+        'answer_text',
+        'confidence',
+        'mentor',
+        'question_text',
+        'question',
+        'question_index',
+      ],
+    });
     return {
       answer_confidence:
         accResult.answer_confidence || curStMentorpalVals.confidence,
@@ -30,6 +32,11 @@ function toQuesMentorResult(statements, sessId) {
       //   qsAcc.answer_duration || curStMentorpalVals.answer_duration,
       answer_text: accResult.answer_text || curStMentorpalVals.answer_text,
       mentor: accResult.mentor || curStMentorpalVals.mentor,
+      mentor_list:
+        typeof curStMentorpalVals.mentor_list === 'string' &&
+        curStMentorpalVals.mentor_list.length > 0
+          ? curStMentorpalVals.mentor_list
+          : (curStMentorpalVals.mentor_list || []).sort().join(','),
       question_index:
         accResult.question_index || curStMentorpalVals.question_index,
       question_text:
@@ -48,7 +55,6 @@ function toQuesMentorResult(statements, sessId) {
 
 function statementsToReportJson(statements) {
   const sessionsById = statementsToSessions(statements);
-  // console.log(`sessionsById=${JSON.stringify(sessionsById, null, 2)}`);
   const sessQuesBySessId = Object.getOwnPropertyNames(sessionsById).reduce(
     (acc, cur) => {
       acc[cur] = groupStatementsByQuestionIndex(sessionsById[cur]);
@@ -91,6 +97,7 @@ const FIELDS = [
   'answer_confidence',
   'answer_text',
   'mentor',
+  'mentors',
   'question_index',
   'question_text',
   'resource_id',

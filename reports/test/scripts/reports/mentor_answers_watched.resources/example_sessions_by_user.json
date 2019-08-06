@@ -36,12 +36,13 @@
         "extensions": {
           "https://mentorpal.org/xapi/context/extensions/session-state": {
             "mentor_current": "clint",
-            "question_current": "What makes a good leader?",
-            "topic_current": "Recommended",
             "mentor_faved": "",
+            "mentor_list": ["clint", "carlos", "dan", "julianne"],
             "mentor_next": "",
+            "questions_asked": ["whatmakesagoodleader"],
+            "question_current": "What makes a good leader?",
             "question_index": 0,
-            "questions_asked": ["whatmakesagoodleader"]
+            "topic_current": "Recommended"
           }
         }
       },
@@ -86,12 +87,13 @@
         "extensions": {
           "https://mentorpal.org/xapi/context/extensions/session-state": {
             "mentor_current": "clint",
-            "question_current": "What makes a good leader?",
-            "question_index": 0,
-            "topic_current": "Recommended",
             "mentor_faved": "",
             "mentor_next": "",
-            "questions_asked": ["whatmakesagoodleader"]
+            "mentor_list": ["clint", "carlos", "dan", "julianne"],
+            "questions_asked": ["whatmakesagoodleader"],
+            "question_current": "What makes a good leader?",
+            "question_index": 0,
+            "topic_current": "Recommended"
           }
         }
       },
@@ -136,12 +138,13 @@
         "extensions": {
           "https://mentorpal.org/xapi/context/extensions/session-state": {
             "mentor_current": "clint",
+            "mentor_faved": "",
+            "mentor_list": ["clint", "carlos", "dan", "julianne"],
+            "mentor_next": "",
+            "questions_asked": ["whatmakesagoodleader"],
             "question_current": "What makes a good leader?",
             "question_index": 0,
-            "topic_current": "Recommended",
-            "mentor_faved": "",
-            "mentor_next": "",
-            "questions_asked": ["whatmakesagoodleader"]
+            "topic_current": "Recommended"
           }
         }
       },
@@ -186,12 +189,13 @@
         "extensions": {
           "https://mentorpal.org/xapi/context/extensions/session-state": {
             "mentor_current": "clint",
+            "mentor_faved": "",
+            "mentor_list": ["clint", "carlos", "dan", "julianne"],
+            "mentor_next": "",
+            "questions_asked": ["whatmakesagoodleader"],
             "question_current": "What makes a good leader?",
             "question_index": 0,
-            "topic_current": "Recommended",
-            "mentor_faved": "",
-            "mentor_next": "",
-            "questions_asked": ["whatmakesagoodleader"]
+            "topic_current": "Recommended"
           }
         }
       },
@@ -227,12 +231,13 @@
         "extensions": {
           "https://mentorpal.org/xapi/context/extensions/session-state": {
             "mentor_current": "clint",
-            "question_current": "",
-            "question_index": 0,
-            "topic_current": "Recommended",
             "mentor_faved": "",
+            "mentor_list": ["clint", "carlos", "dan", "julianne"],
             "mentor_next": "",
-            "questions_asked": []
+            "question_current": "",
+            "questions_asked": [],
+            "question_index": 0,
+            "topic_current": "Recommended"
           }
         }
       },
