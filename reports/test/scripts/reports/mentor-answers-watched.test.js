@@ -1,4 +1,5 @@
 const chai = require('chai');
+const csv = require('csvtojson');
 const fs = require('fs-extra');
 const path = require('path');
 const sinon = require('sinon');
@@ -19,7 +20,8 @@ describe('reports/mentor-answers-watched', async () => {
     sinon.replace(xapi, 'queryXapi', queryXapiStub);
   });
 
-  describe('generates a rollup of mentor answers for one user/session', () => {
+  it(`generates json and csv rollups of mentor answers for one user/session - example`, async () => {
+    console.log(`D1`);
     function readMAWResource(rpath) {
       return fs.readFileSync(path.join(__dirname, rpath), 'utf8');
     }
@@ -28,25 +30,24 @@ describe('reports/mentor-answers-watched', async () => {
       return JSON.parse(readMAWResource(rpath));
     }
 
-    expectedXapiStmts = readMAWResourceJson(
+    async function readMAWResourceCsv(rpath) {
+      return await csv().fromString(readMAWResource(rpath));
+    }
+
+    const expectedXapiStmts = readMAWResourceJson(
       './mentor-answers-watched.resources/one-user-session/expected-xapi-statements.json'
     );
-    expectedReportJson = readMAWResourceJson(
+    const expectedReportJson = readMAWResourceJson(
       './mentor-answers-watched.resources/one-user-session/expected-report.json'
     );
-    expectedReportCsv = readMAWResource(
+    const expectedReportCsv = await readMAWResourceCsv(
       './mentor-answers-watched.resources/one-user-session/expected-report.csv'
     );
-
-    // console.log(`expectedReportCsv=${expectedReportCsv}`)
-
-    it(`generates json and csv rollups of mentor answers for one user/session - example`, async () => {
-      queryXapiStub.returns(Promise.resolve(expectedXapiStmts));
-      const reportJson = await report.runReport();
-      expect(reportJson).to.eql(expectedReportJson);
-      const reportCsv = report.reportJsonToCsv(reportJson);
-      // console.log(`reportCsv=${reportCsv}`)
-      expect(reportCsv).to.eql(expectedReportCsv);
-    });
+    queryXapiStub.returns(Promise.resolve(expectedXapiStmts));
+    const reportJson = await report.runReport();
+    expect(reportJson).to.eql(expectedReportJson);
+    const reportCsvStr = report.reportJsonToCsv(reportJson);
+    const reportCsv = await csv().fromString(reportCsvStr);
+    expect(reportCsv).to.eql(expectedReportCsv);
   });
 });

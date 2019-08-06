@@ -22,6 +22,8 @@ const CSV_FIELDS = [
   'question_text',
   'resource_id',
   'session_id',
+  'timestamp_answered',
+  'timestamp_asked',
   'user_domain',
   'user_id',
   'user_name',
