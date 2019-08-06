@@ -1,5 +1,5 @@
 const { parse } = require('json2csv');
-const xapi = require('./xapi');
+const xapi = require('./xapi')
 const {
   getObjectId,
   getUserDomain,
@@ -12,6 +12,20 @@ const {
   timestampAnswered,
   timestampAsked,
 } = require('../../xapi');
+
+const FIELDS = [
+  'answer_confidence',
+  'answer_text',
+  'mentor',
+  'mentors',
+  'question_index',
+  'question_text',
+  'resource_id',
+  'session_id',
+  'user_domain',
+  'user_id',
+  'user_name',
+];
 
 function toQuesMentorResult(statements, sessId) {
   const result = statements.reduce((accResult, curStmt) => {
@@ -96,20 +110,6 @@ function statementsToReportJson(statements) {
   );
   return result;
 }
-
-const FIELDS = [
-  'answer_confidence',
-  'answer_text',
-  'mentor',
-  'mentors',
-  'question_index',
-  'question_text',
-  'resource_id',
-  'session_id',
-  'user_domain',
-  'user_id',
-  'user_name',
-];
 
 function reportJsonToCsv(reportJson) {
   try {
