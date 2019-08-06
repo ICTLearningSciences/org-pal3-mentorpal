@@ -1,5 +1,5 @@
 const { parse } = require('json2csv');
-const xapi = require('./xapi')
+const xapi = require('./xapi');
 const {
   getObjectId,
   getUserDomain,

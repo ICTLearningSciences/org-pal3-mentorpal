@@ -32,7 +32,7 @@ describe('reports/mentor_answers_watched', async () => {
           readMAWResource(
             './mentor_answers_watched.resources/one_user_session/expected_report.json'
           )
-        )
+        ),
       },
     ];
     // for (let i = 0; i< examples_one_user_session.length; i++) {
