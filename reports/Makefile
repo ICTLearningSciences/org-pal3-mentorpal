@@ -22,8 +22,9 @@ report/mentor-answered-watched/since-%/report.json: report/mentor-answered-watch
 
 .SECONDARY:
 report/mentor-answered-watched/since-%/report.csv: report/mentor-answered-watched/since-%/report.json
-	npx json2csv -i report/mentor-answered-watched/since-$*/report.json > \
-		report/mentor-answered-watched/since-$*/report.csv
+	mkdir -p report/mentor-answered-watched/since-$*
+	npm run report:json2csv -- \
+		--dir=report/mentor-answered-watched/since-$*
 	
 
 report/mentor-answered-watched/since-%: report/mentor-answered-watched/since-%/report.csv

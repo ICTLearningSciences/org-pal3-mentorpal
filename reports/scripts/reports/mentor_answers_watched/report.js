@@ -1,3 +1,4 @@
+const { parse } = require('json2csv');
 const xapi = require('./xapi');
 const {
   getObjectId,
@@ -86,6 +87,28 @@ function statementsToReportJson(statements) {
   return result;
 }
 
+const FIELDS = [
+  'answer_confidence',
+  'answer_text',
+  'mentor',
+  'question_index',
+  'question_text',
+  'resource_id',
+  'session_id',
+  'user_domain',
+  'user_id',
+  'user_name',
+];
+
+function reportJsonToCsv(reportJson) {
+  try {
+    const csv = parse(reportJson, { fields: FIELDS });
+    return csv;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
   const statements = await xapi.queryXapi({ since });
   const reportJson = statementsToReportJson(statements);
@@ -93,6 +116,7 @@ async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
 }
 
 module.exports = {
+  reportJsonToCsv,
   runReport,
   statementsToReportJson,
 };
