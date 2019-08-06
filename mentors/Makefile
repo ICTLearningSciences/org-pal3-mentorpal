@@ -63,11 +63,13 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 
 
 # Pre-processes mentor data inside docker container
+# Downloads missing files
 # Generates audiochunks and transcripts for one mentor
 %/build: $(WATSON_CREDENTIALS)
 	$(MAKE) $*/build/update
 
 # Pre-processes mentor data inside docker container
+# Downloads missing files
 # Generates audiochunks and transcripts for one mentor
 .PHONY: %/build/update
 %/build/update: docker-image-exists $(WATSON_CREDENTIALS)
@@ -83,10 +85,15 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			$(DOCKER_IMAGE) --mentor $* --transcripts --url $(MENTOR_SOURCE_VIDEOS)
 
 
-# Adapts transcript files to questions_paraphrases_answers and prompts_utterances files
+# Complete build of mentor data
+# Runs build if necessary
+# Generates data files
 %/data:
 	$(MAKE) $*/data/update
 
+# Complete build of mentor data
+# Runs build if necessary
+# Generates data files
 .PHONY: %/data/update
 %/data/update: %/build docker-image-exists
 	mkdir -p $(shell pwd)/$*/data

@@ -1,6 +1,10 @@
 import os
 from watson_developer_cloud import SpeechToTextV1
 
+"""
+This script communicates with IBM Watson to generate transcripts for mentor audiochunks
+"""
+
 
 def authenticate_with_watson():
     """
