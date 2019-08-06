@@ -8,8 +8,6 @@ const { expect } = chai;
 const report = require('../../../scripts/reports/mentor_answers_watched/report');
 const xapi = require('../../../scripts/reports/mentor_answers_watched/xapi');
 
-const exampleSessionsByUser = require('./mentor_answers_watched.resources/example_sessions_by_user.json');
-
 describe('reports/mentor_answers_watched', async () => {
   let queryXapiStub;
   afterEach(() => {
@@ -25,27 +23,32 @@ describe('reports/mentor_answers_watched', async () => {
     function readMAWResource(rpath) {
       return fs.readFileSync(path.join(__dirname, rpath), 'utf8');
     }
+
+    function readMAWResourceJson(rpath) {
+      return JSON.parse(readMAWResource(rpath));
+    }
+
     const examples_one_user_session = [
       {
-        xapi_data: exampleSessionsByUser['larry201907291740'],
-        expected_report_json: JSON.parse(
-          readMAWResource(
-            './mentor_answers_watched.resources/one_user_session/expected_report.json'
-          )
+        expected_xapi_statements: readMAWResourceJson(
+          './mentor_answers_watched.resources/one_user_session/expected_xapi_statements.json'
+        ),
+        expected_report_json: readMAWResourceJson(
+          './mentor_answers_watched.resources/one_user_session/expected_report.json'
+        ),
+        expected_report_csv: readMAWResource(
+          './mentor_answers_watched.resources/one_user_session/expected_report.csv'
         ),
       },
     ];
-    // for (let i = 0; i< examples_one_user_session.length; i++) {
-    //   const ex = examples_one_user_session[i];
     const ex = examples_one_user_session[0];
 
     it(`generates json and csv rollups of mentor answers for one user/session - example`, async () => {
-      queryXapiStub.returns(Promise.resolve(ex.xapi_data));
+      queryXapiStub.returns(Promise.resolve(ex.expected_xapi_statements));
       const reportJson = await report.runReport();
-      // expect(queryXapiStub.callCount).to.eql(1);
       expect(reportJson).to.eql(ex.expected_report_json);
-      // const reportCsv = report.reportJsonToCsv(reportJson);
-      // expect(reportCsv).to.eql(ex.expected_report_csv);
+      const reportCsv = report.reportJsonToCsv(reportJson);
+      expect(reportCsv).to.eql(ex.expected_report_csv);
     });
   });
 });

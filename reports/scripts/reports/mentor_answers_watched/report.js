@@ -13,11 +13,11 @@ const {
   timestampAsked,
 } = require('../../xapi');
 
-const FIELDS = [
+const CSV_FIELDS = [
   'answer_confidence',
   'answer_text',
   'mentor',
-  'mentors',
+  'mentor_list',
   'question_index',
   'question_text',
   'resource_id',
@@ -113,7 +113,7 @@ function statementsToReportJson(statements) {
 
 function reportJsonToCsv(reportJson) {
   try {
-    const csv = parse(reportJson, { fields: FIELDS });
+    const csv = parse(reportJson, { fields: CSV_FIELDS });
     return csv;
   } catch (err) {
     console.error(err);
