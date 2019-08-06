@@ -22,7 +22,7 @@ below), we can use the following commands to build a classifier for the mentor:
 The classification data pipeline can be used to create all data needed for a usable
 mentor from raw recording files.
 
-### Pipeline Prerequisites
+### Prerequisites
 As a prerequisite of running the pipeline the following files are needed for each
 part of each session. These files should be uploaded into the `mentorpal-source-videos`
 S3 bucket in `usc-ict-aws-mentor-pal` AWS account:
@@ -30,7 +30,7 @@ S3 bucket in `usc-ict-aws-mentor-pal` AWS account:
 - `{mentor}/data/recordings/session{session#}/part{part#}_audio.wav`
 - `{mentor}/data/recordings/session{session#}/part{part#}_timestamps.csv`
 
-### Pipeline Output
+### Output
 After running the pipeline the following files will be generated:
 - `{mentor}/data/classifier_data.csv`
 - `{mentor}/data/metadata.csv`
@@ -44,7 +44,7 @@ be used to debug different parts of a pipeline
 - `{mentor}/data/questions_paraphrases_answers.csv`
 - `{mentor}/data/prompts_utterances.csv`
 
-### Pipeline Usage
+### Usage
 Pipeline usage is fully documented in the Makefile.
 - `make {mentor}/data` runs a full build of {mentor} if data folder is not present
 - `make {mentor}/data/update` runs a full build of {mentor} regardless of whether data folder is present
