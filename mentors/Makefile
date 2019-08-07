@@ -58,6 +58,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			--entrypoint /bin/bash \
 			-v $(shell pwd)/$(MENTOR):/app/mounts/$(MENTOR) \
 			-v $(shell pwd)/data:/app/mounts/data \
+			-v $(shell pwd)/videos:/app/mounts/videos \
 			-v $(shell pwd)/src:/app/src \
 		$(DOCKER_IMAGE)
 
@@ -109,14 +110,14 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 # Complete build of mentor data and videos
 # Runs build if necessary
 # Generates data files
-%/data/videos:
-	$(MAKE) $*/data/videos/update
+%/videos:
+	$(MAKE) $*/videos/update
 
 # Complete build of mentor data and videos
 # Runs build if necessary
 # Generates data files
-.PHONY: %/data/videos/update
-%/data/videos/update: %/build docker-image-exists
+.PHONY: %/videos/update
+%/videos/update: %/build docker-image-exists
 	mkdir -p $(shell pwd)/$*/data
 	cp $(shell pwd)/data/topics.csv $(shell pwd)/$*/data/topics.csv
 	docker run \
@@ -124,4 +125,5 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			--name $(DOCKER_CONTAINER) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			-v $(shell pwd)/data:/app/mounts/data \
+			-v $(shell pwd)/videos:/app/mounts/videos \
 			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos

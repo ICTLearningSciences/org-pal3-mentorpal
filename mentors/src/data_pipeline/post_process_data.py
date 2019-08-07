@@ -17,6 +17,7 @@ mentor data has been generated.
 
 MENTOR_DATA = constants.MENTOR_DATA
 MENTOR_BUILD = constants.MENTOR_BUILD
+MENTOR_VIDEOS = constants.MENTOR_VIDEOS
 SESSION_DATA = constants.SESSION_DATA
 ANSWER_VIDEOS = constants.ANSWER_VIDEOS
 UTTERANCE_VIDEOS = constants.UTTERANCE_VIDEOS
@@ -273,12 +274,13 @@ class PostProcessData(object):
 
 def build_post_processing_data(args):
     mentor_data = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor))
+    mentor_videos = os.path.join(DATA_DIR, MENTOR_VIDEOS.format(args.mentor))
 
     # store answer video chunks in this folder.
-    answer_chunks = os.path.join(mentor_data, ANSWER_VIDEOS)
+    answer_chunks = os.path.join(mentor_videos, ANSWER_VIDEOS)
     os.makedirs(answer_chunks, exist_ok=True)
     # store prompts and repeat-after-me videos in this folder
-    utterance_chunks = os.path.join(mentor_data, UTTERANCE_VIDEOS)
+    utterance_chunks = os.path.join(mentor_videos, UTTERANCE_VIDEOS)
     os.makedirs(utterance_chunks, exist_ok=True)
 
     # Load older metadata, to see where to continue numbering answers and utterances from, for the current mentor
