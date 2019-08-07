@@ -35,7 +35,8 @@ DATA_DIR = os.environ["DATA_MOUNT"] or os.getcwd()
 
 
 def ffmpeg_convert_mobile(input_file):
-    output_file = input_file[0:-4] + "_m" + ".mp4"
+    # Trim file type and append mp4
+    output_file = "{}_m.mp4".format(input_file.rsplit(".", 1)[0])
     ff = ffmpy.FFmpeg(
         inputs={input_file: None},
         # outputs={output_file: "-filter:v crop=614:548:333:86 -y"},  This is for the 1280x720
@@ -94,7 +95,6 @@ class PostProcessData(object):
         ff = ffmpy.FFmpeg(
             inputs={input_file: None}, outputs={output_file: output_command}
         )
-        # print(ff.cmd)
         ff.run()
         ffmpeg_convert_mobile(output_file)
 
