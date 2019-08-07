@@ -35,30 +35,17 @@ METADATA = constants.METADATA
 DATA_DIR = os.environ["DATA_MOUNT"] or os.getcwd()
 
 
-def ffmpeg_convert_video(input_file):
-    """
-    Converts the video format to ogv and mp4's cropped for the website
-    """
-    output_file = input_file[0:-4]
-    ff2 = ffmpy.FFmpeg(
-        inputs={input_file: None},
-        outputs={output_file + ".ogv": "-c:v libtheora -q:v 6 -threads 0 -y"},
-    )
-    print(ff2.cmd + "\n")
-    ff2.run()
-
-
 def ffmpeg_convert_mobile(input_file):
-    output_file = input_file[0:-4] + "_M" + ".mp4"
-    ff3 = ffmpy.FFmpeg(
+    output_file = input_file[0:-4] + "_m" + ".mp4"
+    ff = ffmpy.FFmpeg(
         inputs={input_file: None},
         # outputs={output_file: "-filter:v crop=614:548:333:86 -y"},  This is for the 1280x720
         outputs={
             output_file: "-filter:v crop=918:822:500:220 -threads 0 -y"
         },  # this is for 1080p  the parameters are width, height, x and y point
     )
-    print(ff3.cmd + "\n")
-    ff3.run()
+    print(ff.cmd + "\n")
+    ff.run()
 
 
 class PostProcessData(object):
@@ -110,11 +97,7 @@ class PostProcessData(object):
         )
         # print(ff.cmd)
         ff.run()
-        print("Starting Thread")
-        thread = Thread(target=ffmpeg_convert_video, args=(output_file,))
-        thread.start()
-        thread2 = Thread(target=ffmpeg_convert_mobile, args=(output_file,))
-        thread2.start()
+        ffmpeg_convert_mobile(output_file)
 
     def get_video_chunks(self, video_file, timestamps, mentor, session, part, videos):
         print(video_file, timestamps, mentor, session, part)
@@ -143,7 +126,7 @@ class PostProcessData(object):
                 text_type[i] == "A"
                 and len(self.answer_corpus) > self.answer_corpus_index
             ):
-                answer_id = f"{mentor}_A{self.answer_number}_{session}_{part}"
+                answer_id = f"{mentor}_a{self.answer_number}_{session}_{part}"
                 output_file = os.path.join(self.answer_chunks, answer_id + ".mp4")
                 answer_sample["ID"] = answer_id
                 answer_sample["topics"] = ",".join(
@@ -177,7 +160,7 @@ class PostProcessData(object):
                 text_type[i] == "U"
                 and len(self.utterance_corpus) > self.utterance_corpus_index
             ):
-                utterance_id = f"{mentor}_U{self.utterance_number}_{session}_{part}"
+                utterance_id = f"{mentor}_u{self.utterance_number}_{session}_{part}"
                 output_file = os.path.join(self.utterance_chunks, utterance_id + ".mp4")
                 utterance_sample["ID"] = utterance_id
                 utterance_sample["utterance"] = self.utterance_corpus.iloc[
