@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Button, Paper } from "@material-ui/core"
 import { History, Whatshot } from "@material-ui/icons"
 
-import { selectTopic } from "src/redux/actions"
+import { selectTopic } from "src/store/actions"
 import { normalizeString } from "src/funcs/funcs"
 
 const Topics = ({ onSelected }) => {

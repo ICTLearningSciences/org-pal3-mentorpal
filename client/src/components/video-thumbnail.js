@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import ReactPlayer from "react-player"
 
 import { idleUrl } from "src/api/api"
-import { STATUS_ERROR } from "src/redux/store"
+import { STATUS_ERROR } from "src/store/reducer"
 
 const VideoThumbnail = ({ mentor, isMobile, width, height }) => {
   const [isPlaying, setPlaying] = useState(true)

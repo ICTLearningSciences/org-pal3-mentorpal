@@ -2,7 +2,7 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { Sms, SmsFailed } from "@material-ui/icons"
 
-import { STATUS_READY, STATUS_ERROR } from "src/redux/store"
+import { STATUS_READY, STATUS_ERROR } from "src/store/reducer"
 
 const MessageStatus = ({ mentor }) => {
   const next_mentor = useSelector(state => state.next_mentor)

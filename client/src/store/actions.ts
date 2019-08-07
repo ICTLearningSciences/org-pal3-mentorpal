@@ -1,11 +1,11 @@
 import Papa from "papaparse"
 import { actions as cmi5Actions } from "redux-cmi5"
 
-import { topicsUrl, questionsUrl, queryMentor } from "src/api/api"
-import { STATUS_READY } from "src/redux/store"
+import { queryMentor, questionsUrl, topicsUrl } from "src/api/api"
+import { STATUS_READY } from "./reducer"
+import { MENTOR_SELECTED, MentorSelectedAction, MentorSelection } from "./types"
 
 export const MENTOR_LOADED = "MENTOR_LOADED" // mentor info was loaded
-export const MENTOR_SELECTED = "MENTOR_SELECTED" // mentor video was selected
 export const MENTOR_FAVED = "MENTOR_FAVED" // mentor was favorited
 export const MENTOR_NEXT = "MENTOR_NEXT" // set next mentor to play after current
 export const MENTOR_TOPIC_QUESTIONS_LOADED = "MENTOR_TOPIC_QUESTIONS_LOADED"
@@ -19,41 +19,55 @@ export const ANSWER_FINISHED = "ANSWER_FINISHED" // mentor video has finished pl
 export const MENTOR_SELECTION_TRIGGER_AUTO = "auto"
 export const MENTOR_SELECTION_TRIGGER_USER = "user"
 
-export const loadMentor = mentor => dispatch => {
+export const loadMentor = (mentor: any) => (
+  dispatch: any
+) => {
   dispatch({
+    mentor,
     type: MENTOR_LOADED,
-    mentor: mentor,
   })
 }
 
 const { sendStatement: sendXapiStatement } = cmi5Actions
 
-export const loadQuestions = (mentor_id, recommended) => async dispatch => {
-  const questions_url = questionsUrl(mentor_id)
+export const loadQuestions = (mentorId: any, recommended: any) => async (
+  dispatch: (arg0: (dispatch: any) => Promise<void>) => void
+) => {
+  const url = questionsUrl(mentorId)
 
   try {
-    const results = await papaParseAsync(questions_url)
-    const questions = results.data.reduce((questions, data) => {
-      const topics = data[0].split(", ")
-      const question = data[3]
+    const results = await papaParseAsync(url) as {data: any[]}
+    const questionsByTopic: string[] = results.data.reduce(
+      (accQsByTopic: { [x: string]: string[] }, curTopicsAndQs: string[]) => {
+        const topics = curTopicsAndQs[0].split(", ")
+        const question = curTopicsAndQs[3]
 
-      topics.forEach(topic => {
-        questions[topic] = questions[topic] || []
-        if (!questions[topic].includes(question)) {
-          questions[topic].push(question)
-        }
-      })
-      return questions
-    }, {})
+        topics.forEach((topic: string | number) => {
+          accQsByTopic[topic] = accQsByTopic[topic] || []
+          if (!accQsByTopic[topic].includes(question)) {
+            accQsByTopic[topic].push(question)
+          }
+        })
+        return accQsByTopic
+      },
+      {}
+    )
 
-    dispatch(loadTopics(mentor_id, questions, recommended))
+    dispatch(loadTopics(mentorId, questionsByTopic, recommended))
   } catch (err) {
+    // tslint:disable-next-line: no-console
     console.error(err)
   }
 }
 
-const loadTopics = (mentor_id, questions, recommended) => async dispatch => {
-  const topics_url = topicsUrl(mentor_id)
+const loadTopics = (
+  mentorId: any,
+  questions: { [x: string]: any },
+  recommended: any
+) => async (
+  dispatch: (arg0: { id: any; topic_questions: any; type: string }) => void
+) => {
+  const topics_url = topicsUrl(mentorId)
   const init = recommended
     ? {
         Recommended: Array.isArray(recommended) ? recommended : [recommended],
@@ -63,76 +77,91 @@ const loadTopics = (mentor_id, questions, recommended) => async dispatch => {
 
   try {
     const results = await papaParseAsync(topics_url)
-    var topic_questions = results.data.reduce((topic_questions, data) => {
-      const topicName = data[0]
-      const topicGroup = data[1]
-      const topicQuestions = questions[topicName]
+    const topic_questions = results.data.reduce(
+      (
+        topic_questions: { [x: string]: Iterable<unknown> | null | undefined },
+        data: any[]
+      ) => {
+        const topicName = data[0]
+        const topicGroup = data[1]
+        const topicQuestions = questions[topicName]
 
-      if (!(topicName && topicGroup && topicQuestions)) {
+        if (!(topicName && topicGroup && topicQuestions)) {
+          return topic_questions
+        }
+        topic_questions[topicGroup] = topic_questions[topicGroup] || []
+        topic_questions[topicGroup] = topic_questions[topicGroup].concat(
+          topicQuestions
+        )
+        topic_questions[topicGroup] = Array.from(
+          new Set(topic_questions[topicGroup])
+        )
         return topic_questions
-      }
-      topic_questions[topicGroup] = topic_questions[topicGroup] || []
-      topic_questions[topicGroup] = topic_questions[topicGroup].concat(
-        topicQuestions
-      )
-      topic_questions[topicGroup] = Array.from(
-        new Set(topic_questions[topicGroup])
-      )
-      return topic_questions
-    }, init)
+      },
+      init
+    )
 
     dispatch({
+      id: mentorId,
+      topic_questions,
       type: MENTOR_TOPIC_QUESTIONS_LOADED,
-      id: mentor_id,
-      topic_questions: topic_questions,
     })
   } catch (err) {
     console.error(err)
   }
 }
 
-export const selectMentor = (
-  mentor_id,
-  { trigger = MENTOR_SELECTION_TRIGGER_AUTO } = {}
-) => dispatch => {
+export const selectMentor = (mentor: string) => (dispatch: {
+  (arg0: (dispatch: any) => void): void
+  (arg0: { payload: { id: string }; type: string }): void
+}) => {
   dispatch(onInput())
   dispatch({
+    payload: {
+      id: mentor,
+    },
     type: MENTOR_SELECTED,
-    id: mentor_id,
-    trigger: trigger,
   })
 }
 
-export const selectTopic = topic => ({
+export const selectTopic = (topic: any) => ({
+  topic,
   type: TOPIC_SELECTED,
-  topic: topic,
 })
 
-export const faveMentor = mentor_id => ({
-  type: MENTOR_FAVED,
+export const faveMentor = (mentor_id: any) => ({
   id: mentor_id,
+  type: MENTOR_FAVED,
 })
 
-const currentQuestionIndex = state =>
+const currentQuestionIndex = (state: { questions_asked: { length: any } }) =>
   Array.isArray(state.questions_asked) ? state.questions_asked.length : -1
 
-const xapiSessionState = state => {
+const xapiSessionState = (state: {
+  current_mentor: any
+  faved_mentor: any
+  mentors_by_id: string
+  next_mentor: any
+  current_question: any
+  questions_asked: any
+  current_topic: any
+}) => {
   return {
     mentor_current: state.current_mentor,
-    question_current: state.current_question,
-    topic_current: state.current_topic,
     mentor_faved: state.faved_mentor,
     mentor_list:
       state.mentors_by_id && typeof (state.mentors_by_id === "object")
         ? Object.getOwnPropertyNames(state.mentors_by_id).sort()
         : [],
     mentor_next: state.next_mentor,
-    questions_asked: state.questions_asked,
+    question_current: state.current_question,
     question_index: currentQuestionIndex(state),
+    questions_asked: state.questions_asked,
+    topic_current: state.current_topic,
   }
 }
 
-const sessionStateExt = (state, ext) => {
+const sessionStateExt = (state: any, ext: any = undefined) => {
   return {
     ...(ext || {}),
     "https://mentorpal.org/xapi/context/extensions/session-state": xapiSessionState(
@@ -141,19 +170,32 @@ const sessionStateExt = (state, ext) => {
   }
 }
 
-export const sendQuestion = question => async (dispatch, getState) => {
+export const sendQuestion = (question: any) => async (
+  dispatch: {
+    (arg0: any): void
+    (arg0: (dispatch: any) => void): void
+    (arg0: { question: any; type: string }): void
+    (arg0: any): void
+    (arg0: { mentor: any; type: string }): void
+    (arg0: { mentor: any; question: any; type: string }): void
+    (arg0: (dispatch: any) => void): void
+    (arg0: (dispatch: any) => void): void
+    (arg0: (dispatch: any) => void): void
+  },
+  getState: { (): void; (): void; (): void; (): void; (): void }
+) => {
   dispatch(
     sendXapiStatement({
-      verb: "https://mentorpal.org/xapi/verb/asked",
+      contextExtensions: sessionStateExt(getState()),
       result: {
         extensions: {
           "https://mentorpal.org/xapi/activity/extensions/actor-question": {
-            text: question,
             question_index: currentQuestionIndex(getState()) + 1,
+            text: question,
           },
         },
       },
-      contextExtensions: sessionStateExt(getState()),
+      verb: "https://mentorpal.org/xapi/verb/asked",
     })
   )
   dispatch(onInput())
@@ -166,10 +208,10 @@ export const sendQuestion = question => async (dispatch, getState) => {
   const promises = mentor_ids.map(mentor => {
     return new Promise((resolve, reject) => {
       queryMentor(mentor, question)
-        .then(response => {
+        .then((response: unknown) => {
           dispatch(
             sendXapiStatement({
-              verb: "https://mentorpal.org/xapi/verb/answered",
+              contextExtensions: sessionStateExt(getState()),
               result: {
                 extensions: {
                   "https://mentorpal.org/xapi/activity/extensions/mentor-response": {
@@ -181,13 +223,13 @@ export const sendQuestion = question => async (dispatch, getState) => {
                   },
                 },
               },
-              contextExtensions: sessionStateExt(getState()),
+              verb: "https://mentorpal.org/xapi/verb/answered",
             })
           )
           dispatch(onQuestionAnswered(response))
           resolve(response)
         })
-        .catch(err => {
+        .catch((err: any) => {
           dispatch(onQuestionError(mentor, question))
           reject(err)
         })
@@ -229,18 +271,27 @@ export const sendQuestion = question => async (dispatch, getState) => {
 }
 
 const NEXT_MENTOR_DELAY = 3000
-var timer = null
-export const answerFinished = () => (dispatch, getState) => {
+let timer: NodeJS.Timer
+export const answerFinished = () => (
+  dispatch: {
+    (arg0: { type: string }): void
+    (arg0: { mentor: any; type: string }): void
+    (arg0: (dispatch: any) => void): void
+  },
+  getState: () => void
+) => {
   dispatch(onIdle())
 
   // order mentors by highest answer confidence
   const state = getState()
   const mentors = state.mentors_by_id
-  const responses = []
+  const responses:
+    | never[]
+    | { confidence: any; id: any; is_off_topic: any; status: any }[] = []
   Object.keys(mentors).forEach(id => {
     responses.push({
-      id: mentors[id].id,
       confidence: mentors[id].confidence,
+      id: mentors[id].id,
       is_off_topic: mentors[id].is_off_topic,
       status: mentors[id].status,
     })
@@ -268,7 +319,9 @@ export const answerFinished = () => (dispatch, getState) => {
   }, NEXT_MENTOR_DELAY)
 }
 
-export const onInput = () => dispatch => {
+export const onInput = () => (
+  dispatch: (arg0: { mentor: any; type: string }) => void
+) => {
   if (timer) {
     clearTimeout(timer)
     timer = null
@@ -276,33 +329,33 @@ export const onInput = () => dispatch => {
   dispatch(nextMentor(""))
 }
 
-const onQuestionSent = question => ({
+const onQuestionSent = (question: any) => ({
+  question,
   type: QUESTION_SENT,
-  question: question,
 })
 
-const onQuestionAnswered = response => ({
-  type: QUESTION_ANSWERED,
+const onQuestionAnswered = (response: any) => ({
   mentor: response,
+  type: QUESTION_ANSWERED,
 })
 
-const onQuestionError = (id, question) => ({
-  type: QUESTION_ERROR,
+const onQuestionError = (id: string, question: any) => ({
   mentor: id,
-  question: question,
+  question,
+  type: QUESTION_ERROR,
 })
 
 const onIdle = () => ({
   type: ANSWER_FINISHED,
 })
 
-const nextMentor = id => ({
-  type: MENTOR_NEXT,
+const nextMentor = (id: string) => ({
   mentor: id,
+  type: MENTOR_NEXT,
 })
 
-const papaParseAsync = url => {
-  return new Promise(function(complete, error) {
+const papaParseAsync = (url: any) => {
+  return new Promise((complete, error) => {
     Papa.parse(url, { download: true, complete, error })
   })
 }

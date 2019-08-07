@@ -6,7 +6,7 @@ import { CircularProgress } from "@material-ui/core"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { Helmet } from "react-helmet"
 
-import { loadMentor, loadQuestions, selectMentor } from "src/redux/actions"
+import { loadMentor, loadQuestions, selectMentor } from "src/store/actions"
 
 import Header from "src/components/header"
 import Input from "src/components/input"

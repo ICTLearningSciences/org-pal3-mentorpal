@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Star, StarBorder } from "@material-ui/icons"
 
 import { idleUrl, videoUrl, subtitleUrl } from "src/api/api"
-import { answerFinished, faveMentor } from "src/redux/actions"
+import { answerFinished, faveMentor } from "src/store/actions"
 import { chromeVersion } from "src/funcs/funcs"
 
 import LoadingSpinner from "src/components/video-spinner"
