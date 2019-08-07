@@ -105,3 +105,23 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			-v $(shell pwd)/data:/app/mounts/data \
 			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data
+
+# Complete build of mentor data and videos
+# Runs build if necessary
+# Generates data files
+%/data/videos:
+	$(MAKE) $*/data/videos/update
+
+# Complete build of mentor data
+# Runs build if necessary
+# Generates data files
+.PHONY: %/data/videos/update
+%/data/videos/update: %/build docker-image-exists
+	mkdir -p $(shell pwd)/$*/data
+	cp $(shell pwd)/data/topics.csv $(shell pwd)/$*/data/topics.csv
+	docker run \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-v $(shell pwd)/$*:/app/mounts/$* \
+			-v $(shell pwd)/data:/app/mounts/data \
+			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos
