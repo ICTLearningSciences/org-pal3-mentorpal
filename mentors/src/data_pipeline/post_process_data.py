@@ -3,7 +3,6 @@ import fnmatch
 import os
 import pandas as pd
 import re
-from threading import Thread
 
 import constants
 import utils
