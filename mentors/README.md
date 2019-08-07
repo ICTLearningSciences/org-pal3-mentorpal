@@ -5,13 +5,20 @@
 
 #### Build and Test a Classifier for a New Mentor
 If raw video, audio and timestamp files for a mentor are stored in S3 (more on this
-below), we can use the following commands to build a classifier for the mentor:
+below), we can use the following commands to build a classifier for the mentor.
+Note that videos are not required to generate a classifier to a new mentor.
 
-##### Run a Full Build of {mentor}
+##### Run a Full Build of {mentor} without videos
 - `make {mentor}/data`
 
-##### Update the Full Build of {mentor} (if the {mentor}/data folder exists)
+##### Run a Full Build of {mentor} with videos
+- `make {mentor}/data/videos`
+
+##### Update the Full Build of {mentor} without videos (if the {mentor}/data folder exists)
 - `make {mentor}/data/update`
+
+##### Update the Full Build of {mentor} without videos (if the {mentor}/data folder exists)
+- `make {mentor}/data/videos/update`
 
 ##### Train {mentor} Classifier (after the data folder has been generated)
 - `cd ../checkpoint`
@@ -46,8 +53,10 @@ be used to debug different parts of a pipeline
 
 ### Usage
 Pipeline usage is fully documented in the Makefile.
-- `make {mentor}/data` runs a full build of {mentor} if data folder is not present
-- `make {mentor}/data/update` runs a full build of {mentor} regardless of whether data folder is present
+- `make {mentor}/data` runs a full build of {mentor} data if data folder is not present
+- `make {mentor}/data/update` runs a full build of {mentor} data regardless of whether data folder is present
+- `make {mentor}/data/video` runs a full build of {mentor} data and videos if data folder is not present
+- `make {mentor}/data/update` runs a full build of {mentor} data and videos regardless of whether data folder is present
 - `make {mentor}/build` downloads and preprocesses {mentor} data if build folder is not present
 - `make {mentor}/build/update` downloads and preprocesses {mentor} data  regardless of whether build folder is present
 - `make shell` opens an interactive terminal in the data pipeline docker image.
