@@ -78,7 +78,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 	@echo "creating $*/build ..."
 	docker run \
 			--rm \
-			-t \
+			-it \
 			--name $(DOCKER_CONTAINER) \
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
