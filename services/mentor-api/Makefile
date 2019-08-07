@@ -56,6 +56,20 @@ docker-run:
 		$(DOCKER_IMAGE) 
 
 
+.PHONY: docker-run
+docker-run-ch:
+	docker run \
+			-it \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
+			-v $(PROJECT_ROOT)/mentors:/app/mentors \
+			-e CLASSIFIER_CHECKPOINT=2019-06-13-1900-julianne-demo \
+			--shm-size 8G \
+			-p 5000:5000 \
+		$(DOCKER_IMAGE) 
+
+
 .PHONY: docker-run-dev
 docker-run-dev:
 	docker run \
