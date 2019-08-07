@@ -112,7 +112,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 %/data/videos:
 	$(MAKE) $*/data/videos/update
 
-# Complete build of mentor data
+# Complete build of mentor data and videos
 # Runs build if necessary
 # Generates data files
 .PHONY: %/data/videos/update
