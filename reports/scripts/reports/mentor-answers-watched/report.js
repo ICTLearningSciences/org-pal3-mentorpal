@@ -13,24 +13,24 @@ const {
   timestampAsked,
   timestampAnswerPlaybackEnded,
   timestampAnswerPlaybackStarted,
-} = require('../../xapi');
+} = require("../../xapi");
 
 const CSV_FIELDS = [
-  'answer_confidence',
-  'answer_text',
-  'mentor',
-  'mentor_list',
-  'question_index',
-  'question_text',
-  'resource_id',
-  'session_id',
-  'timestamp_answered',
-  'timestamp_asked',
-  'timestamp_playback_ended',
-  'timestamp_playback_started',
-  'user_domain',
-  'user_id',
-  'user_name',
+  "answer_confidence",
+  "answer_text",
+  "mentor",
+  "mentor_list",
+  "question_index",
+  "question_text",
+  "resource_id",
+  "session_id",
+  "timestamp_answered",
+  "timestamp_asked",
+  "timestamp_playback_ended",
+  "timestamp_playback_started",
+  "user_domain",
+  "user_id",
+  "user_name",
 ];
 
 function toQuesMentorResult(statements, sessId) {

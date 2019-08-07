@@ -150,7 +150,7 @@ function timestampAnswered(statementList, ord = 1) {
 function timestampAnswerPlaybackEnded(statementList, ord = 1) {
   return timestampOfStatementWithVerb(
     statementList,
-    'https://mentorpal.org/xapi/verb/answer-playback-ended',
+    "https://mentorpal.org/xapi/verb/answer-playback-ended",
     ord
   );
 }
@@ -158,7 +158,7 @@ function timestampAnswerPlaybackEnded(statementList, ord = 1) {
 function timestampAnswerPlaybackStarted(statementList, ord = 1) {
   return timestampOfStatementWithVerb(
     statementList,
-    'https://mentorpal.org/xapi/verb/answer-playback-started',
+    "https://mentorpal.org/xapi/verb/answer-playback-started",
     ord
   );
 }

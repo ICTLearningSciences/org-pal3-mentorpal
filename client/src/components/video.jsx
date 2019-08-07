@@ -4,7 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Star, StarBorder } from "@material-ui/icons";
 
 import { idleUrl, videoUrl, subtitleUrl } from "api/api";
-import { answerFinished, faveMentor } from "store/actions";
+import {
+  answerFinished,
+  faveMentor,
+  mentorAnswerPlaybackStarted,
+} from "store/actions";
 import { chromeVersion } from "funcs/funcs";
 
 import LoadingSpinner from "components/video-spinner";
@@ -50,11 +54,19 @@ const VideoPlayer = ({ width, height, format = "mobile" }) => {
     dispatch(answerFinished());
   };
 
+  const onPlay = () => {
+    if (isIdle) {
+      return;
+    }
+    dispatch(mentorAnswerPlaybackStarted(mentor));
+  };
+
   return (
     <ReactPlayer
       style={{ backgroundColor: "black" }}
       url={video_url}
       onEnded={onEnded}
+      onPlay={onPlay}
       loop={isIdle}
       width={width}
       height={height}
