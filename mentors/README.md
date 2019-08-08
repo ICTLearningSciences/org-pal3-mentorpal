@@ -1,6 +1,5 @@
 ## Classification Data Pipeline Info
 ---------------
-
 ### Quick Start
 
 #### Build and Test a Classifier for a New Mentor
