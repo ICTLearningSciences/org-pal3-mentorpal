@@ -78,7 +78,6 @@ const IndexPage = ({ search, data }) => {
     }
   }, [])
 
-
   if (mentors === {} || height === 0 || width === 0) {
     return <CircularProgress />
   }
