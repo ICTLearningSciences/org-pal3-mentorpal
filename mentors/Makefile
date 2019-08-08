@@ -98,8 +98,8 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 # Generates data files
 .PHONY: %/data/update
 %/data/update: %/build docker-image-exists
-	mkdir -p $(shell pwd)/$*/data
-	cp $(shell pwd)/data/topics.csv $(shell pwd)/$*/data/topics.csv
+	mkdir -p $*/data
+	cp data/topics.csv $*/data/topics.csv
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
