@@ -1,0 +1,19 @@
+{
+  "root": true,
+  "extends": ["airbnb", "prettier"],
+  "settings": {
+    "import/core-modules": ["gatsby"],
+    "import/resolver": {
+      "node": {
+        "paths": ["src"]
+      }
+    }
+  },
+  "globals": {
+    "graphql": true
+  },
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "react/prop-types": 0
+  }
+}

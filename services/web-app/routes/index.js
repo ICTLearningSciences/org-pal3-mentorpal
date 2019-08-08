@@ -1,39 +1,39 @@
-var express = require('express');
-const axios = require('axios');
-var http = require('http');
+var express = require("express");
+const axios = require("axios");
+var http = require("http");
 var router = express.Router();
-var io = require('socket.io')(http);
-const requireEnv = require('../utils/require_env');
+var io = require("socket.io")(http);
+const requireEnv = require("../utils/require_env");
 const MENTOR_API_URL =
-  process.env.MENTOR_API_URL || 'http://mentor-api:5000/mentor-api';
+  process.env.MENTOR_API_URL || "http://mentor-api:5000/mentor-api";
 
 //********add a mentor here: copy paste the pattern*/
-router.get('/', function(req, res, next) {
-  res.render('home');
+router.get("/", function(req, res, next) {
+  res.render("home");
 });
-router.get('/clint', function(req, res, next) {
-  res.render('index');
+router.get("/clint", function(req, res, next) {
+  res.render("index");
 });
-router.get('/clint/embed', function(req, res, next) {
-  res.render('index');
+router.get("/clint/embed", function(req, res, next) {
+  res.render("index");
 });
-router.get('/dan', function(req, res, next) {
-  res.render('index');
+router.get("/dan", function(req, res, next) {
+  res.render("index");
 });
-router.get('/dan/embed', function(req, res, next) {
-  res.render('index');
+router.get("/dan/embed", function(req, res, next) {
+  res.render("index");
 });
-router.get('/julianne', function(req, res, next) {
-  res.render('index');
+router.get("/julianne", function(req, res, next) {
+  res.render("index");
 });
-router.get('/julianne/embed', function(req, res, next) {
-  res.render('index');
+router.get("/julianne/embed", function(req, res, next) {
+  res.render("index");
 });
-router.get('/carlos', function(req, res, next) {
-  res.render('index');
+router.get("/carlos", function(req, res, next) {
+  res.render("index");
 });
-router.get('/carlos/embed', function(req, res, next) {
-  res.render('index');
+router.get("/carlos/embed", function(req, res, next) {
+  res.render("index");
 });
 
 const queryMentor = async (mentorId, question) => {
@@ -48,8 +48,8 @@ const queryMentor = async (mentorId, question) => {
 
 // TODO: why are web-browser clients using sockets????
 //***********add above*/
-io.on('connection', function(socket) {
-  socket.on('sendQuestion', async function(data) {
+io.on("connection", function(socket) {
+  socket.on("sendQuestion", async function(data) {
     console.log(`socket rcved: sendQuestion ${JSON.stringify(data)}`);
 
     try {
@@ -62,9 +62,9 @@ io.on('connection', function(socket) {
         return;
       }
 
-      io.to(socket.id).emit('receiveAnswer', {
-        videoID: res.data['answer_id'],
-        transcript: res.data['answer_text'],
+      io.to(socket.id).emit("receiveAnswer", {
+        videoID: res.data["answer_id"],
+        transcript: res.data["answer_text"],
       });
     } catch (err) {
       console.error(

@@ -1,57 +1,57 @@
-import React, { useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { Button, Divider, Paper, InputBase } from "@material-ui/core"
-import { withStyles } from "@material-ui/core/styles"
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Button, Divider, Paper, InputBase } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
-import { sendQuestion, onInput } from "src/redux/actions"
+import { sendQuestion, onInput } from "redux/actions";
 
-import Topics from "src/components/topics"
-import Questions from "src/components/questions"
+import Topics from "components/topics";
+import Questions from "components/questions";
 
 const Input = ({ height, ...props }) => {
-  const dispatch = useDispatch()
-  const question = useSelector(state => state.current_question)
-  const [text, setText] = useState("")
-  const { classes } = props
+  const dispatch = useDispatch();
+  const question = useSelector(state => state.current_question);
+  const [text, setText] = useState("");
+  const { classes } = props;
 
   // Input field should be updated (user typed a question or selected a topic)
   const onInputChanged = text => {
-    dispatch(onInput())
-    setText(text)
-  }
+    dispatch(onInput());
+    setText(text);
+  };
 
   // Input field was clicked on
   const onInputSelected = () => {
-    dispatch(onInput())
-    setText("")
-  }
+    dispatch(onInput());
+    setText("");
+  };
 
   // Input is being sent (user hit send button or recommended question button)
   const onInputSend = text => {
     if (!text) {
-      return
+      return;
     }
-    dispatch(sendQuestion(text))
-    setText("")
-  }
+    dispatch(sendQuestion(text));
+    setText("");
+  };
 
   // Input field key was entered (check if user hit enter)
   const onKeyPress = ev => {
     if (ev.key !== "Enter") {
-      return
+      return;
     }
-    ev.preventDefault()
-    onInputSend(text)
-  }
+    ev.preventDefault();
+    onInputSend(text);
+  };
 
   // Input field keyboard was lowered
   const onBlur = () => {
-    window.scrollTo(0, 0)
-    document.body.scrollTop = 0
-  }
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
+  };
 
   return (
-    <div className="flex" style={{ height: height }}>
+    <div className="flex" style={{ height }}>
       <div className="content" style={{ height: "60px" }}>
         <Topics onSelected={onInputChanged} />
       </div>
@@ -59,7 +59,7 @@ const Input = ({ height, ...props }) => {
         <Questions height={height - 120} onSelected={onInputSend} />
       </div>
       <div className="footer" style={{ height: "60px" }}>
-        <Paper className={classes.root} square={true}>
+        <Paper className={classes.root} square>
           <InputBase
             className={classes.inputField}
             value={text}
@@ -68,7 +68,7 @@ const Input = ({ height, ...props }) => {
             rowsMax={2}
             placeholder={question || "Ask a question"}
             onChange={e => {
-              onInputChanged(e.target.value)
+              onInputChanged(e.target.value);
             }}
             onClick={onInputSelected}
             onBlur={onBlur}
@@ -88,8 +88,8 @@ const Input = ({ height, ...props }) => {
         </Paper>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const styles = {
   root: {
@@ -114,6 +114,6 @@ const styles = {
     height: 28,
     marginLeft: 10,
   },
-}
+};
 
-export default withStyles(styles)(Input)
+export default withStyles(styles)(Input);

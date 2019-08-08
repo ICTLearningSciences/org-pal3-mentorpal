@@ -1,5 +1,5 @@
-const { parse } = require('json2csv');
-const xapi = require('./xapi');
+const { parse } = require("json2csv");
+const xapi = require("./xapi");
 const {
   getObjectId,
   getUserDomain,
@@ -11,36 +11,36 @@ const {
   statementExtValues,
   timestampAnswered,
   timestampAsked,
-} = require('../../xapi');
+} = require("../../xapi");
 
 const CSV_FIELDS = [
-  'answer_confidence',
-  'answer_text',
-  'mentor',
-  'mentor_list',
-  'question_index',
-  'question_text',
-  'resource_id',
-  'session_id',
-  'timestamp_answered',
-  'timestamp_asked',
-  'user_domain',
-  'user_id',
-  'user_name',
+  "answer_confidence",
+  "answer_text",
+  "mentor",
+  "mentor_list",
+  "question_index",
+  "question_text",
+  "resource_id",
+  "session_id",
+  "timestamp_answered",
+  "timestamp_asked",
+  "user_domain",
+  "user_id",
+  "user_name",
 ];
 
 function toQuesMentorResult(statements, sessId) {
   const result = statements.reduce((accResult, curStmt) => {
     const curStMentorpalVals = statementExtValues(curStmt, {
-      context: ['mentor_list'],
+      context: ["mentor_list"],
       result: [
-        'answer_duration',
-        'answer_text',
-        'confidence',
-        'mentor',
-        'question_text',
-        'question',
-        'question_index',
+        "answer_duration",
+        "answer_text",
+        "confidence",
+        "mentor",
+        "question_text",
+        "question",
+        "question_index",
       ],
     });
     return {
@@ -51,10 +51,10 @@ function toQuesMentorResult(statements, sessId) {
       answer_text: accResult.answer_text || curStMentorpalVals.answer_text,
       mentor: accResult.mentor || curStMentorpalVals.mentor,
       mentor_list:
-        typeof curStMentorpalVals.mentor_list === 'string' &&
+        typeof curStMentorpalVals.mentor_list === "string" &&
         curStMentorpalVals.mentor_list.length > 0
           ? curStMentorpalVals.mentor_list
-          : (curStMentorpalVals.mentor_list || []).sort().join(','),
+          : (curStMentorpalVals.mentor_list || []).sort().join(","),
       question_index:
         accResult.question_index || curStMentorpalVals.question_index,
       question_text:
@@ -122,7 +122,7 @@ function reportJsonToCsv(reportJson) {
   }
 }
 
-async function runReport({ since = '2019-07-31T00:00:00Z' } = {}) {
+async function runReport({ since = "2019-07-31T00:00:00Z" } = {}) {
   const statements = await xapi.queryXapi({ since });
   const reportJson = statementsToReportJson(statements);
   return reportJson;
