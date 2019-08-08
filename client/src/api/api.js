@@ -5,9 +5,7 @@ const MENTOR_VIDEO_HOST = "https://video.mentorpal.org"
 const RESPONSE_CUTOFF = -100
 
 export const videoUrl = (mentor, format) => {
-  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/${format}/${
-    mentor.answer_id
-  }.mp4`
+  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/${format}/${mentor.answer_id}.mp4`
 }
 
 export const idleUrl = (mentor, format) => {

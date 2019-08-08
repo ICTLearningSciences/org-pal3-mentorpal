@@ -12,9 +12,7 @@
   "globals": {
     "graphql": true
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react"],
   "rules": {
     "jsx-a11y/anchor-is-valid": [
       "error",
