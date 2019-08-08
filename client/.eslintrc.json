@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": ["airbnb", "plugin:prettier/recommended"],
+  "extends": ["airbnb", "prettier"],
   "settings": {
     "import/core-modules": ["gatsby"],
     "import/resolver": {
@@ -12,16 +12,8 @@
   "globals": {
     "graphql": true
   },
-  "plugins": ["react"],
+  "plugins": ["react", "prettier"],
   "rules": {
-    "jsx-a11y/anchor-is-valid": [
-      "error",
-      {
-        "components": ["Link"],
-        "specialLink": ["to"],
-        "aspects": ["noHref", "invalidHref", "preferButton"]
-      }
-    ],
     "react/prop-types": 0
   }
 }

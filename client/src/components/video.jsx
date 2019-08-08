@@ -1,24 +1,26 @@
-import React from "react"
-import ReactPlayer from "react-player"
-import { useSelector, useDispatch } from "react-redux"
-import { Star, StarBorder } from "@material-ui/icons"
+import React from "react";
+import ReactPlayer from "react-player";
+import { useSelector, useDispatch } from "react-redux";
+import { Star, StarBorder } from "@material-ui/icons";
 
-import { idleUrl, videoUrl, subtitleUrl } from "api/api"
-import { answerFinished, faveMentor } from "redux/actions"
-import { chromeVersion } from "funcs/funcs"
+import { idleUrl, videoUrl, subtitleUrl } from "api/api";
+import { answerFinished, faveMentor } from "redux/actions";
+import { chromeVersion } from "funcs/funcs";
 
-import LoadingSpinner from "components/video-spinner"
-import MessageStatus from "components/video-status"
+import LoadingSpinner from "components/video-spinner";
+import MessageStatus from "components/video-status";
 
 const Video = ({ height, width }) => {
-  const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
-  const mobileWidth = height / 0.895
-  const webWidth = height / 0.5625
+  const mentor = useSelector(
+    state => state.mentors_by_id[state.current_mentor]
+  );
+  const mobileWidth = height / 0.895;
+  const webWidth = height / 0.5625;
   const format =
     Math.abs(width - mobileWidth) > Math.abs(width - webWidth)
       ? "web"
-      : "mobile"
-  width = Math.min(width, format === "mobile" ? mobileWidth : webWidth)
+      : "mobile";
+  width = Math.min(width, format === "mobile" ? mobileWidth : webWidth);
 
   return (
     <div id="video-container" style={{ width }}>
@@ -27,24 +29,26 @@ const Video = ({ height, width }) => {
       <LoadingSpinner mentor={mentor} height={height} width={width} />
       <MessageStatus mentor={mentor} />
     </div>
-  )
-}
+  );
+};
 
 const VideoPlayer = ({ width, height, format = "mobile" }) => {
-  const dispatch = useDispatch()
-  const isIdle = useSelector(state => state.isIdle)
-  const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
+  const dispatch = useDispatch();
+  const isIdle = useSelector(state => state.isIdle);
+  const mentor = useSelector(
+    state => state.mentors_by_id[state.current_mentor]
+  );
   const video_url = mentor
     ? isIdle
       ? idleUrl(mentor, format)
       : videoUrl(mentor, format)
-    : ""
-  const subtitle_url = mentor && !isIdle ? subtitleUrl(mentor) : ""
-  const showSubtitles = !chromeVersion() || chromeVersion() >= 62
+    : "";
+  const subtitle_url = mentor && !isIdle ? subtitleUrl(mentor) : "";
+  const showSubtitles = !chromeVersion() || chromeVersion() >= 62;
 
   const onEnded = () => {
-    dispatch(answerFinished())
-  }
+    dispatch(answerFinished());
+  };
 
   return (
     <ReactPlayer
@@ -73,21 +77,21 @@ const VideoPlayer = ({ width, height, format = "mobile" }) => {
         },
       }}
     />
-  )
-}
+  );
+};
 
 const FaveButton = () => {
-  const dispatch = useDispatch()
-  const mentor = useSelector(state => state.current_mentor)
-  const mentors = useSelector(state => state.mentors_by_id)
-  const faved_mentor = useSelector(state => state.faved_mentor)
+  const dispatch = useDispatch();
+  const mentor = useSelector(state => state.current_mentor);
+  const mentors = useSelector(state => state.mentors_by_id);
+  const faved_mentor = useSelector(state => state.faved_mentor);
 
   const onClick = () => {
-    dispatch(faveMentor(mentor))
-  }
+    dispatch(faveMentor(mentor));
+  };
 
   if (Object.keys(mentors).length === 1) {
-    return <div />
+    return <div />;
   }
 
   return faved_mentor === mentor ? (
@@ -98,7 +102,7 @@ const FaveButton = () => {
       onClick={onClick}
       style={{ color: "grey" }}
     />
-  )
-}
+  );
+};
 
-export default Video
+export default Video;

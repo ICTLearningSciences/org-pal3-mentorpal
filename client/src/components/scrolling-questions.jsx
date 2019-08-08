@@ -1,8 +1,8 @@
-import React, { useEffect } from "react"
-import { ListItem, ListItemText } from "@material-ui/core"
-import { Whatshot } from "@material-ui/icons"
+import React, { useEffect } from "react";
+import { ListItem, ListItemText } from "@material-ui/core";
+import { Whatshot } from "@material-ui/icons";
 
-import { normalizeString } from "funcs/funcs"
+import { normalizeString } from "funcs/funcs";
 
 const ScrollingQuestions = ({
   questions,
@@ -12,19 +12,19 @@ const ScrollingQuestions = ({
 }) => {
   useEffect(() => {
     const top_question = questions.find(q => {
-      return !questions_asked.includes(normalizeString(q))
-    })
+      return !questions_asked.includes(normalizeString(q));
+    });
 
-    const node = document.getElementById(top_question)
+    const node = document.getElementById(top_question);
     if (!(top_question && node)) {
-      return
+      return;
     }
 
     node.scrollIntoView({
       behavior: "smooth",
       block: "start",
-    })
-  })
+    });
+  });
 
   return questions.map((question, i) => (
     <ListItem
@@ -48,7 +48,7 @@ const ScrollingQuestions = ({
         {question}
       </ListItemText>
     </ListItem>
-  ))
-}
+  ));
+};
 
-export default ScrollingQuestions
+export default ScrollingQuestions;

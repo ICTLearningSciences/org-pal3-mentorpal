@@ -1,17 +1,17 @@
-import React, { useState } from "react"
-import ReactPlayer from "react-player"
+import React, { useState } from "react";
+import ReactPlayer from "react-player";
 
-import { idleUrl } from "api/api"
-import { STATUS_ERROR } from "redux/store"
+import { idleUrl } from "api/api";
+import { STATUS_ERROR } from "redux/store";
 
 const VideoThumbnail = ({ mentor, isMobile, width, height }) => {
-  const [isPlaying, setPlaying] = useState(true)
-  const src = idleUrl(mentor, isMobile ? "mobile" : "web")
-  const isDisabled = mentor.is_off_topic || mentor.status === STATUS_ERROR
+  const [isPlaying, setPlaying] = useState(true);
+  const src = idleUrl(mentor, isMobile ? "mobile" : "web");
+  const isDisabled = mentor.is_off_topic || mentor.status === STATUS_ERROR;
 
   const onStart = () => {
-    setPlaying(false)
-  }
+    setPlaying(false);
+  };
 
   return (
     <ReactPlayer
@@ -27,7 +27,7 @@ const VideoThumbnail = ({ mentor, isMobile, width, height }) => {
       playsinline
       webkit-playsinline="true"
     />
-  )
-}
+  );
+};
 
-export default VideoThumbnail
+export default VideoThumbnail;

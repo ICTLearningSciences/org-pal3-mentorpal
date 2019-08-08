@@ -1,6 +1,6 @@
-const express = require('express');
-const fs = require('fs-extra');
-const parse = require('csv-parse/lib/sync');
+const express = require("express");
+const fs = require("fs-extra");
+const parse = require("csv-parse/lib/sync");
 const router = express.Router();
 // const request = require('async-request');
 
@@ -46,10 +46,10 @@ const router = express.Router();
 //   }
 // };
 
-router.get('/videos', async (req, res, next) => {
+router.get("/videos", async (req, res, next) => {
   // result = await checkVideoUrls();
   // res.send(result);
-  res.send({ 'feature-disabled': 'sorry' });
+  res.send({ "feature-disabled": "sorry" });
 });
 
 module.exports = router;
