@@ -1,6 +1,7 @@
 SHARED_DATA = "data"
 MENTOR_DATA = "{}/data"
 MENTOR_BUILD = "{}/build"
+MENTOR_VIDEOS = "{}/videos"
 SESSION_DATA = "recordings/session{}"
 SESSION_OUTPUT = "out"
 AUDIOCHUNKS = "audiochunks"

@@ -3,7 +3,6 @@ import fnmatch
 import os
 import pandas as pd
 import re
-from threading import Thread
 
 import constants
 import utils
@@ -17,6 +16,7 @@ mentor data has been generated.
 
 MENTOR_DATA = constants.MENTOR_DATA
 MENTOR_BUILD = constants.MENTOR_BUILD
+MENTOR_VIDEOS = constants.MENTOR_VIDEOS
 SESSION_DATA = constants.SESSION_DATA
 ANSWER_VIDEOS = constants.ANSWER_VIDEOS
 UTTERANCE_VIDEOS = constants.UTTERANCE_VIDEOS
@@ -34,30 +34,18 @@ METADATA = constants.METADATA
 DATA_DIR = os.environ["DATA_MOUNT"] or os.getcwd()
 
 
-def ffmpeg_convert_video(input_file):
-    """
-    Converts the video format to ogv and mp4's cropped for the website
-    """
-    output_file = input_file[0:-4]
-    ff2 = ffmpy.FFmpeg(
-        inputs={input_file: None},
-        outputs={output_file + ".ogv": "-c:v libtheora -q:v 6 -threads 0 -y"},
-    )
-    print(ff2.cmd + "\n")
-    ff2.run()
-
-
 def ffmpeg_convert_mobile(input_file):
-    output_file = input_file[0:-4] + "_M" + ".mp4"
-    ff3 = ffmpy.FFmpeg(
+    # Trim file type and append mp4
+    output_file = "{}_m.mp4".format(input_file.rsplit(".", 1)[0])
+    ff = ffmpy.FFmpeg(
         inputs={input_file: None},
         # outputs={output_file: "-filter:v crop=614:548:333:86 -y"},  This is for the 1280x720
         outputs={
             output_file: "-filter:v crop=918:822:500:220 -threads 0 -y"
         },  # this is for 1080p  the parameters are width, height, x and y point
     )
-    print(ff3.cmd + "\n")
-    ff3.run()
+    print(ff.cmd + "\n")
+    ff.run()
 
 
 class PostProcessData(object):
@@ -107,18 +95,11 @@ class PostProcessData(object):
         ff = ffmpy.FFmpeg(
             inputs={input_file: None}, outputs={output_file: output_command}
         )
-        # print(ff.cmd)
         ff.run()
-        print("Starting Thread")
-        thread = Thread(target=ffmpeg_convert_video, args=(output_file,))
-        thread.start()
-        thread2 = Thread(target=ffmpeg_convert_mobile, args=(output_file,))
-        thread2.start()
+        ffmpeg_convert_mobile(output_file)
 
-    def get_video_chunks(
-        self, video_file, timestamps, mentor_name, session_number, part_number
-    ):
-        print(video_file, timestamps, mentor_name, session_number, part_number)
+    def get_video_chunks(self, video_file, timestamps, mentor, session, part, videos):
+        print(video_file, timestamps, mentor, session, part)
         text_type = []
         start_times = []
         end_times = []
@@ -144,9 +125,8 @@ class PostProcessData(object):
                 text_type[i] == "A"
                 and len(self.answer_corpus) > self.answer_corpus_index
             ):
-                answer_id = f"{self.mentor_name}_A{self.answer_number}_{session_number}_{part_number}"
-                # Uncomment for splitting video
-                # output_file = os.path.join(self.answer_chunks, answer_id + ".mp4")
+                answer_id = f"{mentor}_a{self.answer_number}_{session}_{part}"
+                output_file = os.path.join(self.answer_chunks, answer_id + ".mp4")
                 answer_sample["ID"] = answer_id
                 answer_sample["topics"] = ",".join(
                     [
@@ -154,7 +134,6 @@ class PostProcessData(object):
                         self.answer_corpus.iloc[self.answer_corpus_index]["Helpers"],
                     ]
                 )
-
                 if answer_sample["topics"][-1] == ",":
                     answer_sample["topics"] = answer_sample["topics"][:-1]
                 answer_sample["question"] = "{}\r\n".format(
@@ -180,9 +159,8 @@ class PostProcessData(object):
                 text_type[i] == "U"
                 and len(self.utterance_corpus) > self.utterance_corpus_index
             ):
-                utterance_id = f"{self.mentor_name}_U{self.utterance_number}_{session_number}_{part_number}"
-                # Uncomment for splitting video
-                # output_file = os.path.join(self.utterance_chunks, utterance_id + ".mp4")
+                utterance_id = f"{mentor}_u{self.utterance_number}_{session}_{part}"
+                output_file = os.path.join(self.utterance_chunks, utterance_id + ".mp4")
                 utterance_sample["ID"] = utterance_id
                 utterance_sample["utterance"] = self.utterance_corpus.iloc[
                     self.utterance_corpus_index
@@ -193,14 +171,11 @@ class PostProcessData(object):
                 self.utterance_corpus_index += 1
                 self.utterance_number += 1
                 self.utterance_data.append(utterance_sample)
-            """
-            TODO: Add flag for this
-            Uncomment this line when you want to get the actual cut answers. This takes a long time so this isn't needed
-            when testing the code for the other parts
-            """
-            # self.ffmpeg_split_video(
-            #     video_file, output_file, start_times[i], end_times[i]
-            # )
+
+            if videos:
+                self.ffmpeg_split_video(
+                    video_file, output_file, start_times[i], end_times[i]
+                )
 
     def write_data(self, mentor):
         """
@@ -281,18 +256,14 @@ class PostProcessData(object):
 
 def build_post_processing_data(args):
     mentor_data = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor))
+    mentor_videos = os.path.join(DATA_DIR, MENTOR_VIDEOS.format(args.mentor))
 
     # store answer video chunks in this folder.
-    answer_chunks = os.path.join(mentor_data, ANSWER_VIDEOS)
-    # Create answer_videos directory if it doesn't exist
-    if not os.path.isdir(answer_chunks):
-        os.mkdir(answer_chunks)
-
+    answer_chunks = os.path.join(mentor_videos, ANSWER_VIDEOS)
+    os.makedirs(answer_chunks, exist_ok=True)
     # store prompts and repeat-after-me videos in this folder
-    utterance_chunks = os.path.join(mentor_data, UTTERANCE_VIDEOS)
-    # Create utterance_videos directory if it doesn't exist
-    if not os.path.isdir(utterance_chunks):
-        os.mkdir(utterance_chunks)
+    utterance_chunks = os.path.join(mentor_videos, UTTERANCE_VIDEOS)
+    os.makedirs(utterance_chunks, exist_ok=True)
 
     # Load older metadata, to see where to continue numbering answers and utterances from, for the current mentor
     metadata_file = os.path.join(mentor_data, METADATA)
@@ -358,15 +329,16 @@ def build_post_processing_data(args):
         print("INFO: Processing session {}".format(session))
         number_of_parts = len(fnmatch.filter(os.listdir(session_path), "*.mp4"))
         for j in range(number_of_parts):
+            part = j + 1
             video_file = os.path.join(
-                session_path, DATA_FILENAME.format(j + 1, VIDEO_FILE)
+                session_path, DATA_FILENAME.format(part, VIDEO_FILE)
             )
             timestamp_file = os.path.join(
-                session_path, DATA_FILENAME.format(j + 1, TIMESTAMP_FILE)
+                session_path, DATA_FILENAME.format(part, TIMESTAMP_FILE)
             )
 
             ppd.get_video_chunks(
-                video_file, timestamp_file, args.mentor, int(session), j + 1
+                video_file, timestamp_file, args.mentor, session, part, args.videos
             )
 
         session += 1

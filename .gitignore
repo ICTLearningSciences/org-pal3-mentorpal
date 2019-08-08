@@ -18,5 +18,6 @@ resources
 *password.txt
 
 # Mentor Data Files
-*/temp/*
-*/build/*
+*/temp
+*/build
+*/videos

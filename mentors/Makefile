@@ -58,6 +58,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			--entrypoint /bin/bash \
 			-v $(shell pwd)/$(MENTOR):/app/mounts/$(MENTOR) \
 			-v $(shell pwd)/data:/app/mounts/data \
+			-v $(shell pwd)/videos:/app/mounts/videos \
 			-v $(shell pwd)/src:/app/src \
 		$(DOCKER_IMAGE)
 
@@ -77,7 +78,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 	@echo "creating $*/build ..."
 	docker run \
 			--rm \
-			-t \
+			-it \
 			--name $(DOCKER_CONTAINER) \
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
@@ -97,6 +98,26 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 # Generates data files
 .PHONY: %/data/update
 %/data/update: %/build docker-image-exists
+	mkdir -p $*/data
+	cp data/topics.csv $*/data/topics.csv
+	docker run \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-v $(shell pwd)/$*:/app/mounts/$* \
+			-v $(shell pwd)/data:/app/mounts/data \
+			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data
+
+# Complete build of mentor data and videos
+# Runs build if necessary
+# Generates data files
+%/videos:
+	$(MAKE) $*/videos/update
+
+# Complete build of mentor data and videos
+# Runs build if necessary
+# Generates data files
+.PHONY: %/videos/update
+%/videos/update: %/build docker-image-exists
 	mkdir -p $(shell pwd)/$*/data
 	cp $(shell pwd)/data/topics.csv $(shell pwd)/$*/data/topics.csv
 	docker run \
@@ -104,4 +125,5 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			--name $(DOCKER_CONTAINER) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			-v $(shell pwd)/data:/app/mounts/data \
-			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data
+			-v $(shell pwd)/videos:/app/mounts/videos \
+			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos
