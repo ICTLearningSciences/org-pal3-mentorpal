@@ -1,8 +1,9 @@
+/* eslint-disable */
 import Papa from "papaparse"
 import { actions as cmi5Actions } from "redux-cmi5"
 
-import { topicsUrl, questionsUrl, queryMentor } from "src/api/api"
-import { STATUS_READY } from "src/redux/store"
+import { topicsUrl, questionsUrl, queryMentor } from "api/api"
+import { STATUS_READY } from "redux/store"
 
 export const MENTOR_LOADED = "MENTOR_LOADED" // mentor info was loaded
 export const MENTOR_SELECTED = "MENTOR_SELECTED" // mentor video was selected
@@ -19,41 +20,47 @@ export const ANSWER_FINISHED = "ANSWER_FINISHED" // mentor video has finished pl
 export const MENTOR_SELECTION_TRIGGER_AUTO = "auto"
 export const MENTOR_SELECTION_TRIGGER_USER = "user"
 
+async function papaParseAsync(url) {
+  return new Promise((complete, error) => {
+    Papa.parse(url, { download: true, complete, error })
+  })
+}
+
 export const loadMentor = mentor => dispatch => {
   dispatch({
     type: MENTOR_LOADED,
-    mentor: mentor,
+    mentor,
   })
 }
 
 const { sendStatement: sendXapiStatement } = cmi5Actions
 
-export const loadQuestions = (mentor_id, recommended) => async dispatch => {
-  const questions_url = questionsUrl(mentor_id)
+export const loadQuestions = (mentorId, recommended) => async dispatch => {
+  const quesUrl = questionsUrl(mentorId)
 
   try {
-    const results = await papaParseAsync(questions_url)
-    const questions = results.data.reduce((questions, data) => {
+    const results = await papaParseAsync(quesUrl)
+    const questions = results.data.reduce((qs, data) => {
       const topics = data[0].split(", ")
       const question = data[3]
 
       topics.forEach(topic => {
-        questions[topic] = questions[topic] || []
-        if (!questions[topic].includes(question)) {
-          questions[topic].push(question)
+        qs[topic] = qs[topic] || []
+        if (!qs[topic].includes(question)) {
+          qs[topic].push(question)
         }
       })
-      return questions
+      return qs
     }, {})
 
-    dispatch(loadTopics(mentor_id, questions, recommended))
+    dispatch(loadTopics(mentorId, questions, recommended))
   } catch (err) {
     console.error(err)
   }
 }
 
-const loadTopics = (mentor_id, questions, recommended) => async dispatch => {
-  const topics_url = topicsUrl(mentor_id)
+const loadTopics = (mentorId, questions, recommended) => async dispatch => {
+  const topics_url = topicsUrl(mentorId)
   const init = recommended
     ? {
         Recommended: Array.isArray(recommended) ? recommended : [recommended],
@@ -63,7 +70,7 @@ const loadTopics = (mentor_id, questions, recommended) => async dispatch => {
 
   try {
     const results = await papaParseAsync(topics_url)
-    var topic_questions = results.data.reduce((topic_questions, data) => {
+    const topic_questions = results.data.reduce((topic_questions, data) => {
       const topicName = data[0]
       const topicGroup = data[1]
       const topicQuestions = questions[topicName]
@@ -83,8 +90,8 @@ const loadTopics = (mentor_id, questions, recommended) => async dispatch => {
 
     dispatch({
       type: MENTOR_TOPIC_QUESTIONS_LOADED,
-      id: mentor_id,
-      topic_questions: topic_questions,
+      id: mentorId,
+      topic_questions,
     })
   } catch (err) {
     console.error(err)
@@ -92,25 +99,25 @@ const loadTopics = (mentor_id, questions, recommended) => async dispatch => {
 }
 
 export const selectMentor = (
-  mentor_id,
+  mentorId,
   { trigger = MENTOR_SELECTION_TRIGGER_AUTO } = {}
 ) => dispatch => {
   dispatch(onInput())
   dispatch({
     type: MENTOR_SELECTED,
-    id: mentor_id,
-    trigger: trigger,
+    id: mentorId,
+    trigger,
   })
 }
 
 export const selectTopic = topic => ({
   type: TOPIC_SELECTED,
-  topic: topic,
+  topic,
 })
 
-export const faveMentor = mentor_id => ({
+export const faveMentor = mentorId => ({
   type: MENTOR_FAVED,
-  id: mentor_id,
+  id: mentorId,
 })
 
 const currentQuestionIndex = state =>
@@ -160,10 +167,10 @@ export const sendQuestion = question => async (dispatch, getState) => {
   dispatch(onQuestionSent(question))
 
   const state = getState()
-  const mentor_ids = Object.keys(state.mentors_by_id)
+  const mentorIds = Object.keys(state.mentors_by_id)
   const tick = Date.now()
   // query all the mentors without waiting for the answers one by one
-  const promises = mentor_ids.map(mentor => {
+  const promises = mentorIds.map(mentor => {
     return new Promise((resolve, reject) => {
       queryMentor(mentor, question)
         .then(response => {
@@ -174,9 +181,9 @@ export const sendQuestion = question => async (dispatch, getState) => {
                 extensions: {
                   "https://mentorpal.org/xapi/activity/extensions/mentor-response": {
                     ...response,
-                    question: question,
+                    question,
                     question_index: currentQuestionIndex(getState()),
-                    mentor: mentor,
+                    mentor,
                     response_time: Date.now() - tick,
                   },
                 },
@@ -229,7 +236,7 @@ export const sendQuestion = question => async (dispatch, getState) => {
 }
 
 const NEXT_MENTOR_DELAY = 3000
-var timer = null
+let timer = null
 export const answerFinished = () => (dispatch, getState) => {
   dispatch(onIdle())
 
@@ -278,7 +285,7 @@ export const onInput = () => dispatch => {
 
 const onQuestionSent = question => ({
   type: QUESTION_SENT,
-  question: question,
+  question,
 })
 
 const onQuestionAnswered = response => ({
@@ -289,7 +296,7 @@ const onQuestionAnswered = response => ({
 const onQuestionError = (id, question) => ({
   type: QUESTION_ERROR,
   mentor: id,
-  question: question,
+  question,
 })
 
 const onIdle = () => ({
@@ -300,9 +307,4 @@ const nextMentor = id => ({
   type: MENTOR_NEXT,
   mentor: id,
 })
-
-const papaParseAsync = url => {
-  return new Promise(function(complete, error) {
-    Papa.parse(url, { download: true, complete, error })
-  })
-}
+/* eslint-enable */

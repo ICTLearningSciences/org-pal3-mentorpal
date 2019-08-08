@@ -2,13 +2,13 @@ import React from "react"
 import { useSelector } from "react-redux"
 import { Sms, SmsFailed } from "@material-ui/icons"
 
-import { STATUS_READY, STATUS_ERROR } from "src/redux/store"
+import { STATUS_READY, STATUS_ERROR } from "redux/store"
 
 const MessageStatus = ({ mentor }) => {
   const next_mentor = useSelector(state => state.next_mentor)
 
   if (mentor.is_off_topic) {
-    return <div></div>
+    return <div />
   }
   if (mentor.status === STATUS_ERROR) {
     return (
@@ -29,7 +29,7 @@ const MessageStatus = ({ mentor }) => {
       />
     )
   }
-  return <div></div>
+  return <div />
 }
 
 export default MessageStatus

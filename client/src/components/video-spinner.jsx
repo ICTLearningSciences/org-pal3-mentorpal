@@ -16,7 +16,7 @@ const LoadingSpinner = ({ mentor, width, height }) => {
     )
   }
 
-  return <div></div>
+  return <div />
 }
 
 export default LoadingSpinner

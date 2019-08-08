@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { reducers as cmi5Reducer } from "redux-cmi5"
 import {
   MENTOR_LOADED,
@@ -10,8 +11,8 @@ import {
   QUESTION_ANSWERED,
   QUESTION_ERROR,
   ANSWER_FINISHED,
-} from "src/redux/actions"
-import { normalizeString } from "src/funcs/funcs"
+} from "redux/actions"
+import { normalizeString } from "funcs/funcs"
 
 export const STATUS_READY = "READY"
 export const STATUS_ANSWERED = "ANSWERED"
@@ -110,8 +111,7 @@ const store = (state = initialState, action) => {
 
     case QUESTION_ANSWERED:
       const response = action.mentor
-      const history =
-        state.mentors_by_id[response.id].topic_questions["History"]
+      const history = state.mentors_by_id[response.id].topic_questions.History
       if (!history.includes(response.question)) {
         history.push(response.question)
       }
@@ -126,7 +126,7 @@ const store = (state = initialState, action) => {
         status: STATUS_READY,
         topic_questions: {
           ...state.mentors_by_id[response.id].topic_questions,
-          ["History"]: history,
+          History: history,
         },
       }
 
@@ -175,3 +175,4 @@ export default (state = initialState, action) => {
   console.log("reduce state", s)
   return s
 }
+/* eslint-enable */

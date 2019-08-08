@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import { List } from "@material-ui/core"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
-import ScrollingQuestions from "src/components/scrolling_questions"
+import ScrollingQuestions from "components/scrolling-questions"
 
 const Questions = ({ height, onSelected }) => {
   const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
@@ -11,11 +11,11 @@ const Questions = ({ height, onSelected }) => {
   const questions_asked = useSelector(state => state.questions_asked)
 
   if (!(mentor && current_topic && mentor.topic_questions)) {
-    return <div></div>
+    return <div />
   }
 
   const questions = mentor.topic_questions[current_topic] || []
-  const recommended = mentor.topic_questions["Recommended"] || []
+  const recommended = mentor.topic_questions.Recommended || []
   if (current_topic !== "History") {
     questions.sort((a, b) => {
       if (recommended.includes(a) && recommended.includes(b)) {
@@ -33,10 +33,7 @@ const Questions = ({ height, onSelected }) => {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <List
-        disablePadding={true}
-        style={{ maxHeight: height, overflow: "auto" }}
-      >
+      <List disablePadding style={{ maxHeight: height, overflow: "auto" }}>
         <ScrollingQuestions
           questions={questions}
           questions_asked={questions_asked}

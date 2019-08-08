@@ -2,7 +2,7 @@ import React, { useEffect } from "react"
 import { ListItem, ListItemText } from "@material-ui/core"
 import { Whatshot } from "@material-ui/icons"
 
-import { normalizeString } from "src/funcs/funcs"
+import { normalizeString } from "funcs/funcs"
 
 const ScrollingQuestions = ({
   questions,

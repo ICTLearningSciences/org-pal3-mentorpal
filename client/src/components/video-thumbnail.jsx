@@ -1,8 +1,8 @@
 import React, { useState } from "react"
 import ReactPlayer from "react-player"
 
-import { idleUrl } from "src/api/api"
-import { STATUS_ERROR } from "src/redux/store"
+import { idleUrl } from "api/api"
+import { STATUS_ERROR } from "redux/store"
 
 const VideoThumbnail = ({ mentor, isMobile, width, height }) => {
   const [isPlaying, setPlaying] = useState(true)
@@ -22,9 +22,9 @@ const VideoThumbnail = ({ mentor, isMobile, width, height }) => {
       onStart={onStart}
       playing={isPlaying}
       volume={0.0}
-      muted={true}
+      muted
       controls={false}
-      playsinline={true}
+      playsinline
       webkit-playsinline="true"
     />
   )

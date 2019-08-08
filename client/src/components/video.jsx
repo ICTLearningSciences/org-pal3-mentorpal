@@ -3,12 +3,12 @@ import ReactPlayer from "react-player"
 import { useSelector, useDispatch } from "react-redux"
 import { Star, StarBorder } from "@material-ui/icons"
 
-import { idleUrl, videoUrl, subtitleUrl } from "src/api/api"
-import { answerFinished, faveMentor } from "src/redux/actions"
-import { chromeVersion } from "src/funcs/funcs"
+import { idleUrl, videoUrl, subtitleUrl } from "api/api"
+import { answerFinished, faveMentor } from "redux/actions"
+import { chromeVersion } from "funcs/funcs"
 
-import LoadingSpinner from "src/components/video-spinner"
-import MessageStatus from "src/components/video-status"
+import LoadingSpinner from "components/video-spinner"
+import MessageStatus from "components/video-status"
 
 const Video = ({ height, width }) => {
   const mentor = useSelector(state => state.mentors_by_id[state.current_mentor])
@@ -21,7 +21,7 @@ const Video = ({ height, width }) => {
   width = Math.min(width, format === "mobile" ? mobileWidth : webWidth)
 
   return (
-    <div id="video-container" style={{ width: width }}>
+    <div id="video-container" style={{ width }}>
       <VideoPlayer height={height} width={width} format={format} />
       <FaveButton />
       <LoadingSpinner mentor={mentor} height={height} width={width} />
@@ -55,8 +55,8 @@ const VideoPlayer = ({ width, height, format = "mobile" }) => {
       width={width}
       height={height}
       controls={!isIdle}
-      playing={true}
-      playsinline={true}
+      playing
+      playsinline
       webkit-playsinline="true"
       config={{
         file: {
@@ -87,7 +87,7 @@ const FaveButton = () => {
   }
 
   if (Object.keys(mentors).length === 1) {
-    return <div></div>
+    return <div />
   }
 
   return faved_mentor === mentor ? (

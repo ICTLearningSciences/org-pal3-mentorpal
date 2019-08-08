@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux"
 import { Button, Divider, Paper, InputBase } from "@material-ui/core"
 import { withStyles } from "@material-ui/core/styles"
 
-import { sendQuestion, onInput } from "src/redux/actions"
+import { sendQuestion, onInput } from "redux/actions"
 
-import Topics from "src/components/topics"
-import Questions from "src/components/questions"
+import Topics from "components/topics"
+import Questions from "components/questions"
 
 const Input = ({ height, ...props }) => {
   const dispatch = useDispatch()
@@ -51,7 +51,7 @@ const Input = ({ height, ...props }) => {
   }
 
   return (
-    <div className="flex" style={{ height: height }}>
+    <div className="flex" style={{ height }}>
       <div className="content" style={{ height: "60px" }}>
         <Topics onSelected={onInputChanged} />
       </div>
@@ -59,7 +59,7 @@ const Input = ({ height, ...props }) => {
         <Questions height={height - 120} onSelected={onInputSend} />
       </div>
       <div className="footer" style={{ height: "60px" }}>
-        <Paper className={classes.root} square={true}>
+        <Paper className={classes.root} square>
           <InputBase
             className={classes.inputField}
             value={text}

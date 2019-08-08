@@ -5,6 +5,6 @@ import thunk from "redux-thunk"
 
 import store from "./src/redux/store"
 
-const m_store = createStore(store, applyMiddleware(...[thunk]))
+const storeObj = createStore(store, applyMiddleware(...[thunk]))
 
-export default ({ element }) => <Provider store={m_store}>{element}</Provider>
+export default ({ element }) => <Provider store={storeObj}>{element}</Provider>

@@ -6,19 +6,19 @@ import { CircularProgress } from "@material-ui/core"
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 import { Helmet } from "react-helmet"
 
-import { loadMentor, loadQuestions, selectMentor } from "src/redux/actions"
+import { loadMentor, loadQuestions, selectMentor } from "redux/actions"
 
-import Header from "src/components/header"
-import Input from "src/components/input"
-import Video from "src/components/video"
-import VideoPanel from "src/components/video-panel"
-import withLocation from "src/wrap-with-location"
+import Header from "components/header"
+import Input from "components/input"
+import Video from "components/video"
+import VideoPanel from "components/video-panel"
+import withLocation from "wrap-with-location"
 
-import "src/styles/layout.css"
+import "styles/layout.css"
 
 const { start: cmi5Start } = cmi5Actions
 
-const IndexPage = ({ search, ...props }) => {
+const IndexPage = ({ search, data }) => {
   const dispatch = useDispatch()
   const mentors = useSelector(state => state.mentors_by_id)
   const [height, setHeight] = useState(0)
@@ -31,13 +31,26 @@ const IndexPage = ({ search, ...props }) => {
     ? height * 0.5
     : Math.max(height - videoHeight, 250)
 
+  let globalWindow
+  if (typeof window !== "undefined") {
+    globalWindow = window // eslint-disable-line no-undef
+  }
+
+  function handleWindowResize() {
+    if (typeof globalWindow === `undefined`) {
+      return
+    }
+    setHeight(globalWindow.innerHeight)
+    setWidth(globalWindow.innerWidth)
+  }
+
   useEffect(() => {
     dispatch(cmi5Start())
   }, []) // run only on first render
 
   useEffect(() => {
-    const data = props.data.allMentorsCsv.edges
-    const mentorData = data.find(item => {
+    const edgeData = data.allMentorsCsv.edges
+    const mentorData = edgeData.find(item => {
       return item.node.id === mentor
     })
 
@@ -49,29 +62,22 @@ const IndexPage = ({ search, ...props }) => {
     }
     // Load the list of mentors and questions
     else {
-      data.forEach(item => {
+      edgeData.forEach(item => {
         dispatch(loadMentor(item.node))
         dispatch(loadQuestions(item.node.id, recommended))
       })
-      dispatch(selectMentor(data[0].node.id))
+      dispatch(selectMentor(edgeData[0].node.id))
     }
 
     // Media queries for layout
-    setHeight(window.innerHeight)
-    setWidth(window.innerWidth)
-    window.addEventListener("resize", handleWindowResize)
+    setHeight(globalWindow.innerHeight)
+    setWidth(globalWindow.innerWidth)
+    globalWindow.addEventListener("resize", handleWindowResize)
     return () => {
-      window.removeEventListener("resize", handleWindowResize)
+      globalWindow.removeEventListener("resize", handleWindowResize)
     }
   }, [])
 
-  const handleWindowResize = () => {
-    if (typeof window === `undefined`) {
-      return
-    }
-    setHeight(window.innerHeight)
-    setWidth(window.innerWidth)
-  }
 
   if (mentors === {} || height === 0 || width === 0) {
     return <CircularProgress />
