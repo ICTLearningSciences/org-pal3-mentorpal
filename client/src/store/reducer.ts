@@ -60,7 +60,7 @@ function mentorSelected(state: any, action: MentorSelectedAction) {
   };
 }
 
-const store = (state = initialState, action: any) => {
+export default function reducer(state = initialState, action: any) {
   state = cmi5Reducer(state, action);
   switch (action.type) {
     case MENTOR_LOADED:
@@ -171,11 +171,4 @@ const store = (state = initialState, action: any) => {
     default:
       return state;
   }
-};
-
-export default (state = initialState, action: any) => {
-  const s = store(state, action);
-  console.log("reduce action", action);
-  console.log("reduce state", s);
-  return s;
-};
+}

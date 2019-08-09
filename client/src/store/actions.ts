@@ -35,6 +35,26 @@ export const loadMentor = (mentor: any) => (dispatch: any) => {
 
 const { sendStatement: sendXapiStatement } = cmi5Actions;
 
+
+export const mentorAnswerPlaybackStarted = answer => (dispatch, getState) => {
+  dispatch(
+    sendXapiStatement({
+      verb: "https://mentorpal.org/xapi/verb/answer-playback-started",
+      result: {
+        extensions: {
+          "https://mentorpal.org/xapi/activity/extensions/mentor-response": {
+            ...answer,
+            // question: answer.question,
+            question_index: currentQuestionIndex(getState()),
+            mentor: answer.id,
+          },
+        },
+      },
+      contextExtensions: sessionStateExt(getState()),
+    })
+  )
+}
+
 export const loadQuestions = (mentorId: any, recommended: any) => async (
   dispatch: (arg0: (dispatch: any) => Promise<void>) => void
 ) => {

@@ -44,21 +44,28 @@ jobs:
       - run:
           name: Lint python
           command: make lint-python
-  format-lint-and-audit-js:
+  client-test:
     docker:
       - image: circleci/node:12.4
     steps:
       - checkout
       - run:
-          name: Test format for js and json
+          name: Check format
           command: make test-format-js
+      - run: 
+          name: Install client
+          command: cd client && npm install
       - run:
           name: Audit js
           command: make audit-js
       - run:
           name: Lint client
           command:
-            cd client && npm install && npm run lint
+            cd client && npm run test:lint
+      - run:
+          name: Test client
+          command:
+            cd client && npm run test
   reports-test:
     docker:
       - image: circleci/node:12.4
@@ -105,12 +112,12 @@ workflows:
   build-test-deploy:
     jobs:
       - format-and-lint-python
-      - format-lint-and-audit-js
+      - client-test
       - reports-test
       - docker-build-test-push:
           requires:
             - format-and-lint-python
-            - format-lint-and-audit-js
+            - client-test
       - deploy-to-dev:
           type: approval
           requires:
