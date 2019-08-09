@@ -1,5 +1,5 @@
-import { reducers as cmi5Reducer } from "redux-cmi5"
-import { normalizeString } from "funcs/funcs"
+import { reducers as cmi5Reducer } from "redux-cmi5";
+import { normalizeString } from "funcs/funcs";
 import {
   ANSWER_FINISHED,
   MENTOR_FAVED,
@@ -10,12 +10,12 @@ import {
   QUESTION_ERROR,
   QUESTION_SENT,
   TOPIC_SELECTED,
-} from "store/actions"
-import { MENTOR_SELECTED, MentorSelectedAction } from "./types"
+} from "store/actions";
+import { MENTOR_SELECTED, MentorSelectedAction } from "./types";
 
-export const STATUS_ANSWERED = "ANSWERED"
-export const STATUS_ERROR = "ERROR"
-export const STATUS_READY = "READY"
+export const STATUS_ANSWERED = "ANSWERED";
+export const STATUS_ERROR = "ERROR";
+export const STATUS_READY = "READY";
 
 /**
  * mentor: {
@@ -43,7 +43,7 @@ const initialState = cmi5Reducer({
   mentors_by_id: {},
   next_mentor: "", // id of the next mentor to speak after the current finishes
   questions_asked: [],
-})
+});
 
 function mentorSelected(state: any, action: MentorSelectedAction) {
   return {
@@ -57,11 +57,11 @@ function mentorSelected(state: any, action: MentorSelectedAction) {
         status: STATUS_ANSWERED,
       },
     },
-  }
+  };
 }
 
 const store = (state = initialState, action: any) => {
-  state = cmi5Reducer(state, action)
+  state = cmi5Reducer(state, action);
   switch (action.type) {
     case MENTOR_LOADED:
       return {
@@ -74,10 +74,10 @@ const store = (state = initialState, action: any) => {
             status: STATUS_READY,
           },
         },
-      }
+      };
 
     case MENTOR_SELECTED:
-      return mentorSelected(state, action)
+      return mentorSelected(state, action);
 
     case MENTOR_FAVED:
       return {
@@ -140,7 +140,7 @@ const store = (state = initialState, action: any) => {
           ...state.mentors_by_id,
           [response.id]: mentor,
         },
-      }
+      };
 
     case QUESTION_ERROR:
       return {
@@ -173,8 +173,8 @@ const store = (state = initialState, action: any) => {
 };
 
 export default (state = initialState, action: any) => {
-  const s = store(state, action)
-  console.log("reduce action", action)
-  console.log("reduce state", s)
-  return s
-}
+  const s = store(state, action);
+  console.log("reduce action", action);
+  console.log("reduce state", s);
+  return s;
+};

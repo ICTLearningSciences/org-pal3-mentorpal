@@ -21,8 +21,8 @@ const VideoPanel = ({ isMobile }) => {
     if (mentor.is_off_topic || mentor.status === STATUS_ERROR) {
       return;
     }
-    dispatch(selectMentor(mentor.id))
-  }
+    dispatch(selectMentor(mentor.id));
+  };
 
   return (
     <div className="carousel">

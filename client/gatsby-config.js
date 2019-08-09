@@ -37,16 +37,16 @@ module.exports = {
     },
     `gatsby-plugin-typescript`,
     {
-      resolve: 'gatsby-plugin-eslint',
+      resolve: "gatsby-plugin-eslint",
       options: {
         test: /\.js$|\.jsx$|\.ts$|\.tsx$/,
         exclude: /(node_modules|.cache|public|static)/,
-        stages: ['develop'],
+        stages: ["develop"],
         options: {
           emitWarning: true,
-          failOnError: false
-        }
-      }
-    }
+          failOnError: false,
+        },
+      },
+    },
   ],
 };

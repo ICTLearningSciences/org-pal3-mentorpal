@@ -69,13 +69,14 @@
   "scripts": {
     "build": "gatsby build --prefix-paths",
     "develop": "gatsby develop",
-    "format": "prettier --write src/**/*.{js,jsx}",
+    "format": "prettier --write '**/*.{js,jsx,json,ts,tsx}'",
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
     "test:audit": "npm audit --audit-level=moderate",
+    "test:format": "prettier --check '**/*.{js,jsx,json,ts,tsx}'",
     "type-check": "tsc --noEmit",
-    "lint": "eslint ."
+    "lint": "eslint . --ext ts --ext tsx --ext js --ext jsx"
   },
   "repository": {
     "type": "git",
