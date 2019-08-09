@@ -112,7 +112,7 @@ const store = (state = initialState, action: any) => {
         ),
       };
 
-    case QUESTION_ANSWERED:
+    case QUESTION_ANSWERED: {
       const response = action.mentor;
       const history = state.mentors_by_id[response.id].topic_questions.History;
       if (!history.includes(response.question)) {
@@ -141,6 +141,7 @@ const store = (state = initialState, action: any) => {
           [response.id]: mentor,
         },
       };
+    }
 
     case QUESTION_ERROR:
       return {

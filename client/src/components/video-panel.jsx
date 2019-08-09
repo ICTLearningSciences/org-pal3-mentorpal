@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Star } from "@material-ui/icons";
 
-import { selectMentor, MENTOR_SELECTION_TRIGGER_USER } from "store/actions";
+import { selectMentor } from "store/actions";
 import { STATUS_ERROR } from "store/reducer";
 
 import VideoThumbnail from "components/video-thumbnail";

@@ -18,6 +18,14 @@ import "styles/layout.css";
 
 const { start: cmi5Start } = cmi5Actions;
 
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#1b6a9c",
+    },
+  },
+});
+
 const IndexPage = ({ search, data }) => {
   const dispatch = useDispatch();
   const mentors = useSelector(state => state.mentors_by_id);
@@ -104,14 +112,6 @@ const IndexPage = ({ search, data }) => {
     </MuiThemeProvider>
   );
 };
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#1b6a9c",
-    },
-  },
-});
 
 export default withLocation(IndexPage);
 
