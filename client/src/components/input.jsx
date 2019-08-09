@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Button, Divider, Paper, InputBase } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
-import { sendQuestion, onInput } from "redux/actions";
+import { sendQuestion, onInput } from "store/actions";
 
 import Topics from "components/topics";
 import Questions from "components/questions";

@@ -6,7 +6,7 @@ import { CircularProgress } from "@material-ui/core";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Helmet } from "react-helmet";
 
-import { loadMentor, loadQuestions, selectMentor } from "redux/actions";
+import { loadMentor, loadQuestions, selectMentor } from "store/actions";
 
 import Header from "components/header";
 import Input from "components/input";
@@ -17,6 +17,14 @@ import withLocation from "wrap-with-location";
 import "styles/layout.css";
 
 const { start: cmi5Start } = cmi5Actions;
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#1b6a9c",
+    },
+  },
+});
 
 const IndexPage = ({ search, data }) => {
   const dispatch = useDispatch();
@@ -104,14 +112,6 @@ const IndexPage = ({ search, data }) => {
     </MuiThemeProvider>
   );
 };
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#1b6a9c",
-    },
-  },
-});
 
 export default withLocation(IndexPage);
 

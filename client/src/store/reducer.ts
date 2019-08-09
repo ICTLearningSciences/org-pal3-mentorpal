@@ -1,22 +1,21 @@
-/* eslint-disable */
 import { reducers as cmi5Reducer } from "redux-cmi5";
+import { normalizeString } from "funcs/funcs";
 import {
-  MENTOR_LOADED,
-  MENTOR_SELECTED,
+  ANSWER_FINISHED,
   MENTOR_FAVED,
+  MENTOR_LOADED,
   MENTOR_NEXT,
   MENTOR_TOPIC_QUESTIONS_LOADED,
-  TOPIC_SELECTED,
-  QUESTION_SENT,
   QUESTION_ANSWERED,
   QUESTION_ERROR,
-  ANSWER_FINISHED,
-} from "redux/actions";
-import { normalizeString } from "funcs/funcs";
+  QUESTION_SENT,
+  TOPIC_SELECTED,
+} from "store/actions";
+import { MENTOR_SELECTED, MentorSelectedAction } from "./types";
 
-export const STATUS_READY = "READY";
 export const STATUS_ANSWERED = "ANSWERED";
 export const STATUS_ERROR = "ERROR";
+export const STATUS_READY = "READY";
 
 /**
  * mentor: {
@@ -40,18 +39,34 @@ const initialState = cmi5Reducer({
   current_question: "", // question that was last asked
   current_topic: "", // topic to show questions for
   faved_mentor: "", // id of the preferred mentor
-  next_mentor: "", // id of the next mentor to speak after the current finishes
-  mentors_by_id: {},
-  questions_asked: [],
   isIdle: false,
+  mentors_by_id: {},
+  next_mentor: "", // id of the next mentor to speak after the current finishes
+  questions_asked: [],
 });
 
-const store = (state = initialState, action) => {
+function mentorSelected(state: any, action: MentorSelectedAction) {
+  return {
+    ...state,
+    current_mentor: action.payload.id,
+    isIdle: false,
+    mentors_by_id: {
+      ...state.mentors_by_id,
+      [action.payload.id]: {
+        ...state.mentors_by_id[action.payload.id],
+        status: STATUS_ANSWERED,
+      },
+    },
+  };
+}
+
+const store = (state = initialState, action: any) => {
   state = cmi5Reducer(state, action);
   switch (action.type) {
     case MENTOR_LOADED:
       return {
         ...state,
+        isIdle: false,
         mentors_by_id: {
           ...state.mentors_by_id,
           [action.mentor.id]: {
@@ -59,22 +74,10 @@ const store = (state = initialState, action) => {
             status: STATUS_READY,
           },
         },
-        isIdle: false,
       };
 
     case MENTOR_SELECTED:
-      return {
-        ...state,
-        current_mentor: action.id,
-        mentors_by_id: {
-          ...state.mentors_by_id,
-          [action.id]: {
-            ...state.mentors_by_id[action.id],
-            status: STATUS_ANSWERED,
-          },
-        },
-        isIdle: false,
-      };
+      return mentorSelected(state, action);
 
     case MENTOR_FAVED:
       return {
@@ -109,7 +112,7 @@ const store = (state = initialState, action) => {
         ),
       };
 
-    case QUESTION_ANSWERED:
+    case QUESTION_ANSWERED: {
       const response = action.mentor;
       const history = state.mentors_by_id[response.id].topic_questions.History;
       if (!history.includes(response.question)) {
@@ -118,11 +121,11 @@ const store = (state = initialState, action) => {
 
       const mentor = {
         ...state.mentors_by_id[response.id],
-        question: response.question,
         answer_id: response.answer_id,
         answer_text: response.answer_text,
         confidence: response.confidence,
         is_off_topic: response.is_off_topic,
+        question: response.question,
         status: STATUS_READY,
         topic_questions: {
           ...state.mentors_by_id[response.id].topic_questions,
@@ -132,12 +135,13 @@ const store = (state = initialState, action) => {
 
       return {
         ...state,
+        isIdle: false,
         mentors_by_id: {
           ...state.mentors_by_id,
           [response.id]: mentor,
         },
-        isIdle: false,
       };
+    }
 
     case QUESTION_ERROR:
       return {
@@ -169,10 +173,9 @@ const store = (state = initialState, action) => {
   }
 };
 
-export default (state = initialState, action) => {
+export default (state = initialState, action: any) => {
   const s = store(state, action);
   console.log("reduce action", action);
   console.log("reduce state", s);
   return s;
 };
-/* eslint-enable */

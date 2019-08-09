@@ -5,6 +5,13 @@ import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 import ScrollingQuestions from "components/scrolling-questions";
 
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: "#1B6A9C" },
+  },
+  typography: { useNextVariants: true },
+});
+
 const Questions = ({ height, onSelected }) => {
   const mentor = useSelector(
     state => state.mentors_by_id[state.current_mentor]
@@ -46,12 +53,5 @@ const Questions = ({ height, onSelected }) => {
     </MuiThemeProvider>
   );
 };
-
-const theme = createMuiTheme({
-  palette: {
-    primary: { main: "#1B6A9C" },
-  },
-  typography: { useNextVariants: true },
-});
 
 export default Questions;

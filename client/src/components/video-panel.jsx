@@ -2,8 +2,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Star } from "@material-ui/icons";
 
-import { selectMentor, MENTOR_SELECTION_TRIGGER_USER } from "redux/actions";
-import { STATUS_ERROR } from "redux/store";
+import { selectMentor } from "store/actions";
+import { STATUS_ERROR } from "store/reducer";
 
 import VideoThumbnail from "components/video-thumbnail";
 import LoadingSpinner from "components/video-spinner";
@@ -21,9 +21,7 @@ const VideoPanel = ({ isMobile }) => {
     if (mentor.is_off_topic || mentor.status === STATUS_ERROR) {
       return;
     }
-    dispatch(
-      selectMentor(mentor.id, { trigger: MENTOR_SELECTION_TRIGGER_USER })
-    );
+    dispatch(selectMentor(mentor.id));
   };
 
   return (
