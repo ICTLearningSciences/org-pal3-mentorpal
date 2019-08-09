@@ -7,8 +7,8 @@ import store from "./src/store/reducer";
 
 const storeObj = createStore(store, applyMiddleware(...[thunk]));
 
-export default function WrappedWithProvider({ element }) { 
-    return (<Provider store={storeObj}>{element}</Provider>); 
+export default function WrappedWithProvider({ element }) {
+  return <Provider store={storeObj}>{element}</Provider>;
 }
 
 WrappedWithProvider.displayName = "WrappedWithProvider";
