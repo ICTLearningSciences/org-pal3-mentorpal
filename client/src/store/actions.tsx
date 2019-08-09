@@ -1,34 +1,41 @@
-import Papa from "papaparse"
-import { actions as cmi5Actions } from "redux-cmi5"
+/* eslint-disable */
+import Papa from "papaparse";
+import { actions as cmi5Actions } from "redux-cmi5";
 
-import { queryMentor, questionsUrl, topicsUrl } from "src/api/api"
-import { STATUS_READY } from "./reducer"
-import { MENTOR_SELECTED, MentorSelectedAction, MentorSelection } from "./types"
+import { topicsUrl, questionsUrl, queryMentor } from "api/api";
+import { STATUS_READY } from "./reducer";
 
-export const MENTOR_LOADED = "MENTOR_LOADED" // mentor info was loaded
-export const MENTOR_FAVED = "MENTOR_FAVED" // mentor was favorited
-export const MENTOR_NEXT = "MENTOR_NEXT" // set next mentor to play after current
-export const MENTOR_TOPIC_QUESTIONS_LOADED = "MENTOR_TOPIC_QUESTIONS_LOADED"
-export const TOPIC_SELECTED = "TOPIC_SELECTED"
+export const MENTOR_LOADED = "MENTOR_LOADED"; // mentor info was loaded
+export const MENTOR_SELECTED = "MENTOR_SELECTED"; // mentor video was selected
+export const MENTOR_FAVED = "MENTOR_FAVED"; // mentor was favorited
+export const MENTOR_NEXT = "MENTOR_NEXT"; // set next mentor to play after current
+export const MENTOR_TOPIC_QUESTIONS_LOADED = "MENTOR_TOPIC_QUESTIONS_LOADED";
+export const TOPIC_SELECTED = "TOPIC_SELECTED";
 
-export const QUESTION_SENT = "QUESTION_SENT" // question input was sent
-export const QUESTION_ANSWERED = "QUESTION_ANSWERED" // question was answered by mentor
-export const QUESTION_ERROR = "QUESTION_ERROR" // question could not be answered by mentor
-export const ANSWER_FINISHED = "ANSWER_FINISHED" // mentor video has finished playing
+export const QUESTION_SENT = "QUESTION_SENT"; // question input was sent
+export const QUESTION_ANSWERED = "QUESTION_ANSWERED"; // question was answered by mentor
+export const QUESTION_ERROR = "QUESTION_ERROR"; // question could not be answered by mentor
+export const ANSWER_FINISHED = "ANSWER_FINISHED"; // mentor video has finished playing
 
-export const MENTOR_SELECTION_TRIGGER_AUTO = "auto"
-export const MENTOR_SELECTION_TRIGGER_USER = "user"
+export const MENTOR_SELECTION_TRIGGER_AUTO = "auto";
+export const MENTOR_SELECTION_TRIGGER_USER = "user";
+
+async function papaParseAsync(url) {
+  return new Promise((complete, error) => {
+    Papa.parse(url, { download: true, complete, error });
+  });
+}
 
 export const loadMentor = (mentor: any) => (
   dispatch: any
 ) => {
   dispatch({
-    mentor,
     type: MENTOR_LOADED,
-  })
-}
+    mentor,
+  });
+};
 
-const { sendStatement: sendXapiStatement } = cmi5Actions
+const { sendStatement: sendXapiStatement } = cmi5Actions;
 
 export const loadQuestions = (mentorId: any, recommended: any) => async (
   dispatch: (arg0: (dispatch: any) => Promise<void>) => void
@@ -58,7 +65,7 @@ export const loadQuestions = (mentorId: any, recommended: any) => async (
     // tslint:disable-next-line: no-console
     console.error(err)
   }
-}
+};
 
 const loadTopics = (
   mentorId: any,
@@ -73,7 +80,7 @@ const loadTopics = (
         Recommended: Array.isArray(recommended) ? recommended : [recommended],
         History: [],
       }
-    : { History: [] }
+    : { History: [] };
 
   try {
     const results = await papaParseAsync(topics_url)
@@ -107,9 +114,9 @@ const loadTopics = (
       type: MENTOR_TOPIC_QUESTIONS_LOADED,
     })
   } catch (err) {
-    console.error(err)
+    console.error(err);
   }
-}
+};
 
 export const selectMentor = (mentor: string) => (dispatch: {
   (arg0: (dispatch: any) => void): void
@@ -167,8 +174,8 @@ const sessionStateExt = (state: any, ext: any = undefined) => {
     "https://mentorpal.org/xapi/context/extensions/session-state": xapiSessionState(
       state
     ),
-  }
-}
+  };
+};
 
 export const sendQuestion = (question: any) => async (
   dispatch: {
@@ -197,15 +204,15 @@ export const sendQuestion = (question: any) => async (
       },
       verb: "https://mentorpal.org/xapi/verb/asked",
     })
-  )
-  dispatch(onInput())
-  dispatch(onQuestionSent(question))
+  );
+  dispatch(onInput());
+  dispatch(onQuestionSent(question));
 
-  const state = getState()
-  const mentor_ids = Object.keys(state.mentors_by_id)
-  const tick = Date.now()
+  const state = getState();
+  const mentorIds = Object.keys(state.mentors_by_id);
+  const tick = Date.now();
   // query all the mentors without waiting for the answers one by one
-  const promises = mentor_ids.map(mentor => {
+  const promises = mentorIds.map(mentor => {
     return new Promise((resolve, reject) => {
       queryMentor(mentor, question)
         .then((response: unknown) => {
@@ -216,18 +223,18 @@ export const sendQuestion = (question: any) => async (
                 extensions: {
                   "https://mentorpal.org/xapi/activity/extensions/mentor-response": {
                     ...response,
-                    question: question,
+                    question,
                     question_index: currentQuestionIndex(getState()),
-                    mentor: mentor,
+                    mentor,
                     response_time: Date.now() - tick,
                   },
                 },
               },
               verb: "https://mentorpal.org/xapi/verb/answered",
             })
-          )
-          dispatch(onQuestionAnswered(response))
-          resolve(response)
+          );
+          dispatch(onQuestionAnswered(response));
+          resolve(response);
         })
         .catch((err: any) => {
           dispatch(onQuestionError(mentor, question))
@@ -240,35 +247,35 @@ export const sendQuestion = (question: any) => async (
   // because we will prefer the user's fav and then highest confidence
   const responses = (await Promise.all(
     promises.map(p => p.catch(e => e))
-  )).filter(r => !(r instanceof Error))
+  )).filter(r => !(r instanceof Error));
 
   if (responses.length === 0) {
-    return
+    return;
   }
 
   // Play favored mentor if an answer exists
   if (state.faved_mentor) {
     const fave_response = responses.find(response => {
-      return response.id === state.faved_mentor
-    })
+      return response.id === state.faved_mentor;
+    });
     if (!fave_response.is_off_topic) {
-      dispatch(selectMentor(state.faved_mentor))
-      return
+      dispatch(selectMentor(state.faved_mentor));
+      return;
     }
   }
 
   // Otherwise play mentor with highest confidence answer
-  responses.sort((a, b) => (a.confidence > b.confidence ? -1 : 1))
+  responses.sort((a, b) => (a.confidence > b.confidence ? -1 : 1));
   if (responses[0].is_off_topic) {
     dispatch(
       selectMentor(
         state.faved_mentor ? state.faved_mentor : state.current_mentor
       )
-    )
-    return
+    );
+    return;
   }
-  dispatch(selectMentor(responses[0].id))
-}
+  dispatch(selectMentor(responses[0].id));
+};
 
 const NEXT_MENTOR_DELAY = 3000
 let timer: NodeJS.Timer
@@ -294,40 +301,40 @@ export const answerFinished = () => (
       id: mentors[id].id,
       is_off_topic: mentors[id].is_off_topic,
       status: mentors[id].status,
-    })
-  })
-  responses.sort((a, b) => (a.confidence > b.confidence ? -1 : 1))
+    });
+  });
+  responses.sort((a, b) => (a.confidence > b.confidence ? -1 : 1));
 
   // get the most confident answer that has not been given
   const next_mentor = responses.find(response => {
-    return response.status === STATUS_READY && !response.is_off_topic
-  })
+    return response.status === STATUS_READY && !response.is_off_topic;
+  });
 
   // set the next mentor to start playing, if there is one
   if (!next_mentor) {
-    return
+    return;
   }
-  dispatch(nextMentor(next_mentor.id))
+  dispatch(nextMentor(next_mentor.id));
 
   // play the next mentor after the timeout
   if (timer) {
-    clearTimeout(timer)
-    timer = null
+    clearTimeout(timer);
+    timer = null;
   }
   timer = setTimeout(() => {
-    dispatch(selectMentor(next_mentor.id))
-  }, NEXT_MENTOR_DELAY)
-}
+    dispatch(selectMentor(next_mentor.id));
+  }, NEXT_MENTOR_DELAY);
+};
 
 export const onInput = () => (
   dispatch: (arg0: { mentor: any; type: string }) => void
 ) => {
   if (timer) {
-    clearTimeout(timer)
-    timer = null
+    clearTimeout(timer);
+    timer = null;
   }
-  dispatch(nextMentor(""))
-}
+  dispatch(nextMentor(""));
+};
 
 const onQuestionSent = (question: any) => ({
   question,
@@ -347,15 +354,9 @@ const onQuestionError = (id: string, question: any) => ({
 
 const onIdle = () => ({
   type: ANSWER_FINISHED,
-})
+});
 
 const nextMentor = (id: string) => ({
   mentor: id,
   type: MENTOR_NEXT,
 })
-
-const papaParseAsync = (url: any) => {
-  return new Promise((complete, error) => {
-    Papa.parse(url, { download: true, complete, error })
-  })
-}

@@ -1,5 +1,5 @@
-const jsonpath = require('jsonpath');
-const TinCan = require('tincanjs');
+const jsonpath = require("jsonpath");
+const TinCan = require("tincanjs");
 
 function requireEnv(name) {
   const val = process.env[name];
@@ -20,11 +20,11 @@ const lrs = () => {
   // normally require `dotenv` as early as possible,
   // but here we want to support test envs
   // that mock the LRS server and have no credentials
-  require('dotenv').config();
+  require("dotenv").config();
   _lrs = new TinCan.LRS({
-    endpoint: requireEnv('XAPI_ENDPOINT'),
-    username: requireEnv('XAPI_USERNAME'),
-    password: requireEnv('XAPI_PASSWORD'),
+    endpoint: requireEnv("XAPI_ENDPOINT"),
+    username: requireEnv("XAPI_USERNAME"),
+    password: requireEnv("XAPI_PASSWORD"),
     allowFail: false,
   });
   return _lrs;
@@ -32,7 +32,7 @@ const lrs = () => {
 
 function statementsToSessions(statements) {
   return statements.reduce((acc, cur) => {
-    const sid = jsonpath.value(cur, '$..context.registration');
+    const sid = jsonpath.value(cur, "$..context.registration");
     acc[sid] = Array.isArray(acc[sid]) ? acc[sid] : [];
     acc[sid].push(cur);
     return acc;
@@ -42,7 +42,7 @@ function statementsToSessions(statements) {
 function groupStatementsByQuestionIndex(statements) {
   return statements.reduce((sqAcc, sqCur) => {
     const qix = Number(
-      jsonpath.value(sqCur, '$..context.extensions..question_index')
+      jsonpath.value(sqCur, "$..context.extensions..question_index")
     );
     if (isNaN(qix)) {
       return sqAcc;
@@ -55,7 +55,7 @@ function groupStatementsByQuestionIndex(statements) {
 
 function groupStatementsByMentor(statements) {
   return statements.reduce((acc, cur) => {
-    const mentor = jsonpath.value(cur, '$..result.extensions..mentor');
+    const mentor = jsonpath.value(cur, "$..result.extensions..mentor");
     if (!mentor) {
       return acc;
     }
@@ -68,15 +68,15 @@ function groupStatementsByMentor(statements) {
 function _statementExtValues(statement, extProp, propertyOrProps) {
   // we won't be able to use jsonpath to search for XAPI IRI props,
   // which are urls, so we need to repalce the prop first
-  const extPropReplacement = '___ext_prop_replacement___';
+  const extPropReplacement = "___ext_prop_replacement___";
   const st = JSON.parse(
     JSON.stringify(statement).replace(extProp, extPropReplacement)
   );
-  if (typeof propertyOrProps === 'string') {
+  if (typeof propertyOrProps === "string") {
     return jsonpath.value(st, `$..${extPropReplacement}.${property}`);
   }
   if (!Array.isArray(propertyOrProps)) {
-    throw new Error('arg propertyOrProps must be string or array');
+    throw new Error("arg propertyOrProps must be string or array");
   }
   const responseObjArr = jsonpath.query(st, `$..${extPropReplacement}`);
   if (!Array.isArray(responseObjArr) || responseObjArr.length === 0) {
@@ -94,7 +94,7 @@ function _statementExtValues(statement, extProp, propertyOrProps) {
 function statementResultExtValues(statement, propertyOrProps) {
   return _statementExtValues(
     statement,
-    'https://mentorpal.org/xapi/activity/extensions/mentor-response',
+    "https://mentorpal.org/xapi/activity/extensions/mentor-response",
     propertyOrProps
   );
 }
@@ -102,7 +102,7 @@ function statementResultExtValues(statement, propertyOrProps) {
 function statementContextMentorValues(statement, propertyOrProps) {
   return _statementExtValues(
     statement,
-    'https://mentorpal.org/xapi/context/extensions/session-state',
+    "https://mentorpal.org/xapi/context/extensions/session-state",
     propertyOrProps
   );
 }
@@ -120,7 +120,7 @@ function statementExtValues(statement, { context, result } = {}) {
 
 function timestampOfStatementWithVerb(statementList, verb, ord = 1) {
   const list = statementList.filter(
-    s => jsonpath.value(s, '$.verb.id') === verb
+    s => jsonpath.value(s, "$.verb.id") === verb
   );
   if (!Array.isArray(list) || list.length < 1) {
     return undefined;
@@ -134,7 +134,7 @@ function timestampOfStatementWithVerb(statementList, verb, ord = 1) {
 function timestampAsked(statementList, ord = 1) {
   return timestampOfStatementWithVerb(
     statementList,
-    'https://mentorpal.org/xapi/verb/asked',
+    "https://mentorpal.org/xapi/verb/asked",
     ord
   );
 }
@@ -142,29 +142,29 @@ function timestampAsked(statementList, ord = 1) {
 function timestampAnswered(statementList, ord = 1) {
   return timestampOfStatementWithVerb(
     statementList,
-    'https://mentorpal.org/xapi/verb/answered',
+    "https://mentorpal.org/xapi/verb/answered",
     ord
   );
 }
 
 function getQuestionText(statement) {
-  return statementResultExtValues(statement, 'question_text');
+  return statementResultExtValues(statement, "question_text");
 }
 
 function getObjectId(statement) {
-  return jsonpath.value(statement, '$.object.id');
+  return jsonpath.value(statement, "$.object.id");
 }
 
 function getUserDomain(statement) {
-  return jsonpath.value(statement, '$.actor.account.homePage');
+  return jsonpath.value(statement, "$.actor.account.homePage");
 }
 
 function getUserId(statement) {
-  return jsonpath.value(statement, '$.actor.account.name');
+  return jsonpath.value(statement, "$.actor.account.name");
 }
 
 function getUserName(statement) {
-  return jsonpath.value(statement, '$.actor.name');
+  return jsonpath.value(statement, "$.actor.name");
 }
 
 function queryStatements(params) {

@@ -1,25 +1,25 @@
-import React from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { Star } from "@material-ui/icons"
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Star } from "@material-ui/icons";
 
-import { selectMentor } from "src/store/actions"
-import { STATUS_ERROR } from "src/store/reducer"
+import { selectMentor, MENTOR_SELECTION_TRIGGER_USER } from "store/actions";
+import { STATUS_ERROR } from "store/reducer";
 
-import VideoThumbnail from "src/components/video-thumbnail"
-import LoadingSpinner from "src/components/video-spinner"
-import MessageStatus from "src/components/video-status"
+import VideoThumbnail from "components/video-thumbnail";
+import LoadingSpinner from "components/video-spinner";
+import MessageStatus from "components/video-status";
 
 const VideoPanel = ({ isMobile }) => {
-  const dispatch = useDispatch()
-  const mentor = useSelector(state => state.current_mentor)
-  const mentors = useSelector(state => state.mentors_by_id)
+  const dispatch = useDispatch();
+  const mentor = useSelector(state => state.current_mentor);
+  const mentors = useSelector(state => state.mentors_by_id);
 
-  const height = 50
-  const width = isMobile ? height / 0.895 : height / 0.5625
+  const height = 50;
+  const width = isMobile ? height / 0.895 : height / 0.5625;
 
   const onClick = mentor => {
     if (mentor.is_off_topic || mentor.status === STATUS_ERROR) {
-      return
+      return;
     }
     dispatch(selectMentor(mentor.id))
   }
@@ -44,11 +44,11 @@ const VideoPanel = ({ isMobile }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 const StarIcon = ({ mentor }) => {
-  const faved_mentor = useSelector(state => state.faved_mentor)
+  const faved_mentor = useSelector(state => state.faved_mentor);
   if (faved_mentor === mentor.id) {
     return (
       <Star
@@ -56,9 +56,9 @@ const StarIcon = ({ mentor }) => {
         fontSize="small"
         style={{ color: "yellow" }}
       />
-    )
+    );
   }
-  return <div />
-}
+  return <div />;
+};
 
-export default VideoPanel
+export default VideoPanel;

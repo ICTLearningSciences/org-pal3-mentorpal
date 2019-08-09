@@ -6,7 +6,6 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
-    `gatsby-plugin-root-import`,
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-transformer-csv`,
@@ -50,4 +49,4 @@ module.exports = {
       }
     }
   ],
-}
+};

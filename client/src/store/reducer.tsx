@@ -1,5 +1,5 @@
 import { reducers as cmi5Reducer } from "redux-cmi5"
-import { normalizeString } from "src/funcs/funcs"
+import { normalizeString } from "funcs/funcs"
 import {
   ANSWER_FINISHED,
   MENTOR_FAVED,
@@ -10,7 +10,7 @@ import {
   QUESTION_ERROR,
   QUESTION_SENT,
   TOPIC_SELECTED,
-} from "src/store/actions"
+} from "store/actions"
 import { MENTOR_SELECTED, MentorSelectedAction } from "./types"
 
 export const STATUS_ANSWERED = "ANSWERED"
@@ -83,13 +83,13 @@ const store = (state = initialState, action: any) => {
       return {
         ...state,
         faved_mentor: state.faved_mentor === action.id ? "" : action.id,
-      }
+      };
 
     case MENTOR_NEXT:
       return {
         ...state,
         next_mentor: action.mentor,
-      }
+      };
 
     case MENTOR_TOPIC_QUESTIONS_LOADED:
       return {
@@ -101,7 +101,7 @@ const store = (state = initialState, action: any) => {
             topic_questions: action.topic_questions,
           },
         },
-      }
+      };
 
     case QUESTION_SENT:
       return {
@@ -110,14 +110,13 @@ const store = (state = initialState, action: any) => {
         questions_asked: Array.from(
           new Set([...state.questions_asked, normalizeString(action.question)])
         ),
-      }
+      };
 
     case QUESTION_ANSWERED:
-      const response = action.mentor
-      const history =
-        state.mentors_by_id[response.id].topic_questions["History"]
+      const response = action.mentor;
+      const history = state.mentors_by_id[response.id].topic_questions.History;
       if (!history.includes(response.question)) {
-        history.push(response.question)
+        history.push(response.question);
       }
 
       const mentor = {
@@ -130,9 +129,9 @@ const store = (state = initialState, action: any) => {
         status: STATUS_READY,
         topic_questions: {
           ...state.mentors_by_id[response.id].topic_questions,
-          ["History"]: history,
+          History: history,
         },
-      }
+      };
 
       return {
         ...state,
@@ -154,24 +153,24 @@ const store = (state = initialState, action: any) => {
             status: STATUS_ERROR,
           },
         },
-      }
+      };
 
     case ANSWER_FINISHED:
       return {
         ...state,
         isIdle: true,
-      }
+      };
 
     case TOPIC_SELECTED:
       return {
         ...state,
         current_topic: action.topic,
-      }
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
 export default (state = initialState, action: any) => {
   const s = store(state, action)
