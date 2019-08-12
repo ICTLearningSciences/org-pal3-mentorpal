@@ -53,7 +53,6 @@ docker-run:
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			--shm-size 8G \
-			-e CLASSIFIER_CHECKPOINT=2019-08-09-1959 \
 			-p 5000:5000 \
 		$(DOCKER_IMAGE)
 
