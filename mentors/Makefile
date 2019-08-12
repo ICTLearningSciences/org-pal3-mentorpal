@@ -135,7 +135,8 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 	cd $(PROJECT_ROOT)/checkpoint && \
 	CHECKPOINT=$*-latest $(MAKE) checkpoint-clean/mentor/$* checkpoint-train/mentor/$*
 
-# Run checkpoint for mentor
+# Run latest checkpoint for mentor
+# To run custom checkpoint, use rules inside /mentor-api
 .PHONY: %/checkpoint-run
 %/checkpoint-run:
 	cd $(PROJECT_ROOT)/services/mentor-api && \
