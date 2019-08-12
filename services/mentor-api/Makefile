@@ -2,7 +2,6 @@ SHELL:=/bin/bash
 DOCKER_CONTAINER?=mentorpal-mentor-api
 BUILD_TAG?=
 BUILD_TAG_SUFFIX=$(shell v=$(BUILD_TAG); echo "$${v:+:}$${v}")
-CHECKPOINT?=2019-06-13-1900
 DOCKER_ACCOUNT?=
 PWD=$(shell pwd)
 SERVICE_NAME=$(shell v='$(PWD)'; echo "$${v\#\#*/}")
@@ -57,15 +56,15 @@ docker-run:
 		$(DOCKER_IMAGE)
 
 
-.PHONY: docker-run-mount-checkpoint
-docker-run-mount-checkpoint:
+.PHONY: docker-run-checkpoint/%
+docker-run-checkpoint/%:
 	docker run \
 			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
 			-v $(PROJECT_ROOT)/mentors:/app/mentors \
-			-e CLASSIFIER_CHECKPOINT=$(CHECKPOINT) \
+			-e CLASSIFIER_CHECKPOINT=$* \
 			--shm-size 8G \
 			-p 5000:5000 \
 		$(DOCKER_IMAGE)
