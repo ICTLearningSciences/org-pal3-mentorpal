@@ -4,6 +4,7 @@ DOCKER_CONTAINER=mentor-processing-pipeline
 MENTOR?=julianne
 SESSION?=1
 MENTOR_SOURCE_VIDEOS?=http://mentorpal-source-videos.s3-website-us-east-1.amazonaws.com
+PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 WATSON_CREDENTIALS=secrets/watson_credentials.txt
 WATSON_USERNAME?=$(shell if [ -f $(WATSON_CREDENTIALS) ]; then head -n 1 $(WATSON_CREDENTIALS); else echo ""; fi)
 WATSON_PASSWORD?=$(shell if [ -f $(WATSON_CREDENTIALS) ]; then tail -n 1 $(WATSON_CREDENTIALS); else echo ""; fi)
@@ -127,3 +128,15 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-v $(shell pwd)/data:/app/mounts/data \
 			-v $(shell pwd)/videos:/app/mounts/videos \
 			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos
+
+# Build checkpoint from mentor data
+.PHONY: %/checkpoint
+%/checkpoint: %/data
+	cd $(PROJECT_ROOT)/checkpoint && \
+	CHECKPOINT=$*-latest $(MAKE) checkpoint-clean/mentor/$* checkpoint-train/mentor/$*
+
+# Run checkpoint for mentor
+.PHONY: %/checkpoint-run
+%/checkpoint-run:
+	cd $(PROJECT_ROOT)/services/mentor-api && \
+	$(MAKE) docker-run-checkpoint/$*-latest
