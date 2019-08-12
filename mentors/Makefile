@@ -1,7 +1,6 @@
 DOCKER_IMAGE?=mentor-processing-pipeline
 DOCKER_IMAGE_ID=$(shell docker images -q $(DOCKER_IMAGE))
 DOCKER_CONTAINER=mentor-processing-pipeline
-MENTOR?=julianne
 SESSION?=1
 MENTOR_SOURCE_VIDEOS?=http://mentorpal-source-videos.s3-website-us-east-1.amazonaws.com
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
@@ -57,9 +56,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
-			-v $(shell pwd)/$(MENTOR):/app/mounts/$(MENTOR) \
-			-v $(shell pwd)/data:/app/mounts/data \
-			-v $(shell pwd)/videos:/app/mounts/videos \
+			-v $(shell pwd):/app/mounts \
 			-v $(shell pwd)/src:/app/src \
 		$(DOCKER_IMAGE)
 
