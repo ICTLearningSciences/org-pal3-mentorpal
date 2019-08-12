@@ -144,12 +144,11 @@ class LSTMClassifier(Classifier):
         prediction = self.logistic_model.predict(test_vector)
 
         decision = self.logistic_model.decision_function(test_vector)
-
         if decision.ndim < 2:
             highestConfidence = sorted(decision)[-1]  # Only one answer available
         else:
             highestConfidence = sorted(decision[0])[-1]
-
         if highestConfidence < -0.88:
             return "_OFF_TOPIC_", "_OFF_TOPIC_", highestConfidence
+
         return self.mentor.answer_ids[prediction[0]], prediction[0], highestConfidence
