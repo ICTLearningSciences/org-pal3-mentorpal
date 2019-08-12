@@ -146,7 +146,7 @@ class LSTMClassifier(Classifier):
         decision = self.logistic_model.decision_function(test_vector)
 
         if decision.ndim < 2:
-            highestConfidence = sorted(decision)[-1] # Only one answer available
+            highestConfidence = sorted(decision)[-1]  # Only one answer available
         else:
             highestConfidence = sorted(decision[0])[-1]
 
