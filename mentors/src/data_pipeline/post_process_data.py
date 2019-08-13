@@ -121,7 +121,7 @@ class PostProcessData(object):
                 and len(self.answer_corpus) > self.answer_corpus_index
             ):
                 answer_id = f"{mentor}_a{self.answer_number}_{session}_{part}"
-                output_file = os.path.join(self.answer_chunks, answer_id + ".mp4")
+                output_file = os.path.join(self.answer_chunks, f"{answer_id}.mp4")
                 answer_sample["ID"] = answer_id
                 answer_sample["topics"] = ",".join(
                     [
@@ -155,7 +155,7 @@ class PostProcessData(object):
                 and len(self.utterance_corpus) > self.utterance_corpus_index
             ):
                 utterance_id = f"{mentor}_u{self.utterance_number}_{session}_{part}"
-                output_file = os.path.join(self.utterance_chunks, utterance_id + ".mp4")
+                output_file = os.path.join(self.utterance_chunks, f"{utterance_id}.mp4")
                 utterance_sample["ID"] = utterance_id
                 utterance_sample["utterance"] = self.utterance_corpus.iloc[
                     self.utterance_corpus_index
