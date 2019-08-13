@@ -105,7 +105,6 @@ class PostProcessData(object):
         timestamps_file = pd.read_csv(timestamps).fillna("")
         rows = range(0, len(timestamps_file))
         text_type = [timestamps_file.iloc[i]["Answer/Utterance"] for i in rows]
-        text = [timestamps_file.iloc[i]["Question"] for i in rows]
         start_times = [timestamps_file.iloc[i]["Response start"] for i in rows]
         end_times = [timestamps_file.iloc[i]["Response end"] for i in rows]
 
