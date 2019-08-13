@@ -114,15 +114,13 @@ class PostProcessData(object):
 
         # get all the chunks
         for i in range(0, len(start_times)):
-            answer_sample = {}
-            utterance_sample = {}
             if (
                 text_type[i] == "A"
                 and len(self.answer_corpus) > self.answer_corpus_index
             ):
+                answer_sample = {}
                 curr_chunk = self.answer_corpus.iloc[self.answer_corpus_index]
                 answer_id = f"{mentor}_a{self.answer_number}_{session}_{part}"
-                output_file = os.path.join(self.answer_chunks, f"{answer_id}.mp4")
                 answer_sample["ID"] = answer_id
                 answer_sample["topics"] = ",".join(
                     [curr_chunk["Topics"], curr_chunk["Helpers"]]
@@ -131,7 +129,7 @@ class PostProcessData(object):
                     answer_sample["topics"] = answer_sample["topics"][:-1]
 
                 answer_sample["question"] = "{}\r\n".format(curr_chunk["Question"])
-                # Add all paraphrases to answer_sample object
+                # Add all paraphrases to answer_sample["question"] string
                 paraphrase_pattern = re.compile(r"[P]\d+")
                 for col in self.answer_corpus.columns:
                     if re.match(paraphrase_pattern, col):
@@ -142,19 +140,22 @@ class PostProcessData(object):
                 self.answer_corpus_index += 1
                 self.answer_number += 1
                 self.training_data.append(answer_sample)
+                output_file = os.path.join(self.answer_chunks, f"{answer_id}.mp4")
+
             elif (
                 text_type[i] == "U"
                 and len(self.utterance_corpus) > self.utterance_corpus_index
             ):
+                utterance_sample = {}
                 curr_chunk = self.utterance_corpus.iloc[self.utterance_corpus_index]
                 utterance_id = f"{mentor}_u{self.utterance_number}_{session}_{part}"
-                output_file = os.path.join(self.utterance_chunks, f"{utterance_id}.mp4")
                 utterance_sample["ID"] = utterance_id
                 utterance_sample["utterance"] = curr_chunk["Utterance/Prompt"]
                 utterance_sample["situation"] = curr_chunk["Situation"]
                 self.utterance_corpus_index += 1
                 self.utterance_number += 1
                 self.utterance_data.append(utterance_sample)
+                output_file = os.path.join(self.utterance_chunks, f"{utterance_id}.mp4")
 
             if videos:
                 self.ffmpeg_split_video(
