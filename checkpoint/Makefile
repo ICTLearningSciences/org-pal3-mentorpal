@@ -21,7 +21,10 @@ checkpoint-vector-models:
             -o ${CHECKPOINT_ROOT}/vector_models \
             -h ${VECTOR_MODEL_BASE_URL} \
         ${CHECKPOINT_PATH}
-        
+
+.PHONY: checkpoint-clean/mentor/%
+checkpoint-clean/mentor/%:
+	rm -rf classifiers/$(ARCH)/*$**
 
 # CHECKPOINT={CHECKPOINT} MENTOR={MENTOR} make test-checkpoint
 .PHONY: checkpoint-test
@@ -39,7 +42,7 @@ checkpoint-train: checkpoint-vector-models
 
 .PHONY: checkpoint-train/mentor/%
 checkpoint-train/mentor/%: checkpoint-vector-models
-	./bin/checkpoint_train.sh $(ARCH) ${CHECKPOINT}-$* $*
+	./bin/checkpoint_train.sh $(ARCH) ${CHECKPOINT} $*
 
 .PHONY: docker-run-dev
 docker-run-dev:

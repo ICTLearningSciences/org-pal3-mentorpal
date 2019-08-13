@@ -142,9 +142,13 @@ class LSTMClassifier(Classifier):
         test_vector = np.concatenate((w2v_vector, topic_vector))
         test_vector = test_vector.reshape(1, -1)
         prediction = self.logistic_model.predict(test_vector)
-        highestConfidence = sorted(
-            self.logistic_model.decision_function(test_vector)[0]
-        )[self.logistic_model.decision_function(test_vector).size - 1]
-        if highestConfidence < -0.88:
-            return "_OFF_TOPIC_", "_OFF_TOPIC_", highestConfidence
-        return self.mentor.answer_ids[prediction[0]], prediction[0], highestConfidence
+
+        decision = self.logistic_model.decision_function(test_vector)
+        confidence_scorces = (
+            sorted(decision[0]) if decision.ndim >= 2 else sorted(decision)
+        )
+        highest_confidence = confidence_scorces[-1]
+        if highest_confidence < -0.88:
+            return "_OFF_TOPIC_", "_OFF_TOPIC_", highest_confidence
+
+        return self.mentor.answer_ids[prediction[0]], prediction[0], highest_confidence

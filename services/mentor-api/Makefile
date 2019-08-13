@@ -53,7 +53,21 @@ docker-run:
 			--name $(DOCKER_CONTAINER) \
 			--shm-size 8G \
 			-p 5000:5000 \
-		$(DOCKER_IMAGE) 
+		$(DOCKER_IMAGE)
+
+
+.PHONY: docker-run-checkpoint/%
+docker-run-checkpoint/%:
+	docker run \
+			-it \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
+			-v $(PROJECT_ROOT)/mentors:/app/mentors \
+			-e CLASSIFIER_CHECKPOINT=$* \
+			--shm-size 8G \
+			-p 5000:5000 \
+		$(DOCKER_IMAGE)
 
 
 .PHONY: docker-run-dev
