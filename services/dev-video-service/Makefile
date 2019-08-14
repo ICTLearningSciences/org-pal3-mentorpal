@@ -10,7 +10,7 @@ docker-run:
 	docker run \
 			--rm \
 			-it \
-			-v $(PROJECT_ROOT)/mentors:/app/data \
+			-v $(PROJECT_ROOT)/mentors/videos:/data/videos/mentors \
 			-p 8081:80 \
 		$(DOCKER_IMAGE)
 
@@ -19,6 +19,6 @@ shell:
 			--rm \
 			-it \
 			--entrypoint /bin/bash \
-			-v $(PROJECT_ROOT)/mentors:/app/data \
+			-v $(PROJECT_ROOT)/mentors/videos:/data/videos/mentors \
 			-p 8081:80 \
 		$(DOCKER_IMAGE)
