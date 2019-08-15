@@ -25,4 +25,4 @@ services:
     volumes:
       - type: bind
         source: ./mentors/videos
-        target: /www/data/videos/mentors
+        target: /etc/nginx/html/videos/mentors
