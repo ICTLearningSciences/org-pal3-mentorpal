@@ -1,10 +1,26 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Button, Paper } from "@material-ui/core";
+import { Button, Paper, GridList, GridListTile } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+
 import { History, Whatshot } from "@material-ui/icons";
 
 import { selectTopic } from "store/actions";
 import { normalizeString } from "funcs/funcs";
+
+const useStyles = makeStyles(theme => ({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      overflow: 'hidden',
+    },
+    gridList: {
+      height: '60px',
+      flexWrap: 'nowrap',
+      transform: 'translateZ(0)',
+    },
+}));
 
 const Topics = ({ onSelected }) => {
   const dispatch = useDispatch();
@@ -13,6 +29,7 @@ const Topics = ({ onSelected }) => {
   );
   const current_topic = useSelector(state => state.current_topic);
   const questions_asked = useSelector(state => state.questions_asked);
+  const classes = useStyles();
 
   if (!(mentor && mentor.topic_questions)) {
     return <div />;
@@ -37,10 +54,10 @@ const Topics = ({ onSelected }) => {
   }
 
   return (
-    <Paper elevation={2} square>
-      <div className="carousel">
+    <Paper className={classes.root} elevation={2} square>
+      <GridList className={classes.gridList}>
         {Object.keys(topic_questions).map((topic, i) => (
-          <div className="slide topic-slide" key={i}>
+          <GridListTile key={i}>
             <Button
               variant="contained"
               color={current_topic === topic ? "primary" : "default"}
@@ -58,9 +75,9 @@ const Topics = ({ onSelected }) => {
               )}
               {topic}
             </Button>
-          </div>
+          </GridListTile>
         ))}
-      </div>
+      </GridList>
     </Paper>
   );
 };

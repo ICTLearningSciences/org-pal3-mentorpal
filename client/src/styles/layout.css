@@ -1,5 +1,6 @@
-body {
+html, body {
   height: 100%;
+  width: 100%;
   margin: 0;
   text-align: center;
 }
@@ -24,19 +25,20 @@ body {
 }
 .expand {
   flex: 1 1;
-  -webkit-overflow-scrolling: touch;
 }
 
 .carousel {
-  width: 100%;
-  overflow-x: visible;
-  overflow-y: hidden;
-  white-space: nowrap;
+  min-width: 100%;
+  display: flex;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
 }
-.carousel .slide {
+.carousel::-webkit-scrollbar {
+  display: none;
+}
+.slide {
   position: relative;
-  display: inline-block;
 }
 .carousel .video-slide {
   padding: 5px;

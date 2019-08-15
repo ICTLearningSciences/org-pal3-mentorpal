@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Star } from "@material-ui/icons";
+import { GridList, GridListTile } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 
 import { selectMentor } from "store/actions";
 import { STATUS_ERROR } from "store/reducer";
@@ -9,10 +11,25 @@ import VideoThumbnail from "components/video-thumbnail";
 import LoadingSpinner from "components/video-spinner";
 import MessageStatus from "components/video-status";
 
+const useStyles = makeStyles(theme => ({
+    root: {
+      display: 'flex',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      overflow: 'hidden',
+    },
+    gridList: {
+      height: '60px',
+      flexWrap: 'nowrap',
+      transform: 'translateZ(0)',
+    },
+}));
+
 const VideoPanel = ({ isMobile }) => {
   const dispatch = useDispatch();
   const mentor = useSelector(state => state.current_mentor);
   const mentors = useSelector(state => state.mentors_by_id);
+  const classes = useStyles();
 
   const height = 50;
   const width = isMobile ? height / 0.895 : height / 0.5625;
@@ -25,10 +42,11 @@ const VideoPanel = ({ isMobile }) => {
   };
 
   return (
-    <div className="carousel">
+    <div className={classes.root}>
+      <GridList className={classes.gridList} cols={4}>
       {Object.keys(mentors).map((id, i) => (
-        <div
-          className={`slide video-slide ${id === mentor ? "selected" : ""}`}
+        <GridListTile
+          className={`${id === mentor ? "selected" : ""}`}
           key={`${id}-${i}`}
           onClick={() => onClick(mentors[id])}
         >
@@ -41,8 +59,9 @@ const VideoPanel = ({ isMobile }) => {
           <LoadingSpinner mentor={mentors[id]} height={height} width={width} />
           <MessageStatus mentor={mentors[id]} />
           <StarIcon mentor={mentors[id]} />
-        </div>
+        </GridListTile>
       ))}
+      </GridList>
     </div>
   );
 };
