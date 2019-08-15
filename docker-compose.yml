@@ -22,10 +22,3 @@ services:
     depends_on:
       - mentor-api
       - web-app
-    volumes:
-      - type: bind
-        source: ./mentors/videos
-        target: /etc/nginx/html/videos/mentors
-      - type: bind
-        source: ./services/nginx-local/conf.d
-        target: /etc/nginx/conf.d

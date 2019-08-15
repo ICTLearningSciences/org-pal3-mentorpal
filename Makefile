@@ -32,6 +32,10 @@ docker-build-services: docker-build-classifier
 # Once the server is running, you can open the local site in a browser at
 # http://localhost:8080
 ###############################################################################
+.PHONY: local-run-dev
+local-run-dev: $(DEV_VIRTUAL_ENV)
+	$(DEV_VIRTUAL_ENV)/bin/docker-compose -f docker-compose.yml -f  services/nginx-local/docker-compose.override.yml up
+
 .PHONY: local-run
 local-run: $(DEV_VIRTUAL_ENV)
 	$(DEV_VIRTUAL_ENV)/bin/docker-compose up

@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  proxy:
+    image: "mentorpal-proxy"
+    ports:
+      - "8080:80"
+    depends_on:
+      - mentor-api
+      - web-app
+    volumes:
+      - type: bind
+        source: ./mentors/videos
+        target: /etc/nginx/html/videos/mentors
+      - type: bind
+        source: ./services/nginx-local/conf.d
+        target: /etc/nginx/conf.d
