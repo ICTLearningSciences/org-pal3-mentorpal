@@ -1,2 +1,7 @@
-Dockerfile
-Makefile
+*Dockerfile
+*Makefile
+mentors/src
+mentors/secrets
+mentors/data
+mentors/README.md
+mentors/requirements.txt
