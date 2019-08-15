@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button, Paper, GridList, GridListTile } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 import { History, Whatshot } from "@material-ui/icons";
 
@@ -9,17 +9,17 @@ import { selectTopic } from "store/actions";
 import { normalizeString } from "funcs/funcs";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-      overflow: 'hidden',
-    },
-    gridList: {
-      height: '60px',
-      flexWrap: 'nowrap',
-      transform: 'translateZ(0)',
-    },
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+  },
+  gridList: {
+    height: "60px",
+    flexWrap: "nowrap",
+    transform: "translateZ(0)",
+  },
 }));
 
 const Topics = ({ onSelected }) => {

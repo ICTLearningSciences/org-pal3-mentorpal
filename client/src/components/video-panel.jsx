@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Star } from "@material-ui/icons";
 import { GridList, GridListTile } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
 import { selectMentor } from "store/actions";
 import { STATUS_ERROR } from "store/reducer";
@@ -12,17 +12,17 @@ import LoadingSpinner from "components/video-spinner";
 import MessageStatus from "components/video-status";
 
 const useStyles = makeStyles(theme => ({
-    root: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-      overflow: 'hidden',
-    },
-    gridList: {
-      height: '60px',
-      flexWrap: 'nowrap',
-      transform: 'translateZ(0)',
-    },
+  root: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
+  },
+  gridList: {
+    height: "60px",
+    flexWrap: "nowrap",
+    transform: "translateZ(0)",
+  },
 }));
 
 const VideoPanel = ({ isMobile }) => {
@@ -44,23 +44,27 @@ const VideoPanel = ({ isMobile }) => {
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList} cols={4}>
-      {Object.keys(mentors).map((id, i) => (
-        <GridListTile
-          className={`${id === mentor ? "selected" : ""}`}
-          key={`${id}-${i}`}
-          onClick={() => onClick(mentors[id])}
-        >
-          <VideoThumbnail
-            mentor={mentors[id]}
-            isMobile={isMobile}
-            height={height}
-            width={width}
-          />
-          <LoadingSpinner mentor={mentors[id]} height={height} width={width} />
-          <MessageStatus mentor={mentors[id]} />
-          <StarIcon mentor={mentors[id]} />
-        </GridListTile>
-      ))}
+        {Object.keys(mentors).map((id, i) => (
+          <GridListTile
+            className={`${id === mentor ? "selected" : ""}`}
+            key={`${id}-${i}`}
+            onClick={() => onClick(mentors[id])}
+          >
+            <VideoThumbnail
+              mentor={mentors[id]}
+              isMobile={isMobile}
+              height={height}
+              width={width}
+            />
+            <LoadingSpinner
+              mentor={mentors[id]}
+              height={height}
+              width={width}
+            />
+            <MessageStatus mentor={mentors[id]} />
+            <StarIcon mentor={mentors[id]} />
+          </GridListTile>
+        ))}
       </GridList>
     </div>
   );
