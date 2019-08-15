@@ -1,4 +1,4 @@
-version: '3.0'
+version: '3.7'
 services:
   web-app:
     image: "mentorpal-web-app"
@@ -22,9 +22,7 @@ services:
     depends_on:
       - mentor-api
       - web-app
-  dev-video-service:
-    image: "dev-video-service"
-    ports:
-      - "8081:80"
     volumes:
-      - ./mentors/videos:/data/videos/mentors
+      - type: bind
+        source: ./mentors/videos
+        target: /www/data/videos/mentors
