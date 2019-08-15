@@ -22,3 +22,9 @@ services:
     depends_on:
       - mentor-api
       - web-app
+  dev-video-service:
+    image: "dev-video-service"
+    ports:
+      - "8081:80"
+    volumes:
+      - ./mentors/videos:/data/videos/mentors
