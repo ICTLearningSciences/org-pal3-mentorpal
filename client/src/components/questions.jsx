@@ -1,6 +1,5 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { List } from "@material-ui/core";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 import ScrollingQuestions from "components/scrolling-questions";
@@ -42,14 +41,13 @@ const Questions = ({ height, onSelected }) => {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <List disablePadding style={{ maxHeight: height, overflow: "auto" }}>
-        <ScrollingQuestions
-          questions={questions}
-          questions_asked={questions_asked}
-          recommended={recommended}
-          onQuestionSelected={onSelected}
-        />
-      </List>
+      <ScrollingQuestions
+        height={height}
+        questions={questions}
+        questions_asked={questions_asked}
+        recommended={recommended}
+        onQuestionSelected={onSelected}
+      />
     </MuiThemeProvider>
   );
 };

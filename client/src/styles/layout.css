@@ -2,6 +2,7 @@ body {
   height: 100%;
   margin: 0;
   text-align: center;
+  -webkit-overflow-scrolling: touch;
 }
 #video-container {
   position: relative;
@@ -24,15 +25,18 @@ body {
 }
 .expand {
   flex: 1 1;
-  -webkit-overflow-scrolling: touch;
+}
+.scroll {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;    
 }
 
 .carousel {
   width: 100%;
   overflow-x: visible;
   overflow-y: hidden;
-  white-space: nowrap;
   -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
 }
 .carousel .slide {
   position: relative;
