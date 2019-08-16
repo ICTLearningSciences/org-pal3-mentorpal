@@ -48,6 +48,28 @@ def ffmpeg_convert_mobile(input_file):
     ff.run()
 
 
+def ffmpeg_split_video(self, input_file, output_file, start_time, end_time):
+    """
+    Splits the large .mp4 file into chunks based on the start_time and end_time of chunk.
+    This function is equivalent to running `ffmpeg -i input_file -ss start_time -to end_time output_file -loglevel quiet` on the command line.
+    start_time and end_time must be in seconds. For example, a time 01:03:45 is 01*3600 + 03*60 + 45 = 3825 seconds.
+    See convert_to_seconds(time) function which does this for you.
+    FFMpeg will automatically recognize whether the result must be audio or video, based on the extension of the output_file.
+
+    Parameters:
+    input_file: /example/path/to/mentor/session1/session1part1.mp4, /example/path/to/mentor/session1/session1part2.mp4
+    output_file: /example/path/to/mentor/session1/answer_videos/answer_1.ogv
+    start_time: Start time of answer
+    end_time: End time of answer
+    """
+    print(output_file)
+    output_command = f"-ss {start_time} -to {end_time} -loglevel quiet -threads 0"
+    ff = ffmpy.FFmpeg(
+        inputs={input_file: None}, outputs={output_file: output_command}
+    )
+    ff.run()
+
+
 class PostProcessData(object):
     def __init__(
         self,
@@ -76,27 +98,6 @@ class PostProcessData(object):
         self.utterance_data = (
             []
         )  # utterance data to write to file, for use by ensemble.py when checking question status
-
-    def ffmpeg_split_video(self, input_file, output_file, start_time, end_time):
-        """
-        Splits the large .mp4 file into chunks based on the start_time and end_time of chunk.
-        This function is equivalent to running `ffmpeg -i input_file -ss start_time -to end_time output_file -loglevel quiet` on the command line.
-        start_time and end_time must be in seconds. For example, a time 01:03:45 is 01*3600 + 03*60 + 45 = 3825 seconds.
-        See convert_to_seconds(time) function which does this for you.
-        FFMpeg will automatically recognize whether the result must be audio or video, based on the extension of the output_file.
-
-        Parameters:
-        input_file: /example/path/to/mentor/session1/session1part1.mp4, /example/path/to/mentor/session1/session1part2.mp4
-        output_file: /example/path/to/mentor/session1/answer_videos/answer_1.ogv
-        start_time: Start time of answer
-        end_time: End time of answer
-        """
-        output_command = f"-ss {start_time} -to {end_time} -loglevel quiet -threads 0"
-        ff = ffmpy.FFmpeg(
-            inputs={input_file: None}, outputs={output_file: output_command}
-        )
-        ff.run()
-        ffmpeg_convert_mobile(output_file)
 
     def get_video_chunks(self, video_file, timestamps, mentor, session, part, videos):
         print(video_file, timestamps, mentor, session, part)
@@ -157,9 +158,9 @@ class PostProcessData(object):
                 output_file = os.path.join(self.utterance_chunks, f"{utterance_id}.mp4")
 
             if videos:
-                self.ffmpeg_split_video(
-                    video_file, output_file, start_times[i], end_times[i]
-                )
+                ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
+                ffmpeg_convert_mobile(output_file)
+
 
     def write_data(self, mentor):
         """
