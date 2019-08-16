@@ -34,7 +34,7 @@ docker-build-services: docker-build-classifier
 ###############################################################################
 .PHONY: local-run-dev
 local-run-dev: $(DEV_VIRTUAL_ENV)
-	$(DEV_VIRTUAL_ENV)/bin/docker-compose -f docker-compose.yml -f  services/nginx-local/docker-compose.override.yml up
+	$(DEV_VIRTUAL_ENV)/bin/docker-compose -f docker-compose.yml -f  nginx-local/docker-compose.override.yml up
 
 .PHONY: local-run
 local-run: $(DEV_VIRTUAL_ENV)
