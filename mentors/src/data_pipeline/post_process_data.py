@@ -153,10 +153,8 @@ class PostProcessData(object):
                 output_dir = UTTERANCE_VIDEOS
 
             if videos:
-                web_output = build_video_output_file(output_file, output_dir, "web")
-                mobile_output = build_video_output_file(
-                    output_file, output_dir, "mobile"
-                )
+                web_output = build_output_file(output_file, output_dir, "web")
+                mobile_output = build_output_file(output_file, output_dir, "mobile")
                 ffmpeg_split_video(video_file, web_output, start_times[i], end_times[i])
                 ffmpeg_convert_mobile(mobile_output)
 
@@ -237,7 +235,7 @@ class PostProcessData(object):
             )
 
 
-def build_video_output_file(file_name, file_dir, file_type):
+def build_output_file(file_name, file_dir, file_type):
     path = os.path.join(mentor_videos, file_dir, file_dir)
     os.makedirs(path, exist_ok=True)
     return os.path.join(path, f"{file_name}.mp4")
