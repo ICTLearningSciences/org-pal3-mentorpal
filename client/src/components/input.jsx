@@ -12,7 +12,6 @@ const Input = ({ height, ...props }) => {
   const dispatch = useDispatch();
   const question = useSelector(state => state.current_question);
   const [text, setText] = useState("");
-  const input = React.createRef();
   const { classes } = props;
 
   // Input field should be updated (user typed a question or selected a topic)
@@ -34,7 +33,7 @@ const Input = ({ height, ...props }) => {
     }
     dispatch(sendQuestion(text));
     setText("");
-    input.current.blur();
+    window.focus();
   };
 
   // Input field key was entered (check if user hit enter)
@@ -63,7 +62,6 @@ const Input = ({ height, ...props }) => {
       <div className="footer" style={{ height: "60px" }}>
         <Paper className={classes.root} square>
           <InputBase
-            ref={input}
             className={classes.inputField}
             value={text}
             multiline

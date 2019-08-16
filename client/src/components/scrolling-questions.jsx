@@ -20,7 +20,11 @@ const ScrollingQuestions = ({
     if (!(parent && node)) {
       return;
     }
-    parent.scrollTop = node.offsetTop;
+    parent.scrollTo({
+      behavior: "smooth",
+      top: node.offsetTop,
+      left: 0,
+    });
   }, [questions, questions_asked]);
 
   return (
@@ -28,6 +32,7 @@ const ScrollingQuestions = ({
       id="scrolling-questions-list"
       className="scroll"
       style={{ maxHeight: height }}
+      disablePadding
     >
       {questions.map((question, i) => (
         <ListItem
