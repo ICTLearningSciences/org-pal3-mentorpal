@@ -62,19 +62,14 @@ def ffmpeg_split_video(self, input_file, output_file, start_time, end_time):
     start_time: Start time of answer
     end_time: End time of answer
     """
-    print(output_file)
     output_command = f"-ss {start_time} -to {end_time} -loglevel quiet -threads 0"
-    ff = ffmpy.FFmpeg(
-        inputs={input_file: None}, outputs={output_file: output_command}
-    )
+    ff = ffmpy.FFmpeg(inputs={input_file: None}, outputs={output_file: output_command})
     ff.run()
 
 
 class PostProcessData(object):
     def __init__(
         self,
-        answer_chunks,
-        utterance_chunks,
         answer_number,
         utterance_number,
         mentor_name,
@@ -83,8 +78,6 @@ class PostProcessData(object):
         utterance_corpus,
         utterance_corpus_index,
     ):
-        self.answer_chunks = answer_chunks
-        self.utterance_chunks = utterance_chunks
         self.answer_number = answer_number
         self.utterance_number = utterance_number
         self.mentor_name = mentor_name
@@ -140,7 +133,13 @@ class PostProcessData(object):
                 self.answer_corpus_index += 1
                 self.answer_number += 1
                 self.training_data.append(answer_sample)
-                output_file = os.path.join(self.answer_chunks, f"{answer_id}.mp4")
+
+                web_answers = os.path.join(mentor_videos, ANSWER_VIDEOS, "web")
+                os.makedirs(web_answers, exist_ok=True)
+                mobile_answers = os.path.join(mentor_videos, ANSWER_VIDEOS, "mobile")
+                os.makedirs(mobile_answers, exist_ok=True)
+                web_output_file = os.path.join(web_answers, f"{answer_id}.mp4")
+                mobile_output_file = os.path.join(mobile_answers, f"{answer_id}.mp4")
 
             elif (
                 text_type[i] == "U"
@@ -155,12 +154,19 @@ class PostProcessData(object):
                 self.utterance_corpus_index += 1
                 self.utterance_number += 1
                 self.utterance_data.append(utterance_sample)
-                output_file = os.path.join(self.utterance_chunks, f"{utterance_id}.mp4")
+
+                web_utterances = os.path.join(mentor_videos, UTTERANCE_VIDEOS, "web")
+                os.makedirs(web_utterances, exist_ok=True)
+                mobile_utterances = os.path.join(mentor_videos, UTTERANCE_VIDEOS, "mobile")
+                os.makedirs(mobile_utterances, exist_ok=True)
+                web_output_file = os.path.join(web_answers, f"{utterance_id}.mp4")
+                mobile_output_file = os.path.join(mobile_answers, f"{utterance_id}.mp4")
 
             if videos:
-                ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
-                ffmpeg_convert_mobile(output_file)
-
+                ffmpeg_split_video(
+                    video_file, web_output_file, start_times[i], end_times[i]
+                )
+                ffmpeg_convert_mobile(mobile_output_file)
 
     def write_data(self, mentor):
         """
@@ -243,12 +249,6 @@ def build_post_processing_data(args):
     mentor_data = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor))
     mentor_videos = os.path.join(DATA_DIR, MENTOR_VIDEOS.format(args.mentor))
 
-    # store answer video chunks in this folder.
-    answer_chunks = os.path.join(mentor_videos, ANSWER_VIDEOS)
-    os.makedirs(answer_chunks, exist_ok=True)
-    # store prompts and repeat-after-me videos in this folder
-    utterance_chunks = os.path.join(mentor_videos, UTTERANCE_VIDEOS)
-    os.makedirs(utterance_chunks, exist_ok=True)
 
     # Load older metadata, to see where to continue numbering answers and utterances from, for the current mentor
     metadata_file = os.path.join(mentor_data, METADATA)
@@ -295,8 +295,6 @@ def build_post_processing_data(args):
     answer_corpus = pd.read_csv(os.path.join(mentor_data, QPA_FILENAME))
     utterance_corpus = pd.read_csv(os.path.join(mentor_data, PU_FILENAME))
     ppd = PostProcessData(
-        answer_chunks,
-        utterance_chunks,
         next_answer,
         next_utterance,
         args.mentor,
