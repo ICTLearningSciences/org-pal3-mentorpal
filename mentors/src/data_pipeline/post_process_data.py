@@ -133,13 +133,8 @@ class PostProcessData(object):
                 self.answer_corpus_index += 1
                 self.answer_number += 1
                 self.training_data.append(answer_sample)
-
-                web_answers = os.path.join(mentor_videos, ANSWER_VIDEOS, "web")
-                os.makedirs(web_answers, exist_ok=True)
-                mobile_answers = os.path.join(mentor_videos, ANSWER_VIDEOS, "mobile")
-                os.makedirs(mobile_answers, exist_ok=True)
-                web_output_file = os.path.join(web_answers, f"{answer_id}.mp4")
-                mobile_output_file = os.path.join(mobile_answers, f"{answer_id}.mp4")
+                output_file = f"{answer_id}.mp4"
+                output_dir = ANSWER_VIDEOS
 
             elif (
                 text_type[i] == "U"
@@ -154,19 +149,16 @@ class PostProcessData(object):
                 self.utterance_corpus_index += 1
                 self.utterance_number += 1
                 self.utterance_data.append(utterance_sample)
-
-                web_utterances = os.path.join(mentor_videos, UTTERANCE_VIDEOS, "web")
-                os.makedirs(web_utterances, exist_ok=True)
-                mobile_utterances = os.path.join(mentor_videos, UTTERANCE_VIDEOS, "mobile")
-                os.makedirs(mobile_utterances, exist_ok=True)
-                web_output_file = os.path.join(web_answers, f"{utterance_id}.mp4")
-                mobile_output_file = os.path.join(mobile_answers, f"{utterance_id}.mp4")
+                output_file = f"{utterance_id}.mp4"
+                output_dir = UTTERANCE_VIDEOS
 
             if videos:
-                ffmpeg_split_video(
-                    video_file, web_output_file, start_times[i], end_times[i]
+                web_output = build_video_output_file(output_file, output_dir, "web")
+                mobile_output = build_video_output_file(
+                    output_file, output_dir, "mobile"
                 )
-                ffmpeg_convert_mobile(mobile_output_file)
+                ffmpeg_split_video(video_file, web_output, start_times[i], end_times[i])
+                ffmpeg_convert_mobile(mobile_output)
 
     def write_data(self, mentor):
         """
@@ -245,10 +237,15 @@ class PostProcessData(object):
             )
 
 
+def build_video_output_file(file_name, file_dir, file_type):
+    path = os.path.join(mentor_videos, file_dir, file_dir)
+    os.makedirs(path, exist_ok=True)
+    return os.path.join(path, f"{file_name}.mp4")
+
+
 def build_post_processing_data(args):
     mentor_data = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor))
     mentor_videos = os.path.join(DATA_DIR, MENTOR_VIDEOS.format(args.mentor))
-
 
     # Load older metadata, to see where to continue numbering answers and utterances from, for the current mentor
     metadata_file = os.path.join(mentor_data, METADATA)
