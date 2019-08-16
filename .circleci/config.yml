@@ -129,7 +129,12 @@ workflows:
           filters: *only-master
           requires:
             - docker-build-test-push
+  build-test-deploy-prod:
+    jobs:
+      - docker-build-test-push:
+          name: prod-docker-build-test-push
+          filters: *only-prod-releases
       - prod-ebs-deploy:
           filters: *only-prod-releases
           requires:
-            - docker-build-test-push
+            - prod-docker-build-test-push
