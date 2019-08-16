@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { ListItem, ListItemText } from "@material-ui/core";
+import { List, ListItem, ListItemText } from "@material-ui/core";
 import { Whatshot } from "@material-ui/icons";
 
 import { normalizeString } from "funcs/funcs";
 
 const ScrollingQuestions = ({
+  height,
   questions,
   questions_asked,
   recommended,
@@ -14,41 +15,50 @@ const ScrollingQuestions = ({
     const top_question = questions.find(q => {
       return !questions_asked.includes(normalizeString(q));
     });
-
+    const parent = document.getElementById("scrolling-questions-list");
     const node = document.getElementById(top_question);
-    if (!(top_question && node)) {
+    if (!(parent && node)) {
       return;
     }
-
-    node.scrollIntoView({
+    parent.scrollTo({
       behavior: "smooth",
-      block: "start",
+      top: node.offsetTop,
+      left: 0,
     });
-  });
+  }, [questions, questions_asked]);
 
-  return questions.map((question, i) => (
-    <ListItem
-      key={i}
-      id={question}
-      onClick={() => onQuestionSelected(question)}
+  return (
+    <List
+      id="scrolling-questions-list"
+      className="scroll"
+      style={{ maxHeight: height }}
+      disablePadding
     >
-      <ListItemText
-        style={{
-          paddingLeft: 0,
-          color: questions_asked.includes(normalizeString(question))
-            ? "gray"
-            : "black",
-        }}
-      >
-        {recommended.includes(question) ? (
-          <Whatshot style={{ marginRight: "5px" }} fontSize="small" />
-        ) : (
-          undefined
-        )}
-        {question}
-      </ListItemText>
-    </ListItem>
-  ));
+      {questions.map((question, i) => (
+        <ListItem
+          key={i}
+          id={question}
+          onClick={() => onQuestionSelected(question)}
+        >
+          <ListItemText
+            style={{
+              paddingLeft: 0,
+              color: questions_asked.includes(normalizeString(question))
+                ? "gray"
+                : "black",
+            }}
+          >
+            {recommended.includes(question) ? (
+              <Whatshot style={{ marginRight: "5px" }} fontSize="small" />
+            ) : (
+              undefined
+            )}
+            {question}
+          </ListItemText>
+        </ListItem>
+      ))}
+    </List>
+  );
 };
 
 export default ScrollingQuestions;

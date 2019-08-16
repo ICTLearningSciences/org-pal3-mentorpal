@@ -33,6 +33,7 @@ const Input = ({ height, ...props }) => {
     }
     dispatch(sendQuestion(text));
     setText("");
+    window.focus();
   };
 
   // Input field key was entered (check if user hit enter)
