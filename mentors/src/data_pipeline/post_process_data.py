@@ -48,7 +48,7 @@ def ffmpeg_convert_mobile(input_file):
     ff.run()
 
 
-def ffmpeg_split_video(self, input_file, output_file, start_time, end_time):
+def ffmpeg_split_video(input_file, output_file, start_time, end_time):
     """
     Splits the large .mp4 file into chunks based on the start_time and end_time of chunk.
     This function is equivalent to running `ffmpeg -i input_file -ss start_time -to end_time output_file -loglevel quiet` on the command line.
