@@ -1,5 +1,6 @@
 import subprocess
 import pandas as pd
+import os
 import math
 import ffmpy
 import utils
@@ -12,11 +13,10 @@ def find(s, ch):  # gives indexes of all of the spaces so we don't split words a
     return [i for i, ltr in enumerate(s) if ltr == ch]
 
 
-def getDurations(ID):
+def getDurations(ID, videoPath):
     try:
-        ff = ffmpy.FFprobe(
-            inputs={videoPath + ID + """.mp4""": None}
-        )
+        input_file = os.path.join(videoPath, ID + """.mp4""")
+        ff = ffmpy.FFprobe(inputs={input_file: None})
         stdout, stderr = ff.run(stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         statusString = stdout.decode()
         a = int(statusString.find("Duration:"))
@@ -27,47 +27,48 @@ def getDurations(ID):
         print("Video not Found")
         return "error"
 
+def generate_captions(videoPath, classifierDataPath):
+    df = pd.read_csv(classifierDataPath, encoding="cp1252")  # read
+    output = pd.DataFrame()
 
-df = pd.read_csv(classifierDataPath, encoding="cp1252")  # read
-output = pd.DataFrame()
+    for i in range(len(df["ID"])):
+        ID = str(df["ID"][i])  # get's the i'th value
+        time = getDurations(ID, videoPath)
+        if time == "error":
+            continue
+        # print(time) #this is the amount of seconds tied down to that ID
+        transcript = str(df["text"][i])  # the transcript needed
+        pieceLength = 68
+        wordIndexes = find(transcript, " ")
+        splitIndex = [0]
+        for k in range(1, len(wordIndexes)):
+            for l in range(1, len(wordIndexes)):
+                if wordIndexes[l] > pieceLength * k:
+                    splitIndex.append(wordIndexes[l])
+                    break
+        splitIndex.append(len(transcript))
+        # print(splitIndex)
+        amountOfChunks = math.ceil(len(transcript) / pieceLength)
+        output_file = os.path.join(videoPath, ID + ".vtt")
+        print(output_file)
+        text_file = open(output_file, "w")  # opens up a file to print with
+        text_file.write("WEBVTT FILE:\n\n")
+        for j in range(len(splitIndex) - 1):  # this uses a constant piece length
+            OutputList = []
+            secondsStart = round((time / amountOfChunks) * j, 2) + 0.85
+            secondsEnd = round((time / amountOfChunks) * (j + 1), 2) + 0.85
+            outputStart = (
+                str(math.floor(secondsStart / 60)).zfill(2)
+                + ":"
+                + ("%.3f" % (secondsStart % 60)).zfill(6)
+            )
+            outputEnd = (
+                str(math.floor(secondsEnd / 60)).zfill(2)
+                + ":"
+                + ("%.3f" % (secondsEnd % 60)).zfill(6)
+            )
+            # print("00:" + outputStart +" --> "+"00:"+ outputEnd)
 
-for i in range(len(df["ID"])):
-    ID = str(df["ID"][i])  # get's the i'th value
-    time = getDurations(ID)
-    if time == "error":
-        continue
-    # print(time) #this is the amount of seconds tied down to that ID
-    transcript = str(df["text"][i])  # the transcript needed
-    pieceLength = 68
-    wordIndexes = find(transcript, " ")
-    splitIndex = [0]
-    for k in range(1, len(wordIndexes)):
-        for l in range(1, len(wordIndexes)):
-            if wordIndexes[l] > pieceLength * k:
-                splitIndex.append(wordIndexes[l])
-                break
-    splitIndex.append(len(transcript))
-    # print(splitIndex)
-    amountOfChunks = math.ceil(len(transcript) / pieceLength)
-    print(videoPath + ID + ".vtt")
-    text_file = open(videoPath + ID + ".vtt", "w")  # opens up a file to print with
-    text_file.write("WEBVTT FILE:\n\n")
-    for j in range(len(splitIndex) - 1):  # this uses a constant piece length
-        OutputList = []
-        secondsStart = round((time / amountOfChunks) * j, 2) + 0.85
-        secondsEnd = round((time / amountOfChunks) * (j + 1), 2) + 0.85
-        outputStart = (
-            str(math.floor(secondsStart / 60)).zfill(2)
-            + ":"
-            + ("%.3f" % (secondsStart % 60)).zfill(6)
-        )
-        outputEnd = (
-            str(math.floor(secondsEnd / 60)).zfill(2)
-            + ":"
-            + ("%.3f" % (secondsEnd % 60)).zfill(6)
-        )
-        # print("00:" + outputStart +" --> "+"00:"+ outputEnd)
-
-        text_file.write("00:" + outputStart + " --> " + "00:" + outputEnd + "\n")
-        text_file.write(transcript[splitIndex[j] : splitIndex[j + 1]] + "\n\n")
-        # OutputList.append([ID,time,transcript])
+            text_file.write("00:" + outputStart + " --> " + "00:" + outputEnd + "\n")
+            text_file.write(transcript[splitIndex[j] : splitIndex[j + 1]] + "\n\n")
+            # OutputList.append([ID,time,transcript])

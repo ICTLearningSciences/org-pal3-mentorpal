@@ -124,7 +124,19 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			-v $(shell pwd)/data:/app/mounts/data \
 			-v $(shell pwd)/videos:/app/mounts/videos \
-			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos
+			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --captions --videos
+
+.PHONY: %/captions
+%/captions: %/build docker-image-exists
+	mkdir -p $(shell pwd)/$*/data
+	cp $(shell pwd)/data/topics.csv $(shell pwd)/$*/data/topics.csv
+	docker run \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-v $(shell pwd)/$*:/app/mounts/$* \
+			-v $(shell pwd)/data:/app/mounts/data \
+			-v $(shell pwd)/videos:/app/mounts/videos \
+			$(DOCKER_IMAGE) --mentor $* --captions
 
 # Build checkpoint from mentor data
 .PHONY: %/checkpoint

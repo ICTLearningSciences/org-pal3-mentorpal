@@ -6,17 +6,21 @@ import constants
 import preprocess_data
 import post_process_data
 import transcript_adapter
+import web_captions
 
 """
 This file serves as the entrypoint for the mentor panel video processing pipeline
 """
 MENTOR_BUILD = constants.MENTOR_BUILD
 MENTOR_DATA = constants.MENTOR_DATA
+MENTOR_VIDEOS = constants.MENTOR_VIDEOS
 SESSION_DATA = constants.SESSION_DATA
+ANSWER_VIDEOS = constants.ANSWER_VIDEOS
 DATA_FILENAME = constants.DATA_FILENAME
 VIDEO_FILE = constants.VIDEO_FILE
 AUDIO_FILE = constants.AUDIO_FILE
 TIMESTAMP_FILE = constants.TIMESTAMP_FILE
+CLASSIFIER_DATA = constants.CLASSIFIER_DATA
 ERR_MISSING_FILE = "ERROR: Missing {} file for session {} part {}"
 ERR_NO_URL = "ERROR: Data files for {} don't exist locally and url is not provided"
 
@@ -198,6 +202,12 @@ def main():
     )
     parser.add_argument(
         "-c",
+        "--captions",
+        action="store_true",
+        help="enable generation of classification data csv file",
+    )
+    parser.add_argument(
+        "-d",
         "--classification_data",
         action="store_true",
         help="enable generation of classification data csv file",
@@ -249,6 +259,12 @@ def main():
     if args.classification_data:
         print("INFO: Building Classification Data")
         post_process_data.build_post_processing_data(args)
+
+    if args.captions:
+        print("INFO: Building Captions")
+        classifer_data_path = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor), CLASSIFIER_DATA)
+        answer_video_path = os.path.join(DATA_DIR, MENTOR_VIDEOS.format(args.mentor), ANSWER_VIDEOS)
+        web_captions.generate_captions(answer_video_path, classifer_data_path)
 
 
 if __name__ == "__main__":
