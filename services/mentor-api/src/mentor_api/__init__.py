@@ -48,6 +48,10 @@ def create_app(script_info=None):
 
     app.register_blueprint(ping_blueprint, url_prefix="/mentor-api/ping")
 
+    from mentor_api.blueprints.config import config_blueprint
+
+    app.register_blueprint(config_blueprint, url_prefix="/mentor-api/config")
+
     from mentor_api.blueprints.questions import create as create_questions_blueprint
 
     app.register_blueprint(
