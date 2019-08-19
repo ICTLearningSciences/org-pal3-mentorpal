@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { List, ListItem, ListItemText } from "@material-ui/core";
 import { Whatshot } from "@material-ui/icons";
-import smoothscroll from 'smoothscroll-polyfill';
+import smoothscroll from "smoothscroll-polyfill";
 
 import { normalizeString } from "funcs/funcs";
 
