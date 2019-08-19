@@ -89,9 +89,7 @@ def split_into_chunks(audiochunks, audio_file, timestamps, offset):
             was seen till the end of the previous session. If we have two sessions and the first one
             had 25 questions, then the offset will be 26 when the second session is processed.
     """
-    text_type, questions, start_times, end_times = utils.process_timestamp_file(
-        timestamps
-    )
+    text_type, questions, start_times, end_times = utils.load_timestamp_data(timestamps)
 
     for i in range(0, len(start_times)):
         ffmpeg_split_audio(

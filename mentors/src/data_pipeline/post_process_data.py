@@ -100,7 +100,7 @@ class PostProcessData(object):
 
     def get_video_chunks(self, video_file, timestamps, mentor, session, part, videos):
         print(video_file, timestamps, mentor, session, part)
-        text_type, questions, start_times, end_times = utils.process_timestamp_file(
+        text_type, questions, start_times, end_times = utils.load_timestamp_data(
             timestamps
         )
 

@@ -17,7 +17,7 @@ def convert_to_seconds(time):
     return result
 
 
-def process_timestamp_file(filename):
+def load_timestamp_data(filename):
     # Pandas reads empty cells as 0, replace with empty string
     timestamps_file = pd.read_csv(filename).fillna("")
     rows = range(0, len(timestamps_file))
