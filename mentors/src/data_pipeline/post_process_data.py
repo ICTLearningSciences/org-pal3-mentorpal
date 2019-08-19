@@ -104,26 +104,27 @@ class PostProcessData(object):
             timestamps
         )
 
-        # get all the chunks
+        # iterate through answers and utterances and save data for classifier
         for i in range(0, len(start_times)):
             if (
                 text_type[i] == "A"
                 and len(self.answer_corpus) > self.answer_corpus_index
             ):
-                output_file = self.__save_answer_sample__(mentor, session, part)
+                output_file = self.__save_answer_data__(mentor, session, part)
 
             elif (
                 text_type[i] == "U"
                 and len(self.utterance_corpus) > self.utterance_corpus_index
             ):
-                output_file = self.__save_utterance_sample__(mentor, session, part)
+                output_file = self.__save_utterance_data__(mentor, session, part)
 
+            # generate videos if requested via commandline flag
             if videos:
                 self.ffmpeg_split_video(
                     video_file, output_file, start_times[i], end_times[i]
                 )
 
-    def __save_answer_sample__(self, mentor, session, part):
+    def __save_answer_data__(self, mentor, session, part):
         answer_sample = {}
         curr_chunk = self.answer_corpus.iloc[self.answer_corpus_index]
         answer_id = f"{mentor}_a{self.answer_number}_{session}_{part}"
@@ -147,7 +148,7 @@ class PostProcessData(object):
         return os.path.join(self.answer_chunks, f"{answer_id}.mp4")
 
 
-    def __save_utterance_sample__(self, mentor, session, part):
+    def __save_utterance_data__(self, mentor, session, part):
         utterance_sample = {}
         curr_chunk = self.utterance_corpus.iloc[self.utterance_corpus_index]
         utterance_id = f"{mentor}_u{self.utterance_number}_{session}_{part}"
