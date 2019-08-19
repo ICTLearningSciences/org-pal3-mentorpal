@@ -100,16 +100,9 @@ class PostProcessData(object):
 
     def get_video_chunks(self, video_file, timestamps, mentor, session, part, videos):
         print(video_file, timestamps, mentor, session, part)
-
-        # Pandas reads empty cells as 0, replace with empty string
-        timestamps_file = pd.read_csv(timestamps).fillna("")
-        rows = range(0, len(timestamps_file))
-        text_type = [timestamps_file.iloc[i]["Answer/Utterance"] for i in rows]
-        start_times = [timestamps_file.iloc[i]["Response start"] for i in rows]
-        end_times = [timestamps_file.iloc[i]["Response end"] for i in rows]
-
-        start_times = [utils.convert_to_seconds(time) for time in start_times]
-        end_times = [utils.convert_to_seconds(time) for time in end_times]
+        text_type, questions, start_times, end_times = utils.process_timestamp_file(
+            timestamps
+        )
 
         # get all the chunks
         for i in range(0, len(start_times)):

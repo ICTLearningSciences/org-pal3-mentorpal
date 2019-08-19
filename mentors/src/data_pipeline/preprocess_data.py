@@ -2,7 +2,6 @@ import ffmpy
 import csv
 import os
 import fnmatch
-import pandas as pd
 
 import constants
 import ibm_transcript_service as transcript_service
@@ -90,15 +89,9 @@ def split_into_chunks(audiochunks, audio_file, timestamps, offset):
             was seen till the end of the previous session. If we have two sessions and the first one
             had 25 questions, then the offset will be 26 when the second session is processed.
     """
-    # Pandas reads empty cells as 0, replace with empty string
-    timestamps_file = pd.read_csv(timestamps).fillna("")
-    rows = range(0, len(timestamps_file))
-    questions = [timestamps_file.iloc[i]["Question"] for i in rows]
-    start_times = [timestamps_file.iloc[i]["Response start"] for i in rows]
-    end_times = [timestamps_file.iloc[i]["Response end"] for i in rows]
-
-    start_times = [utils.convert_to_seconds(time) for time in start_times]
-    end_times = [utils.convert_to_seconds(time) for time in end_times]
+    text_type, questions, start_times, end_times = utils.process_timestamp_file(
+        timestamps
+    )
 
     for i in range(0, len(start_times)):
         ffmpeg_split_audio(
