@@ -13,7 +13,7 @@ def convert_to_seconds(time):
     time_split = time.split(":")
     if len(time_split) == 2:  # TODO: Remove this when data is standardized
         time_split.insert(0, 00)
-    result = sum(s * int(a) for s, a in zip(time_adjustments, time_split))
+    result = sum(s * float(a) for s, a in zip(time_adjustments, time_split))
     return result
 
 

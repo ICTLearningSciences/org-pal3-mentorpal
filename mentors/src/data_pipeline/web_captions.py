@@ -2,25 +2,11 @@ import subprocess
 import pandas as pd
 import math
 import ffmpy
+import utils
 
 videoPath = r"""/Users/markchristenson/Developer/ict/MentorPAL/mentors/julianne-demo/videos/answer_videos/"""
 ffmpegPath = r"""/usr/local/bin/ffmpeg"""
 classifierDataPath = r"""/Users/markchristenson/Developer/ict/MentorPAL/mentors/julianne-demo/data/classifier_data.csv"""
-
-def convert_to_seconds(time):  # copied from pre-process and post-process, handles ":"
-    time = time.split(":")
-    hours = 0
-    minutes = 0
-    seconds = 0
-    if len(time) == 2:
-        minutes, seconds = time[0], time[1]
-    else:
-        hours, minutes, seconds = time[0], time[1], time[2]
-    hours = int(hours)
-    minutes = int(minutes)
-    seconds = float(seconds)
-    result = int(3600 * hours + 60 * minutes + seconds)
-    return result
 
 
 def find(s, ch):  # gives indexes of all of the spaces so we don't split words apart
@@ -38,7 +24,7 @@ def getDurations(ID):
         statusString = stdout.decode()
         a = int(statusString.find("Duration:"))
         print(statusString)
-        time = convert_to_seconds(statusString[a + 10 : a + 21])  # gets the duration
+        time = utils.convert_to_seconds(statusString[a + 10 : a + 21])  # gets the duration
         return time
     except (ValueError, IndexError):
         print("Video not Found")
