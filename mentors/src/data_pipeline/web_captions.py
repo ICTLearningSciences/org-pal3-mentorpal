@@ -5,7 +5,6 @@ import ffmpy
 import utils
 
 videoPath = r"""/Users/markchristenson/Developer/ict/MentorPAL/mentors/julianne-demo/videos/answer_videos/"""
-ffmpegPath = r"""/usr/local/bin/ffmpeg"""
 classifierDataPath = r"""/Users/markchristenson/Developer/ict/MentorPAL/mentors/julianne-demo/data/classifier_data.csv"""
 
 
@@ -15,12 +14,10 @@ def find(s, ch):  # gives indexes of all of the spaces so we don't split words a
 
 def getDurations(ID):
     try:
-        process = subprocess.Popen(
-            [ffmpegPath, "-i", videoPath + ID + """.mp4"""],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
+        ff = ffmpy.FFprobe(
+            inputs={videoPath + ID + """.mp4""": None}
         )
-        stdout, stderr = process.communicate()
+        stdout, stderr = ff.run(stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         statusString = stdout.decode()
         a = int(statusString.find("Duration:"))
         print(statusString)
