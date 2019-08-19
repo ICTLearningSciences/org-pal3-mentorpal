@@ -62,5 +62,12 @@ for d in */; do
         TARGET: ${vm_target_path}
         SOURCE: ${download_url}
     "
-    wget -O ${vm_target_path} ${download_url}
+    if [ -x "$(command -v wget)" ]; then
+        wget -O ${vm_target_path} ${download_url}
+    else
+      docker run \
+          --rm \
+          -v ${VECTOR_MODEL_TARGET_PATH}:/vector_models \
+        mwendler/wget -O /vector_models/${vm_name} ${download_url}
+    fi
 done
