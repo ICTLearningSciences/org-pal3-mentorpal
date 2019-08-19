@@ -1,13 +1,11 @@
 import subprocess
 import pandas as pd
 import math
+import ffmpy
 
-videoPath = r"""E:/MentorPALGithub/MentorPAL/mentors/julianne/answer_videos/"""
-ffmpegPath = (
-    r"""C:\Users\kshaw\Desktop\ffmpeg-20180611-8c20ea8-win64-static\bin\ffmpeg.exe"""
-)
-classifierDataPath = r"""E:\MentorPALGithub\MentorPAL\data\classifier_data.csv"""
-
+videoPath = r"""/Users/markchristenson/Developer/ict/MentorPAL/mentors/julianne-demo/videos/answer_videos/"""
+ffmpegPath = r"""/usr/local/bin/ffmpeg"""
+classifierDataPath = r"""/Users/markchristenson/Developer/ict/MentorPAL/mentors/julianne-demo/data/classifier_data.csv"""
 
 def convert_to_seconds(time):  # copied from pre-process and post-process, handles ":"
     time = time.split(":")
@@ -39,7 +37,7 @@ def getDurations(ID):
         stdout, stderr = process.communicate()
         statusString = stdout.decode()
         a = int(statusString.find("Duration:"))
-        # print(statusString)
+        print(statusString)
         time = convert_to_seconds(statusString[a + 10 : a + 21])  # gets the duration
         return time
     except (ValueError, IndexError):
