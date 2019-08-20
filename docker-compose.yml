@@ -8,7 +8,7 @@ services:
       - mentor-api
   mentor-api:
     image: "mentorpal-mentor-api"
-    environment:
+    # environment:
       # we don't need to override the MENTOR_VIDEO_HOST
       # but this is how you would do it,
       # say, for serving locally-hosted videos
