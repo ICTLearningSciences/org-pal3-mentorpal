@@ -29,7 +29,6 @@ def get_durations(row_id, video_path):
 
 def generate_captions(video_path, classifier_data_path):
     df = pd.read_csv(classifier_data_path, encoding="cp1252")
-    output = pd.DataFrame()
 
     for i in range(len(df["ID"])):
         row_id = str(df["ID"][i])  # gets the ith value
