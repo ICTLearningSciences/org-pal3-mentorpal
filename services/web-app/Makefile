@@ -36,6 +36,17 @@ docker-run:
 		$(DOCKER_IMAGE) 
 
 
+.PHONY docker-run-shell:
+docker-run-shell:
+	docker run \
+			-it \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-p 3000:3000 \
+			--entrypoint /bin/bash \
+		$(DOCKER_IMAGE) 
+
+
 .PHONY docker-run-dev:
 docker-run-dev:
 	docker run \
