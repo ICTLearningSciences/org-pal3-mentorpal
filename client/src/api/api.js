@@ -12,7 +12,8 @@ It exists (at least for now), exclusively to enable
 dev-local clients where mentor videos are being polished
 to test serving those videos
 */
-axios
+if(typeof(window) !== 'undefined') { // i.e. don't run at build time
+  axios
   .get(`${MENTOR_API_URL}/config/video-host`)
   .then(result => {
     console.log(`get ${MENTOR_API_URL}/config/video-host`, result);
@@ -23,6 +24,7 @@ axios
   .catch(err => {
     console.error(err);
   });
+}
 
 export const videoUrl = (mentor, format) => {
   return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/${format}/${mentor.answer_id}.mp4`;
