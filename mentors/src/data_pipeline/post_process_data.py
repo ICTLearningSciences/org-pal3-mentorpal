@@ -64,9 +64,7 @@ def ffmpeg_split_video(input_file, output_file, start_time, end_time):
     """
     print(output_file)
     output_command = f"-ss {start_time} -to {end_time} -loglevel quiet -threads 0"
-    ff = ffmpy.FFmpeg(
-        inputs={input_file: None}, outputs={output_file: output_command}
-    )
+    ff = ffmpy.FFmpeg(inputs={input_file: None}, outputs={output_file: output_command})
     ff.run()
 
 
@@ -120,26 +118,18 @@ class PostProcessData(object):
                 text_type[i] == "U"
                 and len(self.utterance_corpus) > self.utterance_corpus_index
             ):
-<<<<<<< HEAD
                 output_file = self.__save_utterance_data__(mentor, session, part)
-=======
-                utterance_sample = {}
-                curr_chunk = self.utterance_corpus.iloc[self.utterance_corpus_index]
-                utterance_id = f"{mentor}_u{self.utterance_number}_{session}_{part}"
-                utterance_sample["ID"] = utterance_id
-                utterance_sample["utterance"] = curr_chunk["Utterance/Prompt"]
-                utterance_sample["situation"] = curr_chunk["Situation"]
-                self.utterance_corpus_index += 1
-                self.utterance_number += 1
-                self.utterance_data.append(utterance_sample)
-                output_file = os.path.join(self.utterance_chunks, f"{utterance_id}.mp4")
             else:
                 print(f"ERROR: Current chunk is unclassified: part{part} session{session}")
->>>>>>> feat: improve error messages
+                print(
+                    f"ERROR: Current chunk is unclassified: part{part} session{session}"
+                )
 
             # generate videos if requested via commandline flag
             if videos:
-                ffmpeg_split_video(video_file, output_file, start_times[i], end_times[i])
+                ffmpeg_split_video(
+                    video_file, output_file, start_times[i], end_times[i]
+                )
                 ffmpeg_convert_mobile(output_file)
 
 

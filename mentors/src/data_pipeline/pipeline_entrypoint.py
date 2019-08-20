@@ -262,8 +262,12 @@ def main():
 
     if args.captions:
         print("INFO: Building Captions")
-        classifer_data_path = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor), CLASSIFIER_DATA)
-        answer_video_path = os.path.join(DATA_DIR, MENTOR_VIDEOS.format(args.mentor), ANSWER_VIDEOS)
+        classifer_data_path = os.path.join(
+            DATA_DIR, MENTOR_DATA.format(args.mentor), CLASSIFIER_DATA
+        )
+        answer_video_path = os.path.join(
+            DATA_DIR, MENTOR_VIDEOS.format(args.mentor), ANSWER_VIDEOS
+        )
         caption_generator.generate_captions(answer_video_path, classifer_data_path)
 
 

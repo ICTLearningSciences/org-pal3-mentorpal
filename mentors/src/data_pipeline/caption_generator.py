@@ -19,10 +19,13 @@ def get_durations(row_id, video_path):
         status_string = stdout.decode()
         a = int(status_string.find("Duration:"))
         print(status_string)
-        time = utils.convert_to_seconds(status_string[a + 10 : a + 21])  # gets the duration
+        time = utils.convert_to_seconds(
+            status_string[a + 10 : a + 21]
+        )  # gets the duration
     except (ValueError, IndexError):
         print("Video not Found")
     return time
+
 
 def generate_captions(video_path, classifier_data_path):
     df = pd.read_csv(classifier_data_path, encoding="cp1252")
