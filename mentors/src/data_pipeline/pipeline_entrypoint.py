@@ -262,13 +262,11 @@ def main():
 
     if args.captions:
         print("INFO: Building Captions")
-        classifer_data_path = os.path.join(
-            DATA_DIR, MENTOR_DATA.format(args.mentor), CLASSIFIER_DATA
-        )
-        answer_video_path = os.path.join(
-            DATA_DIR, MENTOR_VIDEOS.format(args.mentor), ANSWER_VIDEOS
-        )
-        caption_generator.generate_captions(answer_video_path, classifer_data_path)
+        mentor_data = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor))
+        mentor_videos = os.path.join(DATA_DIR, MENTOR_VIDEOS.format(args.mentor))
+        classifer_data_path = os.path.join(mentor_data, CLASSIFIER_DATA)
+        answer_path = os.path.join(mentor_videos, ANSWER_VIDEOS)
+        caption_generator.generate_captions(answer_path, classifer_data_path)
 
 
 if __name__ == "__main__":
