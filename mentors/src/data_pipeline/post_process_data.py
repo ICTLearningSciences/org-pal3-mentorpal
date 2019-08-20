@@ -98,84 +98,68 @@ class PostProcessData(object):
         ff.run()
         ffmpeg_convert_mobile(output_file)
 
-    def get_video_chunks(self, video_file, timestamps, mentor, session, part, videos):
+    def generate_video_chunk_data(
+        self, video_file, timestamps, mentor, session, part, videos
+    ):
         print(video_file, timestamps, mentor, session, part)
-        text_type = []
-        start_times = []
-        end_times = []
-        text = []
+        text_type, questions, start_times, end_times = utils.load_timestamp_data(
+            timestamps
+        )
 
-        # Pandas reads empty cells as 0, replace with empty string
-        timestamps_file = pd.read_csv(timestamps).fillna("")
-
-        for i in range(0, len(timestamps_file)):
-            text_type.append(timestamps_file.iloc[i]["Answer/Utterance"])
-            text.append(timestamps_file.iloc[i]["Question"])
-            start_times.append(timestamps_file.iloc[i]["Response start"])
-            end_times.append(timestamps_file.iloc[i]["Response end"])
-
-        start_times = [utils.convert_to_seconds(time) for time in start_times]
-        end_times = [utils.convert_to_seconds(time) for time in end_times]
-
-        # get all the chunks
+        # iterate through answers and utterances and save data for classifier
         for i in range(0, len(start_times)):
-            answer_sample = {}
-            utterance_sample = {}
             if (
                 text_type[i] == "A"
                 and len(self.answer_corpus) > self.answer_corpus_index
             ):
-                answer_id = f"{mentor}_a{self.answer_number}_{session}_{part}"
-                output_file = os.path.join(self.answer_chunks, answer_id + ".mp4")
-                answer_sample["ID"] = answer_id
-                answer_sample["topics"] = ",".join(
-                    [
-                        self.answer_corpus.iloc[self.answer_corpus_index]["Topics"],
-                        self.answer_corpus.iloc[self.answer_corpus_index]["Helpers"],
-                    ]
-                )
-                if answer_sample["topics"][-1] == ",":
-                    answer_sample["topics"] = answer_sample["topics"][:-1]
-                answer_sample["question"] = "{}\r\n".format(
-                    self.answer_corpus.iloc[self.answer_corpus_index]["Question"]
-                )
+                output_file = self.__save_answer_data__(mentor, session, part)
 
-                # Add all paraphrases to answer_sample object
-                paraphrase_pattern = re.compile(r"[P]\d+")
-                for col in self.answer_corpus.columns:
-                    if re.match(paraphrase_pattern, col):
-                        answer_sample["question"] += "{}\r\n".format(
-                            self.answer_corpus.iloc[self.answer_corpus_index][col]
-                        )
-
-                answer_sample["question"] = answer_sample["question"].strip()
-                answer_sample["text"] = self.answer_corpus.iloc[
-                    self.answer_corpus_index
-                ]["text"]
-                self.answer_corpus_index += 1
-                self.answer_number += 1
-                self.training_data.append(answer_sample)
             elif (
                 text_type[i] == "U"
                 and len(self.utterance_corpus) > self.utterance_corpus_index
             ):
-                utterance_id = f"{mentor}_u{self.utterance_number}_{session}_{part}"
-                output_file = os.path.join(self.utterance_chunks, utterance_id + ".mp4")
-                utterance_sample["ID"] = utterance_id
-                utterance_sample["utterance"] = self.utterance_corpus.iloc[
-                    self.utterance_corpus_index
-                ]["Utterance/Prompt"]
-                utterance_sample["situation"] = self.utterance_corpus.iloc[
-                    self.utterance_corpus_index
-                ]["Situation"]
-                self.utterance_corpus_index += 1
-                self.utterance_number += 1
-                self.utterance_data.append(utterance_sample)
+                output_file = self.__save_utterance_data__(mentor, session, part)
 
+            # generate videos if requested via commandline flag
             if videos:
                 self.ffmpeg_split_video(
                     video_file, output_file, start_times[i], end_times[i]
                 )
+
+    def __save_answer_data__(self, mentor, session, part):
+        answer_sample = {}
+        curr_chunk = self.answer_corpus.iloc[self.answer_corpus_index]
+        answer_id = f"{mentor}_a{self.answer_number}_{session}_{part}"
+        answer_sample["ID"] = answer_id
+        answer_sample["topics"] = ",".join(
+            [curr_chunk["Topics"], curr_chunk["Helpers"]]
+        )
+        if answer_sample["topics"][-1] == ",":
+            answer_sample["topics"] = answer_sample["topics"][:-1]
+        answer_sample["question"] = "{}\r\n".format(curr_chunk["Question"])
+        # Add all paraphrases to answer_sample["question"] string
+        paraphrase_pattern = re.compile(r"[P]\d+")
+        for col in self.answer_corpus.columns:
+            if re.match(paraphrase_pattern, col):
+                answer_sample["question"] += "{}\r\n".format(curr_chunk[col])
+        answer_sample["question"] = answer_sample["question"].strip()
+        answer_sample["text"] = curr_chunk["text"]
+        self.answer_corpus_index += 1
+        self.answer_number += 1
+        self.training_data.append(answer_sample)
+        return os.path.join(self.answer_chunks, f"{answer_id}.mp4")
+
+    def __save_utterance_data__(self, mentor, session, part):
+        utterance_sample = {}
+        curr_chunk = self.utterance_corpus.iloc[self.utterance_corpus_index]
+        utterance_id = f"{mentor}_u{self.utterance_number}_{session}_{part}"
+        utterance_sample["ID"] = utterance_id
+        utterance_sample["utterance"] = curr_chunk["Utterance/Prompt"]
+        utterance_sample["situation"] = curr_chunk["Situation"]
+        self.utterance_corpus_index += 1
+        self.utterance_number += 1
+        self.utterance_data.append(utterance_sample)
+        return os.path.join(self.utterance_chunks, f"{utterance_id}.mp4")
 
     def write_data(self, mentor):
         """
@@ -337,7 +321,7 @@ def build_post_processing_data(args):
                 session_path, DATA_FILENAME.format(part, TIMESTAMP_FILE)
             )
 
-            ppd.get_video_chunks(
+            ppd.generate_video_chunk_data(
                 video_file, timestamp_file, args.mentor, session, part, args.videos
             )
 

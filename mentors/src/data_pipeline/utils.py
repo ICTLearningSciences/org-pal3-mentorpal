@@ -1,3 +1,6 @@
+import pandas as pd
+
+
 def convert_to_seconds(time):
     """
     Converts a timestamp from HH:MM:SS or MM:SS to seconds.
@@ -12,3 +15,18 @@ def convert_to_seconds(time):
         time_split.insert(0, 00)
     result = sum(s * int(a) for s, a in zip(time_adjustments, time_split))
     return result
+
+
+def load_timestamp_data(filename):
+    # Pandas reads empty cells as 0, replace with empty string
+    timestamps_file = pd.read_csv(filename).fillna("")
+    rows = range(0, len(timestamps_file))
+    text_type = [timestamps_file.iloc[i]["Answer/Utterance"] for i in rows]
+    questions = [timestamps_file.iloc[i]["Question"] for i in rows]
+    start_times = [timestamps_file.iloc[i]["Response start"] for i in rows]
+    end_times = [timestamps_file.iloc[i]["Response end"] for i in rows]
+
+    start_times = [convert_to_seconds(time) for time in start_times]
+    end_times = [convert_to_seconds(time) for time in end_times]
+
+    return text_type, questions, start_times, end_times
