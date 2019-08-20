@@ -16,7 +16,12 @@ DOCKER_IMAGE?=$(shell \
 		DOCKER_ACCOUNT=$(DOCKER_ACCOUNT) && \
 	$(PROJECT_ROOT)/bin/print_service_tag.sh "$(SERVICE_NAME)"\
 )
+DOCKER_IMAGE_ID=$(shell docker images -q ${DOCKER_IMAGE} 2> /dev/null)
 TEST_IMAGE?=mentorpal-mentor-api-test$(BUILD_TAG_SUFFIX)
+
+virtualenv-installed:
+	$(PROJECT_ROOT)/bin/virtualenv_insure_installed.sh
+
 
 echo-docker-image:
 	@echo "BUILD_TAG=$(BUILD_TAG)"
@@ -45,8 +50,16 @@ endif
 		--build-arg MENTORPAL_CLASSIFIER_IMAGE=$(DOCKER_BASE_IMAGE) \
 	.
 
+.PHONY: docker-image-exists
+docker-image-exists:
+ifeq ("$(DOCKER_IMAGE_ID)", "")
+	@echo "image not found for tag $(DOCKER_IMAGE), building..."
+	$(MAKE) docker-build
+endif
+	
+
 .PHONY: docker-run
-docker-run:
+docker-run: docker-image-exists
 	docker run \
 			-it \
 			--rm \
@@ -57,7 +70,7 @@ docker-run:
 
 
 .PHONY: docker-run-checkpoint/%
-docker-run-checkpoint/%:
+docker-run-checkpoint/%: docker-image-exists
 	docker run \
 			-it \
 			--rm \
@@ -71,7 +84,7 @@ docker-run-checkpoint/%:
 
 
 .PHONY: docker-run-dev
-docker-run-dev:
+docker-run-dev: docker-image-exists
 	docker run \
 			-it \
 			--rm \
@@ -85,7 +98,7 @@ docker-run-dev:
 
 
 .PHONY: docker-run-dev-shell
-docker-run-dev-shell:
+docker-run-dev-shell: docker-image-exists
 	docker run \
 			-it \
 			--rm \
@@ -120,7 +133,7 @@ $(TEST_VIRTUAL_ENV):
 	$(MAKE) test-env-create
 
 .PHONY: dev-env-create
-test-env-create: $(PROJECT_ROOT)/behave-restful/setup.py
+test-env-create: $(PROJECT_ROOT)/behave-restful/setup.py virtualenv-installed
 	[ -d $(TEST_VIRTUAL_ENV) ] || virtualenv -p python3 $(TEST_VIRTUAL_ENV)
 	$(TEST_VIRTUAL_ENV_PIP) install --upgrade pip
 	$(TEST_VIRTUAL_ENV_PIP) install -r tests/requirements.txt
@@ -129,7 +142,7 @@ test-env-create: $(PROJECT_ROOT)/behave-restful/setup.py
 
 
 .PHONY: test
-test: $(TEST_VIRTUAL_ENV)
+test: $(TEST_VIRTUAL_ENV) docker-image-exists
 	source $(TEST_VIRTUAL_ENV)/bin/activate  && \
 		cd tests && \
 		export DOCKER_IMAGE=$(DOCKER_IMAGE) && \
