@@ -5,15 +5,13 @@ import math
 import ffmpy
 import utils
 
-videoPath = r"""/Users/markchristenson/Developer/ict/MentorPAL/mentors/julianne-demo/videos/answer_videos/"""
-classifierDataPath = r"""/Users/markchristenson/Developer/ict/MentorPAL/mentors/julianne-demo/data/classifier_data.csv"""
-
 
 def find(s, ch):  # gives indexes of all of the spaces so we don't split words apart
     return [i for i, ltr in enumerate(s) if ltr == ch]
 
 
 def getDurations(ID, videoPath):
+    time = None
     try:
         input_file = os.path.join(videoPath, ID + """.mp4""")
         ff = ffmpy.FFprobe(inputs={input_file: None})
@@ -22,10 +20,9 @@ def getDurations(ID, videoPath):
         a = int(statusString.find("Duration:"))
         print(statusString)
         time = utils.convert_to_seconds(statusString[a + 10 : a + 21])  # gets the duration
-        return time
     except (ValueError, IndexError):
         print("Video not Found")
-        return "error"
+    return time
 
 def generate_captions(videoPath, classifierDataPath):
     df = pd.read_csv(classifierDataPath, encoding="cp1252")  # read
@@ -34,7 +31,7 @@ def generate_captions(videoPath, classifierDataPath):
     for i in range(len(df["ID"])):
         ID = str(df["ID"][i])  # get's the i'th value
         time = getDurations(ID, videoPath)
-        if time == "error":
+        if not time:
             continue
         # print(time) #this is the amount of seconds tied down to that ID
         transcript = str(df["text"][i])  # the transcript needed
