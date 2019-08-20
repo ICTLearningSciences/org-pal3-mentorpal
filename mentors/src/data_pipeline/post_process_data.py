@@ -120,10 +120,7 @@ class PostProcessData(object):
             ):
                 output_file = self.__save_utterance_data__(mentor, session, part)
             else:
-                print(f"ERROR: Current chunk is unclassified: part{part} session{session}")
-                print(
-                    f"ERROR: Current chunk is unclassified: part{part} session{session}"
-                )
+                print(f"ERROR: Part {part} Session {session} is misclassified in timestamp file")
 
             # generate videos if requested via commandline flag
             if videos:
