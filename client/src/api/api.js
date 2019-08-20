@@ -1,12 +1,8 @@
 import axios from "axios";
 
 const MENTOR_API_URL = process.env.MENTOR_API_URL || "/mentor-api"; // eslint-disable-line no-undef
-<<<<<<< HEAD
 let MENTOR_VIDEO_HOST =
   process.env.MENTOR_VIDEO_HOST || "https://video.mentorpal.org";
-=======
-const MENTOR_VIDEO_HOST = "https://video.mentorpal.org";
->>>>>>> revert: gatsby client changes
 const RESPONSE_CUTOFF = -100;
 
 /*
