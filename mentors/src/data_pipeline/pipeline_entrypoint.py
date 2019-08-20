@@ -6,7 +6,7 @@ import constants
 import preprocess_data
 import post_process_data
 import transcript_adapter
-import web_captions
+import caption_generator
 
 """
 This file serves as the entrypoint for the mentor panel video processing pipeline
@@ -264,7 +264,7 @@ def main():
         print("INFO: Building Captions")
         classifer_data_path = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor), CLASSIFIER_DATA)
         answer_video_path = os.path.join(DATA_DIR, MENTOR_VIDEOS.format(args.mentor), ANSWER_VIDEOS)
-        web_captions.generate_captions(answer_video_path, classifer_data_path)
+        caption_generator.generate_captions(answer_video_path, classifer_data_path)
 
 
 if __name__ == "__main__":
