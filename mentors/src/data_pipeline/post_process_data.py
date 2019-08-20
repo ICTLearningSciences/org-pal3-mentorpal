@@ -98,7 +98,9 @@ class PostProcessData(object):
         ff.run()
         ffmpeg_convert_mobile(output_file)
 
-    def generate_video_chunk_data(self, video_file, timestamps, mentor, session, part, videos):
+    def generate_video_chunk_data(
+        self, video_file, timestamps, mentor, session, part, videos
+    ):
         print(video_file, timestamps, mentor, session, part)
         text_type, questions, start_times, end_times = utils.load_timestamp_data(
             timestamps
@@ -147,7 +149,6 @@ class PostProcessData(object):
         self.training_data.append(answer_sample)
         return os.path.join(self.answer_chunks, f"{answer_id}.mp4")
 
-
     def __save_utterance_data__(self, mentor, session, part):
         utterance_sample = {}
         curr_chunk = self.utterance_corpus.iloc[self.utterance_corpus_index]
@@ -159,7 +160,6 @@ class PostProcessData(object):
         self.utterance_number += 1
         self.utterance_data.append(utterance_sample)
         return os.path.join(self.utterance_chunks, f"{utterance_id}.mp4")
-
 
     def write_data(self, mentor):
         """
