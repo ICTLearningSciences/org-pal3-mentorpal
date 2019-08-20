@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { List, ListItem, ListItemText } from "@material-ui/core";
 import { Whatshot } from "@material-ui/icons";
+import smoothscroll from "smoothscroll-polyfill";
 
 import { normalizeString } from "funcs/funcs";
 
@@ -11,6 +12,10 @@ const ScrollingQuestions = ({
   recommended,
   onQuestionSelected,
 }) => {
+  useEffect(() => {
+    smoothscroll.polyfill();
+  }, []);
+
   useEffect(() => {
     const top_question = questions.find(q => {
       return !questions_asked.includes(normalizeString(q));
