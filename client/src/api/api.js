@@ -1,8 +1,31 @@
 import axios from "axios";
 
 const MENTOR_API_URL = process.env.MENTOR_API_URL || "/mentor-api"; // eslint-disable-line no-undef
-const MENTOR_VIDEO_HOST = "https://video.mentorpal.org";
+let MENTOR_VIDEO_HOST =
+  process.env.MENTOR_VIDEO_HOST || "https://video.mentorpal.org";
 const RESPONSE_CUTOFF = -100;
+
+/*
+This is a hacky place and means to get a server-configured
+override of VIDEO_HOST.
+It exists (at least for now), exclusively to enable
+dev-local clients where mentor videos are being polished
+to test serving those videos
+*/
+if (typeof window !== "undefined") {
+  // i.e. don't run at build time
+  axios
+    .get(`${MENTOR_API_URL}/config/video-host`)
+    .then(result => {
+      console.log(`get ${MENTOR_API_URL}/config/video-host`, result);
+      if (typeof result.data.url === "string") {
+        MENTOR_VIDEO_HOST = result.data.url;
+      }
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}
 
 export const videoUrl = (mentor, format) => {
   return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/${format}/${mentor.answer_id}.mp4`;
