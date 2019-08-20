@@ -13,7 +13,7 @@ def find(s, ch):  # gives indexes of all of the spaces so we don't split words a
 def get_durations(row_id, video_path):
     time = None
     try:
-        input_file = os.path.join(video_path, row_id + """.mp4""")
+        input_file = os.path.join(video_path, f"{row_id}.mp4")
         ff = ffmpy.FFprobe(inputs={input_file: None})
         stdout, stderr = ff.run(stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         status_string = stdout.decode()
@@ -47,7 +47,7 @@ def generate_captions(video_path, classifier_data_path):
                     break
         split_index.append(len(transcript))
         amount_of_chunks = math.ceil(len(transcript) / piece_length)
-        output_file = os.path.join(video_path, row_id + ".vtt")
+        output_file = os.path.join(video_path, f"{row_id}.vtt")
         print(output_file)
         text_file = open(output_file, "w")
         text_file.write("WEBVTT FILE:\n\n")
