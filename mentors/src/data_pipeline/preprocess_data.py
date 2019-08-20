@@ -24,7 +24,6 @@ SESSION_OUTPUT = constants.SESSION_OUTPUT
 AUDIOCHUNKS = constants.AUDIOCHUNKS
 
 
-
 def convert_to_wav(input_file, output_file):
     """
     Converts the .mp4 file to a .ogg file.

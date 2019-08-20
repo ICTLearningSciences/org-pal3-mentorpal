@@ -97,7 +97,6 @@ class PostProcessData(object):
             []
         )  # utterance data to write to file, for use by ensemble.py when checking question status
 
-
     def generate_video_chunk_data(
         self, video_file, timestamps, mentor, session, part, videos
     ):
@@ -120,7 +119,9 @@ class PostProcessData(object):
             ):
                 output_file = self.__save_utterance_data__(mentor, session, part)
             else:
-                print(f"ERROR: Part {part} Session {session} is misclassified in timestamp file")
+                print(
+                    f"ERROR: Part {part} Session {session} is misclassified in timestamp file"
+                )
 
             # generate videos if requested via commandline flag
             if videos:
@@ -128,7 +129,6 @@ class PostProcessData(object):
                     video_file, output_file, start_times[i], end_times[i]
                 )
                 ffmpeg_convert_mobile(output_file)
-
 
     def __save_answer_data__(self, mentor, session, part):
         answer_sample = {}
@@ -308,7 +308,6 @@ def build_post_processing_data(args):
         utterance_corpus,
         utterance_corpus_index,
     )
-
 
     # Walk into each session directory and get the answer chunks from each session
     session = 1
