@@ -23,13 +23,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `data`,
-        path: `${__dirname}/src/data/`,
-      },
-    },
-    {
       resolve: `gatsby-plugin-env-variables`,
       options: {
         whitelist: ["MENTOR_API_URL"],

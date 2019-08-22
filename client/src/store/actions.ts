@@ -2,8 +2,9 @@
 import Papa from "papaparse";
 import { actions as cmi5Actions } from "redux-cmi5";
 
-import { topicsUrl, questionsUrl, queryMentor } from "api/api";
+import { fetchMentorData, topicsUrl, questionsUrl, queryMentor } from "api/api";
 import { STATUS_READY } from "./reducer";
+import { string } from "prop-types";
 
 export const MENTOR_LOADED = "MENTOR_LOADED"; // mentor info was loaded
 export const MENTOR_SELECTED = "MENTOR_SELECTED"; // mentor video was selected
@@ -26,15 +27,30 @@ async function papaParseAsync(url) {
   });
 }
 
-export const loadMentor = (mentor: any) => (dispatch: any) => {
-  dispatch({
-    type: MENTOR_LOADED,
-    mentor,
-  });
-};
+export function loadMentor(
+  mentorId: string,
+  {
+    recommendedQuestionsCsv = undefined
+  }: {
+    recommendedQuestionsCsv: string | undefined;
+  }
+) {
+  return async (dispatch: any) => {
+    try {
+      const mentorData = await fetchMentorData(mentorId);
+      console.log(`loaded data for mentor ${mentorId}`, mentorData);
+      dispatch({
+        type: MENTOR_LOADED,
+        mentor: mentorData,
+      });
+      dispatch(loadQuestions(mentorId, recommendedQuestionsCsv));
+    } catch (err) {
+      console.error(`Failed to load mentor data for id ${mentorId}`, err);
+    }
+  };
+}
 
 const { sendStatement: sendXapiStatement } = cmi5Actions;
-
 
 export const mentorAnswerPlaybackStarted = answer => (dispatch, getState) => {
   dispatch(
@@ -52,10 +68,10 @@ export const mentorAnswerPlaybackStarted = answer => (dispatch, getState) => {
       },
       contextExtensions: sessionStateExt(getState()),
     })
-  )
-}
+  );
+};
 
-export const loadQuestions = (mentorId: any, recommended: any) => async (
+const loadQuestions = (mentorId: any, recommended: any) => async (
   dispatch: (arg0: (dispatch: any) => Promise<void>) => void
 ) => {
   const url = questionsUrl(mentorId);

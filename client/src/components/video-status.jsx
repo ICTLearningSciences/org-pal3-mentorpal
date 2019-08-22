@@ -7,7 +7,7 @@ import { STATUS_READY, STATUS_ERROR } from "store/reducer";
 const MessageStatus = ({ mentor }) => {
   const next_mentor = useSelector(state => state.next_mentor);
 
-  if (mentor.is_off_topic) {
+  if (!mentor || mentor.is_off_topic) {
     return <div />;
   }
   if (mentor.status === STATUS_ERROR) {
