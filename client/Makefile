@@ -4,6 +4,7 @@ clean:
 
 .env.development:
 	@echo "MENTOR_API_URL=https://dev.mentorpal.org/mentor-api" > .env.development
+	@echo "MENTOR_VIDEO_HOST=http://video.mentorpal.org" >> .env.development
 	@echo "Set up  a default .env.development file"
 	@echo "that configures MENTOR_API_URL=https://dev.mentorpal.org/mentor-api."
 	@echo "This file should not be committed. "

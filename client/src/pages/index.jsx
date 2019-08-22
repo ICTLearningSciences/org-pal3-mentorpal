@@ -6,7 +6,7 @@ import { CircularProgress } from "@material-ui/core";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Helmet } from "react-helmet";
 
-import { loadMentor, loadQuestions, selectMentor } from "store/actions";
+import { loadMentor, selectMentor } from "store/actions";
 
 import Header from "components/header";
 import Input from "components/input";
@@ -57,26 +57,20 @@ const IndexPage = ({ search, data }) => {
   }, []); // run only on first render
 
   useEffect(() => {
-    const edgeData = data.allMentorsCsv.edges;
-    const mentorData = edgeData.find(item => {
-      return item.node.id === mentor;
+    // TODO: get rid of the hard-coded defaults below
+    const mentorList = mentor
+      ? [mentor]
+      : ["clint", "dan", "carlos", "julianne"];
+    mentorList.forEach((mentorId, index) => {
+      dispatch(
+        loadMentor(mentorId, {
+          recommendedQuestionsCsv: recommended,
+        })
+      );
     });
-
-    // Load the data for a single mentor
-    if (mentorData) {
-      dispatch(loadMentor(mentorData.node));
-      dispatch(loadQuestions(mentor, recommended));
-      dispatch(selectMentor(mentor));
-    }
-    // Load the list of mentors and questions
-    else {
-      edgeData.forEach(item => {
-        dispatch(loadMentor(item.node));
-        dispatch(loadQuestions(item.node.id, recommended));
-      });
-      dispatch(selectMentor(edgeData[0].node.id));
-    }
-
+    dispatch(selectMentor(mentorList[0]));
+  }, []);
+  useEffect(() => {
     // Media queries for layout
     setHeight(globalWindow.innerHeight);
     setWidth(globalWindow.innerWidth);
@@ -114,21 +108,3 @@ const IndexPage = ({ search, data }) => {
 };
 
 export default withLocation(IndexPage);
-
-export const MentorQuery = graphql`
-  query {
-    allMentorsCsv {
-      edges {
-        node {
-          id
-          name
-          short_name
-          title
-          answer_id
-          answer_text
-          confidence
-        }
-      }
-    }
-  }
-`;
