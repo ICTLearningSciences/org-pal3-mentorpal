@@ -14,7 +14,7 @@ let navIsOpen = false
 document.getElementById("user-display").textContent = username
 
 const MENTOR_API_URL = '/mentor-api'
-const MENTOR_VIDEO_HOST = 'https://video.mentorpal.org' // TODO: pass from server/env variable
+const MENTOR_VIDEO_HOST = 'https://localhost:8080' // TODO: pass from server/env variable
 const createMentor = (mId, data) => {
 	const videoURLFor = id => `${MENTOR_VIDEO_HOST}/videos/mentors/${mId}/${videoTargetType}/${id}.mp4`
 	return Object.assign(

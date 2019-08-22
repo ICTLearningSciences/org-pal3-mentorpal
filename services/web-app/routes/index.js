@@ -29,6 +29,12 @@ router.get("/julianne", function(req, res, next) {
 router.get("/julianne/embed", function(req, res, next) {
   res.render("index");
 });
+router.get("/julianne-demo", function(req, res, next) {
+  res.render("index");
+});
+router.get("/julianne-demo/embed", function(req, res, next) {
+  res.render("index");
+});
 router.get("/carlos", function(req, res, next) {
   res.render("index");
 });
