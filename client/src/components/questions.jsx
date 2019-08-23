@@ -24,10 +24,14 @@ const Questions = ({ height, onSelected }) => {
 
   const questions = mentor.topic_questions[current_topic] || [];
   const recommended = mentor.topic_questions.Recommended || [];
-  if (current_topic !== "History") {
-    questions.sort((a, b) => {
+
+  const ordered_questions = questions.slice();
+  if (current_topic === "History") {
+    ordered_questions.reverse();
+  } else {
+    ordered_questions.sort((a, b) => {
       if (recommended.includes(a) && recommended.includes(b)) {
-        return questions.indexOf(a) - questions.indexOf(b);
+        return ordered_questions.indexOf(a) - ordered_questions.indexOf(b);
       }
       if (recommended.includes(a)) {
         return -1;
@@ -43,7 +47,7 @@ const Questions = ({ height, onSelected }) => {
     <MuiThemeProvider theme={theme}>
       <ScrollingQuestions
         height={height}
-        questions={questions}
+        questions={ordered_questions}
         questions_asked={questions_asked}
         recommended={recommended}
         onQuestionSelected={onSelected}
