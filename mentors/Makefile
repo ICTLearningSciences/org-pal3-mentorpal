@@ -32,6 +32,7 @@ $(WATSON_CREDENTIALS):
 .PHONY: clean/%
 clean/%:
 	@rm -rf "$*/build"
+	@rm -rf "videos/$*"
 
 
 # Removes all mentor files from the local file system
@@ -108,14 +109,14 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 # Complete build of mentor data and videos
 # Runs build if necessary
 # Generates data files
-%/videos:
-	$(MAKE) $*/videos/update
+videos/%:
+	$(MAKE) update/$*/videos
 
 # Complete build of mentor data and videos
 # Runs build if necessary
 # Generates data files
-.PHONY: %/videos/update
-%/videos/update: %/build docker-image-exists
+.PHONY: update/%/videos
+update/%/videos: %/build docker-image-exists
 	mkdir -p $(shell pwd)/$*/data
 	cp $(shell pwd)/data/topics.csv $(shell pwd)/$*/data/topics.csv
 	docker run \
