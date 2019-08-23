@@ -241,6 +241,7 @@ def download_static_videos(url, mentor, web_chunks, mobile_chunks):
         req_url = os.path.join(base_url, WEB_VIDEOS, filename)
         make_request(req_url, os.path.join(web_chunks, filename))
 
+
 def make_request(req_url, save_path):
     res = requests.get(req_url)
     if res.status_code == 200:
