@@ -10,12 +10,13 @@ class Classifier(ABC):
     """
 
     @abstractmethod
-    def get_answer(self, question):
+    def get_answer(self, question, canned_question_match_disabled=False):
         """
         Match a question to an answer.
 
         Args:
             question: (str) the question text
+            canned_question_match_disabled: (bool) if true, don't use exact match answers for known questions
 
         Returns:
             answer_id: (str) the id for the answer (typically from a predetermined set)
