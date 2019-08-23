@@ -38,7 +38,7 @@ local-run: $(DEV_VIRTUAL_ENV)
 
 .PHONY: local-run-dev
 local-run-dev: $(DEV_VIRTUAL_ENV)
-	$(DEV_VIRTUAL_ENV)/bin/docker-compose -f docker-compose.yml -f  nginx-local/docker-compose.override.yml up
+	$(DEV_VIRTUAL_ENV)/bin/docker-compose -f docker-compose.yml -f  docker-compose.dev-override.yml up
 
 .PHONY: local-stop
 local-stop: $(DEV_VIRTUAL_ENV)

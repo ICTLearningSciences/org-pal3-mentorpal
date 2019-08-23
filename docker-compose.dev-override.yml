@@ -4,7 +4,7 @@ services:
     image: "mentorpal-mentor-api"
     environment:
       - MENTOR_VIDEO_HOST=http://localhost:8080
-      - CLASSIFIER_CHECKPOINT=2019-08-21-2050
+      - CLASSIFIER_CHECKPOINT=dev_latest
     volumes:
       - type: bind
         source: ./mentors/videos
