@@ -337,7 +337,9 @@ def build_post_processing_data(args):
                 session_path, DATA_FILENAME.format(part, TIMESTAMP_FILE)
             )
 
-            ppd.generate_video_chunk_data(video_file, timestamp_file, args, session, part)
+            ppd.generate_video_chunk_data(
+                video_file, timestamp_file, args, session, part
+            )
 
         session += 1
         session_path = os.path.join(mentor_build, SESSION_DATA.format(session))
