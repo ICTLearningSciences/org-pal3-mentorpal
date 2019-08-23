@@ -233,16 +233,13 @@ class PostProcessData(object):
 
 # TODO: Fix this horrible method
 def download_static_videos(url, mentor, web_chunks, mobile_chunks):
+    filenames = [IDLE_FILE, MENTOR_INTRO.format(mentor)]
     base_url = os.path.join(url, MENTOR_DATA.format(mentor), STATIC_VIDEOS)
-    req_url = os.path.join(base_url, MOBILE_VIDEOS, IDLE_FILE)
-    make_request(req_url, os.path.join(mobile_chunks, IDLE_FILE))
-    req_url = os.path.join(base_url, MOBILE_VIDEOS, MENTOR_INTRO.format(mentor))
-    make_request(req_url, os.path.join(mobile_chunks, MENTOR_INTRO.format(mentor)))
-    req_url = os.path.join(base_url, WEB_VIDEOS, IDLE_FILE)
-    make_request(req_url, os.path.join(web_chunks, IDLE_FILE))
-    req_url = os.path.join(base_url, WEB_VIDEOS, MENTOR_INTRO.format(mentor))
-    make_request(req_url, os.path.join(web_chunks, MENTOR_INTRO.format(mentor)))
-
+    for filename in filenames:
+        req_url = os.path.join(base_url, MOBILE_VIDEOS, filename)
+        make_request(req_url, os.path.join(mobile_chunks, filename))
+        req_url = os.path.join(base_url, WEB_VIDEOS, filename)
+        make_request(req_url, os.path.join(web_chunks, filename))
 
 def make_request(req_url, save_path):
     res = requests.get(req_url)
