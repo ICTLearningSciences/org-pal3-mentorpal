@@ -1,0 +1,33 @@
+version: '3.7'
+services:
+  mentor-api:
+    image: "mentorpal-mentor-api"
+    environment:
+      - MENTOR_VIDEO_HOST=http://localhost:8080
+      - CLASSIFIER_CHECKPOINT=2019-08-21-2050
+    volumes:
+      - type: bind
+        source: ./mentors/videos
+        target: /etc/nginx/html/videos/mentors
+      - type: bind
+        source: ./checkpoint
+        target: /app/checkpoint
+      - type: bind
+        source: ./mentors
+        target: /app/mentors
+    expose:
+      - "5000"
+  proxy:
+    image: "mentorpal-proxy"
+    ports:
+      - "8080:80"
+    depends_on:
+      - mentor-api
+      - web-app
+    volumes:
+      - type: bind
+        source: ./mentors/videos
+        target: /etc/nginx/html/videos/mentors
+      - type: bind
+        source: ./nginx-local/conf.d
+        target: /etc/nginx/conf.d
