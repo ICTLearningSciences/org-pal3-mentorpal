@@ -117,8 +117,7 @@ videos/%:
 # Generates data files
 .PHONY: update/%/videos
 update/%/videos: %/build docker-image-exists
-	mkdir -p $(shell pwd)/$*/data
-	cp $(shell pwd)/data/topics.csv $(shell pwd)/$*/data/topics.csv
+	mkdir -p videos/$*
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
