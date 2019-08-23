@@ -7,6 +7,7 @@ SESSION_OUTPUT = "out"
 AUDIOCHUNKS = "audiochunks"
 WEB_VIDEOS = "web"
 MOBILE_VIDEOS = "mobile"
+STATIC_VIDEOS = "recordings/static-videos"
 
 DATA_FILENAME = "part{}_{}"
 VIDEO_FILE = "video.mp4"
@@ -20,3 +21,7 @@ TRANSCRIPT_FILE = "transcript.csv"
 UTTERANCE_DATA = "utterance_data.csv"
 CLASSIFIER_DATA = "classifier_data.csv"
 METADATA = "metadata.csv"
+
+# TODO: Fix this. We shouldn't hardcode static video names
+IDLE_FILE = "idle.mp4"
+MENTOR_INTRO = "{}_a1_1_1.mp4"

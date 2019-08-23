@@ -124,7 +124,7 @@ update/%/videos: %/build docker-image-exists
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			-v $(shell pwd)/data:/app/mounts/data \
 			-v $(shell pwd)/videos:/app/mounts/videos \
-			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos
+			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos --url $(MENTOR_SOURCE_VIDEOS)
 
 # Build checkpoint from mentor data
 .PHONY: %/checkpoint

@@ -3,6 +3,7 @@ import fnmatch
 import os
 import pandas as pd
 import re
+import requests
 
 import constants
 import utils
@@ -20,6 +21,7 @@ MENTOR_VIDEOS = constants.MENTOR_VIDEOS
 SESSION_DATA = constants.SESSION_DATA
 WEB_VIDEOS = constants.WEB_VIDEOS
 MOBILE_VIDEOS = constants.MOBILE_VIDEOS
+STATIC_VIDEOS = constants.STATIC_VIDEOS
 
 PU_FILENAME = constants.PU_FILENAME
 QPA_FILENAME = constants.QPA_FILENAME
@@ -30,6 +32,8 @@ TIMESTAMP_FILE = constants.TIMESTAMP_FILE
 UTTERANCE_DATA = constants.UTTERANCE_DATA
 CLASSIFIER_DATA = constants.CLASSIFIER_DATA
 METADATA = constants.METADATA
+IDLE_FILE = constants.IDLE_FILE
+MENTOR_INTRO = constants.MENTOR_INTRO
 
 DATA_DIR = os.environ["DATA_MOUNT"] or os.getcwd()
 
@@ -89,9 +93,8 @@ class PostProcessData(object):
             []
         )  # utterance data to write to file, for use by ensemble.py when checking question status
 
-    def generate_video_chunk_data(
-        self, video_file, timestamps, mentor, session, part, videos
-    ):
+    def generate_video_chunk_data(self, video_file, timestamps, args, session, part):
+        mentor = args.mentor
         print(video_file, timestamps, mentor, session, part)
         text_type, questions, start_times, end_times = utils.load_timestamp_data(
             timestamps
@@ -112,14 +115,10 @@ class PostProcessData(object):
                 output_file = self.__save_utterance_data__(mentor, session, part)
 
             # generate videos if requested via commandline flag
-            if videos:
+            if args.videos:
                 mentor_videos = os.path.join(DATA_DIR, MENTOR_VIDEOS.format(mentor))
-                web_chunks = os.path.join(mentor_videos, WEB_VIDEOS)
-                os.makedirs(web_chunks, exist_ok=True)
-                web_chunk = os.path.join(web_chunks, output_file)
-                mobile_chunks = os.path.join(mentor_videos, MOBILE_VIDEOS)
-                os.makedirs(mobile_chunks, exist_ok=True)
-                mobile_chunk = os.path.join(mobile_chunks, output_file)
+                web_chunk = os.path.join(mentor_videos, WEB_VIDEOS, output_file)
+                mobile_chunk = os.path.join(mentor_videos, MOBILE_VIDEOS, output_file)
                 ffmpeg_split_video(video_file, web_chunk, start_times[i], end_times[i])
                 ffmpeg_convert_mobile(web_chunk, mobile_chunk)
 
@@ -235,6 +234,25 @@ class PostProcessData(object):
             )
 
 
+# TODO: Fix this horrible method
+def download_static_videos(url, mentor, web_chunks, mobile_chunks):
+    base_url = os.path.join(url, MENTOR_DATA.format(mentor), STATIC_VIDEOS)
+    req_url = os.path.join(base_url, MOBILE_VIDEOS, IDLE_FILE)
+    make_request(req_url, os.path.join(mobile_chunks, IDLE_FILE))
+    req_url = os.path.join(base_url, MOBILE_VIDEOS, MENTOR_INTRO.format(mentor))
+    make_request(req_url, os.path.join(mobile_chunks, MENTOR_INTRO.format(mentor)))
+    req_url = os.path.join(base_url, WEB_VIDEOS, IDLE_FILE)
+    make_request(req_url, os.path.join(web_chunks, IDLE_FILE))
+    req_url = os.path.join(base_url, WEB_VIDEOS, MENTOR_INTRO.format(mentor))
+    make_request(req_url, os.path.join(web_chunks, MENTOR_INTRO.format(mentor)))
+
+
+def make_request(req_url, save_path):
+    res = requests.get(req_url)
+    if res.status_code == 200:
+        open(save_path, "wb").write(res.content)
+
+
 def build_post_processing_data(args):
     mentor_data = os.path.join(DATA_DIR, MENTOR_DATA.format(args.mentor))
 
@@ -292,6 +310,17 @@ def build_post_processing_data(args):
         utterance_corpus_index,
     )
 
+    # prepare video folders if videos requested
+    if args.videos:
+        mentor_videos = os.path.join(DATA_DIR, MENTOR_VIDEOS.format(args.mentor))
+        web_chunks = os.path.join(mentor_videos, WEB_VIDEOS)
+        os.makedirs(web_chunks, exist_ok=True)
+        mobile_chunks = os.path.join(mentor_videos, MOBILE_VIDEOS)
+        os.makedirs(mobile_chunks, exist_ok=True)
+        if args.url:
+            print("INFO: Downloading Static Content (if exists)")
+            download_static_videos(args.url, args.mentor, web_chunks, mobile_chunks)
+
     # Walk into each session directory and get the answer chunks from each session
     session = 1
     mentor_build = os.path.join(DATA_DIR, MENTOR_BUILD.format(args.mentor))
@@ -308,9 +337,7 @@ def build_post_processing_data(args):
                 session_path, DATA_FILENAME.format(part, TIMESTAMP_FILE)
             )
 
-            ppd.generate_video_chunk_data(
-                video_file, timestamp_file, args.mentor, session, part, args.videos
-            )
+            ppd.generate_video_chunk_data(video_file, timestamp_file, args, session, part)
 
         session += 1
         session_path = os.path.join(mentor_build, SESSION_DATA.format(session))
