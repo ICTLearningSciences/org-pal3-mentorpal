@@ -134,7 +134,7 @@ update/%/videos: %/build docker-image-exists
 
 # Run latest checkpoint for mentor
 # To run custom checkpoint, use rules inside /mentor-api
-.PHONY: %/checkpoint-run
-%/checkpoint-run:
+.PHONY: checkpoint-run
+checkpoint-run:
 	cd $(PROJECT_ROOT)/services/mentor-api && \
-	$(MAKE) docker-run-checkpoint/$*-latest
+	$(MAKE) docker-run-checkpoint/dev_latest
