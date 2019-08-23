@@ -60,9 +60,7 @@ def ffmpeg_split_video(input_file, output_file, start_time, end_time):
     end_time: End time of answer
     """
     output_command = f"-ss {start_time} -to {end_time} -loglevel quiet -threads 0"
-    ff = ffmpy.FFmpeg(
-        inputs={input_file: None}, outputs={output_file: output_command}
-    )
+    ff = ffmpy.FFmpeg(inputs={input_file: None}, outputs={output_file: output_command})
     ff.run()
 
 
@@ -90,7 +88,6 @@ class PostProcessData(object):
         self.utterance_data = (
             []
         )  # utterance data to write to file, for use by ensemble.py when checking question status
-
 
     def generate_video_chunk_data(
         self, video_file, timestamps, mentor, session, part, videos
