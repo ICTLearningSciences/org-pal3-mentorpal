@@ -32,6 +32,7 @@ $(WATSON_CREDENTIALS):
 .PHONY: clean/%
 clean/%:
 	@rm -rf "$*/build"
+	@rm -rf "videos/$*"
 
 
 # Removes all mentor files from the local file system
@@ -108,33 +109,51 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 # Complete build of mentor data and videos
 # Runs build if necessary
 # Generates data files
-%/videos:
-	$(MAKE) $*/videos/update
+videos/%:
+	$(MAKE) update/$*/videos
 
 # Complete build of mentor data and videos
 # Runs build if necessary
 # Generates data files
-.PHONY: %/videos/update
-%/videos/update: %/build docker-image-exists
-	mkdir -p $(shell pwd)/$*/data
-	cp $(shell pwd)/data/topics.csv $(shell pwd)/$*/data/topics.csv
+.PHONY: update/%/videos
+update/%/videos: %/build docker-image-exists
+	mkdir -p videos/$*
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			-v $(shell pwd)/data:/app/mounts/data \
 			-v $(shell pwd)/videos:/app/mounts/videos \
-			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos
+			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos --url $(MENTOR_SOURCE_VIDEOS)
+	@echo ""
+	@echo "==== MAKE VIDEOS SUCCEEDED! ===="
+	@echo ""
+	@echo "If you haven't build the classifier, you can do that with:"
+	@echo "	make $*/checkpoint"
+	@echo ""
+	@echo "Once the classifier checkpoint is in place, you can test the environment locally with:"
+	@echo "	cd .. && make local-run-dev"
+	@echo ""
+	@echo "Then view your mentor here:"
+	@echo "	http://localhost:8080/mentorpanel/?mentor=$*"
 
 # Build checkpoint from mentor data
 .PHONY: %/checkpoint
 %/checkpoint: %/data
 	cd $(PROJECT_ROOT)/checkpoint && \
-	CHECKPOINT=$*-latest $(MAKE) checkpoint-clean/mentor/$* checkpoint-train/mentor/$*
+	CHECKPOINT=dev_latest $(MAKE) checkpoint-clean/mentor/$* checkpoint-train/mentor/$*
+	@echo ""
+	@echo "==== MAKE CHECKPOINT SUCCEEDED! ===="
+	@echo ""
+	@echo "If you have generated mentor videos, you can test the environment locally with:"
+	@echo "	cd .. && make local-run-dev"
+	@echo ""
+	@echo "Then view your mentor here:"
+	@echo "	http://localhost:8080/mentorpanel/?mentor=$*"
 
 # Run latest checkpoint for mentor
 # To run custom checkpoint, use rules inside /mentor-api
-.PHONY: %/checkpoint-run
-%/checkpoint-run:
+.PHONY: checkpoint-run
+checkpoint-run:
 	cd $(PROJECT_ROOT)/services/mentor-api && \
-	$(MAKE) docker-run-checkpoint/$*-latest
+	$(MAKE) docker-run-checkpoint/dev_latest

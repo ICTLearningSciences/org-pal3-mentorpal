@@ -2,23 +2,25 @@
 ---------------
 ### Quick Start
 
-#### Build and Test a Classifier for a New Mentor
+#### Build and Test a Mentor
 If raw video, audio and timestamp files for a mentor are stored in S3 (more on this
 below), we can use the following commands to build a classifier for the mentor.
 Note that videos are not required to generate a classifier to a new mentor.
 
-##### Run a Build of {mentor} (excluding videos)
-- `make {mentor}/data`
-
-##### Update the Build of {mentor} (if the {mentor}/data folder exists)
-- `make {mentor}/data/update`
-
-##### Train {mentor} Classifier (after the data folder has been generated)
-- `cd ../checkpoint`
-- `make checkpoint-train/mentor/{mentor}`
-
-#### Run a Full Build of {mentor} with videos
+##### Run a build of {mentor}
 - `make {mentor}/videos`
+
+##### Train {mentor} classifier
+- `make {mentor}/checkpoint-train`
+
+#### Run mentorpal cluster with {mentor} data and classifier
+- `cd ..`
+- `make local-run-dev`
+
+#### Example endpoints for mentorpal cluster
+- Mentor Homepage (Test entire system) `http://localhost:8080/mentorpanel/?mentor={mentor}`
+- Mentor API (Test classifier) `http://localhost:8080/mentor-api/questions/?mentor={mentor}&query={question}`
+- Mentor Idle Video (Test data) `http://localhost:8080/videos/mentors/{mentor}/web/idle.mp4`
 
 ---------------
 ### Pipeline Overview
@@ -32,6 +34,8 @@ S3 bucket in `usc-ict-aws-mentor-pal` AWS account:
 - `{mentor}/data/recordings/session{session#}/part{part#}_video.mp4`
 - `{mentor}/data/recordings/session{session#}/part{part#}_audio.wav`
 - `{mentor}/data/recordings/session{session#}/part{part#}_timestamps.csv`
+- `{mentor}/data/recordings/static-videos/web/idle.mp4`
+- `{mentor}/data/recordings/static-videos/mobile/idle.mp4`
 
 ### Output
 After running the pipeline the following files will be generated:
@@ -39,6 +43,10 @@ After running the pipeline the following files will be generated:
 - `{mentor}/data/metadata.csv`
 - `{mentor}/data/topics.csv`
 - `{mentor}/data/utterance_data.csv`
+- `videos/{mentor}/mobile/idle.mp4`
+- `videos/{mentor}/web/idle.mp4`
+- `videos/{mentor}/mobile/{mentor}_{video_id}.mp4`
+- `videos/{mentor}/web/{mentor}_{video_id}.mp4`
 
 Additionally the following intermediate build files will be generated. These can
 be used to debug different parts of a pipeline
@@ -49,17 +57,19 @@ be used to debug different parts of a pipeline
 
 ### Usage
 Pipeline usage is fully documented in the Makefile.
+- `make videos/{mentor}` runs a full build of {mentor} data and videos if data folder is not present
+- `make update/{mentor}/videos` runs a full build of {mentor} data and videos regardless of whether data folder is present
+- `make {mentor}/checkpoint` builds a classifier for {mentor} based on existing local data
+- `make checkpoint-run` test mentor-api build with dev-latest classifier (built by previous command)
 - `make {mentor}/data` runs a full build of {mentor} data if data folder is not present
 - `make {mentor}/data/update` runs a full build of {mentor} data regardless of whether data folder is present
-- `make {mentor}/video` runs a full build of {mentor} data and videos if data folder is not present
-- `make {mentor}/video/update` runs a full build of {mentor} data and videos regardless of whether data folder is present
 - `make {mentor}/build` downloads and preprocesses {mentor} data if build folder is not present
 - `make {mentor}/build/update` downloads and preprocesses {mentor} data  regardless of whether build folder is present
 - `make shell` opens an interactive terminal in the data pipeline docker image.
 Useful for debugging these scripts
 - `make docker-build` rebuilds the data pipeline docker container. Useful for developing these scripts.
-- `make clean` removes all build data for all mentors
-- `make clean/{mentor}` removes build data for {mentor}
+- `make clean` removes all build and video data for all mentors
+- `make clean/{mentor}` removes build and video data for {mentor}
 
 ### Supplementary Documentation
 #### Generating Timestamp Files

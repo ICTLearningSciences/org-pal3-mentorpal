@@ -24,7 +24,7 @@ docker-build-classifier:
 docker-build-services: docker-build-classifier
 	$(DOCKER_SERVICES) build
 
-	
+
 ###############################################################################
 # Run the app locally with 'docker-compose up'
 # with a clean build of docker-compose.yml
@@ -36,6 +36,9 @@ docker-build-services: docker-build-classifier
 local-run: $(DEV_VIRTUAL_ENV)
 	$(DEV_VIRTUAL_ENV)/bin/docker-compose up
 
+.PHONY: local-run-dev
+local-run-dev: $(DEV_VIRTUAL_ENV)
+	$(DEV_VIRTUAL_ENV)/bin/docker-compose -f docker-compose.yml -f  docker-compose.dev-override.yml up
 
 .PHONY: local-stop
 local-stop: $(DEV_VIRTUAL_ENV)
