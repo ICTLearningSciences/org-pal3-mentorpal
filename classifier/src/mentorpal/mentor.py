@@ -4,7 +4,6 @@ import csv
 
 from mentorpal.utils import normalize_topics
 
-
 class Mentor(object):
     def __init__(self, id, mentor_data_root=None):
         self.id = id
@@ -12,7 +11,10 @@ class Mentor(object):
             "mentors", self.id, "data"
         )
         self.name = None
+        self.short_name = None
         self.title = None
+        self.intro = "{}_a1_1_1".format(id)
+
         self.topics = []
         self.utterances_prompts = {}  # responses for the special cases
         self.suggestions = {}
@@ -20,19 +22,29 @@ class Mentor(object):
         self.answer_ids = {}
         self.ids_questions = {}
         self.question_ids = {}
-        # TODO: the mentor <name,title> metadata below needs to come from data files
+
+        # TODO: the mentor <name,short_name,title,intro> metadata below needs to come from data files
         if id == "clint":
             self.name = "Clinton Anderson"
+            self.short_name = "Clint"
             self.title = "Nuclear Electrician's Mate"
+            self.intro = "clintanderson_A1_1_1"
         elif id == "dan":
             self.name = "Dan Davis"
+            self.short_name = "Dan"
             self.title = "High Performance Computing Researcher"
+            self.intro = "dandavis_A1_1_1"
         elif id == "julianne":
             self.name = "Julianne Nordhagen"
+            self.short_name = "Julianne"
             self.title = "Student Naval Aviator"
+            self.intro = "julianne_U1_1_1"
         elif id == "carlos":
             self.name = "Carlos Rios"
+            self.short_name = "Carlos"
             self.title = "Marine Logistician"
+            self.intro = "carlos_A1_1_1"
+
         self.load()
 
     def get_id(self):
