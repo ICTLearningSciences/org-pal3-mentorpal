@@ -28,11 +28,12 @@ const theme = createMuiTheme({
 
 const IndexPage = ({ search, data }) => {
   const dispatch = useDispatch();
-  const mentors = useSelector(state => state.mentors_by_id);
+  const mentors_by_id = useSelector(state => state.mentors_by_id);
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
-  const { recommended, mentor } = search;
+  const { recommended, mentors } = search;
 
+  const displaysPanel = !(mentors && !Array.isArray(mentors))
   const isMobile = width < 768;
   const videoHeight = isMobile ? height * 0.5 : Math.min(width * 0.5625, 700);
   const inputHeight = isMobile
@@ -54,13 +55,13 @@ const IndexPage = ({ search, data }) => {
 
   useEffect(() => {
     dispatch(cmi5Start());
-  }, []); // run only on first render
+  }, []);
 
   useEffect(() => {
-    // TODO: get rid of the hard-coded defaults below
-    const mentorList = mentor
-      ? [mentor]
-      : ["clint", "dan", "carlos", "julianne"];
+    var mentorList = ["clint", "dan", "carlos", "julianne"];
+    if (mentors) {
+        mentorList = Array.isArray(mentors) ? mentors : [mentors]        
+    }
     mentorList.forEach((mentorId, index) => {
       dispatch(
         loadMentor(mentorId, {
@@ -70,6 +71,7 @@ const IndexPage = ({ search, data }) => {
     });
     dispatch(selectMentor(mentorList[0]));
   }, []);
+  
   useEffect(() => {
     // Media queries for layout
     setHeight(globalWindow.innerHeight);
@@ -80,7 +82,7 @@ const IndexPage = ({ search, data }) => {
     };
   }, []);
 
-  if (mentors === {} || height === 0 || width === 0) {
+  if (mentors_by_id === {} || height === 0 || width === 0) {
     return <CircularProgress />;
   }
 
@@ -90,7 +92,7 @@ const IndexPage = ({ search, data }) => {
         <script src={withPrefix("cmi5.js")} type="text/javascript" />
       </Helmet>
       <div className="flex" style={{ height: videoHeight }}>
-        {mentor ? (
+        {!displaysPanel ? (
           undefined
         ) : (
           <div className="content" style={{ height: "100px" }}>

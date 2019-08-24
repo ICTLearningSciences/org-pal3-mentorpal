@@ -59,6 +59,14 @@ class MentorClassifierRegistry:
         assert isinstance(classifier_factory, ClassifierFactory)
         self.classifier_factory = classifier_factory
         self.mentor_classifiers_by_id = dict()
+        self.mentors_by_id = dict()
+
+    def find_or_create_mentor(self, mentor_id):
+        mentor = self.mentors_by_id.get(mentor_id)
+        if mentor is None:
+            mentor = Mentor(mentor_id)
+            self.mentors_by_id[mentor_id] = mentor
+        return mentor
 
     def find_or_create(self, mentor_id):
         """
@@ -70,7 +78,7 @@ class MentorClassifierRegistry:
         """
         classifier = self.mentor_classifiers_by_id.get(mentor_id)
         if classifier is None:
-            mentor = Mentor(mentor_id)
+            mentor = self.find_or_create_mentor(mentor_id)
             classifier = _APIClassifier(self.classifier_factory.create(mentor), mentor)
             self.mentor_classifiers_by_id[mentor_id] = classifier
         return classifier
