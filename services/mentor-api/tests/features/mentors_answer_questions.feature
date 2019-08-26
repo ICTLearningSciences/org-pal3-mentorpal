@@ -38,8 +38,6 @@ Feature: Mentors answer questions
     | clint     | is the navy safe                                        | true                           | clintanderson_A227_4_2         | In the Navy, you're exposed to some type of danger                                                                  |
     | clint     | how is dating scene                                     | true                           | clintanderson_A136_3_1         | Right now, I'm pretty single                                                                                        |
     | clint     | have you visited many countries                         | true                           | clintanderson_A40_1_2          | So, when you are on deployment, you can have these things called 'Port Calls', which is where you go to the country |
-    | clint     | were you ever bullied in high school? what did you do?  | true                           | clintanderson_A109_2_2         | When I was a kid, I used to wear these glasses, I used to be a lot                                                  |
-    | clint     | were you ever bullied in high school? what did you do?  | false                          | clintanderson_A109_2_2         | When I was a kid, I used to wear these glasses, I used to be a lot                                                  |
     
     # | clint     | how is job security in the navy?                    | clintanderson_A49_1_2         | So, job security is                                         |
             
