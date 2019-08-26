@@ -13,7 +13,6 @@ class Mentor(object):
         self.name = None
         self.short_name = None
         self.title = None
-        self.intro = None
 
         self.topics = []
         self.utterances_prompts = {}  # responses for the special cases
@@ -32,7 +31,7 @@ class Mentor(object):
         return os.path.join(self.__mentor_data_root, p)
 
     def load(self):
-        self.name, self.short_name, self.title, self.intro = self.load_mentor_data()
+        self.name, self.short_name, self.title = self.load_mentor_data()
         self.topics = self.load_topics()
         self.utterances_prompts = self.load_utterances()
         self.suggestions = self.load_suggestions()
@@ -44,14 +43,13 @@ class Mentor(object):
         data_path = os.path.join("mentors", "data", "mentors.csv")
         mentor_data = pd.read_csv(open(data_path, "rb"))
         for i in range(len(mentor_data)):
-            mentor_id = mentor_data.iloc[i]["id"]
+            mentor_id = mentor_data.iloc[i]["ID"]
             if mentor_id == self.id:
                 name = mentor_data.iloc[i]["name"]
                 short_name = mentor_data.iloc[i]["short_name"]
                 title = mentor_data.iloc[i]["title"]
-                intro = mentor_data.iloc[i]["intro"]
-                return name, short_name, title, intro
-        return None, None, None, None
+                return name, short_name, title
+        return None, None, None
 
     def load_topics(self):
         topics = []

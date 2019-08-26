@@ -26,8 +26,8 @@ def mentor(mentor):
             "name": m.name,
             "short_name": m.short_name,
             "title": m.title,
-            "intro_id": m.intro,
-            "intro_text": m.ids_answers[m.intro],
+            "intro_id": m.utterances_prompts["_INTRO_"][0][0],
+            "intro_text": m.utterances_prompts["_INTRO_"][0][1],
         }
     )
 
