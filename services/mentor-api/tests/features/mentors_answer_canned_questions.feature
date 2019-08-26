@@ -6,7 +6,7 @@ Feature: Mentors answer canned questions
           | param                          | value         |
           | query                          | <query>       |
           | mentor                         | <mentor>      |
-          | canned_question_match_disabled | <canned_question_match_disabled> |
+          | canned_question_match_disabled | false         |
       When the request sends GET
       Then the response status is OK
         And the response json matches
@@ -31,7 +31,7 @@ Feature: Mentors answer canned questions
         And the response json at $.classifier is equal to "lstm_v1/2019-06-13-1900"
   
   Examples: Queries
-    | mentor    | query                                                   | canned_question_match_disabled | answer_id                     | answer_text_start                                                                                                   |
-    | clint     | were you ever bullied in high school? what did you do?  | false                          | clintanderson_A109_2_2         | When I was a kid, I used to wear these glasses, I used to be a lot                                                  |
+    | mentor    | query                                                   | answer_id                     | answer_text_start                                                                                                   |
+    | clint     | were you ever bullied in high school? what did you do?  | clintanderson_A109_2_2        | When I was a kid, I used to wear these glasses, I used to be a lot                                                  |
     
     # | clint     | how is job security in the navy?                    | clintanderson_A49_1_2         | So, job security is                                         |

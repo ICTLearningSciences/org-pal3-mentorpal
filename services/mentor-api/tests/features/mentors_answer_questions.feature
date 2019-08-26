@@ -6,7 +6,7 @@ Feature: Mentors answer questions
           | param                          | value         |
           | query                          | <query>       |
           | mentor                         | <mentor>      |
-          | canned_question_match_disabled | <canned_question_match_disabled> |
+          | canned_question_match_disabled | true          |
       When the request sends GET
       Then the response status is OK
         And the response json matches
@@ -31,13 +31,13 @@ Feature: Mentors answer questions
         And the response json at $.classifier is equal to "lstm_v1/2019-06-13-1900"
   
   Examples: Queries
-    | mentor    | query                                                   | canned_question_match_disabled | answer_id                     | answer_text_start                                                                                                   |
-    | clint     | why did you join the navy                               | true                           | clintanderson_A131_3_1         | For me particularly, I chose the Navy as a career because                                                           |
-    | clint     | do you get to go out and have fun                       | true                           | clintanderson_A242_4_2         | I've had a lot of cool experiences in the Navy                                                                      |
-    | clint     | is the food in the navy good                            | true                           | clintanderson_A141_3_1         | The food in the military                                                                                            |
-    | clint     | is the navy safe                                        | true                           | clintanderson_A227_4_2         | In the Navy, you're exposed to some type of danger                                                                  |
-    | clint     | how is dating scene                                     | true                           | clintanderson_A136_3_1         | Right now, I'm pretty single                                                                                        |
-    | clint     | have you visited many countries                         | true                           | clintanderson_A40_1_2          | So, when you are on deployment, you can have these things called 'Port Calls', which is where you go to the country |
-    
+    | mentor    | query                                               | answer_id                      | answer_text_start                                                                                                   |
+    | clint     | why did you join the navy                           | clintanderson_A131_3_1         | For me particularly, I chose the Navy as a career because                                                           |
+    | clint     | do you get to go out and have fun                   | clintanderson_A242_4_2         | I've had a lot of cool experiences in the Navy                                                                      |
+    | clint     | is the food in the navy good                        | clintanderson_A141_3_1         | The food in the military                                                                                            |
+    | clint     | is the navy safe                                    | clintanderson_A227_4_2         | In the Navy, you're exposed to some type of danger                                                                  |
+    | clint     | how is dating scene                                 | clintanderson_A136_3_1         | Right now, I'm pretty single                                                                                        |
+    | clint     | have you visited many countries                     | clintanderson_A40_1_2          | So, when you are on deployment, you can have these things called 'Port Calls', which is where you go to the country |
+
     # | clint     | how is job security in the navy?                    | clintanderson_A49_1_2         | So, job security is                                         |
             
