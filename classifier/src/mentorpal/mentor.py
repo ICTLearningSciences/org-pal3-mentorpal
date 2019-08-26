@@ -13,7 +13,7 @@ class Mentor(object):
         self.name = None
         self.short_name = None
         self.title = None
-        self.intro = "{}_a1_1_1".format(id)
+        self.intro = None
 
         self.topics = []
         self.utterances_prompts = {}  # responses for the special cases
@@ -22,28 +22,6 @@ class Mentor(object):
         self.answer_ids = {}
         self.ids_questions = {}
         self.question_ids = {}
-
-        # TODO: the mentor <name,short_name,title,intro> metadata below needs to come from data files
-        if id == "clint":
-            self.name = "Clinton Anderson"
-            self.short_name = "Clint"
-            self.title = "Nuclear Electrician's Mate"
-            self.intro = "clintanderson_A1_1_1"
-        elif id == "dan":
-            self.name = "Dan Davis"
-            self.short_name = "Dan"
-            self.title = "High Performance Computing Researcher"
-            self.intro = "dandavis_A1_1_1"
-        elif id == "julianne":
-            self.name = "Julianne Nordhagen"
-            self.short_name = "Julianne"
-            self.title = "Student Naval Aviator"
-            self.intro = "julianne_U1_1_1"
-        elif id == "carlos":
-            self.name = "Carlos Rios"
-            self.short_name = "Carlos"
-            self.title = "Marine Logistician"
-            self.intro = "carlos_A1_1_1"
 
         self.load()
 
@@ -54,12 +32,26 @@ class Mentor(object):
         return os.path.join(self.__mentor_data_root, p)
 
     def load(self):
+        self.name, self.short_name, self.title, self.intro = self.load_mentor_data()
         self.topics = self.load_topics()
         self.utterances_prompts = self.load_utterances()
         self.suggestions = self.load_suggestions()
         self.ids_answers, self.answer_ids, self.ids_questions, self.question_ids = (
             self.load_ids_answers()
         )
+
+    def load_mentor_data(self):
+        data_path = os.path.join("mentors", "data", "mentors.csv")
+        mentor_data = pd.read_csv(open(data_path, "rb"))
+        for i in range(len(mentor_data)):
+            mentor_id = mentor_data.iloc[i]["id"]
+            if mentor_id == self.id:
+                name = mentor_data.iloc[i]["name"]
+                short_name = mentor_data.iloc[i]["short_name"]
+                title = mentor_data.iloc[i]["title"]
+                intro = mentor_data.iloc[i]["intro"]
+                return name, short_name, title, intro
+        return None, None, None, None
 
     def load_topics(self):
         topics = []
