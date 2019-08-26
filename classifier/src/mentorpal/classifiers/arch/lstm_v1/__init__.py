@@ -66,7 +66,7 @@ class LSTMClassifier(Classifier):
     def get_answer(self, question, canned_question_match_disabled=False):
         if not canned_question_match_disabled:
             sanitized_question = sanitize_string(question)
-            if sanitized_question in self.mentor.question_ids.keys():
+            if sanitized_question in self.mentor.question_ids:
                 answer_id = self.mentor.question_ids[sanitized_question]
                 answer_question = self.mentor.ids_answers[answer_id]
                 return answer_id, answer_question, 1.0
