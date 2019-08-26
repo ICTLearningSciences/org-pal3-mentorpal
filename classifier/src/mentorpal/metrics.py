@@ -18,8 +18,12 @@ class Metrics:
         confidence: (float) 0.0-1.0 confidence score for the question-answer mapping
     """
 
-    def answer_confidence(self, classifier, question):
-        answer_id, answer, confidence = classifier.get_answer(question)
+    def answer_confidence(
+        self, classifier, question, canned_question_match_disabled=False
+    ):
+        answer_id, answer, confidence = classifier.get_answer(
+            question, canned_question_match_disabled
+        )
 
         return answer_id, answer, confidence
 

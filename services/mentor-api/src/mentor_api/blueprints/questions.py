@@ -16,6 +16,15 @@ def create(mentor_classifier_registry):
         mentor_id = request.args["mentor"].strip()
         if not mentor_id:
             raise InvalidUsage(message="missing required param 'mentor'")
+
+        canned_question_match_disabled = request.args.get(
+            "canned_question_match_disabled", False
+        )
+        if canned_question_match_disabled:
+            canned_question_match_disabled = (
+                canned_question_match_disabled.strip().casefold() == "true"
+            )
+
         mc = None
         try:
             mc = mentor_classifier_registry.find_or_create(mentor_id)
@@ -25,7 +34,9 @@ def create(mentor_classifier_registry):
             raise InvalidUsage(
                 message=f"mentor not found for {mentor_id}", status_code=404
             )
-        answer_id, answer_text, confidence = mc.get_answer(query)
+        answer_id, answer_text, confidence = mc.get_answer(
+            query, canned_question_match_disabled
+        )
         return jsonify(
             {
                 "answer_id": answer_id,

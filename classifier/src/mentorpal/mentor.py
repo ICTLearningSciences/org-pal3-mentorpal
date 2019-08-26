@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import csv
 
-from mentorpal.utils import normalize_topics
+from mentorpal.utils import normalize_topics, sanitize_string
 
 
 class Mentor(object):
@@ -122,7 +122,7 @@ class Mentor(object):
             ids_answers[ID] = answer
             questions = corpus.iloc[i]["question"].split("\n")
             for question in questions:
-                question = question.replace("\u00a0", " ")
+                question = sanitize_string(question)
                 question_ids[question] = ID
             ids_questions[ID] = questions
         return ids_answers, answer_ids, ids_questions, question_ids

@@ -27,8 +27,8 @@ class _APIClassifier(Classifier):
         self.classifier = classifier
         self.mentor = mentor
 
-    def get_answer(self, question):
-        answer = self.classifier.get_answer(question)
+    def get_answer(self, question, canned_question_match_disabled=False):
+        answer = self.classifier.get_answer(question, canned_question_match_disabled)
         answer = self._off_topic_to_prompt(answer)
         return answer
 

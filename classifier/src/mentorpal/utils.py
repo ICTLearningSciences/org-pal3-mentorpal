@@ -6,7 +6,7 @@ Returns sanitized string.
 
 def sanitize_string(InputString):
     InputString = InputString.strip()
-    InputString = InputString.lower()
+    InputString = InputString.casefold()
     InputString = InputString.replace("\u00a0", " ")
     InputString = extract_alphanumeric(InputString)
     return InputString

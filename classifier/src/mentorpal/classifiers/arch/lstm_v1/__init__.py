@@ -13,6 +13,7 @@ from mentorpal.classifiers import (
 from mentorpal.mentor import Mentor
 from mentorpal.nltk_preprocessor import NLTKPreprocessor
 from mentorpal.w2v import W2V
+from mentorpal.utils import sanitize_string
 
 # store the ARCH because we use it several places
 ARCH = "lstm_v1"
@@ -62,7 +63,14 @@ class LSTMClassifier(Classifier):
         global ARCH
         return ARCH
 
-    def get_answer(self, question):
+    def get_answer(self, question, canned_question_match_disabled=False):
+        if not canned_question_match_disabled:
+            sanitized_question = sanitize_string(question)
+            if sanitized_question in self.mentor.question_ids:
+                answer_id = self.mentor.question_ids[sanitized_question]
+                answer_question = self.mentor.ids_answers[answer_id]
+                return answer_id, answer_question, 1.0
+
         preprocessor = NLTKPreprocessor()
         processed_question = preprocessor.transform(question)
         w2v_vector, lstm_vector = self.w2v_model.w2v_for_question(processed_question)
