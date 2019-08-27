@@ -17,9 +17,7 @@ def mentor(mentor):
     except BaseException:
         pass
     if m is None:
-        raise InvalidUsage(
-            message=f"mentor not found for {mentor}", status_code=404
-        )
+        raise InvalidUsage(message=f"mentor not found for {mentor}", status_code=404)
     return jsonify(
         {
             "id": m.id,
@@ -30,6 +28,7 @@ def mentor(mentor):
             "intro_text": m.utterances_prompts["_INTRO_"][0][1],
         }
     )
+
 
 @mentors_blueprint.route("/<mentor>/data/<data_file>", methods=["GET"])
 def data(mentor, data_file):

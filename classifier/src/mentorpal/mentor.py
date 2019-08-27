@@ -4,6 +4,7 @@ import csv
 
 from mentorpal.utils import normalize_topics, sanitize_string
 
+
 class Mentor(object):
     def __init__(self, id, mentor_data_root=None):
         self.id = id

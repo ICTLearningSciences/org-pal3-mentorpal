@@ -49,18 +49,18 @@ export const questionsUrl = mentorId => {
 
 // TODO: data needs to move to server, but for quick backwards-compat fix just hard coding it differently
 export async function fetchMentorData(mentorId) {
-    const res = await axios.get(`${MENTOR_API_URL}/mentors/${mentorId}`);
-    const { data } = res;
-    const response = {
-        answer_id: data.intro_id,
-        answer_text: data.intro_text,
-        confidence: 0,
-        id: mentorId,
-        name: data.name,
-        short_name: data.short_name,
-        title: data.title,
-    };
-    return response;
+  const res = await axios.get(`${MENTOR_API_URL}/mentors/${mentorId}`);
+  const { data } = res;
+  const response = {
+    id: mentorId,
+    name: data.name,
+    short_name: data.short_name,
+    title: data.title,
+    answer_id: data.intro_id,
+    answer_text: data.intro_text,
+    confidence: 1,
+  };
+  return response;
 }
 
 export const queryMentor = async (mentorId, question) => {
