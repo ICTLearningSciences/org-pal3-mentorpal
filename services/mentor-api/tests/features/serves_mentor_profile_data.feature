@@ -1,4 +1,4 @@
-Feature: Serves mentors
+Feature: Root endpoint for a mentor serves profile data
 
   Scenario Outline: request data for a mentor
     Given a request url http://localhost:5000/mentor-api/mentors/<mentor>

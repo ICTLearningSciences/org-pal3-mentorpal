@@ -11,23 +11,20 @@ mentors_blueprint = Blueprint("mentors", __name__)
 
 @mentors_blueprint.route("/<mentor>", methods=["GET"])
 def mentor(mentor):
-    m = None
     try:
         m = Mentor(mentor)
+        return jsonify(
+            {
+                "id": m.id,
+                "name": m.name,
+                "short_name": m.short_name,
+                "title": m.title,
+                "intro_id": m.utterances_prompts["_INTRO_"][0][0],
+                "intro_text": m.utterances_prompts["_INTRO_"][0][1],
+            }
+        )
     except BaseException:
-        pass
-    if m is None:
         raise InvalidUsage(message=f"mentor not found for {mentor}", status_code=404)
-    return jsonify(
-        {
-            "id": m.id,
-            "name": m.name,
-            "short_name": m.short_name,
-            "title": m.title,
-            "intro_id": m.utterances_prompts["_INTRO_"][0][0],
-            "intro_text": m.utterances_prompts["_INTRO_"][0][1],
-        }
-    )
 
 
 @mentors_blueprint.route("/<mentor>/data/<data_file>", methods=["GET"])

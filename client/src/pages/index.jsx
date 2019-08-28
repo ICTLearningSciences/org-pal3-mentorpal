@@ -58,10 +58,11 @@ const IndexPage = ({ search }) => {
   }, []);
 
   useEffect(() => {
-    var mentorList = ["clint", "dan", "carlos", "julianne"];
-    if (mentor) {
-      mentorList = Array.isArray(mentor) ? mentor : [mentor];
-    }
+    const mentorList = mentor
+      ? Array.isArray(mentor)
+        ? mentor
+        : [mentor]
+      : ["clint", "dan", "carlos", "julianne"];
     mentorList.forEach(mentorId => {
       dispatch(
         loadMentor(mentorId, {
