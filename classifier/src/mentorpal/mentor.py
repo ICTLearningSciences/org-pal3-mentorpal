@@ -1,7 +1,13 @@
 import pandas as pd
 import os
 import csv
-import yaml
+
+from yaml import load
+
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
 
 from mentorpal.utils import normalize_topics, sanitize_string
 
@@ -43,7 +49,7 @@ class Mentor(object):
 
     def load_mentor_data(self):
         with open(self.mentor_data_path("profile.yml")) as f:
-            data = yaml.safe_load(f)
+            data = load(f, Loader=Loader)
             return data["name"], data["short_name"], data["title"]
         return None, None, None
 
