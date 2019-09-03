@@ -1,11 +1,30 @@
 import os
 
-from flask import Blueprint, current_app, send_file
+from flask import Blueprint, current_app, jsonify, send_file
 from werkzeug.utils import secure_filename
 
 from mentor_api.errors import InvalidUsage
+from mentorpal.mentor import Mentor
 
 mentors_blueprint = Blueprint("mentors", __name__)
+
+
+@mentors_blueprint.route("/<mentor>", methods=["GET"])
+def mentor(mentor):
+    try:
+        m = Mentor(mentor)
+        return jsonify(
+            {
+                "id": m.id,
+                "name": m.name,
+                "short_name": m.short_name,
+                "title": m.title,
+                "intro_id": m.utterances_prompts["_INTRO_"][0][0],
+                "intro_text": m.utterances_prompts["_INTRO_"][0][1],
+            }
+        )
+    except BaseException:
+        raise InvalidUsage(message=f"mentor not found for {mentor}", status_code=404)
 
 
 @mentors_blueprint.route("/<mentor>/data/<data_file>", methods=["GET"])

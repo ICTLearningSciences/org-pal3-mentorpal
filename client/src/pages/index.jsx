@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actions as cmi5Actions } from "redux-cmi5";
-import { graphql, withPrefix } from "gatsby";
+import { withPrefix } from "gatsby";
 import { CircularProgress } from "@material-ui/core";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Helmet } from "react-helmet";
@@ -26,13 +26,14 @@ const theme = createMuiTheme({
   },
 });
 
-const IndexPage = ({ search, data }) => {
+const IndexPage = ({ search }) => {
   const dispatch = useDispatch();
-  const mentors = useSelector(state => state.mentors_by_id);
+  const mentors_by_id = useSelector(state => state.mentors_by_id);
   const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
   const { recommended, mentor } = search;
 
+  const hidePanel = mentor && !Array.isArray(mentor);
   const isMobile = width < 768;
   const videoHeight = isMobile ? height * 0.5 : Math.min(width * 0.5625, 700);
   const inputHeight = isMobile
@@ -54,14 +55,15 @@ const IndexPage = ({ search, data }) => {
 
   useEffect(() => {
     dispatch(cmi5Start());
-  }, []); // run only on first render
+  }, []);
 
   useEffect(() => {
-    // TODO: get rid of the hard-coded defaults below
     const mentorList = mentor
-      ? [mentor]
+      ? Array.isArray(mentor)
+        ? mentor
+        : [mentor]
       : ["clint", "dan", "carlos", "julianne"];
-    mentorList.forEach((mentorId, index) => {
+    mentorList.forEach(mentorId => {
       dispatch(
         loadMentor(mentorId, {
           recommendedQuestionsCsv: recommended,
@@ -70,6 +72,7 @@ const IndexPage = ({ search, data }) => {
     });
     dispatch(selectMentor(mentorList[0]));
   }, []);
+
   useEffect(() => {
     // Media queries for layout
     setHeight(globalWindow.innerHeight);
@@ -80,7 +83,7 @@ const IndexPage = ({ search, data }) => {
     };
   }, []);
 
-  if (mentors === {} || height === 0 || width === 0) {
+  if (mentors_by_id === {} || height === 0 || width === 0) {
     return <CircularProgress />;
   }
 
@@ -90,7 +93,7 @@ const IndexPage = ({ search, data }) => {
         <script src={withPrefix("cmi5.js")} type="text/javascript" />
       </Helmet>
       <div className="flex" style={{ height: videoHeight }}>
-        {mentor ? (
+        {hidePanel ? (
           undefined
         ) : (
           <div className="content" style={{ height: "100px" }}>
@@ -99,7 +102,7 @@ const IndexPage = ({ search, data }) => {
           </div>
         )}
         <div className="expand">
-          <Video height={videoHeight - (mentor ? 0 : 100)} width={width} />
+          <Video height={videoHeight - (hidePanel ? 0 : 100)} width={width} />
         </div>
       </div>
       <Input height={inputHeight} />

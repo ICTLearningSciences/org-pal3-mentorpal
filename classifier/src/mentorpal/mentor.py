@@ -2,6 +2,13 @@ import pandas as pd
 import os
 import csv
 
+from yaml import load
+
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
+
 from mentorpal.utils import normalize_topics, sanitize_string
 
 
@@ -12,7 +19,9 @@ class Mentor(object):
             "mentors", self.id, "data"
         )
         self.name = None
+        self.short_name = None
         self.title = None
+
         self.topics = []
         self.utterances_prompts = {}  # responses for the special cases
         self.suggestions = {}
@@ -20,19 +29,7 @@ class Mentor(object):
         self.answer_ids = {}
         self.ids_questions = {}
         self.question_ids = {}
-        # TODO: the mentor <name,title> metadata below needs to come from data files
-        if id == "clint":
-            self.name = "Clinton Anderson"
-            self.title = "Nuclear Electrician's Mate"
-        elif id == "dan":
-            self.name = "Dan Davis"
-            self.title = "High Performance Computing Researcher"
-        elif id == "julianne":
-            self.name = "Julianne Nordhagen"
-            self.title = "Student Naval Aviator"
-        elif id == "carlos":
-            self.name = "Carlos Rios"
-            self.title = "Marine Logistician"
+
         self.load()
 
     def get_id(self):
@@ -42,12 +39,19 @@ class Mentor(object):
         return os.path.join(self.__mentor_data_root, p)
 
     def load(self):
+        self.name, self.short_name, self.title = self.load_mentor_data()
         self.topics = self.load_topics()
         self.utterances_prompts = self.load_utterances()
         self.suggestions = self.load_suggestions()
         self.ids_answers, self.answer_ids, self.ids_questions, self.question_ids = (
             self.load_ids_answers()
         )
+
+    def load_mentor_data(self):
+        with open(self.mentor_data_path("profile.yml")) as f:
+            data = load(f, Loader=Loader)
+            return data["name"], data["short_name"], data["title"]
+        return None, None, None
 
     def load_topics(self):
         topics = []
