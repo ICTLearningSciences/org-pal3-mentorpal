@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import csv
+import yaml
 
 from mentorpal.utils import normalize_topics, sanitize_string
 
@@ -41,15 +42,9 @@ class Mentor(object):
         )
 
     def load_mentor_data(self):
-        data_path = os.path.join("mentors", "data", "mentors.csv")
-        mentor_data = pd.read_csv(open(data_path, "rb"))
-        for i in range(len(mentor_data)):
-            mentor_id = mentor_data.iloc[i]["ID"]
-            if mentor_id == self.id:
-                name = mentor_data.iloc[i]["name"]
-                short_name = mentor_data.iloc[i]["short_name"]
-                title = mentor_data.iloc[i]["title"]
-                return name, short_name, title
+        with open(self.mentor_data_path("profile.yml")) as f:
+            data = yaml.safe_load(f)
+            return data["name"], data["short_name"], data["title"]
         return None, None, None
 
     def load_topics(self):
