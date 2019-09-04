@@ -7,6 +7,7 @@ import requests
 
 import constants
 import utils
+from .utils import gen_mobile_video
 
 
 """
@@ -35,18 +36,7 @@ METADATA = constants.METADATA
 IDLE_FILE = constants.IDLE_FILE
 MENTOR_INTRO = constants.MENTOR_INTRO
 
-DATA_DIR = os.environ["DATA_MOUNT"] or os.getcwd()
-
-
-def ffmpeg_convert_mobile(input_file, output_file):
-    ff = ffmpy.FFmpeg(
-        inputs={input_file: None},
-        # outputs={output_file: "-filter:v crop=614:548:333:86 -y"},  This is for the 1280x720
-        outputs={
-            output_file: "-filter:v crop=918:822:500:220 -threads 0 -y"
-        },  # this is for 1080p  the parameters are width, height, x and y point
-    )
-    ff.run()
+DATA_DIR = os.environ.get("DATA_MOUNT") or os.getcwd()
 
 
 def ffmpeg_split_video(input_file, output_file, start_time, end_time):
@@ -60,7 +50,7 @@ def ffmpeg_split_video(input_file, output_file, start_time, end_time):
     start_time: Start time of answer
     end_time: End time of answer
     """
-    output_command = f"-ss {start_time} -to {end_time} -loglevel quiet -threads 0"
+    output_command = f"-y -ss {start_time} -to {end_time} -loglevel quiet -threads 0"
     ff = ffmpy.FFmpeg(inputs={input_file: None}, outputs={output_file: output_command})
     ff.run()
 
@@ -117,7 +107,7 @@ class PostProcessData(object):
                 web_chunk = os.path.join(mentor_videos, WEB_VIDEOS, output_file)
                 mobile_chunk = os.path.join(mentor_videos, MOBILE_VIDEOS, output_file)
                 ffmpeg_split_video(video_file, web_chunk, start_times[i], end_times[i])
-                ffmpeg_convert_mobile(web_chunk, mobile_chunk)
+                gen_mobile_video(web_chunk, mobile_chunk)
 
     def __save_answer_data__(self, mentor, session, part):
         answer_sample = {}
