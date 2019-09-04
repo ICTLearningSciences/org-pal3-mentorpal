@@ -44,6 +44,14 @@ jobs:
       - run:
           name: Lint python
           command: make lint-python
+  mentor-pipeline-test:
+    docker:
+      - image: circleci/python:3.7.3
+    steps:
+      - checkout
+      - run:
+          name: Test mentor pipeline
+          command: cd mentors && make test
   client-test:
     docker:
       - image: circleci/node:12.4
@@ -112,6 +120,7 @@ workflows:
   build-test-deploy:
     jobs:
       - format-and-lint-python
+      - mentor-pipeline-test
       - client-test
       - reports-test
       - docker-build-test-push:

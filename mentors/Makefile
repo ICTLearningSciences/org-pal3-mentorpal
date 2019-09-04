@@ -8,20 +8,30 @@ WATSON_CREDENTIALS=secrets/watson_credentials.txt
 WATSON_USERNAME?=$(shell if [ -f $(WATSON_CREDENTIALS) ]; then head -n 1 $(WATSON_CREDENTIALS); else echo ""; fi)
 WATSON_PASSWORD?=$(shell if [ -f $(WATSON_CREDENTIALS) ]; then tail -n 1 $(WATSON_CREDENTIALS); else echo ""; fi)
 
+# virtualenv used for pytest
+TEST_VIRTUAL_ENV=.venv
+$(TEST_VIRTUAL_ENV):
+	$(MAKE) test-env-create
 
-echo-image-id:
-	@echo $(DOCKER_IMAGE_ID)
+.PHONY: test-env-create
+test-env-create: virtualenv-installed
+	[ -d $(TEST_VIRTUAL_ENV) ] || virtualenv -p python3 $(TEST_VIRTUAL_ENV)
+	$(TEST_VIRTUAL_ENV)/bin/pip install --upgrade pip
+	$(TEST_VIRTUAL_ENV)/bin/pip install -r ./requirements.txt
+	$(TEST_VIRTUAL_ENV)/bin/pip install -r ./requirements.test.txt
 
-echo-watson:
-	@echo "u=$(WATSON_USERNAME), p=$(WATSON_PASSWORD)"
+virtualenv-installed:
+	$(PROJECT_ROOT)/bin/virtualenv_ensure_installed.sh
 
+PHONY: test
+test: $(TEST_VIRTUAL_ENV)
+	$(TEST_VIRTUAL_ENV)/bin/py.test -vv
 
 .PHONY: docker-image-exists
 docker-image-exists:
 ifeq ("$(DOCKER_IMAGE_ID)", "")
 	$(MAKE) docker-build
 endif
-
 
 $(WATSON_CREDENTIALS):
 	@echo "SET_USERNAME_HERE" > $(WATSON_CREDENTIALS)

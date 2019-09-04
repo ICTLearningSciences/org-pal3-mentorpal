@@ -20,7 +20,7 @@ DOCKER_IMAGE_ID=$(shell docker images -q ${DOCKER_IMAGE} 2> /dev/null)
 TEST_IMAGE?=mentorpal-mentor-api-test$(BUILD_TAG_SUFFIX)
 
 virtualenv-installed:
-	$(PROJECT_ROOT)/bin/virtualenv_insure_installed.sh
+	$(PROJECT_ROOT)/bin/virtualenv_ensure_installed.sh
 
 
 echo-docker-image:
