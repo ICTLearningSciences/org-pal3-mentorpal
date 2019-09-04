@@ -39,17 +39,14 @@ def build_data(mentor):
     transcript_data = aggregate_transcript_data(mentor)
     if transcript_data.empty:
         print("ERROR: Couldn't Find Transcript Data")
-
     print("INFO: Getting Timestamp Data")
     timestamp_data = aggregate_timestamp_data(mentor)
     if timestamp_data.empty:
         print("ERROR: Couldn't Find Timestamp Data")
-
     print("INFO: Splitting Answers and Utterances")
     qpa_data, pu_data = split_answers_and_utterances(transcript_data, timestamp_data)
-    if qpa_data.empty and pu_data.empty:
+    if qpa_data.empty or pu_data.empty:
         print("ERROR: Couldn't Split Answers and Utterances Data")
-
     print("INFO: Saving QPA and PU Data")
     format_and_save_qpa_data(mentor, qpa_data)
     format_and_save_pu_data(mentor, pu_data)
@@ -58,18 +55,15 @@ def build_data(mentor):
 def format_and_save_pu_data(mentor, pu_data):
     # Situation
     pu_data["Situation"] = ""
-
     for question in pu_data["Question"]:
         if question == "Long bio":
             pu_data.loc[pu_data["Question"] == question, "Situation"] = "_INTRO_"
         else:
             pu_data.loc[pu_data["Question"] == question, "Situation"] = "_FEEDBACK_"
-
     pu_data["Mentor"] = mentor
     pu_data["Utterance/Prompt"] = pu_data["text"]
     del pu_data["text"]
     del pu_data["Question"]
-
     target_dir = os.path.join(DATA_DIR, MENTOR_DATA.format(mentor))
     os.makedirs(target_dir, exist_ok=True)
     pu_data.to_csv(os.path.join(target_dir, PU_FILENAME))
@@ -82,17 +76,14 @@ def format_and_save_qpa_data(mentor, qpa_data):
         qpa_data["Topics"] = "Advice"
     else:
         qpa_data = qpa_data.join(topic_map.set_index("Question"), on="Question")
-
     # Helpers, Mentor
     qpa_data["Helpers"] = ""
     qpa_data["Mentor"] = mentor
     qpa_data = qpa_data.reindex(columns=QPA_ORDER)
-
     # Paraphrase
     paraphrase_map = get_master_map(os.path.join(DATA_DIR, SHARED_DATA, PARAPHRASE_MAP))
     if not paraphrase_map.empty:
         qpa_data = qpa_data.join(paraphrase_map.set_index("Question"), on="Question")
-
     qpa_data.set_index("Question", inplace=True)
     target_dir = os.path.join(DATA_DIR, MENTOR_DATA.format(mentor))
     os.makedirs(target_dir, exist_ok=True)
@@ -100,9 +91,8 @@ def format_and_save_qpa_data(mentor, qpa_data):
 
 
 def split_answers_and_utterances(transcript_data, timestamp_data):
-    qpa_data = pd.DataFrame()
-    pu_data = pd.DataFrame()
-
+    qpa_data = pd.DataFrame(columns=["Question", "text"])
+    pu_data = pd.DataFrame(columns=["Question", "text"])
     for question in transcript_data["Question"]:
         timestamp_row = timestamp_data.loc[timestamp_data["Question"] == question]
         transcript_row = transcript_data.loc[transcript_data["Question"] == question]
@@ -110,7 +100,6 @@ def split_answers_and_utterances(transcript_data, timestamp_data):
             qpa_data = pd.concat([qpa_data, transcript_row])
         else:
             pu_data = pd.concat([pu_data, transcript_row])
-
     return qpa_data, pu_data
 
 
