@@ -25,7 +25,7 @@ virtualenv-installed:
 
 PHONY: test
 test: $(TEST_VIRTUAL_ENV)
-	$(TEST_VIRTUAL_ENV)/bin/py.test -vv
+	PYTHONPATH=$(shell echo $${PYTHONPATH}):$(shell pwd)/src/data_pipeline $(TEST_VIRTUAL_ENV)/bin/py.test -vv
 
 .PHONY: docker-image-exists
 docker-image-exists:
@@ -112,6 +112,7 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
+			-v $(shell pwd)/src:/app/src \
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			-v $(shell pwd)/data:/app/mounts/data \
 			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data
@@ -131,6 +132,7 @@ update/%/videos: %/build docker-image-exists
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
+			-v $(shell pwd)/src:/app/src \
 			-v $(shell pwd)/$*:/app/mounts/$* \
 			-v $(shell pwd)/data:/app/mounts/data \
 			-v $(shell pwd)/videos:/app/mounts/videos \
