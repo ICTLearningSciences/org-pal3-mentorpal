@@ -15,7 +15,7 @@ docker run \
         --name ${DOCKER_CONTAINER} \
         -v ${CHECKPOINT_ROOT}:/app/checkpoint \
         -v ${PROJECT_ROOT}/classifier/src/mentorpal:/app/mentorpal \
-        -v ${PROJECT_ROOT}/mentors:/app/mentors \
+        -v ${PROJECT_ROOT}/mentors/data/mentors:/app/mentors \
         -e ARCH=${ARCH} \
         -e CHECKPOINT=${CHECKPOINT} \
         -e MENTOR_ROOT=${MENTOR_ROOT} \

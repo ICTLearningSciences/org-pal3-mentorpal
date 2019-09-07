@@ -16,3 +16,7 @@ node_modules/gatsby-cli:
 .PHONY: develop
 develop: .env.development node_modules/gatsby-cli
 	npx gatsby develop
+
+.PHONY: test
+test:
+	npm install && npm run test:all

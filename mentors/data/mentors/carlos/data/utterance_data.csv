@@ -1,0 +1,64 @@
+ID,utterance,situation
+carlos_U1_1_1,"So my name is Carlos�Rios. I'm a logistics lead supporting marine corps projects. I'm originally from Connecticut or New Haven, Connecticut. My mother�and father are from�Puerto Rico they migrated over to Connecticut and then from there after about six well I was about seven years old and moved over to a Philadelphia where I spent most of my most of my youth. About age 18-19 years old graduated high school and joined the marine corps. Twenty three years later, retired. During that time of course I got married. I have been married for twenty seven years. I have�two great kids, one currently attending USC and one in the near future want to attend Clemson, South Carolina�where I currently reside after my retirement from the marine corps. I spent two years as a contractor supporting the marine corps and I personally think I did such a good job that the government decided to bring it over to that side and support as a government employee and I've been doing that for about seven years high manage everything from my computer, servers, laptops to drones.",_INTRO_
+carlos_U2_1_1,Yes,_FEEDBACK_
+carlos_U3_1_1,"Yes, sir",_FEEDBACK_
+carlos_U4_1_1,"Yes, ma'am",_FEEDBACK_
+carlos_U5_1_1,Excuse me?,_FEEDBACK_
+carlos_U6_1_1,How are you?,_FEEDBACK_
+carlos_U7_1_1,Good morning,_FEEDBACK_
+carlos_U8_1_1,Good afternoon,_FEEDBACK_
+carlos_U9_1_1,Good evening,_FEEDBACK_
+carlos_U10_1_1,Good night,_FEEDBACK_
+carlos_U11_1_1,I may have said this before,_REPEAT_
+carlos_U12_1_1,No,_FEEDBACK_
+carlos_U13_1_1,Maybe,_FEEDBACK_
+carlos_U14_1_1,Perhaps,_FEEDBACK_
+carlos_U15_1_1,Of course,_FEEDBACK_
+carlos_U16_1_1,Always,_FEEDBACK_
+carlos_U17_1_1,Sometimes,_FEEDBACK_
+carlos_U18_1_1,Never,_FEEDBACK_
+carlos_U19_1_1,Often,_FEEDBACK_
+carlos_U20_1_1,I do,_FEEDBACK_
+carlos_U21_1_1,I don't,_FEEDBACK_
+carlos_U22_1_1,I have no idea,_FEEDBACK_
+carlos_U23_1_1,I don't think so,_FEEDBACK_
+carlos_U24_1_1,Here is something you should really know,_FEEDBACK_
+carlos_U25_1_1,"That's a good question, but I want to make sure to tell you something",_FEEDBACK_
+carlos_U26_1_1,"I don't know if I can answer that, but here is something I do know",_FEEDBACK_
+carlos_U27_1_1,Hold on. This is important,_FEEDBACK_
+carlos_U28_1_1,"Wait, I want to say this first",_FEEDBACK_
+carlos_U29_1_1,"Before we get to that, one thing",_FEEDBACK_
+carlos_U30_1_1,There's one thing I learned that I keep in mind,_FEEDBACK_
+carlos_U31_1_1,Here is something really important,_FEEDBACK_
+carlos_U32_2_1,"Let me tell you something that was important for my career.,let me tell you something that was important for my career",_FEEDBACK_
+carlos_U33_2_1,I hope so,_FEEDBACK_
+carlos_U34_2_1,I'm sorry,_FEEDBACK_
+carlos_U35_2_1,I'm sorry to hear that,_FEEDBACK_
+carlos_U36_2_1,Thank you,_FEEDBACK_
+carlos_U37_2_1,I understand that,_FEEDBACK_
+carlos_U38_2_1,I went through something similar,_FEEDBACK_
+carlos_U39_2_1,I am not sure,_FEEDBACK_
+carlos_U40_2_1,I can't hear you,_FEEDBACK_
+carlos_U41_2_1,I don't understand,_FEEDBACK_
+carlos_U42_2_1,Can you repeat that?,_PROMPT_
+carlos_U43_2_1,I don't have an answer for that,_FEEDBACK_
+carlos_U44_2_1,Can you ask me something else,_FEEDBACK_
+carlos_U45_2_1,It would help if you could keep the questions short and simple,_FEEDBACK_
+carlos_U46_2_1,Can you rephrase the question?,_PROMPT_
+carlos_U47_2_1,I can not predict the future,_FEEDBACK_
+carlos_U48_2_1,I do not want to speculate about the future,_FEEDBACK_
+carlos_U49_2_1,I don�t know what that is,_FEEDBACK_
+carlos_U50_2_1,I don't know who that is,_FEEDBACK_
+carlos_U51_2_1,I am not going to talk about that,_FEEDBACK_
+carlos_U52_2_1,I am not here to talk about that,_FEEDBACK_
+carlos_U53_5_1,Anything else?,_PROMPT_
+carlos_U54_5_1,I don't have enough information to talk about that,_FEEDBACK_
+carlos_U55_5_1,"Go ahead, ask me who gave me the best advice about my career.",_FEEDBACK_
+carlos_U56_5_1,I do not have an answer for that.,_OFF_TOPIC_
+carlos_U57_5_1,"That is a great question, unfortunately I never recorded an answer to that.",_OFF_TOPIC_
+carlos_U58_5_1,I might have covered this already,_REPEAT_
+carlos_U59_5_1,That is a great question. I wish I'd thought of that.,_OFF_TOPIC_
+carlos_U60_5_1,"That is an interesting question, but I am here to talk about logistics",_OFF_TOPIC_
+carlos_U61_5_1,This changes pretty quickly. I would recommend talking to someone local who might know more.,_OFF_TOPIC_
+carlos_U62_5_1,Unfortunately I was never asked that question,_OFF_TOPIC_
+idle,,_IDLE_

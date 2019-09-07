@@ -1,5 +1,6 @@
 Makefile
 README.md
-videos
+.pytest_cache
+.venv
 data
-
+videos

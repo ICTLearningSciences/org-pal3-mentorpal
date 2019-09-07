@@ -26,6 +26,7 @@ virtualenv-installed:
 PHONY: test
 test: $(TEST_VIRTUAL_ENV)
 	PYTHONPATH=$(shell echo $${PYTHONPATH}):$(shell pwd)/src/data_pipeline $(TEST_VIRTUAL_ENV)/bin/py.test -vv
+PWD=$(shell pwd)
 
 .PHONY: docker-image-exists
 docker-image-exists:
@@ -38,17 +39,23 @@ $(WATSON_CREDENTIALS):
 	@echo "SET_PASSWORD_HERE" >> $(WATSON_CREDENTIALS)
 	chmod 600 $(WATSON_CREDENTIALS)
 
-# Removes single mentor's files from the local file system
-.PHONY: clean/%
-clean/%:
-	@rm -rf "$*/build"
-	@rm -rf "videos/$*"
+# Removes single mentor's data files from the local file system
+.PHONY: data/mentors/%/clean
+data/mentors/%/clean:
+	@echo "cleaning data/mentors/$*/build..."
+	@rm -rf "data/mentors/$*/build"
 
+# Removes single mentor's data files from the local file system
+.PHONY: videos/%/clean
+videos/%/clean:
+	@echo "cleaning videos/$*..."
+	@rm -rf "videos/$*"
 
 # Removes all mentor files from the local file system
 .PHONY clean:
 clean:
-	@for m in */; do $(MAKE) clean/$${m}; done
+	@for m in data/mentors/*/*; do $(MAKE) data/mentors/$${m}/clean; done
+	@for m in videos/*/*; do $(MAKE) videos/$${m}/clean; done
 
 
 # Builds the data processing pipeline dockerfile
@@ -67,8 +74,8 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
-			-v $(shell pwd):/app/mounts \
-			-v $(shell pwd)/src:/app/src \
+			-v $(PWD):/app/mounts \
+			-v $(PWD)/src:/app/src \
 		$(DOCKER_IMAGE)
 
 
@@ -76,66 +83,70 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 # Downloads missing files
 # Generates audiochunks and transcripts for one mentor
 .SECONDARY:
-%/build: $(WATSON_CREDENTIALS)
-	$(MAKE) $*/build/update
+data/mentors/%/build: $(WATSON_CREDENTIALS)
+	$(MAKE) data/mentors/$*/build/update
 
 # Pre-processes mentor data inside docker container
 # Downloads missing files
 # Generates audiochunks and transcripts for one mentor
-.PHONY: %/build/update
-%/build/update: docker-image-exists $(WATSON_CREDENTIALS)
-	@echo "creating $*/build ..."
+.PHONY: data/mentors/%/build/update
+data/mentors/%/build/update: docker-image-exists $(WATSON_CREDENTIALS)
+	mkdir -p data/mentors/$*/build
+	@echo "updating data/mentors/$*/build ..."
 	docker run \
 			--rm \
 			-it \
 			--name $(DOCKER_CONTAINER) \
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
-			-v $(shell pwd)/$*:/app/mounts/$* \
-			-v $(shell pwd)/data:/app/mounts/data \
+			-v $(PWD)/$*:/app/mounts/$* \
+			-v $(PWD)/data:/app/mounts/data \
+			-v $(PWD)/src:/app/src \
 			$(DOCKER_IMAGE) --mentor $* --transcripts --url $(MENTOR_SOURCE_VIDEOS)
 
 
 # Complete build of mentor data
 # Runs build if necessary
 # Generates data files
-%/data:
-	$(MAKE) $*/data/update
+.SECONDARY:
+data/mentors/%/data:
+	$(MAKE) data/mentors/$*/data/update
 
 # Complete build of mentor data
 # Runs build if necessary
 # Generates data files
-.PHONY: %/data/update
-%/data/update: %/build docker-image-exists
+.PHONY: data/mentors/%/data/update
+data/mentors/%/data/update: data/mentors/%/build docker-image-exists
 	mkdir -p $*/data
-	cp data/topics.csv $*/data/topics.csv
+	cp data/topics.csv data/mentors/$*/data/topics.csv
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
-			-v $(shell pwd)/src:/app/src \
-			-v $(shell pwd)/$*:/app/mounts/$* \
-			-v $(shell pwd)/data:/app/mounts/data \
+			-v $(PWD)/src:/app/src \
+			-v $(PWD)/$*:/app/mounts/$* \
+			-v $(PWD)/data:/app/mounts/data \
 			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data
 
 # Complete build of mentor data and videos
 # Runs build if necessary
 # Generates data files
+.SECONDARY:
 videos/%:
-	$(MAKE) update/$*/videos
+	$(MAKE) update/videos/$*
 
 # Complete build of mentor data and videos
 # Runs build if necessary
 # Generates data files
-.PHONY: update/%/videos
-update/%/videos: %/build docker-image-exists
+.PHONY: videos/%/update 
+update/videos/%: docker-image-exists data/mentors/%/build
 	mkdir -p videos/$*
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
-			-v $(shell pwd)/src:/app/src \
-			-v $(shell pwd)/$*:/app/mounts/$* \
-			-v $(shell pwd)/data:/app/mounts/data \
-			-v $(shell pwd)/videos:/app/mounts/videos \
+			-v $(PWD)/src:/app/src \
+			-v $(PWD)/$*:/app/mounts/$* \
+			-v $(PWD)/data:/app/mounts/data \
+			-v $(PWD)/videos:/app/mounts/videos \
 			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos --url $(MENTOR_SOURCE_VIDEOS)
 	@echo ""
 	@echo "==== MAKE VIDEOS SUCCEEDED! ===="
@@ -151,7 +162,7 @@ update/%/videos: %/build docker-image-exists
 
 # Build checkpoint from mentor data
 .PHONY: %/checkpoint
-%/checkpoint: %/data
+%/checkpoint: data/mentors/%/data
 	cd $(PROJECT_ROOT)/checkpoint && \
 	CHECKPOINT=dev_latest $(MAKE) checkpoint-clean/mentor/$* checkpoint-train/mentor/$*
 	@echo ""

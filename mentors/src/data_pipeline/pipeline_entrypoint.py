@@ -33,7 +33,6 @@ def process_session_data(args):
     """
     process_summary = {"transcripts": [], "audiochunks": []}
     mentor_dir = os.path.join(DATA_DIR, MENTOR_BUILD.format(args.mentor))
-
     if args.sessions:
         for session in args.sessions:
             if session == "all":
@@ -54,7 +53,6 @@ def process_session_data(args):
                 )
                 process_summary["transcripts"].extend(summary["transcripts"])
                 process_summary["audiochunks"].extend(summary["audiochunks"])
-
     return process_summary
 
 
@@ -72,20 +70,17 @@ def get_mentor_data(args):
     Returns:
     data_present: True if mentor data is locally available
     """
-    data_present = True
     mentor_build_path = MENTOR_BUILD.format(args.mentor)
     # Check if first session folder exists to see if any data is present
-    if not os.path.exists(
+    if os.path.exists(
         os.path.join(DATA_DIR, mentor_build_path, SESSION_DATA.format(1))
     ):
-        if args.url:
-            print("INFO: Mentor data not found locally. Downloading from S3.")
-            data_present = download_mentor_data(args.url, args.mentor)
-        else:
-            print(ERR_NO_URL.format(args.mentor))
-            data_present = False
-
-    return data_present
+        print(f"INFO: Found build data at ${mentor_build_path}")
+        return True
+    if not args.url:
+        print(ERR_NO_URL.format(args.mentor))
+        return False
+    return download_mentor_data(args.url, args.mentor)
 
 
 def download_mentor_data(url, mentor):
@@ -104,12 +99,10 @@ def download_mentor_data(url, mentor):
     download_successful = True
     session = 0
     session_found = True
-
     while session_found:
         session += 1
         part = 0
         part_found = True
-
         while part_found:
             part += 1
             print(f"INFO: Downloading session {session} part {part} data (if exists)")
@@ -119,16 +112,12 @@ def download_mentor_data(url, mentor):
             v_session_flag, v_part_flag = download_session_data(
                 url, mentor, session, part, VIDEO_FILE
             )
-            a_session_flag, a_part_flag = download_session_data(
-                url, mentor, session, part, AUDIO_FILE
-            )
-            part_found = t_part_flag & v_part_flag & a_part_flag
-            session_found = t_session_flag & v_session_flag & a_session_flag
+            part_found = t_part_flag & v_part_flag  # & a_part_flag
+            session_found = t_session_flag & v_session_flag  # & a_session_flag
             if not session_found:
                 print(f"INFO: Session {session} not found")
             elif not part_found:
                 print(f"INFO: Session {session} part {part} not found")
-
     if session == 1 and part == 1:
         download_successful = False
     return download_successful
@@ -153,23 +142,23 @@ def download_session_data(url, mentor, session, part, filename):
         DATA_DIR, MENTOR_BUILD.format(mentor), SESSION_DATA.format(session)
     )
     save_path = os.path.join(save_dir, DATA_FILENAME.format(part, filename))
-    res = requests.get(
-        os.path.join(
-            url,
-            MENTOR_DATA.format(mentor),
-            SESSION_DATA.format(session),
-            DATA_FILENAME.format(part, filename),
-        )
+    # use of path.join here is wrong for urls. will not work on windows
+    download_url = os.path.join(
+        url,
+        mentor,  # MENTOR_DATA.format(mentor),
+        "data",
+        SESSION_DATA.format(session),
+        DATA_FILENAME.format(part, filename),
     )
+    print(f"will download {download_url} to {save_path}")
+    res = requests.get(download_url)
     if res.status_code == 200:
-        if not os.path.isdir(save_dir):
-            os.makedirs(save_dir)
+        os.makedirs(save_dir, exist_ok=True)
         open(save_path, "wb").write(res.content)
     else:
         if part == 1:
             session_found = False
         part_found = False
-
     return session_found, part_found
 
 

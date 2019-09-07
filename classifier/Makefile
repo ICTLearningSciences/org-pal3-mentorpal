@@ -24,7 +24,7 @@ BUILD=$(CLASSIFIER_ROOT)/build
 build: clean checkpoint-vector-models
 	cd $(CHECKPOINT_ROOT)
 	mkdir -p $(BUILD)
-	cp -r $(PROJECT_ROOT)/mentors $(BUILD)
+	cp -r $(PROJECT_ROOT)/mentors/data/mentors $(BUILD)
 	mkdir -p $(BUILD)/$(CHECKPOINT_PATH_RELATIVE)
 	cp -r $(PROJECT_ROOT)/$(CHECKPOINT_PATH_RELATIVE)/* $(BUILD)/$(CHECKPOINT_PATH_RELATIVE)
 	cp -r $(PROJECT_ROOT)/checkpoint/vector_models $(BUILD)/checkpoint
