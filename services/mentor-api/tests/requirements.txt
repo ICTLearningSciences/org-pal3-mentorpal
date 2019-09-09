@@ -1,6 +1,8 @@
 assertpy
 behave==1.2.6
 bolt-ta
+pytest==5.1.2
+pytest-flask==0.15.0
 requests
 
   
