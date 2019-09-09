@@ -44,6 +44,22 @@ jobs:
       - run:
           name: Lint python
           command: make lint-python
+  classifier-test:
+    docker:
+      - image: circleci/python:3.7.3
+    steps:
+      - checkout
+      - run:
+          name: Test classifier (unit tests)
+          command: cd classifier && make test
+  mentor-api-test:
+    docker:
+      - image: circleci/python:3.7.3
+    steps:
+      - checkout
+      - run:
+          name: Test mentor-api (unit tests)
+          command: cd services/mentor-api && make test-units
   mentor-pipeline-test:
     docker:
       - image: circleci/python:3.7.3
@@ -120,12 +136,26 @@ workflows:
   build-test-deploy:
     jobs:
       - format-and-lint-python
-      - mentor-pipeline-test
-      - client-test
-      - reports-test
+      - classifier-test:
+          requires:
+            - format-and-lint-python
+      - client-test:
+          requires:
+            - format-and-lint-python
+      - mentor-api-test:
+          requires:
+            - format-and-lint-python
+      - mentor-pipeline-test:
+          requires:
+            - format-and-lint-python
+      - reports-test:
+          requires:
+            - format-and-lint-python
       - docker-build-test-push:
           requires:
             - format-and-lint-python
+            - classifier-test
+            - mentor-api-test
             - client-test
       - deploy-to-dev:
           type: approval

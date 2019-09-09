@@ -1,5 +1,4 @@
 node_modules
-.netrc
 __pycache__
 *.pyc
 QuestionAnswerLog.csv
@@ -9,7 +8,6 @@ dist
 .log
 terraform.tfstate
 .vscode
-resources
 *.log
 .venv
 
