@@ -11,7 +11,12 @@ except ImportError:
 
 from mentorpal.utils import normalize_topics, sanitize_string
 
-STRIP_TOPICS = ["navy", "positive", "negative"] # TODO: this should NOT be hardcoded in this class
+STRIP_TOPICS = [
+    "navy",
+    "positive",
+    "negative",
+]  # TODO: this should NOT be hardcoded in this class
+
 
 class Mentor(object):
     def __init__(self, id, mentor_data_root=None):
