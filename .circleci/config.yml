@@ -3,6 +3,12 @@ executors:
   ebs:
     docker:
       - image: larrykirschner/circleci-elasticbeanstalk:e9f1c61a9c863a520f88172e076615966a12f383
+  node:
+    docker:
+      - image: circleci/node:12.4
+  python:
+    docker:
+      - image: circleci/python:3.7.3
 aliases:
   # setup env vars for ebs tools
   - &dev-mentorpal-env-init
@@ -34,6 +40,7 @@ aliases:
       ignore: /.*/
 jobs:
   checkout-revision:
+    executor: python
     steps:
       - restore_cache:
           keys:
@@ -46,8 +53,7 @@ jobs:
           paths:
             - ".git"
   format-and-lint-python:
-    docker:
-      - image: circleci/python:3.7.3
+    executor: python
     steps:
       - checkout-revision
       - run:
@@ -57,32 +63,28 @@ jobs:
           name: Lint python
           command: make lint-python
   classifier-test:
-    docker:
-      - image: circleci/python:3.7.3
+    executor: python
     steps:
       - checkout-revision
       - run:
           name: Test classifier (unit tests)
           command: cd classifier && make test
   mentor-api-test:
-    docker:
-      - image: circleci/python:3.7.3
+    executor: python
     steps:
       - checkout-revision
       - run:
           name: Test mentor-api (unit tests)
           command: cd services/mentor-api && make test-units
   mentor-pipeline-test:
-    docker:
-      - image: circleci/python:3.7.3
+    executor: python
     steps:
       - checkout-revision
       - run:
           name: Test mentor pipeline
           command: cd mentors && make test
   client-test:
-    docker:
-      - image: circleci/node:12.4
+    executor: node
     steps:
       - checkout-revision
       - run:
@@ -103,8 +105,7 @@ jobs:
           command:
             cd client && npm run test
   reports-test:
-    docker:
-      - image: circleci/node:12.4
+    executor: node
     steps:
       - checkout-revision
       - run:
