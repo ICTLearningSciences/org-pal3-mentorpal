@@ -1,3 +1,4 @@
+SHELL:=/bin/bash
 DOCKER_IMAGE?=mentorpal-classifier
 DOCKER_CONTAINER=mentorpal-classifier
 CLASSIFIER_ROOT=$(shell pwd)
