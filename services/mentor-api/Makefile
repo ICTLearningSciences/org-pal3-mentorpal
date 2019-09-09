@@ -93,7 +93,7 @@ docker-run-dev: docker-image-exists
 			-p 5000:5000 \
 			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
 			-v $(PWD)/src/mentor_api:/app/mentor_api \
-			-v $(PROJECT_ROOT)/src/mentorpal:/app/mentorpal \
+			-v $(PROJECT_ROOT)/classifier/src/mentorpal:/app/mentorpal \
 		$(DOCKER_IMAGE) 
 
 
@@ -107,7 +107,7 @@ docker-run-dev-shell: docker-image-exists
 			-p 5000:5000 \
 			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
 			-v $(PWD)/src/mentor_api:/app/mentor_api \
-			-v $(PROJECT_ROOT)/src/mentorpal:/app/mentorpal \
+			-v $(PROJECT_ROOT)/classifier/src/mentorpal:/app/mentorpal \
 			--entrypoint /bin/bash \
 		$(DOCKER_IMAGE) 
 
@@ -136,17 +136,30 @@ $(TEST_VIRTUAL_ENV):
 test-env-create: $(PROJECT_ROOT)/behave-restful/setup.py virtualenv-installed
 	[ -d $(TEST_VIRTUAL_ENV) ] || virtualenv -p python3 $(TEST_VIRTUAL_ENV)
 	$(TEST_VIRTUAL_ENV_PIP) install --upgrade pip
+	$(TEST_VIRTUAL_ENV_PIP) install -r $(PROJECT_ROOT)/classifier/requirements.txt
+	$(TEST_VIRTUAL_ENV_PIP) install -r requirements.txt
 	$(TEST_VIRTUAL_ENV_PIP) install -r tests/requirements.txt
 	$(TEST_VIRTUAL_ENV_PIP) install -r $(BEHAVE_RESTFUL)/requirements.txt && \
 	$(TEST_VIRTUAL_ENV_PIP) install -e $(BEHAVE_RESTFUL)
 
+.PHONY: test-units
+test-units: $(TEST_VIRTUAL_ENV)
+	source $(TEST_VIRTUAL_ENV)/bin/activate && \
+		export PYTHONPATH=$${PYTHONPATH}:$(PROJECT_ROOT)/services/mentor-api/src:$(PROJECT_ROOT)/classifier/src && \
+		$(TEST_VIRTUAL_ENV)/bin/py.test -vv
 
-.PHONY: test
-test: $(TEST_VIRTUAL_ENV) docker-image-exists
+
+.PHONY: test-integrations
+test-integrations: $(TEST_VIRTUAL_ENV) docker-image-exists
 	source $(TEST_VIRTUAL_ENV)/bin/activate  && \
 		cd tests && \
 		export DOCKER_IMAGE=$(DOCKER_IMAGE) && \
 		bolt start-api-then-test-features
+
+.PHONY: test
+test:
+	$(MAKE) test-units
+	$(MAKE) test-integrations
 
 .PHONY: test-image-build
 test-image-build:
