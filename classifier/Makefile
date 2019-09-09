@@ -72,7 +72,7 @@ $(TEST_VIRTUAL_ENV):
 	$(MAKE) test-env-create
 
 .PHONY: dev-env-create
-test-env-create: $(PROJECT_ROOT)/behave-restful/setup.py virtualenv-installed
+test-env-create: virtualenv-installed
 	[ -d $(TEST_VIRTUAL_ENV) ] || virtualenv -p python3 $(TEST_VIRTUAL_ENV)
 	$(TEST_VIRTUAL_ENV_PIP) install --upgrade pip
 	$(TEST_VIRTUAL_ENV_PIP) install -r requirements.test.txt
