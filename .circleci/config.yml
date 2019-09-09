@@ -38,24 +38,29 @@ aliases:
       only: /v[0-9]+(\.[0-9]+)*(-prod)/
     branches:
       ignore: /.*/
-jobs:
-  checkout-revision:
-    executor: python
-    steps:
-      - restore_cache:
+  - &checkout-revision-restore
+    - restore_cache:
           keys:
             - source-v1-{{ .Branch }}-{{ .Revision }}
             - source-v1-{{ .Branch }}-
             - source-v1-
-      - checkout
-      - save_cache:
+  - &checkout-revision-save
+    - save_cache:
           key: source-v1-{{ .Branch }}-{{ .Revision }}
           paths:
             - ".git"
+jobs:
+  checkout-revision-setup:
+    executor: python
+    steps:
+      - *checkout-revision-restore
+      - checkout
+      - *checkout-revision-save
   format-and-lint-python:
     executor: python
     steps:
-      - checkout-revision
+      - *checkout-revision-restore
+      - checkout
       - run:
           name: Test format for python
           command: make test-format-python
@@ -65,28 +70,32 @@ jobs:
   classifier-test:
     executor: python
     steps:
-      - checkout-revision
+      - *checkout-revision-restore
+      - checkout
       - run:
           name: Test classifier (unit tests)
           command: cd classifier && make test
   mentor-api-test:
     executor: python
     steps:
-      - checkout-revision
+      - *checkout-revision-restore
+      - checkout
       - run:
           name: Test mentor-api (unit tests)
           command: cd services/mentor-api && make test-units
   mentor-pipeline-test:
     executor: python
     steps:
-      - checkout-revision
+      - *checkout-revision-restore
+      - checkout
       - run:
           name: Test mentor pipeline
           command: cd mentors && make test
   client-test:
     executor: node
     steps:
-      - checkout-revision
+      - *checkout-revision-restore
+      - checkout
       - run:
           name: Check format
           command: make test-format-js
@@ -107,7 +116,8 @@ jobs:
   reports-test:
     executor: node
     steps:
-      - checkout-revision
+      - *checkout-revision-restore
+      - checkout
       - run:
           name: Test reports
           command: |
@@ -148,6 +158,7 @@ workflows:
   version: 2
   build-test-deploy:
     jobs:
+      - checkout-revision-setup
       - format-and-lint-python
       - classifier-test:
           requires:
