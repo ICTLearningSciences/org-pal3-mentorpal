@@ -11,6 +11,7 @@ except ImportError:
 
 from mentorpal.utils import normalize_topics, sanitize_string
 
+STRIP_TOPICS = ["navy", "positive", "negative"] # TODO: this should NOT be hardcoded in this class
 
 class Mentor(object):
     def __init__(self, id, mentor_data_root=None):
@@ -60,9 +61,9 @@ class Mentor(object):
             for row in reader:
                 topics.append(row[0].lower())
         # don't include these topics: navy positive negative
-        topics.remove("navy")
-        topics.remove("positive")
-        topics.remove("negative")
+        for t in STRIP_TOPICS:
+            if t in topics:
+                topics.remove(t)
         topics = [_f.title() for _f in topics]
         # normalize topic names
         for i in range(len(topics)):
