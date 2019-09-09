@@ -59,7 +59,7 @@ jobs:
       - checkout
       - run:
           name: Test mentor-api (unit tests)
-          command: cd services/mentor-api && make test
+          command: cd services/mentor-api && make test-units
   mentor-pipeline-test:
     docker:
       - image: circleci/python:3.7.3
