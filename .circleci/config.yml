@@ -136,14 +136,26 @@ workflows:
   build-test-deploy:
     jobs:
       - format-and-lint-python
-      - classifier-test
-      - mentor-api-test
-      - mentor-pipeline-test
-      - client-test
-      - reports-test
+      - classifier-test:
+          requires:
+            - format-and-lint-python
+      - client-test:
+          requires:
+            - format-and-lint-python
+      - mentor-api-test:
+          requires:
+            - format-and-lint-python
+      - mentor-pipeline-test:
+          requires:
+            - format-and-lint-python
+      - reports-test:
+          requires:
+            - format-and-lint-python
       - docker-build-test-push:
           requires:
             - format-and-lint-python
+            - classifier-test
+            - mentor-api-test
             - client-test
       - deploy-to-dev:
           type: approval
