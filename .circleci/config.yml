@@ -39,16 +39,16 @@ aliases:
     branches:
       ignore: /.*/
   - &checkout-revision-restore
-    - restore_cache:
-          keys:
-            - source-v1-{{ .Branch }}-{{ .Revision }}
-            - source-v1-{{ .Branch }}-
-            - source-v1-
+    restore_cache:
+      keys:
+        - source-v1-{{ .Branch }}-{{ .Revision }}
+        - source-v1-{{ .Branch }}-
+        - source-v1-
   - &checkout-revision-save
-    - save_cache:
-          key: source-v1-{{ .Branch }}-{{ .Revision }}
-          paths:
-            - ".git"
+    save_cache:
+      key: source-v1-{{ .Branch }}-{{ .Revision }}
+      paths:
+        - ".git"
 jobs:
   checkout-revision-setup:
     executor: python
