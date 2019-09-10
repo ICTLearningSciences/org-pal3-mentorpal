@@ -36,9 +36,9 @@ class _APIClassifier(Classifier):
         assert len(cls_answer) == 3
         if (
             cls_answer[0] == "_OFF_TOPIC_"
-            and "_OFF_TOPIC_" in self.mentor.utterances_prompts
+            and "_OFF_TOPIC_" in self.mentor.utterances_by_type
         ):
-            prompts = self.mentor.utterances_prompts["_OFF_TOPIC_"]
+            prompts = self.mentor.utterances_by_type["_OFF_TOPIC_"]
             i = random.randint(0, len(prompts) - 1)
             a_id, a_txt = prompts[i]
             return (a_id, a_txt, -100.0)
