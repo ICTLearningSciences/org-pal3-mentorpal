@@ -19,8 +19,8 @@ def mentor(mentor):
                 "name": m.name,
                 "short_name": m.short_name,
                 "title": m.title,
-                "intro_id": m.utterances_prompts["_INTRO_"][0][0],
-                "intro_text": m.utterances_prompts["_INTRO_"][0][1],
+                "intro_id": m.utterances_by_type["_INTRO_"][0][0],
+                "intro_text": m.utterances_by_type["_INTRO_"][0][1],
             }
         )
     except BaseException:
