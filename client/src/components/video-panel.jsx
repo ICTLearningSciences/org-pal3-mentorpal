@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Star } from "@material-ui/icons";
 
 import { selectMentor } from "store/actions";
-import { STATUS_ERROR } from "store/reducer";
+import { MentorQuestionStatus } from "store/types";
 
 import VideoThumbnail from "components/video-thumbnail";
 import LoadingSpinner from "components/video-spinner";
@@ -21,7 +21,7 @@ const VideoPanel = ({ isMobile }) => {
   const width = isMobile ? height / 0.895 : height / 0.5625;
 
   const onClick = mentor => {
-    if (mentor.is_off_topic || mentor.status === STATUS_ERROR) {
+    if (mentor.is_off_topic || mentor.status === MentorQuestionStatus.ERROR) {
       return;
     }
     dispatch(selectMentor(mentor.id));

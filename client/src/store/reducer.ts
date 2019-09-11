@@ -1,5 +1,5 @@
 import { reducers as cmi5Reducer } from "redux-cmi5";
-import { normalizeString } from "funcs/funcs";
+import { normalizeString } from "@/funcs/funcs";
 import {
   ANSWER_FINISHED,
   MENTOR_FAVED,
@@ -10,31 +10,19 @@ import {
   QUESTION_ERROR,
   QUESTION_SENT,
   TOPIC_SELECTED,
-} from "store/actions";
-import { MENTOR_SELECTED, MentorSelectedAction } from "./types";
+} from "./actions";
+import {
+  MentorData,
+  MENTOR_SELECTED,
+  MENTOR_DATA_RESULT,
+  MentorSelectedAction,
+  State,
+  MentorQuestionStatus,
+  MentorDataResultAction,
+  ResultStatus,
+} from "./types";
 
-export const STATUS_ANSWERED = "ANSWERED";
-export const STATUS_ERROR = "ERROR";
-export const STATUS_READY = "READY";
-
-/**
- * mentor: {
- *  id
- *  name
- *  short_name
- *  title
- *  topic_questions
-
- *  question
- *  answer_id
- *  answer_text
- *  confidence
- *  is_off_topic
- *  status: READY | ANSWERED | ERROR
- * }
- */
-
-const initialState = cmi5Reducer({
+export const initialState: State = cmi5Reducer({
   current_mentor: "", // id of selected mentor
   current_question: "", // question that was last asked
   current_topic: "", // topic to show questions for
@@ -45,24 +33,53 @@ const initialState = cmi5Reducer({
   questions_asked: [],
 });
 
-function mentorSelected(state: any, action: MentorSelectedAction) {
+function mentorSelected(state: State, action: MentorSelectedAction): State {
+  const mentorId = action.payload.id;
   return {
     ...state,
     current_mentor: action.payload.id,
     isIdle: false,
     mentors_by_id: {
       ...state.mentors_by_id,
-      [action.payload.id]: {
-        ...state.mentors_by_id[action.payload.id],
-        status: STATUS_ANSWERED,
+      [mentorId]: {
+        // ...state.mentors_by_id[action.payload.id],
+        ...state.mentors_by_id[mentorId],
+        status: MentorQuestionStatus.ANSWERED,
       },
     },
   };
 }
 
-export default function reducer(state = initialState, action: any) {
+function onMentorDataResult(
+  state: State,
+  action: MentorDataResultAction
+): State {
+  if (action.payload.status === ResultStatus.SUCCEEDED) {
+    const mentor = action.payload.data as MentorData;
+    return {
+      ...state,
+      current_mentor: mentor.id, // TODO: why is the current mentor any random last that loaded?
+      isIdle: false,
+      mentors_by_id: {
+        ...state.mentors_by_id,
+        [mentor.id]: {
+          // ...state.mentors_by_id[action.payload.id],
+          ...state.mentors_by_id[mentor.id],
+          ...mentor,
+          status: MentorQuestionStatus.ANSWERED, // TODO: leaving this from prev version, but why???
+        },
+      },
+    };
+  }
+  return state;
+}
+
+export default function reducer(state = initialState, action: any): State {
   state = cmi5Reducer(state, action);
   switch (action.type) {
+    case MENTOR_DATA_RESULT:
+      return onMentorDataResult(state, action as MentorDataResultAction);
+
     case MENTOR_LOADED:
       return {
         ...state,
@@ -71,7 +88,7 @@ export default function reducer(state = initialState, action: any) {
           ...state.mentors_by_id,
           [action.mentor.id]: {
             ...action.mentor,
-            status: STATUS_READY,
+            status: MentorQuestionStatus.READY,
           },
         },
       };
@@ -126,7 +143,7 @@ export default function reducer(state = initialState, action: any) {
         confidence: response.confidence,
         is_off_topic: response.is_off_topic,
         question: response.question,
-        status: STATUS_READY,
+        status: MentorQuestionStatus.READY,
         topic_questions: {
           ...state.mentors_by_id[response.id].topic_questions,
           History: history,
@@ -151,7 +168,7 @@ export default function reducer(state = initialState, action: any) {
           [action.mentor]: {
             ...state.mentors_by_id[action.mentor],
             question: action.question,
-            status: STATUS_ERROR,
+            status: MentorQuestionStatus.ERROR,
           },
         },
       };

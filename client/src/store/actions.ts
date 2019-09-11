@@ -1,10 +1,24 @@
 /* eslint-disable */
 import Papa from "papaparse";
 import { actions as cmi5Actions } from "redux-cmi5";
+import { ActionCreator, Dispatch } from "redux";
+import { ThunkAction } from "redux-thunk";
 
-import { fetchMentorData, topicsUrl, questionsUrl, queryMentor } from "api/api";
-import { STATUS_READY } from "./reducer";
-import { string } from "prop-types";
+import {
+  fetchMentorData,
+  fetchMentorData2,
+  topicsUrl,
+  questionsUrl,
+  queryMentor,
+} from "@/api/api";
+
+import {
+  MentorDataResult,
+  MentorDataResultAction,
+  MentorQuestionStatus,
+  MENTOR_DATA_RESULT,
+  ResultStatus,
+} from "./types";
 
 export const MENTOR_LOADED = "MENTOR_LOADED"; // mentor info was loaded
 export const MENTOR_SELECTED = "MENTOR_SELECTED"; // mentor video was selected
@@ -21,7 +35,7 @@ export const ANSWER_FINISHED = "ANSWER_FINISHED"; // mentor video has finished p
 export const MENTOR_SELECTION_TRIGGER_AUTO = "auto";
 export const MENTOR_SELECTION_TRIGGER_USER = "user";
 
-async function papaParseAsync(url) {
+async function papaParseAsync(url: string) {
   return new Promise((complete, error) => {
     Papa.parse(url, { download: true, complete, error });
   });
@@ -30,7 +44,7 @@ async function papaParseAsync(url) {
 export function loadMentor(
   mentorId: string,
   {
-    recommendedQuestionsCsv = undefined
+    recommendedQuestionsCsv = undefined,
   }: {
     recommendedQuestionsCsv: string | undefined;
   }
@@ -49,6 +63,51 @@ export function loadMentor(
     }
   };
 }
+
+export const loadMentor2: ActionCreator<
+  ThunkAction<
+    Promise<MentorDataResultAction>, // The type of the last action to be dispatched - will always be promise<T> for async actions
+    MentorDataResult, // The type for the data within the last action
+    string, // The type of the parameter for the nested function
+    MentorDataResultAction // The type of the last action to be dispatched
+  >
+> = (
+  mentorId: string,
+  {
+    recommendedQuestionsCsv = undefined,
+  }: {
+    recommendedQuestionsCsv?: string | undefined;
+  } = {}
+) => async (dispatch: Dispatch) => {
+  try {
+    const result = await fetchMentorData2(mentorId);
+    if (result.status == 200) {
+      return dispatch<MentorDataResultAction>({
+        type: MENTOR_DATA_RESULT,
+        payload: {
+          data: result.data,
+          status: ResultStatus.SUCCEEDED
+        },
+      });
+    }
+    return dispatch<MentorDataResultAction>({
+      type: MENTOR_DATA_RESULT,
+      payload: {
+        data: undefined,
+        status: ResultStatus.FAILED
+      },
+    });
+  } catch (err) {
+    console.error(`Failed to load mentor data for id ${mentorId}`, err);
+    return dispatch<MentorDataResultAction>({
+      type: MENTOR_DATA_RESULT,
+      payload: {
+        data: undefined,
+        status: ResultStatus.FAILED
+      },
+    });
+  }
+};
 
 const { sendStatement: sendXapiStatement } = cmi5Actions;
 
@@ -341,7 +400,9 @@ export const answerFinished = () => (
 
   // get the most confident answer that has not been given
   const next_mentor = responses.find(response => {
-    return response.status === STATUS_READY && !response.is_off_topic;
+    return (
+      response.status === MentorQuestionStatus.READY && !response.is_off_topic
+    );
   });
 
   // set the next mentor to start playing, if there is one

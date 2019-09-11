@@ -1,4 +1,6 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
+
+import { MentorData } from '@/store/types'
 
 const MENTOR_API_URL = process.env.MENTOR_API_URL || "/mentor-api"; // eslint-disable-line no-undef
 let MENTOR_VIDEO_HOST =
@@ -27,28 +29,30 @@ if (typeof window !== "undefined" && process.env.NODE_ENV !== "test") {
     });
 }
 
-export const videoUrl = (mentor, format) => {
+// TODO: don't pass mentor here, pass mentorId and answerId
+export const videoUrl = (mentor:MentorData, format:string):string => {
   return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/${format}/${mentor.answer_id}.mp4`;
 };
 
-export const idleUrl = (mentor, format) => {
+// TODO: don't pass mentor here, pass mentorId
+export const idleUrl = (mentor:MentorData, format:string):string => {
   return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/${format}/idle.mp4`;
 };
 
-export const subtitleUrl = mentor => {
+// TODO: don't pass mentor here, pass mentorId and answerId
+export const subtitleUrl = (mentor:MentorData):string => {
   return `${MENTOR_API_URL}/mentors/${mentor.id}/tracks/${mentor.answer_id}.vtt`;
 };
 
-export const topicsUrl = mentorId => {
+export const topicsUrl = (mentorId:string):string => {
   return `${MENTOR_API_URL}/mentors/${mentorId}/data/topics.csv`;
 };
 
-export const questionsUrl = mentorId => {
+export const questionsUrl = (mentorId:string):string => {
   return `${MENTOR_API_URL}/mentors/${mentorId}/data/questions_paraphrases_answers.csv`;
 };
 
-// TODO: data needs to move to server, but for quick backwards-compat fix just hard coding it differently
-export async function fetchMentorData(mentorId) {
+export async function fetchMentorData(mentorId:string) {
   const res = await axios.get(`${MENTOR_API_URL}/mentors/${mentorId}`);
   const { data } = res;
   const response = {
@@ -63,7 +67,11 @@ export async function fetchMentorData(mentorId) {
   return response;
 }
 
-export const queryMentor = async (mentorId, question) => {
+export async function fetchMentorData2(mentorId:string) : Promise<AxiosResponse<MentorData>> {
+  return await axios.get(`${MENTOR_API_URL}/mentors/${mentorId}/data`);
+}
+
+export const queryMentor = async (mentorId:string, question:string) => {
   const res = await axios.get(`${MENTOR_API_URL}/questions/`, {
     params: {
       mentor: mentorId,
