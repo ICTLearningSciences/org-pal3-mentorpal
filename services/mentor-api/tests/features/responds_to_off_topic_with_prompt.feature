@@ -26,8 +26,8 @@ Feature: Mentors responds to off-topic question with a prompt
         And the response json at $.mentor is equal to "<mentor>"
         And the response json at $.query is equal to "<query>"
         And the response json at $.answer_id matches "<answer_id_regex>"
-        And the response json at $.classifier is equal to "lstm_v1/2019-06-13-1900"
-  
+        And the response json at $.classifier matches "^lstm_v1/[a-zA-Z0-9\-_]+$"
+        
   # for now listing all the PROMPT answers in the regex'es below. Could alternatively test that the answer just isn't garbage, e.g clintanderson_u*
   Examples: Queries
     | mentor    | query                                   | answer_id_regex |
