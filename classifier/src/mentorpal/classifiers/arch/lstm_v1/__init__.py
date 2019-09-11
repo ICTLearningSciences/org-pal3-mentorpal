@@ -1,9 +1,9 @@
 import os
 import numpy as np
 
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 from sklearn.externals import joblib
-from keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 from mentorpal.classifiers import (
     CheckpointClassifierFactory,
