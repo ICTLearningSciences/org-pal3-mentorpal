@@ -7,7 +7,7 @@ import requests
 
 import constants
 import utils
-from .utils import gen_mobile_video
+from .data_utils import gen_mobile_video
 
 
 """
