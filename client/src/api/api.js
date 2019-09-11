@@ -12,7 +12,7 @@ It exists (at least for now), exclusively to enable
 dev-local clients where mentor videos are being polished
 to test serving those videos
 */
-if (typeof window !== "undefined") {
+if (typeof window !== "undefined" && process.env.NODE_ENV !== "test") {
   // i.e. don't run at build time
   axios
     .get(`${MENTOR_API_URL}/config/video-host`)
