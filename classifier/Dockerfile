@@ -16,8 +16,10 @@ ADD requirements.txt /tmp/requirements.txt
 RUN bash -c "source activate ${MENTORPAL_CONDA_ENV} && \
     pip install -r /tmp/requirements.txt"
 RUN rm /tmp/requirements.txt
+COPY ./bin /tmp/bin
 RUN bash -c "source activate ${MENTORPAL_CONDA_ENV} && \
-    python -m nltk.downloader averaged_perceptron_tagger"
+     python /tmp/bin/nltk_setup.py" && \
+     rm -rf /tmp/bin
 
 WORKDIR /app
 
