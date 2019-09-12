@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-import { MentorData } from '@/store/types'
+import { MentorApiData, MentorData } from '@/store/types'
 
 const MENTOR_API_URL = process.env.MENTOR_API_URL || "/mentor-api"; // eslint-disable-line no-undef
 let MENTOR_VIDEO_HOST =
@@ -67,7 +67,7 @@ export async function fetchMentorData(mentorId:string) {
   return response;
 }
 
-export async function fetchMentorData2(mentorId:string) : Promise<AxiosResponse<MentorData>> {
+export async function fetchMentorData2(mentorId:string) : Promise<AxiosResponse<MentorApiData>> {
   return await axios.get(`${MENTOR_API_URL}/mentors/${mentorId}/data`);
 }
 

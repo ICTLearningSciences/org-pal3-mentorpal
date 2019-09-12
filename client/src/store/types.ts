@@ -27,6 +27,32 @@ export enum ResultStatus {
   FAILED = "FAILED",
 }
 
+export interface MentorApiData {
+  id: string;
+  name: string;
+  questions_by_id: {
+    [question_id: string]: {
+      question_text: string;
+    };
+  };
+  short_name: string;
+  status: MentorQuestionStatus;
+  title: string;
+  topics_by_id: {
+    [topic_id: string]: {
+      name: string;
+      questions: string[];
+    };
+  };
+  utterances_by_type: {
+    [utterance_type: string]: string[];
+  };
+}
+
+export interface QuestionsByTopicName
+{
+  
+}
 // TODO: transient properties--answer_id, and status should NOT be part of MentorData
 export interface MentorData {
   answer_id?: string;

@@ -18,6 +18,7 @@ import {
   MentorQuestionStatus,
   MENTOR_DATA_RESULT,
   ResultStatus,
+  MentorData,
 } from "./types";
 
 export const MENTOR_LOADED = "MENTOR_LOADED"; // mentor info was loaded
@@ -82,11 +83,23 @@ export const loadMentor2: ActionCreator<
   try {
     const result = await fetchMentorData2(mentorId);
     if (result.status == 200) {
+      const apiData = result.data;
+      const mentorData: MentorData = {
+        ...apiData,
+        topic_questions: Object.getOwnPropertyNames(apiData.topics_by_id)
+          .reduce<{[typeName:string]: string[]}>((topicQs, topicId) => {
+            const topicData = apiData.topics_by_id[topicId];
+            topicQs[topicData.name] = topicData.questions.map(
+              t => apiData.questions_by_id[t].question_text
+            );
+            return topicQs;
+          }, {}),
+      };
       return dispatch<MentorDataResultAction>({
         type: MENTOR_DATA_RESULT,
         payload: {
-          data: result.data,
-          status: ResultStatus.SUCCEEDED
+          data: mentorData,
+          status: ResultStatus.SUCCEEDED,
         },
       });
     }
@@ -94,7 +107,7 @@ export const loadMentor2: ActionCreator<
       type: MENTOR_DATA_RESULT,
       payload: {
         data: undefined,
-        status: ResultStatus.FAILED
+        status: ResultStatus.FAILED,
       },
     });
   } catch (err) {
@@ -103,7 +116,7 @@ export const loadMentor2: ActionCreator<
       type: MENTOR_DATA_RESULT,
       payload: {
         data: undefined,
-        status: ResultStatus.FAILED
+        status: ResultStatus.FAILED,
       },
     });
   }
