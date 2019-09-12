@@ -86,9 +86,14 @@ def _to_id(s: str, lower: bool = True) -> str:
 class Mentor(object):
     def __init__(self, id, mentor_data_root=None, topic_name_default="About Me"):
         self.id = id
-        self.__mentor_data_root = mentor_data_root or os.path.join(
-            "mentors", self.id, "data"
-        )
+        if mentor_data_root:
+            self.__mentor_data_root = (
+                mentor_data_root.format(id)
+                if "{}" in mentor_data_root
+                else mentor_data_root
+            )
+        else:
+            self.__mentor_data_root = os.path.join("mentors", self.id, "data")
         self.name = None
         self.short_name = None
         self.title = None
@@ -235,8 +240,7 @@ class Mentor(object):
             ids_answers[id] = answer
             questions = corpus.iloc[i]["question"].split("\n")
             for i, question in enumerate(questions):
-                question = sanitize_string(question)
-                question_ids[question] = id
+                question_ids[sanitize_string(question)] = id
                 if i == 0:
                     questions_by_id[id] = {"question_text": question}
                 _add_question_to_topics(

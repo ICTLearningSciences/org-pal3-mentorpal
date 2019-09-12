@@ -10,7 +10,7 @@ from mentorpal.mentor import Mentor
     "mentor_data_root,mentor_id,expected_data",
     [
         (
-            "./tests/resources/mentors",
+            path.join(".", "tests", "resources", "mentors", "{}", "data"),
             "mentor_01",
             {
                 "id": "mentor_01",
@@ -19,13 +19,13 @@ from mentorpal.mentor import Mentor
                 "title": "First Example Mentor",
                 "questions_by_id": {
                     "mentor_01_a1_1_1": {
-                        "question_text": "who are you and what do you do"
+                        "question_text": "Who are you and what do you do?"
                     },
                     "mentor_01_a25_1_1": {
-                        "question_text": "how do you spend most of your time off deployment"
+                        "question_text": "How do you spend most of your time off deployment?"
                     },
                     "mentor_01_a32_1_1": {
-                        "question_text": "what is the navy doing to combat heavy alcohol use"
+                        "question_text": "What is the Navy doing to combat heavy alcohol use?"
                     },
                 },
                 "topics_by_id": {
@@ -62,10 +62,7 @@ from mentorpal.mentor import Mentor
     ],
 )
 def test_it_loads_from_mentor_data(mentor_data_root, mentor_id, expected_data):
-    m = Mentor(
-        mentor_id, mentor_data_root=path.join(mentor_data_root, mentor_id, "data")
-    )
-    print(f"HERE\n\n{m.to_dict()}\n\n")
+    m = Mentor(mentor_id, mentor_data_root=mentor_data_root)
     assert m.to_dict() == expected_data
 
 
@@ -73,7 +70,7 @@ def test_it_loads_from_mentor_data(mentor_data_root, mentor_id, expected_data):
     "mentor_data_root,mentor_id,expected_data",
     [
         (
-            "./tests/resources/mentors",
+            path.join(".", "tests", "resources", "mentors", "{}", "data"),
             "mentor_with_mixed_case_ids",
             {
                 "id": "mentor_with_mixed_case_ids",
@@ -82,7 +79,7 @@ def test_it_loads_from_mentor_data(mentor_data_root, mentor_id, expected_data):
                 "title": "First Example Mentor",
                 "questions_by_id": {
                     "ID_Has_miXed_cAse": {
-                        "question_text": "who are you and what do you do"
+                        "question_text": "Who are you and what do you do?"
                     }
                 },
                 "topics_by_id": {
@@ -113,9 +110,7 @@ def test_it_loads_from_mentor_data(mentor_data_root, mentor_id, expected_data):
 def test_it_preserves_mixed_case_ids_for_now(
     mentor_data_root, mentor_id, expected_data
 ):
-    m = Mentor(
-        mentor_id, mentor_data_root=path.join(mentor_data_root, mentor_id, "data")
-    )
+    m = Mentor(mentor_id, mentor_data_root=mentor_data_root)
     assert m.to_dict() == expected_data
 
 
@@ -123,7 +118,7 @@ def test_it_preserves_mixed_case_ids_for_now(
     "mentor_data_root,mentor_id,expected_data",
     [
         (
-            "./tests/resources/mentors",
+            path.join(".", "tests", "resources", "mentors", "{}", "data"),
             "mentor_is_missing_profile_yaml",
             {
                 "id": "mentor_is_missing_profile_yaml",
@@ -132,7 +127,7 @@ def test_it_preserves_mixed_case_ids_for_now(
                 "title": "mentor",
                 "questions_by_id": {
                     "mentor_01_a1_1_1": {
-                        "question_text": "who are you and what do you do"
+                        "question_text": "Who are you and what do you do?"
                     }
                 },
                 "topics_by_id": {
@@ -159,7 +154,7 @@ def test_it_preserves_mixed_case_ids_for_now(
             },
         ),
         (
-            "./tests/resources/mentors",
+            path.join(".", "tests", "resources", "mentors", "{}", "data"),
             "mentor_has_invalid_profile_yaml",
             {
                 "id": "mentor_has_invalid_profile_yaml",
@@ -168,7 +163,7 @@ def test_it_preserves_mixed_case_ids_for_now(
                 "title": "mentor",
                 "questions_by_id": {
                     "mentor_01_a1_1_1": {
-                        "question_text": "who are you and what do you do"
+                        "question_text": "Who are you and what do you do?"
                     }
                 },
                 "topics_by_id": {
@@ -199,9 +194,7 @@ def test_it_preserves_mixed_case_ids_for_now(
 def test_it_uses_defaults_if_profile_yaml_is_missing_or_invalid(
     mentor_data_root, mentor_id, expected_data
 ):
-    m = Mentor(
-        mentor_id, mentor_data_root=path.join(mentor_data_root, mentor_id, "data")
-    )
+    m = Mentor(mentor_id, mentor_data_root=mentor_data_root)
     assert m.to_dict() == expected_data
 
 
@@ -209,7 +202,7 @@ def test_it_uses_defaults_if_profile_yaml_is_missing_or_invalid(
     "mentor_data_root,mentor_id,expected_data",
     [
         (
-            "./tests/resources/mentors",
+            path.join(".", "tests", "resources", "mentors", "{}", "data"),
             "mentor_has_no_topics_csv",
             {
                 "id": "mentor_has_no_topics_csv",
@@ -218,7 +211,7 @@ def test_it_uses_defaults_if_profile_yaml_is_missing_or_invalid(
                 "title": "First Example Mentor",
                 "questions_by_id": {
                     "mentor_01_a1_1_1": {
-                        "question_text": "who are you and what do you do"
+                        "question_text": "Who are you and what do you do?"
                     }
                 },
                 "topics_by_id": {
@@ -253,9 +246,7 @@ def test_it_uses_defaults_if_profile_yaml_is_missing_or_invalid(
 def test_it_uses_question_topics_when_no_topics_csv(
     mentor_data_root, mentor_id, expected_data
 ):
-    m = Mentor(
-        mentor_id, mentor_data_root=path.join(mentor_data_root, mentor_id, "data")
-    )
+    m = Mentor(mentor_id, mentor_data_root=mentor_data_root)
     assert m.to_dict() == expected_data
 
 
@@ -264,7 +255,7 @@ def test_it_uses_question_topics_when_no_topics_csv(
     "mentor_data_root,mentor_id,expected_data",
     [
         (
-            "./tests/resources/mentors",
+            path.join(".", "tests", "resources", "mentors", "{}", "data"),
             "mentor_has_no_utterances_csv",
             {
                 "id": "mentor_has_no_utterances_csv",
@@ -273,7 +264,7 @@ def test_it_uses_question_topics_when_no_topics_csv(
                 "title": "First Example Mentor",
                 "questions_by_id": {
                     "mentor_01_a1_1_1": {
-                        "question_text": "who are you and what do you do"
+                        "question_text": "Who are you and what do you do?"
                     }
                 },
                 "topics_by_id": {
@@ -295,9 +286,12 @@ def test_it_uses_question_topics_when_no_topics_csv(
 def test_it_uses_defaults_when_utterance_csv_is_missing_or_invalid(
     mock_logging, mentor_data_root, mentor_id, expected_data
 ):
-    mentor_data_root = path.join(mentor_data_root, mentor_id, "data")
     m = Mentor(mentor_id, mentor_data_root=mentor_data_root)
+    utterance_csv_path = m.mentor_data_path("utterance_data.csv")
+    assert utterance_csv_path == path.join(
+        mentor_data_root.format(mentor_id), "utterance_data.csv"
+    )
     mock_logging.warning.assert_called_once_with(
-        f"failed to load utterances for {mentor_id}: [Errno 2] No such file or directory: '{path.join(mentor_data_root, 'utterance_data.csv')}'"
+        f"failed to load utterances for {mentor_id}: [Errno 2] No such file or directory: '{utterance_csv_path}'"
     )
     assert m.to_dict() == expected_data
