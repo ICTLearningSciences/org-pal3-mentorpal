@@ -13,7 +13,7 @@ class Config(object):
     # override with a list of ids for mentors
     # that should preload with the server
     MENTOR_IDS_PRELOAD = []
-    MENTOR_DATA = "/app/mentors"
+    MENTOR_DATA_ROOT = os.environ.get("MENTOR_DATA_ROOT") or "/app/mentors"
     MENTOR_VIDEO_HOST = (
         os.environ.get("MENTOR_VIDEO_HOST") or "https://video.mentorpal.org"
     )

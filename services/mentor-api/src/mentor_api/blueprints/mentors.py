@@ -27,9 +27,18 @@ def mentor(mentor):
         raise InvalidUsage(message=f"mentor not found for {mentor}", status_code=404)
 
 
+@mentors_blueprint.route("/<mentor>/data", methods=["GET"])
+def mentor_data(mentor):
+    try:
+        m = Mentor(mentor, mentor_data_root=current_app.config.get("MENTOR_DATA_ROOT"))
+        return jsonify(m.to_dict())
+    except BaseException:
+        raise InvalidUsage(message=f"mentor not found for {mentor}", status_code=404)
+
+
 @mentors_blueprint.route("/<mentor>/data/<data_file>", methods=["GET"])
 def data(mentor, data_file):
-    mentor_data_root = current_app.config["MENTOR_DATA"]
+    mentor_data_root = current_app.config["MENTOR_DATA_ROOT"]
     file_path = os.path.join(
         mentor_data_root, mentor, "data", secure_filename(data_file)
     )
@@ -44,7 +53,7 @@ def data(mentor, data_file):
 
 @mentors_blueprint.route("/<mentor>/tracks/<track_file>", methods=["GET"])
 def tracks(mentor, track_file):
-    mentor_data_root = current_app.config["MENTOR_DATA"]
+    mentor_data_root = current_app.config["MENTOR_DATA_ROOT"]
     file_name = secure_filename(track_file)
     file_ext = os.path.splitext(file_name)[1]
     file_path = os.path.join(mentor_data_root, mentor, "data", "tracks", file_name)
