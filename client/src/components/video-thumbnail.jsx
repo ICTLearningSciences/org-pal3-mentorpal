@@ -6,7 +6,7 @@ import { MentorQuestionStatus } from "store/types";
 
 const VideoThumbnail = ({ mentor, isMobile, width, height }) => {
   const [isPlaying, setPlaying] = useState(true);
-  const src = idleUrl(mentor, isMobile ? "mobile" : "web");
+  const src = idleUrl(mentor.id, isMobile ? "mobile" : "web");
   const isDisabled =
     mentor.is_off_topic || mentor.status === MentorQuestionStatus.ERROR;
 

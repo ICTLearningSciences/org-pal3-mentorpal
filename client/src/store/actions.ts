@@ -1,14 +1,10 @@
 /* eslint-disable */
-import Papa from "papaparse";
 import { actions as cmi5Actions } from "redux-cmi5";
 import { ActionCreator, Dispatch } from "redux";
 import { ThunkAction } from "redux-thunk";
 
 import {
   fetchMentorData,
-  fetchMentorData2,
-  topicsUrl,
-  questionsUrl,
   queryMentor,
 } from "@/api/api";
 
@@ -19,6 +15,7 @@ import {
   MENTOR_DATA_RESULT,
   ResultStatus,
   MentorData,
+  MentorApiData,
 } from "./types";
 
 export const MENTOR_LOADED = "MENTOR_LOADED"; // mentor info was loaded
@@ -36,36 +33,22 @@ export const ANSWER_FINISHED = "ANSWER_FINISHED"; // mentor video has finished p
 export const MENTOR_SELECTION_TRIGGER_AUTO = "auto";
 export const MENTOR_SELECTION_TRIGGER_USER = "user";
 
-async function papaParseAsync(url: string) {
-  return new Promise((complete, error) => {
-    Papa.parse(url, { download: true, complete, error });
-  });
-}
-
-export function loadMentor(
-  mentorId: string,
-  {
-    recommendedQuestionsCsv = undefined,
-  }: {
-    recommendedQuestionsCsv: string | undefined;
+function findIntro(mentorData:MentorApiData): string
+{
+  try {
+    return mentorData.utterances_by_type._INTRO_[0][0]
   }
-) {
-  return async (dispatch: any) => {
-    try {
-      const mentorData = await fetchMentorData(mentorId);
-      console.log(`loaded data for mentor ${mentorId}`, mentorData);
-      dispatch({
-        type: MENTOR_LOADED,
-        mentor: mentorData,
-      });
-      dispatch(loadQuestions(mentorId, recommendedQuestionsCsv));
-    } catch (err) {
-      console.error(`Failed to load mentor data for id ${mentorId}`, err);
-    }
-  };
+  catch(err) {
+    console.error("no _INTRO_ in mentor data: ", mentorData)
+  }
+  const allIds = Object.getOwnPropertyNames(mentorData.questions_by_id)
+  if(allIds.length > 0) {
+    return allIds[0]
+  }
+  return "intro"
 }
 
-export const loadMentor2: ActionCreator<
+export const loadMentor: ActionCreator<
   ThunkAction<
     Promise<MentorDataResultAction>, // The type of the last action to be dispatched - will always be promise<T> for async actions
     MentorDataResult, // The type for the data within the last action
@@ -81,11 +64,13 @@ export const loadMentor2: ActionCreator<
   } = {}
 ) => async (dispatch: Dispatch) => {
   try {
-    const result = await fetchMentorData2(mentorId);
+    const result = await fetchMentorData(mentorId);
     if (result.status == 200) {
       const apiData = result.data;
       const mentorData: MentorData = {
         ...apiData,
+        answer_id: findIntro(apiData),
+        status: MentorQuestionStatus.ANSWERED, // move this out of mentor data
         topic_questions: Object.getOwnPropertyNames(apiData.topics_by_id)
           .reduce<{[typeName:string]: string[]}>((topicQs, topicId) => {
             const topicData = apiData.topics_by_id[topicId];
@@ -143,86 +128,6 @@ export const mentorAnswerPlaybackStarted = answer => (dispatch, getState) => {
   );
 };
 
-const loadQuestions = (mentorId: any, recommended: any) => async (
-  dispatch: (arg0: (dispatch: any) => Promise<void>) => void
-) => {
-  const url = questionsUrl(mentorId);
-
-  try {
-    const results = (await papaParseAsync(url)) as { data: any[] };
-    const questionsByTopic: string[] = results.data.reduce(
-      (accQsByTopic: { [x: string]: string[] }, curTopicsAndQs: string[]) => {
-        const topics = curTopicsAndQs[0].split(", ");
-        const question = curTopicsAndQs[3];
-
-        topics.forEach((topic: string | number) => {
-          accQsByTopic[topic] = accQsByTopic[topic] || [];
-          if (!accQsByTopic[topic].includes(question)) {
-            accQsByTopic[topic].push(question);
-          }
-        });
-        return accQsByTopic;
-      },
-      {}
-    );
-
-    dispatch(loadTopics(mentorId, questionsByTopic, recommended));
-  } catch (err) {
-    // tslint:disable-next-line: no-console
-    console.error(err);
-  }
-};
-
-const loadTopics = (
-  mentorId: any,
-  questions: { [x: string]: any },
-  recommended: any
-) => async (
-  dispatch: (arg0: { id: any; topic_questions: any; type: string }) => void
-) => {
-  const topics_url = topicsUrl(mentorId);
-  const init = recommended
-    ? {
-        Recommended: Array.isArray(recommended) ? recommended : [recommended],
-        History: [],
-      }
-    : { History: [] };
-
-  try {
-    const results = await papaParseAsync(topics_url);
-    const topic_questions = results.data.reduce(
-      (
-        topic_questions: { [x: string]: Iterable<unknown> | null | undefined },
-        data: any[]
-      ) => {
-        const topicName = data[0];
-        const topicGroup = data[1];
-        const topicQuestions = questions[topicName];
-
-        if (!(topicName && topicGroup && topicQuestions)) {
-          return topic_questions;
-        }
-        topic_questions[topicGroup] = topic_questions[topicGroup] || [];
-        topic_questions[topicGroup] = topic_questions[topicGroup].concat(
-          topicQuestions
-        );
-        topic_questions[topicGroup] = Array.from(
-          new Set(topic_questions[topicGroup])
-        );
-        return topic_questions;
-      },
-      init
-    );
-
-    dispatch({
-      id: mentorId,
-      topic_questions,
-      type: MENTOR_TOPIC_QUESTIONS_LOADED,
-    });
-  } catch (err) {
-    console.error(err);
-  }
-};
 
 export const selectMentor = (mentor: string) => (dispatch: {
   (arg0: (dispatch: any) => void): void;

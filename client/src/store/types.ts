@@ -36,7 +36,6 @@ export interface MentorApiData {
     };
   };
   short_name: string;
-  status: MentorQuestionStatus;
   title: string;
   topics_by_id: {
     [topic_id: string]: {
@@ -45,17 +44,15 @@ export interface MentorApiData {
     };
   };
   utterances_by_type: {
-    [utterance_type: string]: string[];
+    [utterance_type: string]: string[][];
   };
 }
 
-export interface QuestionsByTopicName
-{
-  
-}
 // TODO: transient properties--answer_id, and status should NOT be part of MentorData
 export interface MentorData {
-  answer_id?: string;
+  answer_id?: string; // move elsewhere
+  answer_text?: string;// move elsewhere
+  confidence?: number;// move elsewhere
   id: string;
   name: string;
   questions_by_id: {
@@ -64,7 +61,7 @@ export interface MentorData {
     };
   };
   short_name: string;
-  status: MentorQuestionStatus;
+  status: MentorQuestionStatus; // move elsewhere
   title: string;
   topics_by_id: {
     [topic_id: string]: {
@@ -76,7 +73,7 @@ export interface MentorData {
     [topic_id: string]: string[];
   };
   utterances_by_type: {
-    [utterance_type: string]: string[];
+    [utterance_type: string]: string[][];
   };
 }
 

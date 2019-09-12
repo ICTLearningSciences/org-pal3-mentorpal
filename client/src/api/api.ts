@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-import { MentorApiData, MentorData } from '@/store/types'
+import { MentorApiData } from '@/store/types'
 
 const MENTOR_API_URL = process.env.MENTOR_API_URL || "/mentor-api"; // eslint-disable-line no-undef
 let MENTOR_VIDEO_HOST =
@@ -29,45 +29,20 @@ if (typeof window !== "undefined" && process.env.NODE_ENV !== "test") {
     });
 }
 
-// TODO: don't pass mentor here, pass mentorId and answerId
-export const videoUrl = (mentor:MentorData, format:string):string => {
-  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/${format}/${mentor.answer_id}.mp4`;
+export const videoUrl = (mentor:string, answerId:string, format:string):string => {
+  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor}/${format}/${answerId}.mp4`;
 };
 
-// TODO: don't pass mentor here, pass mentorId
-export const idleUrl = (mentor:MentorData, format:string):string => {
-  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor.id}/${format}/idle.mp4`;
+export const idleUrl = (mentor:string, format:string):string => {
+  return `${MENTOR_VIDEO_HOST}/videos/mentors/${mentor}/${format}/idle.mp4`;
 };
 
 // TODO: don't pass mentor here, pass mentorId and answerId
-export const subtitleUrl = (mentor:MentorData):string => {
-  return `${MENTOR_API_URL}/mentors/${mentor.id}/tracks/${mentor.answer_id}.vtt`;
+export const subtitleUrl = (mentor:string, answerId:string):string => {
+  return `${MENTOR_API_URL}/mentors/${mentor}/tracks/${answerId}.vtt`;
 };
 
-export const topicsUrl = (mentorId:string):string => {
-  return `${MENTOR_API_URL}/mentors/${mentorId}/data/topics.csv`;
-};
-
-export const questionsUrl = (mentorId:string):string => {
-  return `${MENTOR_API_URL}/mentors/${mentorId}/data/questions_paraphrases_answers.csv`;
-};
-
-export async function fetchMentorData(mentorId:string) {
-  const res = await axios.get(`${MENTOR_API_URL}/mentors/${mentorId}`);
-  const { data } = res;
-  const response = {
-    id: mentorId,
-    name: data.name,
-    short_name: data.short_name,
-    title: data.title,
-    answer_id: data.intro_id,
-    answer_text: data.intro_text,
-    confidence: 1,
-  };
-  return response;
-}
-
-export async function fetchMentorData2(mentorId:string) : Promise<AxiosResponse<MentorApiData>> {
+export async function fetchMentorData(mentorId:string) : Promise<AxiosResponse<MentorApiData>> {
   return await axios.get(`${MENTOR_API_URL}/mentors/${mentorId}/data`);
 }
 
