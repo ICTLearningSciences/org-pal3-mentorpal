@@ -46,7 +46,7 @@ def _add_question_to_topics(
                 else question_topic_id
             )
             if not topic_id:
-                logging.warning(f"no topic for topic id {question_topic_id}")
+                logging.debug(f"no topic for topic id {question_topic_id}")
                 continue
             if use_question_topics and topic_id not in topics_by_id:
                 topics_by_id[topic_id] = _new_topic(question_topic)
@@ -86,14 +86,9 @@ def _to_id(s: str, lower: bool = True) -> str:
 class Mentor(object):
     def __init__(self, id, mentor_data_root=None, topic_name_default="About Me"):
         self.id = id
-        if mentor_data_root:
-            self.__mentor_data_root = (
-                mentor_data_root.format(id)
-                if "{}" in mentor_data_root
-                else mentor_data_root
-            )
-        else:
-            self.__mentor_data_root = os.path.join("mentors", self.id, "data")
+        self.__mentor_data_root = os.path.join(
+            mentor_data_root or "mentors", self.id, "data"
+        )
         self.name = None
         self.short_name = None
         self.title = None

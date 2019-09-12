@@ -10,7 +10,7 @@ from mentorpal.mentor import Mentor
     "mentor_data_root,mentor_id,expected_data",
     [
         (
-            path.join(".", "tests", "resources", "mentors", "{}", "data"),
+            path.join(".", "tests", "resources", "mentors"),
             "mentor_01",
             {
                 "id": "mentor_01",
@@ -70,7 +70,7 @@ def test_it_loads_from_mentor_data(mentor_data_root, mentor_id, expected_data):
     "mentor_data_root,mentor_id,expected_data",
     [
         (
-            path.join(".", "tests", "resources", "mentors", "{}", "data"),
+            path.join(".", "tests", "resources", "mentors"),
             "mentor_with_mixed_case_ids",
             {
                 "id": "mentor_with_mixed_case_ids",
@@ -118,7 +118,7 @@ def test_it_preserves_mixed_case_ids_for_now(
     "mentor_data_root,mentor_id,expected_data",
     [
         (
-            path.join(".", "tests", "resources", "mentors", "{}", "data"),
+            path.join(".", "tests", "resources", "mentors"),
             "mentor_is_missing_profile_yaml",
             {
                 "id": "mentor_is_missing_profile_yaml",
@@ -154,7 +154,7 @@ def test_it_preserves_mixed_case_ids_for_now(
             },
         ),
         (
-            path.join(".", "tests", "resources", "mentors", "{}", "data"),
+            path.join(".", "tests", "resources", "mentors"),
             "mentor_has_invalid_profile_yaml",
             {
                 "id": "mentor_has_invalid_profile_yaml",
@@ -202,7 +202,7 @@ def test_it_uses_defaults_if_profile_yaml_is_missing_or_invalid(
     "mentor_data_root,mentor_id,expected_data",
     [
         (
-            path.join(".", "tests", "resources", "mentors", "{}", "data"),
+            path.join(".", "tests", "resources", "mentors"),
             "mentor_has_no_topics_csv",
             {
                 "id": "mentor_has_no_topics_csv",
@@ -255,7 +255,7 @@ def test_it_uses_question_topics_when_no_topics_csv(
     "mentor_data_root,mentor_id,expected_data",
     [
         (
-            path.join(".", "tests", "resources", "mentors", "{}", "data"),
+            path.join(".", "tests", "resources", "mentors"),
             "mentor_has_no_utterances_csv",
             {
                 "id": "mentor_has_no_utterances_csv",
@@ -288,9 +288,6 @@ def test_it_uses_defaults_when_utterance_csv_is_missing_or_invalid(
 ):
     m = Mentor(mentor_id, mentor_data_root=mentor_data_root)
     utterance_csv_path = m.mentor_data_path("utterance_data.csv")
-    assert utterance_csv_path == path.join(
-        mentor_data_root.format(mentor_id), "utterance_data.csv"
-    )
     mock_logging.warning.assert_called_once_with(
         f"failed to load utterances for {mentor_id}: [Errno 2] No such file or directory: '{utterance_csv_path}'"
     )
