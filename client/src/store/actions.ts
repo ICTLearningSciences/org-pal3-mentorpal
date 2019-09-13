@@ -1,22 +1,22 @@
 /* eslint-disable */
 import { actions as cmi5Actions } from "redux-cmi5";
-import { ActionCreator, Dispatch } from "redux";
-import { ThunkAction } from "redux-thunk";
+import { ActionCreator, AnyAction, Dispatch } from "redux";
+import { ThunkAction, ThunkDispatch } from "redux-thunk";
 
-import {
-  fetchMentorData,
-  queryMentor,
-} from "@/api/api";
+import { fetchMentorData, queryMentor } from "@/api/api";
 
 import {
   MentorDataResult,
-  MentorDataResultAction,
   MentorQuestionStatus,
-  MENTOR_DATA_RESULT,
+  QuestionResult,
   ResultStatus,
   MentorData,
   MentorApiData,
+  State,
 } from "./types";
+
+export const MENTOR_DATA_RESULT = "MENTOR_DATA_RESULT";
+export const QUESTION_RESULT = "QUESTION_RESULT";
 
 export const MENTOR_LOADED = "MENTOR_LOADED"; // mentor info was loaded
 export const MENTOR_SELECTED = "MENTOR_SELECTED"; // mentor video was selected
@@ -30,22 +30,40 @@ export const QUESTION_ANSWERED = "QUESTION_ANSWERED"; // question was answered b
 export const QUESTION_ERROR = "QUESTION_ERROR"; // question could not be answered by mentor
 export const ANSWER_FINISHED = "ANSWER_FINISHED"; // mentor video has finished playing
 
+export interface MentorDataResultAction {
+  type: typeof MENTOR_DATA_RESULT;
+  payload: MentorDataResult;
+}
+
+export interface QuestionResultAction {
+  type: typeof QUESTION_RESULT;
+  payload: QuestionResult;
+}
+
+export interface QuestionSentAction {
+  type: typeof QUESTION_SENT;
+  question: string;
+}
+
+export interface NextMentorAction {
+  type: typeof MENTOR_NEXT;
+  mentor: string;
+}
+
 export const MENTOR_SELECTION_TRIGGER_AUTO = "auto";
 export const MENTOR_SELECTION_TRIGGER_USER = "user";
 
-function findIntro(mentorData:MentorApiData): string
-{
+function findIntro(mentorData: MentorApiData): string {
   try {
-    return mentorData.utterances_by_type._INTRO_[0][0]
+    return mentorData.utterances_by_type._INTRO_[0][0];
+  } catch (err) {
+    console.error("no _INTRO_ in mentor data: ", mentorData);
   }
-  catch(err) {
-    console.error("no _INTRO_ in mentor data: ", mentorData)
+  const allIds = Object.getOwnPropertyNames(mentorData.questions_by_id);
+  if (allIds.length > 0) {
+    return allIds[0];
   }
-  const allIds = Object.getOwnPropertyNames(mentorData.questions_by_id)
-  if(allIds.length > 0) {
-    return allIds[0]
-  }
-  return "intro"
+  return "intro";
 }
 
 export const loadMentor: ActionCreator<
@@ -71,14 +89,15 @@ export const loadMentor: ActionCreator<
         ...apiData,
         answer_id: findIntro(apiData),
         status: MentorQuestionStatus.ANSWERED, // move this out of mentor data
-        topic_questions: Object.getOwnPropertyNames(apiData.topics_by_id)
-          .reduce<{[typeName:string]: string[]}>((topicQs, topicId) => {
-            const topicData = apiData.topics_by_id[topicId];
-            topicQs[topicData.name] = topicData.questions.map(
-              t => apiData.questions_by_id[t].question_text
-            );
-            return topicQs;
-          }, {}),
+        topic_questions: Object.getOwnPropertyNames(
+          apiData.topics_by_id
+        ).reduce<{ [typeName: string]: string[] }>((topicQs, topicId) => {
+          const topicData = apiData.topics_by_id[topicId];
+          topicQs[topicData.name] = topicData.questions.map(
+            t => apiData.questions_by_id[t].question_text
+          );
+          return topicQs;
+        }, {}),
       };
       return dispatch<MentorDataResultAction>({
         type: MENTOR_DATA_RESULT,
@@ -109,7 +128,10 @@ export const loadMentor: ActionCreator<
 
 const { sendStatement: sendXapiStatement } = cmi5Actions;
 
-export const mentorAnswerPlaybackStarted = answer => (dispatch, getState) => {
+export const mentorAnswerPlaybackStarted = answer => (
+  dispatch: ThunkDispatch<State, void, AnyAction>,
+  getState: () => State
+) => {
   dispatch(
     sendXapiStatement({
       verb: "https://mentorpal.org/xapi/verb/answer-playback-started",
@@ -128,11 +150,9 @@ export const mentorAnswerPlaybackStarted = answer => (dispatch, getState) => {
   );
 };
 
-
-export const selectMentor = (mentor: string) => (dispatch: {
-  (arg0: (dispatch: any) => void): void;
-  (arg0: { payload: { id: string }; type: string }): void;
-}) => {
+export const selectMentor = (mentor: string) => (
+  dispatch: ThunkDispatch<State, void, AnyAction>
+) => {
   dispatch(onInput());
   dispatch({
     payload: {
@@ -189,18 +209,8 @@ const sessionStateExt = (state: any, ext: any = undefined) => {
 };
 
 export const sendQuestion = (question: any) => async (
-  dispatch: {
-    (arg0: any): void;
-    (arg0: (dispatch: any) => void): void;
-    (arg0: { question: any; type: string }): void;
-    (arg0: any): void;
-    (arg0: { mentor: any; type: string }): void;
-    (arg0: { mentor: any; question: any; type: string }): void;
-    (arg0: (dispatch: any) => void): void;
-    (arg0: (dispatch: any) => void): void;
-    (arg0: (dispatch: any) => void): void;
-  },
-  getState: { (): void; (): void; (): void; (): void; (): void }
+  dispatch: ThunkDispatch<State, void, AnyAction>,
+  getState: () => State
 ) => {
   dispatch(
     sendXapiStatement({
@@ -289,14 +299,10 @@ export const sendQuestion = (question: any) => async (
 };
 
 const NEXT_MENTOR_DELAY = 3000;
-let timer: NodeJS.Timer;
+let timer: NodeJS.Timer | null;
 export const answerFinished = () => (
-  dispatch: {
-    (arg0: { type: string }): void;
-    (arg0: { mentor: any; type: string }): void;
-    (arg0: (dispatch: any) => void): void;
-  },
-  getState: () => void
+  dispatch: ThunkDispatch<State, void, AnyAction>,
+  getState: () => State
 ) => {
   dispatch(onIdle());
 
@@ -339,17 +345,17 @@ export const answerFinished = () => (
   }, NEXT_MENTOR_DELAY);
 };
 
-export const onInput = () => (
-  dispatch: (arg0: { mentor: any; type: string }) => void
-) => {
+export const onInput: ActionCreator<
+  ThunkAction<AnyAction, State, void, NextMentorAction>
+> = () => (dispatch: Dispatch) => {
   if (timer) {
     clearTimeout(timer);
     timer = null;
   }
-  dispatch(nextMentor(""));
+  return dispatch(nextMentor(""));
 };
 
-const onQuestionSent = (question: any) => ({
+const onQuestionSent = (question: string): QuestionSentAction => ({
   question,
   type: QUESTION_SENT,
 });
@@ -359,7 +365,7 @@ const onQuestionAnswered = (response: any) => ({
   type: QUESTION_ANSWERED,
 });
 
-const onQuestionError = (id: string, question: any) => ({
+const onQuestionError = (id: string, question: string) => ({
   mentor: id,
   question,
   type: QUESTION_ERROR,
@@ -369,7 +375,7 @@ const onIdle = () => ({
   type: ANSWER_FINISHED,
 });
 
-const nextMentor = (id: string) => ({
+const nextMentor = (id: string): NextMentorAction => ({
   mentor: id,
   type: MENTOR_NEXT,
 });

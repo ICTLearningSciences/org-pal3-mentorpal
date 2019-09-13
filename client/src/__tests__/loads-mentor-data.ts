@@ -52,7 +52,7 @@ describe("load mentor data", () => {
     const expectedMentorData : MentorData = {
       ...expectedApiResponse,
       answer_id: "intro_1234",
-      status: MentorQuestionStatus.ANSWERED, // this is how the app currently behaves...why???
+      status: MentorQuestionStatus.READY,
       topic_questions: {
         'About Me': ["Who are you and what do you do?"]
       },

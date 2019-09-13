@@ -16,10 +16,6 @@ export enum MentorQuestionStatus {
   READY = "READY",
 }
 
-export const MENTOR_DATA_REQUEST = "MENTOR_DATA_REQUEST";
-export const MENTOR_DATA_REQUESTED = "MENTOR_DATA_REQUESTED";
-export const MENTOR_DATA_RESULT = "MENTOR_DATA_RESULT";
-
 export enum ResultStatus {
   NONE = "NONE",
   IN_PROGRESS = "IN_PROGRESS",
@@ -82,18 +78,8 @@ export interface MentorDataResult {
   status: ResultStatus;
 }
 
-export interface MentorDataRequestAction {
-  type: typeof MENTOR_DATA_REQUEST;
-  payload: string;
-}
-
-export interface MentorDataResultAction {
-  type: typeof MENTOR_DATA_RESULT;
-  payload: MentorDataResult;
-}
-
-export interface MentorDataRequestedAction {
-  type: typeof MENTOR_DATA_REQUESTED;
+export interface QuestionResult {
+  status: ResultStatus;
 }
 
 export interface State {

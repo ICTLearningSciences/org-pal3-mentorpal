@@ -43,7 +43,8 @@ const VideoPlayer = ({ width, height, format = "mobile" }) => {
       ? idleUrl(mentor.id, format)
       : videoUrl(mentor.id, mentor.answer_id, format)
     : "";
-  const subtitle_url = mentor && !isIdle ? subtitleUrl(mentor.id, mentor.answer_id) : "";
+  const subtitle_url =
+    mentor && !isIdle ? subtitleUrl(mentor.id, mentor.answer_id) : "";
   const showSubtitles = !chromeVersion() || chromeVersion() >= 62;
 
   const onEnded = () => {
