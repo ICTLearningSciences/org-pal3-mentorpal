@@ -23,33 +23,13 @@ export enum ResultStatus {
   FAILED = "FAILED",
 }
 
-export interface MentorApiData {
-  id: string;
-  name: string;
-  questions_by_id: {
-    [question_id: string]: {
-      question_text: string;
-    };
-  };
-  short_name: string;
-  title: string;
-  topics_by_id: {
-    [topic_id: string]: {
-      name: string;
-      questions: string[];
-    };
-  };
-  utterances_by_type: {
-    [utterance_type: string]: string[][];
-  };
-}
-
 // TODO: transient properties--answer_id, and status should NOT be part of MentorData
 export interface MentorData {
-  answer_id?: string; // move elsewhere
-  answer_text?: string;// move elsewhere
-  confidence?: number;// move elsewhere
+  answer_id?: string; // move elsewhere, e.g. history of QuestionStatus objects
+  answer_text?: string;// move elsewhere, e.g. history of QuestionStatus objects
+  confidence?: number;// move elsewhere, e.g. history of QuestionStatus objects
   id: string;
+  is_off_topic?: boolean; // move elsewhere, e.g. history of QuestionStatus objects
   name: string;
   questions_by_id: {
     [question_id: string]: {
@@ -57,7 +37,7 @@ export interface MentorData {
     };
   };
   short_name: string;
-  status: MentorQuestionStatus; // move elsewhere
+  status: MentorQuestionStatus; // move elsewhere, e.g. history of QuestionStatus objects
   title: string;
   topics_by_id: {
     [topic_id: string]: {

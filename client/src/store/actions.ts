@@ -3,7 +3,11 @@ import { actions as cmi5Actions } from "redux-cmi5";
 import { ActionCreator, AnyAction, Dispatch } from "redux";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
 
-import { fetchMentorData, queryMentor } from "@/api/api";
+import {
+  fetchMentorData,
+  MentorApiData,
+  queryMentor,
+} from "@/api/api";
 
 import {
   MentorDataResult,
@@ -11,9 +15,10 @@ import {
   QuestionResult,
   ResultStatus,
   MentorData,
-  MentorApiData,
   State,
 } from "./types";
+
+const RESPONSE_CUTOFF = -100;
 
 export const MENTOR_DATA_RESULT = "MENTOR_DATA_RESULT";
 export const QUESTION_RESULT = "QUESTION_RESULT";
@@ -128,27 +133,27 @@ export const loadMentor: ActionCreator<
 
 const { sendStatement: sendXapiStatement } = cmi5Actions;
 
-export const mentorAnswerPlaybackStarted = answer => (
-  dispatch: ThunkDispatch<State, void, AnyAction>,
-  getState: () => State
-) => {
-  dispatch(
-    sendXapiStatement({
-      verb: "https://mentorpal.org/xapi/verb/answer-playback-started",
-      result: {
-        extensions: {
-          "https://mentorpal.org/xapi/activity/extensions/mentor-response": {
-            ...answer,
-            // question: answer.question,
-            question_index: currentQuestionIndex(getState()),
-            mentor: answer.id,
-          },
-        },
-      },
-      contextExtensions: sessionStateExt(getState()),
-    })
-  );
-};
+// export const mentorAnswerPlaybackStarted = answer => (
+//   dispatch: ThunkDispatch<State, void, AnyAction>,
+//   getState: () => State
+// ) => {
+//   dispatch(
+//     sendXapiStatement({
+//       verb: "https://mentorpal.org/xapi/verb/answer-playback-started",
+//       result: {
+//         extensions: {
+//           "https://mentorpal.org/xapi/activity/extensions/mentor-response": {
+//             ...answer,
+//             // question: answer.question,
+//             question_index: currentQuestionIndex(getState()),
+//             mentor: answer.id,
+//           },
+//         },
+//       },
+//       contextExtensions: sessionStateExt(getState()),
+//     })
+//   );
+// };
 
 export const selectMentor = (mentor: string) => (
   dispatch: ThunkDispatch<State, void, AnyAction>
@@ -208,6 +213,17 @@ const sessionStateExt = (state: any, ext: any = undefined) => {
   };
 };
 
+interface QuestionResponse {
+  answer_id: string;
+  answer_text: string;
+  classifier: string;
+  confidence: number;
+  id: string;
+  is_off_topic: boolean;
+  question: string;
+  status: MentorQuestionStatus;
+}
+
 export const sendQuestion = (question: any) => async (
   dispatch: ThunkDispatch<State, void, AnyAction>,
   getState: () => State
@@ -234,9 +250,20 @@ export const sendQuestion = (question: any) => async (
   const tick = Date.now();
   // query all the mentors without waiting for the answers one by one
   const promises = mentorIds.map(mentor => {
-    return new Promise((resolve, reject) => {
+    return new Promise<QuestionResponse>((resolve, reject) => {
       queryMentor(mentor, question)
-        .then((response: unknown) => {
+        .then(r => {
+          const { data } = r;
+          const response = {
+            id: mentor,
+            question: question,
+            answer_id: data.answer_id,
+            answer_text: data.answer_text,
+            confidence: data.confidence,
+            is_off_topic: data.confidence <= RESPONSE_CUTOFF,
+            classifier: data.classifier,
+            status: MentorQuestionStatus.ANSWERED,
+          };
           dispatch(
             sendXapiStatement({
               contextExtensions: sessionStateExt(getState()),
@@ -309,14 +336,17 @@ export const answerFinished = () => (
   // order mentors by highest answer confidence
   const state = getState();
   const mentors = state.mentors_by_id;
-  const responses:
-    | never[]
-    | { confidence: any; id: any; is_off_topic: any; status: any }[] = [];
+  const responses: {
+    confidence: number;
+    id: string;
+    is_off_topic: boolean;
+    status: MentorQuestionStatus;
+  }[] = [];
   Object.keys(mentors).forEach(id => {
     responses.push({
-      confidence: mentors[id].confidence,
+      confidence: mentors[id].confidence || -1.0,
       id: mentors[id].id,
-      is_off_topic: mentors[id].is_off_topic,
+      is_off_topic: mentors[id].is_off_topic || false,
       status: mentors[id].status,
     });
   });
