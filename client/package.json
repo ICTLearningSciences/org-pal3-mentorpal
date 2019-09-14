@@ -25,7 +25,6 @@
     "gatsby-source-filesystem": "^2.0.37",
     "gatsby-transformer-csv": "^2.0.8",
     "gatsby-transformer-sharp": "^2.1.19",
-    "papaparse": "^5.0.0",
     "prop-types": "^15.7.2",
     "query-string": "^6.8.0",
     "react": "^16.8.6",
