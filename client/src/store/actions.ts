@@ -3,15 +3,12 @@ import { actions as cmi5Actions } from "redux-cmi5";
 import { ActionCreator, AnyAction, Dispatch } from "redux";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
 
-import {
-  fetchMentorData,
-  MentorApiData,
-  queryMentor,
-} from "@/api/api";
+import { fetchMentorData, MentorApiData, queryMentor } from "@/api/api";
 
 import {
   MentorDataResult,
   MentorQuestionStatus,
+  MentorSelection,
   QuestionResult,
   ResultStatus,
   MentorData,
@@ -20,24 +17,33 @@ import {
 
 const RESPONSE_CUTOFF = -100;
 
+export const ANSWER_FINISHED = "ANSWER_FINISHED"; // mentor video has finished playing
+export const MENTOR_DATA_REQUESTED = "MENTOR_DATA_REQUESTED";
 export const MENTOR_DATA_RESULT = "MENTOR_DATA_RESULT";
-export const QUESTION_RESULT = "QUESTION_RESULT";
-
-export const MENTOR_LOADED = "MENTOR_LOADED"; // mentor info was loaded
-export const MENTOR_SELECTED = "MENTOR_SELECTED"; // mentor video was selected
 export const MENTOR_FAVED = "MENTOR_FAVED"; // mentor was favorited
 export const MENTOR_NEXT = "MENTOR_NEXT"; // set next mentor to play after current
+export const MENTOR_LOADED = "MENTOR_LOADED"; // mentor info was loaded
+export const MENTOR_SELECTED = "MENTOR_SELECTED"; // mentor video was selected
 export const MENTOR_TOPIC_QUESTIONS_LOADED = "MENTOR_TOPIC_QUESTIONS_LOADED";
-export const TOPIC_SELECTED = "TOPIC_SELECTED";
-
-export const QUESTION_SENT = "QUESTION_SENT"; // question input was sent
 export const QUESTION_ANSWERED = "QUESTION_ANSWERED"; // question was answered by mentor
 export const QUESTION_ERROR = "QUESTION_ERROR"; // question could not be answered by mentor
-export const ANSWER_FINISHED = "ANSWER_FINISHED"; // mentor video has finished playing
+export const QUESTION_RESULT = "QUESTION_RESULT";
+export const QUESTION_SENT = "QUESTION_SENT"; // question input was sent
+export const TOPIC_SELECTED = "TOPIC_SELECTED";
+
+export interface MentorDataRequestedAction {
+  type: typeof MENTOR_DATA_REQUESTED;
+  payload: string[];
+}
 
 export interface MentorDataResultAction {
   type: typeof MENTOR_DATA_RESULT;
   payload: MentorDataResult;
+}
+
+export interface MentorSelectedAction {
+  type: typeof MENTOR_SELECTED;
+  payload: MentorSelection;
 }
 
 export interface QuestionResultAction {
@@ -87,6 +93,11 @@ export const loadMentor: ActionCreator<
   } = {}
 ) => async (dispatch: Dispatch) => {
   try {
+    // const mentorList:string[] = typeof(mentors) === 'string'? mentors.split(',').map(m => m.trim()): mentors as string[]
+    dispatch<MentorDataRequestedAction>({
+      type: MENTOR_DATA_REQUESTED,
+      payload: [mentorId]
+    })
     const result = await fetchMentorData(mentorId);
     if (result.status == 200) {
       const apiData = result.data;
@@ -223,6 +234,37 @@ interface QuestionResponse {
   question: string;
   status: MentorQuestionStatus;
 }
+
+// export const sendQuestion2: ActionCreator<
+//   ThunkAction<
+//     Promise<QuestionResultAction>, // The type of the last action to be dispatched - will always be promise<T> for async actions
+//     State, // The type for the data within the last action
+//     string, // The type of the parameter for the nested function
+//     QuestionResultAction // The type of the last action to be dispatched
+//   >
+// > = (question: string) => async (
+//   dispatch: ThunkDispatch<State, void, AnyAction>,
+//   getState: () => State
+// ) => {
+//   try {
+//     dispatch(onInput());
+//     dispatch(onQuestionSent(question));
+//     return dispatch<QuestionResultAction>({
+//       type: QUESTION_RESULT,
+//       payload: {
+//         status: ResultStatus.SUCCEEDED,
+//       },
+//     });
+//   } catch (err) {
+//     console.error(`Failed to get response for question ${question}`, err);
+//     return dispatch<QuestionResultAction>({
+//       type: QUESTION_RESULT,
+//       payload: {
+//         status: ResultStatus.FAILED,
+//       },
+//     });
+//   }
+// };
 
 export const sendQuestion = (question: any) => async (
   dispatch: ThunkDispatch<State, void, AnyAction>,

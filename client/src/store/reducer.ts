@@ -4,21 +4,18 @@ import {
   ANSWER_FINISHED,
   MENTOR_FAVED,
   MENTOR_NEXT,
+  MENTOR_DATA_REQUESTED,
   MENTOR_DATA_RESULT,
+  MENTOR_SELECTED,
   QUESTION_ANSWERED,
   QUESTION_ERROR,
   QUESTION_SENT,
   TOPIC_SELECTED,
   MentorDataResultAction,
-} from "./actions";
-import {
-  MentorData,
-  MENTOR_SELECTED,
+  MentorDataRequestedAction,
   MentorSelectedAction,
-  State,
-  MentorQuestionStatus,
-  ResultStatus,
-} from "./types";
+} from "./actions";
+import { MentorData, State, MentorQuestionStatus, ResultStatus } from "./types";
 
 export const initialState: State = cmi5Reducer({
   current_mentor: "", // id of selected mentor
@@ -70,27 +67,51 @@ function onMentorDataResult(
   return state;
 }
 
+function onMentorDataRequested(
+  state: State,
+  action: MentorDataRequestedAction
+): State {
+  const mentorsById = action.payload.reduce(
+    (mentorsByIdAcc: { [mentorId: string]: any }, mentorId: string) => {
+      mentorsByIdAcc[mentorId] = {
+        id: mentorId,
+        status: MentorQuestionStatus.NONE,
+      };
+      return mentorsByIdAcc;
+    },
+    {}
+  );
+  Object.getOwnPropertyNames(state.mentors_by_id).forEach(id => {
+    mentorsById[id] = {
+      ...(mentorsById[id] || {})
+      ...(state.mentors_by_id[id])
+    }
+  })
+  return {
+    ...state,
+    mentors_by_id: mentorsById,
+  };
+}
+
 export default function reducer(state = initialState, action: any): State {
   state = cmi5Reducer(state, action);
   switch (action.type) {
+    case MENTOR_DATA_REQUESTED:
+      return onMentorDataRequested(state, action as MentorDataRequestedAction);
     case MENTOR_DATA_RESULT:
       return onMentorDataResult(state, action as MentorDataResultAction);
-
     case MENTOR_SELECTED:
       return mentorSelected(state, action);
-
     case MENTOR_FAVED:
       return {
         ...state,
         faved_mentor: state.faved_mentor === action.id ? "" : action.id,
       };
-
     case MENTOR_NEXT:
       return {
         ...state,
         next_mentor: action.mentor,
       };
-
     case QUESTION_SENT:
       return {
         ...state,
@@ -99,14 +120,13 @@ export default function reducer(state = initialState, action: any): State {
           new Set([...state.questions_asked, normalizeString(action.question)])
         ),
       };
-
     case QUESTION_ANSWERED: {
       const response = action.mentor;
-      const history = state.mentors_by_id[response.id].topic_questions.History || [];
+      const history =
+        state.mentors_by_id[response.id].topic_questions.History || [];
       if (!history.includes(response.question)) {
         history.push(response.question);
       }
-
       const mentor = {
         ...state.mentors_by_id[response.id],
         answer_id: response.answer_id,
@@ -120,7 +140,6 @@ export default function reducer(state = initialState, action: any): State {
           History: history,
         },
       };
-
       return {
         ...state,
         isIdle: false,

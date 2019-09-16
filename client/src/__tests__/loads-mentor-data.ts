@@ -58,7 +58,39 @@ describe("load mentor data", () => {
       },
     }
     mockAxios.onGet(`/mentor-api/mentors/${mentorId}/data`).replyOnce(200, expectedApiResponse);
+    const intermediateStates: {
+      isMet?: boolean;
+      testExpectations: () => void;
+      unmetMessage: string;
+    }[] = [
+      {
+        testExpectations: () => {
+          expect(store.getState().mentors_by_id).toMatchObject({
+            [mentorId]: {
+              id: mentorId,
+              status: MentorQuestionStatus.NONE,
+            }
+          });
+        },
+        unmetMessage:
+          "action sets up a placeholder record for all mentors immediately on request load mentors",
+      },
+    ];
+    store.subscribe(() => {
+      const nextUnmet = intermediateStates.find(x => !x.isMet);
+      if (!nextUnmet) {
+        return;
+      }
+      nextUnmet.testExpectations();
+      nextUnmet.isMet = true;
+    });
     await dispatch(loadMentor(mentorId));
+    intermediateStates.forEach(inState => {
+      expect({ message: inState.unmetMessage, isMet: inState.isMet }).toEqual({
+        message: inState.unmetMessage,
+        isMet: true,
+      });
+    });
     const state = store.getState();
     expect(state.mentors_by_id).toEqual({
       [mentorId]: expectedMentorData
