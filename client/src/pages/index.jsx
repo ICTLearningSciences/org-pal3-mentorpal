@@ -6,7 +6,7 @@ import { CircularProgress } from "@material-ui/core";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Helmet } from "react-helmet";
 
-import { loadMentor, selectMentor } from "store/actions";
+import { loadMentor } from "store/actions";
 
 import Header from "components/header";
 import Input from "components/input";
@@ -62,14 +62,11 @@ const IndexPage = ({ search }) => {
         ? mentor
         : [mentor]
       : ["clint", "dan", "carlos", "julianne"];
-    mentorList.forEach(mentorId => {
-      dispatch(
-        loadMentor(mentorId, {
-          recommendedQuestions: recommended,
-        })
-      );
-    });
-    dispatch(selectMentor(mentorList[0]));
+    dispatch(
+      loadMentor(mentorList, {
+        recommendedQuestions: recommended,
+      })
+    );
   }, []);
 
   useEffect(() => {

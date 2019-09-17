@@ -85,7 +85,7 @@ function findIntro(mentorData: MentorApiData): string {
 export const loadMentor: ActionCreator<
   ThunkAction<
     Promise<MentorDataRequestDoneAction>, // The type of the last action to be dispatched - will always be promise<T> for async actions
-    MentorDataResult, // The type for the data within the last action
+    State, // The type for the data within the last action
     string, // The type of the parameter for the nested function
     MentorDataRequestDoneAction // The type of the last action to be dispatched
   >
@@ -96,7 +96,10 @@ export const loadMentor: ActionCreator<
   }: {
     recommendedQuestions?: string[] | string | undefined;
   } = {}
-) => async (dispatch: Dispatch) => {
+) => async (
+  dispatch: ThunkDispatch<State, void, AnyAction>,
+  getState: () => State
+) => {
   try {
     const mentorList = Array.isArray(mentors)
       ? (mentors as Array<string>)
@@ -164,6 +167,15 @@ export const loadMentor: ActionCreator<
       })
     );
     await dataPromises;
+    const mentorsById = getState().mentors_by_id;
+    // find the first of the requested mentors that loaded successfully
+    // and select that mentor
+    const firstMentor = mentorList.find(
+      id => mentorsById[id].status === MentorQuestionStatus.READY
+    );
+    if (firstMentor) {
+      dispatch(selectMentor(firstMentor));
+    }
   } catch (err) {
     console.error(`Failed to load mentor data for id ${mentors}`, err);
   }
@@ -200,7 +212,7 @@ export const selectMentor = (mentor: string) => (
   dispatch: ThunkDispatch<State, void, AnyAction>
 ) => {
   dispatch(onInput());
-  dispatch({
+  return dispatch({
     payload: {
       id: mentor,
     },

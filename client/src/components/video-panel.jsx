@@ -12,11 +12,10 @@ import MessageStatus from "components/video-status";
 const VideoPanel = ({ isMobile }) => {
   const dispatch = useDispatch();
   const mentor = useSelector(state => state.current_mentor);
+  const mentors = useSelector(state => state.mentors_by_id);
   if (!mentor) {
     return <div />;
   }
-  const mentors = useSelector(state => state.mentors_by_id);
-
   const height = 50;
   const width = isMobile ? height / 0.895 : height / 0.5625;
 

@@ -135,7 +135,12 @@ describe("load mentor data", () => {
   it("loads all data for a mentor with a single action and api request", async () => {
     const mentorId = "mentor_123"; // id of the single mentor we're testing here
     const expectedApiResponse = expectedApiDataByMentorId[mentorId];
-    const expectedMentorData = expectedMentorDataByMentorId[mentorId];
+    const expectedMentorData = {
+      ...expectedMentorDataByMentorId[mentorId],
+      // the first mentor in the list will be the SELECTED mentor
+      // and therefore will have status ANSWERED
+      status: MentorQuestionStatus.ANSWERED,
+    };
     mockAxios
       .onGet(`/mentor-api/mentors/${mentorId}/data`)
       .replyOnce(200, expectedApiResponse);
@@ -149,14 +154,21 @@ describe("load mentor data", () => {
     expect(state.mentors_by_id).toEqual({
       [mentorId]: expectedMentorData,
     });
+    expect(state.current_mentor).toEqual(mentorId);
   });
 
   it("loads all data for a panel of mentors with a single action", async () => {
     const mentors = ["mentor_123", "mentor_456"];
     const expectedMentorData: { [mentorId: string]: MentorData } = {};
-    mentors.forEach(mentorId => {
+    mentors.forEach((mentorId, i) => {
       // add the mentor's expected data
-      expectedMentorData[mentorId] = expectedMentorDataByMentorId[mentorId];
+      expectedMentorData[mentorId] = {
+        ...expectedMentorDataByMentorId[mentorId],
+        // the first mentor in the list will be the SELECTED mentor
+        // and therefore will have status ANSWERED
+        status:
+          i == 0 ? MentorQuestionStatus.ANSWERED : MentorQuestionStatus.READY,
+      };
       // setup a mock api request for the mentor
       mockAxios
         .onGet(`/mentor-api/mentors/${mentorId}/data`)
@@ -170,13 +182,18 @@ describe("load mentor data", () => {
     intermediateStates.testExpectations();
     const state = store.getState();
     expect(state.mentors_by_id).toEqual(expectedMentorData);
+    expect(state.current_mentor).toEqual(mentors[0]);
   });
 
   it("integrates recommended questions passed as args into mentor data", async () => {
     const mentorId = "mentor_123"; // id of the single mentor we're testing here
     const expectedApiResponse = expectedApiDataByMentorId[mentorId];
-    const expectedMentorDataWithoutRecommendedQs =
-      expectedMentorDataByMentorId[mentorId];
+    const expectedMentorDataWithoutRecommendedQs = {
+      ...expectedMentorDataByMentorId[mentorId],
+      // the first mentor in the list will be the SELECTED mentor
+      // and therefore will have status ANSWERED
+      status: MentorQuestionStatus.ANSWERED,
+    };
     const recommendedQuestions = ["What is your name?", "How old are you?"];
     const expectedMentorData = {
       ...expectedMentorDataWithoutRecommendedQs,
@@ -203,8 +220,12 @@ describe("load mentor data", () => {
   it("integrates a single recommended question passed as a string arg into mentor data", async () => {
     const mentorId = "mentor_123"; // id of the single mentor we're testing here
     const expectedApiResponse = expectedApiDataByMentorId[mentorId];
-    const expectedMentorDataWithoutRecommendedQs =
-      expectedMentorDataByMentorId[mentorId];
+    const expectedMentorDataWithoutRecommendedQs = {
+      ...expectedMentorDataByMentorId[mentorId],
+      // the first mentor in the list will be the SELECTED mentor
+      // and therefore will have status ANSWERED
+      status: MentorQuestionStatus.ANSWERED,
+    };
     const recommendedQuestion = "What is your name?";
     const expectedMentorData = {
       ...expectedMentorDataWithoutRecommendedQs,
