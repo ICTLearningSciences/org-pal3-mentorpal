@@ -36,9 +36,7 @@ const Questions = ({ height, onSelected }: Props) => {
   const questions = mentor.topic_questions[current_topic] || [];
   const recommended = mentor.topic_questions.Recommended || [];
 
-  console.log(`here in questions...questions=`, questions);
   const ordered_questions = questions.slice();
-  console.log(`here in questions...ordered_questions=`, ordered_questions);
   if (current_topic === "History") {
     ordered_questions.reverse();
   } else {
