@@ -94,13 +94,20 @@ export const loadMentor: ActionCreator<
   {
     recommendedQuestions,
   }: {
-    recommendedQuestions?: string[] | undefined;
+    recommendedQuestions?: string[] | string | undefined;
   } = {}
 ) => async (dispatch: Dispatch) => {
   try {
     const mentorList = Array.isArray(mentors)
       ? (mentors as Array<string>)
       : [mentors as string];
+    const recommendedQuestionList: string[] | undefined =
+      Array.isArray(recommendedQuestions) && recommendedQuestions.length > 0
+        ? (recommendedQuestions as string[])
+        : typeof recommendedQuestions === "string"
+        ? [recommendedQuestions as string]
+        : undefined;
+
     dispatch<MentorDataRequestedAction>({
       type: MENTOR_DATA_REQUESTED,
       payload: mentorList,
@@ -126,8 +133,8 @@ export const loadMentor: ActionCreator<
                       );
                       return topicQs;
                     },
-                    recommendedQuestions
-                      ? { Recommended: recommendedQuestions }
+                    Array.isArray(recommendedQuestionList)
+                      ? { Recommended: recommendedQuestionList }
                       : {}
                   ),
                 };
