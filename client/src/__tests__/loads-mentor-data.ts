@@ -5,7 +5,8 @@ import thunk, { ThunkDispatch } from "redux-thunk";
 
 import { loadMentor } from "@/store/actions";
 import reducer, { initialState } from "@/store/reducer";
-import { State, MentorData, MentorQuestionStatus} from "@/store/types";
+import { State, MentorData, MentorQuestionStatus } from "@/store/types";
+import { ExpectIntermediateStates } from "@/test_helpers";
 
 // This sets the mock adapter on the default instance
 const mockAxios = new MockAdapter(axios);
@@ -24,7 +25,7 @@ describe("load mentor data", () => {
   });
 
   it("loads all data for a mentor in a single action and api request", async () => {
-    const mentorId = "mentor_123"
+    const mentorId = "mentor_123";
     const expectedApiResponse = {
       id: mentorId,
       name: "Mentor Number 1",
@@ -48,52 +49,38 @@ describe("load mentor data", () => {
         _REPEAT_BUMP_: [["repeat_bump", "you asked that, how about this?"]],
         _PROFANITY_: [["profanity", "watch your mouth!"]],
       },
-    }
-    const expectedMentorData : MentorData = {
+    };
+    const expectedMentorData: MentorData = {
       ...expectedApiResponse,
       answer_id: "intro_1234",
       status: MentorQuestionStatus.READY,
       topic_questions: {
-        'About Me': ["Who are you and what do you do?"]
+        "About Me": ["Who are you and what do you do?"],
       },
-    }
-    mockAxios.onGet(`/mentor-api/mentors/${mentorId}/data`).replyOnce(200, expectedApiResponse);
-    const intermediateStates: {
-      isMet?: boolean;
-      testExpectations: () => void;
-      unmetMessage: string;
-    }[] = [
+    };
+    mockAxios
+      .onGet(`/mentor-api/mentors/${mentorId}/data`)
+      .replyOnce(200, expectedApiResponse);
+    const intermediateStates = new ExpectIntermediateStates<State>(store, [
       {
         testExpectations: () => {
           expect(store.getState().mentors_by_id).toMatchObject({
             [mentorId]: {
               id: mentorId,
               status: MentorQuestionStatus.NONE,
-            }
+            },
           });
         },
         unmetMessage:
           "action sets up a placeholder record for all mentors immediately on request load mentors",
       },
-    ];
-    store.subscribe(() => {
-      const nextUnmet = intermediateStates.find(x => !x.isMet);
-      if (!nextUnmet) {
-        return;
-      }
-      nextUnmet.testExpectations();
-      nextUnmet.isMet = true;
-    });
+    ]);
+    intermediateStates.subscribe();
     await dispatch(loadMentor(mentorId));
-    intermediateStates.forEach(inState => {
-      expect({ message: inState.unmetMessage, isMet: inState.isMet }).toEqual({
-        message: inState.unmetMessage,
-        isMet: true,
-      });
-    });
+    intermediateStates.testExpectations();
     const state = store.getState();
     expect(state.mentors_by_id).toEqual({
-      [mentorId]: expectedMentorData
+      [mentorId]: expectedMentorData,
     });
   });
 });

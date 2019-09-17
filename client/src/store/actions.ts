@@ -96,8 +96,8 @@ export const loadMentor: ActionCreator<
     // const mentorList:string[] = typeof(mentors) === 'string'? mentors.split(',').map(m => m.trim()): mentors as string[]
     dispatch<MentorDataRequestedAction>({
       type: MENTOR_DATA_REQUESTED,
-      payload: [mentorId]
-    })
+      payload: [mentorId],
+    });
     const result = await fetchMentorData(mentorId);
     if (result.status == 200) {
       const apiData = result.data;

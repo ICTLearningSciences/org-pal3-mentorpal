@@ -86,7 +86,7 @@ const IndexPage = ({ search }) => {
     return <CircularProgress />;
   }
 
-  const hidePanel = Object.getOwnPropertyNames(mentors_by_id).length < 2
+  const hidePanel = Object.getOwnPropertyNames(mentors_by_id).length < 2;
 
   return (
     <MuiThemeProvider theme={theme}>

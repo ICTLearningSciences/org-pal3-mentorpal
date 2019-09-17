@@ -15,7 +15,13 @@ import {
   MentorDataRequestedAction,
   MentorSelectedAction,
 } from "./actions";
-import { MentorData, State, MentorQuestionStatus, ResultStatus } from "./types";
+import {
+  MentorData,
+  MentorQuestionStatus,
+  newMentorData,
+  ResultStatus,
+  State,
+} from "./types";
 
 export const initialState: State = cmi5Reducer({
   current_mentor: "", // id of selected mentor
@@ -71,22 +77,16 @@ function onMentorDataRequested(
   state: State,
   action: MentorDataRequestedAction
 ): State {
-  const mentorsById = action.payload.reduce(
-    (mentorsByIdAcc: { [mentorId: string]: any }, mentorId: string) => {
-      mentorsByIdAcc[mentorId] = {
-        id: mentorId,
-        status: MentorQuestionStatus.NONE,
-      };
+  const mentorsById = action.payload.reduce<{ [mentorId: string]: MentorData }>(
+    (mentorsByIdAcc, mentorId) => {
+      mentorsByIdAcc[mentorId] = newMentorData(mentorId);
       return mentorsByIdAcc;
     },
     {}
   );
   Object.getOwnPropertyNames(state.mentors_by_id).forEach(id => {
-    mentorsById[id] = {
-      ...(mentorsById[id] || {})
-      ...(state.mentors_by_id[id])
-    }
-  })
+    mentorsById[id] = state.mentors_by_id[id];
+  });
   return {
     ...state,
     mentors_by_id: mentorsById,
@@ -149,7 +149,6 @@ export default function reducer(state = initialState, action: any): State {
         },
       };
     }
-
     case QUESTION_ERROR:
       return {
         ...state,
@@ -162,19 +161,16 @@ export default function reducer(state = initialState, action: any): State {
           },
         },
       };
-
     case ANSWER_FINISHED:
       return {
         ...state,
         isIdle: true,
       };
-
     case TOPIC_SELECTED:
       return {
         ...state,
         current_topic: action.topic,
       };
-
     default:
       return state;
   }

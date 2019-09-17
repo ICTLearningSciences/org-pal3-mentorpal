@@ -16,11 +16,25 @@ export enum ResultStatus {
   FAILED = "FAILED",
 }
 
+export function newMentorData(id: string): MentorData {
+  return {
+    id: id,
+    name: "",
+    questions_by_id: {},
+    short_name: "",
+    status: MentorQuestionStatus.NONE,
+    title: "",
+    topics_by_id: {},
+    topic_questions: {},
+    utterances_by_type: {},
+  };
+}
+
 // TODO: transient properties--answer_id, and status should NOT be part of MentorData
 export interface MentorData {
   answer_id?: string; // move elsewhere, e.g. history of QuestionStatus objects
-  answer_text?: string;// move elsewhere, e.g. history of QuestionStatus objects
-  confidence?: number;// move elsewhere, e.g. history of QuestionStatus objects
+  answer_text?: string; // move elsewhere, e.g. history of QuestionStatus objects
+  confidence?: number; // move elsewhere, e.g. history of QuestionStatus objects
   id: string;
   is_off_topic?: boolean; // move elsewhere, e.g. history of QuestionStatus objects
   name: string;
