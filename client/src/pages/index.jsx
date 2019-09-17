@@ -65,7 +65,7 @@ const IndexPage = ({ search }) => {
     mentorList.forEach(mentorId => {
       dispatch(
         loadMentor(mentorId, {
-          recommendedQuestionsCsv: recommended,
+          recommendedQuestions: recommended,
         })
       );
     });

@@ -87,9 +87,9 @@ export const loadMentor: ActionCreator<
 > = (
   mentorId: string,
   {
-    recommendedQuestionsCsv = undefined,
+    recommendedQuestions,
   }: {
-    recommendedQuestionsCsv?: string | undefined;
+    recommendedQuestions?: string[] | undefined;
   } = {}
 ) => async (dispatch: Dispatch) => {
   try {
@@ -107,13 +107,16 @@ export const loadMentor: ActionCreator<
         status: MentorQuestionStatus.ANSWERED, // move this out of mentor data
         topic_questions: Object.getOwnPropertyNames(
           apiData.topics_by_id
-        ).reduce<{ [typeName: string]: string[] }>((topicQs, topicId) => {
-          const topicData = apiData.topics_by_id[topicId];
-          topicQs[topicData.name] = topicData.questions.map(
-            t => apiData.questions_by_id[t].question_text
-          );
-          return topicQs;
-        }, {}),
+        ).reduce<{ [typeName: string]: string[] }>(
+          (topicQs, topicId) => {
+            const topicData = apiData.topics_by_id[topicId];
+            topicQs[topicData.name] = topicData.questions.map(
+              t => apiData.questions_by_id[t].question_text
+            );
+            return topicQs;
+          },
+          recommendedQuestions ? { Recommended: recommendedQuestions } : {}
+        ),
       };
       return dispatch<MentorDataResultAction>({
         type: MENTOR_DATA_RESULT,

@@ -118,4 +118,32 @@ describe("load mentor data", () => {
       [mentorId]: expectedMentorData,
     });
   });
+
+  it("integrates recommended questions passed as args into mentor data", async () => {
+    const mentorId = "mentor_123"; // id of the single mentor we're testing here
+    const expectedApiResponse = expectedApiDataByMentorId[mentorId];
+    const expectedMentorDataWithoutRecommendedQs =
+      expectedMentorDataByMentorId[mentorId];
+    const recommendedQuestions = ["What is your name?", "How old are you?"];
+    const expectedMentorData = {
+      ...expectedMentorDataWithoutRecommendedQs,
+      topic_questions: {
+        ...expectedMentorDataWithoutRecommendedQs.topic_questions,
+        Recommended: recommendedQuestions,
+      },
+    };
+    mockAxios
+      .onGet(`/mentor-api/mentors/${mentorId}/data`)
+      .replyOnce(200, expectedApiResponse);
+    const intermediateStates = new ExpectIntermediateStates<State>(store, [
+      expectedPlaceholderStateForLoadingMentors([mentorId]),
+    ]);
+    intermediateStates.subscribe();
+    await dispatch(loadMentor(mentorId, { recommendedQuestions }));
+    intermediateStates.testExpectations();
+    const state = store.getState();
+    expect(state.mentors_by_id).toEqual({
+      [mentorId]: expectedMentorData,
+    });
+  });
 });
