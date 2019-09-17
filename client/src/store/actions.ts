@@ -20,6 +20,7 @@ const RESPONSE_CUTOFF = -100;
 export const ANSWER_FINISHED = "ANSWER_FINISHED"; // mentor video has finished playing
 export const MENTOR_DATA_REQUESTED = "MENTOR_DATA_REQUESTED";
 export const MENTOR_DATA_RESULT = "MENTOR_DATA_RESULT";
+export const MENTOR_DATA_REQUEST_DONE = "MENTOR_DATA_REQUEST_DONE";
 export const MENTOR_FAVED = "MENTOR_FAVED"; // mentor was favorited
 export const MENTOR_NEXT = "MENTOR_NEXT"; // set next mentor to play after current
 export const MENTOR_LOADED = "MENTOR_LOADED"; // mentor info was loaded
@@ -39,6 +40,10 @@ export interface MentorDataRequestedAction {
 export interface MentorDataResultAction {
   type: typeof MENTOR_DATA_RESULT;
   payload: MentorDataResult;
+}
+
+export interface MentorDataRequestDoneAction {
+  type: typeof MENTOR_DATA_REQUEST_DONE;
 }
 
 export interface MentorSelectedAction {
@@ -79,13 +84,13 @@ function findIntro(mentorData: MentorApiData): string {
 
 export const loadMentor: ActionCreator<
   ThunkAction<
-    Promise<MentorDataResultAction>, // The type of the last action to be dispatched - will always be promise<T> for async actions
+    Promise<MentorDataRequestDoneAction>, // The type of the last action to be dispatched - will always be promise<T> for async actions
     MentorDataResult, // The type for the data within the last action
     string, // The type of the parameter for the nested function
-    MentorDataResultAction // The type of the last action to be dispatched
+    MentorDataRequestDoneAction // The type of the last action to be dispatched
   >
 > = (
-  mentorId: string,
+  mentors: string | string[],
   {
     recommendedQuestions,
   }: {
@@ -93,56 +98,71 @@ export const loadMentor: ActionCreator<
   } = {}
 ) => async (dispatch: Dispatch) => {
   try {
-    // const mentorList:string[] = typeof(mentors) === 'string'? mentors.split(',').map(m => m.trim()): mentors as string[]
+    const mentorList = Array.isArray(mentors)
+      ? (mentors as Array<string>)
+      : [mentors as string];
     dispatch<MentorDataRequestedAction>({
       type: MENTOR_DATA_REQUESTED,
-      payload: [mentorId],
+      payload: mentorList,
     });
-    const result = await fetchMentorData(mentorId);
-    if (result.status == 200) {
-      const apiData = result.data;
-      const mentorData: MentorData = {
-        ...apiData,
-        answer_id: findIntro(apiData),
-        status: MentorQuestionStatus.ANSWERED, // move this out of mentor data
-        topic_questions: Object.getOwnPropertyNames(
-          apiData.topics_by_id
-        ).reduce<{ [typeName: string]: string[] }>(
-          (topicQs, topicId) => {
-            const topicData = apiData.topics_by_id[topicId];
-            topicQs[topicData.name] = topicData.questions.map(
-              t => apiData.questions_by_id[t].question_text
-            );
-            return topicQs;
-          },
-          recommendedQuestions ? { Recommended: recommendedQuestions } : {}
-        ),
-      };
-      return dispatch<MentorDataResultAction>({
-        type: MENTOR_DATA_RESULT,
-        payload: {
-          data: mentorData,
-          status: ResultStatus.SUCCEEDED,
-        },
-      });
-    }
-    return dispatch<MentorDataResultAction>({
-      type: MENTOR_DATA_RESULT,
-      payload: {
-        data: undefined,
-        status: ResultStatus.FAILED,
-      },
-    });
+    const dataPromises = Promise.all(
+      mentorList.map(mentorId => {
+        return new Promise<void>((resolve, reject) => {
+          fetchMentorData(mentorId)
+            .then(result => {
+              if (result.status == 200) {
+                const apiData = result.data;
+                const mentorData: MentorData = {
+                  ...apiData,
+                  answer_id: findIntro(apiData),
+                  status: MentorQuestionStatus.ANSWERED, // move this out of mentor data
+                  topic_questions: Object.getOwnPropertyNames(
+                    apiData.topics_by_id
+                  ).reduce<{ [typeName: string]: string[] }>(
+                    (topicQs, topicId) => {
+                      const topicData = apiData.topics_by_id[topicId];
+                      topicQs[topicData.name] = topicData.questions.map(
+                        t => apiData.questions_by_id[t].question_text
+                      );
+                      return topicQs;
+                    },
+                    recommendedQuestions
+                      ? { Recommended: recommendedQuestions }
+                      : {}
+                  ),
+                };
+                dispatch<MentorDataResultAction>({
+                  type: MENTOR_DATA_RESULT,
+                  payload: {
+                    data: mentorData,
+                    status: ResultStatus.SUCCEEDED,
+                  },
+                });
+                return resolve();
+              } else {
+                return reject();
+              }
+            })
+            .catch(err => {
+              dispatch<MentorDataResultAction>({
+                type: MENTOR_DATA_RESULT,
+                payload: {
+                  data: undefined,
+                  status: ResultStatus.FAILED,
+                },
+              });
+              return reject(err);
+            });
+        });
+      })
+    );
+    await dataPromises;
   } catch (err) {
-    console.error(`Failed to load mentor data for id ${mentorId}`, err);
-    return dispatch<MentorDataResultAction>({
-      type: MENTOR_DATA_RESULT,
-      payload: {
-        data: undefined,
-        status: ResultStatus.FAILED,
-      },
-    });
+    console.error(`Failed to load mentor data for id ${mentors}`, err);
   }
+  return dispatch<MentorDataRequestDoneAction>({
+    type: MENTOR_DATA_REQUEST_DONE,
+  });
 };
 
 const { sendStatement: sendXapiStatement } = cmi5Actions;

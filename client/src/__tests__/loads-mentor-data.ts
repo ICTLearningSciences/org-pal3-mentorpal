@@ -47,6 +47,30 @@ describe("load mentor data", () => {
         _PROFANITY_: [["profanity", "watch your mouth!"]],
       },
     },
+    mentor_456: {
+      id: "mentor_456",
+      name: "Mentor Number 2",
+      questions_by_id: {
+        mentor_02_a1_1_1: {
+          question_text: "How old are you and why?",
+        },
+      },
+      short_name: "M2",
+      title: "Second Example Mentor",
+      topics_by_id: {
+        about_me: { name: "About Me", questions: ["mentor_02_a1_1_1"] },
+      },
+      utterances_by_type: {
+        _IDLE_: [["idle_999", ""]],
+        _INTRO_: [["intro_222", "hi there!"]],
+        _OFF_TOPIC_: [["off_topic", "I don't know"]],
+        _PROMPT_: [["prompt", "ask me about my job"]],
+        _FEEDBACK_: [["feedback", "no"]],
+        _REPEAT_: [["repeat", "you already asked that!"]],
+        _REPEAT_BUMP_: [["repeat_bump", "you asked that, how about this?"]],
+        _PROFANITY_: [["profanity", "watch your mouth!"]],
+      },
+    },
   };
 
   const expectedMentorDataByMentorId: { [mentorId: string]: MentorData } = {
@@ -56,6 +80,14 @@ describe("load mentor data", () => {
       status: MentorQuestionStatus.READY,
       topic_questions: {
         "About Me": ["Who are you and what do you do?"],
+      },
+    },
+    mentor_456: {
+      ...expectedApiDataByMentorId["mentor_456"],
+      answer_id: "intro_222",
+      status: MentorQuestionStatus.READY,
+      topic_questions: {
+        "About Me": ["How old are you and why?"],
       },
     },
   };
@@ -117,6 +149,27 @@ describe("load mentor data", () => {
     expect(state.mentors_by_id).toEqual({
       [mentorId]: expectedMentorData,
     });
+  });
+
+  it("loads all data for a panel of mentors with a single action", async () => {
+    const mentors = ["mentor_123", "mentor_456"];
+    const expectedMentorData: { [mentorId: string]: MentorData } = {};
+    mentors.forEach(mentorId => {
+      // add the mentor's expected data
+      expectedMentorData[mentorId] = expectedMentorDataByMentorId[mentorId];
+      // setup a mock api request for the mentor
+      mockAxios
+        .onGet(`/mentor-api/mentors/${mentorId}/data`)
+        .replyOnce(200, expectedApiDataByMentorId[mentorId]);
+    });
+    const intermediateStates = new ExpectIntermediateStates<State>(store, [
+      expectedPlaceholderStateForLoadingMentors(mentors),
+    ]);
+    intermediateStates.subscribe();
+    await dispatch(loadMentor(mentors));
+    intermediateStates.testExpectations();
+    const state = store.getState();
+    expect(state.mentors_by_id).toEqual(expectedMentorData);
   });
 
   it("integrates recommended questions passed as args into mentor data", async () => {
