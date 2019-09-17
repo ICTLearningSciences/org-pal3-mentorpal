@@ -83,11 +83,12 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "jest",
-    "test:watch": "jest --watch",
+    "test:all": "npm run test:format && npm run test:lint && npm run test:audit && npm run test:types && npm test",
     "test:audit": "npm audit --audit-level=moderate",
     "test:format": "prettier --check '**/*.{js,jsx,json,ts,tsx}'",
+    "test:lint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
     "test:types": "tsc --noEmit",
-    "test:lint": "eslint . --ext ts --ext tsx --ext js --ext jsx"
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
