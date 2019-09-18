@@ -98,7 +98,7 @@ def split_into_chunks(audiochunks, audio_file, timestamps, offset):
     return questions
 
 
-def get_transcript(session_dir, questions, offset):
+def append_transcriptions_to_csv(session_dir, questions, offset):
     """
     Call transcript service to get transcript for each audiochunk and append to
     the transcript file. This function is called once per part of the session.
@@ -110,24 +110,34 @@ def get_transcript(session_dir, questions, offset):
     questions: list of questions which was returned by the split_into_chunks(...) function
     offset: Question number offset as described before
     """
-    with open(
-        os.path.join(session_dir, SESSION_OUTPUT, TRANSCRIPT_FILE), "a"
-    ) as transcript_csv:
-        csvwriter = csv.writer(transcript_csv)
-
-        for i in range(0, len(questions)):
-            ogg_file = os.path.join(
-                session_dir, SESSION_OUTPUT, AUDIOCHUNKS, "q{}.ogg".format(offset + i)
-            )
-            transcript = transcript_service.generate_transcript(ogg_file)
-
-            if not transcript:
-                print("ERROR: Could not connect to IBM Watson")
-                return 0
-            else:
-                print("DEBUG: {}".format(transcript))
-                csvwriter.writerow([questions[i], transcript])
-        return 1
+    try:
+        with open(
+            os.path.join(session_dir, SESSION_OUTPUT, TRANSCRIPT_FILE), "a"
+        ) as transcript_csv:
+            csvwriter = csv.writer(transcript_csv)
+            for i in range(0, len(questions)):
+                ogg_file = os.path.join(
+                    session_dir,
+                    SESSION_OUTPUT,
+                    AUDIOCHUNKS,
+                    "q{}.ogg".format(offset + i),
+                )
+                transcript = transcript_service.generate_transcript(ogg_file)
+                if not transcript:
+                    print("ERROR: Could not connect to IBM Watson")
+                    return 0
+                else:
+                    try:
+                        print("DEBUG: {}".format(transcript))
+                        csvwriter.writerow([questions[i], transcript])
+                    except BaseException as err:
+                        print(
+                            f"ERROR: failed to append transcription for question {questions[i]} to csv {transcript_csv} with error {str(err)}"
+                        )
+            return 1
+    except BaseException as err:
+        print(f"ERROR: failed to append transcriptions with error {str(err)}")
+        return 0
 
 
 def flatten_list(l):
@@ -172,7 +182,7 @@ def process_raw_data(transcripts, session_dir, session_number):
             )
         if transcripts:
             print("INFO: Getting transcripts from IBM Watson")
-            if get_transcript(session_dir, questions, offset):
+            if append_transcriptions_to_csv(session_dir, questions, offset):
                 process_summary["transcripts"].append(
                     "s{} p{}".format(session_number, part)
                 )
