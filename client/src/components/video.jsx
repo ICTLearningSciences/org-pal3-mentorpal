@@ -40,10 +40,11 @@ const VideoPlayer = ({ width, height, format = "mobile" }) => {
   );
   const video_url = mentor
     ? isIdle
-      ? idleUrl(mentor, format)
-      : videoUrl(mentor, format)
+      ? idleUrl(mentor.id, format)
+      : videoUrl(mentor.id, mentor.answer_id, format)
     : "";
-  const subtitle_url = mentor && !isIdle ? subtitleUrl(mentor) : "";
+  const subtitle_url =
+    mentor && !isIdle ? subtitleUrl(mentor.id, mentor.answer_id) : "";
   const showSubtitles = !chromeVersion() || chromeVersion() >= 62;
 
   const onEnded = () => {

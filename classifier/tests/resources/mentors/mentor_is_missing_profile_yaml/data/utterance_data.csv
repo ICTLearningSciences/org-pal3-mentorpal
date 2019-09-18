@@ -1,0 +1,7 @@
+ID,utterance,situation
+mentor_01_u1_1_1,"Hi, my name is Mentor 01 and this is my configured intro",_INTRO_
+mentor_01_u2_1_1,"I may have said this before",_REPEAT_
+mentor_01_u3_1_1,No,_FEEDBACK_
+mentor_01_u4_1_1,Anything else?,_PROMPT_
+mentor_01_u5_1_1,That is a great question. I wish I'd thought of that.,_OFF_TOPIC_
+idle,,_IDLE_

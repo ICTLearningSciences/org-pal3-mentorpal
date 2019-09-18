@@ -6,7 +6,7 @@ import { CircularProgress } from "@material-ui/core";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { Helmet } from "react-helmet";
 
-import { loadMentor, selectMentor } from "store/actions";
+import { loadMentor } from "store/actions";
 
 import Header from "components/header";
 import Input from "components/input";
@@ -33,7 +33,6 @@ const IndexPage = ({ search }) => {
   const [width, setWidth] = useState(0);
   const { recommended, mentor } = search;
 
-  const hidePanel = mentor && !Array.isArray(mentor);
   const isMobile = width < 768;
   const videoHeight = isMobile ? height * 0.5 : Math.min(width * 0.5625, 700);
   const inputHeight = isMobile
@@ -63,14 +62,11 @@ const IndexPage = ({ search }) => {
         ? mentor
         : [mentor]
       : ["clint", "dan", "carlos", "julianne"];
-    mentorList.forEach(mentorId => {
-      dispatch(
-        loadMentor(mentorId, {
-          recommendedQuestionsCsv: recommended,
-        })
-      );
-    });
-    dispatch(selectMentor(mentorList[0]));
+    dispatch(
+      loadMentor(mentorList, {
+        recommendedQuestions: recommended,
+      })
+    );
   }, []);
 
   useEffect(() => {
@@ -86,6 +82,8 @@ const IndexPage = ({ search }) => {
   if (mentors_by_id === {} || height === 0 || width === 0) {
     return <CircularProgress />;
   }
+
+  const hidePanel = Object.getOwnPropertyNames(mentors_by_id).length < 2;
 
   return (
     <MuiThemeProvider theme={theme}>

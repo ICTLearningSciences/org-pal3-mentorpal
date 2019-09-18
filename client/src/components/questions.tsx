@@ -2,21 +2,32 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
-import ScrollingQuestions from "components/scrolling-questions";
+import ScrollingQuestions from "@/components/scrolling-questions";
+
+import { State, MentorData } from "@/store/types";
 
 const theme = createMuiTheme({
   palette: {
     primary: { main: "#1B6A9C" },
   },
+  // @ts-ignore
   typography: { useNextVariants: true },
 });
 
-const Questions = ({ height, onSelected }) => {
-  const mentor = useSelector(
+interface Props {
+  height: number;
+  onSelected: () => {};
+}
+const Questions = ({ height, onSelected }: Props) => {
+  const mentor = useSelector<State, MentorData>(
     state => state.mentors_by_id[state.current_mentor]
   );
-  const current_topic = useSelector(state => state.current_topic);
-  const questions_asked = useSelector(state => state.questions_asked);
+  const current_topic = useSelector<State, string>(
+    state => state.current_topic
+  );
+  const questions_asked = useSelector<State, string[]>(
+    state => state.questions_asked
+  );
 
   if (!(mentor && current_topic && mentor.topic_questions)) {
     return <div />;

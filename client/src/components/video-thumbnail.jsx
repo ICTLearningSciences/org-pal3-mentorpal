@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import ReactPlayer from "react-player";
 
 import { idleUrl } from "api/api";
-import { STATUS_ERROR } from "store/reducer";
+import { MentorQuestionStatus } from "store/types";
 
 const VideoThumbnail = ({ mentor, isMobile, width, height }) => {
   const [isPlaying, setPlaying] = useState(true);
-  const src = idleUrl(mentor, isMobile ? "mobile" : "web");
-  const isDisabled = mentor.is_off_topic || mentor.status === STATUS_ERROR;
+  const src = idleUrl(mentor.id, isMobile ? "mobile" : "web");
+  const isDisabled =
+    mentor.is_off_topic || mentor.status === MentorQuestionStatus.ERROR;
 
   const onStart = () => {
     setPlaying(false);
