@@ -140,33 +140,34 @@ def get_timestamp_data(timestamp_file):
     return timestamp_data
 
 
-def aggregate_transcript_data(mentor):
-    # Transcript
-    transcript_exists = True
-    session = 1
+TRANSCRIPT_DATA_COLUMNS = ["Question", "text"]
 
-    while transcript_exists:
+
+def aggregate_transcript_data(mentor):
+    session = 1
+    qpa_data = pd.DataFrame(columns=TRANSCRIPT_DATA_COLUMNS)
+    mentor_data_path = os.path.join(DATA_DIR, MENTOR_BUILD.format(mentor))
+    while True:
         filename = os.path.join(
-            DATA_DIR,
-            MENTOR_BUILD.format(mentor),
+            mentor_data_path,
             SESSION_DATA.format(session),
             SESSION_OUTPUT,
             TRANSCRIPT_FILE,
         )
-        if os.path.isfile(filename):
-            if session == 1:
-                qpa_data = get_transcript_data(filename)
-            else:
-                qpa_data = pd.concat([qpa_data, get_transcript_data(filename)])
-            session += 1
-        else:
-            transcript_exists = False
-
+        if not os.path.isfile(filename):
+            if len(qpa_data) < 1:
+                print(f"WARNING: no transcript data found under {mentor_data_path}")
+            return qpa_data
+        qpa_data = (
+            append_transcriptions_to_csv_data(filename)
+            if session == 1
+            else pd.concat([qpa_data, append_transcriptions_to_csv_data(filename)])
+        )
     return qpa_data
 
 
-def get_transcript_data(transcript_file):
-    return pd.read_csv(transcript_file, names=["Question", "text"])
+def append_transcriptions_to_csv_data(transcript_file):
+    return pd.read_csv(transcript_file, names=TRANSCRIPT_DATA_COLUMNS)
 
 
 def get_master_map(map_file):
