@@ -28,7 +28,7 @@ Feature: Mentors answer canned questions
         And the response json at $.query is equal to "<query>"
         And the response json at $.answer_id is equal to "<answer_id>"
         And the response json at $.answer_text starts with "<answer_text_start>"
-        And the response json at $.classifier is equal to "lstm_v1/2019-06-13-1900"
+        And the response json at $.classifier matches "^lstm_v1/[a-zA-Z0-9\-_]+$"
   
   Examples: Queries
     | mentor    | query                                                   | answer_id                     | answer_text_start                                                                                                   |
