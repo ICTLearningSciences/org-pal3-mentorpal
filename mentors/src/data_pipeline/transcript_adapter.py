@@ -26,7 +26,7 @@ PARAPHRASE_MAP = constants.PARAPHRASE_MAP
 
 QPA_ORDER = ["Topics", "Helpers", "Mentor", "Question", "text"]
 
-DATA_DIR = os.environ["DATA_MOUNT"] or os.getcwd()
+DATA_DIR = os.environ.get("DATA_MOUNT") or os.getcwd()
 
 
 def build_data(mentor):
