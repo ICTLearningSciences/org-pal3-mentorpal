@@ -163,6 +163,7 @@ def aggregate_transcript_data(mentor):
             if session == 1
             else pd.concat([qpa_data, append_transcriptions_to_csv_data(filename)])
         )
+        session += 1
     return qpa_data
 
 
