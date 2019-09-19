@@ -3,11 +3,7 @@ from unittest.mock import Mock, patch
 
 from post_process_data import gen_mobile_video
 
-
-class Bunch:
-    def __init__(self, **kwds):
-        self.__dict__.update(kwds)
-
+from .helpers import Bunch
 
 @patch("pymediainfo.MediaInfo.parse")
 @patch("ffmpy.FFmpeg")
