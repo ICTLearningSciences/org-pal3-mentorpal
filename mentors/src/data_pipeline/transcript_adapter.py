@@ -48,9 +48,20 @@ def transcripts_to_training_data(
     data_dir: str = None,
     questions_paraphrases_answers_output: Union[str, io.StringIO] = None,
     prompts_utterances_output: Union[str, io.BytesIO] = None,
+    log_warning_on_missing_utterance_types: bool = True,
 ) -> None:
     mentor_data = MentorData(mentor, os.path.join(data_dir, mentor))
     qpa_df, pu_df = _read_transcripts_to_data_frames(mentor_data)
+    if log_warning_on_missing_utterance_types:
+        missing_utterance_types = [
+            m.value
+            for m in UtteranceType.get_required_types()
+            if not (pu_df["Situation"] == m.value).any()
+        ]
+        if missing_utterance_types:
+            logging.warning(
+                f"no transcripts found for mentor {mentor} with these utterance types: {missing_utterance_types}"
+            )
     qpa_df.to_csv(questions_paraphrases_answers_output, mode="w", index=False)
     pu_df.to_csv(prompts_utterances_output, mode="w", index=False)
 
@@ -90,7 +101,6 @@ def _read_transcripts_to_data_frames(
         qpa_rows, columns=COLS_QUESTIONS_PARAPHRASES_ANSWERS
     )
     prompts_utterances = pd.DataFrame(pu_rows, columns=COLS_PROMPTS_UTTERANCES)
-    logging.warning(f"here in _read...prompts_utterances={prompts_utterances}")
     return questions_paraphrases_answers, prompts_utterances
 
 

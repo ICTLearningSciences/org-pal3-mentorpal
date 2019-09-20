@@ -1,6 +1,7 @@
 import io
 import os
 import pytest
+from unittest.mock import patch
 
 import pandas as pd
 
@@ -15,6 +16,41 @@ MENTOR_DATA_ROOT = os.path.join(
 
 @pytest.mark.parametrize("mentor_data_root,mentor_id", [(MENTOR_DATA_ROOT, "mentor_1")])
 def test_it_builds_training_data_from_question_and_answer_transcripts(
+    mentor_data_root: str, mentor_id: str
+):
+    _test_it_builds_training_data_from_question_and_answer_transcripts(
+        mentor_data_root, mentor_id
+    )
+
+
+@patch("logging.warning")
+@pytest.mark.parametrize(
+    "mentor_data_root,mentor_id,missing_utterance_types",
+    [
+        (
+            MENTOR_DATA_ROOT,
+            "mentor_has_no_utterances",
+            ["_FEEDBACK_", "_INTRO_", "_OFF_TOPIC_", "_PROMPT_", "_REPEAT_"],
+        ),
+        (
+            MENTOR_DATA_ROOT,
+            "mentor_has_missing_utterance_types_intro_and_feedback",
+            ["_FEEDBACK_", "_INTRO_"],
+        ),
+    ],
+)
+def test_it_builds_training_data_but_logs_a_warning_when_mentor_missing_utterances_types(
+    mockLoggingWarning, mentor_data_root: str, mentor_id: str, missing_utterance_types
+):
+    _test_it_builds_training_data_from_question_and_answer_transcripts(
+        mentor_data_root, mentor_id
+    )
+    mockLoggingWarning.assert_called_once_with(
+        f"no transcripts found for mentor {mentor_id} with these utterance types: {missing_utterance_types}"
+    )
+
+
+def _test_it_builds_training_data_from_question_and_answer_transcripts(
     mentor_data_root: str, mentor_id: str
 ):
     questions_paraphrases_answers_out = io.StringIO()

@@ -17,3 +17,7 @@ class UtteranceType(Enum):
             if m.value == v:
                 return m
         return dfault
+
+    @classmethod
+    def get_required_types(cls) -> list:
+        return [cls.FEEDBACK, cls.INTRO, cls.OFF_TOPIC, cls.PROMPT, cls.REPEAT]
