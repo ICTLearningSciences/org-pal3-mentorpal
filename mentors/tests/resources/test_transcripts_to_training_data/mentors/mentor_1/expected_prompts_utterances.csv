@@ -1,1 +1,8 @@
-,Situation,Mentor,Utterance/Prompt
+Situation,Mentor,Utterance/Prompt
+_INTRO_,mentor_1,Hi my name is mentor 1!
+_PROMPT_,mentor_1,Ask me how I saved $15!
+_PROMPT_,mentor_1,Do you have a favorite color?
+_OFF_TOPIC_,mentor_1,Ask me something else.
+_FEEDBACK_,mentor_1,OK.
+_REPEAT_,mentor_1,I might have covered this already...
+_PROFANITY_,mentor_1,Please don't use that language.
