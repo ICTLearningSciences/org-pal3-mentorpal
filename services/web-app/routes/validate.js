@@ -1,6 +1,6 @@
 const express = require("express");
 const fs = require("fs-extra");
-const parse = require("csv-parse/lib/sync");
+// const parse = require("csv-parse/lib/sync");
 const router = express.Router();
 // const request = require('async-request');
 
