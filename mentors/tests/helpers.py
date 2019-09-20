@@ -18,5 +18,6 @@ class Bunch:
     print(myObj.myProp.myNestedProp) # prints 'a'
     ```
     """
+
     def __init__(self, **kwds):
         self.__dict__.update(kwds)

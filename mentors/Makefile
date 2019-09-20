@@ -1,3 +1,4 @@
+PWD=$(shell pwd)
 DOCKER_IMAGE?=mentor-processing-pipeline
 DOCKER_IMAGE_ID=$(shell docker images -q $(DOCKER_IMAGE))
 DOCKER_CONTAINER=mentor-processing-pipeline
@@ -26,7 +27,6 @@ virtualenv-installed:
 PHONY: test
 test: $(TEST_VIRTUAL_ENV)
 	PYTHONPATH=$(shell echo $${PYTHONPATH}):$(shell pwd)/src/data_pipeline $(TEST_VIRTUAL_ENV)/bin/py.test -vv
-PWD=$(shell pwd)
 
 .PHONY: docker-image-exists
 docker-image-exists:
@@ -74,7 +74,8 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
-			-v $(PWD):/app/mounts \
+			-v $(PWD)/data:/app/mounts/data \
+			-v $(PWD)/videos:/app/mounts/videos \
 			-v $(PWD)/src:/app/src \
 		$(DOCKER_IMAGE)
 
@@ -99,7 +100,6 @@ data/mentors/%/build/update: docker-image-exists $(WATSON_CREDENTIALS)
 			--name $(DOCKER_CONTAINER) \
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
-			-v $(PWD)/$*:/app/mounts/$* \
 			-v $(PWD)/data:/app/mounts/data \
 			-v $(PWD)/src:/app/src \
 			$(DOCKER_IMAGE) --mentor $* --transcripts --url $(MENTOR_SOURCE_VIDEOS)
@@ -123,7 +123,6 @@ data/mentors/%/data/update: data/mentors/%/build docker-image-exists
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(PWD)/src:/app/src \
-			-v $(PWD)/$*:/app/mounts/$* \
 			-v $(PWD)/data:/app/mounts/data \
 			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data
 
@@ -144,7 +143,6 @@ update/videos/%: docker-image-exists data/mentors/%/build
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(PWD)/src:/app/src \
-			-v $(PWD)/$*:/app/mounts/$* \
 			-v $(PWD)/data:/app/mounts/data \
 			-v $(PWD)/videos:/app/mounts/videos \
 			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos --url $(MENTOR_SOURCE_VIDEOS)

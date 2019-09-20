@@ -5,6 +5,7 @@ from post_process_data import gen_mobile_video
 
 from .helpers import Bunch
 
+
 @patch("pymediainfo.MediaInfo.parse")
 @patch("ffmpy.FFmpeg")
 @pytest.mark.parametrize(

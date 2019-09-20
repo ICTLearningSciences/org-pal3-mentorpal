@@ -1,7 +1,18 @@
+import glob
+import io
+import logging
 import os
+from typing import Union
 import pandas as pd
+from yaml import load
+
+try:
+    from yaml import CLoader as YamlLoader
+except ImportError:
+    from yaml import YamlLoader
 
 import constants
+from mentor_data import MentorData
 
 """
 This script will adapt the transcript.csv into questions_paraphrases_answers.csv
@@ -25,8 +36,48 @@ TOPIC_MAP = constants.TOPIC_MAP
 PARAPHRASE_MAP = constants.PARAPHRASE_MAP
 
 QPA_ORDER = ["Topics", "Helpers", "Mentor", "Question", "text"]
+TRANSCRIPT_DATA_COLUMNS = ["Question", "text"]
 
 DATA_DIR = os.environ.get("DATA_MOUNT") or os.getcwd()
+
+
+def transcripts_to_training_data(
+    mentor: str,
+    data_dir: str = None,
+    questions_paraphrases_answers_output: Union[str, io.StringIO] = None,
+    prompts_utterances_output: Union[str, io.BytesIO] = None,
+) -> None:
+    mentor_data = MentorData(mentor, os.path.join(data_dir, mentor))
+    qpa_df = _read_transcripts_to_data_frames(mentor_data)
+    # qpa_df.append(['q1', 't1'])
+    qpa_df.to_csv(questions_paraphrases_answers_output, mode="w", index=False)
+
+
+def _to_question_paraphrase_answer_row(mentor: str, question: str, answer: str) -> list:
+    assert mentor is not None
+    assert question is not None
+    assert answer is not None
+    return [None, None, mentor, question, answer]
+
+
+def _read_transcripts_to_data_frames(mentor_data: MentorData) -> (pd.DataFrame):
+    glob_path = f"{mentor_data.get_transcripts_root()}/*.yaml"
+    qpa_rows = []
+    for t_path in sorted(glob.iglob(glob_path)):
+        try:
+            with open(t_path, "r") as f:
+                t = load(f, Loader=YamlLoader)
+                transcription = t.get("transcription")
+                question = t.get("question")
+                assert question is not None
+                assert transcription is not None
+                qpa_rows.append(
+                    [None, None, mentor_data.get_mentor_id(), question, transcription]
+                )
+        except BaseException as err:
+            logging.warning(f"failed to load transcript data from {t_path}: {err}")
+    questions_paraphrases_answers = pd.DataFrame(qpa_rows, columns=QPA_ORDER)
+    return questions_paraphrases_answers
 
 
 def build_data(mentor):
@@ -91,8 +142,8 @@ def format_and_save_qpa_data(mentor, qpa_data):
 
 
 def split_answers_and_utterances(transcript_data, timestamp_data):
-    qpa_data = pd.DataFrame(columns=["Question", "text"])
-    pu_data = pd.DataFrame(columns=["Question", "text"])
+    qpa_data = pd.DataFrame(columns=TRANSCRIPT_DATA_COLUMNS)
+    pu_data = pd.DataFrame(columns=TRANSCRIPT_DATA_COLUMNS)
     for question in transcript_data["Question"]:
         timestamp_row = timestamp_data.loc[timestamp_data["Question"] == question]
         transcript_row = transcript_data.loc[transcript_data["Question"] == question]
@@ -138,9 +189,6 @@ def get_timestamp_data(timestamp_file):
         timestamp_file, usecols=["Answer/Utterance", "Question"]
     )
     return timestamp_data
-
-
-TRANSCRIPT_DATA_COLUMNS = ["Question", "text"]
 
 
 def aggregate_transcript_data(mentor):
