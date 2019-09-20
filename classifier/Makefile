@@ -1,11 +1,11 @@
 SHELL:=/bin/bash
 DOCKER_IMAGE?=mentorpal-classifier
-DOCKER_CONTAINER=mentorpal-classifier
-CLASSIFIER_ROOT=$(shell pwd)
+DOCKER_CONTAINER?=mentorpal-classifier
+CLASSIFIER_ROOT?=$(shell pwd)
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 CHECKPOINT_ROOT=$(PROJECT_ROOT)/checkpoint
-CHECKPOINT=2019-06-13-1900
-ARCH=lstm_v1
+CHECKPOINT?=dev_latest
+ARCH?=lstm_v1
 CHECKPOINT_PATH_RELATIVE=checkpoint/classifiers/$(ARCH)/$(CHECKPOINT)
 PWD=$(shell pwd)
 
