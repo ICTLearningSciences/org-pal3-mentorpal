@@ -40,7 +40,7 @@ COLS_QUESTIONS_PARAPHRASES_ANSWERS = ["Topics", "Helpers", "Mentor", "Question",
 COLS_PROMPTS_UTTERANCES = ["Situation", "Mentor", "Utterance/Prompt"]
 COLS_TRANSCRIPT = ["Question", "text"]
 
-DATA_DIR = os.environ.get("DATA_MOUNT") or os.getcwd()
+DATA_DIR = os.path.abspath(os.environ.get("DATA_MOUNT") or os.getcwd())
 
 
 def transcripts_to_training_data(
@@ -50,6 +50,7 @@ def transcripts_to_training_data(
     prompts_utterances_output: Union[str, io.BytesIO] = None,
     log_warning_on_missing_utterance_types: bool = True,
 ) -> None:
+    data_dir = os.path.abspath(data_dir or DATA_DIR)
     mentor_data = MentorData(mentor, os.path.join(data_dir, mentor))
     qpa_df, pu_df = _read_transcripts_to_data_frames(mentor_data)
     if log_warning_on_missing_utterance_types:
@@ -62,6 +63,14 @@ def transcripts_to_training_data(
             logging.warning(
                 f"no transcripts found for mentor {mentor} with these utterance types: {missing_utterance_types}"
             )
+    target_dir_default = os.path.join(data_dir, MENTOR_DATA.format(mentor))
+    questions_paraphrases_answers_output = (
+        questions_paraphrases_answers_output
+        or os.path.join(target_dir_default, QPA_FILENAME)
+    )
+    prompts_utterances_output = prompts_utterances_output or os.path.join(
+        target_dir_default, PU_FILENAME
+    )
     qpa_df.to_csv(questions_paraphrases_answers_output, mode="w", index=False)
     pu_df.to_csv(prompts_utterances_output, mode="w", index=False)
 

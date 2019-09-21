@@ -1,7 +1,7 @@
 import io
 import os
 import pytest
-from unittest.mock import patch
+from unittest.mock import call, patch
 
 import pandas as pd
 
@@ -9,8 +9,10 @@ from transcript_adapter import transcripts_to_training_data
 
 QPA_ORDER = ["Topics", "Helpers", "Mentor", "Question", "text"]
 
-MENTOR_DATA_ROOT = os.path.join(
-    ".", "tests", "resources", "test_transcripts_to_training_data", "mentors"
+MENTOR_DATA_ROOT = os.path.abspath(
+    os.path.join(
+        ".", "tests", "resources", "test_transcripts_to_training_data", "mentors"
+    )
 )
 
 
@@ -47,6 +49,34 @@ def test_it_builds_training_data_but_logs_a_warning_when_mentor_missing_utteranc
     )
     mockLoggingWarning.assert_called_once_with(
         f"no transcripts found for mentor {mentor_id} with these utterance types: {missing_utterance_types}"
+    )
+
+
+@patch("pandas.DataFrame.to_csv")
+@pytest.mark.parametrize("mentor_data_root,mentor_id", [(MENTOR_DATA_ROOT, "mentor_1")])
+def test_it_writes_output_files_to_expected_paths(
+    mockPandasToCsv, mentor_data_root: str, mentor_id: str
+):
+    transcripts_to_training_data(mentor_id, data_dir=mentor_data_root)
+    mockPandasToCsv.assert_has_calls(
+        [
+            call(
+                os.path.join(
+                    mentor_data_root,
+                    f"data/mentors/{mentor_id}/data/questions_paraphrases_answers.csv",
+                ),
+                index=False,
+                mode="w",
+            ),
+            call(
+                os.path.join(
+                    mentor_data_root,
+                    f"data/mentors/{mentor_id}/data/prompts_utterances.csv",
+                ),
+                index=False,
+                mode="w",
+            ),
+        ]
     )
 
 
