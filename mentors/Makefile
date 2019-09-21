@@ -27,7 +27,7 @@ virtualenv-installed:
 PHONY: test
 test: $(TEST_VIRTUAL_ENV)
 	export PYTHONPATH=$(shell echo $${PYTHONPATH}):$(shell pwd)/src/data_pipeline && \
-	$(TEST_VIRTUAL_ENV)/bin/py.test -vv
+	$(TEST_VIRTUAL_ENV)/bin/py.test -vv $(args)
 
 .PHONY: docker-image-exists
 docker-image-exists:
