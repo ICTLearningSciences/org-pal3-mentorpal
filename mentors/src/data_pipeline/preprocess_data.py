@@ -24,6 +24,10 @@ SESSION_OUTPUT = constants.SESSION_OUTPUT
 AUDIOCHUNKS = constants.AUDIOCHUNKS
 
 
+def sessions_to_transcripts(timestamps_root: list):
+    pass
+
+
 def convert_to_wav(input_file, output_file):
     """
     Converts the .mp4 file to a .ogg file.
@@ -116,6 +120,10 @@ def append_transcriptions_to_csv(session_dir, questions, offset):
         ) as transcript_csv:
             csvwriter = csv.writer(transcript_csv)
             for i in range(0, len(questions)):
+                # TODO: standardize the audio filenames to like s001p001-00000000-00000012.ogg
+                # ...and then generate one transcript yaml file per audio file like s001p001-00000000-00000012.yaml
+                # ...and ONLY generate audio/transcripts if the audio/transcript doesn't yet exist
+                # ALSO: delete any audio or transcript file that should not exists (by timestamps.csv)
                 ogg_file = os.path.join(
                     session_dir,
                     SESSION_OUTPUT,
