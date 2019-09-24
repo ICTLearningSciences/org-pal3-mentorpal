@@ -1,0 +1,61 @@
+mentorId: mentor1
+sessionsPartsById:
+  s001p001:
+    slicesById:
+      s00000000e00000100:
+        question: question 1
+        timeStart: 0.00
+        timeEnd: 1.00
+        transcript: mentor answer for question 1
+        utteranceType: _ANSWER_
+      s00000212e00000478:
+        question: question 2 diff
+        timeStart: 2.12
+        timeEnd: 4.78
+        transcript: mentor answer for question 2 is diff
+        utteranceType: _ANSWER_
+    sourceAudio: recordings/session1/part1_audio.wav
+    sourceTimestamps: recordings/session1/part1_timestamps.csv
+  s001p002:
+    slicesById:
+      s00000345e00000698:
+        timeStart: 3.45
+        timeEnd: 6.98
+        transcript: Hi my name is mentor 1!
+        utteranceType: _INTRO_
+    sourceAudio: recordings/session1/part2_audio.wav
+    sourceTimestamps: recordings/session1/part2_timestamps.csv
+  s002p001:
+    slicesById:
+      s00000599e00001012:
+        timeStart: 5.99
+        timeEnd: 10.12
+        transcript: Ask me how I saved $15!
+        utteranceType: _PROMPT_
+      s00001234e00001678:
+        timeStart: 12.34
+        timeEnd: 16.78
+        transcript: Do you have a favorite color?
+        utteranceType: _PROMPT_
+      s00001823e00002345:
+        timeStart: 18.23
+        timeEnd: 23.45
+        transcript: Ask me something else.
+        utteranceType: _OFF_TOPIC_
+      s00002567e00002901:
+        timeStart: 25.67
+        timeEnd: 29.01
+        transcript: OK.
+        utteranceType: _FEEDBACK_
+      s00003012e00003567:
+        timeStart: 30.12
+        timeEnd: 35.67
+        transcript: I might have covered this already...
+        utteranceType: _REPEAT_
+      s00003789e00004345:
+        timeStart: 37.89
+        timeEnd: 43.45
+        transcript: Please don't use that language.
+        utteranceType: _PROFANITY_
+    sourceAudio: recordings/session2/part1_audio.wav
+    sourceTimestamps: recordings/session2/part1_timestamps.csv

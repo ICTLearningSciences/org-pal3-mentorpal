@@ -1,0 +1,10 @@
+sessionsPartsById:
+  s001p001
+    sourceAudio: recordings/session1/part1_audio.wav
+    sourceTimestamps: recordings/session1/part1_timestamps.csv
+    slicesById:
+      s00000413e00000805:
+        timeStart: 4.13
+        timeEnd: 8.05
+        transcript: What was said in the audio slice
+        type: _QUESTION_
