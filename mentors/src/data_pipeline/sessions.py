@@ -3,18 +3,9 @@ from typing import Dict, List
 
 import pandas as pd
 
+from training_data import PromptsUtterancesBuilder, QuestionsParaphrasesAnswersBuilder
 from utterance_type import UtteranceType
 from utils import yaml_load
-
-
-COLS_QUESTIONS_PARAPHRASES_ANSWERS: List[str] = [
-    "Topics",
-    "Helpers",
-    "Mentor",
-    "Question",
-    "text",
-]
-COLS_PROMPTS_UTTERANCES: List[str] = ["Situation", "Mentor", "Utterance/Prompt"]
 
 
 @dataclass
@@ -88,25 +79,23 @@ class SessionsTrainingData:
     prompts_utterances: pd.DataFrame = None
 
 
-def sessions_to_training_data(sessions: Sessions,) -> SessionsTrainingData:
+def sessions_to_training_data(sessions: Sessions) -> SessionsTrainingData:
     sessions_result = copy_sessions(sessions)
-    qpa_rows = []
-    pu_rows = []
+    qpa = QuestionsParaphrasesAnswersBuilder(mentor_id=sessions.mentorId)
+    pu = PromptsUtterancesBuilder(mentor_id=sessions.mentorId)
     for u in sessions_result.utterances():
         if not (u.transcript and u.utteranceType):
             continue
         if u.utteranceType == UtteranceType.ANSWER:
             if not u.question:
                 continue
-            qpa_rows.append(["", "", sessions.mentorId, u.question, u.transcript])
+            qpa.add_row(question=u.question, answer=u.transcript)
         else:
-            pu_rows.append([u.utteranceType.value, sessions.mentorId, u.transcript])
+            pu.add_row(situation=u.utteranceType.value, utterance=u.transcript)
     return SessionsTrainingData(
         sessions=sessions_result,
-        questions_paraphrases_answers=pd.DataFrame(
-            qpa_rows, columns=COLS_QUESTIONS_PARAPHRASES_ANSWERS
-        ),
-        prompts_utterances=pd.DataFrame(pu_rows, columns=COLS_PROMPTS_UTTERANCES),
+        questions_paraphrases_answers=qpa.to_data_frame(),
+        prompts_utterances=pu.to_data_frame(),
     )
 
 
