@@ -1,10 +1,10 @@
-import io
+# import io
 import glob
 import os
 import pytest
 from unittest.mock import call, patch
 
-import pandas as pd
+# import pandas as pd
 
 from preprocess_data import sessions_to_transcripts
 from utils import yaml_load
@@ -31,7 +31,7 @@ def test_it_outputs_one_transcript_file_per_row_in_timestamps(
     build_root = os.path.join(mentor_root, "build")
     session_root = os.path.join(build_root, "recordings")
     expected_transcriptions_root = os.path.join(mentor_root, "expected-transcriptions")
-    mock_transcriptions_root = os.path.join(mentor_root, "mock-transcription-service")
+    # mock_transcriptions_root = os.path.join(mentor_root, "mock-transcription-service")
     sessions_to_transcripts(session_root)
     expected_transcription_glob_path = os.path.join(
         expected_transcriptions_root, "*.yaml"

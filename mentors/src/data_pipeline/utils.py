@@ -57,7 +57,7 @@ def yaml_load(from_path: str) -> dict:
     """
     Reads a dictionary from a given yaml file.
     Mainly broken out as a utility for convenience of mocking in tests,
-    but also to handle in a single place the specific way 
+    but also to handle in a single place the specific way
     that Loader must be imported and passed
     """
     with open(from_path, "r") as f:

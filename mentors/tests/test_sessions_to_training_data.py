@@ -1,13 +1,10 @@
-import io
 import logging
 import os
 import pytest
-from unittest.mock import call, patch
 
 import pandas as pd
 
-from transcript_adapter import transcripts_to_training_data
-from sessions import Sessions, sessions_from_yaml, sessions_to_training_data
+from sessions import sessions_from_yaml, sessions_to_training_data
 
 COLS_QUESTIONS_PARAPHRASES_ANSWERS = ["Topics", "Helpers", "Mentor", "Question", "text"]
 

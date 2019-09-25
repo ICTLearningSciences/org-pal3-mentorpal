@@ -1,10 +1,7 @@
-from dataclasses import asdict, dataclass, field
-from typing import Dict, List
+from dataclasses import dataclass, field
+from typing import List
 
 import pandas as pd
-
-from utterance_type import UtteranceType
-from utils import yaml_load
 
 
 COLS_QUESTIONS_PARAPHRASES_ANSWERS: List[str] = [
