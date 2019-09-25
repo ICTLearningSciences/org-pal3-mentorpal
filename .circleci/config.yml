@@ -104,7 +104,7 @@ jobs:
           command: cd client && npm install
       - run:
           name: Audit js
-          command: make audit-js
+          command: cd client && npm run test:audit
       - run:
           name: Lint client
           command:
