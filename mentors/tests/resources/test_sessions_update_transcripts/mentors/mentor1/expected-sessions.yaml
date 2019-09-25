@@ -1,0 +1,38 @@
+mentorId: mentor1
+sessionsPartsById:
+  s001p001:
+    slicesById:
+      s00000000e00000100:
+        question: question 1
+        timeStart: 0.00
+        timeEnd: 1.00
+        transcript: mentor answer for question 1
+        utteranceType: _ANSWER_
+      s00000212e00000478:
+        question: question 2 diff
+        timeStart: 2.12
+        timeEnd: 4.78
+        transcript: mentor answer for question 2 is diff
+        utteranceType: _ANSWER_
+    sourceAudio: build/recordings/session1/part1_audio.wav
+  s001p002:
+    slicesById:
+      s00000345e00000698:
+        timeStart: 3.45
+        timeEnd: 6.98
+        transcript: Hi my name is mentor 1!
+        utteranceType: _INTRO_
+    sourceAudio: build/recordings/session1/part2_audio.wav
+  s002p001:
+    slicesById:
+      s00000599e00001012:
+        timeStart: 5.99
+        timeEnd: 10.12
+        transcript: Ask me how I saved $15!
+        utteranceType: _PROMPT_
+      s00001234e00001678:
+        timeStart: 12.34
+        timeEnd: 16.78
+        transcript: Do you have a favorite color?
+        utteranceType: _PROMPT_
+    sourceAudio: build/recordings/session2/part1_audio.wav

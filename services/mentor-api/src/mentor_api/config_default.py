@@ -15,6 +15,9 @@ class Config(object):
     CLASSIFIER_CHECKPOINT_ROOT = os.environ.get("CLASSIFIER_CHECKPOINT_ROOT") or str(
         Path("/app/checkpoint")
     )
+    # TODO: really config needs to verify any configured CLASSIFIER_CHECKPOINT exists
+    # and if it does not, try to recover by finding a checkpoint under CLASSIFIER_CHECKPOINT_ROOT
+    #
     # override with a list of ids for mentors
     # that should preload with the server
     MENTOR_IDS_PRELOAD = []

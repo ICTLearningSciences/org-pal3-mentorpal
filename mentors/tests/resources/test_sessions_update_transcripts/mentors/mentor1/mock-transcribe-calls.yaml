@@ -1,0 +1,10 @@
+- audio: build/audioslices/s001p001s00000000e00000100.wav
+  transcript: mentor answer for question 1
+- audio: build/audioslices/s001p001s00000212e00000478.wav
+  transcript: mentor answer for question 2 is diff
+- audio: build/audioslices/s001p002s00000345e00000698.wav
+  transcript: Hi my name is mentor 1!
+- audio: build/audioslices/s002p001s00000599e00001012.wav
+  transcript: Ask me how I saved $15!
+- audio: build/audioslices/s002p001s00001234e00001678.wav
+  transcript: Do you have a favorite color?

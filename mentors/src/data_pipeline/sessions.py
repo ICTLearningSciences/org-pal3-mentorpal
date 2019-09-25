@@ -8,7 +8,12 @@ import pandas as pd
 import audioslicer
 from training_data import PromptsUtterancesBuilder, QuestionsParaphrasesAnswersBuilder
 from utterance_type import UtteranceType
+from transcriptions import TranscriptionService
 from utils import yaml_load
+
+
+def _utterance_id(part_id: str, slice_id: str) -> str:
+    return f"{part_id}{slice_id}"
 
 
 @dataclass
@@ -18,6 +23,7 @@ class SessionSlice:
     timeEnd: float = -1.0
     timeStart: float = -1.0
     transcript: str = None
+    utteranceAudio: str = None
     utteranceType: UtteranceType = None
 
     def __post_init__(self):
@@ -30,14 +36,22 @@ class SessionSlice:
 
 @dataclass
 class Utterance(SessionSlice):
-    id: str = ""
+    partId: str = ""
+    sliceId: str = ""
     sourceAudio: str = ""
+
+    def get_id(self):
+        return _utterance_id(self.partId, self.sliceId)
+
+    def source_audio_file_path_from(self, mentor_root: str) -> str:
+        return os.path.join(mentor_root, self.sourceAudio) if self.sourceAudio else None
+
+    def get_utterance_audio_path(self, sessions_root: str) -> str:
+        rel_path = self.utteranceAudio or f"{self.get_id()}.wav"
+        return os.path.join(sessions_root, rel_path) if sessions_root else rel_path
 
     def to_dict(self):
         return asdict(self)
-
-    def audio_file_path_from(self, mentor_root: str) -> str:
-        return os.path.join(mentor_root, self.sourceAudio) if self.sourceAudio else None
 
 
 @dataclass
@@ -64,18 +78,28 @@ class Sessions:
             k: SessionPart(**v) for (k, v) in self.sessionsPartsById.items()
         }
 
+    def set_transcript(self, part_id: str, slice_id: str, text: str) -> bool:
+        if part_id not in self.sessionsPartsById:
+            return False
+        part = self.sessionsPartsById[part_id]
+        if slice_id not in part.slicesById:
+            return False
+        slc = part.slicesById[slice_id]
+        slc.transcript = text
+
     def utterances(self) -> List[Utterance]:
         res: List[Utterance] = []
         for part_id, part in self.sessionsPartsById.items():
             for slce_id, slce in part.slicesById.items():
                 res.append(
                     Utterance(
-                        id=f"{part_id}{slce_id}",
+                        partId=part_id,
+                        sliceId=slce_id,
                         sourceAudio=part.sourceAudio,
                         **slce.to_dict(),
                     )
                 )
-        return sorted(res, key=lambda x: x.id)
+        return sorted(res, key=lambda x: x.get_id())
 
     def to_dict(self):
         return asdict(self)
@@ -146,26 +170,59 @@ def sessions_to_audioslices(
     abs_output_root = os.path.abspath(output_root)
     for u in sessions.utterances():
         try:
-            audio_source = u.audio_file_path_from(abs_sessions_root)
+            audio_source = u.source_audio_file_path_from(abs_sessions_root)
             if not audio_source:
-                logging.warning(f"no audio source found for utterance {u.id}")
+                logging.warning(f"no audio source found for utterance {u.get_id()}")
                 continue
             if not os.path.isfile(audio_source):
                 logging.warning(
-                    f"audio source file not found for utterance {u.id} at path {audio_source}"
+                    f"audio source file not found for utterance {u.get_id()} at path {audio_source}"
                 )
                 continue
             start = float(u.timeStart)
             if not (start == 0.0 or (start and start >= 0.0)):
                 logging.warning(
-                    f"invalid timeStart ({u.timeStart}) for utterance {u.id}"
+                    f"invalid timeStart ({u.timeStart}) for utterance {u.get_id()}"
                 )
                 continue
             end = float(u.timeEnd)
             if not (end and end > start):
-                logging.warning(f"invalid timeEnd ({u.timeEnd}) for utterance {u.id}")
+                logging.warning(
+                    f"invalid timeEnd ({u.timeEnd}) for utterance {u.get_id()}"
+                )
                 continue
-            target_path = os.path.join(abs_output_root, f"{u.id}.wav")
+            target_path = os.path.join(abs_output_root, f"{u.get_id()}.wav")
             audioslicer.slice_audio(audio_source, target_path, u.timeStart, u.timeEnd)
         except BaseException as u_err:
             logging.warning(f"exception processing utterance: {str(u_err)}")
+
+
+def update_transcripts(
+    sessions: Sessions,
+    transcription_service: TranscriptionService,
+    transcripts_root: str,
+) -> None:
+    """
+    Give sessions data and a root sessions directory,
+    transcribes the text for items in the sessions data,
+    returning an updated copy of the sessions data with transcriptions populated.
+    """
+    abs_root = os.path.abspath(transcripts_root)
+    result = copy_sessions(sessions)
+    for u in sessions.utterances():
+        if u.transcript:
+            continue  # transcript already set
+        audio_path = u.get_utterance_audio_path(abs_root)
+        if not os.path.isfile(audio_path):
+            logging.warning(
+                f"audio slice is missing for utternance {u.get_id()} at path {audio_path}"
+            )
+            continue
+        try:
+            text = transcription_service.transcribe(audio_path)
+            result.set_transcript(u.partId, u.sliceId, text)
+        except BaseException as err:
+            logging.warning(
+                f"failed to transcribe audio for id {u.get_id()} at path {audio_path}: {str(err)}"
+            )
+    return result
