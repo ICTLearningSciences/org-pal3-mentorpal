@@ -1,0 +1,87 @@
+ID,utterance,situation
+clintanderson_U1_1_1,"My name is EMC Clint Anderson. I was born in California and I have lived there most of my life. I graduated from Paramount and a couple of years after I finished high school, I joined the US Navy. I was an Electrician's Mate. I served on an aircraft carrier for eight years and then afterwards, I went to the United States Navy Reserve. During that time I started going to school with some of the abundant benefits that the military reserve has given me and I started working with various companies.",_INTRO_
+clintanderson_U2_1_2,Yes,_FEEDBACK_
+clintanderson_U3_1_2,"Yes, sir",_FEEDBACK_
+clintanderson_U4_1_2,"Yes, ma'am",_FEEDBACK_
+clintanderson_U5_1_2,Excuse me?,_FEEDBACK_
+clintanderson_U6_1_2,Good morning,_FEEDBACK_
+clintanderson_U7_1_2,Good afternoon,_FEEDBACK_
+clintanderson_U8_1_2,Good evening,_FEEDBACK_
+clintanderson_U9_1_2,Goodnight,_FEEDBACK_
+clintanderson_U10_1_2,I may have said this before.,_REPEAT_
+clintanderson_U11_1_2,No,_FEEDBACK_
+clintanderson_U12_1_2,Maybe,_FEEDBACK_
+clintanderson_U13_1_2,Perhaps,_FEEDBACK_
+clintanderson_U14_1_2,Of course,_FEEDBACK_
+clintanderson_U15_1_2,Always,_FEEDBACK_
+clintanderson_U16_1_2,Sometimes,_FEEDBACK_
+clintanderson_U17_1_2,Sometimes,_FEEDBACK_
+clintanderson_U18_1_2,Never,_FEEDBACK_
+clintanderson_U19_1_2,Often,_FEEDBACK_
+clintanderson_U20_1_2,I do,_FEEDBACK_
+clintanderson_U21_1_2,I don't,_FEEDBACK_
+clintanderson_U22_1_2,I have no idea.,_FEEDBACK_
+clintanderson_U23_1_2,I don't think so.,_FEEDBACK_
+clintanderson_U24_1_2,I have no idea.,_FEEDBACK_
+clintanderson_U25_2_2,I hope so.,_FEEDBACK_
+clintanderson_U26_2_2,I'm sorry.,_FEEDBACK_
+clintanderson_U27_2_2,I'm sorry to hear that.,_FEEDBACK_
+clintanderson_U28_2_2,Thank you.,_FEEDBACK_
+clintanderson_U29_2_2,I understand that.,_FEEDBACK_
+clintanderson_U30_2_2,I went through something similar.,_FEEDBACK_
+clintanderson_U31_2_2,I am not sure.,_FEEDBACK_
+clintanderson_U32_2_2,I can't hear you.,_FEEDBACK_
+clintanderson_U33_2_2,I don't understand.,_FEEDBACK_
+clintanderson_U34_2_2,Can you repeat that?,_FEEDBACK_
+clintanderson_U35_2_2,I don't have an answer for that.,_FEEDBACK_
+clintanderson_U36_2_2,It would help if you could keep the questions short and simple.,_FEEDBACK_
+clintanderson_U37_2_2,Can you rephrase the question?,_FEEDBACK_
+clintanderson_U38_2_2,I can not predict the future.,_FEEDBACK_
+clintanderson_U39_2_2,I do not want to speculate about the future.,_FEEDBACK_
+clintanderson_U40_2_2,I don't know what that is.,_FEEDBACK_
+clintanderson_U41_2_2,I don't know who that is.,_FEEDBACK_
+clintanderson_U42_2_2,I am not going to talk about that.,_FEEDBACK_
+clintanderson_U43_2_2,I am not here to talk about that.,_FEEDBACK_
+clintanderson_U44_5_1,I don't have enough information to talk about that.,_FEEDBACK_
+clintanderson_U45_5_1,I do not have an answer for that.,_FEEDBACK_
+clintanderson_U46_5_1,"That is a great question, but unfortunately I never recorded an answer to that.",_OFF_TOPIC_
+clintanderson_U47_5_1,That is a great question. I wish I'd thought of that.,_OFF_TOPIC_
+clintanderson_U48_5_1,"That is an interesting question, but I am here to talk about STEM careers in the Navy. ",_OFF_TOPIC_
+clintanderson_U49_5_1,"Unfortunately, I was never asked that question.",_OFF_TOPIC_
+clintanderson_U50_5_1,You might have to ask me something else.,_OFF_TOPIC_
+clintanderson_U51_5_1,What do you want to talk about?,_PROMPT_
+clintanderson_U52_5_1,What would you like to ask me?,_PROMPT_
+clintanderson_U53_5_1,What do you want to know?,_PROMPT_
+clintanderson_U54_5_1,What do you want to know about me?,_PROMPT_
+clintanderson_U55_5_1,What do you want to know about STEM in the Navy?,_PROMPT_
+clintanderson_U56_5_1,You could ask me about my education.,_PROMPT_
+clintanderson_U57_5_1,You could ask me about my job in the Navy.,_PROMPT_
+clintanderson_U58_5_1,You could ask me about my background.,_PROMPT_
+clintanderson_U59_5_1,"Go ahead, ask me who gave me the best advice about my career.",_PROMPT_
+clintanderson_U60_5_1,I might have covered this already...,_REPEAT_
+clintanderson_U61_5_1,"This changes pretty quickly, so what I'd tell you today might not be true tomorrow. I would recommend talking to someone local who might know more.",_FEEDBACK_
+clintanderson_U62_5_1,"I did a lot of technical training in the Navy, so you can ask me about what skills I learned.",_PROMPT_
+clintanderson_U63_5_1,You can ask me about the travelling that I did in the Navy.,_PROMPT_
+clintanderson_U64_5_1,"I've made a lot of mistakes in my life, so you can ask me about any of the failures that I've had.",_PROMPT_
+clintanderson_U65_5_1,"I've had a lot of mistakes in my life, and I've learned a lot from them. You can ask about anything and I'll try to be as honest as I can.",_PROMPT_
+clintanderson_U66_5_1,"I was in the Navy, and now I'm back in college getting my master's degree. You can ask about either of them.",_PROMPT_
+clintanderson_U67_5_2,"I worked on nuclear reactors in the Navy, but it is different every day. So you can ask about what I did as a nuke.",_PROMPT_
+clintanderson_U68_5_2,"When you work for the Navy as long as I did, you get to have lots of stories. Some of them are funny, some of them are interestings, feel free to ask about any of them.",_PROMPT_
+clintanderson_U69_5_2,Good careers are about solving what's important. You can ask me about anything that I think is important.,_PROMPT_
+clintanderson_U70_6_1,"I am stored in this machine, I can wait for your questions all day.",_PROMPT_
+clintanderson_U71_6_1,A lot of people ask me about money and military salaries. You can ask me about those things.,_PROMPT_
+clintanderson_U72_6_1,"A lot of people ask me about war, exercise, and payment, you can ask me if you want to.",_PROMPT_
+clintanderson_U73_6_1,I have already answered that question. Please ask me something else.,_REPEAT_
+clintanderson_U74_6_1,I have answered that question before. You can ask me something else.,_REPEAT_
+clintanderson_U75_6_1,I answered this question a while ago. Let's move on.,_REPEAT_BUMP_
+clintanderson_U76_6_1,"That's a great question, but unfortunately, I don't have an answer for that right now.",_OFF_TOPIC_
+clintanderson_U77_6_1,I'm not sure I have an answer for that question.,_OFF_TOPIC_
+clintanderson_U78_6_1,"That is a great question but unfortunately, I don't have an answer right now.",_OFF_TOPIC_
+clintanderson_U79_7_1,Hello,_FEEDBACK_
+clintanderson_U80_7_1,It's nice to meet you.,_FEEDBACK_
+clintanderson_U81_7_1,Can you please refrain from the use of profanity?,_PROFANITY_
+clintanderson_U82_7_1,I don't really have an opinion on that.,_OFF_TOPIC_
+clintanderson_U83_7_1,I see you didn't ask me anything there.,_FEEDBACK_
+clintanderson_U84_7_1,You've got to ask me something to get a response.,_FEEDBACK_
+clintanderson_U85_7_1,"No matter what you heard about having a mouth like a sailor, it will hurt your career.",_PROFANITY_
+clintanderson_I_7_1,,_IDLE_

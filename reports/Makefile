@@ -33,3 +33,7 @@ report/mentor-answered-watched/since-%: report/mentor-answered-watched/since-%/r
 
 report/mentor-answers-watched/today:
 	$(MAKE) report/mentor-answered-watched/since-$(TODAY)
+
+.PHONY: test
+test:
+	npm install && npm test

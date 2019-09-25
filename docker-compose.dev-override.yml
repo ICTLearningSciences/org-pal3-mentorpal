@@ -13,7 +13,7 @@ services:
         source: ./checkpoint
         target: /app/checkpoint
       - type: bind
-        source: ./mentors
+        source: ./mentors/data/mentors
         target: /app/mentors
     expose:
       - "5000"

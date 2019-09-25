@@ -19,7 +19,7 @@ docker run \
         --name ${DOCKER_CONTAINER} \
         -v ${CHECKPOINT_ROOT}:/app/checkpoint \
         -v ${PROJECT_ROOT}/classifier/src/mentorpal:/app/mentorpal \
-        -v ${PROJECT_ROOT}/mentors:/app/mentors \
+        -v ${PROJECT_ROOT}/mentors/data/mentors:/app/mentors \
         -e CHECKPOINT_1=${C1} \
         -e CHECKPOINT_2=${C2} \
         -e ARCH_1=${A1} \
