@@ -20,13 +20,12 @@ def test_it_fills_in_transcripts_on_result_sessions_data(
     mock_transcribe, mentor_data_root: str, mentor_id: str
 ):
     mpath = MentorPath(mentor_id=mentor_id, root_path=mentor_data_root)
-    mentor_root = mpath.get_mentor_root()
+    mentor_root = mpath.get_mentor_path()
     sessions_data_path = os.path.join(
         mentor_data_root, mentor_id, ".mentor", "sessions.yaml"
     )
     input_sessions = sessions_from_yaml(sessions_data_path)
     dummy_transcription_service = transcriptions.TranscriptionService()
-    # audioslice_target_root = os.path.join(mentor_root, "audioslices")
     expected_sessions_result = sessions_from_yaml(
         os.path.join(mentor_root, "expected-sessions.yaml")
     )
@@ -42,7 +41,7 @@ def test_it_fills_in_transcripts_on_result_sessions_data(
         expected_transcribe_returns.append(call_data.get("transcript"))
     mock_transcribe.side_effect = expected_transcribe_returns
     actual_result_sessions = update_transcripts(
-        input_sessions, dummy_transcription_service, mpath.get_audio_slices_root()
+        input_sessions, dummy_transcription_service, mpath.get_audio_slices_path()
     )
     mock_transcribe.assert_has_calls(expected_transcribe_calls)
     assert expected_sessions_result.to_dict() == actual_result_sessions.to_dict()

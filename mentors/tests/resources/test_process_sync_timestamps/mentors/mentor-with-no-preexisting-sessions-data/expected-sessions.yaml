@@ -1,0 +1,35 @@
+mentorId: mentor-with-no-preexisting-sessions-data
+sessionsPartsById:
+  s001p001:
+    slicesById:
+      s00000000e00000100:
+        question: What is your name?
+        timeStart: 0.00
+        timeEnd: 1.00
+        utteranceType: _ANSWER_
+      s00000212e00000478:
+        question: What year were you born?
+        timeStart: 2.12
+        timeEnd: 4.78
+        transcript: mentor answer for question 2 is diff
+        utteranceType: _ANSWER_
+    sourceTimestamps: build/recordings/session1/part2_timestamps.csv
+  s001p002:
+    slicesById:
+      s00000345e00000698:
+        timeStart: 3.45
+        timeEnd: 6.98
+        transcript: Hi my name is mentor 1!
+        utteranceType: _INTRO_
+    sourceTimestamps: build/recordings/session1/part2_timestamps.csv
+  s002p001:
+    slicesById:
+      s00000599e00001012:
+        timeStart: 5.99
+        timeEnd: 10.12
+        utteranceType: _PROMPT_
+      s00001234e00001678:
+        timeStart: 12.34
+        timeEnd: 16.78
+        utteranceType: _PROMPT_
+    sourceTimestamps: build/recordings/session2/part1_timestamps.csv
