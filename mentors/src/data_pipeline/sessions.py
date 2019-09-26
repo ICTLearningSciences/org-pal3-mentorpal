@@ -1,7 +1,7 @@
 from dataclasses import asdict, dataclass, field
 import logging
 import os
-from typing import Dict, List, Union
+from typing import Dict, List
 
 import pandas as pd
 
@@ -226,4 +226,3 @@ def update_transcripts(
                 f"failed to transcribe audio for id {u.get_id()} at path {audio_path}: {str(err)}"
             )
     return result
-

@@ -1,9 +1,8 @@
 from mentorpath import MentorPath
 from session import copy_sessions, Sessions
 
-def sync_timestamps(
-    mp: MentorPath, sessions_before: Sessions = None
-) -> Sessions:
+
+def sync_timestamps(mp: MentorPath, sessions_before: Sessions = None) -> Sessions:
     sessions_result = copy_sessions(sessions_before) if sessions_before else Sessions()
     return sessions_result
     # glob_path = f"{ts_root}/*.csv"
@@ -26,5 +25,5 @@ def sync_timestamps(
     #                 pu_rows.append([utterance_type.value, mentor_id, transcription])
     #     except BaseException as err:
     #         logging.warning(f"failed to load transcript data from {t_path}: {err}")
-    
+
     # return result
