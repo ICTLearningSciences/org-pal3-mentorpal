@@ -1,5 +1,6 @@
 from dataclasses import asdict, dataclass, field
 import logging
+import math
 import os
 from typing import Dict, List
 
@@ -14,6 +15,21 @@ from utils import yaml_load
 
 def _utterance_id(part_id: str, slice_id: str) -> str:
     return f"{part_id}{slice_id}"
+
+
+def _part_id(session: int, part: int) -> str:
+    return f"s{session:03}p{part:03}"
+
+
+def _to_slice_timestr(secs_total: float) -> str:
+    m, s = divmod(secs_total, 60)
+    h, m = divmod(m, 60)
+    hs = int(round(secs_total - math.floor(secs_total), 2) * 100)
+    return f"{int(h):02}{int(m):02}{int(s):02}{hs:02}"
+
+
+def _slice_id(time_start: float, time_end: float) -> str:
+    return f"s{_to_slice_timestr(time_start)}e{_to_slice_timestr(time_end)}"
 
 
 @dataclass
@@ -64,6 +80,14 @@ class SessionPart:
     def __post_init__(self):
         self.slicesById = {k: SessionSlice(**v) for (k, v) in self.slicesById.items()}
 
+    # def find_utterance(
+    #     self, part_id:str, time_start:float, time_end:float) -> UtteranceType:
+    #     return None
+
+    def set_session_slice(self, ss: SessionSlice) -> None:
+        slice_id = _slice_id(ss.timeStart, ss.timeEnd)
+        self.slicesById[slice_id] = ss
+
     def to_dict(self):
         return asdict(self)
 
@@ -78,6 +102,33 @@ class Sessions:
             k: SessionPart(**v) for (k, v) in self.sessionsPartsById.items()
         }
 
+    def apply_timestamps(
+        self,
+        session: int,
+        part: int,
+        sourceTimestamps: str,
+        timestampRows: List[SessionSlice],
+    ) -> None:
+        part_id = _part_id(session, part)
+        if part_id not in self.sessionsPartsById:
+            self.sessionsPartsById[part_id] = SessionPart()
+        sp: SessionPart = self.sessionsPartsById[part_id]
+        sp.sourceTimestamps = sourceTimestamps
+        for ss in timestampRows:
+            sp.set_session_slice(ss)
+
+    # def find_utterance(
+    #     self, session: int, part: int, time_start: float, time_end
+    # ) -> Utterance:
+    #     part_id = _part_id(session, part)
+    #     return (
+    #         self.sessionsPartsById[part_id].find_utterance(
+    #             part_id, time_start, time_end
+    #         )
+    #         if part_id in self.sessionsPartsById
+    #         else None
+    #     )
+
     def set_transcript(self, part_id: str, slice_id: str, text: str) -> bool:
         if part_id not in self.sessionsPartsById:
             return False
@@ -86,6 +137,16 @@ class Sessions:
             return False
         slc = part.slicesById[slice_id]
         slc.transcript = text
+
+    def set_session_slice(self, session: int, part: int, ss: SessionSlice) -> None:
+        part_id = _part_id(session, part)
+        if part_id not in self.sessionsPartsById:
+            self.sessionsPartsById[part_id] = SessionPart()
+        sp: SessionPart = self.sessionsPartsById[part_id]
+        sp.set_session_slice(ss)
+
+    def to_dict(self):
+        return asdict(self)
 
     def utterances(self) -> List[Utterance]:
         res: List[Utterance] = []
@@ -100,9 +161,6 @@ class Sessions:
                     )
                 )
         return sorted(res, key=lambda x: x.get_id())
-
-    def to_dict(self):
-        return asdict(self)
 
 
 def copy_sessions(sessions: Sessions) -> Sessions:

@@ -1,29 +1,49 @@
+from datetime import time, timedelta
+import logging
+from typing import List
+
+import pandas as pd
+
 from mentorpath import MentorPath
-from session import copy_sessions, Sessions
+from sessions import Sessions, SessionSlice
+from transcription_type import TranscriptionType
+from utterance_type import UtteranceType
+
+
+def timestr_to_secs(s: str) -> time:
+    h, m, s, hs = s.split(":")
+    td = timedelta(hours=int(h), minutes=int(m), seconds=int(s))
+    return float(td.seconds + float(hs) / 100)
 
 
 def sync_timestamps(mp: MentorPath, sessions_before: Sessions = None) -> Sessions:
-    sessions_result = copy_sessions(sessions_before) if sessions_before else Sessions()
+    sessions_result = Sessions(mentorId=mp.get_mentor_id())
+    for ts in mp.find_timestamps():
+        try:
+            ts_data = pd.read_csv(ts.file_path).fillna("")
+            ts_slices: List[SessionSlice] = []
+            for i, row in ts_data.iterrows():
+                try:
+                    row_type = TranscriptionType(row["Answer/Utterance"])
+                    question = row["Question"]
+                    time_start = timestr_to_secs(row["Response start"])
+                    time_end = timestr_to_secs(row["Response end"])
+                    ss = SessionSlice(timeStart=time_start, timeEnd=time_end)
+                    if row_type == TranscriptionType.ANSWER:
+                        ss.utteranceType = UtteranceType.ANSWER
+                        ss.question = question
+                    else:
+                        ss.utteranceType = UtteranceType.for_value(question)
+                    ts_slices.append(ss)
+                except BaseException as row_err:
+                    logging.exception(
+                        f"error processing row {i} of timestamps file {ts.file_path}: {str(row_err)}"
+                    )
+            sessions_result.apply_timestamps(
+                ts.session, ts.part, mp.to_relative_path(ts.file_path), ts_slices
+            )
+        except BaseException as ts_err:
+            logging.exception(
+                f"error processing timestamps {ts.file_path}: {str(ts_err)}"
+            )
     return sessions_result
-    # glob_path = f"{ts_root}/*.csv"
-    # qpa_rows = []
-    # pu_rows = []
-    # for t_path in mp.get_timestamps():
-    #     try:
-    #         with open(t_path, "r") as f:
-    #             t = load(f, Loader=YamlLoader)
-    #             transcription = t.get("transcription")
-    #             assert transcription is not None, "item must have a transcription"
-    #             utterance_type = UtteranceType.for_value(
-    #                 t.get("type"), UtteranceType.ANSWER
-    #             )
-    #             if utterance_type == UtteranceType.ANSWER:
-    #                 question = t.get("question")
-    #                 assert question is not None, "item must have question text"
-    #                 qpa_rows.append([None, None, mentor_id, question, transcription])
-    #             else:
-    #                 pu_rows.append([utterance_type.value, mentor_id, transcription])
-    #     except BaseException as err:
-    #         logging.warning(f"failed to load transcript data from {t_path}: {err}")
-
-    # return result

@@ -11,15 +11,13 @@ sessionsPartsById:
         question: What year were you born?
         timeStart: 2.12
         timeEnd: 4.78
-        transcript: mentor answer for question 2 is diff
         utteranceType: _ANSWER_
-    sourceTimestamps: build/recordings/session1/part2_timestamps.csv
+    sourceTimestamps: build/recordings/session1/part1_timestamps.csv
   s001p002:
     slicesById:
       s00000345e00000698:
         timeStart: 3.45
         timeEnd: 6.98
-        transcript: Hi my name is mentor 1!
         utteranceType: _INTRO_
     sourceTimestamps: build/recordings/session1/part2_timestamps.csv
   s002p001:
