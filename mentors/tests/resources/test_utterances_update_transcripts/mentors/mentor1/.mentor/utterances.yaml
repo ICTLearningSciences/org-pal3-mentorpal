@@ -1,0 +1,42 @@
+utterancesById:
+  s001p001s00000000e00000100:
+    mentor: mentor1
+    part: 1
+    question: question 1
+    session: 1
+    sourceAudio: build/recordings/session1/part1_audio.wav
+    timeStart: 0.00
+    timeEnd: 1.00
+    utteranceType: _ANSWER_
+  s001p001s00000212e00000478:
+    mentor: mentor1
+    part: 1
+    question: question 2 diff
+    session: 1
+    sourceAudio: build/recordings/session1/part1_audio.wav
+    timeStart: 2.12
+    timeEnd: 4.78
+    utteranceType: _ANSWER_
+  s001p002s00000345e00000698:
+    mentor: mentor1
+    part: 2
+    session: 1
+    sourceAudio: build/recordings/session1/part2_audio.wav
+    timeStart: 3.45
+    timeEnd: 6.98
+    utteranceType: _INTRO_
+  s002p001s00000599e00001012:
+    mentor: mentor1
+    part: 1
+    session: 2
+    timeStart: 5.99
+    timeEnd: 10.12
+    utteranceType: _PROMPT_
+  s002p001s00001234e00001678:
+    mentor: mentor1
+    part: 1
+    session: 2
+    timeStart: 12.34
+    timeEnd: 16.78
+    utteranceType: _PROMPT_
+    sourceAudio: build/recordings/session2/part1_audio.wav

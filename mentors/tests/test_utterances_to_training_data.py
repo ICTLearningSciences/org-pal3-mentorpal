@@ -4,12 +4,14 @@ import pytest
 
 import pandas as pd
 
-from sessions import sessions_from_yaml, sessions_to_training_data
+from mentorpath import MentorPath
+from process import utterances_to_training_data, Utterances2TrainingDataResult
+from utterances import Utterances, utterances_from_yaml
 
 COLS_QUESTIONS_PARAPHRASES_ANSWERS = ["Topics", "Helpers", "Mentor", "Question", "text"]
 
 MENTOR_DATA_ROOT = os.path.abspath(
-    os.path.join(".", "tests", "resources", "test_sessions_to_training_data", "mentors")
+    os.path.join(".", "tests", "resources", "test_utterances_to_training_data", "mentors")
 )
 
 
@@ -17,7 +19,7 @@ MENTOR_DATA_ROOT = os.path.abspath(
 def test_it_builds_training_data_from_sessions_data(
     mentor_data_root: str, mentor_id: str
 ):
-    _test_it_build_training_data_from_session_data(mentor_data_root, mentor_id)
+    _test_it_builds_training_data_from_session_data(mentor_data_root, mentor_id)
 
 
 # @patch("logging.warning")
@@ -75,28 +77,24 @@ def test_it_builds_training_data_from_sessions_data(
 #     )
 
 
-def _test_it_build_training_data_from_session_data(
+def _test_it_builds_training_data_from_session_data(
     mentor_data_root: str, mentor_id: str
 ):
-    sessions_data_path = os.path.join(
-        mentor_data_root, mentor_id, ".mentor", "sessions.yaml"
-    )
-    sessions = sessions_from_yaml(sessions_data_path)
-    training_data = sessions_to_training_data(sessions)
+    mp = MentorPath(mentor_id=mentor_id, root_path=mentor_data_root)
+    utterances = mp.load_utterances()
+    training_data = utterances_to_training_data(utterances)
     logging.warning(
         f"got training data qpa={training_data.questions_paraphrases_answers}"
     )
     expected_questions_paraphrases_answers = pd.read_csv(
-        os.path.join(
-            mentor_data_root, mentor_id, "expected_questions_paraphrases_answers.csv"
-        )
+        mp.get_mentor_path("expected_questions_paraphrases_answers.csv")
     ).fillna("")
     pd.testing.assert_frame_equal(
         expected_questions_paraphrases_answers,
         training_data.questions_paraphrases_answers,
     )
     expected_prompts_utterances = pd.read_csv(
-        os.path.join(mentor_data_root, mentor_id, "expected_prompts_utterances.csv")
+        mp.get_mentor_path("expected_prompts_utterances.csv")
     ).fillna("")
     pd.testing.assert_frame_equal(
         expected_prompts_utterances, training_data.prompts_utterances

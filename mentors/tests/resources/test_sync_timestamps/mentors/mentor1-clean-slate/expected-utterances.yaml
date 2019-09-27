@@ -1,0 +1,45 @@
+
+utterancesById:
+  s001p001s00000000e00000100:
+    mentor: mentor1-clean-slate
+    question: What is your name?
+    part: 1
+    session: 1
+    sourceTimestamps: build/recordings/session1/part1_timestamps.csv
+    timeStart: 0.00
+    timeEnd: 1.00
+    utteranceType: _ANSWER_
+  s001p001s00000212e00000478:
+    mentor: mentor1-clean-slate
+    question: What year were you born?
+    part: 1
+    session: 1
+    sourceTimestamps: build/recordings/session1/part1_timestamps.csv
+    timeStart: 2.12
+    timeEnd: 4.78
+    utteranceType: _ANSWER_
+  s001p002s00000345e00000698:
+    mentor: mentor1-clean-slate
+    part: 2
+    session: 1
+    sourceTimestamps: build/recordings/session1/part2_timestamps.csv
+    timeStart: 3.45
+    timeEnd: 6.98
+    utteranceType: _INTRO_
+  s002p001s00000599e00001012:
+    mentor: mentor1-clean-slate
+    part: 1
+    session: 2
+    sourceTimestamps: build/recordings/session2/part1_timestamps.csv
+    timeStart: 5.99
+    timeEnd: 10.12
+    utteranceType: _PROMPT_
+  s002p001s00001234e00001678:
+    mentor: mentor1-clean-slate
+    part: 1
+    session: 2
+    sourceTimestamps: build/recordings/session2/part1_timestamps.csv
+    timeStart: 12.34
+    timeEnd: 16.78
+    utteranceType: _PROMPT_
+        

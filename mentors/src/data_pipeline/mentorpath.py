@@ -3,8 +3,8 @@ from glob import glob
 import os
 from typing import Dict, List
 
-from sessions import Sessions, sessions_from_yaml
-
+# from sessions import Sessions, sessions_from_yaml
+from utterances import Utterances, utterances_from_yaml
 
 @dataclass
 class SessionPartFile:
@@ -62,10 +62,16 @@ class MentorPath:
     def get_sessions_data_path(self) -> str:
         return os.path.join(self.get_mentor_path(), ".mentor", "sessions.yaml")
 
+    def get_utterances_data_path(self) -> str:
+        return os.path.join(self.get_mentor_path(), ".mentor", "utterances.yaml")
+
     def find_timestamps(self) -> List[SessionPartFile]:
         return self._find_session_part_files(
             os.path.join(self.get_recordings_path(), "**/*_timestamps.csv")
         )
 
-    def load_sessions(self) -> Sessions:
-        return sessions_from_yaml(self.get_sessions_data_path())
+    # def load_sessions(self) -> Sessions:
+    #     return sessions_from_yaml(self.get_sessions_data_path())
+
+    def load_utterances(self) -> Utterances:
+        return utterances_from_yaml(self.get_utterances_data_path())
