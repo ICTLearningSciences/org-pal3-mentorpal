@@ -5,13 +5,14 @@ import pytest
 import pandas as pd
 
 from mentorpath import MentorPath
-from process import utterances_to_training_data, Utterances2TrainingDataResult
-from utterances import Utterances, utterances_from_yaml
+from process import utterances_to_training_data
 
 COLS_QUESTIONS_PARAPHRASES_ANSWERS = ["Topics", "Helpers", "Mentor", "Question", "text"]
 
 MENTOR_DATA_ROOT = os.path.abspath(
-    os.path.join(".", "tests", "resources", "test_utterances_to_training_data", "mentors")
+    os.path.join(
+        ".", "tests", "resources", "test_utterances_to_training_data", "mentors"
+    )
 )
 
 

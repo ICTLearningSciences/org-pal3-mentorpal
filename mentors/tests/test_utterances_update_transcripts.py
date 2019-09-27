@@ -5,7 +5,7 @@ from unittest.mock import call, patch
 from mentorpath import MentorPath
 from process import update_transcripts
 import transcriptions
-from utterances import utterances_from_yaml, Utterances
+from utterances import utterances_from_yaml
 from utils import yaml_load
 
 MENTOR_DATA_ROOT = os.path.abspath(

@@ -3,8 +3,6 @@ from typing import List
 
 import pandas as pd
 
-from utterances import Utterances
-
 
 COLS_QUESTIONS_PARAPHRASES_ANSWERS: List[str] = [
     "Topics",
@@ -78,7 +76,5 @@ class PromptsUtterancesBuilder:
 
     def to_data_frame(self) -> pd.DataFrame:
         return pd.DataFrame(
-            [r.to_row() for r in self.data],
-            columns=COLS_PROMPTS_UTTERANCES,
+            [r.to_row() for r in self.data], columns=COLS_PROMPTS_UTTERANCES
         )
-

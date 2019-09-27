@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import time, timedelta
+from datetime import timedelta
 import logging
 import os
 from typing import List
@@ -63,9 +63,7 @@ def sync_timestamps(mp: MentorPath) -> Utterances:
 
 
 def update_transcripts(
-    utterances: Utterances,
-    transcription_service: TranscriptionService,
-    mp: MentorPath,
+    utterances: Utterances, transcription_service: TranscriptionService, mp: MentorPath
 ) -> None:
     """
     Give sessions data and a root sessions directory,
@@ -86,7 +84,9 @@ def update_transcripts(
             continue
         try:
             text = transcription_service.transcribe(audio_path)
-            result.set_transcript(u.get_id(), transcript=text, source_audio=audio_path_rel)
+            result.set_transcript(
+                u.get_id(), transcript=text, source_audio=audio_path_rel
+            )
         except BaseException as err:
             logging.warning(
                 f"failed to transcribe audio for id {u.get_id()} at path {audio_path}: {str(err)}"
@@ -156,7 +156,10 @@ class Utterances2TrainingDataResult:
     questions_paraphrases_answers: pd.DataFrame = None
     prompts_utterances: pd.DataFrame = None
 
-def utterances_to_training_data(utterances: Utterances) -> Utterances2TrainingDataResult:
+
+def utterances_to_training_data(
+    utterances: Utterances
+) -> Utterances2TrainingDataResult:
     utterances_result = copy(utterances)
     qpa = QuestionsParaphrasesAnswersBuilder()
     pu = PromptsUtterancesBuilder()
@@ -168,7 +171,11 @@ def utterances_to_training_data(utterances: Utterances) -> Utterances2TrainingDa
                 continue
             qpa.add_row(question=u.question, answer=u.transcript, mentor_id=u.mentor)
         else:
-            pu.add_row(situation=u.utteranceType.value, utterance=u.transcript, mentor_id=u.mentor)
+            pu.add_row(
+                situation=u.utteranceType.value,
+                utterance=u.transcript,
+                mentor_id=u.mentor,
+            )
     return Utterances2TrainingDataResult(
         utterances=utterances_result,
         questions_paraphrases_answers=qpa.to_data_frame(),

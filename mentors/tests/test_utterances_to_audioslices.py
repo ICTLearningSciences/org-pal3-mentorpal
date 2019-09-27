@@ -3,7 +3,6 @@ import pytest
 from unittest.mock import call, patch
 
 from mentorpath import MentorPath
-from utterances import utterances_from_yaml
 from process import utterances_to_audioslices
 from utils import yaml_load
 
@@ -20,9 +19,7 @@ def test_it_generates_an_audio_file_for_each_utterance(
     mp = MentorPath(mentor_id, mentor_data_root)
     utterances = mp.load_utterances()
     audioslice_target_root = os.path.join(mp.get_build_path("audioslices"))
-    expected_audioslices = yaml_load(
-        mp.get_mentor_path("expected-audioslices.yaml")
-    )
+    expected_audioslices = yaml_load(mp.get_mentor_path("expected-audioslices.yaml"))
     expected_slice_calls = []
     for expected_slice_data in expected_audioslices:
         expected_slice_calls.append(
