@@ -71,5 +71,8 @@ class MentorPath:
             os.path.join(self.get_recordings_path(), "**/*_timestamps.csv")
         )
 
-    def load_utterances(self) -> Utterances:
-        return utterances_from_yaml(self.get_utterances_data_path())
+    def load_utterances(self, create_new=False) -> Utterances:
+        data_path = self.get_utterances_data_path()
+        if not os.path.isfile(data_path):
+            return Utterances() if create_new else None
+        return utterances_from_yaml(data_path)

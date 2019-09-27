@@ -12,7 +12,7 @@ from training_data import QuestionsParaphrasesAnswersBuilder, PromptsUtterancesB
 from transcriptions import TranscriptionService
 from transcription_type import TranscriptionType
 from utterance_type import UtteranceType
-from utterances import copy, Utterance, Utterances
+from utterances import copy_utterance, copy_utterances, Utterance, Utterances
 
 
 def timestr_to_secs(s: str) -> float:
@@ -22,7 +22,8 @@ def timestr_to_secs(s: str) -> float:
 
 
 def sync_timestamps(mp: MentorPath) -> Utterances:
-    sessions_result = Utterances()
+    utterances_current = mp.load_utterances(create_new=True)
+    utterances_merged = Utterances()
     for ts in mp.find_timestamps():
         try:
             ts_data = pd.read_csv(ts.file_path).fillna("")
@@ -34,14 +35,21 @@ def sync_timestamps(mp: MentorPath) -> Utterances:
                     question = row["Question"]
                     time_start = timestr_to_secs(row["Response start"])
                     time_end = timestr_to_secs(row["Response end"])
-                    u = Utterance(
-                        mentor=mp.get_mentor_id(),
-                        part=ts.part,
-                        session=ts.session,
-                        sourceTimestamps=ts_rel_path,
-                        timeStart=time_start,
-                        timeEnd=time_end,
+                    u_existing = utterances_current.find_one(
+                        ts.session, ts.part, time_start, time_end
                     )
+                    u = (
+                        copy_utterance(u_existing)
+                        if u_existing
+                        else Utterance(
+                            part=ts.part,
+                            session=ts.session,
+                            timeStart=time_start,
+                            timeEnd=time_end,
+                        )
+                    )
+                    u.mentor = mp.get_mentor_id()
+                    u.sourceTimestamps = ts_rel_path
                     if row_type == TranscriptionType.ANSWER:
                         u.utteranceType = UtteranceType.ANSWER
                         u.question = question
@@ -52,14 +60,14 @@ def sync_timestamps(mp: MentorPath) -> Utterances:
                     logging.exception(
                         f"error processing row {i} of timestamps file {ts.file_path}: {str(row_err)}"
                     )
-            sessions_result.apply_timestamps(
+            utterances_merged.apply_timestamps(
                 ts.session, ts.part, mp.to_relative_path(ts.file_path), ts_slices
             )
         except BaseException as ts_err:
             logging.exception(
                 f"error processing timestamps {ts.file_path}: {str(ts_err)}"
             )
-    return sessions_result
+    return utterances_merged
 
 
 def update_transcripts(
@@ -71,7 +79,7 @@ def update_transcripts(
     returning an updated copy of the sessions data with transcriptions populated.
     """
     audio_root = os.path.abspath(mp.get_audio_slices_path())
-    result = copy(utterances)
+    result = copy_utterances(utterances)
     for u in utterances.utterances():
         if u.transcript:
             continue  # transcript already set
@@ -160,10 +168,10 @@ class Utterances2TrainingDataResult:
 def utterances_to_training_data(
     utterances: Utterances
 ) -> Utterances2TrainingDataResult:
-    utterances_result = copy(utterances)
+    utterances_merged = copy_utterances(utterances)
     qpa = QuestionsParaphrasesAnswersBuilder()
     pu = PromptsUtterancesBuilder()
-    for u in utterances_result.utterances():
+    for u in utterances_merged.utterances():
         if not (u.transcript and u.utteranceType):
             continue
         if u.utteranceType == UtteranceType.ANSWER:
@@ -177,7 +185,7 @@ def utterances_to_training_data(
                 mentor_id=u.mentor,
             )
     return Utterances2TrainingDataResult(
-        utterances=utterances_result,
+        utterances=utterances_merged,
         questions_paraphrases_answers=qpa.to_data_frame(),
         prompts_utterances=pu.to_data_frame(),
     )

@@ -71,6 +71,12 @@ class Utterances:
         for u in timestampRows:
             self.utterancesById[u.get_id()] = u
 
+    def find_one(
+        self, session: int, part: int, time_start: float, time_end: float
+    ) -> Utterance:
+        uid = _utterance_id(session, part, time_start, time_end)
+        return self.utterancesById.get(uid)
+
     def set_transcript(self, uid: str, transcript: str, source_audio: str) -> bool:
         if uid not in self.utterancesById:
             return False
@@ -87,8 +93,12 @@ class Utterances:
         )
 
 
-def copy(utterances: Utterances) -> Utterances:
-    return Utterances(**utterances.to_dict())
+def copy_utterance(u: Utterance) -> Utterance:
+    return Utterance(**u.to_dict())
+
+
+def copy_utterances(u: Utterances) -> Utterances:
+    return Utterances(**u.to_dict())
 
 
 def utterances_from_yaml(yml: str) -> Utterances:
