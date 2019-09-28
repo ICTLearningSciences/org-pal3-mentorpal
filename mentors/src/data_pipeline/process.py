@@ -49,7 +49,7 @@ def sync_timestamps(mp: MentorPath) -> UtteranceMap:
                         )
                     )
                     u.mentor = mp.get_mentor_id()
-                    u.sourceTimestamps = ts_rel_path
+                    u.sessionTimestamps = ts_rel_path
                     if row_type == TranscriptionType.ANSWER:
                         u.utteranceType = UtteranceType.ANSWER
                         u.question = question
@@ -80,12 +80,11 @@ def update_transcripts(
     transcribes the text for items in the sessions data,
     returning an updated copy of the sessions data with transcriptions populated.
     """
-    audio_root = os.path.abspath(mp.get_audio_slices_path())
     result = copy_utterances(utterances)
     for u in utterances.utterances():
         if u.transcript:
             continue  # transcript already set
-        audio_path = u.get_utterance_audio_path(audio_root)
+        audio_path = mp.get_utterance_audio_path(u)
         audio_path_rel = mp.to_relative_path(audio_path)
         if not os.path.isfile(audio_path):
             logging.warning(
@@ -104,8 +103,8 @@ def update_transcripts(
     return result
 
 
-def utterances_to_audioslices(
-    utterances: UtteranceMap, sessions_root: str, output_root: str
+def utterances_to_audio(
+    utterances: UtteranceMap, mp: MentorPath, output_root: str
 ) -> None:
     """
     Give sessions data and a root sessions directory,
@@ -129,17 +128,16 @@ def utterances_to_audioslices(
     Where the final two numbers in each sliced wav file above are the time_start and time end,
     e.g. 00000413 = 00:00:04:13
     """
-    abs_sessions_root = os.path.abspath(sessions_root)
     abs_output_root = os.path.abspath(output_root)
     for u in utterances.utterances():
         try:
-            audio_source = u.source_audio_file_path_from(abs_sessions_root)
-            if not audio_source:
+            session_audio = mp.get_session_audio_path(u)
+            if not session_audio:
                 logging.warning(f"no audio source found for utterance {u.get_id()}")
                 continue
-            if not os.path.isfile(audio_source):
+            if not os.path.isfile(session_audio):
                 logging.warning(
-                    f"audio source file not found for utterance {u.get_id()} at path {audio_source}"
+                    f"audio source file not found for utterance {u.get_id()} at path {session_audio}"
                 )
                 continue
             start = float(u.timeStart)
@@ -155,7 +153,10 @@ def utterances_to_audioslices(
                 )
                 continue
             target_path = os.path.join(abs_output_root, f"{u.get_id()}.wav")
-            audioslicer.slice_audio(audio_source, target_path, u.timeStart, u.timeEnd)
+            if os.path.isfile(target_path):
+                continue
+            logging.warning(f"OK THIS DOES NOT EXIST: {target_path}")
+            audioslicer.slice_audio(session_audio, target_path, u.timeStart, u.timeEnd)
         except BaseException as u_err:
             logging.warning(f"exception processing utterance: {str(u_err)}")
 

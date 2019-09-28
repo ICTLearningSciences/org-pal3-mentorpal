@@ -3,7 +3,7 @@ utterances:
     part: 1
     question: question 1
     session: 1
-    sourceAudio: build/audioslices/s001p001s00000000e00000100.wav
+    utteranceAudio: build/utterance_audio/s001p001s00000000e00000100.wav
     timeStart: 0.00
     timeEnd: 1.00
     transcript: mentor answer for question 1
@@ -12,7 +12,7 @@ utterances:
     part: 1
     question: question 2 diff
     session: 1
-    sourceAudio: build/audioslices/s001p001s00000212e00000478.wav
+    utteranceAudio: build/utterance_audio/s001p001s00000212e00000478.wav
     timeStart: 2.12
     timeEnd: 4.78
     transcript: mentor answer for question 2 is diff
@@ -20,7 +20,7 @@ utterances:
   - mentor: mentor1
     part: 2
     session: 1
-    sourceAudio: build/audioslices/s001p002s00000345e00000698.wav
+    utteranceAudio: build/utterance_audio/s001p002s00000345e00000698.wav
     timeStart: 3.45
     timeEnd: 6.98
     transcript: Hi my name is mentor 1!
@@ -28,7 +28,7 @@ utterances:
   - mentor: mentor1
     part: 1
     session: 2
-    sourceAudio: build/audioslices/s002p001s00000599e00001012.wav
+    utteranceAudio: build/utterance_audio/s002p001s00000599e00001012.wav
     timeStart: 5.99
     timeEnd: 10.12
     transcript: Ask me how I saved $15!
@@ -36,7 +36,7 @@ utterances:
   - mentor: mentor1
     part: 1
     session: 2
-    sourceAudio: build/audioslices/s002p001s00001234e00001678.wav
+    utteranceAudio: build/utterance_audio/s002p001s00001234e00001678.wav
     timeStart: 12.34
     timeEnd: 16.78
     transcript: Do you have a favorite color?

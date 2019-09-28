@@ -4,7 +4,7 @@ utterances:
     question: What is your name?
     part: 1
     session: 1
-    sourceTimestamps: build/recordings/session1/part1_timestamps.csv
+    sessionTimestamps: build/recordings/session1/part1_timestamps.csv
     timeStart: 0.00
     timeEnd: 1.00
     utteranceType: _ANSWER_
@@ -12,28 +12,28 @@ utterances:
     question: What year were you born?
     part: 1
     session: 1
-    sourceTimestamps: build/recordings/session1/part1_timestamps.csv
+    sessionTimestamps: build/recordings/session1/part1_timestamps.csv
     timeStart: 2.12
     timeEnd: 4.78
     utteranceType: _ANSWER_
   - mentor: mentor1-clean-slate
     part: 2
     session: 1
-    sourceTimestamps: build/recordings/session1/part2_timestamps.csv
+    sessionTimestamps: build/recordings/session1/part2_timestamps.csv
     timeStart: 3.45
     timeEnd: 6.98
     utteranceType: _INTRO_
   - mentor: mentor1-clean-slate
     part: 1
     session: 2
-    sourceTimestamps: build/recordings/session2/part1_timestamps.csv
+    sessionTimestamps: build/recordings/session2/part1_timestamps.csv
     timeStart: 5.99
     timeEnd: 10.12
     utteranceType: _PROMPT_
   - mentor: mentor1-clean-slate
     part: 1
     session: 2
-    sourceTimestamps: build/recordings/session2/part1_timestamps.csv
+    sessionTimestamps: build/recordings/session2/part1_timestamps.csv
     timeStart: 12.34
     timeEnd: 16.78
     utteranceType: _PROMPT_

@@ -4,7 +4,7 @@ import os
 from typing import Dict, List
 
 # from sessions import Sessions, sessions_from_yaml
-from utterances import UtteranceMap, utterances_from_yaml
+from utterances import Utterance, UtteranceMap, utterances_from_yaml
 
 
 @dataclass
@@ -45,8 +45,35 @@ class MentorPath:
     def to_relative_path(self, p: str) -> str:
         return os.path.relpath(p, self.get_mentor_path())
 
-    def get_audio_slices_path(self, p: str = None) -> str:
-        return self._path_from(os.path.join(self.get_build_path(), "audioslices"), p)
+    def get_utterance_audio_path(
+        self, utterance: Utterance = None, subpath: str = None
+    ) -> str:
+        if utterance:
+            return (
+                self.get_mentor_path(utterance.utteranceAudio)
+                if utterance.utteranceAudio
+                else self.get_utterance_audio_path(subpath=f"{utterance.get_id()}.wav")
+            )
+        else:
+            return self._path_from(
+                os.path.join(self.get_build_path(), "utterance_audio"), subpath
+            )
+
+    def get_session_audio_path(
+        self, utterance: Utterance = None, subpath: str = None
+    ) -> str:
+        if utterance:
+            return (
+                self.get_mentor_path(utterance.sessionAudio)
+                if utterance.sessionAudio
+                else self.get_session_audio_path(
+                    subpath=os.path.join(
+                        f"session{utterance.session}", f"part{utterance.part}_audio.wav"
+                    )
+                )
+            )
+        else:
+            return self.get_recordings_path(subpath)
 
     def get_recordings_path(self, p: str = None) -> str:
         return self._path_from(os.path.join(self.get_build_path(), "recordings"), p)

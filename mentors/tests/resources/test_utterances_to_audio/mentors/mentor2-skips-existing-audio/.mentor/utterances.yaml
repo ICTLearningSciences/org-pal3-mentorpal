@@ -1,10 +1,11 @@
-utterances:
+utterances:  
   - mentor: mentor1
     part: 1
     question: question 1
     session: 1
     timeStart: 0.00
     timeEnd: 1.00
+    transcript: mentor answer for question 1
     utteranceType: _ANSWER_
   - mentor: mentor1
     part: 1
@@ -12,22 +13,26 @@ utterances:
     session: 1
     timeStart: 2.12
     timeEnd: 4.78
+    transcript: mentor answer for question 2 is diff
     utteranceType: _ANSWER_
   - mentor: mentor1
     part: 2
     session: 1
     timeStart: 3.45
     timeEnd: 6.98
+    transcript: Hi my name is mentor 1!
     utteranceType: _INTRO_
   - mentor: mentor1
     part: 1
     session: 2
     timeStart: 5.99
     timeEnd: 10.12
+    transcript: Ask me how I saved $15!
     utteranceType: _PROMPT_
   - mentor: mentor1
     part: 1
     session: 2
     timeStart: 12.34
     timeEnd: 16.78
+    transcript: Do you have a favorite color?
     utteranceType: _PROMPT_

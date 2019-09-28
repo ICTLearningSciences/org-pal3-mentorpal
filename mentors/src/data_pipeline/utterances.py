@@ -1,6 +1,5 @@
 from dataclasses import asdict, dataclass, field
 import math
-import os
 from typing import Dict, List
 
 from utterance_type import UtteranceType
@@ -25,9 +24,9 @@ class Utterance:
     question: str = None
     part: int = 1
     session: int = 1
-    sourceAudio: str = None
-    sourceTimestamps: str = None
-    sourceVideo: str = None
+    sessionAudio: str = None
+    sessionTimestamps: str = None
+    sessionVideo: str = None
     timeEnd: float = -1.0
     timeStart: float = -1.0
     transcript: str = None
@@ -40,13 +39,6 @@ class Utterance:
 
     def get_id(self):
         return _utterance_id(self.session, self.part, self.timeStart, self.timeEnd)
-
-    def source_audio_file_path_from(self, mentor_root: str) -> str:
-        return os.path.join(mentor_root, self.sourceAudio) if self.sourceAudio else None
-
-    def get_utterance_audio_path(self, sessions_root: str) -> str:
-        rel_path = self.utteranceAudio or f"{self.get_id()}.wav"
-        return os.path.join(sessions_root, rel_path) if sessions_root else rel_path
 
     def to_dict(self):
         return asdict(self)
@@ -66,7 +58,7 @@ class UtteranceMap:
         self,
         session: int,
         part: int,
-        sourceTimestamps: str,
+        sessionTimestamps: str,
         timestampRows: List[Utterance],
     ) -> None:
         for u in timestampRows:
@@ -83,7 +75,7 @@ class UtteranceMap:
             return False
         u = self.utterancesById[uid]
         u.transcript = transcript
-        u.sourceAudio = source_audio
+        u.utteranceAudio = source_audio
 
     def to_dict(self):
         return asdict(self)
@@ -105,7 +97,6 @@ def copy_utterances(u: UtteranceMap) -> UtteranceMap:
 def utterances_from_yaml(yml: str) -> UtteranceMap:
     d = yaml_load(yml)
     if "utterances" in d:
-        print(f'in {yml} found {len(d.get("utterances"))}')
         ulist = [Utterance(**u) for u in d.get("utterances")]
         return UtteranceMap(**dict(utterancesById={u.get_id(): u for u in ulist}))
     else:
