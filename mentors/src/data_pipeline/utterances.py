@@ -53,12 +53,13 @@ class Utterance:
 
 
 @dataclass
-class Utterances:
+class UtteranceMap:
     utterancesById: Dict[str, Utterance] = field(default_factory=lambda: {})
 
     def __post_init__(self):
         self.utterancesById = {
-            k: Utterance(**v) for (k, v) in self.utterancesById.items()
+            k: v if isinstance(v, Utterance) else Utterance(**v)
+            for (k, v) in self.utterancesById.items()
         }
 
     def apply_timestamps(
@@ -97,10 +98,15 @@ def copy_utterance(u: Utterance) -> Utterance:
     return Utterance(**u.to_dict())
 
 
-def copy_utterances(u: Utterances) -> Utterances:
-    return Utterances(**u.to_dict())
+def copy_utterances(u: UtteranceMap) -> UtteranceMap:
+    return UtteranceMap(**u.to_dict())
 
 
-def utterances_from_yaml(yml: str) -> Utterances:
+def utterances_from_yaml(yml: str) -> UtteranceMap:
     d = yaml_load(yml)
-    return Utterances(**d)
+    if "utterances" in d:
+        print(f'in {yml} found {len(d.get("utterances"))}')
+        ulist = [Utterance(**u) for u in d.get("utterances")]
+        return UtteranceMap(**dict(utterancesById={u.get_id(): u for u in ulist}))
+    else:
+        return UtteranceMap(**d)

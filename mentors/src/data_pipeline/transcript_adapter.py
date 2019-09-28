@@ -127,10 +127,10 @@ def build_data(mentor):
     timestamp_data = aggregate_timestamp_data(mentor)
     if timestamp_data.empty:
         print("ERROR: Couldn't Find Timestamp Data")
-    print("INFO: Splitting Answers and Utterances")
+    print("INFO: Splitting Answers and UtteranceMap")
     qpa_data, pu_data = split_answers_and_utterances(transcript_data, timestamp_data)
     if qpa_data.empty or pu_data.empty:
-        print("ERROR: Couldn't Split Answers and Utterances Data")
+        print("ERROR: Couldn't Split Answers and UtteranceMap Data")
     print("INFO: Saving QPA and PU Data")
     format_and_save_qpa_data(mentor, qpa_data)
     format_and_save_pu_data(mentor, pu_data)

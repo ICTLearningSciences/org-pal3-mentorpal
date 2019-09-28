@@ -1,6 +1,5 @@
-utterancesById:
-  s001p001s00000000e00000100:
-    mentor: mentor2-preserves-transcripts-when-merging
+utterances:
+  - mentor: mentor2-preserves-transcripts-when-merging
     question: What is your name?
     part: 1
     session: 1
@@ -9,8 +8,7 @@ utterancesById:
     timeEnd: 1.00
     transcript: My name is Mentor2
     utteranceType: _ANSWER_
-  s001p001s00000212e00000478:
-    mentor: mentor2-preserves-transcripts-when-merging
+  - mentor: mentor2-preserves-transcripts-when-merging
     question: What year were you born?
     part: 1
     session: 1
@@ -18,8 +16,7 @@ utterancesById:
     timeStart: 2.12
     timeEnd: 4.78
     utteranceType: _ANSWER_
-  s001p002s00000345e00000698:
-    mentor: mentor2-preserves-transcripts-when-merging
+  - mentor: mentor2-preserves-transcripts-when-merging
     part: 2
     session: 1
     sourceTimestamps: build/recordings/session1/part2_timestamps.csv

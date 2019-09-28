@@ -1,6 +1,5 @@
-utterancesById:  
-  s001p001s00000000e00000100:
-    mentor: mentor1
+utterances:  
+  - mentor: mentor1
     part: 1
     question: question 1
     session: 1
@@ -9,8 +8,7 @@ utterancesById:
     timeEnd: 1.00
     transcript: mentor answer for question 1
     utteranceType: _ANSWER_
-  s001p001s00000212e00000478:
-    mentor: mentor1
+  - mentor: mentor1
     part: 1
     question: question 2 diff
     session: 1
@@ -19,8 +17,7 @@ utterancesById:
     timeEnd: 4.78
     transcript: mentor answer for question 2 is diff
     utteranceType: _ANSWER_
-  s001p002s00000345e00000698:
-    mentor: mentor1
+  - mentor: mentor1
     part: 2
     session: 1
     sourceAudio: build/recordings/session1/part2_audio.wav
@@ -28,8 +25,7 @@ utterancesById:
     timeEnd: 6.98
     transcript: Hi my name is mentor 1!
     utteranceType: _INTRO_
-  s002p001s00000599e00001012:
-    mentor: mentor1
+  - mentor: mentor1
     part: 1
     session: 2
     sourceAudio: build/recordings/session2/part1_audio.wav
@@ -37,8 +33,7 @@ utterancesById:
     timeEnd: 10.12
     transcript: Ask me how I saved $15!
     utteranceType: _PROMPT_
-  s002p001s00001234e00001678:
-    mentor: mentor1
+  - mentor: mentor1
     part: 1
     session: 2
     sourceAudio: build/recordings/session2/part1_audio.wav

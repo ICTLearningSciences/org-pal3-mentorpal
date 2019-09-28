@@ -1,39 +1,48 @@
-utterancesById:
-  s001p001s00000000e00000100:
-    mentor: mentor1
+utterances:
+  - mentor: mentor1
     question: question 1
+    timeStart: 1.2
+    timeEnd: 2.3
     transcript: mentor answer for question 1
     utteranceType: _ANSWER_
-  s001p001s00000212e00000478:
-    mentor: mentor1
+  - mentor: mentor1
     question: question 2 diff
+    timeStart: 3.4
+    timeEnd: 4.5
     transcript: mentor answer for question 2 is diff
     utteranceType: _ANSWER_
-  s001p002s00000345e00000698:
-    mentor: mentor1
+  - mentor: mentor1
+    timeStart: 5.6
+    timeEnd: 6.7
     transcript: Hi my name is mentor 1!
     utteranceType: _INTRO_
-  s002p001s00000599e00001012:
-    mentor: mentor1
+  - mentor: mentor1
+    timeStart: 7.8
+    timeEnd: 8.9
     transcript: Ask me how I saved $15!
     utteranceType: _PROMPT_
-  s002p001s00001234e00001678:
-    mentor: mentor1
+  - mentor: mentor1
+    timeStart: 9.1
+    timeEnd: 10.2
     transcript: Do you have a favorite color?
     utteranceType: _PROMPT_
-  s002p001s00001823e00002345:
-    mentor: mentor1
+  - mentor: mentor1
+    timeStart: 11.3
+    timeEnd: 12.4
     transcript: Ask me something else.
     utteranceType: _OFF_TOPIC_
-  s002p001s00002567e00002901:
-    mentor: mentor1
+  - mentor: mentor1
+    timeStart: 13.4
+    timeEnd: 14.5
     transcript: OK.
     utteranceType: _FEEDBACK_
-  s002p001s00003012e00003567:
-    mentor: mentor1
+  - mentor: mentor1
+    timeStart: 15.6
+    timeEnd: 16.7
     transcript: I might have covered this already...
     utteranceType: _REPEAT_
-  s002p001s00003789e00004345:
-    mentor: mentor1
+  - mentor: mentor1
+    timeStart: 17.8
+    timeEnd: 18.9
     transcript: Please don't use that language.
     utteranceType: _PROFANITY_

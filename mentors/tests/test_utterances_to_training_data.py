@@ -17,9 +17,7 @@ MENTOR_DATA_ROOT = os.path.abspath(
 
 
 @pytest.mark.parametrize("mentor_data_root,mentor_id", [(MENTOR_DATA_ROOT, "mentor1")])
-def test_it_builds_training_data_from_sessions_data(
-    mentor_data_root: str, mentor_id: str
-):
+def test_it_builds_training_data_from_utterances(mentor_data_root: str, mentor_id: str):
     _test_it_builds_training_data_from_session_data(mentor_data_root, mentor_id)
 
 

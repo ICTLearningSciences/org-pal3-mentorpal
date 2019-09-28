@@ -4,7 +4,7 @@ import os
 from typing import Dict, List
 
 # from sessions import Sessions, sessions_from_yaml
-from utterances import Utterances, utterances_from_yaml
+from utterances import UtteranceMap, utterances_from_yaml
 
 
 @dataclass
@@ -71,8 +71,8 @@ class MentorPath:
             os.path.join(self.get_recordings_path(), "**/*_timestamps.csv")
         )
 
-    def load_utterances(self, create_new=False) -> Utterances:
+    def load_utterances(self, create_new=False) -> UtteranceMap:
         data_path = self.get_utterances_data_path()
         if not os.path.isfile(data_path):
-            return Utterances() if create_new else None
+            return UtteranceMap() if create_new else None
         return utterances_from_yaml(data_path)

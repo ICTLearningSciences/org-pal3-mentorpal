@@ -12,7 +12,7 @@ from training_data import QuestionsParaphrasesAnswersBuilder, PromptsUtterancesB
 from transcriptions import TranscriptionService
 from transcription_type import TranscriptionType
 from utterance_type import UtteranceType
-from utterances import copy_utterance, copy_utterances, Utterance, Utterances
+from utterances import copy_utterance, copy_utterances, Utterance, UtteranceMap
 
 
 def timestr_to_secs(s: str) -> float:
@@ -21,9 +21,9 @@ def timestr_to_secs(s: str) -> float:
     return float(td.seconds + float(hs) / 100)
 
 
-def sync_timestamps(mp: MentorPath) -> Utterances:
+def sync_timestamps(mp: MentorPath) -> UtteranceMap:
     utterances_current = mp.load_utterances(create_new=True)
-    utterances_merged = Utterances()
+    utterances_merged = UtteranceMap()
     for ts in mp.find_timestamps():
         try:
             ts_data = pd.read_csv(ts.file_path).fillna("")
@@ -71,7 +71,9 @@ def sync_timestamps(mp: MentorPath) -> Utterances:
 
 
 def update_transcripts(
-    utterances: Utterances, transcription_service: TranscriptionService, mp: MentorPath
+    utterances: UtteranceMap,
+    transcription_service: TranscriptionService,
+    mp: MentorPath,
 ) -> None:
     """
     Give sessions data and a root sessions directory,
@@ -103,7 +105,7 @@ def update_transcripts(
 
 
 def utterances_to_audioslices(
-    utterances: Utterances, sessions_root: str, output_root: str
+    utterances: UtteranceMap, sessions_root: str, output_root: str
 ) -> None:
     """
     Give sessions data and a root sessions directory,
@@ -160,13 +162,13 @@ def utterances_to_audioslices(
 
 @dataclass
 class Utterances2TrainingDataResult:
-    utterances: Utterances = None
+    utterances: UtteranceMap = None
     questions_paraphrases_answers: pd.DataFrame = None
     prompts_utterances: pd.DataFrame = None
 
 
 def utterances_to_training_data(
-    utterances: Utterances
+    utterances: UtteranceMap
 ) -> Utterances2TrainingDataResult:
     utterances_merged = copy_utterances(utterances)
     qpa = QuestionsParaphrasesAnswersBuilder()
