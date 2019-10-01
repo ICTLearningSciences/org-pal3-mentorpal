@@ -28,7 +28,7 @@ def test_it_skips_utterances_with_existing_audio_and_unchanged_start_and_end_tim
 
 
 def _test_for_expected_slice_audio_calls(mentor_data_root: str, mentor_id: str):
-    with patch("audioslicer.slice_audio") as mock_slice_audio:
+    with patch("media_tools.slice_audio") as mock_slice_audio:
         mp = MentorPath(mentor_id, mentor_data_root)
         utterances = mp.load_utterances()
         audioslice_target_root = os.path.join(mp.get_build_path("utterance_audio"))

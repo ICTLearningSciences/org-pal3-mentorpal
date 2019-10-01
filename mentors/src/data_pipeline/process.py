@@ -6,7 +6,7 @@ from typing import List
 
 import pandas as pd
 
-import audioslicer
+import media_tools
 from mentorpath import MentorPath
 from training_data import QuestionsParaphrasesAnswersBuilder, PromptsUtterancesBuilder
 from transcriptions import TranscriptionService
@@ -156,7 +156,7 @@ def utterances_to_audio(
             if os.path.isfile(target_path):
                 continue
             logging.warning(f"OK THIS DOES NOT EXIST: {target_path}")
-            audioslicer.slice_audio(session_audio, target_path, u.timeStart, u.timeEnd)
+            media_tools.slice_audio(session_audio, target_path, u.timeStart, u.timeEnd)
         except BaseException as u_err:
             logging.warning(f"exception processing utterance: {str(u_err)}")
 
