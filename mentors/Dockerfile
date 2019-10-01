@@ -18,4 +18,4 @@ ENV DATA_MOUNT=/app/mounts/
 
 WORKDIR /app
 
-ENTRYPOINT ["python3", "src/data_pipeline/pipeline_entrypoint.py"]
+ENTRYPOINT ["python3", "src/pipeline/pipeline_entrypoint.py"]
