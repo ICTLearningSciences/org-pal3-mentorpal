@@ -6,13 +6,16 @@ from typing import List
 
 import pandas as pd
 
-import media_tools
-from mentorpath import MentorPath
-from training_data import QuestionsParaphrasesAnswersBuilder, PromptsUtterancesBuilder
-from transcriptions import TranscriptionService
-from transcription_type import TranscriptionType
-from utterance_type import UtteranceType
-from utterances import copy_utterance, copy_utterances, Utterance, UtteranceMap
+from pipeline import media_tools
+from pipeline.mentorpath import MentorPath
+from pipeline.training_data import (
+    QuestionsParaphrasesAnswersBuilder,
+    PromptsUtterancesBuilder,
+)
+from pipeline.transcriptions import TranscriptionService
+from pipeline.transcription_type import TranscriptionType
+from pipeline.utterance_type import UtteranceType
+from pipeline.utterances import copy_utterance, copy_utterances, Utterance, UtteranceMap
 
 
 def timestr_to_secs(s: str) -> float:
@@ -22,9 +25,11 @@ def timestr_to_secs(s: str) -> float:
 
 
 def sync_timestamps(mp: MentorPath) -> UtteranceMap:
+    logging.warning(f"sync_timestamps...mp.get_session_audio_path{mp.get_session_audio_path()}")
     utterances_current = mp.load_utterances(create_new=True)
     utterances_merged = UtteranceMap()
     for ts in mp.find_timestamps():
+        logging.warning(f"sync_timestamps from {ts}...")
         try:
             ts_data = pd.read_csv(ts.file_path).fillna("")
             ts_rel_path = mp.to_relative_path(ts.file_path)
@@ -58,14 +63,14 @@ def sync_timestamps(mp: MentorPath) -> UtteranceMap:
                     ts_slices.append(u)
                 except BaseException as row_err:
                     logging.exception(
-                        f"error processing row {i} of timestamps file {ts.file_path}: {str(row_err)}"
+                        f"error processing row {i} of timestamps file {ts.file_path}: {row_err}"
                     )
             utterances_merged.apply_timestamps(
                 ts.session, ts.part, mp.to_relative_path(ts.file_path), ts_slices
             )
         except BaseException as ts_err:
             logging.exception(
-                f"error processing timestamps {ts.file_path}: {str(ts_err)}"
+                f"error processing timestamps {ts.file_path}: {ts_err}"
             )
     return utterances_merged
 
@@ -98,7 +103,7 @@ def update_transcripts(
             )
         except BaseException as err:
             logging.warning(
-                f"failed to transcribe audio for id {u.get_id()} at path {audio_path}: {str(err)}"
+                f"failed to transcribe audio for id {u.get_id()} at path {audio_path}: {err}"
             )
     return result
 
@@ -158,7 +163,7 @@ def utterances_to_audio(
             logging.warning(f"OK THIS DOES NOT EXIST: {target_path}")
             media_tools.slice_audio(session_audio, target_path, u.timeStart, u.timeEnd)
         except BaseException as u_err:
-            logging.warning(f"exception processing utterance: {str(u_err)}")
+            logging.warning(f"exception processing utterance: {u_err}")
 
 
 @dataclass

@@ -26,7 +26,7 @@ virtualenv-installed:
 
 PHONY: test
 test: $(TEST_VIRTUAL_ENV)
-	export PYTHONPATH=$(shell echo $${PYTHONPATH}):$(PWD)/src/pipeline && \
+	export PYTHONPATH=$(shell echo $${PYTHONPATH}):$(PWD)/src && \
 	$(TEST_VIRTUAL_ENV)/bin/py.test -vv $(args)
 
 .PHONY: docker-image-exists
@@ -75,9 +75,9 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
+			-v $(PWD)/src:/app \
 			-v $(PWD)/data:/app/mounts/data \
 			-v $(PWD)/videos:/app/mounts/videos \
-			-v $(PWD)/src:/app/src \
 		$(DOCKER_IMAGE)
 
 
@@ -126,6 +126,18 @@ data/mentors/%/data/update: data/mentors/%/build docker-image-exists
 			-v $(PWD)/src:/app/src \
 			-v $(PWD)/data:/app/mounts/data \
 			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data
+
+# Complete build of mentor data
+# Runs build if necessary
+# Generates data files
+.PHONY: data/mentors/%/data/update
+data/mentors/%/.mentor/utterances.yaml: data/mentors/%/build/recordings docker-image-exists
+	docker run \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-v $(PWD)/src:/app \
+			-v $(PWD)/data:/app/mounts/data \
+			$(DOCKER_IMAGE) --mentor $* --command=sync-timestamps --data=/app/mounts/data/mentors
 
 # Complete build of mentor data and videos
 # Runs build if necessary

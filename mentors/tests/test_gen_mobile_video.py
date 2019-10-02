@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import Mock, patch
 
-from post_process_data import gen_mobile_video
+from pipeline.post_process_data import gen_mobile_video
 
 from .helpers import Bunch
 

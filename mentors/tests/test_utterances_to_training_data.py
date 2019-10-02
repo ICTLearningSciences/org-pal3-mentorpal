@@ -4,8 +4,8 @@ import pytest
 
 import pandas as pd
 
-from mentorpath import MentorPath
-from process import utterances_to_training_data
+from pipeline.mentorpath import MentorPath
+from pipeline.process import utterances_to_training_data
 
 COLS_QUESTIONS_PARAPHRASES_ANSWERS = ["Topics", "Helpers", "Mentor", "Question", "text"]
 

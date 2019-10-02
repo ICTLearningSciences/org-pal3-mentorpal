@@ -5,8 +5,7 @@ import pandas as pd
 import re
 import requests
 
-import constants
-import utils
+from pipeline import constants, utils
 from .data_utils import gen_mobile_video
 
 

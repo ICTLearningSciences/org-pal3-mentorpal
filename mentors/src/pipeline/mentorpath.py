@@ -4,7 +4,7 @@ import os
 from typing import Dict, List
 
 # from sessions import Sessions, sessions_from_yaml
-from utterances import Utterance, UtteranceMap, utterances_from_yaml
+from pipeline.utterances import Utterance, UtteranceMap, utterances_from_yaml
 
 
 @dataclass
@@ -95,7 +95,7 @@ class MentorPath:
 
     def find_timestamps(self) -> List[SessionPartFile]:
         return self._find_session_part_files(
-            os.path.join(self.get_recordings_path(), "**/*_timestamps.csv")
+            os.path.join(self.get_recordings_path(), "**/*.csv")
         )
 
     def load_utterances(self, create_new=False) -> UtteranceMap:

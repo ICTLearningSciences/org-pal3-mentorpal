@@ -2,8 +2,8 @@ from dataclasses import asdict, dataclass, field
 import math
 from typing import Dict, List
 
-from utterance_type import UtteranceType
-from utils import yaml_load
+from pipeline.utterance_type import UtteranceType
+from pipeline.utils import yaml_load
 
 
 def _to_slice_timestr(secs_total: float) -> str:

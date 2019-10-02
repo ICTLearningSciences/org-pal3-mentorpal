@@ -1,9 +1,9 @@
 import os
 import pytest
 
-from mentorpath import MentorPath
-from process import sync_timestamps
-from utterances import utterances_from_yaml
+from pipeline.mentorpath import MentorPath
+from pipeline.process import sync_timestamps
+from pipeline.utterances import utterances_from_yaml
 
 MENTOR_DATA_ROOT = os.path.abspath(
     os.path.join(".", "tests", "resources", "test_sync_timestamps", "mentors")

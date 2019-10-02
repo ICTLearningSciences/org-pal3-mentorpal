@@ -2,11 +2,11 @@ import os
 import pytest
 from unittest.mock import call, patch
 
-from mentorpath import MentorPath
-from process import update_transcripts
-import transcriptions
-from utterances import utterances_from_yaml
-from utils import yaml_load
+from pipeline.mentorpath import MentorPath
+from pipeline.process import update_transcripts
+from pipeline.transcriptions import TranscriptionService
+from pipeline.utterances import utterances_from_yaml
+from pipeline.utils import yaml_load
 
 MENTOR_DATA_ROOT = os.path.abspath(
     os.path.join(
@@ -15,7 +15,7 @@ MENTOR_DATA_ROOT = os.path.abspath(
 )
 
 
-@patch.object(transcriptions.TranscriptionService, "transcribe")
+@patch.object(TranscriptionService, "transcribe")
 @pytest.mark.parametrize("mentor_data_root,mentor_id", [(MENTOR_DATA_ROOT, "mentor1")])
 def test_it_fills_in_transcripts_on_utterance_data(
     mock_transcribe, mentor_data_root: str, mentor_id: str
@@ -27,7 +27,7 @@ def test_it_fills_in_transcripts_on_utterance_data(
     # )
     # input_sessions = sessions_from_yaml(sessions_data_path)
     input_utterances = mpath.load_utterances()
-    dummy_transcription_service = transcriptions.TranscriptionService()
+    dummy_transcription_service = TranscriptionService()
     expected_utterances = utterances_from_yaml(
         mpath.get_mentor_path("expected-utterances.yaml")
     )
