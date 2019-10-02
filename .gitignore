@@ -10,6 +10,9 @@ terraform.tfstate
 .vscode
 *.log
 .venv
+.coverage
+.coverage.*
+htmlcov
 
 # Secret Config Files
 */secrets/*
