@@ -21,11 +21,6 @@ def test_it_fills_in_transcripts_on_utterance_data(
     mock_transcribe, mentor_data_root: str, mentor_id: str
 ):
     mpath = MentorPath(mentor_id=mentor_id, root_path=mentor_data_root)
-    # mentor_root = mpath.get_mentor_path()
-    # sessions_data_path = os.path.join(
-    #     mentor_data_root, mentor_id, ".mentor", "sessions.yaml"
-    # )
-    # input_sessions = sessions_from_yaml(sessions_data_path)
     input_utterances = mpath.load_utterances()
     dummy_transcription_service = TranscriptionService()
     expected_utterances = utterances_from_yaml(
