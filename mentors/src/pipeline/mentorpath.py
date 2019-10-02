@@ -3,7 +3,13 @@ from glob import glob
 import os
 from typing import Dict, List
 
-# from sessions import Sessions, sessions_from_yaml
+import pandas as pd
+
+from pipeline.training_data import (
+    load_prompts_utterances as _load_prompts_utterances,
+    load_questions_paraphrases_answers as _load_questions_paraphrases_answers,
+    write_questions_paraphrases_answers as _write_questions_paraphrases_answers
+)
 from pipeline.utterances import Utterance, UtteranceMap, utterances_from_yaml
 
 
@@ -84,8 +90,17 @@ class MentorPath:
     def get_mentor_id(self) -> str:
         return self.mentor_id
 
+    def get_mentor_data(self, p: str = None) -> str:
+        return self.get_mentor_path(p)
+
     def get_mentor_path(self, p: str = None) -> str:
         return self._path_from(os.path.join(self.root_path, self.get_mentor_id()), p)
+
+    def get_questions_paraphrases_answers(self) -> str:
+        return self.get_mentor_data("questions_paraphrases_answers.csv")
+
+    def get_prompts_utterances(self) -> str:
+        return self.get_mentor_data("prompts_utterances.csv")
 
     def get_sessions_data_path(self) -> str:
         return os.path.join(self.get_mentor_path(), ".mentor", "sessions.yaml")
@@ -103,3 +118,12 @@ class MentorPath:
         if not os.path.isfile(data_path):
             return UtteranceMap() if create_new else None
         return utterances_from_yaml(data_path)
+
+    def load_questions_paraphrases_answers(self) -> pd.DataFrame:
+        return _load_questions_paraphrases_answers(self.get_questions_paraphrases_answers())
+
+    def load_prompts_utterances(self) -> pd.DataFrame:
+        return _load_prompts_utterances(self.get_prompts_utterances())
+
+    def write_questions_paraphrases_answers(self, d: pd.DataFrame) -> None:
+        _write_questions_paraphrases_answers(d, self.get_questions_paraphrases_answers())

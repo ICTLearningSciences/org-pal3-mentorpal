@@ -78,3 +78,13 @@ class PromptsUtterancesBuilder:
         return pd.DataFrame(
             [r.to_row() for r in self.data], columns=COLS_PROMPTS_UTTERANCES
         )
+
+
+def load_questions_paraphrases_answers(csv_path: str) -> pd.DataFrame:
+        return pd.read_csv(csv_path).fillna("")
+
+def load_prompts_utterances(csv_path: str) -> pd.DataFrame:
+    return pd.read_csv(csv_path).fillna("")
+
+def write_questions_paraphrases_answers(d: pd.DataFrame, csv_path: str) -> None:
+        d.fillna("").to_csv(csv_path, index=False)
