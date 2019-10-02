@@ -2,6 +2,7 @@ certifi==2019.6.16
 chardet==3.0.4
 dataclasses==0.6
 ffmpy==0.2.2
+ftfy==5.6
 gdown==3.8.1
 idna==2.8
 numpy==1.16.4

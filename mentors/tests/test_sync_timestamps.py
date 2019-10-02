@@ -14,12 +14,7 @@ MENTOR_DATA_ROOT = os.path.abspath(
     "mentor_data_root,mentor_id", [(MENTOR_DATA_ROOT, "mentor1-clean-slate")]
 )
 def test_it_generates_utterances_from_timestamps(mentor_data_root: str, mentor_id: str):
-    mp = MentorPath(mentor_id=mentor_id, root_path=mentor_data_root)
-    expected_utterances = utterances_from_yaml(
-        mp.get_mentor_path("expected-utterances.yaml")
-    )
-    actual_utterances = sync_timestamps(mp)
-    assert expected_utterances.to_dict() == actual_utterances.to_dict()
+    _test_synced_utterances_match_expected(mentor_data_root, mentor_id)
 
 
 @pytest.mark.parametrize(
@@ -27,6 +22,17 @@ def test_it_generates_utterances_from_timestamps(mentor_data_root: str, mentor_i
     [(MENTOR_DATA_ROOT, "mentor2-preserves-transcripts-when-merging")],
 )
 def test_it_preserves_transcripts_when_merging(mentor_data_root: str, mentor_id: str):
+    _test_synced_utterances_match_expected(mentor_data_root, mentor_id)
+
+
+@pytest.mark.parametrize(
+    "mentor_data_root,mentor_id", [(MENTOR_DATA_ROOT, "mentor3-fixes-smart-quotes")]
+)
+def test_it_fixes_smart_quotes(mentor_data_root: str, mentor_id: str):
+    _test_synced_utterances_match_expected(mentor_data_root, mentor_id)
+
+
+def _test_synced_utterances_match_expected(mentor_data_root: str, mentor_id: str):
     mp = MentorPath(mentor_id=mentor_id, root_path=mentor_data_root)
     expected_utterances = utterances_from_yaml(
         mp.get_mentor_path("expected-utterances.yaml")

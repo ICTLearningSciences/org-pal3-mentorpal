@@ -1,6 +1,5 @@
 from pipeline.mentorpath import MentorPath
 from pipeline.process import sync_timestamps
-from pipeline.utterances import UtteranceMap, utterances_from_yaml
 
 
 class Pipeline:

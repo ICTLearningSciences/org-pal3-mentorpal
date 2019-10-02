@@ -4,6 +4,7 @@ import logging
 import os
 from typing import List
 
+from ftfy import fix_text
 import pandas as pd
 
 from pipeline import media_tools
@@ -25,7 +26,9 @@ def timestr_to_secs(s: str) -> float:
 
 
 def sync_timestamps(mp: MentorPath) -> UtteranceMap:
-    logging.warning(f"sync_timestamps...mp.get_session_audio_path{mp.get_session_audio_path()}")
+    logging.warning(
+        f"sync_timestamps...mp.get_session_audio_path{mp.get_session_audio_path()}"
+    )
     utterances_current = mp.load_utterances(create_new=True)
     utterances_merged = UtteranceMap()
     for ts in mp.find_timestamps():
@@ -37,7 +40,7 @@ def sync_timestamps(mp: MentorPath) -> UtteranceMap:
             for i, row in ts_data.iterrows():
                 try:
                     row_type = TranscriptionType(row["Answer/Utterance"])
-                    question = row["Question"]
+                    question = fix_text(row["Question"])
                     time_start = timestr_to_secs(row["Response start"])
                     time_end = timestr_to_secs(row["Response end"])
                     u_existing = utterances_current.find_one(
@@ -69,9 +72,7 @@ def sync_timestamps(mp: MentorPath) -> UtteranceMap:
                 ts.session, ts.part, mp.to_relative_path(ts.file_path), ts_slices
             )
         except BaseException as ts_err:
-            logging.exception(
-                f"error processing timestamps {ts.file_path}: {ts_err}"
-            )
+            logging.exception(f"error processing timestamps {ts.file_path}: {ts_err}")
     return utterances_merged
 
 
