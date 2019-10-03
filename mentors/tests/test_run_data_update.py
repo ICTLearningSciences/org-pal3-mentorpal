@@ -7,6 +7,7 @@ import pytest
 from distutils.dir_util import copy_tree
 from unittest.mock import call, patch
 
+from .helpers import MockTranscriptions
 from pipeline.mentorpath import MentorPath
 from pipeline.run import Pipeline
 from pipeline.process import update_transcripts
@@ -34,7 +35,11 @@ def test_it_generates_all_data_files_for_a_mentor(
     tgt = mpath.get_mentor_path()
     logging.warning(f"tgt={tgt}")
     copy_tree(src, tgt)
-    p = Pipeline(mentor_id, mpath.root_path)
+    mock_transcriptions = MockTranscriptions(mock_transcribe)
+    mock_transcriptions.load_expected_calls(mpath)
+    p = Pipeline(
+        mentor_id, mpath.root_path, skip_utterance_audio_file_exists_check=True
+    )
     p.data_update()
     expected_qpa = load_questions_paraphrases_answers(
         mpath.get_mentor_path(

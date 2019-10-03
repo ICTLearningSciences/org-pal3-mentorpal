@@ -80,6 +80,7 @@ def update_transcripts(
     utterances: UtteranceMap,
     transcription_service: TranscriptionService,
     mp: MentorPath,
+    skip_audio_file_exists_check=False
 ) -> None:
     """
     Give sessions data and a root sessions directory,
@@ -92,9 +93,9 @@ def update_transcripts(
             continue  # transcript already set
         audio_path = mp.get_utterance_audio_path(u)
         audio_path_rel = mp.to_relative_path(audio_path)
-        if not os.path.isfile(audio_path):
+        if not os.path.isfile(audio_path) and not skip_audio_file_exists_check:
             logging.warning(
-                f"audio slice is missing for utternance {u.get_id()} at path {audio_path}"
+                f"audio file is missing for utternance {u.get_id()} at path {audio_path}"
             )
             continue
         try:
@@ -161,7 +162,6 @@ def utterances_to_audio(
             target_path = os.path.join(abs_output_root, f"{u.get_id()}.wav")
             if os.path.isfile(target_path):
                 continue
-            logging.warning(f"OK THIS DOES NOT EXIST: {target_path}")
             media_tools.slice_audio(session_audio, target_path, u.timeStart, u.timeEnd)
         except BaseException as u_err:
             logging.warning(f"exception processing utterance: {u_err}")
