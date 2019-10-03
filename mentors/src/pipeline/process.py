@@ -135,11 +135,11 @@ def utterances_to_audio(
         try:
             session_audio = mp.get_session_audio_path(u)
             if not session_audio:
-                logging.warning(f"no audio source found for utterance {u.get_id()}")
+                logging.warning(f"no audio source found for utterance {u}")
                 continue
             if not os.path.isfile(session_audio):
                 logging.warning(
-                    f"audio source file not found for utterance {u.get_id()} at path {session_audio}"
+                    f"audio source file not found at path {session_audio} for utterance {u} "
                 )
                 continue
             start = float(u.timeStart)
