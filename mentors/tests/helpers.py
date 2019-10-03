@@ -1,3 +1,9 @@
+from typing import List
+from unittest.mock import call, Mock
+
+from pipeline.mentorpath import MentorPath
+from pipeline.utils import yaml_load
+
 class Bunch:
     """
     Useful for mocking class instances.
@@ -21,3 +27,28 @@ class Bunch:
 
     def __init__(self, **kwds):
         self.__dict__.update(kwds)
+
+
+class MockTranscriptions:
+    mock_transcribe: Mock
+    expected_transcribe_calls: List
+
+    def __init__(self, mock_transcribe: Mock):
+        self.mock_transcribe = mock_transcribe
+
+    def load_expected_calls(self, mpath: MentorPath, mock_transcribe_calls_yaml="mock-transcribe-calls.yaml") -> None:
+        mock_transcribe_calls = yaml_load(
+            mpath.get_mentor_path(mock_transcribe_calls_yaml)
+        )
+        self.expected_transcribe_calls = []
+        expected_transcribe_returns = []
+        for call_data in mock_transcribe_calls:
+            self.expected_transcribe_calls.append(
+                call(mpath.get_mentor_path(call_data.get("audio")))
+            )
+            expected_transcribe_returns.append(call_data.get("transcript"))
+        self.mock_transcribe.side_effect = expected_transcribe_returns
+        
+
+    def expect_calls(self) -> None:
+        self.mock_transcribe.assert_has_calls(self.expected_transcribe_calls)
