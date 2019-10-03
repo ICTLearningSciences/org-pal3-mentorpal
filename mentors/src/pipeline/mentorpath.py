@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from glob import glob
 import os
+import re
 from typing import Dict, List
 
 import pandas as pd
@@ -73,6 +74,8 @@ class MentorPath:
             return (
                 self.get_mentor_path(utterance.sessionAudio)
                 if utterance.sessionAudio
+                else self.get_mentor_path(re.sub(r".csv$", ".wav", utterance.sessionTimestamps))
+                if utterance.sessionTimestamps
                 else self.get_session_audio_path(
                     subpath=os.path.join(
                         f"session{utterance.session}", f"part{utterance.part}_audio.wav"
