@@ -1,4 +1,5 @@
 from dataclasses import dataclass, field
+import os
 from typing import List
 
 import pandas as pd
@@ -80,13 +81,27 @@ class PromptsUtterancesBuilder:
         )
 
 
+def _add_file_if_dir(base_path, file_name: str) -> str:
+    return os.path.join(base_path, file_name) if os.path.isdir(base_path) else base_path
+
+
 def load_questions_paraphrases_answers(csv_path: str) -> pd.DataFrame:
-    return pd.read_csv(csv_path).fillna("")
+    return pd.read_csv(
+        _add_file_if_dir(csv_path, "questions_paraphrases_answers.csv")
+    ).fillna("")
 
 
 def load_prompts_utterances(csv_path: str) -> pd.DataFrame:
-    return pd.read_csv(csv_path).fillna("")
+    return pd.read_csv(_add_file_if_dir(csv_path, "prompts_utterances.csv")).fillna("")
 
 
 def write_questions_paraphrases_answers(d: pd.DataFrame, csv_path: str) -> None:
-    d.fillna("").to_csv(csv_path, index=False)
+    d.fillna("").to_csv(
+        _add_file_if_dir(csv_path, "questions_paraphrases_answers.csv"), index=False
+    )
+
+
+def write_prompts_utterances(d: pd.DataFrame, csv_path: str) -> None:
+    d.fillna("").to_csv(
+        _add_file_if_dir(csv_path, "prompts_utterances.csv"), index=False
+    )

@@ -10,7 +10,10 @@ from unittest.mock import patch
 from .helpers import MockAudioSlicer, MockTranscriptions
 from pipeline.mentorpath import MentorPath
 from pipeline.run import Pipeline
-from pipeline.training_data import load_questions_paraphrases_answers
+from pipeline.training_data import (
+    load_questions_paraphrases_answers,
+    load_prompts_utterances,
+)
 from pipeline.transcriptions import TranscriptionService
 
 
@@ -38,13 +41,21 @@ def test_it_generates_all_data_files_for_a_mentor(
     MockAudioSlicer(mock_slice_audio, create_dummy_output_files=True)
     p = Pipeline(mentor_id, mpath.root_path)
     p.data_update()
-    expected_qpa = load_questions_paraphrases_answers(
-        mpath.get_mentor_path(
-            os.path.join("expected_data", "questions_paraphrases_answers.csv")
-        )
+    expected_questions_paraphrases_answers = load_questions_paraphrases_answers(
+        mpath.get_mentor_path(os.path.join("expected_data"))
     )
-    actual_qpa = mpath.load_questions_paraphrases_answers()
-    logging.warning(f"check results in {mpath.get_mentor_path()}")
-    logging.warning(f"actualqpa={actual_qpa}")
-    logging.warning(f"expected_qpa={expected_qpa}")
-    pd.testing.assert_frame_equal(expected_qpa, actual_qpa)
+    actual_questions_paraphrases_answers = mpath.load_questions_paraphrases_answers()
+    # logging.warning(f"check results in {mpath.get_mentor_path()}")
+    # logging.warning(f"actualquestions_paraphrases_answers={actual_questions_paraphrases_answers}")
+    # logging.warning(f"expected_questions_paraphrases_answers={expected_questions_paraphrases_answers}")
+    pd.testing.assert_frame_equal(
+        expected_questions_paraphrases_answers, actual_questions_paraphrases_answers
+    )
+    expected_prompts_utterances = load_prompts_utterances(
+        mpath.get_mentor_path(os.path.join("expected_data"))
+    )
+    actual_prompts_utterances = mpath.load_prompts_utterances()
+    logging.warning(f"actual_prompts_utterances={actual_prompts_utterances}")
+    pd.testing.assert_frame_equal(
+        expected_prompts_utterances, actual_prompts_utterances
+    )

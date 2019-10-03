@@ -26,13 +26,9 @@ def timestr_to_secs(s: str) -> float:
 
 
 def sync_timestamps(mp: MentorPath) -> UtteranceMap:
-    logging.warning(
-        f"sync_timestamps...mp.get_session_audio_path{mp.get_session_audio_path()}"
-    )
     utterances_current = mp.load_utterances(create_new=True)
     utterances_merged = UtteranceMap()
     for ts in mp.find_timestamps():
-        logging.warning(f"sync_timestamps from {ts}...")
         try:
             ts_data = pd.read_csv(ts.file_path).fillna("")
             ts_rel_path = mp.to_relative_path(ts.file_path)

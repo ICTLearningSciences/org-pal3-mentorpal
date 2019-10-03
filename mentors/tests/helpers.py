@@ -42,9 +42,10 @@ class MockTranscriptions:
         - audio: build/utterance_audio/s001p001s00000000e00000100.wav
           transcript: mentor answer to question 1
 
-    then call `load_expected_calls` to set up the mock 
+    then call `load_expected_calls` to set up the mock
     to expect the calls and return the transcripts as configured
     """
+
     mock_transcribe: Mock
     expected_transcribe_calls: List
 
@@ -90,9 +91,10 @@ class MockAudioSlicer:
 
     This helps test cases that go through code that transcribes the audio.
     The transcriptions can be easily mocked to return fake transcriptions,
-    but the code will generally check the existance of the files first 
+    but the code will generally check the existance of the files first
     and fail if it doesn't find them.
     """
+
     create_dummy_output_files: bool
     mock_slice_audio: Mock
 

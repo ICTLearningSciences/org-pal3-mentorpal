@@ -2,9 +2,17 @@
   transcript: mentor answer to question 1
 - audio: build/utterance_audio/s001p001s00000212e00000478.wav
   transcript: mentor answer to question 2 is diff
-# - audio: build/utterance_audio/s001p002s00000345e00000698.wav
-#   transcript: Hi my name is mentor 1!
-# - audio: build/utterance_audio/s002p001s00000599e00001012.wav
-#   transcript: Ask me how I saved $15!
-# - audio: build/utterance_audio/s002p001s00001234e00001678.wav
-#   transcript: Do you have a favorite color?
+- audio: build/utterance_audio/s001p002s00000345e00000698.wav
+  transcript: Hi my name is mentor 1!
+- audio: build/utterance_audio/s002p001s00000599e00001012.wav
+  transcript: Ask me how I saved $15!
+- audio: build/utterance_audio/s002p001s00001234e00001678.wav
+  transcript: Do you have a favorite color?
+- audio: build/utterance_audio/s002p001s00002345e00003456.wav
+  transcript: Ask me something else.
+- audio: build/utterance_audio/s002p001s00004567e00005678.wav
+  transcript: OK.
+- audio: build/utterance_audio/s002p001s00006789e00007890.wav
+  transcript: I might have covered this already...
+- audio: build/utterance_audio/s002p001s00008901e00009012.wav
+  transcript: Please don't use that language.

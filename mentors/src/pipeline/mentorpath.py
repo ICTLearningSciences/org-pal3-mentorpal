@@ -8,6 +8,7 @@ import pandas as pd
 from pipeline.training_data import (
     load_prompts_utterances as _load_prompts_utterances,
     load_questions_paraphrases_answers as _load_questions_paraphrases_answers,
+    write_prompts_utterances as _write_prompts_utterances,
     write_questions_paraphrases_answers as _write_questions_paraphrases_answers,
 )
 from pipeline.utterances import Utterance, UtteranceMap, utterances_from_yaml
@@ -113,19 +114,22 @@ class MentorPath:
             os.path.join(self.get_recordings_path(), "**/*.csv")
         )
 
-    def load_utterances(self, create_new=False) -> UtteranceMap:
-        data_path = self.get_utterances_data_path()
-        if not os.path.isfile(data_path):
-            return UtteranceMap() if create_new else None
-        return utterances_from_yaml(data_path)
+    def load_prompts_utterances(self) -> pd.DataFrame:
+        return _load_prompts_utterances(self.get_prompts_utterances())
 
     def load_questions_paraphrases_answers(self) -> pd.DataFrame:
         return _load_questions_paraphrases_answers(
             self.get_questions_paraphrases_answers()
         )
 
-    def load_prompts_utterances(self) -> pd.DataFrame:
-        return _load_prompts_utterances(self.get_prompts_utterances())
+    def load_utterances(self, create_new=False) -> UtteranceMap:
+        data_path = self.get_utterances_data_path()
+        if not os.path.isfile(data_path):
+            return UtteranceMap() if create_new else None
+        return utterances_from_yaml(data_path)
+
+    def write_prompts_utterances(self, d: pd.DataFrame) -> None:
+        _write_prompts_utterances(d, self.get_prompts_utterances())
 
     def write_questions_paraphrases_answers(self, d: pd.DataFrame) -> None:
         _write_questions_paraphrases_answers(
