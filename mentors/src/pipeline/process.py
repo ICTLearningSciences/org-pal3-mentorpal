@@ -80,7 +80,7 @@ def update_transcripts(
     utterances: UtteranceMap,
     transcription_service: TranscriptionService,
     mp: MentorPath,
-    skip_audio_file_exists_check=False
+    skip_audio_file_exists_check=False,
 ) -> None:
     """
     Give sessions data and a root sessions directory,

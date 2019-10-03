@@ -4,6 +4,7 @@ from unittest.mock import call, Mock
 from pipeline.mentorpath import MentorPath
 from pipeline.utils import yaml_load
 
+
 class Bunch:
     """
     Useful for mocking class instances.
@@ -36,7 +37,9 @@ class MockTranscriptions:
     def __init__(self, mock_transcribe: Mock):
         self.mock_transcribe = mock_transcribe
 
-    def load_expected_calls(self, mpath: MentorPath, mock_transcribe_calls_yaml="mock-transcribe-calls.yaml") -> None:
+    def load_expected_calls(
+        self, mpath: MentorPath, mock_transcribe_calls_yaml="mock-transcribe-calls.yaml"
+    ) -> None:
         mock_transcribe_calls = yaml_load(
             mpath.get_mentor_path(mock_transcribe_calls_yaml)
         )
@@ -48,7 +51,6 @@ class MockTranscriptions:
             )
             expected_transcribe_returns.append(call_data.get("transcript"))
         self.mock_transcribe.side_effect = expected_transcribe_returns
-        
 
     def expect_calls(self) -> None:
         self.mock_transcribe.assert_has_calls(self.expected_transcribe_calls)

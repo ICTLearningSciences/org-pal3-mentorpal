@@ -8,7 +8,7 @@ import pandas as pd
 from pipeline.training_data import (
     load_prompts_utterances as _load_prompts_utterances,
     load_questions_paraphrases_answers as _load_questions_paraphrases_answers,
-    write_questions_paraphrases_answers as _write_questions_paraphrases_answers
+    write_questions_paraphrases_answers as _write_questions_paraphrases_answers,
 )
 from pipeline.utterances import Utterance, UtteranceMap, utterances_from_yaml
 
@@ -120,10 +120,14 @@ class MentorPath:
         return utterances_from_yaml(data_path)
 
     def load_questions_paraphrases_answers(self) -> pd.DataFrame:
-        return _load_questions_paraphrases_answers(self.get_questions_paraphrases_answers())
+        return _load_questions_paraphrases_answers(
+            self.get_questions_paraphrases_answers()
+        )
 
     def load_prompts_utterances(self) -> pd.DataFrame:
         return _load_prompts_utterances(self.get_prompts_utterances())
 
     def write_questions_paraphrases_answers(self, d: pd.DataFrame) -> None:
-        _write_questions_paraphrases_answers(d, self.get_questions_paraphrases_answers())
+        _write_questions_paraphrases_answers(
+            d, self.get_questions_paraphrases_answers()
+        )

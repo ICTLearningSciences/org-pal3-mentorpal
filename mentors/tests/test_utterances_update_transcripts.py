@@ -1,13 +1,12 @@
 import os
 import pytest
-from unittest.mock import call, patch
+from unittest.mock import patch
 
 from .helpers import MockTranscriptions
 from pipeline.mentorpath import MentorPath
 from pipeline.process import update_transcripts
 from pipeline.transcriptions import TranscriptionService
 from pipeline.utterances import utterances_from_yaml
-from pipeline.utils import yaml_load
 
 MENTOR_DATA_ROOT = os.path.abspath(
     os.path.join(

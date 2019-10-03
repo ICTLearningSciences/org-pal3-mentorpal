@@ -7,7 +7,6 @@ from pipeline.process import (
     utterances_to_audio,
     utterances_to_training_data,
 )
-from pipeline.training_data import QuestionsParaphrasesAnswersBuilder
 from pipeline.transcriptions import TranscriptionService
 
 
@@ -28,7 +27,6 @@ class Pipeline:
         )
 
     def sync_timestamps(self):
-        # utterances_cur = self.mpath.load_utterances()
         utterances_new = sync_timestamps(self.mpath)
         print(f"utterances={utterances_new.to_dict()}")
 
@@ -47,23 +45,6 @@ class Pipeline:
         )
         logging.warning(f"utterances_updated={utterances_updated}")
         td_result = utterances_to_training_data(utterances_updated)
-        # mentor = self.mpath.get_mentor_id()
-        # qpab = QuestionsParaphrasesAnswersBuilder()
-        # qpab.add_row(
-        #     question="question 1", mentor_id=mentor, answer="answer to question 1"
-        # )
-        # qpab.add_row(
-        #     question="question 2 diff",
-        #     mentor_id=mentor,
-        #     answer="answer to question 2 is diff",
-        # )
-        # qpa_df = qpab.to_data_frame()
-
-        logging.warning(
-            f"td_result.questions_paraphrases_answers={td_result.questions_paraphrases_answers}"
-        )
         self.mpath.write_questions_paraphrases_answers(
             td_result.questions_paraphrases_answers
         )
-        # print(f"utterances={utterances_new.to_dict()}")
-
