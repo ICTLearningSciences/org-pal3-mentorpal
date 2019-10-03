@@ -13,18 +13,9 @@ from pipeline.transcriptions import TranscriptionService
 class Pipeline:
 
     mpath: MentorPath = None
-    skip_utterance_audio_file_exists_check: bool = False
 
-    def __init__(
-        self,
-        mentor: str,
-        mentor_data_path: str,
-        skip_utterance_audio_file_exists_check: bool = False,
-    ):
+    def __init__(self, mentor: str, mentor_data_path: str):
         self.mpath = MentorPath(mentor_id=mentor, root_path=mentor_data_path)
-        self.skip_utterance_audio_file_exists_check = (
-            skip_utterance_audio_file_exists_check
-        )
 
     def sync_timestamps(self):
         utterances_new = sync_timestamps(self.mpath)
@@ -38,10 +29,7 @@ class Pipeline:
             utterances_synced, self.mpath, self.mpath.get_utterance_audio_path()
         )
         utterances_updated = update_transcripts(
-            utterances_synced,
-            transcription_service,
-            self.mpath,
-            skip_audio_file_exists_check=self.skip_utterance_audio_file_exists_check,
+            utterances_synced, transcription_service, self.mpath
         )
         logging.warning(f"utterances_updated={utterances_updated}")
         td_result = utterances_to_training_data(utterances_updated)

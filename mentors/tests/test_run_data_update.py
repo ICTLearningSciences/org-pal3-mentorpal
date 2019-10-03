@@ -7,7 +7,7 @@ import pytest
 from distutils.dir_util import copy_tree
 from unittest.mock import patch
 
-from .helpers import MockTranscriptions
+from .helpers import MockAudioSlicer, MockTranscriptions
 from pipeline.mentorpath import MentorPath
 from pipeline.run import Pipeline
 from pipeline.training_data import load_questions_paraphrases_answers
@@ -19,25 +19,24 @@ MENTOR_DATA_ROOT = os.path.abspath(
 )
 
 
+@patch("pipeline.media_tools.slice_audio")
 @patch.object(TranscriptionService, "transcribe")
 @pytest.mark.parametrize(
     "mentor_data_root,mentor_id",
     [(MENTOR_DATA_ROOT, "mentor-generates-all-data-files")],
 )
 def test_it_generates_all_data_files_for_a_mentor(
-    mock_transcribe, mentor_data_root: str, mentor_id: str
+    mock_transcribe, mock_slice_audio, mentor_data_root: str, mentor_id: str
 ):
     tmp_mentors = mkdtemp()
     mpath = MentorPath(mentor_id=mentor_id, root_path=tmp_mentors)
     src = os.path.join(mentor_data_root, mentor_id)
     tgt = mpath.get_mentor_path()
-    logging.warning(f"tgt={tgt}")
     copy_tree(src, tgt)
     mock_transcriptions = MockTranscriptions(mock_transcribe)
     mock_transcriptions.load_expected_calls(mpath)
-    p = Pipeline(
-        mentor_id, mpath.root_path, skip_utterance_audio_file_exists_check=True
-    )
+    MockAudioSlicer(mock_slice_audio, create_dummy_output_files=True)
+    p = Pipeline(mentor_id, mpath.root_path)
     p.data_update()
     expected_qpa = load_questions_paraphrases_answers(
         mpath.get_mentor_path(

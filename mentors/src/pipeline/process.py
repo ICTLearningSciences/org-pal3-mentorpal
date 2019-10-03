@@ -80,7 +80,6 @@ def update_transcripts(
     utterances: UtteranceMap,
     transcription_service: TranscriptionService,
     mp: MentorPath,
-    skip_audio_file_exists_check=False,
 ) -> None:
     """
     Give sessions data and a root sessions directory,
@@ -93,7 +92,7 @@ def update_transcripts(
             continue  # transcript already set
         audio_path = mp.get_utterance_audio_path(u)
         audio_path_rel = mp.to_relative_path(audio_path)
-        if not os.path.isfile(audio_path) and not skip_audio_file_exists_check:
+        if not os.path.isfile(audio_path):
             logging.warning(
                 f"audio file is missing for utternance {u.get_id()} at path {audio_path}"
             )

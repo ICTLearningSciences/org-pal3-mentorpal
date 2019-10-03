@@ -1,3 +1,4 @@
+import os
 from typing import List
 from unittest.mock import call, Mock
 
@@ -54,3 +55,28 @@ class MockTranscriptions:
 
     def expect_calls(self) -> None:
         self.mock_transcribe.assert_has_calls(self.expected_transcribe_calls)
+
+
+def _on_slice_audio_create_dummy_output(  # noqa: E302
+    src_file: str, target_file: str, time_start: float, time_end: float
+) -> None:
+    print(f"\n\nCALLED _on_slice_audio_create_dummy_output target={target_file}")
+    output_command = (
+        f"-ss {time_start} -to {time_end} -c:a libvorbis -q:a 5 -loglevel quiet"
+    )
+    os.makedirs(os.path.dirname(target_file), exist_ok=True)
+    with open(target_file, "w") as f:
+        f.write(
+            f"ffmpy.FFmpeg(inputs={{{src_file}: None}} outputs={{{target_file}: {output_command}}}"
+        )
+
+
+class MockAudioSlicer:
+    create_dummy_output_files: bool
+    mock_slice_audio: Mock
+
+    def __init__(self, mock_slice_audio: Mock, create_dummy_output_files=True):
+        self.mock_slice_audio = mock_slice_audio
+        self.create_dummy_output_files = create_dummy_output_files
+        if create_dummy_output_files:
+            mock_slice_audio.side_effect = _on_slice_audio_create_dummy_output
