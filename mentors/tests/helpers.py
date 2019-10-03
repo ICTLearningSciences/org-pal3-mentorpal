@@ -32,6 +32,19 @@ class Bunch:
 
 
 class MockTranscriptions:
+    """
+    Test-helper class for mocking the TranscriptionService
+    (which is presumably an online API).
+
+    To use, create a mock-transcribe-call.yaml file in the root
+    of a test-mentor directory and fill with entries like this:
+
+        - audio: build/utterance_audio/s001p001s00000000e00000100.wav
+          transcript: mentor answer to question 1
+
+    then call `load_expected_calls` to set up the mock 
+    to expect the calls and return the transcripts as configured
+    """
     mock_transcribe: Mock
     expected_transcribe_calls: List
 
@@ -60,7 +73,6 @@ class MockTranscriptions:
 def _on_slice_audio_create_dummy_output(  # noqa: E302
     src_file: str, target_file: str, time_start: float, time_end: float
 ) -> None:
-    print(f"\n\nCALLED _on_slice_audio_create_dummy_output target={target_file}")
     output_command = (
         f"-ss {time_start} -to {time_end} -c:a libvorbis -q:a 5 -loglevel quiet"
     )
@@ -72,6 +84,15 @@ def _on_slice_audio_create_dummy_output(  # noqa: E302
 
 
 class MockAudioSlicer:
+    """
+    Mocks `media_tools.slice_audio` to create dummy versions
+    of the audio files that would be output by the real function.
+
+    This helps test cases that go through code that transcribes the audio.
+    The transcriptions can be easily mocked to return fake transcriptions,
+    but the code will generally check the existance of the files first 
+    and fail if it doesn't find them.
+    """
     create_dummy_output_files: bool
     mock_slice_audio: Mock
 
