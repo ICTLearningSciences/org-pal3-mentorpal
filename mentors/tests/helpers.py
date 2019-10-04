@@ -71,19 +71,6 @@ class MockTranscriptions:
         self.mock_transcribe.assert_has_calls(self.expected_transcribe_calls)
 
 
-def _on_slice_audio_create_dummy_output(  # noqa: E302
-    src_file: str, target_file: str, time_start: float, time_end: float
-) -> None:
-    output_command = (
-        f"-ss {time_start} -to {time_end} -c:a libvorbis -q:a 5 -loglevel quiet"
-    )
-    os.makedirs(os.path.dirname(target_file), exist_ok=True)
-    with open(target_file, "w") as f:
-        f.write(
-            f"ffmpy.FFmpeg(inputs={{{src_file}: None}} outputs={{{target_file}: {output_command}}}"
-        )
-
-
 class MockAudioSlicer:
     """
     Mocks `media_tools.slice_audio` to create dummy versions
@@ -98,8 +85,81 @@ class MockAudioSlicer:
     create_dummy_output_files: bool
     mock_slice_audio: Mock
 
+    def _on_slice_audio_create_dummy_output(  # noqa: E302
+        self, src_file: str, target_file: str, time_start: float, time_end: float
+    ) -> None:
+        output_command = (
+            f"-ss {time_start} -to {time_end} -c:a libvorbis -q:a 5 -loglevel quiet"
+        )
+        os.makedirs(os.path.dirname(target_file), exist_ok=True)
+        with open(target_file, "w") as f:
+            f.write(
+                f"ffmpy.FFmpeg(inputs={{{src_file}: None}} outputs={{{target_file}: {output_command}}}"
+            )
+
     def __init__(self, mock_slice_audio: Mock, create_dummy_output_files=True):
         self.mock_slice_audio = mock_slice_audio
         self.create_dummy_output_files = create_dummy_output_files
         if create_dummy_output_files:
-            mock_slice_audio.side_effect = _on_slice_audio_create_dummy_output
+            mock_slice_audio.side_effect = self._on_slice_audio_create_dummy_output
+
+
+class MockVideoToAudio:
+    """
+    Mocks `media_tools.video_to_audio` to create dummy versions
+    of the audio files that would be output by the real function.
+
+    This helps test cases that go through code that needs session audio
+    """
+
+    create_dummy_output_files: bool
+    expected_calls: List
+    mock_video_to_audio: Mock
+
+    def _on_video_to_audio_create_dummy_output(
+        self, src_file: str, tgt_file: str
+    ) -> None:
+        os.makedirs(os.path.dirname(tgt_file), exist_ok=True)
+        with open(tgt_file, "w") as f:
+            f.write(
+                f"ffmpy.FFmpeg(inputs={{{src_file}: None}} outputs={{{tgt_file}: some command}}"
+            )
+
+    def __init__(self, mock_video_to_audio: Mock, create_dummy_output_files=True):
+        self.mock_video_to_audio = mock_video_to_audio
+        self.create_dummy_output_files = create_dummy_output_files
+        if create_dummy_output_files:
+            mock_video_to_audio.side_effect = (
+                self._on_video_to_audio_create_dummy_output
+            )
+
+    def load_expected_calls(
+        self,
+        mpath: MentorPath,
+        mock_calls_yaml="mock-video-to-audio-calls.yaml",
+        fail_on_no_calls=False,
+    ) -> None:
+        yaml_path = mpath.get_mentor_path(mock_calls_yaml)
+        if not os.path.isfile(yaml_path):
+            if fail_on_no_calls:
+                raise (
+                    Exception(
+                        f"expected mock-video-to-audio calls file at path {yaml_path}"
+                    )
+                )
+            else:
+                return
+        mock_calls = yaml_load(yaml_path)
+        self.expected_calls = []
+        for call_data in mock_calls:
+            self.expected_calls.append(
+                call(
+                    mpath.get_mentor_path(call_data.get("video")),
+                    mpath.get_mentor_path(call_data.get("audio")),
+                )
+            )
+
+    def expect_calls(self, fail_on_no_calls=False) -> None:
+        if not self.expected_calls and fail_on_no_calls:
+            raise (Exception(f"expected mock-video-to-audio calls"))
+        self.mock_video_to_audio.assert_has_calls(self.expected_calls)

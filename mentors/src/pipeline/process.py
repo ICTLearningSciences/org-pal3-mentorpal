@@ -7,7 +7,7 @@ from typing import List
 from ftfy import fix_text
 import pandas as pd
 
-from pipeline import media_tools
+import pipeline
 from pipeline.mentorpath import MentorPath
 from pipeline.training_data import (
     QuestionsParaphrasesAnswersBuilder,
@@ -90,7 +90,7 @@ def update_transcripts(
         audio_path_rel = mp.to_relative_path(audio_path)
         if not os.path.isfile(audio_path):
             logging.warning(
-                f"audio file is missing for utternance {u.get_id()} at path {audio_path}"
+                f"audio file is missing for utterance {u.get_id()} at path {audio_path}"
             )
             continue
         try:
@@ -103,6 +103,23 @@ def update_transcripts(
                 f"failed to transcribe audio for id {u.get_id()} at path {audio_path}: {err}"
             )
     return result
+
+
+def _generate_session_audio(utterance: Utterance, mp: MentorPath) -> str:
+    session_video = mp.get_session_video_path(utterance)
+    if not session_video:
+        logging.warning(f"no session video for utterance {utterance}")
+        return None
+    session_audio = mp.get_session_audio_path(utterance)
+    pipeline.media_tools.video_to_audio(session_video, session_audio)
+    return session_audio
+
+
+def _find_or_generate_session_audio(utterance: Utterance, mp: MentorPath) -> str:
+    session_audio = mp.get_session_audio_path(utterance)
+    if os.path.isfile(session_audio):
+        return session_audio
+    return _generate_session_audio(utterance, mp)
 
 
 def utterances_to_audio(
@@ -133,7 +150,7 @@ def utterances_to_audio(
     abs_output_root = os.path.abspath(output_root)
     for u in utterances.utterances():
         try:
-            session_audio = mp.get_session_audio_path(u)
+            session_audio = _find_or_generate_session_audio(u, mp)
             if not session_audio:
                 logging.warning(f"no audio source found for utterance {u}")
                 continue
@@ -157,9 +174,11 @@ def utterances_to_audio(
             target_path = os.path.join(abs_output_root, f"{u.get_id()}.wav")
             if os.path.isfile(target_path):
                 continue
-            media_tools.slice_audio(session_audio, target_path, u.timeStart, u.timeEnd)
+            pipeline.media_tools.slice_audio(
+                session_audio, target_path, u.timeStart, u.timeEnd
+            )
         except BaseException as u_err:
-            logging.warning(f"exception processing utterance: {u_err}")
+            logging.exception(f"exception processing utterance: {u_err}")
 
 
 @dataclass

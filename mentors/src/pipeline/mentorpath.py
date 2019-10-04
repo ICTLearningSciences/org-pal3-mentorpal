@@ -88,6 +88,18 @@ class MentorPath:
                         re.sub(r".csv$", ".wav", utterance.sessionTimestamps)
                     )
                 )
+            elif utterance.sessionVideo:
+                # if the sessionAudio field is NOT set, but sessionVideo field is,
+                # try to find the audio file as a variation of the video file name
+                return (
+                    self.get_mentor_path(
+                        re.sub(r"video.mp4$", "audio.wav", utterance.sessionVideo)
+                    )
+                    if re.match(r".*video.mp4$", utterance.sessionVideo)
+                    else self.get_mentor_path(
+                        re.sub(r".mp4$", ".wav", utterance.sessionVideo)
+                    )
+                )
             else:
                 # nothing configured, just use the default name
                 return self.get_session_audio_path(
@@ -95,6 +107,22 @@ class MentorPath:
                         f"session{utterance.session}", f"part{utterance.part}_audio.wav"
                     )
                 )
+        else:
+            return self.get_recordings_path(subpath)
+
+    def get_session_video_path(
+        self, utterance: Utterance = None, subpath: str = None
+    ) -> str:
+        if utterance:
+            return (
+                self.get_mentor_path(utterance.sessionVideo)
+                if utterance and utterance.sessionVideo
+                else self.get_session_audio_path(
+                    subpath=os.path.join(
+                        f"session{utterance.session}", f"part{utterance.part}_video.mp4"
+                    )
+                )
+            )
         else:
             return self.get_recordings_path(subpath)
 
