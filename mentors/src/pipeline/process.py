@@ -7,7 +7,7 @@ from typing import List
 from ftfy import fix_text
 import pandas as pd
 
-import pipeline
+from pipeline import media_tools
 from pipeline.mentorpath import MentorPath
 from pipeline.training_data import (
     QuestionsParaphrasesAnswersBuilder,
@@ -54,6 +54,7 @@ def sync_timestamps(mp: MentorPath) -> UtteranceMap:
                     )
                     u.mentor = mp.get_mentor_id()
                     u.sessionTimestamps = ts_rel_path
+                    mp.find_and_assign_assets(u)
                     if row_type == TranscriptionType.ANSWER:
                         u.utteranceType = UtteranceType.ANSWER
                         u.question = question
@@ -106,12 +107,13 @@ def update_transcripts(
 
 
 def _generate_session_audio(utterance: Utterance, mp: MentorPath) -> str:
-    session_video = mp.get_session_video_path(utterance)
+    session_video = mp.find_session_video(utterance)
     if not session_video:
-        logging.warning(f"no session video for utterance {utterance}")
         return None
     session_audio = mp.get_session_audio_path(utterance)
-    pipeline.media_tools.video_to_audio(session_video, session_audio)
+    if not session_audio:
+        return None
+    media_tools.video_to_audio(session_video, session_audio)
     return session_audio
 
 
@@ -122,9 +124,7 @@ def _find_or_generate_session_audio(utterance: Utterance, mp: MentorPath) -> str
     return _generate_session_audio(utterance, mp)
 
 
-def utterances_to_audio(
-    utterances: UtteranceMap, mp: MentorPath, output_root: str
-) -> None:
+def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
     """
     Give sessions data and a root sessions directory,
     slices up the source audio into one file per part in the data.
@@ -137,19 +137,20 @@ def utterances_to_audio(
 
     ...and depending on the contents of sessions data that might produce
 
-        <output_root>/s001p001s00000413e00000805.wav
-        <output_root>/s001p001s00001224e00001501.wav
-        <output_root>/s001p002s00002701e00005907.wav
-        <output_root>/s001p002s00011804e00013229.wav
-        <output_root>/s002p001s00004213e00005410.wav
-        <output_root>/s002p001s00010515e00012605.wav
+        <mentor_path>/utterance_audio/s001p001s00000413e00000805.wav
+        <mentor_path>/utterance_audio/s001p001s00001224e00001501.wav
+        <mentor_path>/utterance_audio/s001p002s00002701e00005907.wav
+        <mentor_path>/utterance_audio/s001p002s00011804e00013229.wav
+        <mentor_path>/utterance_audio/s002p001s00004213e00005410.wav
+        <mentor_path>/utterance_audio/s002p001s00010515e00012605.wav
 
     Where the final two numbers in each sliced wav file above are the time_start and time end,
-    e.g. 00000413 = 00:00:04:13
+    e.g. e00000413 = (end-time) 00:00:04:13
     """
-    abs_output_root = os.path.abspath(output_root)
-    for u in utterances.utterances():
+    result_utterances = copy_utterances(utterances)
+    for u in result_utterances.utterances():
         try:
+            mp.find_and_assign_assets(u)
             session_audio = _find_or_generate_session_audio(u, mp)
             if not session_audio:
                 logging.warning(f"no audio source found for utterance {u}")
@@ -159,6 +160,9 @@ def utterances_to_audio(
                     f"audio source file not found at path {session_audio} for utterance {u} "
                 )
                 continue
+            mp.find_and_assign_assets(
+                u
+            )  # this second call catches newly generated session audio
             start = float(u.timeStart)
             if not (start == 0.0 or (start and start >= 0.0)):
                 logging.warning(
@@ -171,14 +175,19 @@ def utterances_to_audio(
                     f"invalid timeEnd ({u.timeEnd}) for utterance {u.get_id()}"
                 )
                 continue
-            target_path = os.path.join(abs_output_root, f"{u.get_id()}.wav")
-            if os.path.isfile(target_path):
+            utterance_audio_path = mp.get_utterance_audio_path(u)
+            mp.set_utterance_audio_path(u, utterance_audio_path)
+            if os.path.isfile(utterance_audio_path):
                 continue
-            pipeline.media_tools.slice_audio(
-                session_audio, target_path, u.timeStart, u.timeEnd
+            logging.warning(
+                f"utterances_to_audio will call for {session_audio} and {utterance_audio_path}"
+            )
+            media_tools.slice_audio(
+                session_audio, utterance_audio_path, u.timeStart, u.timeEnd
             )
         except BaseException as u_err:
             logging.exception(f"exception processing utterance: {u_err}")
+    return result_utterances
 
 
 @dataclass

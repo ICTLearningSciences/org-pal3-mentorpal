@@ -7,6 +7,7 @@ utterances:
     timeStart: 0.00
     timeEnd: 1.00
     transcript: mentor answer for question 1
+    utteranceAudio: build/utterance_audio/s001p001s00000000e00000100.wav
     utteranceType: _ANSWER_
   - mentor: mentor1
     part: 1
@@ -16,6 +17,7 @@ utterances:
     timeStart: 2.12
     timeEnd: 4.78
     transcript: mentor answer for question 2 is diff
+    utteranceAudio: build/utterance_audio/s001p001s00000212e00000478.wav
     utteranceType: _ANSWER_
   - mentor: mentor1
     part: 2
@@ -24,6 +26,7 @@ utterances:
     timeStart: 3.45
     timeEnd: 6.98
     transcript: Hi my name is mentor 1!
+    utteranceAudio: build/utterance_audio/s001p002s00000345e00000698.wav
     utteranceType: _INTRO_
   - mentor: mentor1
     part: 1
@@ -32,6 +35,7 @@ utterances:
     timeStart: 5.99
     timeEnd: 10.12
     transcript: Ask me how I saved $15!
+    utteranceAudio: build/utterance_audio/s002p001s00000599e00001012.wav
     utteranceType: _PROMPT_
   - mentor: mentor1
     part: 1
@@ -40,4 +44,5 @@ utterances:
     timeStart: 12.34
     timeEnd: 16.78
     transcript: Do you have a favorite color?
+    utteranceAudio: build/utterance_audio/s002p001s00001234e00001678.wav
     utteranceType: _PROMPT_

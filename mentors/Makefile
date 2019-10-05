@@ -137,7 +137,7 @@ data/mentors/%/.mentor/utterances.yaml: data/mentors/%/build/recordings docker-i
 			--name $(DOCKER_CONTAINER) \
 			-v $(PWD)/src:/app \
 			-v $(PWD)/data:/app/mounts/data \
-			$(DOCKER_IMAGE) --mentor $* --command=sync-timestamps --data=/app/mounts/data/mentors
+			$(DOCKER_IMAGE) --mentor $* --data-update --data=/app/mounts/data/mentors
 
 # Complete build of mentor data and videos
 # Runs build if necessary

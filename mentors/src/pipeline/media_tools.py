@@ -4,7 +4,7 @@ import re
 import ffmpy
 
 
-def slice_audio(  # noqa: E302
+def slice_audio(
     src_file: str, target_file: str, time_start: float, time_end: float
 ) -> None:
     output_command = "-ss {} -to {} -c:a libvorbis -q:a 5 -loglevel quiet".format(

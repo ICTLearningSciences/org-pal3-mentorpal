@@ -1,9 +1,36 @@
+from distutils.dir_util import copy_tree
+import logging
 import os
+from tempfile import mkdtemp
 from typing import List
 from unittest.mock import call, Mock
 
 from pipeline.mentorpath import MentorPath
 from pipeline.utils import yaml_load
+from pipeline.utterances import UtteranceMap, utterances_from_yaml
+
+
+def assert_utterances_match_expected(
+    utterances: UtteranceMap,
+    mp: MentorPath,
+    expected_utterances_file="expected-utterances.yaml",
+) -> None:
+    expected_utterance_path = mp.get_mentor_path(expected_utterances_file)
+    assert os.path.isfile(
+        expected_utterance_path
+    ), f"assert_utterances_match_expected requires a yaml file of expected utterances at {expected_utterance_path}"
+    expected_utterances = utterances_from_yaml(expected_utterance_path)
+    assert expected_utterances.to_dict() == utterances.to_dict()
+
+
+def copy_mentor_to_tmp(mentor: str, mentor_data_root: str) -> MentorPath:
+    tmp_mentors = mkdtemp()
+    mpath = MentorPath(mentor_id=mentor, root_path=tmp_mentors)
+    src = os.path.join(mentor_data_root, mentor)
+    tgt = mpath.get_mentor_path()
+    copy_tree(src, tgt)
+    logging.warning(f"review test data at {mpath.get_mentor_path()}")
+    return mpath
 
 
 class Bunch:
@@ -100,11 +127,40 @@ class MockAudioSlicer:
     def __init__(self, mock_slice_audio: Mock, create_dummy_output_files=True):
         self.mock_slice_audio = mock_slice_audio
         self.create_dummy_output_files = create_dummy_output_files
+        self.expected_calls = []
         if create_dummy_output_files:
             mock_slice_audio.side_effect = self._on_slice_audio_create_dummy_output
 
+    def assert_has_calls(
+        self,
+        mpath: MentorPath,
+        expected_calls_yaml="expected-slice-audio-calls.yaml",
+        fail_on_no_calls=False,
+    ) -> None:
+        expected_calls_yaml_path = mpath.get_mentor_path(expected_calls_yaml)
+        if fail_on_no_calls:
+            assert os.path.isfile(
+                expected_calls_yaml_path
+            ), f"expected mock-slice-audio calls at path {expected_calls_yaml_path}"
+        expected_calls_data = yaml_load(expected_calls_yaml_path)
+        expected_calls = [
+            call(
+                mpath.get_mentor_path(call_data.get("source")),
+                mpath.get_mentor_path(call_data.get("target")),
+                call_data.get("time_start_secs"),
+                call_data.get("time_end_secs"),
+            )
+            for call_data in expected_calls_data
+        ]
+        logging.warning(f"OK  EXPECTED CALLS FINALLY={expected_calls}")
+        if fail_on_no_calls:
+            assert (
+                len(expected_calls) > 0
+            ), f"expected mock-slice-audio calls at path {expected_calls_yaml_path}"
+        self.mock_slice_audio.assert_has_calls(expected_calls)
 
-class MockVideoToAudio:
+
+class MockVideoToAudioConverter:
     """
     Mocks `media_tools.video_to_audio` to create dummy versions
     of the audio files that would be output by the real function.
@@ -128,18 +184,24 @@ class MockVideoToAudio:
     def __init__(self, mock_video_to_audio: Mock, create_dummy_output_files=True):
         self.mock_video_to_audio = mock_video_to_audio
         self.create_dummy_output_files = create_dummy_output_files
+        self.expected_calls = []
         if create_dummy_output_files:
             mock_video_to_audio.side_effect = (
                 self._on_video_to_audio_create_dummy_output
             )
 
+    def expect_calls(self, fail_on_no_calls=False) -> None:
+        if fail_on_no_calls and not self.expected_calls:
+            raise (Exception(f"expected mock-video-to-audio calls"))
+        self.mock_video_to_audio.assert_has_calls(self.expected_calls)
+
     def load_expected_calls(
         self,
         mpath: MentorPath,
-        mock_calls_yaml="mock-video-to-audio-calls.yaml",
+        expected_calls_yaml="expected-video-to-audio-calls.yaml",
         fail_on_no_calls=False,
     ) -> None:
-        yaml_path = mpath.get_mentor_path(mock_calls_yaml)
+        yaml_path = mpath.get_mentor_path(expected_calls_yaml)
         if not os.path.isfile(yaml_path):
             if fail_on_no_calls:
                 raise (
@@ -158,8 +220,3 @@ class MockVideoToAudio:
                     mpath.get_mentor_path(call_data.get("audio")),
                 )
             )
-
-    def expect_calls(self, fail_on_no_calls=False) -> None:
-        if not self.expected_calls and fail_on_no_calls:
-            raise (Exception(f"expected mock-video-to-audio calls"))
-        self.mock_video_to_audio.assert_has_calls(self.expected_calls)

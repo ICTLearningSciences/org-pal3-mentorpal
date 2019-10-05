@@ -1,9 +1,9 @@
 import os
 import pytest
 
+from .helpers import assert_utterances_match_expected
 from pipeline.mentorpath import MentorPath
 from pipeline.process import sync_timestamps
-from pipeline.utterances import utterances_from_yaml
 
 MENTOR_DATA_ROOT = os.path.abspath(
     os.path.join(".", "tests", "resources", "test_sync_timestamps", "mentors")
@@ -32,10 +32,14 @@ def test_it_fixes_smart_quotes(mentor_data_root: str, mentor_id: str):
     _test_synced_utterances_match_expected(mentor_data_root, mentor_id)
 
 
+@pytest.mark.parametrize(
+    "mentor_data_root,mentor_id", [(MENTOR_DATA_ROOT, "mentor4-assigns-asset-paths")]
+)
+def test_it_assigns_asset_paths(mentor_data_root: str, mentor_id: str):
+    _test_synced_utterances_match_expected(mentor_data_root, mentor_id)
+
+
 def _test_synced_utterances_match_expected(mentor_data_root: str, mentor_id: str):
     mp = MentorPath(mentor_id=mentor_id, root_path=mentor_data_root)
-    expected_utterances = utterances_from_yaml(
-        mp.get_mentor_path("expected-utterances.yaml")
-    )
     actual_utterances = sync_timestamps(mp)
-    assert expected_utterances.to_dict() == actual_utterances.to_dict()
+    assert_utterances_match_expected(actual_utterances, mp)

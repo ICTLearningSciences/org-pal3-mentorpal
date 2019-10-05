@@ -22,9 +22,7 @@ class Pipeline:
     def data_update(self):
         transcription_service = TranscriptionService()
         utterances_synced = sync_timestamps(self.mpath)
-        utterances_to_audio(
-            utterances_synced, self.mpath, self.mpath.get_utterance_audio_path()
-        )
+        utterances_to_audio(utterances_synced, self.mpath)
         utterances_updated = update_transcripts(
             utterances_synced, transcription_service, self.mpath
         )

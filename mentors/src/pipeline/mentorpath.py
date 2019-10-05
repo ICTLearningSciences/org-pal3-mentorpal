@@ -50,23 +50,6 @@ class MentorPath:
             )
         return result
 
-    def to_relative_path(self, p: str) -> str:
-        return os.path.relpath(p, self.get_mentor_path())
-
-    def get_utterance_audio_path(
-        self, utterance: Utterance = None, subpath: str = None
-    ) -> str:
-        if utterance:
-            return (
-                self.get_mentor_path(utterance.utteranceAudio)
-                if utterance.utteranceAudio
-                else self.get_utterance_audio_path(subpath=f"{utterance.get_id()}.wav")
-            )
-        else:
-            return self._path_from(
-                os.path.join(self.get_build_path(), "utterance_audio"), subpath
-            )
-
     def get_session_audio_path(
         self, utterance: Utterance = None, subpath: str = None
     ) -> str:
@@ -114,6 +97,45 @@ class MentorPath:
         self, utterance: Utterance = None, subpath: str = None
     ) -> str:
         if utterance:
+            if utterance.sessionVideo:
+                # if the sessionAudio field is set, use that
+                return self.get_mentor_path(utterance.sessionVideo)
+            elif utterance.sessionTimestamps:
+                # if the sessionAudio field is NOT set, but sessionTimestamps field is,
+                # try to find the video file as a variation of the timestamps file name
+                return (
+                    self.get_mentor_path(
+                        re.sub(
+                            r"timestamps.csv$", "video.mp4", utterance.sessionTimestamps
+                        )
+                    )
+                    if re.match(r".*timestamps.csv$", utterance.sessionTimestamps)
+                    else self.get_mentor_path(
+                        re.sub(r".csv$", ".mp4", utterance.sessionTimestamps)
+                    )
+                )
+            elif utterance.sessionAudio:
+                # if the sessionVideo field is NOT set, but sessionAudio field is,
+                # try to find the video file as a variation of the video file name
+                return (
+                    self.get_mentor_path(
+                        re.sub(r"audio.wav$", "video.mp4", utterance.sessionAudio)
+                    )
+                    if re.match(r".*audio.wav$", utterance.sessionAudio)
+                    else self.get_mentor_path(
+                        re.sub(r".wav$", ".mp4", utterance.sessionAudio)
+                    )
+                )
+            else:
+                # nothing configured, just use the default name
+                return self.get_session_video_path(
+                    subpath=os.path.join(
+                        f"session{utterance.session}", f"part{utterance.part}_video.wav"
+                    )
+                )
+        else:
+            return self.get_recordings_path(subpath)
+        if utterance:
             return (
                 self.get_mentor_path(utterance.sessionVideo)
                 if utterance and utterance.sessionVideo
@@ -150,8 +172,114 @@ class MentorPath:
     def get_sessions_data_path(self) -> str:
         return os.path.join(self.get_mentor_path(), ".mentor", "sessions.yaml")
 
+    def get_utterance_audio_path(
+        self, utterance: Utterance = None, subpath: str = None
+    ) -> str:
+        if utterance:
+            return (
+                self.get_mentor_path(utterance.utteranceAudio)
+                if utterance.utteranceAudio
+                else self.get_utterance_audio_path(subpath=f"{utterance.get_id()}.wav")
+            )
+        else:
+            return self._path_from(
+                os.path.join(self.get_build_path(), "utterance_audio"), subpath
+            )
+
     def get_utterances_data_path(self) -> str:
         return os.path.join(self.get_mentor_path(), ".mentor", "utterances.yaml")
+
+    def _find_existing_mentor_path_variation(self, base_path, *args) -> str:
+        assert base_path
+        for s, r in args:
+            if not re.match(f".*{s}$", base_path):
+                continue
+            test_path = self.get_mentor_path(re.sub(f"{s}$", r, base_path))
+            if os.path.isfile(test_path):
+                return test_path
+        return None
+
+    def find_session_audio(self, utterance: Utterance = None) -> str:
+        if utterance.sessionAudio and self.mentor_path_is_file(utterance.sessionAudio):
+            # if the sessionAudio field is set, use that
+            return self.get_mentor_path(utterance.sessionAudio)
+        test_path = None
+        if utterance.sessionTimestamps:
+            test_path = self._find_existing_mentor_path_variation(
+                utterance.sessionTimestamps,
+                (".csv", ".wav"),
+                ("timestamps.csv", "audio.wav"),
+            )
+            if test_path:
+                return test_path
+        if utterance.sessionVideo:
+            test_path = self._find_existing_mentor_path_variation(
+                utterance.sessionVideo, (".mp4", ".wav"), ("video.mp4", "audio.wav")
+            )
+            if test_path:
+                return test_path
+        return None
+
+    def find_session_timestamps(self, utterance: Utterance = None) -> str:
+        if utterance.sessionTimestamps and self.mentor_path_is_file(
+            utterance.sessionTimestamps
+        ):
+            # if the sessionTimestamps field is set, use that
+            return self.get_mentor_path(utterance.sessionTimestamps)
+        test_path = None
+        if utterance.sessionVideo:
+            test_path = self._find_existing_mentor_path_variation(
+                utterance.sessionVideo,
+                (".mp4", ".csv"),
+                ("video.mp4", "timestamps.csv"),
+            )
+            if test_path:
+                return test_path
+        if utterance.sessionAudio:
+            test_path = self._find_existing_mentor_path_variation(
+                utterance.sessionAudio,
+                (".wav", ".csv"),
+                ("audio.wav", "timestamps.csv"),
+            )
+            if test_path:
+                return test_path
+        return None
+
+    def find_session_video(self, utterance: Utterance = None) -> str:
+        if utterance.sessionVideo and self.mentor_path_is_file(utterance.sessionVideo):
+            # if the sessionAudio field is set, use that
+            return self.get_mentor_path(utterance.sessionVideo)
+        test_path = None
+        if utterance.sessionTimestamps:
+            test_path = self._find_existing_mentor_path_variation(
+                utterance.sessionTimestamps,
+                (".csv", ".mp4"),
+                ("timestamps.csv", "video.mp4"),
+            )
+            if test_path:
+                return test_path
+        if utterance.sessionAudio:
+            test_path = self._find_existing_mentor_path_variation(
+                utterance.sessionAudio, (".wav", ".mp4"), ("audio.wav", "video.mp4")
+            )
+            if test_path:
+                return test_path
+        return None
+
+    def find_and_assign_assets(self, utterance: Utterance) -> None:
+        t = self.find_session_timestamps(utterance)
+        utterance.sessionTimestamps = (
+            self.to_relative_path(t) if t else utterance.sessionTimestamps
+        )
+        v = self.find_session_video(utterance)
+        utterance.sessionVideo = (
+            self.to_relative_path(v) if v else utterance.sessionVideo
+        )
+        a = self.find_session_audio(utterance)
+        utterance.sessionAudio = (
+            self.to_relative_path(a) if a else utterance.sessionAudio
+        )
+        return utterance
 
     def find_timestamps(self) -> List[SessionPartFile]:
         return self._find_session_part_files(
@@ -171,6 +299,27 @@ class MentorPath:
         if not os.path.isfile(data_path):
             return UtteranceMap() if create_new else None
         return utterances_from_yaml(data_path)
+
+    def mentor_path_is_file(self, p) -> bool:
+        return os.path.isfile(self.get_mentor_path(p))
+
+    def set_session_audio_path(
+        self, utterance: Utterance, session_audio_path: str
+    ) -> None:
+        utterance.sessionAudio = self.to_relative_path(session_audio_path)
+
+    def set_session_video_path(
+        self, utterance: Utterance, session_video_path: str
+    ) -> None:
+        utterance.sessionVideo = self.to_relative_path(session_video_path)
+
+    def set_utterance_audio_path(
+        self, utterance: Utterance, utterance_audio_path: str
+    ) -> None:
+        utterance.utteranceAudio = self.to_relative_path(utterance_audio_path)
+
+    def to_relative_path(self, p: str) -> str:
+        return os.path.relpath(p, self.get_mentor_path())
 
     def write_prompts_utterances(self, d: pd.DataFrame) -> None:
         _write_prompts_utterances(d, self.get_prompts_utterances())
