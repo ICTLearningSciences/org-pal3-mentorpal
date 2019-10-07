@@ -10,6 +10,7 @@ def slice_audio(
     output_command = "-ss {} -to {} -c:a libvorbis -q:a 5 -loglevel quiet".format(
         time_start, time_end
     )
+    os.makedirs(os.path.dirname(target_file), exist_ok=True)
     ff = ffmpy.FFmpeg(inputs={src_file: None}, outputs={target_file: output_command})
     ff.run()
 
