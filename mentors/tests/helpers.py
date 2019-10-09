@@ -11,10 +11,22 @@ from pipeline.utterances import UtteranceMap, utterances_from_yaml
 
 
 def assert_utterances_match_expected(
-    utterances: UtteranceMap,
     mp: MentorPath,
+    utterances: UtteranceMap = None,
     expected_utterances_file="expected-utterances.yaml",
 ) -> None:
+    """
+    Test helper to assert that utterances match expected for a mentorpath
+
+    Args:
+    - mp: the MentorPath
+    - utterances: the actual utterances, if not passed will look for utterances at the default mentorpath location
+    - expected_utterances_file: path to the location of the expected-utterances (stored in yaml)
+    """
+    utterances = utterances or mp.load_utterances()
+    assert isinstance(
+        utterances, UtteranceMap
+    ), f"should be utterances file at {mp.get_utterances_data_path()}"
     expected_utterance_path = mp.get_mentor_path(expected_utterances_file)
     assert os.path.isfile(
         expected_utterance_path

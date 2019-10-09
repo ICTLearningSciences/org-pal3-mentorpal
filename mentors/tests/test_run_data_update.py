@@ -9,6 +9,7 @@ from .helpers import (
     MockAudioSlicer,
     MockTranscriptions,
     MockVideoToAudioConverter,
+    assert_utterances_match_expected,
 )
 from pipeline.run import Pipeline
 from pipeline.training_data import (
@@ -44,6 +45,7 @@ def test_it_generates_all_data_files_for_a_mentor(
     MockVideoToAudioConverter(mock_video_to_audio, create_dummy_output_files=True)
     p = Pipeline(mentor_id, mpath.root_path)
     p.data_update()
+    assert_utterances_match_expected(mpath)
     expected_questions_paraphrases_answers = load_questions_paraphrases_answers(
         mpath.get_mentor_path(os.path.join("expected_data"))
     )

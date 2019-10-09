@@ -42,4 +42,4 @@ def test_it_assigns_asset_paths(mentor_data_root: str, mentor_id: str):
 def _test_synced_utterances_match_expected(mentor_data_root: str, mentor_id: str):
     mp = MentorPath(mentor_id=mentor_id, root_path=mentor_data_root)
     actual_utterances = sync_timestamps(mp)
-    assert_utterances_match_expected(actual_utterances, mp)
+    assert_utterances_match_expected(mp, utterances=actual_utterances)

@@ -12,7 +12,12 @@ from pipeline.training_data import (
     write_prompts_utterances as _write_prompts_utterances,
     write_questions_paraphrases_answers as _write_questions_paraphrases_answers,
 )
-from pipeline.utterances import Utterance, UtteranceMap, utterances_from_yaml
+from pipeline.utterances import (
+    Utterance,
+    UtteranceMap,
+    utterances_from_yaml,
+    utterances_to_yaml,
+)
 
 
 @dataclass
@@ -328,3 +333,6 @@ class MentorPath:
         _write_questions_paraphrases_answers(
             d, self.get_questions_paraphrases_answers()
         )
+
+    def write_utterances(self, utterances: UtteranceMap) -> None:
+        utterances_to_yaml(utterances, self.get_utterances_data_path())

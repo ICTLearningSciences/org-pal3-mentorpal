@@ -179,9 +179,6 @@ def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
             mp.set_utterance_audio_path(u, utterance_audio_path)
             if os.path.isfile(utterance_audio_path):
                 continue
-            logging.warning(
-                f"utterances_to_audio will call for {session_audio} and {utterance_audio_path}"
-            )
             media_tools.slice_audio(
                 session_audio, utterance_audio_path, u.timeStart, u.timeEnd
             )

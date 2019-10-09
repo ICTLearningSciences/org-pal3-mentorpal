@@ -68,4 +68,4 @@ def _test_utterance_to_audio(
         mock_audio_slicer.assert_has_calls(
             mp, fail_on_no_calls=require_audio_slice_calls
         )
-        assert_utterances_match_expected(actual_utterances, mp)
+        assert_utterances_match_expected(mp, utterances=actual_utterances)

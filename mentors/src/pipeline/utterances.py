@@ -1,9 +1,9 @@
 from dataclasses import asdict, dataclass, field
 import math
-from typing import Dict, List
+from typing import Dict, List, Union
 
 from pipeline.utterance_type import UtteranceType
-from pipeline.utils import yaml_load
+from pipeline.utils import yaml_load, yaml_write
 
 
 def _to_slice_timestr(secs_total: float) -> str:
@@ -101,3 +101,11 @@ def utterances_from_yaml(yml: str) -> UtteranceMap:
         return UtteranceMap(**dict(utterancesById={u.get_id(): u for u in ulist}))
     else:
         return UtteranceMap(**d)
+
+
+def utterances_to_yaml(utterances: Union[UtteranceMap, dict], tgt_path: str) -> None:
+    if isinstance(utterances, UtteranceMap):
+        d = dict(utterances=[u.to_dict() for u in utterances.utterances()])
+        return utterances_to_yaml(d, tgt_path)
+    else:
+        yaml_write(utterances, tgt_path)

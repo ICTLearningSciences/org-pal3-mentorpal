@@ -1,3 +1,4 @@
+import os
 import yaml
 
 try:
@@ -49,6 +50,7 @@ def yaml_write(to_write: dict, write_path: str) -> None:
     Writes a dictionary to a given path in yaml format.
     Mainly broken out as a utility for convenience of mocking in tests.
     """
+    os.makedirs(os.path.dirname(write_path), exist_ok=True)
     with open(write_path, "w") as f:
         yaml.dump(to_write, f)
 
