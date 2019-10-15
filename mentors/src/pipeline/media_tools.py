@@ -7,11 +7,25 @@ import ffmpy
 def slice_audio(
     src_file: str, target_file: str, time_start: float, time_end: float
 ) -> None:
-    output_command = "-ss {} -to {} -c:a libvorbis -q:a 5 -loglevel quiet".format(
-        time_start, time_end
-    )
+    output_command = [
+        "-y",
+        "-ss",
+        f"{time_start}",
+        "-to",
+        f"{time_end}",
+        "-ac",
+        "1",
+        "-q:a",
+        "5",
+        "-loglevel",
+        "quiet",
+    ]
+    if target_file.endswith(".mp3"):
+        output_command.extend(["-acodec", "libmp3lame"])
     os.makedirs(os.path.dirname(target_file), exist_ok=True)
-    ff = ffmpy.FFmpeg(inputs={src_file: None}, outputs={target_file: output_command})
+    ff = ffmpy.FFmpeg(
+        inputs={src_file: None}, outputs={target_file: tuple(i for i in output_command)}
+    )
     ff.run()
 
 
