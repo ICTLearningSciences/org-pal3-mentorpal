@@ -16,7 +16,6 @@ from pipeline.training_data import (
     load_questions_paraphrases_answers,
     load_prompts_utterances,
 )
-from pipeline.transcriptions import TranscriptionService
 
 
 MENTOR_DATA_ROOT = os.path.abspath(
@@ -26,20 +25,20 @@ MENTOR_DATA_ROOT = os.path.abspath(
 
 @patch("pipeline.media_tools.video_to_audio")
 @patch("pipeline.media_tools.slice_audio")
-@patch.object(TranscriptionService, "transcribe")
+@patch("pipeline.transcriptions.init_transcription_service")
 @pytest.mark.parametrize(
     "mentor_data_root,mentor_id",
     [(MENTOR_DATA_ROOT, "mentor-generates-all-data-files")],
 )
 def test_it_generates_all_data_files_for_a_mentor(
-    mock_transcribe,
+    mock_init_transcription_service,
     mock_slice_audio,
     mock_video_to_audio,
     mentor_data_root: str,
     mentor_id: str,
 ):
     mpath = copy_mentor_to_tmp(mentor_id, mentor_data_root)
-    mock_transcriptions = MockTranscriptions(mock_transcribe)
+    mock_transcriptions = MockTranscriptions(mock_init_transcription_service)
     mock_transcriptions.load_expected_calls(mpath)
     MockAudioSlicer(mock_slice_audio, create_dummy_output_files=True)
     MockVideoToAudioConverter(mock_video_to_audio, create_dummy_output_files=True)

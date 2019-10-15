@@ -214,9 +214,7 @@ def utterances_to_training_data(
             qpa.add_row(question=u.question, answer=u.transcript, mentor_id=u.mentor)
         else:
             pu.add_row(
-                situation=u.utteranceType,
-                utterance=u.transcript,
-                mentor_id=u.mentor,
+                situation=u.utteranceType, utterance=u.transcript, mentor_id=u.mentor
             )
     return Utterances2TrainingDataResult(
         utterances=utterances_merged,

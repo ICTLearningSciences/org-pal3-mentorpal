@@ -5,7 +5,7 @@ from pipeline.process import (
     utterances_to_audio,
     utterances_to_training_data,
 )
-from pipeline.transcriptions import TranscriptionService
+import pipeline
 
 
 class Pipeline:
@@ -20,7 +20,7 @@ class Pipeline:
         print(f"utterances={utterances_new.to_dict()}")
 
     def data_update(self):
-        transcription_service = TranscriptionService()
+        transcription_service = pipeline.transcriptions.init_transcription_service()
         utterances_synced = sync_timestamps(self.mpath)
         utterances_w_audio_src = utterances_to_audio(utterances_synced, self.mpath)
         utterances_w_transcripts = update_transcripts(
