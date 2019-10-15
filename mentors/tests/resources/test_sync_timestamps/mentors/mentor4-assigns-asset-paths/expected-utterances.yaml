@@ -4,7 +4,7 @@ utterances:
     question: What's is your 'name', "friend"?
     part: 1
     session: 1
-    sessionAudio: build/recordings/session1/p1-some-utterances.wav
+    sessionAudio: build/recordings/session1/p1-some-utterances.mp3
     sessionTimestamps: build/recordings/session1/p1-some-utterances.csv
     sessionVideo: build/recordings/session1/p1-some-utterances.mp4
     timeStart: 0.00

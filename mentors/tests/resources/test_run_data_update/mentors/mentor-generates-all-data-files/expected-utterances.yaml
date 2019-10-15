@@ -3,111 +3,111 @@ utterances:
     part: 1
     question: question 1
     session: 1
-    sessionAudio: build/recordings/session1/p001-questions.wav
+    sessionAudio: build/recordings/session1/p001-questions.mp3
     sessionTimestamps: build/recordings/session1/p001-questions.csv
     sessionVideo: build/recordings/session1/p001-questions.mp4
     timeStart: 0.00
     timeEnd: 1.00
     transcript: mentor answer to question 1
-    utteranceAudio: build/utterance_audio/s001p001s00000000e00000100.wav
+    utteranceAudio: build/utterance_audio/s001p001s00000000e00000100.mp3
     utteranceType: _ANSWER_
   - mentor: mentor-generates-all-data-files
     part: 1
     question: question 2 diff
     session: 1
-    sessionAudio: build/recordings/session1/p001-questions.wav
+    sessionAudio: build/recordings/session1/p001-questions.mp3
     sessionTimestamps: build/recordings/session1/p001-questions.csv
     sessionVideo: build/recordings/session1/p001-questions.mp4
     timeStart: 2.12
     timeEnd: 4.78
     transcript: mentor answer to question 2 is diff
-    utteranceAudio: build/utterance_audio/s001p001s00000212e00000478.wav
+    utteranceAudio: build/utterance_audio/s001p001s00000212e00000478.mp3
     utteranceType: _ANSWER_
   - mentor: mentor-generates-all-data-files
     part: 2
     session: 1
-    sessionAudio: build/recordings/session1/part2_audio.wav
-    sessionTimestamps: build/recordings/session1/part2_timestamps.csv
-    sessionVideo: build/recordings/session1/part2_video.mp4
+    sessionAudio: build/recordings/session1/p002.mp3
+    sessionTimestamps: build/recordings/session1/p002.csv
+    sessionVideo: build/recordings/session1/p002.mp4
     timeStart: 3.45
     timeEnd: 6.98
     transcript: Hi my name is mentor 1!
-    utteranceAudio: build/utterance_audio/s001p002s00000345e00000698.wav
+    utteranceAudio: build/utterance_audio/s001p002s00000345e00000698.mp3
     utteranceType: _INTRO_
   - mentor: mentor-generates-all-data-files
     part: 1
     session: 2
-    sessionAudio: build/recordings/session2/p1-some-utterances.wav
+    sessionAudio: build/recordings/session2/p1-some-utterances.mp3
     sessionTimestamps: build/recordings/session2/p1-some-utterances.csv
     sessionVideo: build/recordings/session2/p1-some-utterances.mp4
     timeStart: 5.99
     timeEnd: 10.12
     transcript: Ask me how I saved $15!
-    utteranceAudio: build/utterance_audio/s002p001s00000345e00000698.wav
+    utteranceAudio: build/utterance_audio/s002p001s00000345e00000698.mp3
     utteranceType: _PROMPT_
   - mentor: mentor-generates-all-data-files
     part: 1
     session: 2
-    sessionAudio: build/recordings/session2/p1-some-utterances.wav
+    sessionAudio: build/recordings/session2/p1-some-utterances.mp3
     sessionTimestamps: build/recordings/session2/p1-some-utterances.csv
     sessionVideo: build/recordings/session2/p1-some-utterances.mp4
     timeStart: 5.99
     timeEnd: 10.12
     transcript: Ask me how I saved $15!
-    utteranceAudio: build/utterance_audio/s002p001s00000599e00001012.wav
+    utteranceAudio: build/utterance_audio/s002p001s00000599e00001012.mp3
     utteranceType: _PROMPT_
   - mentor: mentor-generates-all-data-files
     part: 1
     session: 2
-    sessionAudio: build/recordings/session2/p1-some-utterances.wav
+    sessionAudio: build/recordings/session2/p1-some-utterances.mp3
     sessionTimestamps: build/recordings/session2/p1-some-utterances.csv
     sessionVideo: build/recordings/session2/p1-some-utterances.mp4
     timeStart: 12.34
     timeEnd: 16.78
     transcript: Do you have a favorite color?
-    utteranceAudio: build/utterance_audio/s002p001s00001234e00001678.wav
+    utteranceAudio: build/utterance_audio/s002p001s00001234e00001678.mp3
     utteranceType: _PROMPT_
   - mentor: mentor-generates-all-data-files
     part: 1
     session: 2
-    sessionAudio: build/recordings/session2/p1-some-utterances.wav
+    sessionAudio: build/recordings/session2/p1-some-utterances.mp3
     sessionTimestamps: build/recordings/session2/p1-some-utterances.csv
     sessionVideo: build/recordings/session2/p1-some-utterances.mp4
     timeStart: 23.45
     timeEnd: 34.56
     transcript: Ask me something else.
-    utteranceAudio: build/utterance_audio/s002p001s00002345e00003456.wav
+    utteranceAudio: build/utterance_audio/s002p001s00002345e00003456.mp3
     utteranceType: _OFF_TOPIC_
   - mentor: mentor-generates-all-data-files
     part: 1
     session: 2
-    sessionAudio: build/recordings/session2/p1-some-utterances.wav
+    sessionAudio: build/recordings/session2/p1-some-utterances.mp3
     sessionTimestamps: build/recordings/session2/p1-some-utterances.csv
     sessionVideo: build/recordings/session2/p1-some-utterances.mp4
     timeStart: 45.67
     timeEnd: 56.78
     transcript: OK.
-    utteranceAudio: build/utterance_audio/s002p001s00004567e00005678.wav
+    utteranceAudio: build/utterance_audio/s002p001s00004567e00005678.mp3
     utteranceType: _FEEDBACK_
   - mentor: mentor-generates-all-data-files
     part: 1
     session: 2
-    sessionAudio: build/recordings/session2/p1-some-utterances.wav
+    sessionAudio: build/recordings/session2/p1-some-utterances.mp3
     sessionTimestamps: build/recordings/session2/p1-some-utterances.csv
     sessionVideo: build/recordings/session2/p1-some-utterances.mp4
     timeStart: 67.89
     timeEnd: 78.90
     transcript: I might have covered this already...
-    utteranceAudio: build/utterance_audio/s002p001s00010789e00011890.wav
+    utteranceAudio: build/utterance_audio/s002p001s00010789e00011890.mp3
     utteranceType: _REPEAT_
   - mentor: mentor-generates-all-data-files
     part: 1
     session: 2
-    sessionAudio: build/recordings/session2/p1-some-utterances.wav
+    sessionAudio: build/recordings/session2/p1-some-utterances.mp3
     sessionTimestamps: build/recordings/session2/p1-some-utterances.csv
     sessionVideo: build/recordings/session2/p1-some-utterances.mp4
     timeStart: 89.01
     timeEnd: 90.12
     transcript: Please don't use that language.
-    utteranceAudio: build/utterance_audio/s002p001s00012901e00013012.wav
+    utteranceAudio: build/utterance_audio/s002p001s00012901e00013012.mp3
     utteranceType: _PROFANITY_

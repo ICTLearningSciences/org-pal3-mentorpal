@@ -87,15 +87,13 @@ def update_transcripts(
     for u in utterances.utterances():
         if u.transcript:
             continue  # transcript already set
-        audio_path = mp.get_utterance_audio_path(u)
-        audio_path_rel = mp.to_relative_path(audio_path)
-        if not os.path.isfile(audio_path):
-            logging.warning(
-                f"audio file is missing for utterance {u.get_id()} at path {audio_path}"
-            )
+        audio_path = mp.find_utterance_audio(u)
+        if not audio_path:
+            logging.warning(f"utterance has no audio {u.get_id()}")
             continue
         try:
             text = transcription_service.transcribe(audio_path)
+            audio_path_rel = mp.to_relative_path(audio_path)
             result.set_transcript(
                 u.get_id(), transcript=text, source_audio=audio_path_rel
             )
@@ -110,7 +108,7 @@ def _generate_session_audio(utterance: Utterance, mp: MentorPath) -> str:
     session_video = mp.find_session_video(utterance)
     if not session_video:
         return None
-    session_audio = mp.get_session_audio_path(utterance)
+    session_audio = mp.find_session_audio(utterance, return_non_existing_paths=True)
     if not session_audio:
         return None
     media_tools.video_to_audio(session_video, session_audio)
@@ -118,8 +116,8 @@ def _generate_session_audio(utterance: Utterance, mp: MentorPath) -> str:
 
 
 def _find_or_generate_session_audio(utterance: Utterance, mp: MentorPath) -> str:
-    session_audio = mp.get_session_audio_path(utterance)
-    if os.path.isfile(session_audio):
+    session_audio = mp.find_session_audio(utterance)
+    if session_audio:
         return session_audio
     return _generate_session_audio(utterance, mp)
 
@@ -131,18 +129,18 @@ def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
 
     For illustration, the source sessions_root might contain the following:
 
-        <root>/session1/part1_audio.wav
-        <root>/session1/part2_audio.wav
-        <root>/session2/part1_audio.wav
+        <root>/session1/part1_audio.mp3
+        <root>/session1/part2_audio.mp3
+        <root>/session2/part1_audio.mp3
 
     ...and depending on the contents of sessions data that might produce
 
-        <mentor_path>/utterance_audio/s001p001s00000413e00000805.wav
-        <mentor_path>/utterance_audio/s001p001s00001224e00001501.wav
-        <mentor_path>/utterance_audio/s001p002s00002701e00005907.wav
-        <mentor_path>/utterance_audio/s001p002s00011804e00013229.wav
-        <mentor_path>/utterance_audio/s002p001s00004213e00005410.wav
-        <mentor_path>/utterance_audio/s002p001s00010515e00012605.wav
+        <mentor_path>/utterance_audio/s001p001s00000413e00000805.mp3
+        <mentor_path>/utterance_audio/s001p001s00001224e00001501.mp3
+        <mentor_path>/utterance_audio/s001p002s00002701e00005907.mp3
+        <mentor_path>/utterance_audio/s001p002s00011804e00013229.mp3
+        <mentor_path>/utterance_audio/s002p001s00004213e00005410.mp3
+        <mentor_path>/utterance_audio/s002p001s00010515e00012605.mp3
 
     Where the final two numbers in each sliced wav file above are the time_start and time end,
     e.g. e00000413 = (end-time) 00:00:04:13
@@ -175,7 +173,9 @@ def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
                     f"invalid timeEnd ({u.timeEnd}) for utterance {u.get_id()}"
                 )
                 continue
-            utterance_audio_path = mp.get_utterance_audio_path(u)
+            utterance_audio_path = mp.find_utterance_audio(
+                u, return_non_existing_paths=True
+            )
             mp.set_utterance_audio_path(u, utterance_audio_path)
             if os.path.isfile(utterance_audio_path):
                 continue

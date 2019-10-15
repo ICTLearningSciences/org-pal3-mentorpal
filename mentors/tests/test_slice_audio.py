@@ -20,9 +20,8 @@ def test_it_creates_directories_for_output_as_needed(
 ):
     mpath = MentorPath(mentor_id=mentor_id, root_path=mentor_data_root)
     audio_src = mpath.get_mentor_path(
-        os.path.join("build", "recordings", "session1", "p1-some-questions.wav")
+        os.path.join("build", "recordings", "session1", "p1-some-questions.mp3")
     )
-    audio_tgt_root = mpath.get_utterance_audio_path()
-    audio_tgt = os.path.join(audio_tgt_root, "utterance1.wav")
+    audio_tgt = os.path.join("build", "utterance_audio", "utterance1.mp3")
     slice_audio(audio_src, audio_tgt, 0.0, 1.0)
-    mock_make_dirs.assert_called_once_with(audio_tgt_root, exist_ok=True)
+    mock_make_dirs.assert_called_once_with(os.path.dirname(audio_tgt), exist_ok=True)

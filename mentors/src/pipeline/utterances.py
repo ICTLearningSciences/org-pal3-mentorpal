@@ -31,6 +31,7 @@ class Utterance:
     timeStart: float = -1.0
     transcript: str = None
     utteranceAudio: str = None
+    utteranceVideo: str = None
     utteranceType: UtteranceType = None
 
     def __post_init__(self):

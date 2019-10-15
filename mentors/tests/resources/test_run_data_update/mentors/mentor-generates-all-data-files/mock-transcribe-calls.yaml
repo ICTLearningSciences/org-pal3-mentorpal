@@ -1,18 +1,18 @@
-- audio: build/utterance_audio/s001p001s00000000e00000100.wav
+- audio: build/utterance_audio/s001p001s00000000e00000100.mp3
   transcript: mentor answer to question 1
-- audio: build/utterance_audio/s001p001s00000212e00000478.wav
+- audio: build/utterance_audio/s001p001s00000212e00000478.mp3
   transcript: mentor answer to question 2 is diff
-- audio: build/utterance_audio/s001p002s00000345e00000698.wav
+- audio: build/utterance_audio/s001p002s00000345e00000698.mp3
   transcript: Hi my name is mentor 1!
-- audio: build/utterance_audio/s002p001s00000599e00001012.wav
+- audio: build/utterance_audio/s002p001s00000599e00001012.mp3
   transcript: Ask me how I saved $15!
-- audio: build/utterance_audio/s002p001s00001234e00001678.wav
+- audio: build/utterance_audio/s002p001s00001234e00001678.mp3
   transcript: Do you have a favorite color?
-- audio: build/utterance_audio/s002p001s00002345e00003456.wav
+- audio: build/utterance_audio/s002p001s00002345e00003456.mp3
   transcript: Ask me something else.
-- audio: build/utterance_audio/s002p001s00004567e00005678.wav
+- audio: build/utterance_audio/s002p001s00004567e00005678.mp3
   transcript: OK.
-- audio: build/utterance_audio/s002p001s00006789e00007890.wav
+- audio: build/utterance_audio/s002p001s00006789e00007890.mp3
   transcript: I might have covered this already...
-- audio: build/utterance_audio/s002p001s00008901e00009012.wav
+- audio: build/utterance_audio/s002p001s00008901e00009012.mp3
   transcript: Please don't use that language.

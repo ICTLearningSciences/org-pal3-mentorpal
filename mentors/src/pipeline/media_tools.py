@@ -15,10 +15,10 @@ def slice_audio(
     ff.run()
 
 
-def video_to_audio(input_file, output_file=None):
+def video_to_audio(input_file, output_file=None, output_audio_encoding="mp3"):
     """
-    Converts the .mp4 file to a .ogg file.
-    Later, this .wav file is split into smaller chunks for each Q-A pair.
+    Converts the .mp4 file to an audio file (.mp3 by default).
+    Later, this audio file is split into smaller chunks for each Q-A pair.
     This is done because we want transcriptions for each question and the interview contains
     lots of other content like general talking and discussions.
     We use the timestamps for each Q-A to split the .ogg file.
@@ -26,14 +26,17 @@ def video_to_audio(input_file, output_file=None):
 
     Parameters:
     input_file: Examples are /example/path/to/session1/session1part1.mp4, /example/path/to/session1/session1part2.mp4
-    output_file: if not set, uses {input_file}.wav
+    output_file: if not set, uses {input_file}.mp3
 
     Returns:
     error_code: if conversion fails, return 1
     """
     error_code = 0
     if os.path.exists(input_file):
-        output_file = output_file or re.sub(r".mp4$", ".wav", input_file)
+        input_ext = os.path.splitext(input_file)[1]
+        output_file = output_file or re.sub(
+            f".{input_ext}$", f".{output_audio_encoding}", input_file
+        )
         output_command = "-loglevel quiet -y"
         ff = ffmpy.FFmpeg(
             inputs={input_file: None}, outputs={output_file: output_command}

@@ -1,20 +1,20 @@
-- source: build/recordings/session1/p1-some-questions.wav
-  target: build/utterance_audio/s001p001s00000000e00000100.wav
+- source: build/recordings/session1/p1-some-questions.mp3
+  target: build/utterance_audio/s001p001s00000000e00000100.mp3
   time_start_secs: 0.00
   time_end_secs: 1.00
-- source: build/recordings/session1/p1-some-questions.wav
-  target: build/utterance_audio/s001p001s00000212e00000478.wav
+- source: build/recordings/session1/p1-some-questions.mp3
+  target: build/utterance_audio/s001p001s00000212e00000478.mp3
   time_start_secs: 2.12
   time_end_secs: 4.78
-- source: build/recordings/session1/p2-some-utterances.wav
-  target: build/utterance_audio/s001p002s00000345e00000698.wav
+- source: build/recordings/session1/p2-some-utterances.mp3
+  target: build/utterance_audio/s001p002s00000345e00000698.mp3
   time_start_secs: 3.45
   time_end_secs: 6.98
-- source: build/recordings/session2/p1-more-utterances.wav
-  target: build/utterance_audio/s002p001s00000599e00001012.wav
+- source: build/recordings/session2/p1-more-utterances.mp3
+  target: build/utterance_audio/s002p001s00000599e00001012.mp3
   time_start_secs: 5.99
   time_end_secs: 10.12
-- source: build/recordings/session2/p1-more-utterances.wav
-  target: build/utterance_audio/s002p001s00001234e00001678.wav
+- source: build/recordings/session2/p1-more-utterances.mp3
+  target: build/utterance_audio/s002p001s00001234e00001678.mp3
   time_start_secs: 12.34
   time_end_secs: 16.78

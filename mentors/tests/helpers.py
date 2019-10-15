@@ -70,6 +70,17 @@ class Bunch:
         self.__dict__.update(kwds)
 
 
+def mock_isfile_with_paths(mock_isfile: Mock, true_paths: List[str]) -> Mock:
+    def isfile(p: str) -> bool:
+        logging.warning(
+            f"check is file {p}? {p in true_paths} where true_paths={true_paths}"
+        )
+        return p in true_paths
+
+    mock_isfile.side_effect = isfile
+    return mock_isfile
+
+
 class MockTranscriptions:
     """
     Test-helper class for mocking the TranscriptionService
@@ -78,7 +89,7 @@ class MockTranscriptions:
     To use, create a mock-transcribe-call.yaml file in the root
     of a test-mentor directory and fill with entries like this:
 
-        - audio: build/utterance_audio/s001p001s00000000e00000100.wav
+        - audio: build/utterance_audio/s001p001s00000000e00000100.mp3
           transcript: mentor answer to question 1
 
     then call `load_expected_calls` to set up the mock
