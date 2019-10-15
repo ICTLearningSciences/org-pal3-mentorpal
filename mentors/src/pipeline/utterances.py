@@ -2,7 +2,6 @@ from dataclasses import asdict, dataclass, field
 import math
 from typing import Dict, List, Union
 
-from pipeline.utterance_type import UtteranceType
 from pipeline.utils import yaml_load, yaml_write
 
 
@@ -15,6 +14,24 @@ def _to_slice_timestr(secs_total: float) -> str:
 
 def _utterance_id(session: int, part: int, time_start: float, time_end: float) -> str:
     return f"s{session:03}p{part:03}s{_to_slice_timestr(time_start)}e{_to_slice_timestr(time_end)}"
+
+class UtteranceType:
+    ANSWER = "_ANSWER_"
+    FEEDBACK = "_FEEDBACK_"
+    INTRO = "_INTRO_"
+    OFF_TOPIC = "_OFF_TOPIC_"
+    PROFANITY = "_PROFANITY_"
+    PROMPT = "_PROMPT_"
+    REPEAT = "_REPEAT_"
+
+    @classmethod
+    def is_valid(cls, v: str) -> bool:
+        # TODO: in python 3.7+ use real UtteranceType type above
+        return v in vars(cls).values()
+
+    @classmethod
+    def get_required_types(cls) -> list:
+        return [cls.FEEDBACK, cls.INTRO, cls.OFF_TOPIC, cls.PROMPT, cls.REPEAT]
 
 
 @dataclass
@@ -32,11 +49,7 @@ class Utterance:
     transcript: str = None
     utteranceAudio: str = None
     utteranceVideo: str = None
-    utteranceType: UtteranceType = None
-
-    def __post_init__(self):
-        if isinstance(self.utteranceType, str):
-            self.utteranceType = UtteranceType.for_value(self.utteranceType)
+    utteranceType: str = None
 
     def get_id(self):
         return _utterance_id(self.session, self.part, self.timeStart, self.timeEnd)

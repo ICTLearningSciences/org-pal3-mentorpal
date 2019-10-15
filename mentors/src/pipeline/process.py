@@ -15,8 +15,13 @@ from pipeline.training_data import (
 )
 from pipeline.transcriptions import TranscriptionService
 from pipeline.transcription_type import TranscriptionType
-from pipeline.utterance_type import UtteranceType
-from pipeline.utterances import copy_utterance, copy_utterances, Utterance, UtteranceMap
+from pipeline.utterances import (
+    copy_utterance,
+    copy_utterances,
+    Utterance,
+    UtteranceMap,
+    UtteranceType,
+)
 
 
 def timestr_to_secs(s: str) -> float:
@@ -59,7 +64,7 @@ def sync_timestamps(mp: MentorPath) -> UtteranceMap:
                         u.utteranceType = UtteranceType.ANSWER
                         u.question = question
                     else:
-                        u.utteranceType = UtteranceType.for_value(question)
+                        u.utteranceType = question or UtteranceType.PROMPT
                     ts_slices.append(u)
                 except BaseException as row_err:
                     logging.exception(
@@ -209,7 +214,7 @@ def utterances_to_training_data(
             qpa.add_row(question=u.question, answer=u.transcript, mentor_id=u.mentor)
         else:
             pu.add_row(
-                situation=u.utteranceType.value,
+                situation=u.utteranceType,
                 utterance=u.transcript,
                 mentor_id=u.mentor,
             )

@@ -13,7 +13,7 @@ except ImportError:
 
 import constants
 from mentor_data import MentorData
-from utterance_type import UtteranceType
+from utterances import UtteranceType
 
 """
 This script will adapt the transcript.csv into questions_paraphrases_answers.csv
@@ -55,9 +55,9 @@ def transcripts_to_training_data(
     qpa_df, pu_df = _read_transcripts_to_data_frames(mentor_data)
     if log_warning_on_missing_utterance_types:
         missing_utterance_types = [
-            m.value
-            for m in UtteranceType.get_required_types()
-            if not (pu_df["Situation"] == m.value).any()
+            utype
+            for utype in UtteranceType.get_required_types()
+            if not (pu_df["Situation"] == utype).any()
         ]
         if missing_utterance_types:
             logging.warning(
@@ -95,15 +95,17 @@ def _read_transcripts_to_data_frames(
                 t = load(f, Loader=YamlLoader)
                 transcription = t.get("transcription")
                 assert transcription is not None, "item must have a transcription"
-                utterance_type = UtteranceType.for_value(
-                    t.get("type"), UtteranceType.ANSWER
+                utterance_type = (
+                    t.get("type")
+                    if UtteranceType.is_valid(t.get("type"))
+                    else UtteranceType.ANSWER
                 )
                 if utterance_type == UtteranceType.ANSWER:
                     question = t.get("question")
                     assert question is not None, "item must have question text"
                     qpa_rows.append([None, None, mentor_id, question, transcription])
                 else:
-                    pu_rows.append([utterance_type.value, mentor_id, transcription])
+                    pu_rows.append([utterance_type, mentor_id, transcription])
         except BaseException as err:
             logging.warning(f"failed to load transcript data from {t_path}: {err}")
     questions_paraphrases_answers = pd.DataFrame(
