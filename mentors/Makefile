@@ -130,13 +130,16 @@ data/mentors/%/data/update: data/mentors/%/build docker-image-exists
 # Complete build of mentor data
 # Runs build if necessary
 # Generates data files
+# TODO: 1) log every significant action (generating audio, transcribing), 2) build classifier for jd, 3) utterance yaml gets error codes, 4) make delete audio files that failed to transcribe
 .PHONY: data/mentors/%/data/update
-data/mentors/%/.mentor/utterances.yaml: data/mentors/%/build/recordings docker-image-exists
+data/mentors/%/.mentor/utterances.yaml: data/mentors/%/build/recordings docker-image-exists $(WATSON_CREDENTIALS)
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(PWD)/src:/app \
 			-v $(PWD)/data:/app/mounts/data \
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			$(DOCKER_IMAGE) --mentor $* --data-update --data=/app/mounts/data/mentors
 
 # Complete build of mentor data and videos
