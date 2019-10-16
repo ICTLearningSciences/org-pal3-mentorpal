@@ -14,10 +14,10 @@ from pipeline.training_data import (
     PromptsUtterancesBuilder,
 )
 from pipeline.transcriptions import TranscriptionService
-from pipeline.transcription_type import TranscriptionType
 from pipeline.utterances import (
     copy_utterance,
     copy_utterances,
+    TranscriptionType,
     Utterance,
     UtteranceMap,
     UtteranceType,
@@ -40,7 +40,7 @@ def sync_timestamps(mp: MentorPath) -> UtteranceMap:
             ts_slices: List[Utterance] = []
             for i, row in ts_data.iterrows():
                 try:
-                    row_type = TranscriptionType(row["Answer/Utterance"])
+                    row_type = row["Answer/Utterance"]
                     question = fix_text(row["Question"])
                     time_start = timestr_to_secs(row["Response start"])
                     time_end = timestr_to_secs(row["Response end"])
