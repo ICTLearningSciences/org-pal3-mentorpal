@@ -1,8 +1,8 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import timedelta
 import logging
 import os
-from typing import List
+from typing import Dict, List
 
 from ftfy import fix_text
 import pandas as pd
@@ -24,10 +24,61 @@ from pipeline.utterances import (
 )
 
 
-def timestr_to_secs(s: str) -> float:
+def _timestr_to_secs(s: str) -> float:
     h, m, s, hs = s.split(":")
     td = timedelta(hours=int(h), minutes=int(m), seconds=int(s))
     return float(td.seconds + float(hs) / 100)
+
+
+@dataclass
+class _SessionAudioUtterances:
+    sessionAudio: str = None
+    sessionVideo: str = None
+    utterances: List[Utterance] = field(default_factory=lambda: [])
+
+
+def sessions_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
+    """
+    Give sessions data and a root sessions directory,
+    make sure all that sessionAudio is generated (from video)
+    and assigned to each utterance
+    """
+    result_utterances = copy_utterances(utterances)
+    utterances_by_session_audio: Dict[str, _SessionAudioUtterances] = dict()
+    # probably this could be accumulate but seems like code would be less readable?
+    for u in result_utterances.utterances():
+        mp.find_and_assign_assets(u)
+        session_audio = mp.find_session_audio(u, return_non_existing_paths=True)
+        if os.path.isfile(session_audio):
+            continue  # no need to process already existing session audio
+        if session_audio not in utterances_by_session_audio:
+            utterances_by_session_audio[session_audio] = _SessionAudioUtterances(
+                sessionAudio=session_audio
+            )
+        session_audio_utterances = utterances_by_session_audio[session_audio]
+        session_audio_utterances.utterances.append(u)
+        if session_audio_utterances.sessionVideo:
+            continue
+        session_audio_utterances.sessionVideo = mp.find_session_video(u)
+    for i, session_audio_utterances in enumerate(utterances_by_session_audio.values()):
+        try:
+            if not session_audio_utterances.sessionVideo:
+                logging.warning(
+                    f"sessions_to_audio [{i + 1}/{len(utterances_by_session_audio)}] video source not found for {session_audio_utterances.sessionAudio}"
+                )
+                continue
+            logging.info(
+                f"sessions_to_audio [{i + 1}/{len(utterances_by_session_audio)}] video={session_audio_utterances.sessionVideo}, audio={session_audio_utterances.sessionAudio}"
+            )
+            media_tools.video_to_audio(
+                session_audio_utterances.sessionVideo,
+                session_audio_utterances.sessionAudio,
+            )
+            for u in session_audio_utterances.utterances:
+                mp.find_and_assign_assets(u)
+        except BaseException as u_err:
+            logging.exception(f"exception processing utterance: {u_err}")
+    return result_utterances
 
 
 def sync_timestamps(mp: MentorPath) -> UtteranceMap:
@@ -42,8 +93,8 @@ def sync_timestamps(mp: MentorPath) -> UtteranceMap:
                 try:
                     row_type = row["Answer/Utterance"]
                     question = fix_text(row["Question"])
-                    time_start = timestr_to_secs(row["Response start"])
-                    time_end = timestr_to_secs(row["Response end"])
+                    time_start = _timestr_to_secs(row["Response start"])
+                    time_end = _timestr_to_secs(row["Response end"])
                     u_existing = utterances_current.find_one(
                         ts.session, ts.part, time_start, time_end
                     )
@@ -109,24 +160,6 @@ def update_transcripts(
     return result
 
 
-def _generate_session_audio(utterance: Utterance, mp: MentorPath) -> str:
-    session_video = mp.find_session_video(utterance)
-    if not session_video:
-        return None
-    session_audio = mp.find_session_audio(utterance, return_non_existing_paths=True)
-    if not session_audio:
-        return None
-    media_tools.video_to_audio(session_video, session_audio)
-    return session_audio
-
-
-def _find_or_generate_session_audio(utterance: Utterance, mp: MentorPath) -> str:
-    session_audio = mp.find_session_audio(utterance)
-    if session_audio:
-        return session_audio
-    return _generate_session_audio(utterance, mp)
-
-
 def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
     """
     Give sessions data and a root sessions directory,
@@ -154,18 +187,10 @@ def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
     for u in result_utterances.utterances():
         try:
             mp.find_and_assign_assets(u)
-            session_audio = _find_or_generate_session_audio(u, mp)
+            session_audio = mp.find_session_audio(u, mp)
             if not session_audio:
                 logging.warning(f"no audio source found for utterance {u}")
                 continue
-            if not os.path.isfile(session_audio):
-                logging.warning(
-                    f"audio source file not found at path {session_audio} for utterance {u} "
-                )
-                continue
-            mp.find_and_assign_assets(
-                u
-            )  # this second call catches newly generated session audio
             start = float(u.timeStart)
             if not (start == 0.0 or (start and start >= 0.0)):
                 logging.warning(

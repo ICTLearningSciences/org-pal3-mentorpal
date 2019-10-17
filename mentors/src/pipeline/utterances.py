@@ -15,10 +15,11 @@ def _to_slice_timestr(secs_total: float) -> str:
 def _utterance_id(session: int, part: int, time_start: float, time_end: float) -> str:
     return f"s{session:03}p{part:03}s{_to_slice_timestr(time_start)}e{_to_slice_timestr(time_end)}"
 
+
 class TranscriptionType:
     ANSWER = "A"
     UTTERANCE = "U"
-    
+
 
 class UtteranceType:
     ANSWER = "_ANSWER_"
