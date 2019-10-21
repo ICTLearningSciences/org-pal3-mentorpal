@@ -129,6 +129,12 @@ def sync_timestamps(mp: MentorPath) -> UtteranceMap:
     return utterances_merged
 
 
+@dataclass
+class _UtteranceTranscriptionCall:
+    utterance: Utterance
+    audio_path: str
+
+
 def update_transcripts(
     utterances: UtteranceMap,
     transcription_service: TranscriptionService,
@@ -140,18 +146,26 @@ def update_transcripts(
     returning an updated copy of the sessions data with transcriptions populated.
     """
     result = copy_utterances(utterances)
-    for u in utterances.utterances():
+    call_list: List[_UtteranceTranscriptionCall] = []
+    for u in result.utterances():
         if u.transcript:
             continue  # transcript already set
         audio_path = mp.find_utterance_audio(u)
         if not audio_path:
             logging.warning(f"utterance has no audio {u.get_id()}")
             continue
+        call_list.append(
+            _UtteranceTranscriptionCall(utterance=u, audio_path=audio_path)
+        )
+    for i, call in enumerate(call_list):
         try:
-            text = transcription_service.transcribe(audio_path)
-            audio_path_rel = mp.to_relative_path(audio_path)
+            logging.info(
+                f"transcribe [{i + 1}/{len(call_list)}] audio={call.audio_path}"
+            )
+            text = transcription_service.transcribe(call.audio_path)
+            audio_path_rel = mp.to_relative_path(call.audio_path)
             result.set_transcript(
-                u.get_id(), transcript=text, source_audio=audio_path_rel
+                call.utterance.get_id(), transcript=text, source_audio=audio_path_rel
             )
         except BaseException as err:
             logging.warning(

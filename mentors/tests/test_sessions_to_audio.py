@@ -57,10 +57,9 @@ def _test_sessions_to_audio(
             create_dummy_output_files=True,
             mock_logging_info=mock_logging_info if test_logging else None,
         )
-        mock_video_to_audio_converter.load_expected_calls(
-            mp, fail_on_no_calls=require_video_to_audio_calls
-        )
         utterances_before = mp.load_utterances()
         actual_utterances = sessions_to_audio(utterances_before, mp)
-        mock_video_to_audio_converter.expect_calls()
+        mock_video_to_audio_converter.expect_calls(
+            mp, fail_on_no_calls=require_video_to_audio_calls
+        )
         assert_utterances_match_expected(mp, utterances=actual_utterances)
