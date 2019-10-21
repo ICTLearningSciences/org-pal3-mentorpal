@@ -34,15 +34,35 @@ def test_it_skips_utterances_with_existing_audio_and_unchanged_start_and_end_tim
     )
 
 
+@pytest.mark.parametrize(
+    "mentor_data_root,mentor_id", [(MENTOR_DATA_ROOT, "mentor2-skips-existing-audio")]
+)
+def test_it_logs_info_for_each_call_to_generate_utterance_audio(
+    mentor_data_root: str, mentor_id: str
+):
+    _test_utterance_to_audio(
+        mentor_data_root,
+        mentor_id,
+        require_video_to_audio_calls=False,
+        test_logging=True,
+    )
+
+
 def _test_utterance_to_audio(
     mentor_data_root: str,
     mentor_id: str,
     require_video_to_audio_calls: bool = True,
     require_audio_slice_calls=True,
+    test_logging=False,
 ):
-    with patch("pipeline.media_tools.slice_audio") as mock_slice_audio:
+    with patch("pipeline.media_tools.slice_audio") as mock_slice_audio, patch(
+        "logging.info"
+    ) as mock_logging_info:
         mp = copy_mentor_to_tmp(mentor_id, mentor_data_root)
-        mock_audio_slicer = MockAudioSlicer(mock_slice_audio)
+        mock_audio_slicer = MockAudioSlicer(
+            mock_slice_audio,
+            mock_logging_info=mock_logging_info if test_logging else None,
+        )
         utterances_before = mp.load_utterances()
         actual_utterances = utterances_to_audio(utterances_before, mp)
         mock_audio_slicer.assert_has_calls(

@@ -71,13 +71,7 @@ class Bunch:
 
 
 def mock_isfile_with_paths(mock_isfile: Mock, true_paths: List[str]) -> Mock:
-    def isfile(p: str) -> bool:
-        logging.warning(
-            f"check is file {p}? {p in true_paths} where true_paths={true_paths}"
-        )
-        return p in true_paths
-
-    mock_isfile.side_effect = isfile
+    mock_isfile.side_effect = lambda p: p in true_paths
     return mock_isfile
 
 
@@ -113,7 +107,6 @@ class MockAudioSlicer:
         self.mock_slice_audio = mock_slice_audio
         self.mock_logging_info = mock_logging_info
         self.create_dummy_output_files = create_dummy_output_files
-        self.expected_calls = []
         if create_dummy_output_files:
             mock_slice_audio.side_effect = self._on_slice_audio_create_dummy_output
 
@@ -138,11 +131,19 @@ class MockAudioSlicer:
             )
             for call_data in expected_calls_data
         ]
+        expected_calls_logging_info = [
+            call(
+                f"utterance_to_audio [{i + 1}/{len(expected_calls_data)}] source={mpath.get_mentor_path(call_data.get('source'))}, target={mpath.get_mentor_path(call_data.get('target'))}, time-start={call_data.get('time_start_secs')}, time-end={call_data.get('time_end_secs')}"
+            )
+            for i, call_data in enumerate(expected_calls_data)
+        ]
         if fail_on_no_calls:
             assert (
                 len(expected_calls) > 0
             ), f"expected mock-slice-audio calls at path {expected_calls_yaml_path}"
         self.mock_slice_audio.assert_has_calls(expected_calls)
+        if self.mock_logging_info:
+            self.mock_logging_info.assert_has_calls(expected_calls_logging_info)
 
 
 class MockTranscriptions:

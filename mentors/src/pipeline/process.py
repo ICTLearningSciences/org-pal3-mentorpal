@@ -160,6 +160,13 @@ def update_transcripts(
     return result
 
 
+@dataclass
+class _UtteranceToAudio:
+    utterance: Utterance
+    audio_source: str
+    audio_target: str
+
+
 def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
     """
     Give sessions data and a root sessions directory,
@@ -184,6 +191,7 @@ def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
     e.g. e00000413 = (end-time) 00:00:04:13
     """
     result_utterances = copy_utterances(utterances)
+    u2a_list: List[_UtteranceToAudio] = []
     for u in result_utterances.utterances():
         try:
             mp.find_and_assign_assets(u)
@@ -209,8 +217,28 @@ def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
             mp.set_utterance_audio_path(u, utterance_audio_path)
             if os.path.isfile(utterance_audio_path):
                 continue
+            u2a_list.append(
+                _UtteranceToAudio(
+                    utterance=u,
+                    audio_source=session_audio,
+                    audio_target=utterance_audio_path,
+                )
+            )
             media_tools.slice_audio(
                 session_audio, utterance_audio_path, u.timeStart, u.timeEnd
+            )
+        except BaseException as u_err:
+            logging.exception(f"exception processing utterance: {u_err}")
+    for i, u2a in enumerate(u2a_list):
+        try:
+            logging.info(
+                f"utterance_to_audio [{i + 1}/{len(u2a_list)}] source={u2a.audio_source}, target={u2a.audio_target}, time-start={u2a.utterance.timeStart}, time-end={u2a.utterance.timeEnd}"
+            )
+            media_tools.slice_audio(
+                u2a.audio_source,
+                u2a.audio_target,
+                u2a.utterance.timeStart,
+                u2a.utterance.timeEnd,
             )
         except BaseException as u_err:
             logging.exception(f"exception processing utterance: {u_err}")
