@@ -213,21 +213,12 @@ class MockVideoToAudioConverter:
         self.mock_video_to_audio = mock_video_to_audio
         self.mock_logging_info = mock_logging_info
         self.create_dummy_output_files = create_dummy_output_files
-        self.expected_calls = []
-        self.expected_calls_logging_info = []
         if create_dummy_output_files:
             mock_video_to_audio.side_effect = (
                 self._on_video_to_audio_create_dummy_output
             )
 
-    def expect_calls(self, fail_on_no_calls=False) -> None:
-        if fail_on_no_calls and not self.expected_calls:
-            raise (Exception(f"expected mock-video-to-audio calls"))
-        self.mock_video_to_audio.assert_has_calls(self.expected_calls)
-        if self.mock_logging_info:
-            self.mock_logging_info.assert_has_calls(self.expected_calls_logging_info)
-
-    def load_expected_calls(
+    def expect_calls(
         self,
         mpath: MentorPath,
         expected_calls_yaml="expected-video-to-audio-calls.yaml",
@@ -244,14 +235,19 @@ class MockVideoToAudioConverter:
             else:
                 return
         mock_calls = yaml_load(yaml_path)
-        self.expected_calls = []
-        self.expected_calls_logging_info = []
+        expected_calls = []
+        expected_calls_logging_info = []
         for i, call_data in enumerate(mock_calls):
             video_path = mpath.get_mentor_path(call_data.get("video"))
             audio_path = mpath.get_mentor_path(call_data.get("audio"))
-            self.expected_calls.append(call(video_path, audio_path))
-            self.expected_calls_logging_info.append(
+            expected_calls.append(call(video_path, audio_path))
+            expected_calls_logging_info.append(
                 call(
                     f"sessions_to_audio [{i + 1}/{len(mock_calls)}] video={video_path}, audio={audio_path}"
                 )
             )
+        if fail_on_no_calls and not self.expected_calls:
+            raise (Exception(f"expected mock-video-to-audio calls"))
+        self.mock_video_to_audio.assert_has_calls(expected_calls)
+        if self.mock_logging_info:
+            self.mock_logging_info.assert_has_calls(expected_calls_logging_info)
