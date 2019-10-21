@@ -2,7 +2,7 @@ version: 2.1
 executors:
   ebs:
     docker:
-      - image: larrykirschner/circleci-elasticbeanstalk:e9f1c61a9c863a520f88172e076615966a12f383
+      - image: larrykirschner/circleci-elasticbeanstalk:1.0.0
   node:
     docker:
       - image: circleci/node:12.4
