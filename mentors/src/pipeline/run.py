@@ -26,10 +26,8 @@ class Pipeline:
     def data_update(self):
         transcription_service = pipeline.transcriptions.init_transcription_service()
         utterances_synced = sync_timestamps(self.mpath)
-        utterances_w_session_audio = sessions_to_audio(utterances_synced, self.mpath)
-        utterances_w_audio_src = utterances_to_audio(
-            utterances_w_session_audio, self.mpath
-        )
+        s2a_result = sessions_to_audio(utterances_synced, self.mpath)
+        utterances_w_audio_src = utterances_to_audio(s2a_result.utterances, self.mpath)
         utterances_w_transcripts = update_transcripts(
             utterances_w_audio_src, transcription_service, self.mpath
         )

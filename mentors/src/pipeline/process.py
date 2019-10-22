@@ -1,5 +1,6 @@
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from datetime import timedelta
+from functools import reduce
 import logging
 import os
 from typing import Dict, List
@@ -14,6 +15,7 @@ from pipeline.training_data import (
     PromptsUtterancesBuilder,
 )
 from pipeline.transcriptions import TranscriptionService
+from pipeline.utils import yaml_load
 from pipeline.utterances import (
     copy_utterance,
     copy_utterances,
@@ -31,56 +33,90 @@ def _timestr_to_secs(s: str) -> float:
 
 
 @dataclass
-class _SessionAudioUtterances:
+class SessionToAudio:
     sessionAudio: str = None
     sessionVideo: str = None
     utterances: List[Utterance] = field(default_factory=lambda: [])
 
 
-def sessions_to_audio(utterances: UtteranceMap, mp: MentorPath) -> UtteranceMap:
+@dataclass
+class SessionToAudioResultSummary:
+    succeededSessionAudioCount: int
+    succeededUtteranceCount: int
+    failedSessionAudioCount: int
+    failedUtteranceCount: int
+
+    def to_dict(self):
+        return asdict(self)
+
+
+def session_to_audio_result_summary_from_yaml(
+    yaml_path: str
+) -> SessionToAudioResultSummary:
+    d = yaml_load(yaml_path)
+    return SessionToAudioResultSummary(**d)
+
+
+@dataclass
+class SessionToAudioResult:
+    utterances: UtteranceMap
+    succeeded: List[SessionToAudio] = field(default_factory=lambda: [])
+    failed: List[SessionToAudio] = field(default_factory=lambda: [])
+
+    def summary(self):
+        return SessionToAudioResultSummary(
+            succeededSessionAudioCount=len(self.succeeded),
+            failedSessionAudioCount=len(self.failed),
+            succeededUtteranceCount=reduce(
+                lambda t, c: t + len(c.utterances), self.succeeded, 0
+            ),
+            failedUtteranceCount=reduce(
+                lambda t, c: t + len(c.utterances), self.failed, 0
+            ),
+        )
+
+
+def sessions_to_audio(utterances: UtteranceMap, mp: MentorPath) -> SessionToAudioResult:
     """
     Give sessions data and a root sessions directory,
     make sure all that sessionAudio is generated (from video)
     and assigned to each utterance
     """
-    result_utterances = copy_utterances(utterances)
-    utterances_by_session_audio: Dict[str, _SessionAudioUtterances] = dict()
+    result = SessionToAudioResult(utterances=copy_utterances(utterances))
+    s2a_by_session_audio_path: Dict[str, SessionToAudio] = dict()
     # probably this could be accumulate but seems like code would be less readable?
-    for u in result_utterances.utterances():
+    for u in result.utterances.utterances():
         mp.find_and_assign_assets(u)
         session_audio = mp.find_session_audio(u, return_non_existing_paths=True)
         if os.path.isfile(session_audio):
             continue  # no need to process already existing session audio
-        if session_audio not in utterances_by_session_audio:
-            utterances_by_session_audio[session_audio] = _SessionAudioUtterances(
+        if session_audio not in s2a_by_session_audio_path:
+            s2a_by_session_audio_path[session_audio] = SessionToAudio(
                 sessionAudio=session_audio
             )
-        session_audio_utterances = utterances_by_session_audio[session_audio]
-        session_audio_utterances.utterances.append(u)
-        session_audio_utterances.sessionVideo = (
-            mp.find_session_video(u)
-            if not session_audio_utterances.sessionVideo
-            else session_audio_utterances.sessionVideo
+        s2a = s2a_by_session_audio_path[session_audio]
+        s2a.utterances.append(u)
+        s2a.sessionVideo = (
+            mp.find_session_video(u) if not s2a.sessionVideo else s2a.sessionVideo
         )
-    for i, session_audio_utterances in enumerate(utterances_by_session_audio.values()):
+    for i, s2a in enumerate(s2a_by_session_audio_path.values()):
         try:
-            if not session_audio_utterances.sessionVideo:
+            if not s2a.sessionVideo:
                 logging.warning(
-                    f"sessions_to_audio [{i + 1}/{len(utterances_by_session_audio)}] video source not found for {session_audio_utterances.sessionAudio}"
+                    f"sessions_to_audio [{i + 1}/{len(s2a_by_session_audio_path)}] video source not found for {s2a.sessionAudio}"
                 )
                 continue
             logging.info(
-                f"sessions_to_audio [{i + 1}/{len(utterances_by_session_audio)}] video={session_audio_utterances.sessionVideo}, audio={session_audio_utterances.sessionAudio}"
+                f"sessions_to_audio [{i + 1}/{len(s2a_by_session_audio_path)}] video={s2a.sessionVideo}, audio={s2a.sessionAudio}"
             )
-            media_tools.video_to_audio(
-                session_audio_utterances.sessionVideo,
-                session_audio_utterances.sessionAudio,
-            )
-            for u in session_audio_utterances.utterances:
+            media_tools.video_to_audio(s2a.sessionVideo, s2a.sessionAudio)
+            for u in s2a.utterances:
                 mp.find_and_assign_assets(u)
+            result.succeeded.append(s2a)  # pylint: disable=E1101
         except BaseException as u_err:
             logging.exception(f"exception processing utterance: {u_err}")
-    return result_utterances
+            result.failed.append(s2a)  # pylint: disable=E1101
+    return result
 
 
 def sync_timestamps(mp: MentorPath) -> UtteranceMap:

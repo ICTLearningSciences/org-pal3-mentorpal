@@ -3,6 +3,7 @@ import pytest
 from unittest.mock import patch
 
 from .helpers import (
+    assert_session_to_audio_result_summary_match_expected,
     assert_utterances_match_expected,
     copy_mentor_to_tmp,
     MockVideoToAudioConverter,
@@ -58,8 +59,9 @@ def _test_sessions_to_audio(
             mock_logging_info=mock_logging_info if test_logging else None,
         )
         utterances_before = mp.load_utterances()
-        actual_utterances = sessions_to_audio(utterances_before, mp)
+        result = sessions_to_audio(utterances_before, mp)
         mock_video_to_audio_converter.expect_calls(
             mp, fail_on_no_calls=require_video_to_audio_calls
         )
-        assert_utterances_match_expected(mp, utterances=actual_utterances)
+        assert_utterances_match_expected(mp, utterances=result.utterances)
+        assert_session_to_audio_result_summary_match_expected(mp, result.summary())

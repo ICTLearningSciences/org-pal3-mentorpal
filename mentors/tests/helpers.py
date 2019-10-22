@@ -6,8 +6,33 @@ from typing import List
 from unittest.mock import call, Mock
 
 from pipeline.mentorpath import MentorPath
+from pipeline.process import (
+    SessionToAudioResultSummary,
+    session_to_audio_result_summary_from_yaml,
+)
 from pipeline.utils import yaml_load
 from pipeline.utterances import UtteranceMap, utterances_from_yaml
+
+
+def assert_session_to_audio_result_summary_match_expected(
+    mp: MentorPath,
+    actual_data: SessionToAudioResultSummary,
+    expected_data_file="expected-session-to-audio-summary.yaml",
+) -> None:
+    """
+    Test helper to assert that summary for process.session_to_audio match expected for a mentorpath
+
+    Args:
+    - mp: the MentorPath
+    - actual_data: SessionToAudioResultSummary
+    - expected_file: path to the location of the expected-utterances (stored in yaml)
+    """
+    expected_data_path = mp.get_mentor_path(expected_data_file)
+    assert os.path.isfile(
+        expected_data_path
+    ), f"requires a yaml file of expected summary for SessionToAudioResultSummary at {expected_data_path}"
+    expected_data = session_to_audio_result_summary_from_yaml(expected_data_path)
+    assert expected_data.to_dict() == actual_data.to_dict()
 
 
 def assert_utterances_match_expected(
