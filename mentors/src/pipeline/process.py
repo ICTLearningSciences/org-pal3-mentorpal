@@ -37,7 +37,7 @@ class _SessionAudioUtterances:
     utterances: List[Utterance] = field(default_factory=lambda: [])
 
 
-def sessions_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
+def sessions_to_audio(utterances: UtteranceMap, mp: MentorPath) -> UtteranceMap:
     """
     Give sessions data and a root sessions directory,
     make sure all that sessionAudio is generated (from video)
@@ -57,9 +57,11 @@ def sessions_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
             )
         session_audio_utterances = utterances_by_session_audio[session_audio]
         session_audio_utterances.utterances.append(u)
-        if session_audio_utterances.sessionVideo:
-            continue
-        session_audio_utterances.sessionVideo = mp.find_session_video(u)
+        session_audio_utterances.sessionVideo = (
+            mp.find_session_video(u)
+            if not session_audio_utterances.sessionVideo
+            else session_audio_utterances.sessionVideo
+        )
     for i, session_audio_utterances in enumerate(utterances_by_session_audio.values()):
         try:
             if not session_audio_utterances.sessionVideo:
@@ -139,7 +141,7 @@ def update_transcripts(
     utterances: UtteranceMap,
     transcription_service: TranscriptionService,
     mp: MentorPath,
-) -> None:
+) -> UtteranceMap:
     """
     Give sessions data and a root sessions directory,
     transcribes the text for items in the sessions data,
@@ -181,7 +183,7 @@ class _UtteranceToAudio:
     audio_target: str
 
 
-def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> None:
+def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> UtteranceMap:
     """
     Give sessions data and a root sessions directory,
     slices up the source audio into one file per part in the data.
