@@ -82,6 +82,9 @@ class MentorPath:
     def get_build_path(self, p: str = None) -> str:
         return self._path_from(os.path.join(self.get_mentor_path(), "build"), p)
 
+    def get_data_path(self, p: str = None) -> str:
+        return self._path_from(os.path.join(self.get_mentor_path(), "data"), p)
+
     def get_mentor_id(self) -> str:
         return self.mentor_id
 
@@ -92,10 +95,10 @@ class MentorPath:
         return self._path_from(os.path.join(self.root_path, self.get_mentor_id()), p)
 
     def get_questions_paraphrases_answers(self) -> str:
-        return self.get_mentor_data("questions_paraphrases_answers.csv")
+        return self.get_data_path("questions_paraphrases_answers.csv")
 
     def get_prompts_utterances(self) -> str:
-        return self.get_mentor_data("prompts_utterances.csv")
+        return self.get_data_path("prompts_utterances.csv")
 
     def get_sessions_data_path(self) -> str:
         return os.path.join(self.get_mentor_path(), ".mentor", "sessions.yaml")

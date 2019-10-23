@@ -96,12 +96,14 @@ def load_prompts_utterances(csv_path: str) -> pd.DataFrame:
 
 
 def write_questions_paraphrases_answers(d: pd.DataFrame, csv_path: str) -> None:
+    os.makedirs(csv_path, exist_ok=True)
     d.fillna("").to_csv(
         _add_file_if_dir(csv_path, "questions_paraphrases_answers.csv"), index=False
     )
 
 
 def write_prompts_utterances(d: pd.DataFrame, csv_path: str) -> None:
+    os.makedirs(csv_path, exist_ok=True)
     d.fillna("").to_csv(
         _add_file_if_dir(csv_path, "prompts_utterances.csv"), index=False
     )
