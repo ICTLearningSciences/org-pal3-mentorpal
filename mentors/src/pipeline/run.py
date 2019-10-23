@@ -32,8 +32,9 @@ class Pipeline:
             utterances_w_audio_src, transcription_service, self.mpath
         )
         td_result = utterances_to_training_data(utterances_w_transcripts)
-        self.mpath.write_questions_paraphrases_answers(
+        self.mpath.write_training_questions_paraphrases_answers(
             td_result.questions_paraphrases_answers
         )
-        self.mpath.write_prompts_utterances(td_result.prompts_utterances)
+        self.mpath.write_training_prompts_utterances(td_result.prompts_utterances)
+        self.mpath.write_training_utterance_data(td_result.utterance_data)
         self.mpath.write_utterances(td_result.utterances)

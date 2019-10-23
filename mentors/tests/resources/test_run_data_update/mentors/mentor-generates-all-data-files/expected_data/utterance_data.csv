@@ -1,0 +1,8 @@
+Situation,Mentor,Utterance/Prompt
+s001p002s00000345e00000698,Hi my name is mentor 1!,_INTRO_
+s002p001s00000599e00001012,Ask me how I saved $15!,_PROMPT_
+s002p001s00001234e00001678,Do you have a favorite color?,_PROMPT_
+s002p001s00002345e00003456,Ask me something else.,_OFF_TOPIC_
+s002p001s00004567e00005678,OK.,_FEEDBACK_
+s002p001s00010789e00011890,I might have covered this already...,_REPEAT_
+s002p001s00012901e00013012,Please don't use that language.,_PROFANITY_

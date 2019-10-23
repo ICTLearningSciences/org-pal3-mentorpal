@@ -15,6 +15,7 @@ from pipeline.run import Pipeline
 from pipeline.training_data import (
     load_questions_paraphrases_answers,
     load_prompts_utterances,
+    load_utterance_data,
 )
 
 
@@ -48,14 +49,21 @@ def test_it_generates_all_data_files_for_a_mentor(
     expected_questions_paraphrases_answers = load_questions_paraphrases_answers(
         mpath.get_mentor_path(os.path.join("expected_data"))
     )
-    actual_questions_paraphrases_answers = mpath.load_questions_paraphrases_answers()
+    actual_questions_paraphrases_answers = (
+        mpath.load_training_questions_paraphrases_answers()
+    )
     pd.testing.assert_frame_equal(
         expected_questions_paraphrases_answers, actual_questions_paraphrases_answers
     )
     expected_prompts_utterances = load_prompts_utterances(
         mpath.get_mentor_path(os.path.join("expected_data"))
     )
-    actual_prompts_utterances = mpath.load_prompts_utterances()
+    actual_prompts_utterances = mpath.load_training_prompts_utterances()
     pd.testing.assert_frame_equal(
         expected_prompts_utterances, actual_prompts_utterances
     )
+    expected_utterance_data = load_utterance_data(
+        mpath.get_mentor_path(os.path.join("expected_data"))
+    )
+    actual_utterance_data = mpath.load_training_utterance_data()
+    pd.testing.assert_frame_equal(expected_utterance_data, actual_utterance_data)

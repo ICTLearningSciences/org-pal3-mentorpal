@@ -13,6 +13,7 @@ from pipeline.mentorpath import MentorPath
 from pipeline.training_data import (
     QuestionsParaphrasesAnswersBuilder,
     PromptsUtterancesBuilder,
+    UtteranceDataBuilder,
 )
 from pipeline.transcriptions import TranscriptionService
 from pipeline.utils import yaml_load
@@ -302,6 +303,7 @@ class Utterances2TrainingDataResult:
     utterances: UtteranceMap = None
     questions_paraphrases_answers: pd.DataFrame = None
     prompts_utterances: pd.DataFrame = None
+    utterance_data: pd.DataFrame = None
 
 
 def utterances_to_training_data(
@@ -310,6 +312,7 @@ def utterances_to_training_data(
     utterances_merged = copy_utterances(utterances)
     qpa = QuestionsParaphrasesAnswersBuilder()
     pu = PromptsUtterancesBuilder()
+    ud = UtteranceDataBuilder()
     for u in utterances_merged.utterances():
         if not (u.transcript and u.utteranceType):
             continue
@@ -321,8 +324,10 @@ def utterances_to_training_data(
             pu.add_row(
                 situation=u.utteranceType, utterance=u.transcript, mentor_id=u.mentor
             )
+            ud.add_row(id=u.get_id(), utterance=u.transcript, situation=u.utteranceType)
     return Utterances2TrainingDataResult(
         utterances=utterances_merged,
         questions_paraphrases_answers=qpa.to_data_frame(),
         prompts_utterances=pu.to_data_frame(),
+        utterance_data=ud.to_data_frame(),
     )

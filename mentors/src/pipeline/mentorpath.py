@@ -15,10 +15,12 @@ from pipeline.utterance_asset_type import (
     UTTERANCE_VIDEO,
 )
 from pipeline.training_data import (
-    load_prompts_utterances as _load_prompts_utterances,
-    load_questions_paraphrases_answers as _load_questions_paraphrases_answers,
-    write_prompts_utterances as _write_prompts_utterances,
-    write_questions_paraphrases_answers as _write_questions_paraphrases_answers,
+    load_prompts_utterances as _load_training_prompts_utterances,
+    load_questions_paraphrases_answers as _load_training_questions_paraphrases_answers,
+    load_utterance_data as _load_training_utterance_data,
+    write_prompts_utterances as _write_training_prompts_utterances,
+    write_questions_paraphrases_answers as _write_training_questions_paraphrases_answers,
+    write_utterance_data as _write_training_utterance_data,
 )
 from pipeline.utterances import (
     Utterance,
@@ -94,17 +96,20 @@ class MentorPath:
     def get_mentor_path(self, p: str = None) -> str:
         return self._path_from(os.path.join(self.root_path, self.get_mentor_id()), p)
 
-    def get_questions_paraphrases_answers(self) -> str:
-        return self.get_data_path("questions_paraphrases_answers.csv")
-
-    def get_prompts_utterances(self) -> str:
-        return self.get_data_path("prompts_utterances.csv")
-
     def get_sessions_data_path(self) -> str:
         return os.path.join(self.get_mentor_path(), ".mentor", "sessions.yaml")
 
     def get_utterances_data_path(self) -> str:
         return os.path.join(self.get_mentor_path(), ".mentor", "utterances.yaml")
+
+    def get_training_questions_paraphrases_answers(self) -> str:
+        return self.get_data_path("training_questions_paraphrases_answers.csv")
+
+    def get_training_prompts_utterances(self) -> str:
+        return self.get_data_path("training_prompts_utterances.csv")
+
+    def get_training_utterance_data(self) -> str:
+        return self.get_data_path("utterance_data.csv")
 
     def find_and_assign_assets(self, utterance: Utterance) -> None:
         t = self.find_asset(utterance, SESSION_TIMESTAMPS)
@@ -189,13 +194,16 @@ class MentorPath:
             return_non_existing_paths=return_non_existing_paths,
         )
 
-    def load_prompts_utterances(self) -> pd.DataFrame:
-        return _load_prompts_utterances(self.get_prompts_utterances())
+    def load_training_prompts_utterances(self) -> pd.DataFrame:
+        return _load_training_prompts_utterances(self.get_training_prompts_utterances())
 
-    def load_questions_paraphrases_answers(self) -> pd.DataFrame:
-        return _load_questions_paraphrases_answers(
-            self.get_questions_paraphrases_answers()
+    def load_training_questions_paraphrases_answers(self) -> pd.DataFrame:
+        return _load_training_questions_paraphrases_answers(
+            self.get_training_questions_paraphrases_answers()
         )
+
+    def load_training_utterance_data(self) -> pd.DataFrame:
+        return _load_training_utterance_data(self.get_training_utterance_data())
 
     def load_utterances(self, create_new=False) -> UtteranceMap:
         data_path = self.get_utterances_data_path()
@@ -221,13 +229,16 @@ class MentorPath:
     def to_relative_path(self, p: str) -> str:
         return os.path.relpath(p, self.get_mentor_path())
 
-    def write_prompts_utterances(self, d: pd.DataFrame) -> None:
-        _write_prompts_utterances(d, self.get_prompts_utterances())
+    def write_training_prompts_utterances(self, d: pd.DataFrame) -> None:
+        _write_training_prompts_utterances(d, self.get_training_prompts_utterances())
 
-    def write_questions_paraphrases_answers(self, d: pd.DataFrame) -> None:
-        _write_questions_paraphrases_answers(
-            d, self.get_questions_paraphrases_answers()
+    def write_training_questions_paraphrases_answers(self, d: pd.DataFrame) -> None:
+        _write_training_questions_paraphrases_answers(
+            d, self.get_training_questions_paraphrases_answers()
         )
+
+    def write_training_utterance_data(self, d: pd.DataFrame) -> None:
+        _write_training_utterance_data(d, self.get_training_utterance_data())
 
     def write_utterances(self, utterances: UtteranceMap) -> None:
         utterances_to_yaml(utterances, self.get_utterances_data_path())

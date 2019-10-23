@@ -13,6 +13,7 @@ COLS_QUESTIONS_PARAPHRASES_ANSWERS: List[str] = [
     "text",
 ]
 COLS_PROMPTS_UTTERANCES: List[str] = ["Situation", "Mentor", "Utterance/Prompt"]
+COLS_UTTERANCE_DATA: List[str] = ["ID", "utterance", "situation"]
 
 
 @dataclass
@@ -40,7 +41,7 @@ class QuestionsParaphrasesAnswersBuilder:
     def add_row(
         self, question: str = "", answer: str = "", mentor_id: str = ""
     ) -> None:
-        self.data.append(
+        self.data.append(  # pylint: disable=no-member
             QuestionsParaphrasesAnswersRow(
                 question=question, answer=answer, mentor_id=mentor_id
             )
@@ -48,7 +49,8 @@ class QuestionsParaphrasesAnswersBuilder:
 
     def to_data_frame(self) -> pd.DataFrame:
         return pd.DataFrame(
-            [r.to_row() for r in self.data], columns=COLS_QUESTIONS_PARAPHRASES_ANSWERS
+            [r.to_row() for r in self.data],  # pylint: disable=not-an-iterable
+            columns=COLS_QUESTIONS_PARAPHRASES_ANSWERS,
         )
 
 
@@ -69,7 +71,7 @@ class PromptsUtterancesBuilder:
     def add_row(
         self, mentor_id: str = "", situation: str = "", utterance: str = ""
     ) -> None:
-        self.data.append(
+        self.data.append(  # pylint: disable=no-member
             PromptsUtterancesRow(
                 mentor_id=mentor_id, situation=situation, utterance=utterance
             )
@@ -77,7 +79,34 @@ class PromptsUtterancesBuilder:
 
     def to_data_frame(self) -> pd.DataFrame:
         return pd.DataFrame(
-            [r.to_row() for r in self.data], columns=COLS_PROMPTS_UTTERANCES
+            [r.to_row() for r in self.data],  # pylint: disable=not-an-iterable
+            columns=COLS_PROMPTS_UTTERANCES,
+        )
+
+
+@dataclass
+class UtteranceDataRow:
+    ID: str = ""
+    utterance: str = ""
+    situation: str = ""
+
+    def to_row(self) -> List[str]:
+        return [self.ID, self.utterance, self.situation]
+
+
+@dataclass
+class UtteranceDataBuilder:
+    data: List[UtteranceDataRow] = field(default_factory=lambda: [])
+
+    def add_row(self, id: str = "", utterance: str = "", situation: str = "") -> None:
+        self.data.append(  # pylint: disable=no-member
+            UtteranceDataRow(ID=id, utterance=utterance, situation=situation)
+        )
+
+    def to_data_frame(self) -> pd.DataFrame:
+        return pd.DataFrame(
+            [r.to_row() for r in self.data],  # pylint: disable=not-an-iterable
+            columns=COLS_PROMPTS_UTTERANCES,
         )
 
 
@@ -95,6 +124,10 @@ def load_prompts_utterances(csv_path: str) -> pd.DataFrame:
     return pd.read_csv(_add_file_if_dir(csv_path, "prompts_utterances.csv")).fillna("")
 
 
+def load_utterance_data(csv_path: str) -> pd.DataFrame:
+    return pd.read_csv(_add_file_if_dir(csv_path, "utterance_data.csv")).fillna("")
+
+
 def write_questions_paraphrases_answers(d: pd.DataFrame, csv_path: str) -> None:
     os.makedirs(csv_path, exist_ok=True)
     d.fillna("").to_csv(
@@ -107,3 +140,8 @@ def write_prompts_utterances(d: pd.DataFrame, csv_path: str) -> None:
     d.fillna("").to_csv(
         _add_file_if_dir(csv_path, "prompts_utterances.csv"), index=False
     )
+
+
+def write_utterance_data(d: pd.DataFrame, csv_path: str) -> None:
+    os.makedirs(csv_path, exist_ok=True)
+    d.fillna("").to_csv(_add_file_if_dir(csv_path, "utterance_data.csv"), index=False)
