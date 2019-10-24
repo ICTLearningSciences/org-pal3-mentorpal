@@ -188,7 +188,7 @@ def update_transcripts(
     result = copy_utterances(utterances)
     call_list: List[_UtteranceTranscriptionCall] = []
     for u in result.utterances():
-        if u.transcript:
+        if u.transcript or u.is_no_transcription_type():
             continue  # transcript already set
         audio_path = mp.find_utterance_audio(u)
         if not audio_path:
@@ -249,6 +249,8 @@ def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> UtteranceMa
     for u in result_utterances.utterances():
         try:
             mp.find_and_assign_assets(u)
+            if u.is_no_transcription_type():
+                continue
             session_audio = mp.find_session_audio(u, mp)
             if not session_audio:
                 logging.warning(f"no audio source found for utterance {u}")

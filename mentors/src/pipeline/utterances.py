@@ -24,6 +24,7 @@ class TranscriptionType:
 class UtteranceType:
     ANSWER = "_ANSWER_"
     FEEDBACK = "_FEEDBACK_"
+    IDLE = "_IDLE"
     INTRO = "_INTRO_"
     OFF_TOPIC = "_OFF_TOPIC_"
     PROFANITY = "_PROFANITY_"
@@ -37,7 +38,14 @@ class UtteranceType:
 
     @classmethod
     def get_required_types(cls) -> list:
-        return [cls.FEEDBACK, cls.INTRO, cls.OFF_TOPIC, cls.PROMPT, cls.REPEAT]
+        return [
+            cls.FEEDBACK,
+            cls.IDLE,
+            cls.INTRO,
+            cls.OFF_TOPIC,
+            cls.PROMPT,
+            cls.REPEAT,
+        ]
 
 
 @dataclass
@@ -59,6 +67,9 @@ class Utterance:
 
     def get_id(self):
         return _utterance_id(self.session, self.part, self.timeStart, self.timeEnd)
+
+    def is_no_transcription_type(self):
+        return self.utteranceType == UtteranceType.IDLE
 
     def to_dict(self):
         return asdict(self)
