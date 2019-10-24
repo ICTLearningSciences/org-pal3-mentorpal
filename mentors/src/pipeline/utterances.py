@@ -24,7 +24,7 @@ class TranscriptionType:
 class UtteranceType:
     ANSWER = "_ANSWER_"
     FEEDBACK = "_FEEDBACK_"
-    IDLE = "_IDLE"
+    IDLE = "_IDLE_"
     INTRO = "_INTRO_"
     OFF_TOPIC = "_OFF_TOPIC_"
     PROFANITY = "_PROFANITY_"

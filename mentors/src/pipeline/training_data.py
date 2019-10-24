@@ -149,8 +149,13 @@ def _load_csv(csv_path: str, file_name_default: str) -> pd.DataFrame:
 
 
 def _write_csv(d: pd.DataFrame, csv_path: str, file_name_default: str) -> None:
-    os.makedirs(csv_path, exist_ok=True)
-    d.fillna("").to_csv(_add_file_if_dir(csv_path, file_name_default), index=False)
+    write_path = _add_file_if_dir(csv_path, file_name_default)
+    os.makedirs(os.path.dirname(write_path), exist_ok=True)
+    csv_str = d.fillna("").to_csv(
+        index=False
+    )  # to_csv can't see to overwrite an existing file even with mode='w'?
+    with open(write_path, "w") as f:
+        f.write(csv_str)
 
 
 def load_classifier_data(csv_path: str) -> pd.DataFrame:
