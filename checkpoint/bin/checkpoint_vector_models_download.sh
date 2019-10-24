@@ -42,6 +42,7 @@ echo "downloading vector models
   FROM: ${CHECKPOINT_PATH}
   TO: ${VECTOR_MODEL_TARGET_PATH}"
 
+mkdir -p ${CHECKPOINT_PATH}
 cd ${CHECKPOINT_PATH}
 for d in */; do
     mentor=${d%/}
