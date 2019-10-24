@@ -5,6 +5,7 @@ from typing import List
 import pandas as pd
 
 
+COLS_CLASSIFIER_DATA: List[str] = ["ID", "topics", "text", "question"]
 COLS_QUESTIONS_PARAPHRASES_ANSWERS: List[str] = [
     "Topics",
     "Helpers",
@@ -32,6 +33,35 @@ class QuestionsParaphrasesAnswersRow:
             self.question or "",
             self.answer or "",
         ]
+
+
+@dataclass
+class ClassifierDataRow:
+    ID: str = ""
+    topics: str = ""
+    text: str = ""
+    question: str = ""
+
+    def to_row(self) -> List[str]:
+        return [self.ID, self.topics, self.text, self.question]
+
+
+@dataclass
+class ClassifierDataBuilder:
+    data: List[ClassifierDataRow] = field(default_factory=lambda: [])
+
+    def add_row(
+        self, id: str = "", topics: str = "", text: str = "", question: str = ""
+    ) -> None:
+        self.data.append(  # pylint: disable=no-member
+            ClassifierDataRow(ID=id, topics=topics, text=text, question=question)
+        )
+
+    def to_data_frame(self) -> pd.DataFrame:
+        return pd.DataFrame(
+            [r.to_row() for r in self.data],  # pylint: disable=not-an-iterable
+            columns=COLS_CLASSIFIER_DATA,
+        )
 
 
 @dataclass
@@ -114,34 +144,42 @@ def _add_file_if_dir(base_path, file_name: str) -> str:
     return os.path.join(base_path, file_name) if os.path.isdir(base_path) else base_path
 
 
+def _load_csv(csv_path: str, file_name_default: str) -> pd.DataFrame:
+    return pd.read_csv(_add_file_if_dir(csv_path, file_name_default)).fillna("")
+
+
+def _write_csv(d: pd.DataFrame, csv_path: str, file_name_default: str) -> None:
+    os.makedirs(csv_path, exist_ok=True)
+    d.fillna("").to_csv(_add_file_if_dir(csv_path, file_name_default), index=False)
+
+
+def load_classifier_data(csv_path: str) -> pd.DataFrame:
+    return _load_csv(csv_path, "classifier_data.csv")
+
+
 def load_questions_paraphrases_answers(csv_path: str) -> pd.DataFrame:
-    return pd.read_csv(
-        _add_file_if_dir(csv_path, "questions_paraphrases_answers.csv")
-    ).fillna("")
+    return _load_csv(csv_path, "questions_paraphrases_answers.csv")
 
 
 def load_prompts_utterances(csv_path: str) -> pd.DataFrame:
-    return pd.read_csv(_add_file_if_dir(csv_path, "prompts_utterances.csv")).fillna("")
+    return _load_csv(csv_path, "prompts_utterances.csv")
 
 
 def load_utterance_data(csv_path: str) -> pd.DataFrame:
-    return pd.read_csv(_add_file_if_dir(csv_path, "utterance_data.csv")).fillna("")
+    return _load_csv(csv_path, "utterance_data.csv")
+
+
+def write_classifier_data(d: pd.DataFrame, csv_path: str) -> None:
+    _write_csv(d, csv_path, "classifier_data.csv")
 
 
 def write_questions_paraphrases_answers(d: pd.DataFrame, csv_path: str) -> None:
-    os.makedirs(csv_path, exist_ok=True)
-    d.fillna("").to_csv(
-        _add_file_if_dir(csv_path, "questions_paraphrases_answers.csv"), index=False
-    )
+    _write_csv(d, csv_path, "questions_paraphrases_answers.csv")
 
 
 def write_prompts_utterances(d: pd.DataFrame, csv_path: str) -> None:
-    os.makedirs(csv_path, exist_ok=True)
-    d.fillna("").to_csv(
-        _add_file_if_dir(csv_path, "prompts_utterances.csv"), index=False
-    )
+    _write_csv(d, csv_path, "prompts_utterances.csv")
 
 
 def write_utterance_data(d: pd.DataFrame, csv_path: str) -> None:
-    os.makedirs(csv_path, exist_ok=True)
-    d.fillna("").to_csv(_add_file_if_dir(csv_path, "utterance_data.csv"), index=False)
+    _write_csv(d, csv_path, "utterance_data.csv")

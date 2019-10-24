@@ -15,9 +15,11 @@ from pipeline.utterance_asset_type import (
     UTTERANCE_VIDEO,
 )
 from pipeline.training_data import (
+    load_classifier_data as _load_training_classifier_data,
     load_prompts_utterances as _load_training_prompts_utterances,
     load_questions_paraphrases_answers as _load_training_questions_paraphrases_answers,
     load_utterance_data as _load_training_utterance_data,
+    write_classifier_data as _write_training_classifier_data,
     write_prompts_utterances as _write_training_prompts_utterances,
     write_questions_paraphrases_answers as _write_training_questions_paraphrases_answers,
     write_utterance_data as _write_training_utterance_data,
@@ -102,11 +104,14 @@ class MentorPath:
     def get_utterances_data_path(self) -> str:
         return os.path.join(self.get_mentor_path(), ".mentor", "utterances.yaml")
 
+    def get_training_classifier_data(self) -> str:
+        return self.get_data_path("classifier_data.csv")
+
     def get_training_questions_paraphrases_answers(self) -> str:
-        return self.get_data_path("training_questions_paraphrases_answers.csv")
+        return self.get_data_path("questions_paraphrases_answers.csv")
 
     def get_training_prompts_utterances(self) -> str:
-        return self.get_data_path("training_prompts_utterances.csv")
+        return self.get_data_path("prompts_utterances.csv")
 
     def get_training_utterance_data(self) -> str:
         return self.get_data_path("utterance_data.csv")
@@ -194,6 +199,9 @@ class MentorPath:
             return_non_existing_paths=return_non_existing_paths,
         )
 
+    def load_training_classifier_data(self) -> pd.DataFrame:
+        return _load_training_classifier_data(self.get_training_classifier_data())
+
     def load_training_prompts_utterances(self) -> pd.DataFrame:
         return _load_training_prompts_utterances(self.get_training_prompts_utterances())
 
@@ -228,6 +236,9 @@ class MentorPath:
 
     def to_relative_path(self, p: str) -> str:
         return os.path.relpath(p, self.get_mentor_path())
+
+    def write_training_classifier_data(self, d: pd.DataFrame) -> None:
+        _write_training_classifier_data(d, self.get_training_classifier_data())
 
     def write_training_prompts_utterances(self, d: pd.DataFrame) -> None:
         _write_training_prompts_utterances(d, self.get_training_prompts_utterances())

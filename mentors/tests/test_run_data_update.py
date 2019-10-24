@@ -13,6 +13,7 @@ from .helpers import (
 )
 from pipeline.run import Pipeline
 from pipeline.training_data import (
+    load_classifier_data,
     load_questions_paraphrases_answers,
     load_prompts_utterances,
     load_utterance_data,
@@ -67,3 +68,8 @@ def test_it_generates_all_data_files_for_a_mentor(
     )
     actual_utterance_data = mpath.load_training_utterance_data()
     pd.testing.assert_frame_equal(expected_utterance_data, actual_utterance_data)
+    expected_classifier_data = load_classifier_data(
+        mpath.get_mentor_path(os.path.join("expected_data"))
+    )
+    actual_classifier_data = mpath.load_training_classifier_data()
+    pd.testing.assert_frame_equal(expected_classifier_data, actual_classifier_data)

@@ -36,5 +36,6 @@ class Pipeline:
             td_result.questions_paraphrases_answers
         )
         self.mpath.write_training_prompts_utterances(td_result.prompts_utterances)
+        self.mpath.write_training_classifier_data(td_result.classifier_data)
         self.mpath.write_training_utterance_data(td_result.utterance_data)
         self.mpath.write_utterances(td_result.utterances)

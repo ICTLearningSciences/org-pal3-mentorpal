@@ -11,6 +11,7 @@ import pandas as pd
 from pipeline import media_tools
 from pipeline.mentorpath import MentorPath
 from pipeline.training_data import (
+    ClassifierDataBuilder,
     QuestionsParaphrasesAnswersBuilder,
     PromptsUtterancesBuilder,
     UtteranceDataBuilder,
@@ -301,6 +302,7 @@ def utterances_to_audio(utterances: UtteranceMap, mp: MentorPath) -> UtteranceMa
 @dataclass
 class Utterances2TrainingDataResult:
     utterances: UtteranceMap = None
+    classifier_data: pd.DataFrame = None
     questions_paraphrases_answers: pd.DataFrame = None
     prompts_utterances: pd.DataFrame = None
     utterance_data: pd.DataFrame = None
@@ -312,6 +314,7 @@ def utterances_to_training_data(
     utterances_merged = copy_utterances(utterances)
     qpa = QuestionsParaphrasesAnswersBuilder()
     pu = PromptsUtterancesBuilder()
+    cd = ClassifierDataBuilder()
     ud = UtteranceDataBuilder()
     for u in utterances_merged.utterances():
         if not (u.transcript and u.utteranceType):
@@ -320,6 +323,7 @@ def utterances_to_training_data(
             if not u.question:
                 continue
             qpa.add_row(question=u.question, answer=u.transcript, mentor_id=u.mentor)
+            cd.add_row(id=u.get_id(), topics="", text=u.transcript, question=u.question)
         else:
             pu.add_row(
                 situation=u.utteranceType, utterance=u.transcript, mentor_id=u.mentor
@@ -327,6 +331,7 @@ def utterances_to_training_data(
             ud.add_row(id=u.get_id(), utterance=u.transcript, situation=u.utteranceType)
     return Utterances2TrainingDataResult(
         utterances=utterances_merged,
+        classifier_data=cd.to_data_frame(),
         questions_paraphrases_answers=qpa.to_data_frame(),
         prompts_utterances=pu.to_data_frame(),
         utterance_data=ud.to_data_frame(),
