@@ -1,3 +1,4 @@
+import logging
 import os
 
 from tensorflow.keras.preprocessing.sequence import pad_sequences
@@ -63,7 +64,7 @@ class TrainLSTMClassifier(ClassifierTraining):
     def train(self):
         if not os.path.exists(self.model_path):
             os.makedirs(self.model_path)
-        training_data = self.__load_training_data(
+        training_data, num_rows_having_paraphrases = self.__load_training_data(
             self.mentor.mentor_data_path("classifier_data.csv")
         )
         train_vectors, lstm_train_vectors = self.__load_training_vectors(training_data)
@@ -78,7 +79,11 @@ class TrainLSTMClassifier(ClassifierTraining):
             train_vectors, new_vectors
         )
         scores, accuracy, self.logistic_model_fused, self.logistic_model_unfused = self.__train_lr(
-            x_train_fused, y_train_fused, x_train_unfused, y_train_unfused
+            x_train_fused,
+            y_train_fused,
+            x_train_unfused,
+            y_train_unfused,
+            num_rows_having_paraphrases,
         )
         return scores, accuracy
 
@@ -98,6 +103,7 @@ class TrainLSTMClassifier(ClassifierTraining):
         corpus = train_data_csv.fillna("")
         preprocessor = NLTKPreprocessor()
         train_data = []
+        num_rows_having_paraphrases = 0
         for i in range(0, len(corpus)):
             # normalized topics
             topics = corpus.iloc[i]["topics"].split(",")
@@ -107,6 +113,7 @@ class TrainLSTMClassifier(ClassifierTraining):
             questions = corpus.iloc[i]["question"].split("\n")
             questions = [_f for _f in questions if _f]
             current_question = questions[0]
+            num_rows_having_paraphrases += 1 if len(questions) > 1 else 0
             # answer
             answer = corpus.iloc[i]["text"]
             answer_id = corpus.iloc[i]["ID"]
@@ -125,7 +132,7 @@ class TrainLSTMClassifier(ClassifierTraining):
                 train_data.append(
                     [paraphrases[i], processed_paraphrase, topics, answer_id, answer]
                 )
-        return train_data
+        return train_data, num_rows_having_paraphrases
 
     def __load_training_vectors(self, train_data):
         train_vectors = []
@@ -247,12 +254,22 @@ class TrainLSTMClassifier(ClassifierTraining):
         return topic_model, new_vectors
 
     def __train_lr(
-        self, x_train_fused, y_train_fused, x_train_unfused, y_train_unfused
+        self,
+        x_train_fused,
+        y_train_fused,
+        x_train_unfused,
+        y_train_unfused,
+        num_rows_having_paraphrases,
     ):
         logistic_model_unfused = RidgeClassifier(alpha=1.0)
         logistic_model_unfused.fit(x_train_unfused, y_train_unfused)
         logistic_model_fused = RidgeClassifier(alpha=1.0)
         logistic_model_fused.fit(x_train_fused, y_train_fused)
+        if num_rows_having_paraphrases < 1:
+            logging.warning(
+                "Classifier data had no questions with paraphrases. This makes cross validation checks fail, so they will be skipped"
+            )
+            return [], -1, logistic_model_fused, logistic_model_unfused
         scores = cross_val_score(
             logistic_model_fused, x_train_fused, y_train_fused, cv=2
         )
