@@ -109,8 +109,10 @@ class Mentor(object):
     def get_id(self):
         return self.id
 
-    def mentor_data_path(self, p):
-        return os.path.join(self.__mentor_data_root, p)
+    def mentor_data_path(self, p=None):
+        return (
+            os.path.join(self.__mentor_data_root, p) if p else self.__mentor_data_root
+        )
 
     def load(self):
         self.name, self.short_name, self.title = self.__load_profile()

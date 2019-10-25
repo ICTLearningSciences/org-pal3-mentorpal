@@ -51,7 +51,7 @@ docker-run-dev:
             --rm \
             --name mentorpal-classifier \
             -v ${CHECKPOINT_ROOT}:/app/checkpoint \
-            -v ${PROJECT_ROOT}/mentors/data/mentors:/app/mentors \
+            -v ${PROJECT_ROOT}/mentors:/app/mentors \
             -v ${PROJECT_ROOT}/classifier/src/mentorpal:/app/mentorpal \
             -e ARCH=${ARCH} \
             -e CHECKPOINT=${CHECKPOINT} \
