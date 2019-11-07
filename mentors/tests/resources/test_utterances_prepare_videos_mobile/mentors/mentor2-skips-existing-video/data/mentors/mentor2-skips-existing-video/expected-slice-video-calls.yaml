@@ -1,0 +1,8 @@
+- source: build/recordings/session1/p2-other-utterances.mp4
+  target: build/utterance_video/s001p002s00000345e00000698.mp4
+  time_start_secs: 3.45
+  time_end_secs: 6.98
+- source: build/recordings/session2/p1-other-more-utterances.mp4
+  target: build/utterance_video/s002p001s00000599e00001012.mp4
+  time_start_secs: 5.99
+  time_end_secs: 10.12

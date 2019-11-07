@@ -1,0 +1,6 @@
+- video: build/recordings/session1/p1-some-questions.mp4
+  audio: build/recordings/session1/p1-some-questions.mp3
+- video: build/recordings/session1/p2-some-utterances.mp4
+  audio: build/recordings/session1/p2-some-utterances.mp3
+- video: build/recordings/session2/p1-more-utterances.mp4
+  audio: build/recordings/session2/p1-more-utterances.mp3

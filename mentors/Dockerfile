@@ -13,9 +13,9 @@ RUN pip3 install -r /tmp/requirements.txt && \
     rm /tmp/requirements.txt
 
 
-COPY src /app/src
+COPY src /app
 ENV DATA_MOUNT=/app/mounts/
 
 WORKDIR /app
 
-ENTRYPOINT ["python3", "src/data_pipeline/pipeline_entrypoint.py"]
+ENTRYPOINT ["python3", "pipeline_runner.py"]

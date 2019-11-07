@@ -1,0 +1,27 @@
+utterances:
+  - mentor: mentor2-preserves-transcripts-when-merging
+    question: What is your name?
+    part: 1
+    session: 1
+    sessionTimestamps: build/recordings/session1/part1_timestamps.csv
+    timeStart: 0.00
+    timeEnd: 1.00
+    transcript: My name is Mentor2
+    utteranceType: _ANSWER_
+  - mentor: mentor2-preserves-transcripts-when-merging
+    question: What year were you born?
+    part: 1
+    session: 1
+    sessionTimestamps: build/recordings/session1/part1_timestamps.csv
+    timeStart: 2.12
+    timeEnd: 4.78
+    utteranceType: _ANSWER_
+  - mentor: mentor2-preserves-transcripts-when-merging
+    part: 2
+    session: 1
+    sessionTimestamps: build/recordings/session1/part2_timestamps.csv
+    timeStart: 3.45
+    timeEnd: 6.98
+    transcript: Hi! I'm Mentor2. Ask me anything!
+    utteranceType: _INTRO_
+        

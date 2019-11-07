@@ -1,0 +1,19 @@
+- source: build/utterance_video/s001p001s00000000e00000100.mp4
+  target: web/s001p001s00000000e00000100.mp4
+- source: build/utterance_video/s001p001s00000212e00000478.mp4
+  target: web/s001p001s00000212e00000478.mp4
+- source: build/utterance_video/s001p002s00000345e00000698.mp4
+  target: web/s001p002s00000345e00000698.mp4
+- source: build/utterance_video/s002p001s00000599e00001012.mp4
+  target: web/s002p001s00000599e00001012.mp4
+- source: build/utterance_video/s002p001s00001234e00001678.mp4
+  target: web/s002p001s00001234e00001678.mp4
+- source: build/utterance_video/s002p001s00002345e00003456.mp4
+  target: web/s002p001s00002345e00003456.mp4
+- source: build/utterance_video/s002p001s00004567e00005678.mp4
+  target: web/s002p001s00004567e00005678.mp4
+- source: build/utterance_video/s002p001s00010789e00011890.mp4
+  target: web/s002p001s00010789e00011890.mp4
+- source: build/utterance_video/s002p001s00012901e00013012.mp4
+  target: web/s002p001s00012901e00013012.mp4
+  
