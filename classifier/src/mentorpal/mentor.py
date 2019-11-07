@@ -106,6 +106,9 @@ class Mentor(object):
         self.topic_id_by_question_topic_id = {}
         self.load()
 
+    def find_id_for_answer_text(self, answer_text: str) -> str:
+        return self.answer_ids.get(answer_text)
+
     def get_id(self):
         return self.id
 

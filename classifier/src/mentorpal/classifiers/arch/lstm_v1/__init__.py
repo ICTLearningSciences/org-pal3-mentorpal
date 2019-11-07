@@ -150,7 +150,6 @@ class LSTMClassifier(Classifier):
         test_vector = np.concatenate((w2v_vector, topic_vector))
         test_vector = test_vector.reshape(1, -1)
         prediction = self.logistic_model.predict(test_vector)
-
         decision = self.logistic_model.decision_function(test_vector)
         confidence_scorces = (
             sorted(decision[0]) if decision.ndim >= 2 else sorted(decision)
@@ -158,5 +157,14 @@ class LSTMClassifier(Classifier):
         highest_confidence = confidence_scorces[-1]
         if highest_confidence < -0.88:
             return "_OFF_TOPIC_", "_OFF_TOPIC_", highest_confidence
-
+        if not len(prediction) >= 1 and prediction[0]:
+            raise Exception(
+                f"Prediction should be a list with at least one element (answer text) but found {prediction}"
+            )
+        answer_text = prediction[0]
+        answer_id = self.mentor.find_id_for_answer_text(answer_text)
+        if not answer_id:
+            raise Exception(
+                f"No answer id found for answer text (classifier_data may be out of sync with trained model): {answer_text}"
+            )
         return self.mentor.answer_ids[prediction[0]], prediction[0], highest_confidence
