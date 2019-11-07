@@ -15,6 +15,12 @@ services:
       - type: bind
         source: ./mentors/data/mentors
         target: /app/mentors
+      - type: bind
+        source: ./services/mentor-api/src/mentor_api
+        target: /app/mentor_api
+      - type: bind
+        source: ./classifier/src/mentorpal
+        target: /app/mentorpal
     expose:
       - "5000"
   proxy:
@@ -27,7 +33,7 @@ services:
     volumes:
       - type: bind
         source: ./mentors/videos
-        target: /etc/nginx/html/videos/mentors
+        target: /etc/nginx/html/videos
       - type: bind
         source: ./nginx-local/conf.d
         target: /etc/nginx/conf.d
