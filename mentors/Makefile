@@ -1,3 +1,4 @@
+PWD=$(shell pwd)
 DOCKER_IMAGE?=mentor-processing-pipeline
 DOCKER_IMAGE_ID=$(shell docker images -q $(DOCKER_IMAGE))
 DOCKER_CONTAINER=mentor-processing-pipeline
@@ -25,8 +26,8 @@ virtualenv-installed:
 
 PHONY: test
 test: $(TEST_VIRTUAL_ENV)
-	PYTHONPATH=$(shell echo $${PYTHONPATH}):$(shell pwd)/src/data_pipeline $(TEST_VIRTUAL_ENV)/bin/py.test -vv
-PWD=$(shell pwd)
+	export PYTHONPATH=$(shell echo $${PYTHONPATH}):$(PWD)/src && \
+	$(TEST_VIRTUAL_ENV)/bin/py.test -vv $(args)
 
 .PHONY: docker-image-exists
 docker-image-exists:
@@ -74,95 +75,42 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
-			-v $(PWD):/app/mounts \
-			-v $(PWD)/src:/app/src \
+			-v $(PWD)/src:/app \
+			-v $(PWD)/data:/app/mounts/data \
+			-v $(PWD)/videos:/app/mounts/videos \
 		$(DOCKER_IMAGE)
 
 
-# Pre-processes mentor data inside docker container
-# Downloads missing files
-# Generates audiochunks and transcripts for one mentor
-.SECONDARY:
-data/mentors/%/build: $(WATSON_CREDENTIALS)
-	$(MAKE) data/mentors/$*/build/update
-
-# Pre-processes mentor data inside docker container
-# Downloads missing files
-# Generates audiochunks and transcripts for one mentor
-.PHONY: data/mentors/%/build/update
-data/mentors/%/build/update: docker-image-exists $(WATSON_CREDENTIALS)
-	mkdir -p data/mentors/$*/build
-	@echo "updating data/mentors/$*/build ..."
+# Complete build of mentor data
+# Runs build if necessary
+# Generates data files
+# TODO: 1) log every significant action (generating audio, transcribing), 2) build classifier for jd, 3) utterance yaml gets error codes, 4) make delete audio files that failed to transcribe
+.PHONY: data/mentors/%
+data/mentors/%: data/mentors/%/build/recordings docker-image-exists $(WATSON_CREDENTIALS)
 	docker run \
 			--rm \
-			-it \
 			--name $(DOCKER_CONTAINER) \
+			-v $(PWD)/src:/app \
+			-v $(PWD)/data:/app/mounts/data \
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
-			-v $(PWD)/$*:/app/mounts/$* \
-			-v $(PWD)/data:/app/mounts/data \
-			-v $(PWD)/src:/app/src \
-			$(DOCKER_IMAGE) --mentor $* --transcripts --url $(MENTOR_SOURCE_VIDEOS)
+			$(DOCKER_IMAGE) --mentor $* --data-update --data=/app/mounts/data/mentors
 
-
-# Complete build of mentor data
-# Runs build if necessary
-# Generates data files
-.SECONDARY:
-data/mentors/%/data:
-	$(MAKE) data/mentors/$*/data/update
-
-# Complete build of mentor data
-# Runs build if necessary
-# Generates data files
 .PHONY: data/mentors/%/data/update
-data/mentors/%/data/update: data/mentors/%/build docker-image-exists
-	mkdir -p $*/data
-	cp data/topics.csv data/mentors/$*/data/topics.csv
+videos/mentors/%: data/mentors/% docker-image-exists 
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
-			-v $(PWD)/src:/app/src \
-			-v $(PWD)/$*:/app/mounts/$* \
-			-v $(PWD)/data:/app/mounts/data \
-			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data
-
-# Complete build of mentor data and videos
-# Runs build if necessary
-# Generates data files
-.SECONDARY:
-videos/%:
-	$(MAKE) update/videos/$*
-
-# Complete build of mentor data and videos
-# Runs build if necessary
-# Generates data files
-.PHONY: videos/%/update 
-update/videos/%: docker-image-exists data/mentors/%/build
-	mkdir -p videos/$*
-	docker run \
-			--rm \
-			--name $(DOCKER_CONTAINER) \
-			-v $(PWD)/src:/app/src \
-			-v $(PWD)/$*:/app/mounts/$* \
+			-v $(PWD)/src:/app \
 			-v $(PWD)/data:/app/mounts/data \
 			-v $(PWD)/videos:/app/mounts/videos \
-			$(DOCKER_IMAGE) --mentor $* --qpa_pu_data --classification_data --videos --url $(MENTOR_SOURCE_VIDEOS)
-	@echo ""
-	@echo "==== MAKE VIDEOS SUCCEEDED! ===="
-	@echo ""
-	@echo "If you haven't build the classifier, you can do that with:"
-	@echo "	make $*/checkpoint"
-	@echo ""
-	@echo "Once the classifier checkpoint is in place, you can test the environment locally with:"
-	@echo "	cd .. && make local-run-dev"
-	@echo ""
-	@echo "Then view your mentor here:"
-	@echo "	http://localhost:8080/mentorpanel/?mentor=$*"
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
+			$(DOCKER_IMAGE) --mentor $* --videos-update --data=/app/mounts/data/mentors
 
 # Build checkpoint from mentor data
-.PHONY: %/checkpoint
-%/checkpoint: data/mentors/%/data
+.PHONY: checkpoint/%
+checkpoint/%: data/mentors/%
 	cd $(PROJECT_ROOT)/checkpoint && \
 	CHECKPOINT=dev_latest $(MAKE) checkpoint-clean/mentor/$* checkpoint-train/mentor/$*
 	@echo ""
