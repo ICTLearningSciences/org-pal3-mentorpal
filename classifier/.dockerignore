@@ -1,0 +1,7 @@
+.coverage
+.pytest_cache
+.venv
+build/mentors/**/build
+Makefile
+README.md
+
