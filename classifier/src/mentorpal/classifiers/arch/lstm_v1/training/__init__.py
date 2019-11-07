@@ -89,6 +89,7 @@ class TrainLSTMClassifier(ClassifierTraining):
 
     def save(self, to_path=None):
         to_path = to_path or self.model_path
+        os.makedirs(to_path, exist_ok=True)
         self.topic_model.save(os.path.join(to_path, "lstm_topic_model.h5"))
         joblib.dump(self.logistic_model_fused, os.path.join(to_path, "fused_model.pkl"))
         joblib.dump(
