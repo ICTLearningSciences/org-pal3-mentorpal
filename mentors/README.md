@@ -1,75 +1,72 @@
-## Classification Data Pipeline Info
+## Mentor Pipeline
 ---------------
+
+Use these tools to create/update a mentor for Mentorpal.
+
 ### Quick Start
 
+#### Required Setup (session videos and timstamps)
+TODO: needs to download session videos and timestamp files automatically but for now...
+Download session videos and timestamps and place them under `./data/mentors/{mentor_id}/build/recordings` eg.
+
+```
+data/mentors/my_new_mentor/
+├── build
+│   ├── recordings
+│   │   ├── session1
+│   │   │   ├── p001-bio-long.csv
+│   │   │   ├── p001-bio-long.mp4
+│   │   │   ├── p002-some-utterances.csv
+│   │   │   ├── p002-some-utterances.mp4
+│   │   ├── session2
+│   │   │   ├── p001-more-questions.csv
+│   │   │   ├── p001-more-questions.mp4
+```
+
 #### Build and Test a Mentor
+
 If raw video, audio and timestamp files for a mentor are stored in S3 (more on this
 below), we can use the following commands to build a classifier for the mentor.
 Note that videos are not required to generate a classifier to a new mentor.
 
-##### Run a build of {mentor}
-- `make {mentor}/videos`
+##### Create/update the training data
+```bash
+make data/mentors/{mentor_id}
+```
 
 ##### Train {mentor} classifier
-- `make {mentor}/checkpoint-train`
+```bash
+make checkpoint/{mentor_id}
+```
 
 #### Run mentorpal cluster with {mentor} data and classifier
-- `cd ..`
-- `make local-run-dev`
+```bash
+cd .. && make local-run-dev
+```
+
+### Generate web videos (if you're ready to run the website and not just classifier)
+```bash
+make videos/mentors/{mentor_id}
+```
 
 #### Example endpoints for mentorpal cluster
-- Mentor Homepage (Test entire system) `http://localhost:8080/mentorpanel/?mentor={mentor}`
-- Mentor API (Test classifier) `http://localhost:8080/mentor-api/questions/?mentor={mentor}&query={question}`
-- Mentor Idle Video (Test data) `http://localhost:8080/videos/mentors/{mentor}/web/idle.mp4`
+- Mentor Homepage (Test web site) `http://localhost:8080/mentorpanel/?mentor={mentor}`
+- Mentor API (Test classifier, e.g. with [Postman](https://www.getpostman.com/downloads/)) `http://localhost:8080/mentor-api/questions/?mentor={mentor}&query={question}`
 
 ---------------
 ### Pipeline Overview
 The classification data pipeline can be used to create all data needed for a usable
 mentor from raw recording files.
 
-### Prerequisites
-As a prerequisite of running the pipeline the following files are needed for each
-part of each session. These files should be uploaded into the `mentorpal-source-videos`
-S3 bucket in `usc-ict-aws-mentor-pal` AWS account:
-- `{mentor}/data/recordings/session{session#}/part{part#}_video.mp4`
-- `{mentor}/data/recordings/session{session#}/part{part#}_audio.wav`
-- `{mentor}/data/recordings/session{session#}/part{part#}_timestamps.csv`
-- `{mentor}/data/recordings/static-videos/web/idle.mp4`
-- `{mentor}/data/recordings/static-videos/mobile/idle.mp4`
-
 ### Output
 After running the pipeline the following files will be generated:
 - `{mentor}/data/classifier_data.csv`
-- `{mentor}/data/metadata.csv`
 - `{mentor}/data/topics.csv`
 - `{mentor}/data/utterance_data.csv`
 - `videos/{mentor}/mobile/idle.mp4`
 - `videos/{mentor}/web/idle.mp4`
 - `videos/{mentor}/mobile/{mentor}_{video_id}.mp4`
 - `videos/{mentor}/web/{mentor}_{video_id}.mp4`
-
-Additionally the following intermediate build files will be generated. These can
-be used to debug different parts of a pipeline
-- `{mentor}/build/recordings/session{session#}/out/audiochunks/*`
-- `{mentor}/build/recordings/session{session#}/out/transcript.csv`
-- `{mentor}/data/questions_paraphrases_answers.csv`
-- `{mentor}/data/prompts_utterances.csv`
-
-### Usage
-Pipeline usage is fully documented in the Makefile.
-- `make videos/{mentor}` runs a full build of {mentor} data and videos if data folder is not present
-- `make update/{mentor}/videos` runs a full build of {mentor} data and videos regardless of whether data folder is present
-- `make {mentor}/checkpoint` builds a classifier for {mentor} based on existing local data
-- `make checkpoint-run` test mentor-api build with dev-latest classifier (built by previous command)
-- `make {mentor}/data` runs a full build of {mentor} data if data folder is not present
-- `make {mentor}/data/update` runs a full build of {mentor} data regardless of whether data folder is present
-- `make {mentor}/build` downloads and preprocesses {mentor} data if build folder is not present
-- `make {mentor}/build/update` downloads and preprocesses {mentor} data  regardless of whether build folder is present
-- `make shell` opens an interactive terminal in the data pipeline docker image.
-Useful for debugging these scripts
-- `make docker-build` rebuilds the data pipeline docker container. Useful for developing these scripts.
-- `make clean` removes all build and video data for all mentors
-- `make clean/{mentor}` removes build and video data for {mentor}
 
 ### Supplementary Documentation
 #### Generating Timestamp Files
@@ -80,16 +77,3 @@ for each question. Timestamp files should be in a CSV file of the following form
 |----------|------------------|----------|----------------------|----------------------|
 | (string) | (char: A/U)      | (string) | (timestamp HH:MM:SS) | (timestamp HH:MM:SS) |
 
-##### Troubleshooting of timestamps (Appended 6/19/18..if you need help since it's a pain kshaw@gatech.edu has touched it most recently)
-1. Extra lines can't exist in the csv since ",,,," will break the python script and believe that the columns are empty
-2. The filenames must be exact even in lower/uppercase
-3. Any generated files must be deleted if you want to run the generator again, or it will give a exit code 1 error.
-4. The column names in the csv need to be exact even in case or Pandas error might occur.
-
-#### Editing Transcripts, Topics, Tags and Paraphrases
-After running the build step, transcript files are automatically generated using
-our transcript service's (currently IBM Watson) interpretation of the audiochunks.
-These may not be completely accurate, especially with proper nouns. Thus, to ensure
-accuracy, users may want to manually edit these files. Users have the option to
-edit the mentor's responses, topics, tags and paraphrases in the following files:
-- Edit `{mentor}/data/questions_paraphrases_answers.csv` and `{mentor}/data/prompts_utterances.csv` after running `make {mentor}/data`
