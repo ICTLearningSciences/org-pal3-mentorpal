@@ -32,15 +32,26 @@ const Video = ({ height, width }) => {
   );
 };
 
+function findMentorIdleId(mentor) {
+  try {
+    return mentor.utterances_by_type["_IDLE_"][0][0];
+  } catch (err) {
+    return undefined;
+  }
+}
+
 const VideoPlayer = ({ width, height, format = "mobile" }) => {
   const dispatch = useDispatch();
   const isIdle = useSelector(state => state.isIdle);
   const mentor = useSelector(
     state => state.mentors_by_id[state.current_mentor]
   );
-  const video_url = mentor
+  const idleVideoId = findMentorIdleId(mentor);
+  const url = mentor
     ? isIdle
-      ? idleUrl(mentor.id, format)
+      ? idleVideoId
+        ? videoUrl(mentor.id, idleVideoId, format)
+        : idleUrl(mentor.id, format)
       : videoUrl(mentor.id, mentor.answer_id, format)
     : "";
   const subtitle_url =
@@ -54,7 +65,7 @@ const VideoPlayer = ({ width, height, format = "mobile" }) => {
   return (
     <ReactPlayer
       style={{ backgroundColor: "black" }}
-      url={video_url}
+      url={url}
       onEnded={onEnded}
       loop={isIdle}
       width={width}
