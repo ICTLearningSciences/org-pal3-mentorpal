@@ -7,9 +7,8 @@ class Config(object):
         os.environ.get("SECRET_KEY") or "production_servers_must_provide_a_secret_key"
     )
     CLASSIFIER_ARCH = os.environ.get("CLASSIFIER_ARCH")
-    CLASSIFIER_CHECKPOINT = (
-        os.environ.get("CLASSIFIER_CHECKPOINT")
-        or os.environ.get("CHECKPOINT")
+    CLASSIFIER_CHECKPOINT = os.environ.get("CLASSIFIER_CHECKPOINT") or os.environ.get(
+        "CHECKPOINT"
     )
     CLASSIFIER_CHECKPOINT_ROOT = os.environ.get("CLASSIFIER_CHECKPOINT_ROOT") or str(
         Path("/app/checkpoint")

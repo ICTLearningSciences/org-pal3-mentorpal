@@ -31,6 +31,10 @@ class Classifier(ABC):
         """
         return "none", "none", 0.0
 
+    @abstractmethod
+    def get_classifier_id(self) -> str:
+        return "classifier_id_unknown"
+
 
 class CheckpointClassifierFactory(ABC):
     """
@@ -67,7 +71,6 @@ class ClassifierFactory:
         checkpoint: str = None,
     ):
         assert isinstance(checkpoint_classifier_factory, CheckpointClassifierFactory)
-        assert isinstance(checkpoint, str)
         self.checkpoint_classifier_factory = checkpoint_classifier_factory
         self.checkpoint = checkpoint
 
@@ -95,7 +98,7 @@ def create_classifier(
     checkpoint_root: str = CHECKPOINT_ROOT_DEFAULT,
     arch: str = ARCH_DEFAULT,
     checkpoint: str = None,
-    mentors: List[str] = None,
+    mentors: Union[str, List[str]] = None,
 ):
     """
         Creates a mentorpal.classifiers.Classifier given a checkpoint and mentor[s].
@@ -124,9 +127,7 @@ def register_classifier_factory(arch: str, fac: CheckpointClassifierFactory) -> 
 
 
 def create_classifier_factory(
-    checkpoint_root: str = None,
-    arch: str = None,
-    checkpoint: str = None,
+    checkpoint_root: str = None, arch: str = None, checkpoint: str = None
 ):
     """
         Creates a mentorpal.classifiers.ClassifierFactory given an arch and checkpoint.
@@ -140,12 +141,21 @@ def create_classifier_factory(
     """
     checkpoint_root = checkpoint_root or CHECKPOINT_ROOT_DEFAULT
     arch = arch or ARCH_DEFAULT
-    logging.warning(
+    logging.info(
         f"create classifier factory checkpoint_root={checkpoint_root} arch={arch} checkpoint={checkpoint}"
     )
     if arch not in _factories_by_arch:
         import_module(f"mentorpal.classifiers.arch.{arch}")
     checkpoint_fac = _factories_by_arch[arch]
     assert isinstance(checkpoint_fac, CheckpointClassifierFactory)
-    c_path = find_checkpoint(checkpoint_root, arch=arch, checkpoint=checkpoint)
+    c_path = find_checkpoint(
+        checkpoint_root=checkpoint_root, arch=arch, checkpoint=checkpoint
+    )
+    if not c_path:
+        raise Exception(
+            f"failed to find checkpoint under root {checkpoint_root} with arch {arch} and checkpoint {checkpoint}"
+        )
+    logging.info(
+        f"found checkpoint {c_path} for arch {arch} and checkpoint {checkpoint}"
+    )
     return ClassifierFactory(checkpoint_fac, c_path)

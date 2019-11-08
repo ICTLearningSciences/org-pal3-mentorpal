@@ -1,9 +1,7 @@
 import os
-from unittest.mock import patch
 
 import pytest
 
-from mentorpal.mentor import Mentor
 from mentorpal.checkpoints import find_checkpoint
 from .helpers import resource_root_checkpoints_for_test
 

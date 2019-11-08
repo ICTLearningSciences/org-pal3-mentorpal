@@ -89,6 +89,9 @@ class Mentor(object):
         self.__mentor_data_root = os.path.join(
             mentor_data_root or "mentors", self.id, "data"
         )
+        logging.info(
+            f"initializing mentor {id} with data root {os.path.abspath(self.mentor_data_path())}"
+        )
         self.name = None
         self.short_name = None
         self.title = None
@@ -119,14 +122,20 @@ class Mentor(object):
 
     def load(self):
         self.name, self.short_name, self.title = self.__load_profile()
-        self.topics, self.topics_by_id, self.topic_id_by_question_topic_id = (
-            self.load_topics()
-        )
+        (
+            self.topics,
+            self.topics_by_id,
+            self.topic_id_by_question_topic_id,
+        ) = self.load_topics()
         self.utterances_by_type = self.load_utterances()
         self.suggestions = self.load_suggestions()
-        self.ids_answers, self.answer_ids, self.ids_questions, self.question_ids, self.questions_by_id = (
-            self.load_ids_answers()
-        )
+        (
+            self.ids_answers,
+            self.answer_ids,
+            self.ids_questions,
+            self.question_ids,
+            self.questions_by_id,
+        ) = self.load_ids_answers()
 
     def __load_profile(self) -> (str, str, str):
         try:

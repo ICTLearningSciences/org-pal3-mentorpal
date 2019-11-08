@@ -10,7 +10,12 @@ def find_checkpoint(
     arch: str = ARCH_DEFAULT,
     checkpoint: str = None,
 ) -> str:
-    arch_root = os.path.abspath(os.path.join(checkpoint_root, arch))
+    all_archs_root = (
+        os.path.join(checkpoint_root, "classifiers")
+        if os.path.isdir(os.path.join(checkpoint_root, "classifiers"))
+        else checkpoint_root
+    )
+    arch_root = os.path.abspath(os.path.join(all_archs_root, arch))
     if not os.path.isdir(arch_root):
         logging.warning(f"find_checkpoint with non-existent root {arch_root}")
         return None

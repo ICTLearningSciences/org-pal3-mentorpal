@@ -1,3 +1,4 @@
+from logging.config import dictConfig
 import os
 from flask import Flask, jsonify
 from flask_cors import CORS
@@ -8,14 +9,28 @@ from mentorpal.classifiers import create_classifier_factory
 
 
 def create_app(script_info=None):
-
+    dictConfig(
+        {
+            "version": 1,
+            "formatters": {
+                "default": {
+                    "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s"
+                }
+            },
+            "handlers": {
+                "wsgi": {
+                    "class": "logging.StreamHandler",
+                    "stream": "ext://flask.logging.wsgi_errors_stream",
+                    "formatter": "default",
+                }
+            },
+            "root": {"level": "INFO", "handlers": ["wsgi"]},
+        }
+    )
     app = Flask(__name__)
-
     # enable CORS
     CORS(app)
-
     app.config.from_object(Config)
-
     config_path = os.environ.get("MENTORPAL_CLASSIFIER_API_SETTINGS")
     if not config_path:
         print(
@@ -29,9 +44,9 @@ def create_app(script_info=None):
         app.config.from_envvar("MENTORPAL_CLASSIFIER_API_SETTINGS")
     classifier_registry = MentorClassifierRegistry(
         create_classifier_factory(
-            app.config["CLASSIFIER_ARCH"],
-            app.config["CLASSIFIER_CHECKPOINT"],
-            app.config["CLASSIFIER_CHECKPOINT_ROOT"],
+            checkpoint_root=app.config["CLASSIFIER_CHECKPOINT_ROOT"],
+            arch=app.config["CLASSIFIER_ARCH"],
+            checkpoint=app.config["CLASSIFIER_CHECKPOINT"],
         )
     )
     for id in app.config["MENTOR_IDS_PRELOAD"]:

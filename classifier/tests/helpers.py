@@ -11,4 +11,3 @@ def resource_root_for_test(test_file: str) -> str:
 
 def resource_root_checkpoints_for_test(test_file: str) -> str:
     return os.path.join(resource_root_for_test(test_file), "checkpoint")
-

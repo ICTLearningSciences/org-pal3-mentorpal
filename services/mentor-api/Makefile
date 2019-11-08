@@ -65,6 +65,8 @@ docker-run: docker-image-exists
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			--shm-size 8G \
+			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
+			-v $(PROJECT_ROOT)/mentors/data/mentors:/app/mentors \
 			-p 5000:5000 \
 		$(DOCKER_IMAGE)
 
@@ -76,7 +78,9 @@ docker-run-checkpoint/%: docker-image-exists
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
-			-v $(PROJECT_ROOT)/mentors:/app/mentors \
+			-v $(PROJECT_ROOT)/mentors/data/mentors:/app/mentors \
+			-v $(PWD)/src/mentor_api:/app/mentor_api \
+			-v $(PROJECT_ROOT)/classifier/src/mentorpal:/app/mentorpal \
 			-e CLASSIFIER_CHECKPOINT=$* \
 			--shm-size 8G \
 			-p 5000:5000 \
@@ -92,6 +96,7 @@ docker-run-dev: docker-image-exists
 			--shm-size 8G \
 			-p 5000:5000 \
 			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
+			-v $(PROJECT_ROOT)/mentors/data/mentors:/app/mentors \
 			-v $(PWD)/src/mentor_api:/app/mentor_api \
 			-v $(PROJECT_ROOT)/classifier/src/mentorpal:/app/mentorpal \
 		$(DOCKER_IMAGE) 
@@ -106,6 +111,7 @@ docker-run-dev-shell: docker-image-exists
 			--shm-size 8G \
 			-p 5000:5000 \
 			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
+			-v $(PROJECT_ROOT)/mentors/data/mentors:/app/mentors \
 			-v $(PWD)/src/mentor_api:/app/mentor_api \
 			-v $(PROJECT_ROOT)/classifier/src/mentorpal:/app/mentorpal \
 			--entrypoint /bin/bash \
@@ -146,6 +152,7 @@ test-env-create: $(PROJECT_ROOT)/behave-restful/setup.py virtualenv-installed
 test-units: $(TEST_VIRTUAL_ENV)
 	source $(TEST_VIRTUAL_ENV)/bin/activate && \
 		export PYTHONPATH=$${PYTHONPATH}:$(PROJECT_ROOT)/services/mentor-api/src:$(PROJECT_ROOT)/classifier/src && \
+		export CLASSIFIER_CHECKPOINT_ROOT=$(PROJECT_ROOT)/checkpoint && \
 		$(TEST_VIRTUAL_ENV)/bin/py.test -vv
 
 
