@@ -21,7 +21,7 @@ logging.info(f"CHECKPOINT_ROOT {CHECKPOINT_ROOT}")
 logging.info(f"MENTORS_ROOT {MENTORS_ROOT}")
 logging.info(f"TEST_MENTOR {TEST_MENTOR}")
 fac = find_classifier_training_factory(ARCH)
-cp = checkpoint_path(ARCH, CHECKPOINT, CHECKPOINT_ROOT)
+cp = checkpoint_path(CHECKPOINT_ROOT, ARCH, CHECKPOINT)
 logging.info(f"CHECKPOINT_PATH {cp}")
 mentor_ids = (
     [

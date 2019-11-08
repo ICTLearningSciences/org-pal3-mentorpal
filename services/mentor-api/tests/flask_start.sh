@@ -24,5 +24,6 @@ docker run \
 		--name ${CONTAINER_NAME} \
 		-p 5000:5000 \
 		-v ${DOCKER_MOUNT_SRC}:${DOCKER_MOUNT_TGT} \
+		-v ${PROJECT_ROOT}/checkpoint/classifiers:/app/checkpoint \
 		-e MENTORPAL_CLASSIFIER_API_SETTINGS=${FLASK_CONFIG_TGT} \
 	${DOCKER_IMAGE}
