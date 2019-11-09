@@ -1,0 +1,2294 @@
+utterances:
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 1
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/30-SecBio.mp3
+  sessionTimestamps: build/recordings/session1-20191029/30-SecBio.csv
+  sessionVideo: build/recordings/session1-20191029/30-SecBio.mp4
+  timeEnd: 46.13
+  timeStart: 9.23
+  topics: []
+  transcript: 'hi I''m Mario I''m a senior chief petty officer in the navy or am station
+    in San Diego and explosive ordnance disposal training unit one I''ve of currently
+    I''m serving as the navy expeditionary combat commands lead unmanned underwater
+    vehicle instructor and curriculum developer for the entire force having worked
+    in that role I''ve deployed multiple times to the fifth fleet A. O. R. and working
+    in Bahrain all throughout that region up and down the golf and Gulf of aiding
+    and in those areas I married with two kids both of which are in high school '
+  utteranceAudio: build/utterance_audio/s001p001s00000923e00004613.mp3
+  utteranceType: _INTRO_
+  utteranceVideo: build/utterance_video/s001p001s00000923e00004613.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 2
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Idle90Sec.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Idle90Sec.csv
+  sessionVideo: build/recordings/session1-20191029/Idle90Sec.mp4
+  timeEnd: 106.29
+  timeStart: 16.29
+  topics: []
+  transcript: null
+  utteranceAudio: null
+  utteranceType: _IDLE_
+  utteranceVideo: build/utterance_video/s001p002s00001628e00014628.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: Describe your ideal team.
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 51.13
+  timeStart: 12.21
+  topics: []
+  transcript: 'my ideal team is a group of individuals that are able to think on their
+    own that are creative innovative able to adapt but then are able to also come
+    together to accomplish a major goal use it''s good to always have people that
+    have their own individual ideas within a team because you can always find out
+    new interesting ways to approach a problem and come to a new solution as opposed
+    to everyone that has that group think mentality so you know that''s my ideal team
+    is is everyone that can think individually but be working towards that common
+    group goal '
+  utteranceAudio: build/utterance_audio/s001p003s00001221e00005113.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00001221e00005113.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: What things do you always make sure to lead by example on?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 185.0
+  timeStart: 147.27
+  topics: []
+  transcript: 'one thing that I try and lead by example on is work ethic I think you
+    you know if you can show that you''re putting forth an effort than the people
+    that you''re leading you''re gonna want to do that as well as general reciprocity
+    of of showing you know a particular behavior of people wanting to mimic that there''s
+    nothing that I will ask anyone that I''m leading to do that I myself have not
+    already done before or willing to do so that''s kind of the mentality that you
+    need to have when you''re when you''re leading folks and and looking to get those
+    examples '
+  utteranceAudio: build/utterance_audio/s001p003s00022727e00030500.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00022727e00030500.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: What are some tips to earn the trust of my team?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 265.26
+  timeStart: 234.28
+  topics: []
+  transcript: 'some tips to earn the trust your team is just building that communication
+    layer between you and them and opening up that dialogue they they shouldn''t be
+    able or they should be afraid to come to you to ask questions whether that''s
+    you know you have an open door policy or there''s a particular time that they
+    know they can come to talk to you when they do do that your intently listening
+    and your building that open dialogue and communication which in turn is going
+    to improve and build their trust with you as their leader '
+  utteranceAudio: build/utterance_audio/s001p003s00035428e00042526.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00035428e00042526.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: How do you connect more deeply with your team members?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 331.01
+  timeStart: 279.26
+  topics: []
+  transcript: 'one way that you can connect more deeply with your team members is
+    getting to know them you know on a personal level besides just professional so
+    you know if you know what kind of moats them professionally that''s great you
+    can help drive drive their career in that path but then if you kind of know what
+    they''re into personally that''s can allow you to build those kind of connections
+    that ought to allow them to open up to you when you communicate build those kind
+    of trust relationships because you know about their family and their wife or husband
+    or significant other or their kids or their dog or where they grew up with there
+    even just her first name is how when they graduate high school did they graduate
+    high school all these different kind of things I don''t necessarily see that as
+    intrusive leadership if you do it in the right way you''re not really necessarily
+    being intrusive you''re just getting to know your people which in turn is going
+    to build communication and build trust '
+  utteranceAudio: build/utterance_audio/s001p003s00043926e00053101.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00043926e00053101.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: How do I build trust between different team members (e.g., new ones, ones
+    with bad interactions)?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 403.12
+  timeStart: 339.12
+  topics: []
+  transcript: 'ways that you can build trust between your team members is by trying
+    to do team events that make every individual rely on each other and as the team
+    as a whole so trying to come up with you know different ideas solutions exercises
+    go out and do team events to build that camaraderie that unit cohesion between
+    your team you know not everyone is always going to get along with everyone that
+    they work with within their team our platoon or department but they need to know
+    that when it''s it''s time for work it''s time for mission that they all can trust
+    one another the best way to do that is through some unit cohesion building you
+    know examples or exercises and a lot of times adversity really build that trust
+    as well when you can put a team through something that is that everyone had to
+    deal with which was a very stressful situation people come out of that with the
+    same kind of mutual understanding because they all experience that same stressful
+    situation and that''s going to build some trust amongst your team members of the
+    team as a whole '
+  utteranceAudio: build/utterance_audio/s001p003s00053912e00064312.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00053912e00064312.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: What are good strategies to have the right kind of presence with my team?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 648.29
+  timeStart: 600.01
+  topics: []
+  transcript: 'so a couple of good strategies to have the right presents for your
+    team the few examples right I think for me which works best is being approachable
+    being able to relate setting an example and not sweating the small stuff you know
+    because that can easily get in the way of the bigger goal a bigger mission so
+    if you''re able to be approachable kind of you know set that example as well as
+    not sweating the small stuff then folks are going to kind of look at you and and
+    want to be able to come to you and ask you for help and know that what you''re
+    giving them is is honest feedback and that you know what you''re giving them is
+    honesty '
+  utteranceAudio: build/utterance_audio/s001p003s00100001e00104828.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00100001e00104828.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - How did you meet new people in the Navy?
+  - do you get along with other people in the Navy?
+  - do you get along with your coworkers?
+  - do you guys go drinking together?
+  - do you like who you work with?
+  - do your work colleagues' and their families get together?
+  - how did you make friends in the Navy?
+  - is there a lot of friendships among your colleagues?
+  - is work social and friendly?
+  - what is the social sphere like?
+  part: 3
+  question: How do you and your work colleagues socialize outside of work?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 757.2
+  timeStart: 709.15
+  topics:
+  - Colleagues
+  - Lifestyle
+  transcript: 'some ways that my work colleagues and I socialize after work are either
+    doing you know events where we can bring all of our families to like picnics things
+    like that for example whenever we would go before we go out on the plane that
+    we usually have some sort of family day for everybody within the platoon we''ll
+    do it on a weekend we''ll do it somewhere whether it''s at the beach or at a park
+    or at some other kind of venue where all the families can get together it was
+    significant others kids all that kind of mingling meet discuss and and kind of
+    build that camaraderie not only as the platoon in the group but also too is the
+    supporting family members that might have to come to support one another while
+    we''re away as well as support us while we''re gone you know on deployment '
+  utteranceAudio: build/utterance_audio/s001p003s00114915e00123720.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00114915e00123720.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: How should your relationship be with your subordinates ? (close vs. far)
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 835.27
+  timeStart: 772.0
+  topics: []
+  transcript: 'the relationships that I try and build with the people that I lead
+    is a close one I like them to have the feel that they can approach me and talk
+    to me open and honestly on whatever problems are having personally or professionally
+    and so I like to kind of establish that I am a little more informal and the way
+    that I do business with my support inside I felt that that''s what helped me out
+    throughout the eighteen years that I''ve been and throughout my career is a more
+    informal approach no one thing I like to say is like no don''t be formal just
+    for formalities sake if it if it doesn''t need to be there and it''s just you
+    and I in a in a personal setting then we don''t need to have all that pomp and
+    circumstance we''re just trying to have like a heart to heart conversation I think
+    that can kind of build walls and you''re not necessarily going to get all the
+    information that you need from that individual when you''re having those discussions
+    so I like to have a close working relationship with all the people that I work
+    with whether their subordinate peer or superior '
+  utteranceAudio: build/utterance_audio/s001p003s00125200e00135527.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00125200e00135527.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: How do I help my team prepare for a tough mission (e.g., inspection, long
+    mission)?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 901.17
+  timeStart: 845.03
+  topics: []
+  transcript: 'ways that you can help your team prepare for an upcoming tough mission
+    first and foremost is obviously training and you have to have that foresight ahead
+    of time to know that should be of particular mission coming down the line and
+    then training to that and stressing them as much as you possibly can in that training
+    environment to prepare them for that tough mission ahead so that way the first
+    time that they''re experiencing some of that toughness you know isn''t during
+    when that mission is happening but they will actually already experienced that
+    during training set situations and scenarios because that''s where you can apply
+    fixes when you start noticing some of those deficiencies and building that mental
+    tenacity and when that mental to nasty is built then you also start to see that
+    physical capacity come out and they''ll be ready for those tough mission so training
+    ahead of time and and training and stressful environment that''s going to get
+    you prepared for those tough missions '
+  utteranceAudio: build/utterance_audio/s001p003s00140503e00150117.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00140503e00150117.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: What kinds of people will I work with? Personalitites
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 1045.05
+  timeStart: 995.16
+  topics: []
+  transcript: 'depending upon where you go in where you''re working you''re gonna
+    always deal with different types of personalities Taipei''s all the way down right
+    you know if you''re working in more of a specialized community you''re gonna find
+    a lot more type B. personalities people that do not want to fail that are driven
+    to success driven to win another place that you''re gonna work sometimes people
+    are content with mediocrity and only doing what needs to be done to go home for
+    the day you''ve got to understand what drives people what their influences are
+    and then work with them at their level it''s gonna be very challenging to try
+    and turn somebody from one personality type to another so you have to kind of
+    work with where they''re at and understand those types and find out what their
+    strengths and weaknesses are and build them up and then as long as you move towards
+    a common goal '
+  utteranceAudio: build/utterance_audio/s001p003s00163516e00172505.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00163516e00172505.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: What kinds of people respond better to certain leadership strategies?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 1128.0
+  timeStart: 1064.08
+  topics: []
+  transcript: 'depending upon the type of people that you''re leading you''re gonna
+    have to obviously have different leadership styles some you might have to be a
+    little more intrusive on and provide a lot more detail maybe a little more hand
+    holding then you''d like to do until they come to catch on and understand what
+    it is you want then there''s gonna be other folks that you just have to tell him
+    one type of thing and they''re off and running and they''re gonna get it all done
+    and come back to you with a product and you know it''s exactly what you''re looking
+    for so you have to kind of understand those different types of people and work
+    towards that in your leadership style to address those those concerns main goal
+    is to trying to always improve people where they''re at and making sure that you''re
+    using the right leadership style for the right person don''t be too micro management
+    might have to start that off in the beginning with a certain person but then eventually
+    allow that you''ll let the leash out let them get that responsibility and and
+    build up their self esteem and their ability to take charge and there and continue
+    to work for you do great things '
+  utteranceAudio: build/utterance_audio/s001p003s00174408e00184800.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00174408e00184800.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: When is it a good idea to share personal stories or emotions with members
+    of your team?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 1239.14
+  timeStart: 1185.27
+  topics: []
+  transcript: 'that''s that''s really kind of a situational type question on wind
+    to share personal stories or motions with your team I think it is dependent on
+    what''s going on the situation at hand the environment that you''re in lot of
+    times it makes sense to share very personal stories because then people can relate
+    to a little bit more they understand that you''re very similar to them you might
+    even have a very similar story that they have which creates that relationship
+    and build that trust and communication and then other times depend upon the situation
+    or where you''re at you might not want to share personal stories or show very
+    much emotion so it''s really something that you just kinda have to to gauge where
+    you''re at in the environment that you''re in and the people that you''re working
+    with when''s the right time to be emotional when''s the right time to be a little
+    more formal on those kind of things '
+  utteranceAudio: build/utterance_audio/s001p003s00194527e00203914.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00194527e00203914.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: What counseling skills are important?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 1315.16
+  timeStart: 1261.06
+  topics: []
+  transcript: 'so some counseling skills that I''ve used that of help me out throughout
+    my career made a lot of what I learned when I was on recruiting duty because you''re
+    basically meeting people for the first time and having to you know convince them
+    that join the navy is in their best interest it''s an intangible product in your
+    sensually selling it to them it''s not something they can take home they have
+    to believe in what you''re saying and believe in you and so that kinda help me
+    out with building so my counselor skills and so I''ve found that you know being
+    able to listen and and you know listen well and kind of ask probing questions
+    to get behind that need or get behind you know what that surface value is because
+    there''s always something underlying there that''s something you want to try and
+    get to and what you can do that is through listening well and then asking questions
+    that kind of will listed you know open ended core responses to your questions
+    that you ask '
+  utteranceAudio: build/utterance_audio/s001p003s00210106e00215516.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00210106e00215516.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: How do I push my team to meet the standards? (if they are having trouble
+    meeting them)
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 1637.1
+  timeStart: 1513.15
+  topics: []
+  transcript: 'having if your team is having trouble meeting standards and you need
+    to trying to get them there I mean there''s different things you can do when the
+    first things that I recommend is you know taking a pause taking a step back and
+    reassess what''s going on is there something that you''re missing as a leader
+    that maybe isn''t necessarily coming down to their level to help them make that
+    mission achievement is there something going on personally in their life that
+    you''re not aware of that has them you know not fully engage with their at work
+    to make that mission accomplishment might find that after you talk with them that
+    there is something going on personal and they''re unable to focus and so that
+    was the issue and so you can try and help them resolve that issue or get them
+    to the people that can help them resolve that in that way it''ll help hopefully
+    bring them back online and get them focused again if you''ve kind of tried all
+    that and you''re you''re basically at your wits and you really don''t know what
+    to do obviously need to communicate that on up and say listen here the steps that
+    I''ve taken to try and help my team make this mission successful or meet mission
+    objectives and we''re just missing it tried ABCD any and we were you know here''s
+    what we''ve done here''s the relevant proof that we''re making the best attempt
+    it''s just it''s not achievable based on the situation that we have or the equipment
+    or even the people that I have were unable to make that you have to communicate
+    that up and communicated up early so that way set certain things to be put in
+    line to maybe help bring that team or maybe they re assess what they''re asking
+    you to do and and realize that that actually is unachievable and where it''s a
+    big ask and nobody looked at it that way and now that you''ve tried everything
+    and you''ve put out several you know courses of action and you''ve tried all those
+    and are not working maybe we need to re assess what''s going on so you might find
+    that''s helpful if it is achievable and you''ve just tried everything then the
+    next piece is maybe you start to do a little bit of a counseling session with
+    if it a particular individual and you''ve tried everything you might have to do
+    some counseling with them '
+  utteranceAudio: build/utterance_audio/s001p003s00251315e00271710.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00251315e00271710.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: How should you reward your sailors for good performance?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 1723.24
+  timeStart: 1649.0
+  topics: []
+  transcript: 'there are so many different ways in the navy that you can reward your
+    sailors for good performance when you first have to do is just figure out what
+    motivates your people you know because what motivates one person is gonna be different
+    from somebody else if I''ve got somebody who''s been performing really well and
+    I know that they enjoy time off then that might be what I reward them with his
+    an extra day off we''re going home early or something like that if I got another
+    individual who doesn''t really care about time off because they''re really driven
+    and just like to work and perform up maybe I actually given more responsibility
+    because that''s what they''re been seeking they want to show that they''re capable
+    of taking on more so I give them that might have other individuals that are really
+    you know looking for that kind of a ward or credit or something so put him in
+    for the award so you you have to really just understand what drives a motive each
+    each one of those individuals and then you know work towards that whenever they''re
+    doing good things but always let your people know when they''re doing something
+    good you know even just that that subtle it in the middle of the day Hey really
+    doing you know I appreciate what you''re doing or that looks great even just that
+    single comment when they''ve been working hard like that looks great are you really
+    doing well there that might be enough to continue to push them on to finish that
+    evolution '
+  utteranceAudio: build/utterance_audio/s001p003s00272900e00284324.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00272900e00284324.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: What traits and experience, do you look for when interviewing new team
+    members?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 1794.1
+  timeStart: 1741.24
+  topics: []
+  transcript: 'some traits that all look for when I have new team members show up
+    is is their ability to be kind of free thinkers outside the box thinkers innovative
+    an adaptive those are the things that not only were looking for in the community
+    but in the navy in the force as a whole we need more individuals to kind of think
+    outside the box so that''s the first thing I''m kinda looking fours is this person
+    able to act independently because if they''re able to act independently then that
+    means it''s less work that I have to be doing with them all the time and I can
+    focus my efforts on other things that maybe need my attention as opposed to them
+    so I''ll be want to kind of the first things that I''m looking for and then also
+    just their ability to fit into the team so not only you know do they need to be
+    you know kind of a good cognizant individual but do they play well and are they
+    they''re going to give us a a good build for the team as well '
+  utteranceAudio: build/utterance_audio/s001p003s00290124e00295410.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00290124e00295410.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: How should your relationship with you're the people in charge of you ?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 1861.29
+  timeStart: 1812.17
+  topics: []
+  transcript: 'the relationship that you have with the people that are in charge of
+    you in my opinion needs to be kind of open and honest they need to know what your
+    expectations are of them and you definitely need to know what their expectations
+    are of you and if your meeting those so it''s it''s okay to occasionally get with
+    them and ask Hey you know my meeting your expectations of my meeting the commands
+    objective a mission objectives are we heading in the right direction and constantly
+    reassess those things because the situation is changing those objectives change
+    all the time but you want to have an open honest relationship with your superiors
+    so that way they they that trust is built and they take what you say as as truth
+    and they''re not gonna die out kind of the information that you''re putting out '
+  utteranceAudio: build/utterance_audio/s001p003s00301217e00310128.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00301217e00310128.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: What would you advise a person in this field to get to know their bosses?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 1958.11
+  timeStart: 1906.28
+  topics: []
+  transcript: 'one way that''s helped me to understand my my boss my superiors is
+    to find a time to sit down with them and and go over what their expectations are
+    and where we fit into the overall commands mission objectives lot of times as
+    best done over lunch and sometimes I''ll be the one to initiate that office all
+    set up a time asking Hey would be good if if you and I can get together over lunch
+    at such and such date and times that we can discuss you know where we''re going
+    with this department or division where you want to lead it and what our expectations
+    are of one another and and that kind of takes you out of of of formal setting
+    and put you in a more informal one where people have a tendency to open up and
+    be a little more communicated and I''ve found that that''s kind of work the best
+    for me '
+  utteranceAudio: build/utterance_audio/s001p003s00314628e00323811.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00314628e00323811.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: What encourages accountability?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 2007.16
+  timeStart: 1971.01
+  topics: []
+  transcript: 'I think we can encourage accountability is making sure that everyone
+    that''s working on that team knows that their their work is valued their opinions
+    are valued and that the work that they''re doing has merit if you have that buy
+    in from everyone on the team and they''re working together as a team people are
+    gonna have a tendency to not only be accountable for themselves but they''re gonna
+    hold others accountable as well because they don''t want the team more and or
+    the mission to fail and the way you do that is by establishing that value in the
+    work that they''re doing as an individual and as a team as a whole '
+  utteranceAudio: build/utterance_audio/s001p003s00325101e00332716.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00325101e00332716.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: What are ways you can identify the strengths and limitations for each
+    member of your team?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 2076.13
+  timeStart: 2016.01
+  topics: []
+  transcript: 'at one easy way that I''ve used to identify strengths and weaknesses
+    of individuals on my team is I just straight ask them when we do counseling sessions
+    one on one and it''s not like punitive counseling this is just more sitting down
+    in understanding where they''re at with things I wanted to get somewhere and you
+    know trying to build their personal and professional development all ask them
+    those hard questions give me three strings and usually those are pretty easy for
+    someone to answer but then when you ask okay no give me three of your weaknesses
+    a lot of times that''s a challenge for people and if they can''t give me three
+    at that time and they can only give me one then I say okay that''s all right now
+    get back to me when you have the other two whether that''s later that day later
+    that week you know what have you because that really make some kind of look inside
+    and get a little more insight flung themselves and once you''ve identified those
+    strengths and weaknesses and you as the leader can help you know build up those
+    weaknesses into strength and the strings that they have continued to improve those
+    and not lose them as strengths '
+  utteranceAudio: build/utterance_audio/s001p003s00333601e00343613.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00333601e00343613.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: How does one develop one's interpersonal communcation skills to work better
+    with a team?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 2420.11
+  timeStart: 2348.01
+  topics: []
+  transcript: 'one way that you can develop your your interpersonal skills working
+    with the team be a better team mate is is improving your your level of communication
+    not just how you are able to get your response is a cross but also just listening
+    to others and you know you really have to to listen to a lot of times people when
+    they''re being talked to they''re in their own minds kind of thinking what they
+    already want to say to that question or with their response is going to be and
+    when you do that you really aren''t fully listening to what the other person is
+    saying because you''re more inside your own head trying to kind of figure out
+    what you''re going to say next and you can miss a lot so one of things you can
+    do with your interpersonal communication skills is just truly listen like don''t
+    be in your own head trying to figure out what you''re going to say next but listen
+    to what''s being said if you have to take a moment to pause and then start thinking
+    that''s okay because then you fully listen to what those other teammates had to
+    say you''re gonna provide a much better response to that question or the overall
+    conversation which is going to propel that team in a in a forward direction '
+  utteranceAudio: build/utterance_audio/s001p003s00390801e00402011.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00390801e00402011.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 3
+  question: How is it different to manage military people vs. civilians in the military?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 2543.28
+  timeStart: 2450.01
+  topics: []
+  transcript: 'so you''re gonna have some challenges when it comes to your leadership
+    styles between military and civilian or even contractors are government employees
+    no military a lot of times it''s very cut and dry what you you can do with them
+    in your leadership styles how you can award them and reward them as well as what
+    you can do with them putatively when you start dealing with civilians or certain
+    lines that you just can''t cross that you might have to understand what their
+    actual statement of work is and where they''re lateral lines and limits are because
+    what you think you could ask a military person to do they''ll be able to do but
+    a particular civilian whether government employer contractor is pretty much limited
+    to what statement of work says that they can do I if you start asking them to
+    do things out of that scope you can get them in trouble you can get yourself in
+    trouble so you really got to understand you know what their limits are and then
+    work around that and understand that you can''t necessarily hold them to the same
+    punitive standard as you could a military member but they also do have their avenues
+    to where let''s say you do have a civilian employee is not meeting the standards
+    becoming difficult obviously you can''t discipline them yourself you might have
+    to go directly to their supervisor or the the the contract supervisor whoever
+    their program manager is and begin to have that dialogue and say you''re having
+    difficulties with the civilian employee and what are the next steps you can do
+    to rectify the situation '
+  utteranceAudio: build/utterance_audio/s001p003s00405001e00422328.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00405001e00422328.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Are the other services like the Navy?
+  - Do the other services compare with the Navy?
+  - How does the Navy differ from the Army, Air Force and Marines?
+  - How is the Navy different from other services?
+  - what is the difference between the navy and the army?
+  - what's the difference between the navy and the army?
+  part: 3
+  question: What makes the navy different than other branches of the military?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
+  sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
+  timeEnd: 2631.28
+  timeStart: 2572.13
+  topics:
+  - Culture
+  transcript: 'I think something that kind of makes the did navy different than other
+    branches is is the uniqueness of some of the job skills that we have and that
+    you''ll find there''s a lot of different ratings within the navy that have a tendency
+    to be a Jack of all trades you know they have a particular job skill that they
+    were trained to do but as they move from one community to the next or duty station
+    a duty station their roles and responsibilities their technical skills those kind
+    of things improve and and kind of start trickling out and growing tentacles and
+    you start realizing that okay not only do I need to be good at this but I also
+    have to be good at that and you''re gonna get train and learn how to do that so
+    I think that''s something unique to the navy is the fact that the flexibility
+    in the jobs that you do as well as the adaptive nature and and the asked to be
+    able to do sometimes more than what you were initially trained to do so you have
+    those opportunities to kind of do a variety of different things '
+  utteranceAudio: build/utterance_audio/s001p003s00425213e00435128.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p003s00425213e00435128.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 4
+  question: What are some common misconceptions about your field?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_FollowUps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_FollowUps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_FollowUps.mp4
+  timeEnd: 71.17
+  timeStart: 6.09
+  topics: []
+  transcript: 'so at some common misconception about my field or or let''s say more
+    in general terms leadership positions let''s go that route is that the leader
+    is expected to know everything and that''s not necessarily true right the leaders
+    we put our pants on the same as everybody else there''s no mystery here we just
+    might have a little bit more experience and time doing something so doesn''t necessarily
+    mean that we know all the answers to everything however as the leader should be
+    able to try and find those answers so you might you might not necessarily know
+    right off the bat what the answer is to particular question what you should at
+    least know what resources you can go to to find out whether that''s utilizing
+    your peers within say the chiefs master the wardroom or if you''re an LP using
+    your peers that are in the UFC P. O. a or the other folks that you work with to
+    find those answers when you''re in that leadership position but don''t have that
+    misconception that I''m a leader I must know everything I must be able to answer
+    everything right off the bat that''s not the case you can take some time to get
+    to an answer if need be make sure that you do it right '
+  utteranceAudio: build/utterance_audio/s001p004s00000609e00011117.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p004s00000609e00011117.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 4
+  question: What is a uuv?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_FollowUps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_FollowUps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_FollowUps.mp4
+  timeEnd: 137.26
+  timeStart: 78.0
+  topics: []
+  transcript: 'you you V. stands for unmanned underwater vehicle and essentially it''s
+    it''s a robot an underwater robot that can be used to do a variety of things under
+    the water summer programmed with side scan sonar to survey a bottom area looking
+    for anything from mines to ship racks sunken aircraft you anything that''s been
+    lost under the water to collecting environmental information like bathymetry or
+    temperature salinity or all the other kind of environmental factors that are under
+    the ocean surface there it''s a it''s you program it so doesn''t necessarily need
+    to have somebody operating it entirely it''s not tethered you since the program
+    the vehicle you can send it out on its way it runs this pre programmed mission
+    then you recover it you can download the data and then interpret that data depend
+    upon what sensors you had attached to the vehicle what your overall mission requirements
+    are '
+  utteranceAudio: build/utterance_audio/s001p004s00011800e00021726.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p004s00011800e00021726.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 4
+  question: What  does your uuv program train?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_FollowUps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_FollowUps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_FollowUps.mp4
+  timeEnd: 407.07
+  timeStart: 361.11
+  topics: []
+  transcript: 'the U. V. training that we do here is to prepare you you the platoon''s
+    for deployment into theaters across the globe ready to do major combat operations
+    based on what the command combatant commander''s intent is so we''re gonna train
+    this entire platoon to be able to operate in small units in austere environments
+    in all kinds of weather the working off a small craft using small vehicles and
+    things of that nature in order to accomplish the over arching mission of you finding
+    detecting neutralizing and exploiting underwater mines and basically anything
+    else it''s under the water that needs to be founder survey searched that''s what
+    we''re training to '
+  utteranceAudio: build/utterance_audio/s001p004s00060111e00064707.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p004s00060111e00064707.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 4
+  question: How are you preparing for your next promotion?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_FollowUps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_FollowUps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_FollowUps.mp4
+  timeEnd: 480.27
+  timeStart: 430.08
+  topics: []
+  transcript: 'the way that I''m preparing for my next promotion is by understanding
+    you know what is the navy actually looking for for the individuals that they intend
+    to promote to the next pay grade so every year the certain documents are published
+    for those that are moving up in rank whether you''re going from east six to the
+    chief and chief to senior chief senior chief to pass chief petty officer there''s
+    documents that are posed to say this is what the navy is looking for on individuals
+    that are not only meeting goals but also exceeding those and so my goal is if
+    I want to get promoted the next rank is to understand where the navy is heading
+    what it wants to do by reading those documents to making sure that I''m a lining
+    the work that I''m doing today that''s gonna give me my best opportunity to promote '
+  utteranceAudio: build/utterance_audio/s001p004s00071008e00080027.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p004s00071008e00080027.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 4
+  question: What is an EOD?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_FollowUps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_FollowUps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_FollowUps.mp4
+  timeEnd: 526.29
+  timeStart: 496.07
+  topics: []
+  transcript: 'U. D. stands for explosive ordinance disposal at saw one of those community
+    is kind of in the special operations community of the navy where individuals are
+    trained to dispose of exploit OR neutralized hazards whether it''s mines to nuclear
+    weapons it can be anything in the air surface for under the water U. D. personnel
+    are trained to be able to get to that feeder that environment and detecting neutralize
+    those hazards '
+  utteranceAudio: build/utterance_audio/s001p004s00081607e00084628.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p004s00081607e00084628.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 5
+  question: What was your first major leadership role?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt1.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp4
+  timeEnd: 83.29
+  timeStart: 43.27
+  topics: []
+  transcript: 'my first major leadership role was when I became a chief petty officer
+    and moved in to become the unmanned underwater vehicles leading chief petty officer
+    so I sensually was in charge of eleven other sailors and as we combine to create
+    a platoon we deployed numerous times to fifth fleet in other areas of that operation
+    conducting on man underwater vehicle work looking for mines in conducting mine
+    countermeasures so as they''ll see PO I was you know in charge of those eleven
+    other sailors personal professional development and making sure that we can also
+    accomplish the mission '
+  utteranceAudio: build/utterance_audio/s001p005s00004327e00012328.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p005s00004327e00012328.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 5
+  question: How do you spend most of your time at work?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt1.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp4
+  timeEnd: 120.14
+  timeStart: 91.0
+  topics: []
+  transcript: 'currently I spend most of my time at work developing curriculum as
+    well as administering that to UMass platoons that are coming through the training
+    unit here so that can be anywhere from you know eight personnel up to twenty four
+    personnel and I lead a division of ten other instructors so that we can provide
+    this curriculum and training to these platoons that are getting ready to deploy
+    all over the world to do major combat operations '
+  utteranceAudio: build/utterance_audio/s001p005s00013100e00020014.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p005s00013100e00020014.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - How are the settings of your work environment?
+  - What are the usual surroundings for your work?
+  - What environments have you worked in?
+  - What is the environment like for your work?
+  part: 5
+  question: Describe the physical environments in which you've worked.
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt1.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp4
+  timeEnd: 152.13
+  timeStart: 128.16
+  topics:
+  - JobSpecific
+  - Military
+  transcript: 'I''ve worked in a variety of different physical environments everywhere
+    from just the office work space out into austere environments where we''ve been
+    out at three in the morning off to the coast of acts you know alone and unafraid
+    in a small boat while it was raining and foggy and you name it so a variety of
+    different working environments based on the jobs that I''ve done over my career '
+  utteranceAudio: build/utterance_audio/s001p005s00020816e00023213.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p005s00020816e00023213.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 5
+  question: How many hours do you work in a typical week?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt1.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp4
+  timeEnd: 231.1
+  timeStart: 194.0
+  topics: []
+  transcript: 'so my typical week that my hours vary and that''s because the program
+    that we''re standing up and creating is very fluid and what kind of building it
+    off the ground another way of saying is we''re we''re building this plane while
+    we''re flying at the same time so usually my work weeks can consist of working
+    from eight in the morning til sometimes ten at night I do take my work home with
+    me a lot of time so if I''m here training personnel from early in the morning
+    till you know for five o''clock in the afternoon there stuff I still need to get
+    accomplished all take that home and work on it so on an average you know I''m
+    I''m working on anywhere between ten and twelve hours a day at a minimum '
+  utteranceAudio: build/utterance_audio/s001p005s00031400e00035110.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p005s00031400e00035110.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 5
+  question: What kinds of decisions do you make in your career on a daily basis?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt1.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp4
+  timeEnd: 361.1
+  timeStart: 310.02
+  topics: []
+  transcript: 'so the decisions that I make on a daily basis can very based on the
+    situation at hand right so for example as the L. C. P. O. of the U. M. S. division
+    there''s times I have to deal with the sailors personal and professional development
+    for example a sailor might come in and say that he have it he''s having family
+    issues or needs to get his wife''s car registered how to go about doing that so
+    I got to help him out with that it piece of work then other times I might be getting
+    tasking from our Commodore even our admiral it Thaicom that''s wanting to see
+    where we''re moving for with developing certain programs for the E. U. D. community
+    especially the X. M. C. M. communion mine countermeasures so it varies from some
+    of the very small minute personal face to face things all the way up to higher
+    level examples working with Commodores and had admirals across the force '
+  utteranceAudio: build/utterance_audio/s001p005s00051002e00060110.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p005s00051002e00060110.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 5
+  question: What kinds of problems do you deal with?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt1.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp4
+  timeEnd: 437.15
+  timeStart: 401.06
+  topics: []
+  transcript: 'so I do with all kinds of problems that very and and level of complexity
+    some can be just my computer just doesn''t seem to want to work for the day or
+    my email is not seeming to work which can create frustration all the way up to
+    logistical problems and requirements that we need to get X. amount of people ready
+    to deploy within a moment''s notice and I need to have X. amount of gear and equipment
+    and flight scheduled going from one place to the other and needing to coordinate
+    that so you know the problems can vary from something very small up to something
+    very big which could impact operations in theater '
+  utteranceAudio: build/utterance_audio/s001p005s00064106e00071715.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p005s00064106e00071715.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 6
+  question: What is a story that really shows what it is like working in your job?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt2.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
+  timeEnd: 124.14
+  timeStart: 8.17
+  topics: []
+  transcript: 'so one story that I can think of that really shows what its like working
+    on my job is is a story that kind of has to do with innovation and outside the
+    box thinking which we commonly have to do in the E. O. D. community here one of
+    which was we had a particular piece of gear one of our you you vis which is about
+    twelve feet in length and weighs about six hundred pounds and it''s really been
+    tied to launching recovering from an eleven meter read and these eleven meter
+    ribs you can only move them in theater from one place to another based on particular
+    err strategically for choir miss that are there it''s very difficult to kind of
+    get aircraft that you can fit an eleven meter ribbons side so we thought outside
+    the box and figured how can we move this piece of equipment using the most smallest
+    platform that we have in our arsenal which is a very small combat rubber rating
+    crafter creek so this was out on deployment and we found kind of a construction
+    site that had some left over plywood and foam and we basically developed a sled
+    device that we were able to pull this vehicle up on two in tow behind our smallest
+    platformer smallest creek that had just a thirty five horsepower engine and still
+    be able to be combat effective and deploy the equipment searching for mines all
+    across the theater so from that are admiral happened actually see what we have
+    developed out of wood and phone Khan and got nicknamed the spruce goose and later
+    he actually funded a program to develop a more robust proto type and here we are
+    five years later we actually have eighteen of these operational prototypes being
+    worked right now they''ve gone through several different iterations and there
+    now part of the X. MCM companies tower table of allowances and they deploy with
+    these things that provide us an opportunity to basically get to where we need
+    to without being strong arm to using the eleven meter crew of red '
+  utteranceAudio: build/utterance_audio/s001p006s00000817e00020414.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p006s00000817e00020414.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Is this a good profession?
+  - Is this work any good?
+  - Tell me something you like about the navy.
+  - What are the positives of the Navy?
+  - What benefits are there to joining the Navy?
+  - What do you like about the Navy?
+  - What positives came out of your work?
+  - Why is the Navy a good option?
+  - i want to know about the navy
+  - what are the benefits of being in the navy?
+  - what is good about going into the Navy?
+  - what's your job in the navy like?
+  - why do you like your job?
+  - why should I join the Navy?
+  part: 6
+  question: What are the major benefits of doing this kind of work?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt2.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
+  timeEnd: 200.1
+  timeStart: 132.2
+  topics:
+  - JobSpecific
+  - STEM
+  transcript: 'so one of the major benefits my job what I think is great about it
+    is just the diversity that you experience every single day it''s really not the
+    same thing every single day you''re given many opportunities to kind of think
+    on your own and be responsible even our most junior personality very early start
+    in their career are given tremendous responsibility where that''s leading personnel
+    or the responsible for multi million dollars worth of equipment I don''t think
+    you can really find that and many other places not even within the navy at some
+    points as well as in the civilian world I mean what civilian job do you know is
+    going to give an eighteen year old the ability to make you know critical decisions
+    as well as be in charge of millions of dollars worth of gear that is gonna potentially
+    cause impact or threat to not only friendly forces but to our enemy forces so
+    that''s kind of one of the biggest benefits of working in this community is the
+    fact that you are really given a lot of freedom in the way and looked at as an
+    intellectual adult who''s able to make decisions and and moved the ball forward
+    for progressing the force in the community '
+  utteranceAudio: build/utterance_audio/s001p006s00021220e00032010.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p006s00021220e00032010.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Are there negatives to the Navy?
+  - Is there anything you don't like about your job?
+  - What are the cons of serving in the Navy?
+  - What bad things are there in the Navy?
+  - What can happen in the Navy that is a bad thing?
+  - What did you sacrifice for the Navy?
+  - What did you sacrifice for the military?
+  - What do you like least about the Navy?
+  - What is the worst thing about doing your job in the Navy?
+  - Why shouldn't I join the Navy?
+  - so you didn't like the Navy?
+  - tell me what you don't like about the Navy.
+  part: 6
+  question: What are the major negatives of doing this kind of work?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt2.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
+  timeEnd: 255.19
+  timeStart: 206.06
+  topics:
+  - JobSpecific
+  - STEM
+  transcript: 'so I guess what could be considered a major negative is the fact that
+    you do work kind of long hours in in this job and community and there''s nothing
+    really to find some days I come in and I work till noon I can go home there''s
+    other times where I don''t know when I''m gonna be able to go home so that can
+    kind of be looked at as a negative for me I still kind of considered a bit of
+    a positive because it isn''t repetitive it''s something different all the time
+    and we''re given that opportunity to kind of flex and use our own intuition on
+    what we consider a work there needs to be done so we''re their hours aren''t that
+    stringent but it''s really left up to the individual the platoon in the team to
+    decide how they''re going to work and when they want to work but we do work long
+    hours that aren''t necessarily on the schedule the time '
+  utteranceAudio: build/utterance_audio/s001p006s00032606e00041519.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p006s00032606e00041519.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 6
+  question: How much travel do you do in a year?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt2.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
+  timeEnd: 311.12
+  timeStart: 268.12
+  topics: []
+  transcript: 'so I end up doing a lot of travel is in this community even whether
+    you''re you''re considered shore duty or sea duty your costly traveling perfect
+    example I just got back from Guam this week the week of the month before that
+    I was in Florida the month before that I was in Washington so I''m constantly
+    traveling whether it''s conus or conus and I''m in I''m in shore duty right now
+    I''m an instructor so even on our sea duty when you''re actually operating your
+    traveling as well you''re making six seven month deployments you''re traveling
+    for exercises conus and conus as well so we travel a lot and for me that''s that''s
+    kind of a positive I enjoy travelling and seeing the world it''s one of the reasons
+    why I joined the navy in the first place '
+  utteranceAudio: build/utterance_audio/s001p006s00042812e00051112.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p006s00042812e00051112.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - What do you love about the Navy?
+  - What is good about what you do?
+  - What makes you love your job?
+  - Why do you enjoy what you do?
+  - Why do you like what you do?
+  - do you like what you do?
+  - what do you like about the Navy?
+  part: 6
+  question: Why do you love your job?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt2.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
+  timeEnd: 381.25
+  timeStart: 345.14
+  topics:
+  - JobSpecific
+  - Motivation
+  transcript: 'so one of the main reasons why I love my job is the fact that it''s
+    kind of an unconventional a job in the navy with what we''re doing with a man
+    under water vehicles in the mine countermeasures role we''re given a lot of flexibility
+    were given the ability to be innovative and creative think outside the box and
+    adapt to certain challenges that come to us and I like that aspect of the of working
+    in this community is the fact that it''s not always the same thing every day and
+    they really they really like to see individuals that can that can think on their
+    own and create these kind of innovative solutions to the tasks at hand '
+  utteranceAudio: build/utterance_audio/s001p006s00054514e00062125.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p006s00054514e00062125.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - How is your job worse than what people think?
+  - What do people think is good about your job that really sucks?
+  - What is exaggerated about the Navy?
+  part: 6
+  question: What gets romanticized about your career field that really isn't that
+    great?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt2.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
+  timeEnd: 516.15
+  timeStart: 455.13
+  topics:
+  - Misconceptions
+  transcript: 'I think a lot of times gets romanticizes that were constantly out there
+    doing you know dangerous or hazardous work and so a lot of times people are given
+    creditor kudos for things that they might not necessarily do all the time on a
+    daily basis and so you know not everybody in the navy and not everybody even in
+    this community is a is an operator shooter is going down range you know creating
+    havoc to the faux face to face you know there are other people out there that
+    are that are doing a lot of good work in the logistical side the supporting side
+    there also considered enablers that allow those real special operators to go and
+    do their work but you know those enablers don''t necessarily get the credit that
+    there do or they get looked at in appropriately and you''re in that community
+    so you must do this when necessarily they don''t so I think that might be something
+    that gets romanticized a lot about but a lot of people don''t really understand
+    what goes behind making good operations work and it''s those people that do that '
+  utteranceAudio: build/utterance_audio/s001p006s00073513e00083615.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p006s00073513e00083615.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 6
+  question: What do you do now that is different from what you thought you would be
+    doing?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt2.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
+  timeEnd: 710.29
+  timeStart: 631.0
+  topics: []
+  transcript: 'so what I do now that''s different than what I thought I was going
+    to be doing is not originally joined the navy to come in to be a navy seal and
+    during that time you actually had to pick a source rating before you can go on
+    to seal training so I asked the the detailer that was there at maps you know what''s
+    the short is a school you have because I have no intention on doing it and he
+    said Hey all maintenance technician so I asked what''s that it''s welding okay
+    yeah I give it to me I''ll do that short school so went through boot camp when
+    on my following a school for whole maintenance technician and welding and then
+    went on to bud''s where I didn''t make it all the way through the program so I
+    ended up having to become a whole means technician where I ended up actually moving
+    on to io de is my first command in doing marine mammal handling and working in
+    that aspect and because of the job that I had done initially with the EOD I''ve
+    actually been managed to maintain an entire career within this community and never
+    really have actually worked within the whole maintenance tech job so you know
+    originally came in to be a CEO and then all maintenance technician as a secondary
+    platform and now here I am a senior chief in the navy that actually uses on man
+    underwater vehicles to do mine countermeasures for the navy as a whole '
+  utteranceAudio: build/utterance_audio/s001p006s00103100e00115028.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p006s00103100e00115028.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Compare you day now to when you started?
+  - Did you like the way your work day used to be?
+  - Has your work day changed over the years?
+  - How has your work day changed over a period of time?
+  - Is you work day different now?
+  part: 6
+  question: How did your work day change over your career?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt2.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
+  timeEnd: 780.2
+  timeStart: 729.15
+  topics:
+  - JobSpecific
+  transcript: 'so my work days change over my career as I''ve progressed and leadership
+    obviously when I was a junior person in my work day was really kind of delegated
+    out to me by my PO and my chief at the time and so I knew kind of what I had to
+    do for the day and what my set hours work as I progressed in my leadership and
+    throughout my career you know now my work day seems like it never ends to be honest
+    because I have a lot more responsibilities that I need to look at and and and
+    conduct I bought other people''s careers that I''m also responsible for as well
+    as maintaining the program that we work in and moving that forward so I would
+    say that my work day and workload has increased as I progressed in my career but
+    that''s expected and that''s something that you should you intend on scene as
+    you move up in leadership and throughout your career '
+  utteranceAudio: build/utterance_audio/s001p006s00120915e00130020.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p006s00120915e00130020.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Do orders to a new command disrupt your life?
+  - Is change of station tough?
+  - Tell me about you being transferred?
+  part: 6
+  question: Where did you have to move in your career, and how did that change things
+    each time?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt2.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
+  timeEnd: 858.12
+  timeStart: 799.22
+  topics:
+  - Background
+  - Travel
+  transcript: 'so within my career I''ve had to move several times and it didn''t
+    Kerr some changes for that personally with my family and and those kind of things
+    I''ve had to move from the west coast to the east coast back to the west coast
+    again when I''ve made deployment some actually going out of country for you know
+    six to seven months at a time and that that kind of takes a toll on you personally
+    as well as what do you have to deal with with your family so I''ve been able to
+    you know move my family to live back home with family and friends there''s a support
+    unit when I''ve been on deployments and then of course moving back and forth from
+    coast to coast I have a tendency to where I will go out first he kind of establish
+    that residency and get all of our household goods moved in and everything set
+    up before I finally move my wife and kids out to to live in that home so it''s
+    some more easier transition for them to do and I kind of take on all the the heavy
+    lifting in that aspect '
+  utteranceAudio: build/utterance_audio/s001p006s00131922e00141812.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p006s00131922e00141812.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - What are you going to do now?
+  - What do you want to do next?
+  - Where are you going to go now?
+  - Where is your future going?
+  - what will you do after college?
+  - what will you do after the navy?
+  - what will you do after you graduate?
+  - where do you want to be in the next 2 years?
+  part: 6
+  question: Where do you see yourself in 5 years? 10?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_JobOverview_pt2.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
+  timeEnd: 917.0
+  timeStart: 864.06
+  topics:
+  - Future
+  transcript: 'where I see myself in five to ten years I''m kind of undecided right
+    now I''m at a point in my career where I''ve got eighteen years and the command
+    I''m currently at can actually take me to twenty one years and I could essentially
+    retire from here but because I enjoy the work that I''m doing so much and as long
+    as the opportunity presents itself I am not opposed to re enlisting again and
+    continue to make a career this and whether I do another five years or try and
+    push out the thirty and retire there I''m not sure it really is going to kind
+    of present itself to me in the next year to on what I decide because the work
+    that I''ve done in the navy of got a tremendous opportunities on the outside in
+    the civilian sector and even in the government sector where I could find work
+    and do that but I am kind of enjoy what I''m doing here in the security that there
+    is with being in the navy so I might prolong extending as well '
+  utteranceAudio: build/utterance_audio/s001p006s00142406e00151700.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p006s00142406e00151700.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: What makes a good leader?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 73.01
+  timeStart: 30.1
+  topics: []
+  transcript: 'so what I think makes a good leader is somebody who is also a good
+    listener in order for you to lead your people effectively also have to be able
+    to understand and listen to what your people''s needs are and understand what
+    mission requirements are you you can''t just automatically jump in immediately
+    trying take hold of something and and leave from the get go or else you''re not
+    gonna get any buy in from the personnel that you''re trying to lead so it''s best
+    to get together with them first and kind of understand what their challenges are
+    what their strengths are and then build from that and then not allow you to lead
+    that entire group for such always making a positive impact for the command in
+    the navy as a whole '
+  utteranceAudio: build/utterance_audio/s001p007s00003010e00011301.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00003010e00011301.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: What are the most important first steps in a new leadership position?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 156.14
+  timeStart: 83.04
+  topics: []
+  transcript: 'so I think the first steps that when you have a new leadership position
+    is obviously getting to understand your people first and and understanding what
+    their strengths and weaknesses are and how you can use those to progress not only
+    their personal and professional development for but the group as a whole as long
+    as the group is moving forward and that in turn is going to allow the commands
+    mission to move forward and increase mission readiness which in and will then
+    move the entire navy''s mission forward as well and if every command is doing
+    that then the the entire projection of the navy is going to be in a more positive
+    direction so you can see where that starts with the very most junior person and
+    understanding what their strengths are and promoting those type of attributes
+    and how that then rolls into the platoon or division or department that you work
+    and strengthens that entire organization and that in turn strengthens the command
+    moves on towards the rest of the fleet and then in turn the navy as a whole so
+    I think you know the very first steps is is understanding what your junior personnel
+    on the personal at your leading whether their junior or your peers or what have
+    you what their strengths and weaknesses are and what their direction what influences
+    them '
+  utteranceAudio: build/utterance_audio/s001p007s00012304e00023614.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00012304e00023614.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: How do you set the tone as a leader? What is the right tone?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 232.24
+  timeStart: 164.13
+  topics: []
+  transcript: 'so the way that the way that I set the tone is as a leader within the
+    platoons of divisions and even departments that I''ve lad is one that is kind
+    of is very open and fluid I enjoyed I have you know face to face conversations
+    with individuals my door is always left open anyone that works with me understands
+    that they can come in and talk to me at any time and we''ll hash it out if for
+    some reason I can''t really give them my undivided attention at that moment all
+    set up another time to do that but then we do talk it''s very candid I like to
+    try and break down that hierarchy structure where you know maybe they see me as
+    their leader chief and they might just be the E. three I like to get very personal
+    because that way the individual feels like they can open up more as opposed to
+    trying to be a little stifled because they see this or you know the chief from
+    your working over them and that''s not necessarily the best way to the kind of
+    open up that dialogue and then when you open up that dialogue and you begin to
+    understand what makes these people take then you can kind of help develop and
+    guide their path and career into the direction that it needs to be with with their
+    bias '
+  utteranceAudio: build/utterance_audio/s001p007s00024413e00035224.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00024413e00035224.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: What are the most common mistakes you've seen new leaders make? (e.g.,
+    skipping steps)
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 331.01
+  timeStart: 245.18
+  topics: []
+  transcript: 'so I think one of the common things that I''ve seen leaders make that''s
+    a mistake and it is a challenge to kind of over com is not really understanding
+    your people to the full intent as well as not understanding what your mission
+    is in your requirements for that mission something that was asked me one time
+    when I was sitting on SO keyboard years ago was you know what is more important
+    the mission or your people and at the time I had said well my people the most
+    important thing and then afterwards one of the board members pulled me aside and
+    he said no your mission is always the single most important aspect to everything
+    because without understanding the mission with that priority is and you can''t
+    really understand how to prioritize your people and take care of them and so you
+    need to really understand the mission if you don''t need to get out and read what
+    your commander''s intent is what they''re guiding principles mission and vision
+    are understand that and how you fit into that overall peace and then once you
+    understand that you can then direct the folks that you lead into accomplishing
+    that and once they know where they fit in and the overall spoke and how they can
+    play a part in that big wheel and you''ll notice that they''re gonna make everything
+    moved forward and everything kind of just will run seamlessly so you know without
+    fully understanding your mission and without fully understanding your people that
+    is going to put you out a hurdle and it''s really hard it''s really something
+    hard to recover from '
+  utteranceAudio: build/utterance_audio/s001p007s00040518e00053101.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00040518e00053101.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: What problems need to be rooted out early, or you'll have trouble fixing
+    them later?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 429.27
+  timeStart: 370.04
+  topics: []
+  transcript: 'so some problems that you need to understand early or else you could
+    possibly have issues with them later on is your logistical requirements as far
+    as you know what resources do you have and if you don''t identify where your shortfalls
+    are your resources that''s going to play a part in what your overall mission successes
+    as well as in a play a part in the mission success of your personnel that you''re
+    leading if you''re missing those of those resources and you don''t identify them
+    early and we''ll all we all understand that you know things kinda take time even
+    if I under even if identify a shortfall right now in my resources it could take
+    anywhere from three six months a year longer until maybe I see something back
+    from that shortfall of identify that early now then hopefully that''ll catch up
+    to when I actually needed and having those resources identified well then allow
+    me to move forward in the direction of my personnel as well as moving forward
+    in the direction of the mission requirements '
+  utteranceAudio: build/utterance_audio/s001p007s00061004e00070927.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00061004e00070927.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: How much leadership should you take charge of versus letting your senior
+    petty officer lead?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 907.14
+  timeStart: 823.29
+  topics: []
+  transcript: 'so how much leadership should you take on if you''re coming in to say
+    that that first leadership position as a petty officer probably the PO the first
+    thing you want to do is establish those expectations between your L. CPO and whoever
+    you''re all I see is it what are their expectations of you as now the LPO the
+    person who''s really down there every day dealing with the sailors face to face
+    who probably knows more intimately about their things that are going on you know
+    they''re the command as well as behind the scenes you know so you need to get
+    with your leadership and understand okay what are your expectations as the PO
+    and also let them know what your expectations are as them as your leaders no they''re
+    not gonna be able to provide good service to you or the folks that you''re leading
+    as LPO if you don''t provide them what it is you''re looking for and as a leader
+    you''ve got to be able to stay to talk to those that are in charge of you and
+    ask them what their expectations are as well as what you expect of them as your
+    leadership you can''t be afraid to do that that''s one of those challenges now
+    that you''re a leader is to to go out and talk to those folks that that or your
+    superiors and and kind of give them your expectations as well and I think that
+    kind of opens up that dialoguing and provides that cross you know that that flat
+    line of communication so that way everybody''s kind of running on the same gear '
+  utteranceAudio: build/utterance_audio/s001p007s00134328e00150714.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00134328e00150714.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: How do I balance being close with my team versus fraternizing?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 1120.15
+  timeStart: 1008.2
+  topics: []
+  transcript: 'so the one way that you can meal bill that camaraderie with your team
+    without you know cutting close that fraternization line it''s it''s a challenge
+    to say the least right never it really depends on communities as well it varies
+    across the board some communities are on first name basis with their folks throughout
+    the entire triad weather communities is very formal and your dress them by their
+    title and last name more just title only so what you have to do is you first got
+    to figure out what kind of community are you in and what are the community norms
+    and then work to those you know if you''re in a more informal community you could
+    kind of be looked at and ostracized as an outsider if you are too formal if you
+    are in a community where things are you know formal and you were becoming a little
+    more informal get it works that same way people gonna look at you a little bit
+    different not take you seriously and is going to jeopardize your role as a leader
+    so you got a first kind of figure out what community my end and then once you''re
+    in that you know play to those community norms but also make sure that the folks
+    at your leading still understand where that leadership line ladies so sure you
+    might work side by side with your people I''ve even on certain appointments I
+    live in the same house the same tent establishment with my E. three and I was
+    the senior chief here we all live together in the same community but there still
+    was that that line that he still knew alternately that I was I was the leader
+    in charge but we did have you know informal style discussions and talking together
+    is a platoon so it''s it''s it''s a challenge to say I think the first thing is
+    you got to figure out what kind of community yet you are in it and what are those
+    community norms and then work to that '
+  utteranceAudio: build/utterance_audio/s001p007s00164820e00184015.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00164820e00184015.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Do you think differently now than you did at the start of your career?
+  - Has your work shaped your priorities?
+  - Have your priorities changed throughout your development?
+  - In what ways have your priorities adapted to your career situation?
+  - What priorities do you have now that you didn't have earlier in your career?
+  part: 7
+  question: How have your priorities changed as your career progresses?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 1217.19
+  timeStart: 1137.15
+  topics:
+  - Background
+  - Priorities
+  transcript: 'so I feel that my priorities of changes I''ve progressed as a leader
+    in the fact that the the higher you move up in leadership the less and less your
+    priority should be about your own self interest you know so early on when I was
+    eight three E. four yes I did understand the bigger picture and working towards
+    a common goal for the entire platoon the command in the navy as a whole but also
+    is still very concerned about my own personal professional development and growth
+    you know can I get on this school can I make this trip can I go to this deployment
+    can I get you know get to this next commander get station here is very you know
+    self centric working for myself and and the benefits of my family as you move
+    up in leadership and as I moved up in leadership you know you no longer are supposed
+    to be kind of really worried about yourself but you need to really start taking
+    care of the folks that you''re leading and and then doing good by them and and
+    trying to progress their careers and improving their personal and for and professional
+    development so as you move up in your leadership role you need to become more
+    selfless than you were before and really focus on the folks at your leading and
+    and making them the best that they can be because in the long run if your people
+    are doing well then you yourself are gonna be noticed and looked upon you''re
+    going to do well in the end '
+  utteranceAudio: build/utterance_audio/s001p007s00185715e00201719.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00185715e00201719.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: What does it take to really make a change in a team?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 1287.01
+  timeStart: 1228.05
+  topics: []
+  transcript: 'so what really makes changing a team especially if it''s a big change
+    is is getting that by and from the folks at your leading up you''ve got to be
+    able to show them the reality of what that changes whether it''s good or bad and
+    you know explain to them what the over arching goal is and why in the long run
+    it''s probably gonna be the biggest benefit have those discussions not everyone
+    is gonna is gonna buy in on that change you know some people are very adaptive
+    to change and enjoy change and other people hate change you gotta understand where
+    people thinking where they lie and then kind of played in those roles but your
+    role as the leader is whether it''s you know everyone agrees are doesn''t agree
+    at the end of the day you still have to move forward with this change is coming
+    down from somewhere it''s a new priority and probably in the long run it''s going
+    to be it''s going to be better help them out as well as the navy as a whole so
+    you have to kind of play that role '
+  utteranceAudio: build/utterance_audio/s001p007s00202805e00212701.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00202805e00212701.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Has your opinion of your job altered?
+  - Has your view of this work changed and how?
+  - Have you changed your opinion about this line of work and if so, how?
+  - What about your attitude change concerning your profession?
+  part: 7
+  question: How has your view of this line of work changed over time?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 1440.28
+  timeStart: 1331.16
+  topics:
+  - JobSpecific
+  transcript: 'my view of the line of work that I''ve done and how it''s changed over
+    time is that is becoming more relevant now than probably it was even five years
+    ago especially ten fifteen years ago so for example the line of work that I was
+    doing we used to use marine mammals to try and find you know unexploded ordnance
+    and mines under the water and now we''ve moved forward using unmanned underwater
+    vehicles to do this line of work so what that does is it you know reduces the
+    risk of personnel because you''re not having to put essentially people within
+    a mine field oral or animals in a mine field to find these things they can be
+    miles away and you''re still using equipment to do that as well as it''s helping
+    to reduce that time line that we have in mind countermeasures so as you know things
+    change as technology changes and also to I''ve noticed that the navy and department
+    of defense as a whole is starting to buy off on this entire you know you you UV
+    or unmanned systems round you can see everywhere from the president''s national
+    security strategy on down the national defense strategy to our senior knows maritime
+    for superiority you know one point and even to point documentation all the over
+    arching instructions that govern what we do as a department of defense and as
+    a naval forces a hole is really starting to buy off on unmanned systems and moving
+    forward in that direction because they realize that it can exponentially do more
+    work than we can with people as well as it also is reducing wrist a person out
+    which is a good thing so those are kind of some of things I''ve seen change when
+    the technologies change is that unmanned systems is becoming more relevant and
+    what we do day to day throughout partner defense as a whole '
+  utteranceAudio: build/utterance_audio/s001p007s00221116e00240028.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00221116e00240028.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Are there things that would keep me from doing this?
+  - What most important for me to do?
+  - What should I do first if I want to do this?
+  part: 7
+  question: What priorities would you recommend for a person entering this field?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 1526.26
+  timeStart: 1450.15
+  topics:
+  - Advice
+  - Priorities
+  - STEM
+  transcript: 'so the priorities that I''d recommend for you if you''re entering into
+    a leadership position is is read you have to read a lot of things you need to
+    read you know what your commander''s guidance mission vision and intent is and
+    I understand what his bosses intent is you know so that you''re is six has it
+    has their own you know guidance in mission and vision statement and then continue
+    to just turn a trickle up the line from his to your tight calms today and how
+    that fits into this you know is objective to the secretary of defense''s objective
+    to than the president''s objective if you can understand from that latter well
+    you know that that there was a ladder rungs from you know your boss all the way
+    up to the president and understand how you fit into that as a leader then not
+    only is gonna make you more effective in your own dated a job but then you''ll
+    be able to effectively lead your people to accomplish those objectives that you
+    from the top all the way down have in so you''ll always be moving in the right
+    direction in getting those those bigger objectives accomplished because you know
+    how you fit into the over arching scheme of things that is probably my number
+    one recommendation for a priority is just get in there and read your commander''s
+    intent and guidance all the way up '
+  utteranceAudio: build/utterance_audio/s001p007s00241015e00252626.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00241015e00252626.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: What skills do you wish you had mastered before entering your profession?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 1593.26
+  timeStart: 1536.2
+  topics: []
+  transcript: 'certain skills that I wish I had mastered before it started was probably
+    administrative skills so you earlier on in my career I was very good at the technical
+    aspect of the operating aspect it wasn''t until I really moved on to recruiting
+    duty where I really had a hard look at my administrative skills because at that
+    time we still kind of hand wrote contracts out and there was a lot of pages with
+    that and if you made a single clerical error you had to kind of start all over
+    again with the paperwork in so doing for years a recruiting duty will definitely
+    make you blot better your ministry of side and so I wish I kind of had known that
+    earlier on because it would save me a lot of late nights and a lot of do overs
+    with paperwork and things like that as I moved on to having to be more straight
+    administratively sound as I moved up in leadership positions and and my career
+    as a whole '
+  utteranceAudio: build/utterance_audio/s001p007s00253620e00263326.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00253620e00263326.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: What is one question you wished you asked earlier?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 1716.12
+  timeStart: 1647.1
+  topics: []
+  transcript: 'one question that I wish I had asked earlier in my career was just
+    how to properly do and even even how to write an email you know it took me a little
+    bit to understand that you that''s probably the single most important document
+    of your entire career U. sensually have eighteen lines to summarize what you''ve
+    done in a year to show like the good work that you''re doing and how you''re impacting
+    mission readiness is so I wish I''d known earlier the kind of things that it takes
+    to actually write a good evaluation because not only would it help me out personally
+    but then as you move up as a leader your sensually writing those evaluations on
+    your people if your horrible it at eve all writing then your people are gonna
+    suffer they could be doing the best work across the board but if you can''t put
+    that down in paper and quantify that in eighteen lines are less than your folks
+    are gonna get overlooked for promotions so you know ask early on how do I write
+    a good even I''ll and what do I need to do to write those evaluations to meet
+    what''s being looked at '
+  utteranceAudio: build/utterance_audio/s001p007s00272710e00283612.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00272710e00283612.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: As a leader, how much more will I know about the overall goals of the
+    work I am doing?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 1801.0
+  timeStart: 1745.22
+  topics: []
+  transcript: 'as a leader you should start understanding you know what those bigger
+    goals are suppose just working on something you know at the at the more subordinate
+    levels so sometimes you might have to go out of your way to find out what those
+    over arching goals are you need to ask those questions you need to go to your
+    leadership and ask them what their expectations are of you and what they want
+    to see happen not within just your individual division or platoon or department
+    but for the command as a whole so you got to really understand what those goals
+    are not always is someone going to force feed that to you might have to go out
+    of your way to find out what are my commands goals and how can I effectively make
+    an impact in those goals or what are some deficiencies at my command has and how
+    can I kind of you know chip away at those deficiencies and turn them from something
+    negative into a positive and and move in that direction '
+  utteranceAudio: build/utterance_audio/s001p007s00290522e00300100.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00290522e00300100.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Was it hard to learn what you learned?
+  - was there a time when you had trouble learning a new skill?
+  - what did you struggle with when joining the military?
+  - what is the toughest thing to learn?
+  - what was hard for you to learn for the Navy?
+  - what was hard for you to master?
+  part: 7
+  question: What was the most difficult part of your training?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 1878.27
+  timeStart: 1816.1
+  topics:
+  - Challenges
+  - Military
+  - Training
+  transcript: 'something that was probably the most challenging for me and my training
+    and I''ve had a lot of training in a variety of different places around the world
+    doing a variety of different things is probably just that time away from my family
+    there are there it I''ve I''ve missed both of my kids being born because of training
+    or deployment in so those are things you can never get back and so that''s probably
+    been the most challenging for me is that time away even though I do have an understanding
+    family wife who''s can can operate independently and two kids now that are in
+    high school and are able to kind of work on their own they don''t necessarily
+    need me around all the time I still want to be there to see them you know grass
+    and succeed in and help out and do the fatherly thing but they also understand
+    that that''s not always going to be the case work in a line of work that we do
+    so but that doesn''t mean to me is it still was a personal challenge was was being
+    away from family during during training or deployments '
+  utteranceAudio: build/utterance_audio/s001p007s00301610e00311827.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00301610e00311827.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: You are having a conflict in the first few days in your unit, Is that
+    normal or no ?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 1935.24
+  timeStart: 1889.24
+  topics: []
+  transcript: 'having a conflict within your first few days of of a new unit that''s
+    that''s entirely common that''s not uncommon at all of your new so you got a new
+    environment that you''re trying to figure out and learn to and find out what those
+    community norms are and then of course you''re new to the people that have been
+    there already in our established and so they''re trying to kind of figure you
+    out as well the biggest thing is communication Akon overcome those conflicts you
+    need to communicate to the people that you may be having a conflict with or communicate
+    to your leadership that you are having a conflict and how you can overcome that
+    that''s it but it''s entirely common to have some sort of conflict whether it''s
+    external or internal when you arrive to a new unit '
+  utteranceAudio: build/utterance_audio/s001p007s00312924e00321524.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00312924e00321524.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: How you can lead honorably
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 2044.27
+  timeStart: 1976.07
+  topics: []
+  transcript: 'so in order to lead honorably you''ve got to have that that that word
+    of integrity is as cliche as it sounds we hear it coming to boot camp all throughout
+    your career you have to have that integrity but it''s true and that''s why it''s
+    brought up because if you can have that self integrity to to make sure that you''re
+    doing what needs to be done regardless of the situation regardless who''s around
+    then internally that''s going to reflect on the people you''re gonna lead and
+    they''re gonna want Amir that and model your behavior as well as the folks that
+    are your leadership are going to notice that you have that integrity and that
+    it''s kind of being reflected within the folks that you''re leading which in turn
+    they''re gonna be able to trust you with more responsibilities and probably give
+    you a lot more flexibility as well because I understand that this isn''t this
+    individual has a lot of integrity folks there leading have a lot of integrity
+    we can trust that person as well as that department or division that they''re
+    leading to get this job done without a lot of micro management or oversight so
+    again as cliche as it sounds you know it I think integrity is probably that most
+    important aspect '
+  utteranceAudio: build/utterance_audio/s001p007s00325607e00340427.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00325607e00340427.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 7
+  question: What are some good resources to look at before starting (books, videos,
+    classes)?
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
+  timeEnd: 2118.13
+  timeStart: 2057.23
+  topics: []
+  transcript: 'certain resources that you''d want to look at as you''re moving into
+    a leadership position you know there''s there''s books all those things out there
+    that people have written hundreds of books on leadership you know if the if that''s
+    the kind of thing that you''re into and you like reading those type of books go
+    on to your nearest book website find out the top ten and start reading those I
+    also recommend that you understand what your leaderships overarching guidance
+    and principles are so that you can be in step with what they''re trying to do
+    and so that goes from not only you know you''re CEOs intent and guidance but his
+    bosses boss and his bosses bosses boss all the way up to the highest levels and
+    so you have you have to read those kind of documents and understand that structure
+    and that''s going to help you out and becoming a leader in making sure that it
+    at the very least you''re pointed in the right direction that your command the
+    navy needs for you to be as your leading your subordinates '
+  utteranceAudio: build/utterance_audio/s001p007s00341723e00351813.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s001p007s00341723e00351813.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 17.03
+  timeStart: 16.0
+  topics: []
+  transcript: 'yes '
+  utteranceAudio: build/utterance_audio/s001p008s00001600e00001703.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00001600e00001703.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 21.28
+  timeStart: 20.17
+  topics: []
+  transcript: 'yes Sir '
+  utteranceAudio: build/utterance_audio/s001p008s00002017e00002128.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00002017e00002128.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 25.23
+  timeStart: 24.06
+  topics: []
+  transcript: 'yes ma''am '
+  utteranceAudio: build/utterance_audio/s001p008s00002406e00002523.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00002406e00002523.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 30.05
+  timeStart: 28.19
+  topics: []
+  transcript: 'excuse me '
+  utteranceAudio: build/utterance_audio/s001p008s00002819e00003005.mp3
+  utteranceType: _OFF_TOPIC_
+  utteranceVideo: build/utterance_video/s001p008s00002819e00003005.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 35.05
+  timeStart: 33.12
+  topics: []
+  transcript: 'how are you '
+  utteranceAudio: build/utterance_audio/s001p008s00003312e00003505.mp3
+  utteranceType: _PROMPT_
+  utteranceVideo: build/utterance_video/s001p008s00003312e00003505.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 39.13
+  timeStart: 37.21
+  topics: []
+  transcript: 'good morning '
+  utteranceAudio: build/utterance_audio/s001p008s00003721e00003913.mp3
+  utteranceType: _PROMPT_
+  utteranceVideo: build/utterance_video/s001p008s00003721e00003913.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 43.19
+  timeStart: 41.22
+  topics: []
+  transcript: 'good afternoon '
+  utteranceAudio: build/utterance_audio/s001p008s00004122e00004319.mp3
+  utteranceType: _PROMPT_
+  utteranceVideo: build/utterance_video/s001p008s00004122e00004319.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 47.17
+  timeStart: 46.01
+  topics: []
+  transcript: 'good evening '
+  utteranceAudio: build/utterance_audio/s001p008s00004601e00004717.mp3
+  utteranceType: _PROMPT_
+  utteranceVideo: build/utterance_video/s001p008s00004601e00004717.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 51.05
+  timeStart: 49.18
+  topics: []
+  transcript: 'good night '
+  utteranceAudio: build/utterance_audio/s001p008s00004918e00005105.mp3
+  utteranceType: _PROMPT_
+  utteranceVideo: build/utterance_video/s001p008s00004918e00005105.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 57.06
+  timeStart: 54.23
+  topics: []
+  transcript: 'I may have said this before '
+  utteranceAudio: build/utterance_audio/s001p008s00005423e00005706.mp3
+  utteranceType: _REPEAT_
+  utteranceVideo: build/utterance_video/s001p008s00005423e00005706.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 60.28
+  timeStart: 59.23
+  topics: []
+  transcript: 'now '
+  utteranceAudio: build/utterance_audio/s001p008s00005923e00010028.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00005923e00010028.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 65.06
+  timeStart: 63.09
+  topics: []
+  transcript: 'maybe '
+  utteranceAudio: build/utterance_audio/s001p008s00010309e00010506.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00010309e00010506.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 69.11
+  timeStart: 67.14
+  topics: []
+  transcript: 'perhaps '
+  utteranceAudio: build/utterance_audio/s001p008s00010714e00010911.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00010714e00010911.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 73.18
+  timeStart: 71.19
+  topics: []
+  transcript: 'of course '
+  utteranceAudio: build/utterance_audio/s001p008s00011119e00011318.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00011119e00011318.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 77.18
+  timeStart: 76.0
+  topics: []
+  transcript: 'always '
+  utteranceAudio: build/utterance_audio/s001p008s00011600e00011718.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00011600e00011718.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 81.26
+  timeStart: 80.0
+  topics: []
+  transcript: 'sometimes '
+  utteranceAudio: build/utterance_audio/s001p008s00012000e00012126.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00012000e00012126.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 85.27
+  timeStart: 83.29
+  topics: []
+  transcript: 'never '
+  utteranceAudio: build/utterance_audio/s001p008s00012328e00012527.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00012328e00012527.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 89.2
+  timeStart: 88.09
+  topics: []
+  transcript: 'often '
+  utteranceAudio: build/utterance_audio/s001p008s00012809e00012920.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00012809e00012920.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 93.25
+  timeStart: 92.19
+  topics: []
+  transcript: 'I do '
+  utteranceAudio: build/utterance_audio/s001p008s00013219e00013325.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00013219e00013325.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 97.09
+  timeStart: 95.28
+  topics: []
+  transcript: 'I don''t '
+  utteranceAudio: build/utterance_audio/s001p008s00013528e00013709.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00013528e00013709.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 102.19
+  timeStart: 100.15
+  topics: []
+  transcript: 'I have no idea '
+  utteranceAudio: build/utterance_audio/s001p008s00014015e00014219.mp3
+  utteranceType: _OFF_TOPIC_
+  utteranceVideo: build/utterance_video/s001p008s00014015e00014219.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 107.04
+  timeStart: 105.04
+  topics: []
+  transcript: 'I don''t think so '
+  utteranceAudio: build/utterance_audio/s001p008s00014504e00014704.mp3
+  utteranceType: _FEEDBACK_
+  utteranceVideo: build/utterance_video/s001p008s00014504e00014704.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 113.23
+  timeStart: 111.09
+  topics: []
+  transcript: 'here''s something you should really know '
+  utteranceAudio: build/utterance_audio/s001p008s00015109e00015323.mp3
+  utteranceType: _PROMPT_
+  utteranceVideo: build/utterance_video/s001p008s00015109e00015323.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 1
+  sessionAudio: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp3
+  sessionTimestamps: build/recordings/session1-20191029/Session1_RepeatAfterMe.csv
+  sessionVideo: build/recordings/session1-20191029/Session1_RepeatAfterMe.mp4
+  timeEnd: 127.02
+  timeStart: 122.12
+  topics: []
+  transcript: 'that''s a good question but I want to make sure I tell you something '
+  utteranceAudio: build/utterance_audio/s001p008s00020212e00020702.mp3
+  utteranceType: _OFF_TOPIC_
+  utteranceVideo: build/utterance_video/s001p008s00020212e00020702.mp4

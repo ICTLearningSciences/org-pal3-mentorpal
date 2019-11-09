@@ -1,0 +1,27 @@
+ID,utterance,situation
+s001p001s00000923e00004613,hi I'm Mario I'm a senior chief petty officer in the navy or am station in San Diego and explosive ordnance disposal training unit one I've of currently I'm serving as the navy expeditionary combat commands lead unmanned underwater vehicle instructor and curriculum developer for the entire force having worked in that role I've deployed multiple times to the fifth fleet A. O. R. and working in Bahrain all throughout that region up and down the golf and Gulf of aiding and in those areas I married with two kids both of which are in high school ,_INTRO_
+s001p002s00001628e00014628,,_IDLE_
+s001p008s00001600e00001703,yes ,_FEEDBACK_
+s001p008s00002017e00002128,yes Sir ,_FEEDBACK_
+s001p008s00002406e00002523,yes ma'am ,_FEEDBACK_
+s001p008s00002819e00003005,excuse me ,_OFF_TOPIC_
+s001p008s00003312e00003505,how are you ,_PROMPT_
+s001p008s00003721e00003913,good morning ,_PROMPT_
+s001p008s00004122e00004319,good afternoon ,_PROMPT_
+s001p008s00004601e00004717,good evening ,_PROMPT_
+s001p008s00004918e00005105,good night ,_PROMPT_
+s001p008s00005423e00005706,I may have said this before ,_REPEAT_
+s001p008s00005923e00010028,now ,_FEEDBACK_
+s001p008s00010309e00010506,maybe ,_FEEDBACK_
+s001p008s00010714e00010911,perhaps ,_FEEDBACK_
+s001p008s00011119e00011318,of course ,_FEEDBACK_
+s001p008s00011600e00011718,always ,_FEEDBACK_
+s001p008s00012000e00012126,sometimes ,_FEEDBACK_
+s001p008s00012328e00012527,never ,_FEEDBACK_
+s001p008s00012809e00012920,often ,_FEEDBACK_
+s001p008s00013219e00013325,I do ,_FEEDBACK_
+s001p008s00013528e00013709,I don't ,_FEEDBACK_
+s001p008s00014015e00014219,I have no idea ,_OFF_TOPIC_
+s001p008s00014504e00014704,I don't think so ,_FEEDBACK_
+s001p008s00015109e00015323,here's something you should really know ,_PROMPT_
+s001p008s00020212e00020702,that's a good question but I want to make sure I tell you something ,_OFF_TOPIC_

@@ -1,0 +1,26 @@
+Situation,Mentor,Utterance/Prompt
+_INTRO_,mario-pais,hi I'm Mario I'm a senior chief petty officer in the navy or am station in San Diego and explosive ordnance disposal training unit one I've of currently I'm serving as the navy expeditionary combat commands lead unmanned underwater vehicle instructor and curriculum developer for the entire force having worked in that role I've deployed multiple times to the fifth fleet A. O. R. and working in Bahrain all throughout that region up and down the golf and Gulf of aiding and in those areas I married with two kids both of which are in high school 
+_FEEDBACK_,mario-pais,yes 
+_FEEDBACK_,mario-pais,yes Sir 
+_FEEDBACK_,mario-pais,yes ma'am 
+_OFF_TOPIC_,mario-pais,excuse me 
+_PROMPT_,mario-pais,how are you 
+_PROMPT_,mario-pais,good morning 
+_PROMPT_,mario-pais,good afternoon 
+_PROMPT_,mario-pais,good evening 
+_PROMPT_,mario-pais,good night 
+_REPEAT_,mario-pais,I may have said this before 
+_FEEDBACK_,mario-pais,now 
+_FEEDBACK_,mario-pais,maybe 
+_FEEDBACK_,mario-pais,perhaps 
+_FEEDBACK_,mario-pais,of course 
+_FEEDBACK_,mario-pais,always 
+_FEEDBACK_,mario-pais,sometimes 
+_FEEDBACK_,mario-pais,never 
+_FEEDBACK_,mario-pais,often 
+_FEEDBACK_,mario-pais,I do 
+_FEEDBACK_,mario-pais,I don't 
+_OFF_TOPIC_,mario-pais,I have no idea 
+_FEEDBACK_,mario-pais,I don't think so 
+_PROMPT_,mario-pais,here's something you should really know 
+_OFF_TOPIC_,mario-pais,that's a good question but I want to make sure I tell you something 
