@@ -2,7 +2,7 @@ version: 2.1
 executors:
   ebs:
     docker:
-      - image: larrykirschner/circleci-elasticbeanstalk:1.0.0
+      - image: larrykirschner/circleci-elasticbeanstalk:1.1.0-alpha.1
   node:
     docker:
       - image: circleci/node:12.4
@@ -38,6 +38,14 @@ aliases:
       only: /v[0-9]+(\.[0-9]+)*(-prod)/
     branches:
       ignore: /.*/
+  - &checkout-lfs
+    run:
+      name: Checkout lfs
+      command: |
+        curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash \
+          && sudo apt-get install -y git-lfs \
+          && git lfs install \
+          && git lfs pull
   - &checkout-revision-restore
     restore_cache:
       keys:
@@ -55,12 +63,14 @@ jobs:
     steps:
       - *checkout-revision-restore
       - checkout
+      - *checkout-lfs
       - *checkout-revision-save
   format-and-lint-python:
     executor: python
     steps:
       - *checkout-revision-restore
       - checkout
+      - *checkout-lfs
       - run:
           name: Test format for python
           command: make test-format-python
@@ -72,6 +82,7 @@ jobs:
     steps:
       - *checkout-revision-restore
       - checkout
+      - *checkout-lfs
       - run:
           name: Test classifier (unit tests)
           command: cd classifier && make test
@@ -80,6 +91,7 @@ jobs:
     steps:
       - *checkout-revision-restore
       - checkout
+      - *checkout-lfs
       - run:
           name: Test mentor-api (unit tests)
           command: cd services/mentor-api && make test-units
@@ -88,6 +100,7 @@ jobs:
     steps:
       - *checkout-revision-restore
       - checkout
+      - *checkout-lfs
       - run:
           name: Test mentor pipeline
           command: cd mentors && make test
@@ -96,6 +109,7 @@ jobs:
     steps:
       - *checkout-revision-restore
       - checkout
+      - *checkout-lfs
       - run:
           name: Check format
           command: make test-format-js
@@ -118,6 +132,7 @@ jobs:
     steps:
       - *checkout-revision-restore
       - checkout
+      - *checkout-lfs
       - run:
           name: Test reports
           command: |
@@ -130,6 +145,7 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - checkout
+      - *checkout-lfs
       - run: *qa-mentorpal-env-init
       - run: *docker-build
       - run:
@@ -140,18 +156,21 @@ jobs:
     executor: ebs
     steps:
       - checkout
+      - *checkout-lfs
       - run: *dev-mentorpal-env-init
       - run: *eb-deploy
   qa-ebs-deploy:
     executor: ebs
     steps:
       - checkout
+      - *checkout-lfs
       - run: *qa-mentorpal-env-init
       - run: *eb-deploy
   prod-ebs-deploy:
     executor: ebs
     steps:
       - checkout
+      - *checkout-lfs
       - run: *prod-mentorpal-env-init
       - run: *eb-deploy
 workflows:
@@ -159,7 +178,9 @@ workflows:
   build-test-deploy:
     jobs:
       - checkout-revision-setup
-      - format-and-lint-python
+      - format-and-lint-python:
+          requires:
+            - checkout-revision-setup
       - classifier-test:
           requires:
             - format-and-lint-python
