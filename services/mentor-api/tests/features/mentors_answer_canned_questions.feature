@@ -33,5 +33,3 @@ Feature: Mentors answer canned questions
   Examples: Queries
     | mentor    | query                                                   | answer_id                     | answer_text_start                                                                                                   |
     | clint     | were you ever bullied in high school? what did you do?  | clintanderson_A109_2_2        | When I was a kid, I used to wear these glasses, I used to be a lot                                                  |
-    
-    # | clint     | how is job security in the navy?                    | clintanderson_A49_1_2         | So, job security is                                         |

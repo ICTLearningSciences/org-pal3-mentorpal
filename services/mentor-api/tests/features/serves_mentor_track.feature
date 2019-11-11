@@ -8,6 +8,3 @@ Feature: Serves mentor tracks
   Examples: MentorTracks
     | mentor    | track_file                          |
     | clint     | clintanderson_A1_1_1.vtt            |
-    | dan       | dandavis_A1_1_1.vtt                 |
-    | julianne  | julianne_A1_1_2.vtt                 |
-    

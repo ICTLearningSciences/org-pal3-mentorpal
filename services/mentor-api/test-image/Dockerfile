@@ -10,4 +10,6 @@ RUN cd /test && \
     ${VIRTUAL_ENV}/bin/pip install -r tests/requirements.txt && \
     ${VIRTUAL_ENV}/bin/pip install -r behave-restful/requirements.txt && \
     ${VIRTUAL_ENV}/bin/pip install -e behave-restful
+COPY build/tests/resources/checkpoint /app/checkpoint
+COPY build/tests/resources/mentors /app/mentors
 ENV PATH="${VIRTUAL_ENV}/bin:$PATH"
