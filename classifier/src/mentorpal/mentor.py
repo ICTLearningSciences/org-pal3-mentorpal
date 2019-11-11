@@ -83,6 +83,14 @@ def _to_id(s: str, lower: bool = True) -> str:
     return re.sub(r"[^a-zA-Z0-9]+", r"_", s.strip())
 
 
+class MentorError(Exception):
+    pass
+
+
+class MentorRootNotFoundError(MentorError):
+    pass
+
+
 class Mentor(object):
     def __init__(self, id, mentor_data_root=None, topic_name_default="About Me"):
         self.id = id
@@ -121,6 +129,10 @@ class Mentor(object):
         )
 
     def load(self):
+        if not os.path.isdir(self.mentor_data_path()):
+            raise MentorRootNotFoundError(
+                f"mentor root not found at path {self.mentor_data_path()}"
+            )
         self.name, self.short_name, self.title = self.__load_profile()
         (
             self.topics,

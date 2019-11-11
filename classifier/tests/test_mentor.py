@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 import pytest
 
-from mentorpal.mentor import Mentor
+from mentorpal.mentor import Mentor, MentorRootNotFoundError
 
 
 @pytest.mark.parametrize(
@@ -292,3 +292,10 @@ def test_it_uses_defaults_when_utterance_csv_is_missing_or_invalid(
         f"failed to load utterances for {mentor_id}: [Errno 2] No such file or directory: '{utterance_csv_path}'"
     )
     assert m.to_dict() == expected_data
+
+
+def test_it_raises_exception_on_missing_mentor_dir():
+    with pytest.raises(
+        MentorRootNotFoundError, match=r".*/some/invalid/path.*some_mentor_id.*"
+    ):
+        Mentor("some_mentor_id", mentor_data_root="/some/invalid/path")
