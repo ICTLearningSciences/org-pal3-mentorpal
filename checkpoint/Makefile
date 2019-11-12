@@ -7,10 +7,6 @@ MENTOR?=clint
 CHECKPOINT_PATH=${CHECKPOINT_ROOT}/classifiers/${ARCH}/${CHECKPOINT}
 DOCKER_IMAGE?=mentorpal-classifier
 
-.PHONY: clean
-clean:
-	rm -r vector_models/*.bin
-
 .PHONY: init
 init: checkpoint-vector-models
 
