@@ -28,7 +28,14 @@ aliases:
     command: cd ${EBS_TOOLS} && make docker-push
   - &eb-deploy
     name: EBS Deploy
-    command: cd ${EBS_TOOLS} && make clean eb-deploy
+    command: |
+      cd ${EBS_TOOLS} \
+        && make clean build \
+        && mkdir -p build/ebs/bundle/mentor-api/checkpoint \
+        && cp -r ~/project/checkpoint/classifiers build/ebs/bundle/mentor-api/checkpoint/classifiers \
+        && cp -r ~/project/checkpoint/vector_models build/ebs/bundle/mentor-api/checkpoint/vector_models \
+        && cp -r ~/project/mentors/data/mentors build/ebs/bundle/mentor-api/mentors \
+        && make eb-deploy
   - &only-master
     branches:
       only:
