@@ -38,14 +38,17 @@ aliases:
       only: /v[0-9]+(\.[0-9]+)*(-prod)/
     branches:
       ignore: /.*/
-  - &checkout-lfs
+  - &git-lfs-install
     run:
-      name: Checkout lfs
+      name: Git lfs install
       command: |
         curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash \
           && sudo apt-get install -y git-lfs \
-          && git lfs install \
-          && git lfs pull
+          && git lfs install
+  - &git-lfs-pull
+    run:
+      name: Git lfs pull
+      command: git lfs pull
   - &checkout-revision-restore
     restore_cache:
       keys:
@@ -62,15 +65,16 @@ jobs:
     executor: python
     steps:
       - *checkout-revision-restore
+      - *git-lfs-install
       - checkout
-      - *checkout-lfs
+      - *git-lfs-pull
       - *checkout-revision-save
   format-and-lint-python:
     executor: python
     steps:
       - *checkout-revision-restore
+      - *git-lfs-install
       - checkout
-      - *checkout-lfs
       - run:
           name: Test format for python
           command: make test-format-python
@@ -81,8 +85,8 @@ jobs:
     executor: python
     steps:
       - *checkout-revision-restore
+      - *git-lfs-install
       - checkout
-      - *checkout-lfs
       - run:
           name: Test classifier (unit tests)
           command: cd classifier && make test
@@ -90,8 +94,8 @@ jobs:
     executor: python
     steps:
       - *checkout-revision-restore
+      - *git-lfs-install
       - checkout
-      - *checkout-lfs
       - run:
           name: Test mentor-api (unit tests)
           command: cd services/mentor-api && make test-units
@@ -99,8 +103,8 @@ jobs:
     executor: python
     steps:
       - *checkout-revision-restore
+      - *git-lfs-install
       - checkout
-      - *checkout-lfs
       - run:
           name: Test mentor pipeline
           command: cd mentors && make test
@@ -108,8 +112,8 @@ jobs:
     executor: node
     steps:
       - *checkout-revision-restore
+      - *git-lfs-install
       - checkout
-      - *checkout-lfs
       - run:
           name: Check format
           command: make test-format-js
@@ -131,8 +135,8 @@ jobs:
     executor: node
     steps:
       - *checkout-revision-restore
+      - *git-lfs-install
       - checkout
-      - *checkout-lfs
       - run:
           name: Test reports
           command: |
@@ -144,8 +148,9 @@ jobs:
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
+      - *git-lfs-install
       - checkout
-      - *checkout-lfs
+      - *git-lfs-pull
       - run: *qa-mentorpal-env-init
       - run: *docker-build
       - run:
@@ -155,22 +160,25 @@ jobs:
   dev-ebs-deploy:
     executor: ebs
     steps:
+      - *git-lfs-install
       - checkout
-      - *checkout-lfs
+      - *git-lfs-pull
       - run: *dev-mentorpal-env-init
       - run: *eb-deploy
   qa-ebs-deploy:
     executor: ebs
     steps:
+      - *git-lfs-install
       - checkout
-      - *checkout-lfs
+      - *git-lfs-pull
       - run: *qa-mentorpal-env-init
       - run: *eb-deploy
   prod-ebs-deploy:
     executor: ebs
     steps:
+      - *git-lfs-install
       - checkout
-      - *checkout-lfs
+      - *git-lfs-pull
       - run: *prod-mentorpal-env-init
       - run: *eb-deploy
 workflows:
@@ -222,4 +230,3 @@ workflows:
           filters: *only-prod-releases
           requires:
             - prod-docker-build-test-push
-
