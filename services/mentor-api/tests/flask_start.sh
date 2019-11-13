@@ -23,10 +23,5 @@ docker run \
 		--rm \
 		--name ${CONTAINER_NAME} \
 		-p 5000:5000 \
-		# -v ${DOCKER_MOUNT_SRC}:${DOCKER_MOUNT_TGT} \
-		# -v ${TESTS}/resources/checkpoint:/app/checkpoint \
-		# -v ${TESTS}/resources/mentors:/app/mentors \
-		# -v ${PROJECT_ROOT}/services/mentor-api/src/mentor_api:/app/mentor_api \
-		# -v ${PROJECT_ROOT}/classifier/src/mentorpal:/app/mentorpal \
 		-e MENTORPAL_CLASSIFIER_API_SETTINGS=${FLASK_CONFIG_TGT} \
 	${DOCKER_IMAGE}
