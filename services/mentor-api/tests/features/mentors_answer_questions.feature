@@ -28,7 +28,7 @@ Feature: Mentors answer questions
         And the response json at $.query is equal to "<query>"
         And the response json at $.answer_id is equal to "<answer_id>"
         And the response json at $.answer_text starts with "<answer_text_start>"
-        And the response json at $.classifier matches "^lstm_v1/[a-zA-Z0-9\-_]+$"
+        And the response json at $.classifier matches "^[a-zA-Z0-9\-_/]+$"
   
   Examples: Queries
     | mentor    | query                                               | answer_id                      | answer_text_start                                                                                                   |
@@ -38,6 +38,3 @@ Feature: Mentors answer questions
     | clint     | is the navy safe                                    | clintanderson_A227_4_2         | In the Navy, you're exposed to some type of danger                                                                  |
     | clint     | how is dating scene                                 | clintanderson_A136_3_1         | Right now, I'm pretty single                                                                                        |
     | clint     | have you visited many countries                     | clintanderson_A40_1_2          | So, when you are on deployment, you can have these things called 'Port Calls', which is where you go to the country |
-
-    # | clint     | how is job security in the navy?                    | clintanderson_A49_1_2         | So, job security is                                         |
-            

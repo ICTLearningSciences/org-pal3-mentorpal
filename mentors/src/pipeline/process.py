@@ -82,6 +82,7 @@ def _prepare_videos(
             logging.info(
                 f"{logging_function_name} [{i + 1}/{len(ust_list)}] source={ust.source}, target={ust.target}"
             )
+            os.makedirs(os.path.dirname(ust.target), exist_ok=True)
             encode_func(ust.source, ust.target)
         except BaseException as u_err:
             logging.exception(

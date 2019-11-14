@@ -13,7 +13,9 @@ print(f"ARCH {ARCH}")
 print(f"CHECKPOINT {CHECKPOINT}")
 print(f"MENTOR {MENTOR}")
 
-classifier = create_classifier(ARCH, CHECKPOINT, MENTOR, CHECKPOINT_ROOT)
+classifier = create_classifier(
+    checkpoint_root=CHECKPOINT_ROOT, arch=ARCH, checkpoint=CHECKPOINT, mentors=MENTOR
+)
 metrics = Metrics()
 accuracy = metrics.test_accuracy(classifier, TEST_SET)
 

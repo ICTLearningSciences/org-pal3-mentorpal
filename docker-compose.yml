@@ -15,6 +15,13 @@ services:
       # - MENTOR_VIDEO_HOST=http://video.mentorpal.org
     expose:
       - "5000"
+    volumes:
+      - type: bind
+        source: ./checkpoint
+        target: /app/checkpoint
+      - type: bind
+        source: ./mentors/data/mentors
+        target: /app/mentors
   proxy:
     image: "mentorpal-proxy"
     ports:

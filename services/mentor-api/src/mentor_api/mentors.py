@@ -1,4 +1,6 @@
 import random
+from typing import Tuple
+
 from mentorpal.classifiers import ClassifierFactory
 from mentorpal.mentor import Mentor
 from mentorpal.classifiers import Classifier
@@ -12,7 +14,7 @@ class _APIClassifier(Classifier):
      - Translates OFF_TOPIC responses to prompts
     """
 
-    def __init__(self, classifier, mentor):
+    def __init__(self, classifier: Classifier, mentor: Mentor):
         """
         Create an _APIClassifier instance that wraps/decorates another classifier
 
@@ -27,12 +29,19 @@ class _APIClassifier(Classifier):
         self.classifier = classifier
         self.mentor = mentor
 
-    def get_answer(self, question, canned_question_match_disabled=False):
+    def get_answer(
+        self, question: str, canned_question_match_disabled: bool = False
+    ) -> Tuple[str, str, str]:
         answer = self.classifier.get_answer(question, canned_question_match_disabled)
         answer = self._off_topic_to_prompt(answer)
         return answer
 
-    def _off_topic_to_prompt(self, cls_answer):
+    def get_classifier_id(self) -> str:
+        return self.classifier.get_classifier_id()
+
+    def _off_topic_to_prompt(
+        self, cls_answer: Tuple[str, str, str]
+    ) -> Tuple[str, str, str]:
         assert len(cls_answer) == 3
         if (
             cls_answer[0] == "_OFF_TOPIC_"

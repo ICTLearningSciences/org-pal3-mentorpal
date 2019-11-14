@@ -4,6 +4,16 @@ DOCKER_SERVICES=$(PROJECT_ROOT)/bin/docker_services.sh
 DEV_VIRTUAL_ENV=.venv
 BLACK_EXCLUDES="/(\.venv|build|behave-restful)/"
 
+.PHONY clean:
+clean:
+	@rm -rf build
+
+EBS_BUNDLE_MENTOR_API=build/ebs/bundle/mentor-api
+$(EBS_BUNDLE_MENTOR_API):
+	mkdir -p $(EBS_BUNDLE_MENTOR_API)
+	cp -R checkpoint/classifiers $(EBS_BUNDLE_MENTOR_API)/classifiers
+	cp -R mentors/data/mentors $(EBS_BUNDLE_MENTOR_API)/mentors
+
 $(DEV_VIRTUAL_ENV):
 	$(MAKE) dev-env-create
 

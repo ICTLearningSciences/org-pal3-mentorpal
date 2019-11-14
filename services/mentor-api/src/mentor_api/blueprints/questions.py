@@ -3,7 +3,7 @@ from mentor_api.errors import InvalidUsage
 from mentor_api.mentors import MentorClassifierRegistry
 
 
-def create(mentor_classifier_registry):
+def create(mentor_classifier_registry: MentorClassifierRegistry) -> Blueprint:
     assert isinstance(mentor_classifier_registry, MentorClassifierRegistry)
 
     questions_blueprint = Blueprint("questions", __name__)
@@ -28,8 +28,8 @@ def create(mentor_classifier_registry):
         mc = None
         try:
             mc = mentor_classifier_registry.find_or_create(mentor_id)
-        except BaseException:
-            pass
+        except BaseException as err:
+            current_app.logger.warning(f"error loading mentor classifier: {err}")
         if mc is None:
             raise InvalidUsage(
                 message=f"mentor not found for {mentor_id}", status_code=404
@@ -44,10 +44,7 @@ def create(mentor_classifier_registry):
                 "confidence": confidence,
                 "mentor": mentor_id,
                 "query": query,
-                "classifier": "{}/{}".format(
-                    current_app.config["CLASSIFIER_ARCH"] or "arch_unknown",
-                    current_app.config["CLASSIFIER_CHECKPOINT"] or "checkpoint_unknown",
-                ),
+                "classifier": mc.get_classifier_id(),
             }
         )
 

@@ -28,10 +28,8 @@ Feature: Mentors answer canned questions
         And the response json at $.query is equal to "<query>"
         And the response json at $.answer_id is equal to "<answer_id>"
         And the response json at $.answer_text starts with "<answer_text_start>"
-        And the response json at $.classifier matches "^lstm_v1/[a-zA-Z0-9\-_]+$"
+        And the response json at $.classifier matches "^[a-zA-Z0-9\-_/]+$"
   
   Examples: Queries
     | mentor    | query                                                   | answer_id                     | answer_text_start                                                                                                   |
     | clint     | were you ever bullied in high school? what did you do?  | clintanderson_A109_2_2        | When I was a kid, I used to wear these glasses, I used to be a lot                                                  |
-    
-    # | clint     | how is job security in the navy?                    | clintanderson_A49_1_2         | So, job security is                                         |

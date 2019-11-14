@@ -33,7 +33,7 @@ class __ClassifierTrainingFactory(ClassifierTrainingFactory):
 # NOTE: always make sure this module lives in `mentorpal.classifiers.arch.${ARCH}`
 # so that it can be discovered/loaded by arch name
 register_classifier_training_factory(
-    LSTMClassifier.get_arch(), __ClassifierTrainingFactory()
+    LSTMClassifier.get_classifier_arch(), __ClassifierTrainingFactory()
 )
 
 

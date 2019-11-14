@@ -30,6 +30,3 @@ Feature: Root endpoint for a mentor serves profile data
   Examples: Queries
     | mentor    | name                  | short_name    | title                                     | intro_id              | intro_text                                                    |
     | clint     | Clinton Anderson      | Clint         | Nuclear Electrician's Mate                | clintanderson_U1_1_1  | My name is EMC Clint Anderson. I was bo                       |
-    | dan       | Dan Davis             | Dan           | High Performance Computing Researcher     | dandavis_U1_1_1       | Hello I'm Dan Davis and retired to comma                      |
-    | carlos    | Carlos Rios           | Carlos        | Marine Logistician                        | carlos_U1_1_1         | So my name is Carlos�Rios. I'm a logistics lead supporting    |
-    | julianne  | Julianne Nordhagen    | Julianne      | Student Naval Aviator                     | julianne_U1_1_1       | Hi my name's Julie Nordhagen, I'm in the United State         |
