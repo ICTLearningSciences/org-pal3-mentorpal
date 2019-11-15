@@ -18,10 +18,23 @@ FLASK_CONFIG_TGT=${DOCKER_MOUNT_TGT}/flask_config.py
 
 echo "testing mentor-api image ${DOCKER_IMAGE}..."
 
-docker run \
+if [[ -z "$USE_MOUNTED_DATA" ]]; then
+	docker run \
 		-d \
 		--rm \
 		--name ${CONTAINER_NAME} \
 		-p 5000:5000 \
 		-e MENTORPAL_CLASSIFIER_API_SETTINGS=${FLASK_CONFIG_TGT} \
 	${DOCKER_IMAGE}
+else
+	echo "running in docker with mounted mentors and checkpoints..."
+	docker run \
+		-d \
+		--rm \
+		--name ${CONTAINER_NAME} \
+		-p 5000:5000 \
+		-v ${PROJECT_ROOT}/checkpoint:/app/checkpoint \
+		-v ${PROJECT_ROOT}/mentors/data/mentors:/app/mentors \
+		-e MENTORPAL_CLASSIFIER_API_SETTINGS=${FLASK_CONFIG_TGT} \
+	${DOCKER_IMAGE}
+fi

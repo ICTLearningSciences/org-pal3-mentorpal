@@ -98,7 +98,6 @@ docker-run-dev: docker-image-exists
 			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
 			-v $(PROJECT_ROOT)/mentors/data/mentors:/app/mentors \
 			-v $(PWD)/src/mentor_api:/app/mentor_api \
-			-v $(PROJECT_ROOT)/classifier/src/mentorpal:/app/mentorpal \
 		$(DOCKER_IMAGE) 
 
 
@@ -113,7 +112,6 @@ docker-run-dev-shell: docker-image-exists
 			-v $(PROJECT_ROOT)/checkpoint:/app/checkpoint \
 			-v $(PROJECT_ROOT)/mentors/data/mentors:/app/mentors \
 			-v $(PWD)/src/mentor_api:/app/mentor_api \
-			-v $(PROJECT_ROOT)/classifier/src/mentorpal:/app/mentorpal \
 			--entrypoint /bin/bash \
 		$(DOCKER_IMAGE) 
 
@@ -158,10 +156,11 @@ test-units: $(TEST_VIRTUAL_ENV)
 
 .PHONY: test-integrations
 test-integrations: $(TEST_VIRTUAL_ENV) docker-image-exists
-	source $(TEST_VIRTUAL_ENV)/bin/activate  && \
-		cd tests && \
-		export DOCKER_IMAGE=$(DOCKER_IMAGE) && \
-		bolt start-api-then-test-features
+	source $(TEST_VIRTUAL_ENV)/bin/activate \
+		&& cd tests\
+		&& export DOCKER_IMAGE=$(DOCKER_IMAGE) \
+		&& export USE_MOUNTED_DATA=1 \
+		&& ./bin/run_server_then_integration_tests.sh
 
 .PHONY: test
 test:
