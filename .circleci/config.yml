@@ -94,15 +94,6 @@ jobs:
       - run:
           name: Lint python
           command: make lint-python
-  classifier-test:
-    executor: python
-    steps:
-      - *checkout-revision-restore
-      - *git-lfs-install
-      - checkout
-      - run:
-          name: Test classifier (unit tests)
-          command: cd classifier && make test
   mentor-api-test:
     executor: python
     steps:
@@ -202,9 +193,6 @@ workflows:
       - format-and-lint-python:
           requires:
             - checkout-revision-setup
-      - classifier-test:
-          requires:
-            - format-and-lint-python
       - client-test:
           requires:
             - format-and-lint-python
