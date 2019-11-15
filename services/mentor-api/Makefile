@@ -150,10 +150,10 @@ test-env-create: $(PROJECT_ROOT)/behave-restful/setup.py virtualenv-installed
 
 .PHONY: test-units
 test-units: $(TEST_VIRTUAL_ENV)
-	source $(TEST_VIRTUAL_ENV)/bin/activate && \
-		export PYTHONPATH=$${PYTHONPATH}:$(PROJECT_ROOT)/services/mentor-api/src:$(PROJECT_ROOT)/classifier/src && \
-		export CLASSIFIER_CHECKPOINT_ROOT=$(PROJECT_ROOT)/checkpoint && \
-		$(TEST_VIRTUAL_ENV)/bin/py.test -vv
+	source $(TEST_VIRTUAL_ENV)/bin/activate \
+		&& export PYTHONPATH=$${PYTHONPATH}:$(PROJECT_ROOT)/services/mentor-api/src \
+		&& export CLASSIFIER_CHECKPOINT_ROOT=$(PROJECT_ROOT)/checkpoint \
+		&& $(TEST_VIRTUAL_ENV)/bin/py.test -vv
 
 
 .PHONY: test-integrations
