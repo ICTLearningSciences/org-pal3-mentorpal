@@ -28,11 +28,17 @@ aliases:
     command: cd ${EBS_TOOLS} && make docker-push
   - &eb-deploy
     name: EBS Deploy
+    # TODO: now hardcoded with arch 'lstm_v1' and --newest. 
+    # This should be made configurable but in a way that is minimally burdonsome/error prone
     command: |
       cd ${EBS_TOOLS} \
         && make clean build \
         && mkdir -p build/ebs/bundle/mentor-api/checkpoint \
-        && cp -r ~/project/checkpoint/classifiers build/ebs/bundle/mentor-api/checkpoint/classifiers \
+        && bash ~/project/checkpoint/bin/copy_models.sh \
+          --newest \
+          --arch lstm_v1 \
+          --from ~/project/checkpoint/classifiers \
+          --to build/ebs/bundle/mentor-api/checkpoint/classifiers \
         && cp -r ~/project/checkpoint/vector_models build/ebs/bundle/mentor-api/checkpoint/vector_models \
         && cp -r ~/project/mentors/data/mentors build/ebs/bundle/mentor-api/mentors \
         && make eb-deploy
