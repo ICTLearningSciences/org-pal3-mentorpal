@@ -208,7 +208,6 @@ workflows:
       - docker-build-test-push:
           requires:
             - format-and-lint-python
-            - classifier-test
             - mentor-api-test
             - client-test
       - deploy-to-dev:
