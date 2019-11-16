@@ -1,43 +1,38 @@
 CHECKPOINT_ROOT=$(shell pwd)
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
-VECTOR_MODEL_BASE_URL=http://mentorpal-vector-models.s3-website-us-east-1.amazonaws.com
 CHECKPOINT?=2019-11-09-0031
 ARCH?=lstm_v1
 MENTOR?=clint
 CHECKPOINT_PATH=${CHECKPOINT_ROOT}/classifiers/${ARCH}/${CHECKPOINT}
-DOCKER_IMAGE?=mentorpal-classifier
-
-.PHONY: init
-init: checkpoint-vector-models
-
-# downloads all vector models required by active CHECKPOINT/ARCH
-.PHONY: checkpoint-vector-models
-checkpoint-vector-models:
-	${CHECKPOINT_ROOT}/bin/checkpoint_vector_models_download.sh \
-            -o ${CHECKPOINT_ROOT}/vector_models \
-            -h ${VECTOR_MODEL_BASE_URL} \
-        ${CHECKPOINT_PATH}
+DOCKER_IMAGE?=uscictdocker/mentorpal-classifier:0.0.1-alpha.8
 
 .PHONY: checkpoint-clean/mentor/%
 checkpoint-clean/mentor/%:
 	rm -rf classifiers/$(ARCH)/*$**
 
-# CHECKPOINT={CHECKPOINT} MENTOR={MENTOR} make test-checkpoint
-.PHONY: checkpoint-test
-checkpoint-test: checkpoint-vector-models
-	./bin/checkpoint_test.sh $(MENTOR) $(ARCH) $(CHECKPOINT) 
-
 # make c1={CHECKPOINT1} c2={CHECKPOINT2} m={MENTOR} compare-checkpoints
 .PHONY: checkpoint-compare
-checkpoints-compare: checkpoint-vector-models
+checkpoints-compare: 
 	./bin/checkpoints_compare.sh $(mentor) $(arch_1) $(checkpoint_1) $(arch_2) $(checkpoint_2) 
 
+# CHECKPOINT={CHECKPOINT} MENTOR={MENTOR} make test-checkpoint
+.PHONY: checkpoint-test
+checkpoint-test: 
+	./bin/checkpoint_test.sh \
+                --arch $(ARCH) \
+                --checkpoint $(CHECKPOINT) \
+                --image $(DOCKER_IMAGE) \
+                --mentor $(MENTOR)
+
 .PHONY: checkpoint-train
-checkpoint-train: checkpoint-vector-models
-	./bin/checkpoint_train.sh $(ARCH) ${checkpoint}
+checkpoint-train: 
+	./bin/checkpoint_train.sh \
+                --arch $(ARCH) \
+                --checkpoint $(CHECKPOINT) \
+                --image $(DOCKER_IMAGE)
 
 .PHONY: checkpoint-train/mentor/%
-checkpoint-train/mentor/%: checkpoint-vector-models
+checkpoint-train/mentor/%: 
 	./bin/checkpoint_train.sh $(ARCH) ${CHECKPOINT} $*
 
 .PHONY: docker-run-dev
