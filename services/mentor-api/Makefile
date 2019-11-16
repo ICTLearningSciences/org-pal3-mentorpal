@@ -1,3 +1,5 @@
+# TODO: manual deploy mentorpal-classifier image for test, make this build work, auto deploy classifier image
+
 SHELL:=/bin/bash
 DOCKER_CONTAINER?=mentorpal-mentor-api
 BUILD_TAG?=
@@ -7,7 +9,7 @@ PWD=$(shell pwd)
 SERVICE_NAME=$(shell v='$(PWD)'; echo "$${v\#\#*/}")
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 PROJECT_NAME?=mentorpal
-DOCKER_BASE_IMAGE?=mentorpal-classifier
+DOCKER_BASE_IMAGE?=uscictdocker/mentorpal-classifier:0.0.1-alpha.8
 DOCKER_IMAGE?=$(shell \
 	export BUILD_TAG=$(BUILD_TAG) \
 		PROJECT_ROOT=$(PROJECT_ROOT) \
