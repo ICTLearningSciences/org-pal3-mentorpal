@@ -3,8 +3,6 @@
 BIN="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 timeout=10
 
-${BIN}/flask_start.sh
-
 timer=0
 echo "waiting for server to respond to ping"
 until $(curl --output /dev/null --silent --head --fail http://localhost:5000/mentor-api/ping); do
@@ -21,6 +19,3 @@ done
 echo 
 echo "server ready, running behave tests..."
 behave
-
-echo "tests complete, stopping server..."
-${BIN}/flask_stop.sh

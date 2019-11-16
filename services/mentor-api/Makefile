@@ -144,10 +144,12 @@ test-units: $(TEST_VIRTUAL_ENV)
 .PHONY: test-integrations
 test-integrations: $(TEST_VIRTUAL_ENV) docker-image-exists
 	source $(TEST_VIRTUAL_ENV)/bin/activate \
-		&& cd tests\
+		&& cd tests \
 		&& export DOCKER_IMAGE=$(DOCKER_IMAGE) \
 		&& export USE_MOUNTED_DATA=1 \
-		&& ./bin/run_server_then_integration_tests.sh
+		&& ./bin/flask_start.sh \
+		&& ./bin/wait_for_server_then_run_tests.sh \
+		&& ./bin/flask_stop.sh
 
 .PHONY: test
 test:

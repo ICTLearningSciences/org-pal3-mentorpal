@@ -1,6 +1,8 @@
 ARG MENTOR_API_IMAGE=mentorpal-mentor-api
 FROM ${MENTOR_API_IMAGE}
-
+RUN apt-get update \
+        && apt-get install -y curl \
+        && rm -rf /var/lib/apt/lists/*
 RUN pip install virtualenv
 ENV VIRTUAL_ENV=/test/.venv
 COPY build /test
