@@ -3,9 +3,9 @@
 import datetime
 import logging
 import os
-from mentorpal.mentor import Mentor
-from mentorpal.classifiers import checkpoint_path
-from mentorpal.classifiers.training import find_classifier_training_factory
+from mentor_classifier.mentor import Mentor
+from mentor_classifier.classifiers import checkpoint_path
+from mentor_classifier.classifiers.training import find_classifier_training_factory
 
 logging.basicConfig(level=logging.INFO)
 ARCH = os.getenv("ARCH")

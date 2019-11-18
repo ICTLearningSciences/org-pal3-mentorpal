@@ -10,8 +10,8 @@ TEST_SET=testing_data_full.csv
 PROJECT_ROOT=$(git rev-parse --show-toplevel 2> /dev/null)
 CHECKPOINT_ROOT=${PROJECT_ROOT}/checkpoint
 
-DOCKER_IMAGE=mentorpal-classifier
-DOCKER_CONTAINER=mentorpal-classifier
+DOCKER_IMAGE=mentor-classifier
+DOCKER_CONTAINER=mentor-classifier
 
 docker run \
         -it \

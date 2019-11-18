@@ -1,9 +1,9 @@
 import random
 from typing import Tuple
 
-from mentorpal.classifiers import ClassifierFactory
-from mentorpal.mentor import Mentor
-from mentorpal.classifiers import Classifier
+from mentor_classifier.classifiers import ClassifierFactory
+from mentor_classifier.mentor import Mentor
+from mentor_classifier.classifiers import Classifier
 
 
 class _APIClassifier(Classifier):
@@ -23,7 +23,7 @@ class _APIClassifier(Classifier):
         """
         assert isinstance(
             classifier, Classifier
-        ), "invalid type for classifier (expected mentorpal.Classifier, encountered {}".format(
+        ), "invalid type for classifier (expected mentor_classifier.Classifier, encountered {}".format(
             type(classifier)
         )
         self.classifier = classifier
@@ -57,13 +57,13 @@ class _APIClassifier(Classifier):
 
 class MentorClassifierRegistry:
     """
-    Enables find_or_create mentorpal.classifiers.Classifer by mentor_id
+    Enables find_or_create mentor_classifier.classifiers.Classifer by mentor_id
     """
 
     def __init__(self, classifier_factory):
         """
         Args:
-            classifier_factory: (mentorpal.classifiers.ClassiferFactory)
+            classifier_factory: (mentor_classifier.classifiers.ClassiferFactory)
         """
         assert isinstance(classifier_factory, ClassifierFactory)
         self.classifier_factory = classifier_factory
@@ -75,7 +75,7 @@ class MentorClassifierRegistry:
             mentor_id: (str) id for a mentor
 
         Returns:
-            classifier: (mentorpal.classifiers.Classifer)
+            classifier: (mentor_classifier.classifiers.Classifer)
         """
         classifier = self.mentor_classifiers_by_id.get(mentor_id)
         if classifier is None:

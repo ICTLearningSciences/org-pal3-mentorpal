@@ -18,7 +18,7 @@ By default this will  train all mentors found under `$MENTORPAL/mentor`, create 
 If you want to train with a different architecture, do
 
 ```bash
-# my_arch should be a module in mentorpal at mentorpal.classifiers.arch.my_arch
+# my_arch should be a module in mentorpal at mentor_classifier.classifiers.arch.my_arch
 ARCH=my_arch \
 make checkpoint-train
 ```
@@ -43,7 +43,7 @@ make checkpoint-test
 To test a specific checkpoint do
 
 ```bash
-# my_arch should be a module in mentorpal at mentorpal.classifiers.arch.my_arch
+# my_arch should be a module in mentorpal at mentor_classifier.classifiers.arch.my_arch
 # my_checkpoint should be an existing checkpoint at $MENTORPAL/checkpoint/classifiers/$myarch/$my_checkpoint
 ARCH=my_arch CHECKPOINT=my_checkpoint \
 make checkpoint-test

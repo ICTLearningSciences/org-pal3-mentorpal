@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
-from mentorpal.metrics import Metrics
-from mentorpal.classifiers import create_classifier
+from mentor_classifier.metrics import Metrics
+from mentor_classifier.classifiers import create_classifier
 
 mentor = os.environ.get("MENTOR")
 c1 = os.environ.get("CHECKPOINT_1")

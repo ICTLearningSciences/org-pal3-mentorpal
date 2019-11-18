@@ -4,7 +4,7 @@ CHECKPOINT?=2019-11-09-0031
 ARCH?=lstm_v1
 MENTOR?=clint
 CHECKPOINT_PATH=${CHECKPOINT_ROOT}/classifiers/${ARCH}/${CHECKPOINT}
-DOCKER_IMAGE?=uscictdocker/mentorpal-classifier:0.0.1-alpha.8
+DOCKER_IMAGE?=uscictdocker/mentor-classifier:1.0.0-alpha.12
 
 .PHONY: checkpoint-clean/mentor/%
 checkpoint-clean/mentor/%:
@@ -40,7 +40,7 @@ docker-run-dev:
 	docker run \
             -it \
             --rm \
-            --name mentorpal-classifier \
+            --name mentor-classifier \
             -v ${CHECKPOINT_ROOT}:/app/checkpoint \
             -v ${PROJECT_ROOT}/mentors:/app/mentors \
             -v ${PROJECT_ROOT}/classifier/src/mentorpal:/app/mentorpal \
