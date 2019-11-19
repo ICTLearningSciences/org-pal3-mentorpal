@@ -1,10 +1,23 @@
 CHECKPOINT_ROOT=$(shell pwd)
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 CHECKPOINT?=2019-11-09-0031
+MENTOR_ROOT=$(PROJECT_ROOT)/mentors/data/mentors
 ARCH?=lstm_v1
 MENTOR?=clint
 CHECKPOINT_PATH=${CHECKPOINT_ROOT}/classifiers/${ARCH}/${CHECKPOINT}
-DOCKER_IMAGE?=uscictdocker/mentor-classifier:1.0.0-alpha.12
+MENTOR_CLASSIFIER_DOCKER?=uscictdocker/mentor-classifier:1.0.0-alpha.14
+MENTOR_CLASSIFIER_PIP=/Users/kirschner/projects/mentor-classifier
+VENV=.venv
+
+$(VENV):
+	$(MAKE) venv-create
+
+.PHONY: venv-create
+venv-create:
+	[ -d $(VENV) ] || virtualenv -p python3 $(VENV)
+	$(VENV)/bin/pip install --upgrade pip
+	$(VENV)/bin/pip install -e $(MENTOR_CLASSIFIER_PIP)
+
 
 .PHONY: checkpoint-clean/mentor/%
 checkpoint-clean/mentor/%:
@@ -12,28 +25,42 @@ checkpoint-clean/mentor/%:
 
 # make c1={CHECKPOINT1} c2={CHECKPOINT2} m={MENTOR} compare-checkpoints
 .PHONY: checkpoint-compare
-checkpoints-compare: 
+checkpoints-compare: $(VENV)
 	./bin/checkpoints_compare.sh $(mentor) $(arch_1) $(checkpoint_1) $(arch_2) $(checkpoint_2) 
 
-# CHECKPOINT={CHECKPOINT} MENTOR={MENTOR} make test-checkpoint
 .PHONY: checkpoint-test
-checkpoint-test: 
-	./bin/checkpoint_test.sh \
+checkpoint-test: $(VENV)
+	. $(VENV)/bin/activate \
+        && mentor_classifier_docker checkpoint-test \
                 --arch $(ARCH) \
                 --checkpoint $(CHECKPOINT) \
-                --image $(DOCKER_IMAGE) \
-                --mentor $(MENTOR)
+                --image $(MENTOR_CLASSIFIER_DOCKER) \
+                --mentor $(MENTOR) \
+                --mentor-root $(MENTOR_ROOT) \
+                --checkpoint-root $(CHECKPOINT_ROOT) \
+                --docker-env "TEST_SET=testing_data_full.csv"
 
 .PHONY: checkpoint-train
-checkpoint-train: 
-	./bin/checkpoint_train.sh \
+checkpoint-train: $(VENV)
+	. $(VENV)/bin/activate \
+        && mentor_classifier_docker checkpoint-train \
                 --arch $(ARCH) \
                 --checkpoint $(CHECKPOINT) \
-                --image $(DOCKER_IMAGE)
+                --image $(MENTOR_CLASSIFIER_DOCKER) \
+                --mentor-root $(MENTOR_ROOT) \
+                --checkpoint-root $(CHECKPOINT_ROOT)
+
 
 .PHONY: checkpoint-train/mentor/%
-checkpoint-train/mentor/%: 
-	./bin/checkpoint_train.sh $(ARCH) ${CHECKPOINT} $*
+checkpoint-train/mentor/%: $(VENV)
+	. $(VENV)/bin/activate \
+        && mentor_classifier_docker checkpoint-train \
+                --arch $(ARCH) \
+                --checkpoint $(CHECKPOINT) \
+                --image $(MENTOR_CLASSIFIER_DOCKER) \
+                --mentor-root $(MENTOR_ROOT) \
+                --checkpoint-root $(CHECKPOINT_ROOT) \
+                --mentor $*
 
 .PHONY: docker-run-dev
 docker-run-dev:
@@ -49,5 +76,5 @@ docker-run-dev:
             -e MENTOR=${MENTOR} \
             --workdir /app \
             --entrypoint /bin/bash \
-        ${DOCKER_IMAGE}
+        ${MENTOR_CLASSIFIER_DOCKER}
 	
