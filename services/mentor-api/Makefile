@@ -9,7 +9,7 @@ PWD=$(shell pwd)
 SERVICE_NAME=$(shell v='$(PWD)'; echo "$${v\#\#*/}")
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 PROJECT_NAME?=mentorpal
-DOCKER_BASE_IMAGE?=uscictdocker/mentor-classifier:1.0.0-alpha.12
+DOCKER_BASE_IMAGE?=uscictdocker/mentor-classifier:1.0.0-alpha.14
 DOCKER_IMAGE?=$(shell \
 	export BUILD_TAG=$(BUILD_TAG) \
 		PROJECT_ROOT=$(PROJECT_ROOT) \
