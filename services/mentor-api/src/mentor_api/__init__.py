@@ -5,7 +5,7 @@ from flask_cors import CORS
 from mentor_api.errors import InvalidUsage
 from mentor_api.mentors import MentorClassifierRegistry
 from mentor_api.config_default import Config
-from mentorpal.classifiers import create_classifier_factory
+from mentor_classifier.classifiers import create_classifier_factory
 
 
 def create_app(script_info=None):

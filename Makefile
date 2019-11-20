@@ -24,14 +24,8 @@ dev-env-create:
 	$(DEV_VIRTUAL_ENV)/bin/pip install -r dev-env/requirements.txt
 
 
-
-.PHONY: docker-build-classifier
-docker-build-classifier:
-	cd classifier && $(MAKE) docker-build
-
-
 .PHONY: docker-build-services
-docker-build-services: docker-build-classifier
+docker-build-services: 
 	$(DOCKER_SERVICES) build
 
 
@@ -89,7 +83,6 @@ lint-python: $(DEV_VIRTUAL_ENV)
 test:
 	cd services/mentor-api && $(MAKE) test
 	cd client && $(MAKE) test
-	cd classifier && $(MAKE) test
 	cd mentors && make test
 	cd reports && make test
 

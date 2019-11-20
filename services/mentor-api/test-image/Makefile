@@ -59,5 +59,5 @@ test: test-image-exists
 			--rm \
 		$(TEST_IMAGE) 
 	sleep 1
-	docker exec $(TEST_IMAGE_CONTAINER) bash -c "cd /test/tests && bolt test-features"
+	docker exec $(TEST_IMAGE_CONTAINER) bash -c "cd /test/tests && ./bin/wait_for_server_then_run_tests.sh"
 	docker kill $(TEST_IMAGE_CONTAINER)

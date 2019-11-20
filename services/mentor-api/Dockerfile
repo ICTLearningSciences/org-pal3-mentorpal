@@ -1,4 +1,4 @@
-ARG MENTORPAL_CLASSIFIER_IMAGE=mentorpal-classifier
+ARG MENTORPAL_CLASSIFIER_IMAGE=uscictdocker/mentor-classifier:latest
 FROM ${MENTORPAL_CLASSIFIER_IMAGE}
 
 # this should be set by the base image, mainly here for documentation purpose
@@ -10,7 +10,7 @@ RUN bash -c "source activate ${MENTORPAL_CONDA_ENV} && \
     pip install -r /tmp/requirements.txt"
 RUN rm /tmp/requirements.txt
 
-ENV FLASK_APP=mentorpal_classifier_service
+ENV FLASK_APP=mentor_classifier_service
 
 WORKDIR /app
 COPY src .
