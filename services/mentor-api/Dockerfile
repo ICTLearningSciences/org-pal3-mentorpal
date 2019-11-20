@@ -1,4 +1,4 @@
-ARG MENTORPAL_CLASSIFIER_IMAGE=mentor-classifier
+ARG MENTORPAL_CLASSIFIER_IMAGE=uscictdocker/mentor-classifier:latest
 FROM ${MENTORPAL_CLASSIFIER_IMAGE}
 
 # this should be set by the base image, mainly here for documentation purpose

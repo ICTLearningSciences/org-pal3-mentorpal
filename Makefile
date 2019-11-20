@@ -83,7 +83,6 @@ lint-python: $(DEV_VIRTUAL_ENV)
 test:
 	cd services/mentor-api && $(MAKE) test
 	cd client && $(MAKE) test
-	cd classifier && $(MAKE) test
 	cd mentors && make test
 	cd reports && make test
 

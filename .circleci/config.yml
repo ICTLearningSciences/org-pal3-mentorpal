@@ -34,7 +34,7 @@ aliases:
       cd ${EBS_TOOLS} \
         && make clean build \
         && mkdir -p build/ebs/bundle/mentor-api/checkpoint \
-        && pip install --user -e git+https://github.com/ICTLearningSciences/mentor-classifier.git@1.0.0-alpha.15#egg=mentor_classifier \
+        && pip install --user -e git+https://github.com/ICTLearningSciences/mentor-classifier.git@1.0.0#egg=mentor_classifier \
         && mentor_classifier_copy_models \
           --newest \
           --arch lstm_v1 \
@@ -75,15 +75,6 @@ aliases:
       paths:
         - ".git"
 jobs:
-  test-copy-models:
-    executor: python
-    steps:
-      - checkout
-      - run:
-          name: test copy models
-          command: |
-            pip install --user -e git+https://github.com/ICTLearningSciences/mentor-classifier.git@1.0.0.-alpha.15#egg=mentor_classifier \
-            && mentor_classifier_copy_models 
   checkout-revision-setup:
     executor: python
     steps:
@@ -197,9 +188,6 @@ jobs:
       - run: *eb-deploy
 workflows:
   version: 2
-  test-copy-models:
-      jobs:
-        - test-copy-models
   build-test-deploy:
     jobs:
       - checkout-revision-setup
