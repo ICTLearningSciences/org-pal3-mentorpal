@@ -23,14 +23,17 @@ services:
         target: /app/mentorpal
     expose:
       - "5000"
-  proxy:
-    image: "mentorpal-proxy"
+  nginx:
+    image: nginx:1.15.6
     ports:
       - "8080:80"
     depends_on:
       - mentor-api
       - web-app
     volumes:
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
       - type: bind
         source: ./mentors/videos
         target: /etc/nginx/html/videos

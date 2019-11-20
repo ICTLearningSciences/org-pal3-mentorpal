@@ -22,10 +22,17 @@ services:
       - type: bind
         source: ./mentors/data/mentors
         target: /app/mentors
-  proxy:
-    image: "mentorpal-proxy"
+  nginx:
+    image: nginx:1.15.6
     ports:
-      - "8080:80"
+      - 8080:80
     depends_on:
       - mentor-api
       - web-app
+    volumes:
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+      - type: bind
+        source: ./nginx/conf.d
+        target: /etc/nginx/conf.d

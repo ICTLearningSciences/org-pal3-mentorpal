@@ -14,9 +14,9 @@
       }
     },
     {
-      "name": "nginx-proxy-conf",
+      "name": "nginx-conf",
       "host": {
-        "sourcePath": "/var/app/current/proxy/conf.d"
+        "sourcePath": "/var/app/current/nginx/conf.d"
       }
     }
   ],
@@ -59,8 +59,8 @@
       ]
     },
     {
-      "name": "nginx-proxy",
-      "image": "nginx",
+      "name": "nginx",
+      "image": "nginx:1.15.6",
       "essential": true,
       "memory": 128,
       "portMappings": [
@@ -72,12 +72,12 @@
       "links": ["web-app", "mentor-api"],
       "mountPoints": [
         {
-          "sourceVolume": "nginx-proxy-conf",
+          "sourceVolume": "nginx-conf",
           "containerPath": "/etc/nginx/conf.d",
           "readOnly": true
         },
         {
-          "sourceVolume": "awseb-logs-nginx-proxy",
+          "sourceVolume": "awseb-logs-nginx",
           "containerPath": "/var/log/nginx"
         }
       ]
