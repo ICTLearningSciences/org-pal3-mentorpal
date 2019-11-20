@@ -9,7 +9,6 @@ const usersRouter = require("./routes/users");
 const app = express();
 const http = require("http");
 
-// const requireEnv = require('./utils/require_env')
 app.engine("html", cons.swig);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "html");
@@ -21,9 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/processor", usersRouter);
-app.use("/validate", require("./routes/validate"));
+app.use("/", express.static(path.join(__dirname, "public", "mentorpanel")));
 
 const port = process.env.NODE_PORT || 3000;
 indexRouter.io.listen(server);
