@@ -82,7 +82,7 @@ jobs:
       - run:
           name: test copy models
           command: |
-            pip install -e git+https://github.com/ICTLearningSciences/mentor-classifier.git@0.0.2#egg=mentor_classifier \
+            pip install --user -e git+https://github.com/ICTLearningSciences/mentor-classifier.git@0.0.2#egg=mentor_classifier \
             && mentor_classifier_copy_models 
   checkout-revision-setup:
     executor: python
