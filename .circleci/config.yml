@@ -34,7 +34,8 @@ aliases:
       cd ${EBS_TOOLS} \
         && make clean build \
         && mkdir -p build/ebs/bundle/mentor-api/checkpoint \
-        && bash ~/project/checkpoint/bin/copy_models.sh \
+        && pip install -e git+https://github.com/ICTLearningSciences/mentor-classifier.git@0.0.2#egg=mentor_classifier \
+        && mentor_classifier_copy_models \
           --newest \
           --arch lstm_v1 \
           --from ~/project/checkpoint/classifiers \
@@ -74,6 +75,15 @@ aliases:
       paths:
         - ".git"
 jobs:
+  test-copy-models:
+    executor: python
+    steps:
+      - checkout
+      - run:
+          name: test copy models
+          command: |
+            pip install -e git+https://github.com/ICTLearningSciences/mentor-classifier.git@0.0.2#egg=mentor_classifier \
+            && mentor_classifier_copy_models 
   checkout-revision-setup:
     executor: python
     steps:
@@ -187,46 +197,49 @@ jobs:
       - run: *eb-deploy
 workflows:
   version: 2
-  build-test-deploy:
-    jobs:
-      - checkout-revision-setup
-      - format-and-lint-python:
-          requires:
-            - checkout-revision-setup
-      - client-test:
-          requires:
-            - format-and-lint-python
-      - mentor-api-test:
-          requires:
-            - format-and-lint-python
-      - mentor-pipeline-test:
-          requires:
-            - format-and-lint-python
-      - reports-test:
-          requires:
-            - format-and-lint-python
-      - docker-build-test-push:
-          requires:
-            - format-and-lint-python
-            - mentor-api-test
-            - client-test
-      - deploy-to-dev:
-          type: approval
-          requires:
-            - docker-build-test-push
-      - dev-ebs-deploy:
-          requires:
-            - deploy-to-dev
-      - qa-ebs-deploy:
-          filters: *only-master
-          requires:
-            - docker-build-test-push
-  build-test-deploy-prod:
-    jobs:
-      - docker-build-test-push:
-          name: prod-docker-build-test-push
-          filters: *only-prod-releases
-      - prod-ebs-deploy:
-          filters: *only-prod-releases
-          requires:
-            - prod-docker-build-test-push
+  test-copy-models:
+      jobs:
+        - test-copy-models
+  # build-test-deploy:
+  #   jobs:
+  #     - checkout-revision-setup
+  #     - format-and-lint-python:
+  #         requires:
+  #           - checkout-revision-setup
+  #     - client-test:
+  #         requires:
+  #           - format-and-lint-python
+  #     - mentor-api-test:
+  #         requires:
+  #           - format-and-lint-python
+  #     - mentor-pipeline-test:
+  #         requires:
+  #           - format-and-lint-python
+  #     - reports-test:
+  #         requires:
+  #           - format-and-lint-python
+  #     - docker-build-test-push:
+  #         requires:
+  #           - format-and-lint-python
+  #           - mentor-api-test
+  #           - client-test
+  #     - deploy-to-dev:
+  #         type: approval
+  #         requires:
+  #           - docker-build-test-push
+  #     - dev-ebs-deploy:
+  #         requires:
+  #           - deploy-to-dev
+  #     - qa-ebs-deploy:
+  #         filters: *only-master
+  #         requires:
+  #           - docker-build-test-push
+  # build-test-deploy-prod:
+  #   jobs:
+  #     - docker-build-test-push:
+  #         name: prod-docker-build-test-push
+  #         filters: *only-prod-releases
+  #     - prod-ebs-deploy:
+  #         filters: *only-prod-releases
+  #         requires:
+  #           - prod-docker-build-test-push

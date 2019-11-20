@@ -5,8 +5,9 @@ MENTOR_ROOT=$(PROJECT_ROOT)/mentors/data/mentors
 ARCH?=lstm_v1
 MENTOR?=clint
 CHECKPOINT_PATH=${CHECKPOINT_ROOT}/classifiers/${ARCH}/${CHECKPOINT}
-MENTOR_CLASSIFIER_DOCKER?=uscictdocker/mentor-classifier:1.0.0-alpha.14
-MENTOR_CLASSIFIER_PIP=/Users/kirschner/projects/mentor-classifier
+MENTOR_CLASSIFIER_TAG=0.0.2
+MENTOR_CLASSIFIER_DOCKER?=uscictdocker/mentor-classifier:$(MENTOR_CLASSIFIER_TAG)
+MENTOR_CLASSIFIER_PIP="git://github.com/ICTLearningSciences/mentor-classifier.git@$(MENTOR_CLASSIFIER_TAG)"
 VENV=.venv
 
 $(VENV):
