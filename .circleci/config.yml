@@ -153,10 +153,10 @@ workflows:
             - checkout-revision-setup
       - mentor-pipeline-test:
           requires:
-            - format-and-lint-python
+            - checkout-revision-setup
       - reports-test:
           requires:
-            - format-and-lint-python
+            - checkout-revision-setup
       - deploy-to-dev:
           type: approval
           requires:
