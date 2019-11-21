@@ -23,7 +23,7 @@
   "containerDefinitions": [
     {
       "name": "web-app",
-      "image": "{{web-app}}",
+      "image": "uscictdocker/mentor-client:0.0.1-alpha.1",
       "portMappings": [
         {
           "hostPort": 3000,
