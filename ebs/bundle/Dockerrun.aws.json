@@ -30,6 +30,12 @@
           "containerPort": 3000
         }
       ],
+      "environment": [
+        {
+          "name": "MENTOR_VIDEO_URL",
+          "value": "https://video.mentorpal.org/videos"
+        }
+      ],
       "essential": true,
       "memory": 1024,
       "links": ["mentor-api"]

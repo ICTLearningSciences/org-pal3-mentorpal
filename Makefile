@@ -89,3 +89,22 @@ test:
 test-images:
 	cd services/mentor-api && \
 		$(MAKE) test-image
+
+virtualenv-installed:
+	$(PROJECT_ROOT)/bin/virtualenv_ensure_installed.sh
+
+VENV=.venv
+VENV_PIP=$(VENV)/bin/pip
+$(VENV):
+	$(MAKE) venv-create
+
+.PHONY: venv-create
+venv-create:
+	[ -d $(VENV) ] || virtualenv -p python3 $(VENV)
+	$(VENV_PIP) install --upgrade pip
+	$(VENV_PIP) install awsebcli
+
+
+eb-ssh-%: $(VENV)
+	source activate $(VENV) && \
+		eb use $* --region us-east-1 && eb ssh
