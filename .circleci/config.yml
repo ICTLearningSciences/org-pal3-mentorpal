@@ -95,15 +95,6 @@ jobs:
       - run:
           name: Lint python
           command: make lint-python
-  mentor-api-test:
-    executor: python
-    steps:
-      - *checkout-revision-restore
-      - *git-lfs-install
-      - checkout
-      - run:
-          name: Test mentor-api (unit tests)
-          command: cd services/mentor-api && make test-units
   mentor-pipeline-test:
     executor: python
     steps:
@@ -171,9 +162,6 @@ workflows:
       - format-and-lint-python:
           requires:
             - checkout-revision-setup
-      - mentor-api-test:
-          requires:
-            - format-and-lint-python
       - mentor-pipeline-test:
           requires:
             - format-and-lint-python
@@ -183,7 +171,6 @@ workflows:
       - docker-build-test-push:
           requires:
             - format-and-lint-python
-            - mentor-api-test
       - deploy-to-dev:
           type: approval
           requires:

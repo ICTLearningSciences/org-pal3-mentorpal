@@ -81,7 +81,6 @@ lint-python: $(VENV)
 
 .PHONY: test
 test:
-	cd services/mentor-api && $(MAKE) test
 	cd mentors && make test
 	cd reports && make test
 

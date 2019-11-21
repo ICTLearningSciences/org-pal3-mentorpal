@@ -121,10 +121,3 @@ checkpoint/%: data/mentors/%
 	@echo ""
 	@echo "Then view your mentor here:"
 	@echo "	http://localhost:8080/mentorpanel/?mentor=$*"
-
-# Run latest checkpoint for mentor
-# To run custom checkpoint, use rules inside /mentor-api
-.PHONY: checkpoint-run
-checkpoint-run:
-	cd $(PROJECT_ROOT)/services/mentor-api && \
-	$(MAKE) docker-run-checkpoint/dev_latest

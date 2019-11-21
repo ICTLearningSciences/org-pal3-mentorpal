@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   mentor-api:
-    image: "mentorpal-mentor-api"
+    image: "uscictdocker/mentor-api:0.0.1-alpha.1"
     environment:
       - MENTOR_VIDEO_HOST=http://localhost:8080
       - CLASSIFIER_CHECKPOINT=dev_latest
