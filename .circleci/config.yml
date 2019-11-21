@@ -157,7 +157,7 @@ workflows:
       - reports-test:
           requires:
             - checkout-revision-setup
-      - deploy-to-dev:
+      - approve-dev-deploy:
           type: approval
           requires:
             - test-format
@@ -166,7 +166,7 @@ workflows:
             - reports-test
       - dev-ebs-deploy:
           requires:
-            - deploy-to-dev
+            - approve-dev-deploy
       - qa-ebs-deploy:
           filters: *only-master
           requires:
