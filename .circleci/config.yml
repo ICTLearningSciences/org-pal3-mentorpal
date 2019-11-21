@@ -85,7 +85,7 @@ jobs:
       - checkout
       - run:
           name: Test format
-          command: make test-format-python
+          command: make test-format
   test-lint:
     executor: python
     steps:
@@ -94,7 +94,7 @@ jobs:
       - checkout
       - run:
           name: Test lint
-          command: make lint-python
+          command: make test-lint
   mentor-pipeline-test:
     executor: python
     steps:
