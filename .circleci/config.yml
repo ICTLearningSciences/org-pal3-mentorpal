@@ -113,29 +113,6 @@ jobs:
       - run:
           name: Test mentor pipeline
           command: cd mentors && make test
-  client-test:
-    executor: node
-    steps:
-      - *checkout-revision-restore
-      - *git-lfs-install
-      - checkout
-      - run:
-          name: Check format
-          command: make test-format-js
-      - run: 
-          name: Install client
-          command: cd client && npm install
-      - run:
-          name: Audit js
-          command: cd client && npm run test:audit
-      - run:
-          name: Lint client
-          command:
-            cd client && npm run test:lint
-      - run:
-          name: Test client
-          command:
-            cd client && npm run test
   reports-test:
     executor: node
     steps:
@@ -194,9 +171,6 @@ workflows:
       - format-and-lint-python:
           requires:
             - checkout-revision-setup
-      - client-test:
-          requires:
-            - format-and-lint-python
       - mentor-api-test:
           requires:
             - format-and-lint-python
@@ -210,7 +184,6 @@ workflows:
           requires:
             - format-and-lint-python
             - mentor-api-test
-            - client-test
       - deploy-to-dev:
           type: approval
           requires:

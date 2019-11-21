@@ -14,20 +14,26 @@
       }
     },
     {
-      "name": "nginx-proxy-conf",
+      "name": "nginx-conf",
       "host": {
-        "sourcePath": "/var/app/current/proxy/conf.d"
+        "sourcePath": "/var/app/current/nginx/conf.d"
       }
     }
   ],
   "containerDefinitions": [
     {
       "name": "web-app",
-      "image": "{{web-app}}",
+      "image": "uscictdocker/mentor-client:1.0.0",
       "portMappings": [
         {
           "hostPort": 3000,
           "containerPort": 3000
+        }
+      ],
+      "environment": [
+        {
+          "name": "MENTOR_VIDEO_URL",
+          "value": "https://video.mentorpal.org/videos"
         }
       ],
       "essential": true,
@@ -59,8 +65,8 @@
       ]
     },
     {
-      "name": "nginx-proxy",
-      "image": "nginx",
+      "name": "nginx",
+      "image": "nginx:1.15.6",
       "essential": true,
       "memory": 128,
       "portMappings": [
@@ -72,12 +78,12 @@
       "links": ["web-app", "mentor-api"],
       "mountPoints": [
         {
-          "sourceVolume": "nginx-proxy-conf",
+          "sourceVolume": "nginx-conf",
           "containerPath": "/etc/nginx/conf.d",
           "readOnly": true
         },
         {
-          "sourceVolume": "awseb-logs-nginx-proxy",
+          "sourceVolume": "awseb-logs-nginx",
           "containerPath": "/var/log/nginx"
         }
       ]
