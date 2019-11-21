@@ -1,11 +1,13 @@
 version: '3.7'
 services:
   web-app:
-    image: "mentorpal-web-app"
+    image: "uscictdocker/mentor-client:0.0.1-alpha.1"
     expose:
       - "3000"
     depends_on:
       - mentor-api
+    environment:
+    - MENTOR_VIDEO_URL=https://video.mentorpal.org/videos
   mentor-api:
     image: "mentorpal-mentor-api"
     # environment:

@@ -82,7 +82,6 @@ lint-python: $(DEV_VIRTUAL_ENV)
 .PHONY: test
 test:
 	cd services/mentor-api && $(MAKE) test
-	cd client && $(MAKE) test
 	cd mentors && make test
 	cd reports && make test
 
@@ -90,8 +89,3 @@ test:
 test-images:
 	cd services/mentor-api && \
 		$(MAKE) test-image
-
-.PHONY: audit-js
-audit-js:
-	cd client && npm run test:audit
-	cd services/web-app && $(MAKE) audit-js
