@@ -9,7 +9,7 @@ services:
     environment:
     - MENTOR_VIDEO_URL=https://video.mentorpal.org/videos
   mentor-api:
-    image: "uscictdocker/mentor-api:0.0.1-alpha.1"
+    image: "uscictdocker/mentor-api:1.0.0"
     # environment:
       # we don't need to override the MENTOR_VIDEO_HOST
       # but this is how you would do it,

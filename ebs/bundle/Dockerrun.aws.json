@@ -42,7 +42,7 @@
     },
     {
       "name": "mentor-api",
-      "image": "uscictdocker/mentor-api:0.0.1-alpha.1",
+      "image": "uscictdocker/mentor-api:1.0.0",
       "essential": true,
       "memory": 6144,
       "portMappings": [
