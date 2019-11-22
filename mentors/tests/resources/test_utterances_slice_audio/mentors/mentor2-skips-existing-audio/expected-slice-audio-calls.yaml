@@ -1,8 +1,0 @@
-- source: build/recordings/session1/p2-other-utterances.mp3
-  target: build/utterance_audio/s001p002s00000345e00000698.mp3
-  time_start_secs: 3.45
-  time_end_secs: 6.98
-- source: build/recordings/session2/p1-other-more-utterances.mp3
-  target: build/utterance_audio/s002p001s00000599e00001012.mp3
-  time_start_secs: 5.99
-  time_end_secs: 10.12
