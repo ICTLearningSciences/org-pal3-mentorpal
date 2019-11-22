@@ -1,5 +1,5 @@
 PWD=$(shell pwd)
-DOCKER_IMAGE?=uscictdocker/mentor-pipeline:0.0.1-alpha.1
+DOCKER_IMAGE?=uscictdocker/mentor-pipeline:0.0.1-alpha.2
 DOCKER_CONTAINER=mentor-pipeline
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 WATSON_CREDENTIALS=secrets/watson_credentials.txt
@@ -47,7 +47,7 @@ clean:
 
 # Runs a shell inside the data processing pipeline dockerfile
 .PHONY shell:
-shell: docker-image-exists $(WATSON_CREDENTIALS)
+shell: $(WATSON_CREDENTIALS)
 	docker run \
 			-it \
 			--rm \
@@ -65,22 +65,20 @@ shell: docker-image-exists $(WATSON_CREDENTIALS)
 # Generates data files
 # TODO: 1) log every significant action (generating audio, transcribing), 2) build classifier for jd, 3) utterance yaml gets error codes, 4) make delete audio files that failed to transcribe
 .PHONY: data/mentors/%
-data/mentors/%: data/mentors/%/build/recordings docker-image-exists $(WATSON_CREDENTIALS)
+data/mentors/%: $(WATSON_CREDENTIALS)
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
-			-v $(PWD)/src:/app \
 			-v $(PWD)/data:/app/mounts/data \
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			$(DOCKER_IMAGE) --mentor $* --data-update --data=/app/mounts/data/mentors
 
-.PHONY: data/mentors/%/data/update
-videos/mentors/%: data/mentors/% docker-image-exists 
+.PHONY: videos/mentors/%
+videos/mentors/%: data/mentors/% 
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
-			-v $(PWD)/src:/app \
 			-v $(PWD)/data:/app/mounts/data \
 			-v $(PWD)/videos:/app/mounts/videos \
 			-e WATSON_USERNAME=$(WATSON_USERNAME) \
