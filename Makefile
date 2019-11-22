@@ -2,7 +2,7 @@ SHELL:=/bin/bash
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 DOCKER_SERVICES=$(PROJECT_ROOT)/bin/docker_services.sh
 VENV=.venv
-BLACK_EXCLUDES="/(\.venv|build|behave-restful)/"
+BLACK_EXCLUDES="/(\.venv|build)/"
 
 .PHONY clean:
 clean:
@@ -28,6 +28,9 @@ venv-create:
 docker-build-services: 
 	$(DOCKER_SERVICES) build
 
+.PHONY: format
+format: $(VENV)
+	$(VENV)/bin/black --exclude $(BLACK_EXCLUDES) .
 
 ###############################################################################
 # Run the app locally with 'docker-compose up'
@@ -48,47 +51,24 @@ local-run-dev: $(VENV)
 local-stop: $(VENV)
 	$(VENV)/bin/docker-compose down
 
-.PHONY: format-python
-format-python: $(VENV)
-	$(VENV)/bin/black --exclude $(BLACK_EXCLUDES) .
-
-.PHONY: format
-format:
-	$(MAKE) format-python
-	$(MAKE) format-js
-
-.PHONY: test-format-python
-test-format-python: $(VENV)
-	$(VENV)/bin/black --check --exclude $(BLACK_EXCLUDES) .
-
-node_modules/prettier:
-	npm install
-
-.PHONY: format-js
-format-js: node_modules/prettier
-	npm run format
-
-.PHONY: test-format-js
-test-format-js: node_modules/prettier
-	npm run test:format
-
-.PHONY: test-format
-test-format: test-format-python test-format-js
-
-.PHONY: lint-python
-lint-python: $(VENV)
-	$(VENV)/bin/flake8 .
-
 .PHONY: test
 test:
-	cd services/mentor-api && $(MAKE) test
-	cd mentors && make test
-	cd reports && make test
+	cd mentors && $(MAKE) test
+	cd reports && $(MAKE) test
 
-.PHONY: test-images
-test-images:
-	cd services/mentor-api && \
-		$(MAKE) test-image
+.PHONY: test-all
+test-all:
+	$(MAKE) test-format
+	$(MAKE) test-lint
+	$(MAKE) test
+
+.PHONY: test-format
+test-format: $(VENV)
+	$(VENV)/bin/black --check --exclude $(BLACK_EXCLUDES) .
+
+.PHONY: test-lint
+test-lint: $(VENV)
+	$(VENV)/bin/flake8 .
 
 virtualenv-installed:
 	$(PROJECT_ROOT)/bin/virtualenv_ensure_installed.sh

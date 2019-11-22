@@ -1,7 +1,0 @@
-
-.cov*
-.pytest_cache
-.venv
-htmlcov
-tests
-test-image

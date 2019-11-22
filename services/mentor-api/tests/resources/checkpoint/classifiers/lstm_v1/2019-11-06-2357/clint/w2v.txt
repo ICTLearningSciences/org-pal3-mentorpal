@@ -1,1 +1,0 @@
-GoogleNews-vectors-negative300-SLIM.bin

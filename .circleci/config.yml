@@ -20,12 +20,6 @@ aliases:
   - &prod-mentorpal-env-init
     name: qa-mentorpal env init
     command: eval $EBS_TOOLS_ENV_INIT && echo 'export EB_ENV=prod-mentorpal' >> $BASH_ENV
-  - &docker-build
-    name: Docker Build
-    command: cd ${EBS_TOOLS} && make docker-build
-  - &docker-push
-    name: Docker Push
-    command: cd ${EBS_TOOLS} && make docker-push
   - &eb-deploy
     name: EBS Deploy
     # TODO: now hardcoded with arch 'lstm_v1' and --newest. 
@@ -83,27 +77,24 @@ jobs:
       - checkout
       - *git-lfs-pull
       - *checkout-revision-save
-  format-and-lint-python:
+  test-format:
     executor: python
     steps:
       - *checkout-revision-restore
       - *git-lfs-install
       - checkout
       - run:
-          name: Test format for python
-          command: make test-format-python
-      - run:
-          name: Lint python
-          command: make lint-python
-  mentor-api-test:
+          name: Test format
+          command: make test-format
+  test-lint:
     executor: python
     steps:
       - *checkout-revision-restore
       - *git-lfs-install
       - checkout
       - run:
-          name: Test mentor-api (unit tests)
-          command: cd services/mentor-api && make test-units
+          name: Test lint
+          command: make test-lint
   mentor-pipeline-test:
     executor: python
     steps:
@@ -122,23 +113,9 @@ jobs:
       - run:
           name: Test reports
           command: |
-            cd reports
-            npm install 
-            npm test
-  docker-build-test-push:
-    executor: ebs
-    steps:
-      - setup_remote_docker:
-          docker_layer_caching: true
-      - *git-lfs-install
-      - checkout
-      - *git-lfs-pull
-      - run: *qa-mentorpal-env-init
-      - run: *docker-build
-      - run:
-          name: Test Images
-          command: make test-images
-      - run: *docker-push
+            cd reports \
+            && npm install \
+            && npm test
   dev-ebs-deploy:
     executor: ebs
     steps:
@@ -168,39 +145,36 @@ workflows:
   build-test-deploy:
     jobs:
       - checkout-revision-setup
-      - format-and-lint-python:
+      - test-format:
           requires:
             - checkout-revision-setup
-      - mentor-api-test:
+      - test-lint:
           requires:
-            - format-and-lint-python
+            - checkout-revision-setup
       - mentor-pipeline-test:
           requires:
-            - format-and-lint-python
+            - checkout-revision-setup
       - reports-test:
           requires:
-            - format-and-lint-python
-      - docker-build-test-push:
-          requires:
-            - format-and-lint-python
-            - mentor-api-test
-      - deploy-to-dev:
+            - checkout-revision-setup
+      - approve-dev-deploy:
           type: approval
           requires:
-            - docker-build-test-push
+            - test-format
+            - test-lint
+            - mentor-pipeline-test
+            - reports-test
       - dev-ebs-deploy:
           requires:
-            - deploy-to-dev
+            - approve-dev-deploy
       - qa-ebs-deploy:
           filters: *only-master
           requires:
-            - docker-build-test-push
+            - test-format
+            - test-lint
+            - mentor-pipeline-test
+            - reports-test
   build-test-deploy-prod:
     jobs:
-      - docker-build-test-push:
-          name: prod-docker-build-test-push
-          filters: *only-prod-releases
       - prod-ebs-deploy:
           filters: *only-prod-releases
-          requires:
-            - prod-docker-build-test-push
