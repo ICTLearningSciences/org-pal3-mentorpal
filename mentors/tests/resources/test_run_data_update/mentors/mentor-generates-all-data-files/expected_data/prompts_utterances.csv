@@ -1,8 +1,0 @@
-Situation,Mentor,Utterance/Prompt
-_INTRO_,mentor-generates-all-data-files,Hi my name is mentor 1!
-_PROMPT_,mentor-generates-all-data-files,Ask me how I saved $15!
-_PROMPT_,mentor-generates-all-data-files,Do you have a favorite color?
-_OFF_TOPIC_,mentor-generates-all-data-files,Ask me something else.
-_FEEDBACK_,mentor-generates-all-data-files,OK.
-_REPEAT_,mentor-generates-all-data-files,I might have covered this already...
-_PROFANITY_,mentor-generates-all-data-files,Please don't use that language.

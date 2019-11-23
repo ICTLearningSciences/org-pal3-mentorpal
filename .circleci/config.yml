@@ -95,15 +95,6 @@ jobs:
       - run:
           name: Test lint
           command: make test-lint
-  mentor-pipeline-test:
-    executor: python
-    steps:
-      - *checkout-revision-restore
-      - *git-lfs-install
-      - checkout
-      - run:
-          name: Test mentor pipeline
-          command: cd mentors && make test
   reports-test:
     executor: node
     steps:
@@ -151,9 +142,6 @@ workflows:
       - test-lint:
           requires:
             - checkout-revision-setup
-      - mentor-pipeline-test:
-          requires:
-            - checkout-revision-setup
       - reports-test:
           requires:
             - checkout-revision-setup
@@ -162,7 +150,6 @@ workflows:
           requires:
             - test-format
             - test-lint
-            - mentor-pipeline-test
             - reports-test
       - dev-ebs-deploy:
           requires:
@@ -172,7 +159,6 @@ workflows:
           requires:
             - test-format
             - test-lint
-            - mentor-pipeline-test
             - reports-test
   build-test-deploy-prod:
     jobs:

@@ -53,7 +53,6 @@ local-stop: $(VENV)
 
 .PHONY: test
 test:
-	cd mentors && $(MAKE) test
 	cd reports && $(MAKE) test
 
 .PHONY: test-all

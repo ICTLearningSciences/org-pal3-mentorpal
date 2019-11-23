@@ -1,5 +1,0 @@
-Situation,Mentor,Utterance/Prompt
-_PROMPT_,mentor_has_missing_utterance_types_intro_and_feedback,Ask me how I saved $15!
-_OFF_TOPIC_,mentor_has_missing_utterance_types_intro_and_feedback,Ask me something else.
-_REPEAT_,mentor_has_missing_utterance_types_intro_and_feedback,I might have covered this already...
-_PROFANITY_,mentor_has_missing_utterance_types_intro_and_feedback,Please don't use that language.
