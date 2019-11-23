@@ -2294,8 +2294,295 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00020212e00020702.mp4
 - errorMessage: null
   mentor: mario-pais
+  paraphrases:
+  - How are you addressed?
+  - What do people call you?
+  - What is your name?
+  - Who are you?
+  part: 1
+  question: What is your name?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 12.29
+  timeStart: 10.0
+  topics:
+  - Background
+  transcript: 'my name is Mario parties '
+  utteranceAudio: build/utterance_audio/s002p001s00001000e00001228.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00001000e00001228.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - What is your date of birth?
+  - What time were you born?
+  - When was your birth year?
+  - When were you born?
+  - Which year were you born?
+  part: 1
+  question: What year were you born?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 25.03
+  timeStart: 20.29
+  topics:
+  - Background
+  transcript: 'what year were you born I was born in nineteen eighty three March eighteenth '
+  utteranceAudio: build/utterance_audio/s002p001s00002028e00002503.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00002028e00002503.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Are you my age?
+  - Are you old?
+  - How many birthdays have you had?
+  - How many years have you been alive?
+  - What is your age?
+  - What's your age?
+  - You look old.
+  part: 1
+  question: How old are you now?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 54.28
+  timeStart: 52.0
+  topics:
+  - Background
+  transcript: 'I''m thirty six years old '
+  utteranceAudio: build/utterance_audio/s002p001s00005200e00005428.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00005200e00005428.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Were you born here?
+  - Where are you from?
+  - Where did you go to high school?
+  - Where did you spend your childhood?
+  - Where do you call home?
+  - Where were you born?
+  - Where's your hometown?
+  part: 1
+  question: Where did you grow up?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 78.28
+  timeStart: 75.12
+  topics:
+  - Background
+  transcript: 'I grew up in Saint Petersburg Florida '
+  utteranceAudio: build/utterance_audio/s002p001s00011512e00011828.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00011512e00011828.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - How were you raised?
+  - Were you a bad kid?
+  - Were you a good kid?
+  - What happened when you were young?
+  - What kind of kid were you?
+  - What was it like for you growing up?
+  - What was your childhood like?
+  - When you were young, what was your family like?
+  - did you get along with your parents?
+  - did your parents encourage you to join the navy?
+  - were your parents okay with you joining the army?
+  part: 1
+  question: Tell me about your childhood.
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 94.14
+  timeStart: 82.15
+  topics:
+  - Background
+  transcript: 'I was born as a single child you have any brothers or sisters both
+    parents were around even though they got divorced and I had a pretty good childhood
+    growing up '
+  utteranceAudio: build/utterance_audio/s002p001s00012215e00013414.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00012215e00013414.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Do you like your parents?
+  - How well do you get along with your folks?
+  - What is your family like?
+  - What is your relationship with your family?
+  - Who were your parents?
+  - how are your parents?
+  - how is your family?
+  part: 1
+  question: Tell me about your family growing up.
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 147.13
+  timeStart: 129.16
+  topics:
+  - Background
+  transcript: 'growing up I was a single child and my mom and dad were were together
+    tells about thirteen and they got divorced I still saw my dad on the weekends
+    and would go out fishing and diving with him and then hung out with all my friends
+    you know going up from middle school all the way through high school '
+  utteranceAudio: build/utterance_audio/s002p001s00020916e00022713.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00020916e00022713.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Do you have other passions besides STEM?
+  - Why don't you just do music as a hobby then?
+  - are you artistic?
+  - did you dream of doing a job like this?
+  - did you have dreams of being something else?
+  - do you like art?
+  - do you like the arts?
+  - do you remember what you used to think you wanted to do as an adult?
+  - why didn't you pursue music?
+  part: 1
+  question: When you were a kid, what did you want to be when you grew up?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 170.13
+  timeStart: 153.0
+  topics:
+  - Background
+  transcript: 'so coincidentally when I was younger I did want to join the navy from
+    a very early young age and then as soon as I was eligible to to enlist mais senior
+    in high school when I was seventeen I joined into the delayed entry program and
+    have made a career of it sense '
+  utteranceAudio: build/utterance_audio/s002p001s00023300e00025013.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00023300e00025013.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Did you get good grades in school?
+  - Did you get good grades?
+  - Did you have a high GPA?
+  - Did you work hard in school?
+  - Did your teachers like you?
+  - How were you in school?
+  - Were you a good student?
+  - What are your study habits like?
+  - did you do well in school?
+  - how were you in high school?
+  part: 1
+  question: What kind of student were you?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 202.1
+  timeStart: 176.01
+  topics:
+  - Background
+  - Education
+  transcript: 'actually I wasn''t that bad of a student I did get Aizen bees took
+    some honors classes here and there I got more into trouble as far as behavioral
+    wise and goofing around in class a lot it tended to be the class clown but as
+    I got older and realized that I needed to to come to buckle down and and and focus
+    I I did that so you know I changed over time but I wasn''t that bad of a student '
+  utteranceAudio: build/utterance_audio/s002p001s00025601e00032210.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00025601e00032210.mp4
+- errorMessage: null
+  mentor: mario-pais
   paraphrases: []
   part: 1
+  question: What was your home life like?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 244.0
+  timeStart: 216.19
+  topics: []
+  transcript: 'my home life was my mom and I when I was it was older we live together
+    go to school go to work and also worked at McDonald''s as my first job until I
+    left for the navy after my senior in high school I would say was you know pretty
+    average growing up in Saint Petersburg Florida going to the beach hang out with
+    friends going to the mall things like that '
+  utteranceAudio: build/utterance_audio/s002p001s00033619e00040400.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00033619e00040400.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 1
+  question: When did you start working with the Navy?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 260.25
+  timeStart: 249.29
+  topics: []
+  transcript: 'so I joined and and actually left for boot camp for the navy July twenty
+    fifth two thousand and one and I''ve been working in the navy sense that '
+  utteranceAudio: build/utterance_audio/s002p001s00040928e00042025.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00040928e00042025.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Are you currently in the Navy?
+  - Are you in the Navy now?
+  - Are you in the military now?
+  - Are you still in the Navy?
+  - Are you still in the military?
+  - Did you leave the Navy?
+  - what do you do in the navy?
+  part: 1
+  question: Are you currently serving in the military?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 270.13
+  timeStart: 265.18
+  topics:
+  - Background
+  transcript: 'yes I''m currently active duty serving in the navy '
+  utteranceAudio: build/utterance_audio/s002p001s00042518e00043013.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00042518e00043013.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 1
+  question: What is your current position now?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p001-question-1-bio-info.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p001-question-1-bio-info.csv
+  sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
+  timeEnd: 359.29
+  timeStart: 348.16
+  topics: []
+  transcript: 'my current position now is a senior chief petty officer where I work
+    at explosive ordinance disposal as an instructor for unmanned maritime systems '
+  utteranceAudio: build/utterance_audio/s002p001s00054816e00055928.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p001s00054816e00055928.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 2
   question: What have you done that got a lot press?
   session: 2
   sessionAudio: build/recordings/session3-20191030/p002-cleanup-questions.mp3
@@ -2323,13 +2610,13 @@ utterances:
     I saw you in our paper here so that was kind of a fun unique experience and I
     ended up saving like a clip of that paper and I still have it somewhere in a in
     a file or folder but yeah that was kind of a neat experience '
-  utteranceAudio: build/utterance_audio/s002p001s00005322e00022628.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00005322e00022628.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p001s00005322e00022628.mp4
+  utteranceVideo: build/utterance_video/s002p002s00005322e00022628.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
-  part: 1
+  part: 2
   question: What is the best way to develop ones' skills in working in and with teams?
   session: 2
   sessionAudio: build/recordings/session3-20191030/p002-cleanup-questions.mp3
@@ -2348,13 +2635,13 @@ utterances:
     work on your communication skills your skills of listening as well as just set
     you know personal achievable goals for you and your team that eventually hope
     you get to maybe what you think is an unachievable our over arching goal '
-  utteranceAudio: build/utterance_audio/s002p001s00024818e00034112.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00024818e00034112.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p001s00024818e00034112.mp4
+  utteranceVideo: build/utterance_video/s002p002s00024818e00034112.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
-  part: 1
+  part: 2
   question: What leaders books have you read?
   session: 2
   sessionAudio: build/recordings/session3-20191030/p002-cleanup-questions.mp3
@@ -2369,13 +2656,13 @@ utterances:
     with some other people like leaf Babin I think they really kind of touch home
     on how to create and foster a culture within your organization how to build a
     team and how to become a better '
-  utteranceAudio: build/utterance_audio/s002p001s00053515e00060424.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00053515e00060424.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p001s00053515e00060424.mp4
+  utteranceVideo: build/utterance_video/s002p002s00053515e00060424.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
-  part: 1
+  part: 2
   question: Is it dangerous for the dolphins and sea lions in EOD?
   session: 2
   sessionAudio: build/recordings/session3-20191030/p002-cleanup-questions.mp3
@@ -2391,13 +2678,13 @@ utterances:
     are served at restaurants these animals are getting there they get great exercise
     they really have no threats from predators so that no I don''t think there''s
     a there''s kind of any threat or harm placed on those animals '
-  utteranceAudio: build/utterance_audio/s002p001s00062306e00065823.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00062306e00065823.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p001s00062306e00065823.mp4
+  utteranceVideo: build/utterance_video/s002p002s00062306e00065823.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
-  part: 1
+  part: 2
   question: Where are you getting your college degree?
   session: 2
   sessionAudio: build/recordings/session3-20191030/p002-cleanup-questions.mp3
@@ -2415,9 +2702,9 @@ utterances:
     Diego Columbia College Missouri has a satellite school here and they''ve taken
     all my other credits from the other schools and universities that I''ve attended
     and I''m currently pursuing my bachelors in business administration with them '
-  utteranceAudio: build/utterance_audio/s002p001s00080727e00084819.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00080727e00084819.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p001s00080727e00084819.mp4
+  utteranceVideo: build/utterance_video/s002p002s00080727e00084819.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases:
@@ -2426,7 +2713,7 @@ utterances:
   - How would you describe Navy culture?
   - What is Navy culture like?
   - What is a time that shows Navy culture?
-  part: 2
+  part: 3
   question: Describe an experience that illuminates (Navy) culture
   session: 2
   sessionAudio: build/recordings/session3-20191030/p003-question-26.mp3
@@ -2465,13 +2752,13 @@ utterances:
     that were very C. driven were very work driven and so new guy shows up it''s me
     like Hey we''re going out on the water to go do some work and then you can worry
     about the administrative stuff afterwards '
-  utteranceAudio: build/utterance_audio/s002p002s00021301e00042511.mp3
+  utteranceAudio: build/utterance_audio/s002p003s00021301e00042511.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00021301e00042511.mp4
+  utteranceVideo: build/utterance_video/s002p003s00021301e00042511.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
-  part: 2
+  part: 3
   question: How do you help morale? (e.g., when the crew was supposed to go home but
     needs to stay active/at sea?)
   session: 2
@@ -2492,13 +2779,13 @@ utterances:
     way that you can get them to start thinking that way is by having already foster
     that kind of culture earlier on you know prior to coming up with these these difficult
     situations '
-  utteranceAudio: build/utterance_audio/s002p002s00051114e00055925.mp3
+  utteranceAudio: build/utterance_audio/s002p003s00051114e00055925.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00051114e00055925.mp4
+  utteranceVideo: build/utterance_video/s002p003s00051114e00055925.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
-  part: 2
+  part: 3
   question: Who are the core team members (inner circle) who you relied on as a leader?
   session: 2
   sessionAudio: build/recordings/session3-20191030/p003-question-26.mp3
@@ -2518,13 +2805,13 @@ utterances:
     on every single one of those people whether it''s my PO whether it''s the the
     deck plates semen up to you know my department head and you''re listening to what
     their perspective is in using their mentor ship to help you know drive me '
-  utteranceAudio: build/utterance_audio/s002p002s00060918e00070420.mp3
+  utteranceAudio: build/utterance_audio/s002p003s00060918e00070420.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00060918e00070420.mp4
+  utteranceVideo: build/utterance_video/s002p003s00060918e00070420.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
-  part: 2
+  part: 3
   question: If you have trouble listening well, what strategies can help you listen
     well?
   session: 2
@@ -2549,13 +2836,13 @@ utterances:
     listening to what you''re saying if you wouldn''t mind could you please repeat
     it so that I can I can hear you a little bit better and we can continue this conversation
     in this communication in a better light '
-  utteranceAudio: build/utterance_audio/s002p002s00071615e00081811.mp3
+  utteranceAudio: build/utterance_audio/s002p003s00071615e00081811.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00071615e00081811.mp4
+  utteranceVideo: build/utterance_video/s002p003s00071615e00081811.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
-  part: 2
+  part: 3
   question: How do you handle supervisors who were unable or unwilling to give you
     feedback?
   session: 2
@@ -2577,13 +2864,13 @@ utterances:
     that person and let him know that you''re not getting what it is you''re looking
     for and is there is it an issue because of something maybe your doing internally
     or is it something that that individuals having that we need to figure out together '
-  utteranceAudio: build/utterance_audio/s002p002s00085214e00094904.mp3
+  utteranceAudio: build/utterance_audio/s002p003s00085214e00094904.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00085214e00094904.mp4
+  utteranceVideo: build/utterance_video/s002p003s00085214e00094904.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
-  part: 2
+  part: 3
   question: What are marine mammals?
   session: 2
   sessionAudio: build/recordings/session3-20191030/p003-question-26.mp3
@@ -2604,49 +2891,36 @@ utterances:
     countermeasures as well as anti swimmer and diver defense and they still continue
     to have them even though we are moving forward with advanced technology the marine
     mammal systems are still an option for the navy to use '
-  utteranceAudio: build/utterance_audio/s002p002s00105302e00115624.mp3
+  utteranceAudio: build/utterance_audio/s002p003s00105302e00115624.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00105302e00115624.mp4
-- errorMessage: null
-  mentor: mario-pais
-  paraphrases: []
-  part: 3
-  question: How do you set the tone as a leader? What is the right tone?
-  session: 2
-  sessionAudio: build/recordings/session3-20191030/p004-repeat-after-me-1.mp3
-  sessionTimestamps: build/recordings/session3-20191030/p004-repeat-after-me-1.csv
-  sessionVideo: build/recordings/session3-20191030/p004-repeat-after-me-1.mp4
-  timeEnd: 87.17
-  timeStart: 57.03
-  topics: []
-  transcript: 'I went through something similar I''m not sure I''m not sure I can''t
-    hear you I can''t hear you I don''t understand I don''t understand can you repeat
-    that can you repeat that I don''t have an answer for that I don''t have an answer
-    for that can you ask me something else can you ask '
-  utteranceAudio: build/utterance_audio/s002p003s00005703e00012717.mp3
-  utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p003s00005703e00012717.mp4
+  utteranceVideo: build/utterance_video/s002p003s00105302e00115624.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
   part: 4
-  question: How do you set the tone as a leader? What is the right tone?
+  question: What makes your leadership style unique?
   session: 2
   sessionAudio: build/recordings/session3-20191030/p004-repeat-after-me-2.mp3
   sessionTimestamps: build/recordings/session3-20191030/p004-repeat-after-me-2.csv
   sessionVideo: build/recordings/session3-20191030/p004-repeat-after-me-2.mp4
-  timeEnd: 87.17
-  timeStart: 57.03
+  timeEnd: 73.1
+  timeStart: 16.26
   topics: []
-  transcript: 'steps to get to that large goals of setting those realistic ones kind
-    of helps build that team morale build that unit cohesion eventually entire team
-    is is capable of achieving a lot more than they originally thought they could
-    because you''ve been fostering this kind of culture the entire time yeah yeah
-    close up for just one second where is maybe a little like raspy or how it will
-    work yesterday '
-  utteranceAudio: build/utterance_audio/s002p004s00005703e00012717.mp3
+  transcript: 'what makes my leadership style unique is I''d trying do my best to
+    relate to the individual that I''m working with the people that I''m leading one
+    thing that I''ve learned is that you know all never ask somebody to do something
+    that I haven''t myself already done or be willing to do I try and value everybody''s
+    opinion from the most junior person in the platoon you know up to my my peers
+    and leaders as well I find that also setting realistic goals is important element
+    that''s got me through a lot of troubling times and if we''re working towards
+    a larger goal you''ve got to kind of have those steps to get to that large goal
+    setting those realistic ones kind of helps build that team morale build that unit
+    cohesion eventually entire team is is capable of achieving a lot more than they
+    originally thought they could because you''ve been fostering this kind of culture
+    the entire time '
+  utteranceAudio: build/utterance_audio/s002p004s00001626e00011310.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p004s00005703e00012717.mp4
+  utteranceVideo: build/utterance_video/s002p004s00001626e00011310.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
@@ -4441,42 +4715,2180 @@ utterances:
   utteranceVideo: build/utterance_video/s002p007s00443727e00460025.mp4
 - errorMessage: null
   mentor: mario-pais
-  paraphrases: []
+  paraphrases:
+  - Being in the navy, is it difficult for you to have a relationship?
+  - Do you date?
+  - Do you have a boyfriend?
+  - Do you have a girlfriend?
+  - Do you have a significant other?
+  - Do you have any kids?
+  - are you in a relationship?
+  - are you in love?
+  - are you single?
+  - do you date?
+  - do you have a girlfriend?
+  - do you have a lover
+  - do you have a significant other?
+  - do you have a wife?
+  - have you got a spouse?
+  - how many times have you been married?
   part: 8
-  question: How do you set the tone as a leader? What is the right tone?
+  question: Are you married?
   session: 2
   sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
   sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
-  timeEnd: 87.17
-  timeStart: 57.03
-  topics: []
-  transcript: 'are you married I''m married I''ve been married for close to eighteen
-    years now and I''ve also got two kids both of which are in high school okay this
-    is the easier one I probably say the ages do you have any kids I have two kids
-    one knows who''s going to be turning sixteen in November and the other who will
-    be turning eighteen this January '
-  utteranceAudio: build/utterance_audio/s002p008s00005703e00012717.mp3
+  timeEnd: 68.01
+  timeStart: 58.14
+  topics:
+  - Background
+  - Lifestyle
+  transcript: 'I''m married I''ve been married for close to eighteen years now and
+    I''ve also got two kids both of which are in high school '
+  utteranceAudio: build/utterance_audio/s002p008s00005814e00010801.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p008s00005703e00012717.mp4
+  utteranceVideo: build/utterance_video/s002p008s00005814e00010801.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: Do you have any kids?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 86.13
+  timeStart: 76.13
+  topics: []
+  transcript: 'I have two kids one who''s going to be turning sixteen in November
+    and the other who will be turning eighteen this January '
+  utteranceAudio: build/utterance_audio/s002p008s00011613e00012613.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00011613e00012613.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - are you an only child?
+  - do you have any brothers or sisters?
+  - how is your relationship with your brother or sister?
+  - how many kids in your family growing up?
+  part: 8
+  question: Do you have siblings?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 93.0
+  timeStart: 89.07
+  topics:
+  - Background
+  transcript: 'I''m an only child Avenue siblings '
+  utteranceAudio: build/utterance_audio/s002p008s00012907e00013300.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00012907e00013300.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Do you like cats?
+  - did you ever own an animal?
+  - did your parents allow you to have a pet?
+  - do you have a cat?
+  - do you have a dog?
+  - do you like animals?
+  - do you like pets?
+  - have you had a pet?
+  - were you responsible for a pet?
+  part: 8
+  question: Do you have any pets?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 103.27
+  timeStart: 96.15
+  topics:
+  - Background
+  transcript: 'we have one pet it''s a German pinscher we got as a puppy and he''s
+    almost four years old '
+  utteranceAudio: build/utterance_audio/s002p008s00013615e00014327.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00013615e00014327.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Are you busy in the Navy?
+  - Do I have time to have a personal life and have a career?
+  - Do you have any free time in the Navy?
+  - Does your work allow adequate free time?
+  - Does your work allow you free time?
+  - How busy is your job?
+  - How much time does your career allow you to have at home?
+  - How often do you have time to yourself in your career?
+  part: 8
+  question: How much free time do you have in your career?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 139.11
+  timeStart: 118.25
+  topics:
+  - JobSpecific
+  - Lifestyle
+  transcript: 'I think I''ve got a lot of free time throughout my career obviously
+    just depends on where I''m working in what''s going on if were deployed or operational
+    or for sea duty or shore duty but you''re still able to find time in between to
+    enjoy hobbies and spend time with family and friends we can '
+  utteranceAudio: build/utterance_audio/s002p008s00015825e00021911.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00015825e00021911.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How often do you ever take work home with you?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 177.26
+  timeStart: 148.09
+  topics: []
+  transcript: 'I have a problem with actually taking work home with me a lot sometimes
+    it''s self imposed all times because I''m just trying to get ahead because I noticed
+    something else you''d be coming up in the near future so if I can work on it ahead
+    of time at home they were kind of alleviate some of the stress that I might have
+    to deal with later down the line because I got a head start on it but a lot of
+    that again is is is self imposed not necessarily necessary that I should be doing
+    that at all '
+  utteranceAudio: build/utterance_audio/s002p008s00022809e00025726.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00022809e00025726.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: Does being a leader give you flexiblity to alter your work schedule?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 244.22
+  timeStart: 186.21
+  topics: []
+  transcript: 'being a leader can give you flexibility when it comes time to alter
+    your work schedule in when you say your work schedule also implying that that''s
+    your team''s work schedule obviously you shouldn''t be creating different working
+    hours for yourself that are also online with your team''s working hours so you
+    know if you''re coming in late and leaving early but you''re you''re expecting
+    your team to come in early and leaving late I mean that''s completely the opposite
+    of what should be happening if anything is a leader you should probably be the
+    one that''s there before everybody else and more than likely you''re going to
+    be there after everybody leaves just to make sure everything''s kind of buttoned
+    up and close down and and put away properly so but you know as you move up in
+    your leadership positions you should be able to get more flexibility in adjusting
+    your working hours that you''re still meeting mission objectives as well as balancing
+    that that work and and played live stock '
+  utteranceAudio: build/utterance_audio/s002p008s00030621e00040422.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00030621e00040422.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How does being a leader change your lifestyle? (frequent travel, irregular
+    hours, family difficulties, etc.)
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 307.11
+  timeStart: 258.23
+  topics: []
+  transcript: 'being a leader can change your lifestyle the fact that as you move
+    up in your in your positions of leadership you''re obviously going to occur more
+    responsibilities and as such those responsibilities to sometimes have to deal
+    with that is important to the people that you read and an understanding there
+    personal lifestyles and and personal professional development so you know you
+    you might have started off with only worry about yourself and your family or significant
+    other and now all of a sudden not only having to worry about yourself and your
+    family significant other but also to the sort of the people that you''re leading
+    and their families and their significant others and making sure that they''re
+    well taken care of so responsibility in aspects increases you move up in in your
+    role of leadership '
+  utteranceAudio: build/utterance_audio/s002p008s00041823e00050711.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00041823e00050711.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What is a good approach for selecting a new duty station in terms of finding
+    an area for my family to live in?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 386.26
+  timeStart: 319.01
+  topics: []
+  transcript: 'so that you can do when you''re pose different duty stations to pick
+    from so obviously talk to your family about where they''d like to go where they''d
+    like to move to it''s gonna be different based on your current situation you know
+    if you''re just a single individual then you''re pretty flexible on where you
+    can go on the station it is just you and a spouse yeah you''re probably pretty
+    flexible if you have to move in the station elsewhere than where you''re currently
+    located unless your spouse has a particular job to where it could be detrimental
+    to her career and moving in leaving from that area is is gonna put her in a in
+    a career situation and then of course once you have children now you got to start
+    thinking about moving them around from school to school and where they''re at
+    in their scholastic endeavors is is that going to affect them so how best can
+    you work to keep kind of a stable lifestyle while also making and progressing
+    and hitting those career milestones the biggest thing to do is just kind of talk
+    to your family about the different places you can be stationed at and what looks
+    good for for you guys as a whole '
+  utteranceAudio: build/utterance_audio/s002p008s00051901e00062626.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00051901e00062626.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What are the things I should prioritize when picking housing?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 451.03
+  timeStart: 394.03
+  topics: []
+  transcript: 'some things that you should prioritise when you''re picking housing
+    is worse its proximity to your work or do you want to live in a place that super
+    far away to where you''re going to have to have an hour or more drive in to work
+    and then when you''re leaving work which direction of flow is the traffic in the
+    morning you know between depending upon which where you have to head it may be
+    more advantageous to kind of try to find housing that''s the opposite direction
+    that traffic usually is flowing those days so that way you''re not hit with rush
+    hour traffic going into work and then hit with it when you''re leaving work so
+    you know that''s going to be completely up to you some people like to live far
+    away from work based on your order and more rule areas and other people enjoy
+    kind of the downtown or city lifestyle so it''s gonna be a personal choice but
+    also to just look at its proximity to where you''re gonna be working and how it''s
+    best gonna serve you every day driving back from work '
+  utteranceAudio: build/utterance_audio/s002p008s00063403e00073103.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00063403e00073103.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What options do you have to transfer or change if you or your family needs
+    it?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 571.17
+  timeStart: 501.17
+  topics: []
+  transcript: 'there''s a variety of options out there to transfer a change your duty
+    if your family needs to person you need to do is just communicate that up your
+    chain of command and let him know that based on your situation you think it be
+    best if you were to move your duty station from point a to point B. also look
+    and see what programs out there available currently for example there happens
+    to be one that''s currently in play that if you happen to have a child who is
+    currently in high school and is at least two years away from graduating you can
+    apply for this and have admin and thirteen oh six gets put into your detail or
+    where you can stay within the same geographical region so that way your student
+    is going to become a senior in high school isn''t having to move from that high
+    school which can disrupt the ability for them to graduate so you kind of have
+    to do a little bit of a guest investigative work and see what programs are out
+    there which best suits your family situation and needs and if you have to apply
+    for those apply form but the biggest thing is communicate that with your chain
+    of command and communicate that with your detailer placement coordinator to hopefully
+    make those changes happen in your favor '
+  utteranceAudio: build/utterance_audio/s002p008s00082117e00093117.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00082117e00093117.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How will my relationship with my friends or family members be affected
+    if I take a difficult assignment, and what advice should i give them?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 635.05
+  timeStart: 583.17
+  topics: []
+  transcript: 'if you decide to take a difficult assignment you know that may affect
+    your relationship with your family and friends because you could possibly lose
+    that connectivity that you have with them but the nice thing is that we can move
+    forward here you know technology''s always advancing and so you know those days
+    where it was a little bit more challenging to stay in touch with people when you''re
+    on difficult assignments are traveling all the time there really isn''t that big
+    of an issue anymore with with the events of cell phones in video cameras and email
+    and just so simple ways of staying in touch so you have to kind of look at what
+    the pros and cons are and if the pros outweigh the cons and you know go for that
+    and just kind of communicate that there may be some challenges that you''re taking
+    this assignment but in the long run it''s going to be best for your career hopefully
+    ultimately your family and friends as well '
+  utteranceAudio: build/utterance_audio/s002p008s00094317e00103505.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00094317e00103505.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How early should I get my family involved in the process of planning my
+    next career step?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 684.02
+  timeStart: 644.07
+  topics: []
+  transcript: 'you should get your family involved very early and processing for your
+    next career step because you have to remember you know they''re part of this process
+    as well and if you''re not having a good day home life back at home with your
+    family that''s going to affect your work life as well so you need to kind of communicate
+    to them like what your overall objectives and goals are what do you see yourself
+    doing are you just going to do this and placement for this contract and then leave
+    the service are you intending on making this a career or do they know that they
+    on board with that to the support you in the decisions that you''re making you
+    need to involve them early on when you''re making these decisions '
+  utteranceAudio: build/utterance_audio/s002p008s00104407e00112402.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00104407e00112402.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What has been your favorite place to live? Why?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 730.23
+  timeStart: 691.28
+  topics: []
+  transcript: 'the different places that I''ve been stationed I think my favorite
+    paid place two of live was actually back home was kind of nice I was back in my
+    hometown on recruiting duty working out of the very same office that I had been
+    recruited out of years before I was actually recruiting at the same high school
+    that I attended so there''s a lot of my scene teachers there that remember me
+    which kind of helped us it was nice to be back home around family and friends
+    and even though I you know I was in the navy so it''s collecting this navy paycheck
+    and all the benefits about being in the service well up still being back home
+    around family friends and working there '
+  utteranceAudio: build/utterance_audio/s002p008s00113128e00121023.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00113128e00121023.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What is an example of a conflict you had between your career and family
+    life? How did you learn from it?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 840.15
+  timeStart: 741.08
+  topics: []
+  transcript: 'one conflict that I had we''re focusing on my career as opposed to
+    family life was that I missed the birth of both of my kids do the fact that I
+    was really focused on where I was out of my career so you know when my daughter
+    was being born I was actually in training at the time and they had asked me if
+    I wanted to stop train and go home for her birth to be there at least for a week
+    or two and you know I kind of talked it over with my wife and decline that because
+    I knew that if I had done that it was going to actually have compounding effects
+    were gonna push me back in a particular training cycle to wear something that
+    I should be graduating with was gonna now leave me there for another six months
+    which in turn is going to affect when I could move my wife and now a new daughter
+    out to where I was going to be stationed alternately so I kind of weigh those
+    pros and cons and felt that you know I should continue on with the training the
+    other time was on deployment of my wife was pregnant when I left I knew that she
+    was gonna be do while I was deployed my command actually asked me if I wanted
+    to to skip out on the deployment and stay back and do something different and
+    I declined and then while I was out on the planet and she had the had or sign
+    they asked if I wanted to go home for that and I also declined having talked it
+    over with her only because I knew that if I had left it was going to facts kind
+    of mission how common the operations that we were doing there in theater so I
+    decline those retrospective me obviously I miss being there for the birth of both
+    my kids but that was that was definitely a conflict that I had to deal with between
+    home life and work life '
+  utteranceAudio: build/utterance_audio/s002p008s00122108e00140015.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00122108e00140015.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How do you manage both career and family effectively?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 901.04
+  timeStart: 851.16
+  topics: []
+  transcript: 'managing your career and family life effectively requires a very careful
+    balance between the two you have to remember that eventually you are gonna leave
+    the service you can''t do it for ever so you don''t want to be messing up your
+    family lifestyle and having issues with that because you''re always going to have
+    your family the service is only gonna be there while you''re in it you even when
+    you''re retired or you might still be some benefits sure maybe go down to the
+    VFW for me from time to time but you know your family is always going to be either
+    gonna be always responsible for them so you have to make sure that you''re kind
+    of doing a very good balancing act between your career your family life remember
+    that your family''s gonna be forever in your careers only momentarily you know
+    in your in your life cycle '
+  utteranceAudio: build/utterance_audio/s002p008s00141116e00150104.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00141116e00150104.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What should I get ready to live overseas?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1107.29
+  timeStart: 1045.2
+  topics: []
+  transcript: 'what I would recommend you do if you''re getting ready to live overseas
+    is no research the area that you''re gonna be going to there''s plenty of information
+    out there online our you can kind of understand where you''re living you know
+    the climb it the things to do in that area what are considered cultural norms
+    of things to be aware of in the people that you''re gonna be living with his places
+    are very different than it is here in the states and so some things that we feel
+    are acceptable may not necessarily be like that when you go over there overseas
+    so you want to kind of do as much research about the area that you''re gonna be
+    going to is possible to really prepare yourself as well as if you have a family
+    and they''re gonna be going with your overseas you got to prepare them as well
+    so researching the schools what is that curriculum look like if you''ve got kids
+    that need to attend school what kind of things are gonna be there for your spouse
+    to do as far as work maybe it''s on base or off base would she have his career
+    plans here she so do as much research as you can before you you leave for that
+    assignment '
+  utteranceAudio: build/utterance_audio/s002p008s00172520e00182728.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00172520e00182728.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What resources should I look for when I know I am moving to a location?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1157.05
+  timeStart: 1121.14
+  topics: []
+  transcript: 'some resources that you can look for if you''re gonna be moving to
+    a new location obviously ones online almost every place you gonna be station that
+    now has like its own website that you can go to and on the home page usually have
+    things to talk about the command with the surrounding area looks like housing
+    options school options things like that also to you can reach out to fleeting
+    family support center and they can provide you with those certain resources for
+    the areas that you''re gonna be moving to and those new locations '
+  utteranceAudio: build/utterance_audio/s002p008s00184114e00191705.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00184114e00191705.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What kind of things may fall between the cracks when moving?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1230.29
+  timeStart: 1168.21
+  topics: []
+  transcript: 'some things that you might experience or that for fall through the
+    cracks when you''re gonna be moving is just the movement of your household goods
+    a lot of times you''ll have certain things scheduled and the movers don''t get
+    there on time or it took them a little bit longer to pack up when they expected
+    and so they''re leaving a little bit later and then you''re gonna show up to your
+    new location and perhaps you''re waiting on your household goods to get there
+    and there was hick ups along the way with the movers to wear their truck broke
+    down or they had additional loads they need to get so that the day that they originally
+    projected as their delivery date of your household goods now it''s going to show
+    up a few days or a week or maybe two weeks later so you have to be kind of prepared
+    for that think about that ahead and say okay if my stuff does not arrive on time
+    what am I going to be able to do in the meantime until it gets here and there''s
+    a you know services and resources out there that can help you with that fleet
+    family so support center can help you with that talk to your chain of command
+    they''re they''re gonna have information that they can give you is a '
+  utteranceAudio: build/utterance_audio/s002p008s00192821e00203028.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00192821e00203028.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What should I get ready before I deploy?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1299.12
+  timeStart: 1237.28
+  topics: []
+  transcript: 'things that you should get ready before you deploy is gonna be your
+    your household stuff so what are you gonna do with your household goods when you
+    deploy if you''re single individual more than likely you''re gonna wanna pack
+    all that stuff up and move it into a storage unit so that way you''re not paying
+    rent on a place that you''re not living in anymore for six seven eight months
+    however long you''re on deployment that''s money that you could essentially be
+    pocketing in saving also to your finances so you want to make sure your financial
+    stuff is in order do you have certain bills that need to be paid get those paid
+    off also to is there gonna be reoccurring bills that you''re gonna be responsible
+    for paying how are you gonna pay those does it pay automatically or do you need
+    to set up some sort of a lot meant to pay those wire on deployment because you
+    may have connective itty issues and being able to pay things on time you just
+    you don''t want to leave any stone unturned that you''re gone for an extended
+    period of time that when you come back you end up with a bunch of different issues
+    that you you didn''t prepare for an advance '
+  utteranceAudio: build/utterance_audio/s002p008s00203728e00213912.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00203728e00213912.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Does the Navy allow you to talk to your family?
+  - How do you keep your connection with family?
+  - How do you talk to family while serving?
+  - What opportunities are there to stay in touch with people outside of the Navy?
+  - What ways are there to contact your family?
+  part: 8
+  question: How do you stay in touch with family?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1375.12
+  timeStart: 1307.04
+  topics:
+  - Lifestyle
+  - Military
+  transcript: 'stay in touch with your family on deployment is extremely easy now
+    because of the way that of all the new technological advances that we have that
+    we didn''t have before new in the past and I had made a deployment this was even
+    just in two thousand and two really in a way I was able to stay in touch with
+    my family was weekly telephone call that we did at a pay phone bank that was there
+    on base so you actually had to have calling cards and then you dial up and based
+    on the time zone difference you hope you get a hold of somebody and then you talk
+    with them until you''re calling card ran out you know you did twenty minutes or
+    so and then of course writing letters I was another way just keep in constant
+    communications now I mean when you deploy you''ve got your cell phone you might
+    be overseas but there''s application that you can download where you can actually
+    make video calls our phone calls you know using wifi and the internet you can
+    still send letters home if you want you can use email you''ve got you know Skype
+    and Facebook and video chat so it''s actually incredibly easy nowadays to stay
+    in touch with your family on a near daily basis than it was in the past '
+  utteranceAudio: build/utterance_audio/s002p008s00214704e00225512.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00214704e00225512.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How do you ensure your family is taken care of when you are away?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1442.21
+  timeStart: 1384.28
+  topics: []
+  transcript: 'ways that you can ensure your family''s taking care of all your way
+    is make sure that your family knows the resources that they can use before you
+    go on deployment so who is the commando ombudsman who can they get a call who
+    can they contact when you''re gone that a case they do need to get a hold of you
+    this is their lifeline that they can call would be that that pivot point for you
+    what resources are gonna be available to them while you''re gone as far as you
+    know medical dental educational stuff counselors career decisions things like
+    that for your family so that''s definitely something that you need to look at
+    and make sure your family knows those resources and has those phone numbers of
+    course the other way is just trying to stay as much communication with them as
+    possible using things like your cell phone or applications you can download on
+    your phone or your email or doing video calls things like that to to stay engaged
+    with your family while you''re gone '
+  utteranceAudio: build/utterance_audio/s002p008s00230428e00240221.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00230428e00240221.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What is the best plan for if you family has an emergency and you are away?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1492.15
+  timeStart: 1452.14
+  topics: []
+  transcript: 'the best plan for your family if they have an emergency you''re on
+    your way is for them to you know make sure they have the phone numbers that they
+    need a head of time so that they can address those issues obviously if it''s summer
+    agency they ought to be calling nine one one right but after that if they need
+    to get a hold of you you know there''s the commando buds men that they can get
+    a hold of who has a direct link to the commanding officer and the CMC of that
+    unit to then you know get a hold of you to try and get you home and they''ll be
+    able to use the resources like red cross or some other Avenue to to get you home
+    if need be in the event of an emergency '
+  utteranceAudio: build/utterance_audio/s002p008s00241214e00245215.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00241214e00245215.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What is military vacation like? (length, accural rate, types of leave)
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1607.19
+  timeStart: 1506.11
+  topics: []
+  transcript: 'military vacation or you know accruing leave it''s routine so you get
+    so many days per month every every month that you''re in service you get X. amount
+    of days and accrued your leave and depend upon your situation you can have sometimes
+    up to ninety days of leave saved on the books if you''ve been on a deployment
+    status for regular navy work usually only allowed to keep sixty days of leave
+    on the books and you work with your chain of command in order to use that so you''ll
+    find that they''ll be you know it several times throughout the year we are already
+    going to get some time off whether it''s a three day weekend because of federal
+    holiday or it''s say thanksgiving where you''re given time off for that or what''s
+    also commonly referred to as holiday stand down during the the Christmas time
+    and they had the new year''s time frame usually given time off for that to where
+    you probably don''t even necessarily need to use leave the days that you''re trying
+    to use leave are usually normal working days that''s where you''re going to communicate
+    that to your chain of command and ahead of time and ask for you know X. amount
+    of leave it to go on vacation depend upon where you work they may regulate how
+    much leave you can take at a certain time period I''ve worked some places where
+    you know I could take thirty days off if I really wanted to they would allow me
+    to do that no I never would do that because I know that I''d miss certain things
+    I''d be hot be behind in the in the working position that I''m at but if I want
+    to take thirty days I had no problem approving that have been other places where
+    you know two weeks is like the maximum and that''s probably all you''re gonna
+    be able to get in one sitting so you have to kind of plan for that and communicated
+    to check '
+  utteranceAudio: build/utterance_audio/s002p008s00250611e00264719.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00250611e00264719.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What is the best way to be happy with your time in the service?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1673.27
+  timeStart: 1632.24
+  topics: []
+  transcript: 'the west the best way to to be happy with your time in the service
+    is just make sure that you''re enjoying what you''re doing if you find yourself
+    after a while just not really enjoying what you''re doing you''re coming into
+    work day to day and maybe you''ve tried to make changes and it just doesn''t here
+    is not making a difference in that then perhaps it''s time for you to look at
+    a different Avenue to to go down this isn''t for you you''ve been disenchanted
+    and no longer want to be in the service of but more than likely you''re gonna
+    be able to find opportunities to stay happy and always find kind of the silver
+    linings and everything that you''re doing I understand that the work that you''re
+    doing is bigger than yourself there''s a purpose in a point to why you''re here '
+  utteranceAudio: build/utterance_audio/s002p008s00271224e00275327.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00271224e00275327.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: As a parent, what habits from military leadership are helpful or problematic?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1753.15
+  timeStart: 1690.14
+  topics: []
+  transcript: 'so if you''re a parent you''ve got to be very careful with using some
+    of the techniques that you''ve learned in being a military leader with your family
+    all that''s not gonna come across appropriately with them you know I''ve had guys
+    that I''ve known that you know did instructor duty whether it was at RTC is a
+    you know drill instructor or being at like dive schools a dive school instructor
+    where you''re pretty aggressive with the way that you conduct business with the
+    students because you''re trying to stress them trying to put them through a particular
+    situation that''s going to come out with a better result in the end you can''t
+    go home and then use those same tactics that you were using with you know boot
+    camp recruits or a or a dive school student and use that on your son because he
+    did make is bad you know you''re gonna find that that is going to disrupt your
+    family life so you have to make sure you you know you kind of separate your military
+    life from your family life and don''t let those those techniques conduct bland
+    over us you can you can end up with some issues '
+  utteranceAudio: build/utterance_audio/s002p008s00281014e00291315.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00281014e00291315.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - What ports have you been to?
+  - Where have you traveled?
+  - Where have your ships docked?
+  - Where have your ships ported?
+  - Which countries have you been to on your aircraft carrier?
+  - australia
+  - tell me about australia
+  part: 8
+  question: Where have you been in port?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1807.04
+  timeStart: 1765.0
+  topics:
+  - Travel
+  transcript: 'so places that I''ve been import and I''ve never actually been station
+    on a ship but I''ve traveled a lot not deployed in on exercises on a lot of different
+    places those obviously include all over the U. S. you know of both east coast
+    and west coast I''ve also been to Hawaii Guam Montenegro Croatia Bahrain Kuwait
+    Oman Saudi Djibouti other places off the coast of Africa there Europe Germany
+    England Britain so I''ve been all over the place and they''re all those places
+    I''ve been to have been extremely enjoyable '
+  utteranceAudio: build/utterance_audio/s002p008s00292500e00300704.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00292500e00300704.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What things should I prioritize when moving to a new location?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1852.28
+  timeStart: 1817.01
+  topics: []
+  transcript: 'things you should prioritise when you''re moving to a new location
+    obviously where you''re gonna live how far away is that from where you''re gonna
+    be working what type of things are around that place that you intend on living
+    as far as resources community services things like that you have a family then
+    you definitely want to look at you will come to schools are in that area that
+    your kids might be going to and the quality of those schools what type of job
+    opportunities are gonna be there for your spouse as you move to that new location
+    you''re trying to pick somewhere to live so you want to kind of take all those
+    things into perspective '
+  utteranceAudio: build/utterance_audio/s002p008s00301701e00305228.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00301701e00305228.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: When do you get to choose if you are going to live in post or off post?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 1932.01
+  timeStart: 1864.22
+  topics: []
+  transcript: 'when you get to choose whether you''re gonna live on base or off base
+    is really depending on where you''re getting station and the command that you''re
+    at so that some commands and depend upon the size of the command what they have
+    is resources you may have to live on base or even on the ship until you reach
+    a particular rank or you know you''re married and have a have kids independence
+    then you know you''re gonna have that flexibility to live out of town but as a
+    single individual independent pawn your rank you might be kind of forced to stay
+    on base or live on the ship but also depend on your command one particular place
+    I was stationed out we were a small unit and even you know the E. three is an
+    E. fours that were single were able to still get basic allowance for housing and
+    live out of town because the barracks that were on the basis that could not accommodate
+    the people that were station with our unit and the particular working hours that
+    we work they were unable to meet galley hours in order to get those rations at
+    the galley so they''re also given basic allowance for substance so it''s really
+    just depending on where your station and what your dependency situation is '
+  utteranceAudio: build/utterance_audio/s002p008s00310422e00321201.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00310422e00321201.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: When should I own or rent?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2005.08
+  timeStart: 1944.15
+  topics: []
+  transcript: 'deciding when to own in deciding when to rent really has to do with
+    you personally where you''re at financially and how long you think you''re gonna
+    be in the area you know if you think that you''re gonna be station a particular
+    area for several years and financially you can accommodate owning your own place
+    and I would probably recommend doing that there''s a lot of benefits to being
+    a homeowner financially as well as just personally and you know as you get ready
+    to leave that area you have several options you can either rent your place out
+    and continue to make income while you''re paying the mortgage down or you can
+    go and try and sell it or you might decide that you want to rent because it''s
+    easier it''s actually may be cheaper maybe you don''t need a home because you''re
+    single individual wants all you really need is a studio size apartment and you''re
+    able to get away with that or you''re not going to be in that area long enough
+    to where owning some place to live just doesn''t financially makes sense then
+    you''re probably gonna want to rent instead '
+  utteranceAudio: build/utterance_audio/s002p008s00322415e00332508.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00322415e00332508.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What types of services are easy to find vs. hard to find on a Navy base?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2138.27
+  timeStart: 2088.29
+  topics: []
+  transcript: 'new services that you''re gonna find on a navy base differentiate based
+    on where you''re gonna be station you''ll find that the larger navy bases pretty
+    much have every kind of service you can think of right there on base I mean you''ll
+    have your medical you''ll have dental you''ll have shopping of places to eat there''s
+    an M. W. are there that can do you know extra curricular activities I mean there
+    will be financial services on base counseling services people to do your taxes
+    you know whereas when you get to a smaller base you might find yourself a little
+    bit more limited and have to do things out in town in order to get those services
+    so really just depends on where you''re gonna be station but you know the navy''s
+    been done a really good job of providing you with a lot of service you need right
+    there on base '
+  utteranceAudio: build/utterance_audio/s002p008s00344828e00353827.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00344828e00353827.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How often will I have to move?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2207.13
+  timeStart: 2156.13
+  topics: []
+  transcript: 'how often you''ll have to move is really dependent on what kind of
+    job you do you know in the community that I''ve been in I''ve seen individuals
+    do their entire career here in San Diego they''ve just moved from one duty station
+    to the next but because of the community being the EOD community there''s several
+    you a T. mobile units here in San Diego there''s also Sir training unit which
+    is considered the shore duty for U. D. folks here in San Diego so I''ve seen people
+    do an entire twenty years and lived in San Diego their entire time they''ve just
+    moved around from one mobile unit to another whereas depend upon other jobs you
+    might find yourself having to move from one coast to the next or even overseas
+    it just really is dependent on the job that you do and what your duty is and where
+    you''re at progress seen in your career ladder '
+  utteranceAudio: build/utterance_audio/s002p008s00355613e00364713.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00355613e00364713.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - Can I get drunk while on my ship?
+  - Do you drink?
+  - Does the Navy allow you to drink?
+  - Does the Navy look down on alcohol on the ship?
+  - How often are service members allowed to drink on deployment?
+  - Is it possible to drink while serving in the Navy?
+  part: 8
+  question: Can you drink alcohol when deployed?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2281.27
+  timeStart: 2236.27
+  topics:
+  - Culture
+  - Lifestyle
+  - Military
+  transcript: 'where do you can drink alcohol if you''re deployed really depends on
+    where you''re deployed to some regions that you''re gonna go to it''s a dry area
+    it''s a dry region and you''re probably not gonna be able to have alcohol there
+    or if you do have any you''re gonna find it on on base right and and the sea and
+    that''s the only place that you can drink it because you''re not able to bring
+    it out of town just because of that particular areas cultural you know norms rules
+    and laws other places that you''re gonna be on deployment you more than likely
+    will be able to partake in and drinking alcohol so rich really depends on where
+    you''re going the best thing to do is just ask around two people have been deployed
+    to that area before if alcohol was available or not and if it''s something you''d
+    be able to part '
+  utteranceAudio: build/utterance_audio/s002p008s00371627e00380127.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00371627e00380127.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What have you seen people spend a bonus on that worked out well?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2378.15
+  timeStart: 2329.08
+  topics: []
+  transcript: 'of the things that I''ve seen people spend their reenlistment bonuses
+    on that have worked out well has been them taking that money and invest in themselves
+    and investing in into some sort of financial vehicle whether that be mutual funds
+    stocks are just a savings account the ones that I''ve seen take that nice large
+    reenlistment bonus and go out by the most fanciest car or new TV or some sort
+    of other tangible object that''s going to immediately lose value the second you
+    drive it off the lot for the second that you leave the store with it that hasn''t
+    worked out great for them the folks that have actually taken that money and then
+    good stewards with that and that bonus input in in some sort of financial vehicle
+    to make that money grow in the long run they it''s worked out better for them '
+  utteranceAudio: build/utterance_audio/s002p008s00384908e00393815.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00384908e00393815.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What kind of lifestyle can I afford as a junior officer without going
+    into debt?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2464.12
+  timeStart: 2398.16
+  topics: []
+  transcript: 'what kind of lifestyle you can afford as a junior officer is really
+    going to be dependent on what your current financial situation is to begin with
+    some people come into the service start out with nothing in their bank accounts
+    where other people already have a nice nest egg built up so it''s gonna be depending
+    on where you''re at starting out financially however you need to you know be good
+    stewards with your money and make sure that you''re not spending it on frivolous
+    things because I can catch up with you in the long run you need to live within
+    your means and make sure that your also putting some money away monthly to it
+    for that for that kind of buffer that savings buffer and you can do that by already
+    having certain money allocated from your paycheck before you even receive it go
+    directly to a say a savings account or some other type of savings vehicle before
+    you even actually touch that money and so that''s what I''d recommend is is taking
+    a percentage of your money from every paycheck making sure that you''re paying
+    yourself first by having to go to some sort of savings account and live within
+    your means '
+  utteranceAudio: build/utterance_audio/s002p008s00395816e00410412.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00395816e00410412.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How do taxes work in the military?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2548.14
+  timeStart: 2475.02
+  topics: []
+  transcript: 'be in the military you still pay taxes a lot of folks are under a misconception
+    that you don''t pay taxes when you''re in the military you absolutely do you''ll
+    find those things on your W. two form that you''re able to access and look at
+    any time on the mypay website and you need to file your taxes just like anybody
+    else files are taxes by the deadline that''s do one advantage that you do have
+    about being in the military when it comes to filing your taxes though is if you''re
+    on deployment during that tax season time frame you''re unable to make those taxes
+    or pay those on time to file your taxes you''re given kind of a hundred eighty
+    day buffer to get your taxes turned in after the date that most everyone else
+    has to have their taxes done another advantage is if you''re deployed to a non
+    taxable region then you''re not actually taxing your paycheck while you''re there
+    and so at the end of the year when you''re filing your taxes you''ll notice that
+    you''ll be in a little a lot less could be in a lower tax bracket because the
+    income that you earn well you''re deployed away from the states you weren''t being
+    taxed on that and you won''t be taxed on that so it''s kind of those are one two
+    advantages that you have when it comes to taxes and being in the navy '
+  utteranceAudio: build/utterance_audio/s002p008s00411502e00422814.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00411502e00422814.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: When do I need to worry about retirement?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2624.09
+  timeStart: 2559.13
+  topics: []
+  transcript: 'when to worry about retirement or at least start thinking about it
+    ought to be somewhere you know in your career could be early on it really just
+    depends on what your overall goal is if you know that you want to make a career
+    of the navy and you intend on doing a full twenty years then you''ve already started
+    thinking about that early in your working towards those steps if you''re for if
+    you''re at that middle point usually you''re you''ve done ten years and now you''re
+    trying to decide to I do another ten to make a career in retired should I get
+    out now well then you wanna have been thinking about that prior to hitting that
+    ten year mark though if you made it past that then as you''re getting kind of
+    closer to those retirement time frames that''s when you really need to start thinking
+    about it and preparing there''s different resources out there in training in schools
+    at the navy offers to get you ready for retirement that you''ll go to or do online
+    so it really just depends on where you''re at in your stage of your career and
+    we need to really start thinking about those things '
+  utteranceAudio: build/utterance_audio/s002p008s00423913e00434409.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00423913e00434409.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What benefits should take advantage of more?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2698.12
+  timeStart: 2647.04
+  topics: []
+  transcript: 'of one of the benefits you should take advantage of is going to be
+    what the the navy has is the thrift savings plan and so that''s where you''re
+    taking a portion of your money in your putting it away for the future and there''s
+    a variety of different funds that you can invest your money and you can do up
+    to a certain percentage of your paycheck every month and that money''s going to
+    go away and you''re not really going to touch that until you''re you know later
+    in your retirement years and that money is just going to grow and you should be
+    contributing to that every single month so look into what new kind of benefits
+    are being offered for the thrift savings plan the blended retirement system and
+    take advantage of those things because you know you''re not always going to be
+    in the navy for ever you need to have some sort of nest dagen and savings plan
+    built up for when you leave '
+  utteranceAudio: build/utterance_audio/s002p008s00440704e00445812.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00440704e00445812.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How is travel paid for?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2761.16
+  timeStart: 2707.01
+  topics: []
+  transcript: 'when you''re doing military travel the navy''s going to pay for that
+    is usually done through a system called DTS defense travel system so you''re gonna
+    put in your orders where you''re going to figure out how much it''s going to cost
+    to fly you there if you need a rental car how much lodging is going to be you
+    have a government credit card that you''ll use and when you''re on travel those
+    things are taken care of you''re saving your receipts and at the end of your travel
+    gonna follow travel voucher in order to get reimbursed that money that was spent
+    certain things you''re gonna have to use our government credit for credit card
+    for such as your lodging your plane tickets in your rental car and fuel but things
+    like food and other items that you get for per diem that''s just a flat rate that
+    you''re gonna get and you can use your personal you know card debit or credit
+    card for those items once you file that travel claim at the end of your travel
+    unit reimburse that money that you spend '
+  utteranceAudio: build/utterance_audio/s002p008s00450701e00460116.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00450701e00460116.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What kind of hobbies do you have time for?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2815.01
+  timeStart: 2770.01
+  topics: []
+  transcript: 'some of the hobbies that I have time for our scuba diving spear phishing
+    doing other things out on the water and another one is is hiking currently being
+    station here in San Diego over the past several years I''ve been slowly whittling
+    away on the Pacific crest trail so the Pacific crest trail is about twenty six
+    hundred miles they go from the border of Mexico all the way to the border of Canada
+    and when I''m able to take time I take some time off work I usually do about a
+    week at a time on the trail and usually bang out anywhere from eighty to a hundred
+    miles so currently I''ve got about four hundred miles that I''ve done on the Pacific
+    crest trail and that''s where the hobbies that I do I like to like to hike in
+    due out outdoor activities '
+  utteranceAudio: build/utterance_audio/s002p008s00461001e00465501.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00461001e00465501.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2880.29
+  timeStart: 2876.28
+  topics: []
+  transcript: 'I don''t have enough information to talk about that '
+  utteranceAudio: build/utterance_audio/s002p008s00475628e00480028.mp3
+  utteranceType: I don't have enough information to talk about that.
+  utteranceVideo: build/utterance_video/s002p008s00475628e00480028.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2889.27
+  timeStart: 2886.24
+  topics: []
+  transcript: 'I don''t have an answer for that '
+  utteranceAudio: build/utterance_audio/s002p008s00480624e00480927.mp3
+  utteranceType: I do not have an answer for that.
+  utteranceVideo: build/utterance_video/s002p008s00480624e00480927.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2905.16
+  timeStart: 2899.1
+  topics: []
+  transcript: 'that''s a great question unfortunately I never recorded an answer for
+    that '
+  utteranceAudio: build/utterance_audio/s002p008s00481910e00482516.mp3
+  utteranceType: That is a great question, unfortunately I never recorded an answer
+    to that.
+  utteranceVideo: build/utterance_video/s002p008s00481910e00482516.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2916.08
+  timeStart: 2911.29
+  topics: []
+  transcript: 'that''s a great question I wish I thought of that '
+  utteranceAudio: build/utterance_audio/s002p008s00483128e00483608.mp3
+  utteranceType: That is a great question. I wish I'd thought of that.
+  utteranceVideo: build/utterance_video/s002p008s00483128e00483608.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2930.07
+  timeStart: 2925.22
+  topics: []
+  transcript: 'that''s a great question unfortunately I don''t have an answer for
+    that right now '
+  utteranceAudio: build/utterance_audio/s002p008s00484522e00485007.mp3
+  utteranceType: That is a great question but unfortunately, I don't have an answer
+    right now.
+  utteranceVideo: build/utterance_video/s002p008s00484522e00485007.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2940.28
+  timeStart: 2936.22
+  topics: []
+  transcript: 'unfortunately I was never asked that '
+  utteranceAudio: build/utterance_audio/s002p008s00485622e00490028.mp3
+  utteranceType: Unfortunately I was never asked that question.
+  utteranceVideo: build/utterance_video/s002p008s00485622e00490028.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2951.07
+  timeStart: 2948.11
+  topics: []
+  transcript: 'you might have to ask me something else '
+  utteranceAudio: build/utterance_audio/s002p008s00490811e00491107.mp3
+  utteranceType: You might have to ask me something else.
+  utteranceVideo: build/utterance_video/s002p008s00490811e00491107.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2960.1
+  timeStart: 2957.21
+  topics: []
+  transcript: 'what do you want to talk about '
+  utteranceAudio: build/utterance_audio/s002p008s00491721e00492010.mp3
+  utteranceType: What do you want to talk about?
+  utteranceVideo: build/utterance_video/s002p008s00491721e00492010.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2968.14
+  timeStart: 2965.16
+  topics: []
+  transcript: 'what would you like to ask me '
+  utteranceAudio: build/utterance_audio/s002p008s00492516e00492814.mp3
+  utteranceType: What would you like to ask me?
+  utteranceVideo: build/utterance_video/s002p008s00492516e00492814.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2976.11
+  timeStart: 2973.24
+  topics: []
+  transcript: 'what do you want to know '
+  utteranceAudio: build/utterance_audio/s002p008s00493324e00493611.mp3
+  utteranceType: What do you want to know?
+  utteranceVideo: build/utterance_video/s002p008s00493324e00493611.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2985.15
+  timeStart: 2982.24
+  topics: []
+  transcript: 'what do you want to know about me '
+  utteranceAudio: build/utterance_audio/s002p008s00494224e00494515.mp3
+  utteranceType: What do you want to know about me?
+  utteranceVideo: build/utterance_video/s002p008s00494224e00494515.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 2994.01
+  timeStart: 2991.01
+  topics: []
+  transcript: 'what do you want to know about leadership '
+  utteranceAudio: build/utterance_audio/s002p008s00495101e00495401.mp3
+  utteranceType: What do you want to know about leadership?
+  utteranceVideo: build/utterance_video/s002p008s00495101e00495401.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3009.07
+  timeStart: 3004.11
+  topics: []
+  transcript: 'you can ask about tips as your first month as a leader '
+  utteranceAudio: build/utterance_audio/s002p008s00500411e00500907.mp3
+  utteranceType: You could ask for tips about your first month as a leader.
+  utteranceVideo: build/utterance_video/s002p008s00500411e00500907.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3032.15
+  timeStart: 3027.27
+  topics: []
+  transcript: 'you could ask me about getting your life set up for a big move '
+  utteranceAudio: build/utterance_audio/s002p008s00502727e00503215.mp3
+  utteranceType: You could ask me about getting your life set up after a big move.
+  utteranceVideo: build/utterance_video/s002p008s00502727e00503215.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3042.28
+  timeStart: 3038.23
+  topics: []
+  transcript: 'you could ask me about my go to leadership strategy '
+  utteranceAudio: build/utterance_audio/s002p008s00503823e00504228.mp3
+  utteranceType: You could ask me about my go-to leadership strategy.
+  utteranceVideo: build/utterance_video/s002p008s00503823e00504228.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3056.01
+  timeStart: 3050.01
+  topics: []
+  transcript: 'you could ask me about serious problems like sexual harassment or suicide '
+  utteranceAudio: build/utterance_audio/s002p008s00505001e00505601.mp3
+  utteranceType: You could ask me about serious problems, like sexual harrassment
+    or suicide.
+  utteranceVideo: build/utterance_video/s002p008s00505001e00505601.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3065.23
+  timeStart: 3062.07
+  topics: []
+  transcript: 'you could ask me about my job in the navy '
+  utteranceAudio: build/utterance_audio/s002p008s00510207e00510523.mp3
+  utteranceType: You could ask me about my job in the Navy.
+  utteranceVideo: build/utterance_video/s002p008s00510207e00510523.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3075.05
+  timeStart: 3072.08
+  topics: []
+  transcript: 'you could ask me about my background '
+  utteranceAudio: build/utterance_audio/s002p008s00511208e00511505.mp3
+  utteranceType: You could ask me about my background.
+  utteranceVideo: build/utterance_video/s002p008s00511208e00511505.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3088.23
+  timeStart: 3083.09
+  topics: []
+  transcript: 'go ahead ask me who gave me the best advice about my career '
+  utteranceAudio: build/utterance_audio/s002p008s00512309e00512823.mp3
+  utteranceType: Go ahead, ask me who gave me the best advice about my career.
+  utteranceVideo: build/utterance_video/s002p008s00512309e00512823.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases:
+  - What is the best piece of advice that you've received?
+  - what is the best advice you received?
+  - what person helped you the most to get where you are today?
+  - who was you best career counselor?
+  - who was your "go to guy" regarding your career?
+  part: 8
+  question: Who gave you the best advice about your career?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3123.21
+  timeStart: 3095.18
+  topics:
+  - Advice
+  - Mentor
+  transcript: 'there''s been a couple people yeah there was one was in high school
+    you know it was I was in ROTC in high school I was a lieutenant colonel retired
+    you know special forces guy who is our instructor there''s a lot of good lessons
+    I learned from him and then my first duty station at that mobile unit there is
+    a BMC there who really steered me in the right direction and give me a lot of
+    good lessons learned that I still kinda used today '
+  utteranceAudio: build/utterance_audio/s002p008s00513518e00520321.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00513518e00520321.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3143.22
+  timeStart: 3141.13
+  topics: []
+  transcript: 'I might have covered this already '
+  utteranceAudio: build/utterance_audio/s002p008s00522113e00522322.mp3
+  utteranceType: I might have covered this already...
+  utteranceVideo: build/utterance_video/s002p008s00522113e00522322.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3195.12
+  timeStart: 3186.15
+  topics: []
+  transcript: 'this changes pretty quickly so what I tell you today might change tomorrow
+    the best if you ask somebody local who can point you in the right direction '
+  utteranceAudio: build/utterance_audio/s002p008s00530615e00531512.mp3
+  utteranceType: This changes pretty quickly, so what I tell you today might change
+    tomorrow. It'd be best if you asked somebody local that could point you in the
+    right direction.
+  utteranceVideo: build/utterance_video/s002p008s00530615e00531512.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3212.05
+  timeStart: 3206.23
+  topics: []
+  transcript: 'I''ve done a lot of technical training in the navy so you can ask me
+    about what skills I''ve learned '
+  utteranceAudio: build/utterance_audio/s002p008s00532623e00533205.mp3
+  utteranceType: I've done a lot of technical training in the Navy, so you can ask
+    me about what skills I learned.
+  utteranceVideo: build/utterance_video/s002p008s00532623e00533205.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3229.27
+  timeStart: 3224.07
+  topics: []
+  transcript: 'I haven''t always made perfect decisions so you can ask about any failures
+    I''ve had '
+  utteranceAudio: build/utterance_audio/s002p008s00534407e00534927.mp3
+  utteranceType: I haven't always made perfect decisions, you can ask me about any
+    of the failures that I've had.
+  utteranceVideo: build/utterance_video/s002p008s00534407e00534927.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: null
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3249.02
+  timeStart: 3245.15
+  topics: []
+  transcript: 'what kind of questions can I ask you about '
+  utteranceAudio: build/utterance_audio/s002p008s00540515e00540902.mp3
+  utteranceType: What kinds of questions can I ask you about?
+  utteranceVideo: build/utterance_video/s002p008s00540515e00540902.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How can you tell if someone will be a good mentor?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3387.22
+  timeStart: 3357.15
+  topics: []
+  transcript: 'one way that you can tell somebody is going to be a good mentors their
+    ability to listen to you and relate to you as you''re talking with that individual
+    you know if you''re able to hold an actual conversation and have good communication
+    with that person then you''re gonna know that they''re probably gonna work out
+    as a good mentor for you if you''re looking for that you know what is that what
+    have they done in their career is it something that you want to mimic or mir and
+    that''s probably an individual that you want to look at as a mentor as well '
+  utteranceAudio: build/utterance_audio/s002p008s00555715e00562722.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00555715e00562722.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: If I don't have a mentor, how can I find good one?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3425.28
+  timeStart: 3400.13
+  topics: []
+  transcript: 'if you don''t have a mentor the one way that you can find a good one
+    is just find somebody who you admire in whose career looks very similar to the
+    path that you want to take or you know is in a position that you want to eventually
+    get to that''s the individual that you should go to and try and start building
+    relationships with communicating with and then eventually see if they''re willing
+    to take you under their wing and '
+  utteranceAudio: build/utterance_audio/s002p008s00564013e00570528.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00564013e00570528.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How can I tell who I can really rely on?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3552.27
+  timeStart: 3516.13
+  topics: []
+  transcript: 'a way that you can tell on who you can really rely on is just observing
+    those individuals during stressful situations you''re gonna be able to see you
+    know who''s able to overcome that stress and who might buckle under the pressure
+    and the people that buckle under that pressure those are people that you probably
+    are going to be able to rely on very well and maybe you need to work with them
+    in order to bring them up and the folks where those stressful situations occur
+    and they''re still able to move forward and stay focused and get the job done
+    those of the individual that you know you''re gonna be able to rely on in future
+    sits '
+  utteranceAudio: build/utterance_audio/s002p008s00583613e00591227.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00583613e00591227.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What advice did you listen to from others that helped you advance?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3636.06
+  timeStart: 3593.09
+  topics: []
+  transcript: 'so if I said I listened to from others that help me get advanced was
+    understanding how the advancement process works you''d be surprised how many few
+    people really quite understand how or what it takes to get advance you know who''s
+    looking at your record to that audience is what things you need to do what career
+    milestones you should be heading how to separate yourself out from the pack and
+    really make your your package as well as yourself shine and so you know some of
+    the first advice I was given was making sure that you understand the evaluation
+    process how to write good evaluations for not only yourself but your people because
+    that''s what''s going to ultimately help you get advanced '
+  utteranceAudio: build/utterance_audio/s002p008s00595309e01003606.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s00595309e01003606.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What advice did people tell you that you wished you had heeded?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3794.22
+  timeStart: 3731.24
+  topics: []
+  transcript: 'some of I said I was given that I wish I really what it took was when
+    I first got station here in San Diego and I had for your orders which then ultimately
+    turned into five and a half years at the same place was I was told you know Hey
+    you should probably go out and and get yourself a house you know financially I
+    was capable of doing it I was married I had two kids however you know we were
+    renting the location that we''re out wasn''t bad it was very quick commute to
+    work but everyone around me was buying properties and I was like I really don''t
+    want to get into that because I know I''m gonna probably be leaving soon I don''t
+    want to have to do with those responsibilities when I''m gone now in retrospect
+    looking back I would have been able to get in when the housing market was extremely
+    low here in the San Diego area and what of doubled in by now almost tripled the
+    income that I would have invested on that property so that''s something that I
+    really kind of kick myself for not having listened to back in two thousand and
+    two that you know now and twenty nineteen I probably should have done '
+  utteranceAudio: build/utterance_audio/s002p008s01021124e01031422.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01021124e01031422.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How should you respond to a death on the ship?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3903.27
+  timeStart: 3824.09
+  topics: []
+  transcript: 'the way to respond to adapt death odd your commander on ship is you
+    know obviously be respectful about it have have sympathy for those that are Avenue
+    that were maybe close to that individual if you weren''t and understand that they''re
+    going through some things that they need to get help with and be taken care of
+    if they need to see other resources like counselors or some other site type of
+    support system then you know you need to help them out and deal with that but
+    the biggest thing is just be respectful as well as let the chain of command handled
+    the situation and and don''t try and step outside what your job or lateral limits
+    are with posting things on Facebook or social media before the chain of command
+    actually has the opportunity to address the love ones first I''ve seen that happen
+    before because now we''re in this digital age where things can happen instantaneously
+    where somebody was either really hurt or even had died and the family found out
+    about it via social media before the chain of command actually had the opportunity
+    to either show up in person or call them directly and let them know that''s definitely
+    the wrong way to go about it so just make sure that it''s being handled at the
+    appropriate level and that you''re respectful through the entire process '
+  utteranceAudio: build/utterance_audio/s002p008s01034409e01050327.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01034409e01050327.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How should you respond to a suicide on the ship?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 3964.14
+  timeStart: 3935.05
+  topics: []
+  transcript: 'the way to respond to a suicide at your command is be respectful of
+    that situation again you don''t understand it you don''t know who is close at
+    individual you probably don''t know all the information behind why that person
+    did what they did so don''t pass judgement don''t make offhand comments or remarks
+    because you don''t know who''s listening don''t joke about it just be respectful
+    make sure that those that were directly affected by it are getting the help and
+    support that they need '
+  utteranceAudio: build/utterance_audio/s002p008s01053505e01060414.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01053505e01060414.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What resources are most effective to help sailors deal with grief or loss?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 4011.06
+  timeStart: 3976.07
+  topics: []
+  transcript: 'there are several resources available to help sailors with loss or
+    grief some of those are directly their chain of command and their superiors they
+    can be that first line of of support an effort to help them get through that tough
+    situation others also the chaplains that are available and they''re very well
+    versed in skilled in counseling in dealing with kind of loss and grief there''s
+    also resources at your family fleet support center where they can help with the
+    counseling peas or get those individuals to the right resources that they need
+    to deal with that loss '
+  utteranceAudio: build/utterance_audio/s002p008s01061607e01065106.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01061607e01065106.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How should you handle a sailor who is less effective at their duties due
+    to grief?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 4077.0
+  timeStart: 4023.29
+  topics: []
+  transcript: 'the way that I would handle a sailor who''s become less effective due
+    to loss or grief is first of all understand where they''re at in their grieving
+    process you know that process is different from not for everybody some people
+    are able to just continue on like nothing''s happened where it takes other people
+    little bit longer to grieve and you need to understand that you need to be accommodating
+    for that but also not so accommodating that is detrimental to your mission objectives
+    so you''re gonna have to come to work with that individual and really find out
+    if they are getting the support that they need what do they need to do to get
+    to the next step in their grieving process but don''t feel like you don''t ever
+    try and Russia feel like you need to rush that individual either because that''s
+    not your responsibilities to rush them through the grieving process is need to
+    understand where they''re at and how to get them the right support and make sure
+    that it''s keeps them on track and it''s not causing issues with mission objectives '
+  utteranceAudio: build/utterance_audio/s002p008s01070328e01075700.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01070328e01075700.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How should you respond to someone who has thoughts of suicide?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 4179.11
+  timeStart: 4126.19
+  topics: []
+  transcript: 'if you''re talking with an individual and they''re starting to give
+    you those indicators that they''re having thoughts of suicide the first thing
+    is you know don''t leave that individual loan trying talk with them you can even
+    ask them directly have you thought about hurting yourself or anyone else around
+    you start to see if if they''re really gonna tell you most the time you''ll find
+    that if somebody''s really thought about it they''re probably gonna tell you that
+    they have they''re gonna give you indications that they have started thinking
+    about that and then obviously don''t leave that personal loan take them somewhere
+    to get help whether that''s to medical whether that''s to the chaplain with us
+    to some other sort of counseling function but you know it''s not your job to fix
+    that person right then and there you probably don''t have the skills necessary
+    to do that your skills are still listen be a good listener ask questions and then
+    get them to the help that they need '
+  utteranceAudio: build/utterance_audio/s002p008s01084619e01093911.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01084619e01093911.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: Have you known someone who died in the Navy? (or seriously injured?)
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 4293.07
+  timeStart: 4254.25
+  topics: []
+  transcript: 'I do know several individuals having worked in the navy that have either
+    passed away or been seriously injured and just has to do with the kind of line
+    of work that that were in in the communities that I''ve worked with now that''s
+    not very common with other jobs in the navy you know maybe you''ll have somebody
+    you know Dyer lose their life because of something out in town like a vehicle
+    accident or something along those lines so really just kind of depends on the
+    community that you''re in for me personally yeah I''d I know quite a few folks
+    that have passed away or been seriously injured but that''s very specific to the
+    line of work that we do '
+  utteranceAudio: build/utterance_audio/s002p008s01105425e01113307.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01105425e01113307.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How you known someone who committed suicide in the Navy?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 4419.07
+  timeStart: 4409.22
+  topics: []
+  transcript: 'there''s two people that I know that I''ve talked with worked with
+    in the past that later on did commit suicide '
+  utteranceAudio: build/utterance_audio/s002p008s01132922e01133907.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01132922e01133907.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What risk factors should you look out for, to identify a real suicide
+    risk from person having a bad day?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 4546.05
+  timeStart: 4442.19
+  topics: []
+  transcript: 'in order for you to really tell the difference between somebody who
+    could possibly be a suicide risk and somebody''s just having a bad day is you
+    have to actually know your people your prior to that occasion happening so you
+    really got to know is you know Stephen Smith for example is is just a bad day
+    for them or they really out of character and you''re noticing a habitual pattern
+    that they''re coming in to work every day not really themselves when normally
+    that individuals very bubbly person or energetic current views yeah stick and
+    over the last few days they just haven''t been and they''re starting to kind of
+    give you these indicators where they''re talking about you know things don''t
+    matter to them anymore they''re giving away things that you normally would think
+    they would give away or they''re having issues at home and that''s affecting their
+    their life at work so you have to really kind of understand your people to first
+    figure out if in fact that''s just an individual having a bad day or if they''re
+    starting to show some sort of you know suicidal tendencies there and if you''re
+    concerned as you should be is the leader you should talk to about it regardless
+    even if the proof is just having a bad day you should still talk to them to find
+    out why they''re having a bad day and if you''re also noticing some of these flags
+    at two you seem you know going down the wrong path then you need to definitely
+    pull that person aside and talk to them let him know that you care and listen
+    that''s the biggest thing is asking a few questions and then just let them talk
+    let them vent let them get that grief off and listen to what they have to say
+    and then from there make the decision if you need to get get more support for
+    them or if it''s just you know a bad day and it''s something that''s going to
+    be rectified tomorrow '
+  utteranceAudio: build/utterance_audio/s002p008s01140219e01154605.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01140219e01154605.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What options do you have to work with a sailor who is sick frequently
+    or for longer periods?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 4669.23
+  timeStart: 4616.0
+  topics: []
+  transcript: 'options that you have to work with the sailor who is sick and sometimes
+    maybe for long periods of time is working with your medical department to make
+    sure that they''re getting taken care of in the right approach you obviously want
+    to make sure that the individual is in just trying to get out of work by claiming
+    they''re sick all the time that''s something you can have with those discussions
+    with your medical department and follow up with them find out what information
+    they can tell you based on HIPAA laws in those kind of things and they might be
+    able to say yes this person is going through this are there having this particular
+    treatment plan which consists of this and that way you''re aware and you can make
+    those changes and adjustments to accommodate that individual but you just need
+    to kind of work with that individual as well as the medical department to figure
+    out you know how we can get this person healthy again an operating at their full
+    potential '
+  utteranceAudio: build/utterance_audio/s002p008s01165600e01174923.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01165600e01174923.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: How can you help encourage people with suicidal thoughts to talk about
+    it with others?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 4746.22
+  timeStart: 4690.22
+  topics: []
+  transcript: 'one way that you can encourage people to talk about suicide or thought
+    that they might be having is making sure that you''ve already foster that kind
+    of culture within your organization that they understand it''s okay to get help
+    it''s okay to talk to other people about these thoughts that they''re having because
+    there are support networks out there that they''re not gonna be ostracized if
+    they start bringing these type of thoughts or ideas up and that there''s a support
+    network for them and the only way to do that is by already lane that groundwork
+    down that Hey you know just because you''re thinking this way that''s not uncommon
+    there''s a lot of people that have those type of thoughts some people even go
+    through an act on those thoughts but before that actually happens know that it''s
+    okay for you to come and talk to somebody about it and that we have the support
+    network to get you through that so you have to kind of lay that groundwork early
+    on that it''s okay to talk about and to get help '
+  utteranceAudio: build/utterance_audio/s002p008s01181022e01190622.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01181022e01190622.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: What should you do if someone might be a suicide risk and you know they
+    have easy access to guns or other weapons?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 4801.28
+  timeStart: 4761.01
+  topics: []
+  transcript: 'if you''re dealing with an individual who you feel as a suicide risk
+    and you know that they have access to items like guns or other dangerous materials
+    is ask them if they''re willing to you know turn that kind of object or those
+    things over there''s policies in place now that your command has your commanding
+    officer is able to take custody of those type weapons to hold on to them for a
+    brief point of time that individual is safe and they feel safe if they''re willing
+    to do that than asking for it other than that kind of continue to talk with that
+    individual and and find out what you know if they''re planning on hurting themselves
+    and then get them the support that they need '
+  utteranceAudio: build/utterance_audio/s002p008s01192101e01200128.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01192101e01200128.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: When should you get Navy resources involved with a risk of suicide?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 4850.06
+  timeStart: 4811.29
+  topics: []
+  transcript: 'you should get navy resources involved when there''s a risk of suicide
+    immediately as soon as you possibly can if you''re done a fine these risks it
+    perhaps the individual himself as you''ve been talking with them has told you
+    that they''ve had these certain spots or have an actual agenda you know what that
+    individual know that you care listen to him don''t leave them alone ask him if
+    you''re able to take them to seek help whether that''s to medical or the chaplain
+    or some other kind of resource but the biggest thing is is get them that help
+    that they need immediately before it turns into some sort of a snowball effect
+    that''s hard to come back from '
+  utteranceAudio: build/utterance_audio/s002p008s01201128e01205006.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01201128e01205006.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 8
+  question: When is a formal report necessary for a possible suicide risk?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p008-question-24-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p008-question-24-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
+  timeEnd: 4943.13
+  timeStart: 4906.12
+  topics: []
+  transcript: 'so you know if you''re trying to figure out when to do a formal report
+    for a possible suicide risk your best resource to go to is going to be your command
+    suicide prevention coordinator that individual has been trained and understands
+    the resources of when to report they also have points of contact at medical chaplain
+    fleet family in order to get support for the individual who is possibly at risk
+    so go and talk with your suicide prevention coordinator and they will guide you
+    through using the binder and resources that they have on when and how to make
+    those official reports and who those reports need actually go to '
+  utteranceAudio: build/utterance_audio/s002p008s01214612e01222313.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p008s01214612e01222313.mp4
 - errorMessage: null
   mentor: mario-pais
   paraphrases: []
   part: 9
-  question: How do you set the tone as a leader? What is the right tone?
+  question: What new administrative tasks will I need to do as a leader?
   session: 2
   sessionAudio: build/recordings/session3-20191030/p009-question-17-et-seq.mp3
   sessionTimestamps: build/recordings/session3-20191030/p009-question-17-et-seq.csv
   sessionVideo: build/recordings/session3-20191030/p009-question-17-et-seq.mp4
-  timeEnd: 87.17
-  timeStart: 57.03
+  timeEnd: 77.27
+  timeStart: 11.09
   topics: []
-  transcript: 'the recording there''re successes and failures when it comes time for
-    evaluation periods in and helping out with writing there you either house so some
-    of the very first task you''re gonna have is is understanding your people understanding
-    your job and you know we do that is is reading and and getting educated in those
-    areas this is a real question we have from I think it came from someone how can
-    I make paperwork '
-  utteranceAudio: build/utterance_audio/s002p009s00005703e00012717.mp3
+  transcript: 'one of the new administrative tasks that you have to do is a leader
+    is up figure out what it is you''re leading you know why why are you in the position
+    that you are so you need to understand fully what your job is that''s probably
+    going to require you to read several documents several guiding principles so you
+    can fully understand what your job is and how you are helping out the organization
+    as a whole and then the other ministry of tacit you gonna deal with as a new leaders
+    just understanding your people so probably having to get into their records and
+    research what their background is what kind of previous training they already
+    have what areas maybe they need to get trained on based on the job in this time
+    is that they''re now going to be doing you''re gonna also have to be recording
+    their successes and failures when it comes time for evaluation periods in and
+    helping out with writing there of you either house so some of the very first task
+    you''re gonna have is is understanding your people understanding your job and
+    you know we do that is is reading and and getting educated in those areas '
+  utteranceAudio: build/utterance_audio/s002p009s00001109e00011727.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p009s00005703e00012717.mp4
+  utteranceVideo: build/utterance_video/s002p009s00001109e00011727.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 9
+  question: How can I make paperwork go faster?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p009-question-17-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p009-question-17-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p009-question-17-et-seq.mp4
+  timeEnd: 146.24
+  timeStart: 90.01
+  topics: []
+  transcript: 'one way that you can make paperwork go faster is trying to streamline
+    the process and figure out areas to reduce those administrative burdens that''s
+    a direct order coming from department of defense is a major priority for all forces
+    globally is reducing administrative burdens so if you find yourself doing certain
+    paperwork that you feel is just not necessary anymore maybe there''s a better
+    way maybe this can be automated or done via computer and sent via email as opposed
+    to something I have to print out sign in route and find those innovative solutions
+    and bring those up your chain of command and they should be accepting of those
+    since they''ve got overarching guidance no from the top down that we need as a
+    whole to reduces administrative burdens just figure out a way to streamline those
+    processes and make things more automated to to reduce the time that it''s taking
+    you for that paperwork '
+  utteranceAudio: build/utterance_audio/s002p009s00013001e00022624.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p009s00013001e00022624.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 9
+  question: How to write an evaluation of a sailor who is truly amazing and must be
+    promoted?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p009-question-17-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p009-question-17-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p009-question-17-et-seq.mp4
+  timeEnd: 262.28
+  timeStart: 161.14
+  topics: []
+  transcript: 'the the first thing that you''ve got to do if you''re trying to write
+    an evaluation on somebody who''s really deserving he first got to figure out who''s
+    the audience that you''re writing this for and he''s gonna be looking at it because
+    different audiences there be reading this evaluation are gonna be looking for
+    different things as well as where that person is actually in their career you
+    know an individual who''s any for their certain expectations that they should
+    be achieving certain Qualls qualifications are milestones at that level as any
+    for as opposed to when somebody''s saying E. six they should probably already
+    have certain things achieved now we''re looking at them a little bit differently
+    so you need to understand who your audience is that your writing this evil for
+    and right to that you know is as a junior person that you''re writing on someone
+    who''s probably need three E. for even the five you know it''s probably more technical
+    base that you''re writing their valuations on how are they doing in their job
+    how are they improving technically as well as some other leadership skills as
+    an individual moved up in rank and now you''re writing east sixty thousand chief
+    he vows and hire new what''s most important now is how are they leading are they
+    having an impact on the command in the navy as a whole and how are they professionally
+    developing their subordinates and where the achievements of their subordinates
+    so in in a leadership position no your success is derived directly from your subordinates
+    success so if your subordinates aren''t being successful in your family as a leader
+    and so the way that you can show that any valuation time is by you know making
+    sure that those things are captured in those people''s evaluations as well as
+    making sure that you''re writing the writing the eve al to the level of the audience
+    is going to be looking at it '
+  utteranceAudio: build/utterance_audio/s002p009s00024114e00042228.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p009s00024114e00042228.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 9
+  question: How to write an evaluation of a sailor who has some problems, but is still
+    useful?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p009-question-17-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p009-question-17-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p009-question-17-et-seq.mp4
+  timeEnd: 351.19
+  timeStart: 273.14
+  topics: []
+  transcript: 'to write an evaluation a sailor who''s having problems but is still
+    useful is you just again have to be honest in your writing you can''t you know
+    trying sugar coat things or use flowery wording or adjectives to get around the
+    issue hopefully you''ve been doing your job as a leader anyway and I''ve been
+    mentor in that person along the way and telling them early on that they''ve been
+    having issues and I''ve identified those trying to have them fix them June wait
+    till you Val time to now drop the bomb on on that they haven''t been performing
+    the way that you''ve expected over the last year you know if you''re doing that
+    shame on you as a leader you need to have gotten with that person early on to
+    fix it let''s assume that you have done that and they still you know aren''t dubbed
+    the best or are having issues but they''re still workable we''ll talk to that
+    in the evaluation not everyone can be the shining star not everyone''s going to
+    have that really promote evaluation some people have to be promoted bowl and that''s
+    just the reality of things they''re still worth keeping around they still can
+    do the job but they''re just not necessarily ready for that next next line of
+    responsibility or that next line of being promoted and that''s just the reality
+    of things you have to be honest in your reporting when you''re writing evaluation
+    and you have to be honest when you''re mentoring and counseling your people '
+  utteranceAudio: build/utterance_audio/s002p009s00043314e00055119.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p009s00043314e00055119.mp4
+- errorMessage: null
+  mentor: mario-pais
+  paraphrases: []
+  part: 9
+  question: What is red flag in an evaluation that is easy to miss?
+  session: 2
+  sessionAudio: build/recordings/session3-20191030/p009-question-17-et-seq.mp3
+  sessionTimestamps: build/recordings/session3-20191030/p009-question-17-et-seq.csv
+  sessionVideo: build/recordings/session3-20191030/p009-question-17-et-seq.mp4
+  timeEnd: 512.09
+  timeStart: 418.16
+  topics: []
+  transcript: 'a red flag in an evaluation that could be easily missed if you don''t
+    train your eye to it is just recognizing if the evaluation is generic in nature
+    no is it sure it might talk about some great things but it does it answer the
+    question so what you know for example you know semen so and so did this period
+    okay so what you know how is that quantified how is that bringing to achieving
+    an objective remission you know so if you can''t answer the question so what when
+    you''re reading a sentence in an evaluation that is probably poorly written as
+    well as if the evaluation is just written in general terms and there''s really
+    no quantifiable data there that really highlights with the individual is done
+    for that entire year in those eighteen lines that you get in the in the evil all
+    right up also if things don''t match for example with the current you valves are
+    done there''s trade averages and every single one of those treat averages can
+    be a one through five and so for example if somebody has a five marked in leadership
+    is a trade average but then you see no where in their evaluation right up in those
+    eighteen lines where it talks about what they did is a leader to get that top
+    five spot in the trade average that should be a red flag why is this person getting
+    marked the highest they possibly can and that leadership attributes but yet know
+    where their valuation does it talk about what they did is a leader that should
+    be a red flag is something for you to recognize '
+  utteranceAudio: build/utterance_audio/s002p009s00065816e00083209.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: build/utterance_video/s002p009s00065816e00083209.mp4
