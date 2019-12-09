@@ -1,39 +1,22 @@
 version: '3.7'
 services:
-  mentor-api:
-    image: "uscictdocker/mentor-api:1.0.0"
+  web-app:
     environment:
-      - MENTOR_VIDEO_HOST=http://localhost:8080
-      - CLASSIFIER_CHECKPOINT=dev_latest
+      - MENTOR_VIDEO_URL=http://localhost:8080/videos
+  mentor-api:
+    environment:
+      - MENTOR_VIDEO_URL=http://localhost:8080
     volumes:
-      - type: bind
-        source: ./mentors/videos
-        target: /etc/nginx/html/videos/mentors
       - type: bind
         source: ./checkpoint
         target: /app/checkpoint
       - type: bind
         source: ./mentors/data/mentors
         target: /app/mentors
-      - type: bind
-        source: ./services/mentor-api/src/mentor_api
-        target: /app/mentor_api
-      - type: bind
-        source: ./classifier/src/mentorpal
-        target: /app/mentorpal
     expose:
       - "5000"
   nginx:
-    image: nginx:1.15.6
-    ports:
-      - "8080:80"
-    depends_on:
-      - mentor-api
-      - web-app
     volumes:
-      - type: bind
-        source: ./nginx/nginx.conf
-        target: /etc/nginx/nginx.conf
       - type: bind
         source: ./mentors/videos
         target: /etc/nginx/html/videos
