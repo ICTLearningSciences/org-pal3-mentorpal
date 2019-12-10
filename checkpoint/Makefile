@@ -21,16 +21,16 @@ venv-create:
 
 
 .PHONY: checkpoint-clean/mentor/%
-checkpoint-clean/mentor/%:
+checkpoint-clean/mentor/%: vector_models
 	rm -rf classifiers/$(ARCH)/*$**
 
 # make c1={CHECKPOINT1} c2={CHECKPOINT2} m={MENTOR} compare-checkpoints
 .PHONY: checkpoint-compare
-checkpoints-compare: $(VENV)
+checkpoints-compare: $(VENV) vector_models
 	./bin/checkpoints_compare.sh $(mentor) $(arch_1) $(checkpoint_1) $(arch_2) $(checkpoint_2) 
 
 .PHONY: checkpoint-test
-checkpoint-test: $(VENV)
+checkpoint-test: $(VENV) vector_models
 	. $(VENV)/bin/activate \
         && mentor_classifier_docker checkpoint-test \
                 --arch $(ARCH) \
@@ -42,7 +42,7 @@ checkpoint-test: $(VENV)
                 --docker-env "TEST_SET=testing_data_full.csv"
 
 .PHONY: checkpoint-train
-checkpoint-train: $(VENV)
+checkpoint-train: $(VENV) vector_models
 	. $(VENV)/bin/activate \
         && mentor_classifier_docker checkpoint-train \
                 --arch $(ARCH) \
@@ -53,7 +53,7 @@ checkpoint-train: $(VENV)
 
 
 .PHONY: checkpoint-train/mentor/%
-checkpoint-train/mentor/%: $(VENV)
+checkpoint-train/mentor/%: $(VENV) vector_models
 	. $(VENV)/bin/activate \
         && mentor_classifier_docker checkpoint-train \
                 --arch $(ARCH) \
@@ -79,3 +79,6 @@ docker-run-dev:
             --entrypoint /bin/bash \
         ${MENTOR_CLASSIFIER_DOCKER}
 	
+.PHONY: vector_models
+vector_models:
+	git lfs install && git lfs pull

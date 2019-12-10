@@ -1,4 +1,12 @@
-# Checkpoints
+Checkpoints
+-----------
+
+## Required Software
+
+- OSX or Linux
+- make
+- python3
+- git + git lfs
 
 ## Local Checkpoints
 
@@ -67,12 +75,3 @@ arch_1=my_arch_1 checkpoint_1=my_checkpoint_1 \
 arch_2=my_arch_2 checkpoint_2=my_checkpoint_2
 ```
 
-### Download Vector Models for the Current Checkpoint
-
-Classifiers may require vector models that aren't stored in git or with the classifier because they tend to be large and also used by many classifiers. 
-
-To download the vector models required for the active checkpoint (if any) do:
-
-```bash
-make init
-```
