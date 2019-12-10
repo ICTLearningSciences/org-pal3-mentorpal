@@ -74,6 +74,17 @@ data/mentors/%: $(WATSON_CREDENTIALS)
 			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			$(DOCKER_IMAGE) --mentor $* --data-update --data=/app/mounts/data/mentors
 
+.PHONY: data/topics_by_question.csv/mentor/%
+data/topics_by_question.csv/mentors/%:
+	docker run \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-v $(PWD)/data:/app/mounts/data \
+			-e WATSON_USERNAME=$(WATSON_USERNAME) \
+			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
+			$(DOCKER_IMAGE) --mentor $* --topics-by-question-generate --data=/app/mounts/data/mentors
+
+
 .PHONY: videos/mentors/%
 videos/mentors/%: data/mentors/% 
 	docker run \
