@@ -64,8 +64,8 @@ shell: $(WATSON_CREDENTIALS)
 # Runs build if necessary
 # Generates data files
 # TODO: 1) log every significant action (generating audio, transcribing), 2) build classifier for jd, 3) utterance yaml gets error codes, 4) make delete audio files that failed to transcribe
-.PHONY: data/mentors/%
-data/mentors/%: $(WATSON_CREDENTIALS)
+.PHONY: data/mentors-%
+data/mentors-%: $(WATSON_CREDENTIALS)
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \

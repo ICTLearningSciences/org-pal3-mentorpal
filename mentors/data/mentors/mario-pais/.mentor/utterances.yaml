@@ -48,7 +48,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 51.13
   timeStart: 12.21
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'my ideal team is a group of individuals that are able to think on their
     own that are creative innovative able to adapt but then are able to also come
     together to accomplish a major goal use it''s good to always have people that
@@ -71,7 +72,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 185.0
   timeStart: 147.27
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'one thing that I try and lead by example on is work ethic I think you
     you know if you can show that you''re putting forth an effort than the people
     that you''re leading you''re gonna want to do that as well as general reciprocity
@@ -94,7 +96,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 265.26
   timeStart: 234.28
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'some tips to earn the trust your team is just building that communication
     layer between you and them and opening up that dialogue they they shouldn''t be
     able or they should be afraid to come to you to ask questions whether that''s
@@ -116,7 +119,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 331.01
   timeStart: 279.26
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'one way that you can connect more deeply with your team members is
     getting to know them you know on a personal level besides just professional so
     you know if you know what kind of moats them professionally that''s great you
@@ -145,7 +149,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 403.12
   timeStart: 339.12
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'ways that you can build trust between your team members is by trying
     to do team events that make every individual rely on each other and as the team
     as a whole so trying to come up with you know different ideas solutions exercises
@@ -174,7 +179,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 648.29
   timeStart: 600.01
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'so a couple of good strategies to have the right presents for your
     team the few examples right I think for me which works best is being approachable
     being able to relate setting an example and not sweating the small stuff you know
@@ -210,6 +216,7 @@ utterances:
   timeStart: 709.15
   topics:
   - Colleagues
+  - Leading a Team
   - Lifestyle
   transcript: 'some ways that my work colleagues and I socialize after work are either
     doing you know events where we can bring all of our families to like picnics things
@@ -235,7 +242,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 835.27
   timeStart: 772.0
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'the relationships that I try and build with the people that I lead
     is a close one I like them to have the feel that they can approach me and talk
     to me open and honestly on whatever problems are having personally or professionally
@@ -265,7 +273,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 901.17
   timeStart: 845.03
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'ways that you can help your team prepare for an upcoming tough mission
     first and foremost is obviously training and you have to have that foresight ahead
     of time to know that should be of particular mission coming down the line and
@@ -320,7 +329,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 1128.0
   timeStart: 1064.08
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'depending upon the type of people that you''re leading you''re gonna
     have to obviously have different leadership styles some you might have to be a
     little more intrusive on and provide a lot more detail maybe a little more hand
@@ -351,7 +361,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 1239.14
   timeStart: 1185.27
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'that''s that''s really kind of a situational type question on wind
     to share personal stories or motions with your team I think it is dependent on
     what''s going on the situation at hand the environment that you''re in lot of
@@ -378,7 +389,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 1315.16
   timeStart: 1261.06
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'so some counseling skills that I''ve used that of help me out throughout
     my career made a lot of what I learned when I was on recruiting duty because you''re
     basically meeting people for the first time and having to you know convince them
@@ -407,7 +419,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 1637.1
   timeStart: 1513.15
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'having if your team is having trouble meeting standards and you need
     to trying to get them there I mean there''s different things you can do when the
     first things that I recommend is you know taking a pause taking a step back and
@@ -451,7 +464,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 1723.24
   timeStart: 1649.0
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'there are so many different ways in the navy that you can reward your
     sailors for good performance when you first have to do is just figure out what
     motivates your people you know because what motivates one person is gonna be different
@@ -486,7 +500,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 1794.1
   timeStart: 1741.24
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'some traits that all look for when I have new team members show up
     is is their ability to be kind of free thinkers outside the box thinkers innovative
     an adaptive those are the things that not only were looking for in the community
@@ -513,7 +528,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 1861.29
   timeStart: 1812.17
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'the relationship that you have with the people that are in charge of
     you in my opinion needs to be kind of open and honest they need to know what your
     expectations are of them and you definitely need to know what their expectations
@@ -538,7 +554,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 1958.11
   timeStart: 1906.28
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'one way that''s helped me to understand my my boss my superiors is
     to find a time to sit down with them and and go over what their expectations are
     and where we fit into the overall commands mission objectives lot of times as
@@ -564,7 +581,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 2007.16
   timeStart: 1971.01
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'I think we can encourage accountability is making sure that everyone
     that''s working on that team knows that their their work is valued their opinions
     are valued and that the work that they''re doing has merit if you have that buy
@@ -588,7 +606,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 2076.13
   timeStart: 2016.01
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'at one easy way that I''ve used to identify strengths and weaknesses
     of individuals on my team is I just straight ask them when we do counseling sessions
     one on one and it''s not like punitive counseling this is just more sitting down
@@ -619,7 +638,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 2420.11
   timeStart: 2348.01
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'one way that you can develop your your interpersonal skills working
     with the team be a better team mate is is improving your your level of communication
     not just how you are able to get your response is a cross but also just listening
@@ -649,7 +669,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1-SecondHalf.mp4
   timeEnd: 2543.28
   timeStart: 2450.01
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'so you''re gonna have some challenges when it comes to your leadership
     styles between military and civilian or even contractors are government employees
     no military a lot of times it''s very cut and dry what you you can do with them
@@ -692,6 +713,7 @@ utterances:
   timeStart: 2572.13
   topics:
   - Culture
+  - First Steps
   transcript: 'I think something that kind of makes the did navy different than other
     branches is is the uniqueness of some of the job skills that we have and that
     you''ll find there''s a lot of different ratings within the navy that have a tendency
@@ -719,7 +741,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_FollowUps.mp4
   timeEnd: 71.17
   timeStart: 6.09
-  topics: []
+  topics:
+  - JobSpecific
   transcript: 'so at some common misconception about my field or or let''s say more
     in general terms leadership positions let''s go that route is that the leader
     is expected to know everything and that''s not necessarily true right the leaders
@@ -749,7 +772,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_FollowUps.mp4
   timeEnd: 137.26
   timeStart: 78.0
-  topics: []
+  topics:
+  - Miscellaneous
   transcript: 'you you V. stands for unmanned underwater vehicle and essentially it''s
     it''s a robot an underwater robot that can be used to do a variety of things under
     the water summer programmed with side scan sonar to survey a bottom area looking
@@ -776,7 +800,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_FollowUps.mp4
   timeEnd: 407.07
   timeStart: 361.11
-  topics: []
+  topics:
+  - Miscellaneous
   transcript: 'the U. V. training that we do here is to prepare you you the platoon''s
     for deployment into theaters across the globe ready to do major combat operations
     based on what the command combatant commander''s intent is so we''re gonna train
@@ -800,7 +825,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_FollowUps.mp4
   timeEnd: 480.27
   timeStart: 430.08
-  topics: []
+  topics:
+  - Career Mentoring
   transcript: 'the way that I''m preparing for my next promotion is by understanding
     you know what is the navy actually looking for for the individuals that they intend
     to promote to the next pay grade so every year the certain documents are published
@@ -825,7 +851,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_FollowUps.mp4
   timeEnd: 526.29
   timeStart: 496.07
-  topics: []
+  topics:
+  - JobSpecific
   transcript: 'U. D. stands for explosive ordinance disposal at saw one of those community
     is kind of in the special operations community of the navy where individuals are
     trained to dispose of exploit OR neutralized hazards whether it''s mines to nuclear
@@ -846,7 +873,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp4
   timeEnd: 83.29
   timeStart: 43.27
-  topics: []
+  topics:
+  - JobSpecific
   transcript: 'my first major leadership role was when I became a chief petty officer
     and moved in to become the unmanned underwater vehicles leading chief petty officer
     so I sensually was in charge of eleven other sailors and as we combine to create
@@ -869,7 +897,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp4
   timeEnd: 120.14
   timeStart: 91.0
-  topics: []
+  topics:
+  - JobSpecific
   transcript: 'currently I spend most of my time at work developing curriculum as
     well as administering that to UMass platoons that are coming through the training
     unit here so that can be anywhere from you know eight personnel up to twenty four
@@ -916,7 +945,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp4
   timeEnd: 231.1
   timeStart: 194.0
-  topics: []
+  topics:
+  - JobSpecific
   transcript: 'so my typical week that my hours vary and that''s because the program
     that we''re standing up and creating is very fluid and what kind of building it
     off the ground another way of saying is we''re we''re building this plane while
@@ -940,7 +970,9 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp4
   timeEnd: 361.1
   timeStart: 310.02
-  topics: []
+  topics:
+  - First Steps
+  - JobSpecific
   transcript: 'so the decisions that I make on a daily basis can very based on the
     situation at hand right so for example as the L. C. P. O. of the U. M. S. division
     there''s times I have to deal with the sailors personal and professional development
@@ -966,7 +998,9 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt1.mp4
   timeEnd: 437.15
   timeStart: 401.06
-  topics: []
+  topics:
+  - First Steps
+  - JobSpecific
   transcript: 'so I do with all kinds of problems that very and and level of complexity
     some can be just my computer just doesn''t seem to want to work for the day or
     my email is not seeming to work which can create frustration all the way up to
@@ -989,7 +1023,9 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
   timeEnd: 124.14
   timeStart: 8.17
-  topics: []
+  topics:
+  - First Steps
+  - JobSpecific
   transcript: 'so one story that I can think of that really shows what its like working
     on my job is is a story that kind of has to do with innovation and outside the
     box thinking which we commonly have to do in the E. O. D. community here one of
@@ -1114,7 +1150,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
   timeEnd: 311.12
   timeStart: 268.12
-  topics: []
+  topics:
+  - JobSpecific
   transcript: 'so I end up doing a lot of travel is in this community even whether
     you''re you''re considered shore duty or sea duty your costly traveling perfect
     example I just got back from Guam this week the week of the month before that
@@ -1176,6 +1213,7 @@ utterances:
   timeEnd: 516.15
   timeStart: 455.13
   topics:
+  - JobSpecific
   - Misconceptions
   transcript: 'I think a lot of times gets romanticizes that were constantly out there
     doing you know dangerous or hazardous work and so a lot of times people are given
@@ -1205,7 +1243,9 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_JobOverview_pt2.mp4
   timeEnd: 710.29
   timeStart: 631.0
-  topics: []
+  topics:
+  - First Steps
+  - JobSpecific
   transcript: 'so what I do now that''s different than what I thought I was going
     to be doing is not originally joined the navy to come in to be a navy seal and
     during that time you actually had to pick a source rating before you can go on
@@ -1274,8 +1314,7 @@ utterances:
   timeEnd: 858.12
   timeStart: 799.22
   topics:
-  - Background
-  - Travel
+  - Relocating
   transcript: 'so within my career I''ve had to move several times and it didn''t
     Kerr some changes for that personally with my family and and those kind of things
     I''ve had to move from the west coast to the east coast back to the west coast
@@ -1312,7 +1351,7 @@ utterances:
   timeEnd: 917.0
   timeStart: 864.06
   topics:
-  - Future
+  - Career Mentoring
   transcript: 'where I see myself in five to ten years I''m kind of undecided right
     now I''m at a point in my career where I''ve got eighteen years and the command
     I''m currently at can actually take me to twenty one years and I could essentially
@@ -1339,7 +1378,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 73.01
   timeStart: 30.1
-  topics: []
+  topics:
+  - First Steps
   transcript: 'so what I think makes a good leader is somebody who is also a good
     listener in order for you to lead your people effectively also have to be able
     to understand and listen to what your people''s needs are and understand what
@@ -1364,7 +1404,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 156.14
   timeStart: 83.04
-  topics: []
+  topics:
+  - First Steps
   transcript: 'so I think the first steps that when you have a new leadership position
     is obviously getting to understand your people first and and understanding what
     their strengths and weaknesses are and how you can use those to progress not only
@@ -1396,7 +1437,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 232.24
   timeStart: 164.13
-  topics: []
+  topics:
+  - First Steps
   transcript: 'so the way that the way that I set the tone is as a leader within the
     platoons of divisions and even departments that I''ve lad is one that is kind
     of is very open and fluid I enjoyed I have you know face to face conversations
@@ -1428,7 +1470,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 331.01
   timeStart: 245.18
-  topics: []
+  topics:
+  - First Steps
   transcript: 'so I think one of the common things that I''ve seen leaders make that''s
     a mistake and it is a challenge to kind of over com is not really understanding
     your people to the full intent as well as not understanding what your mission
@@ -1464,7 +1507,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 429.27
   timeStart: 370.04
-  topics: []
+  topics:
+  - First Steps
   transcript: 'so some problems that you need to understand early or else you could
     possibly have issues with them later on is your logistical requirements as far
     as you know what resources do you have and if you don''t identify where your shortfalls
@@ -1493,7 +1537,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 907.14
   timeStart: 823.29
-  topics: []
+  topics:
+  - First Steps
   transcript: 'so how much leadership should you take on if you''re coming in to say
     that that first leadership position as a petty officer probably the PO the first
     thing you want to do is establish those expectations between your L. CPO and whoever
@@ -1526,7 +1571,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 1120.15
   timeStart: 1008.2
-  topics: []
+  topics:
+  - First Steps
   transcript: 'so the one way that you can meal bill that camaraderie with your team
     without you know cutting close that fraternization line it''s it''s a challenge
     to say the least right never it really depends on communities as well it varies
@@ -1571,6 +1617,7 @@ utterances:
   timeStart: 1137.15
   topics:
   - Background
+  - First Steps
   - Priorities
   transcript: 'so I feel that my priorities of changes I''ve progressed as a leader
     in the fact that the the higher you move up in leadership the less and less your
@@ -1604,7 +1651,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 1287.01
   timeStart: 1228.05
-  topics: []
+  topics:
+  - First Steps
   transcript: 'so what really makes changing a team especially if it''s a big change
     is is getting that by and from the folks at your leading up you''ve got to be
     able to show them the reality of what that changes whether it''s good or bad and
@@ -1679,6 +1727,7 @@ utterances:
   timeStart: 1450.15
   topics:
   - Advice
+  - First Steps
   - Priorities
   - STEM
   transcript: 'so the priorities that I''d recommend for you if you''re entering into
@@ -1712,7 +1761,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 1593.26
   timeStart: 1536.2
-  topics: []
+  topics:
+  - First Steps
   transcript: 'certain skills that I wish I had mastered before it started was probably
     administrative skills so you earlier on in my career I was very good at the technical
     aspect of the operating aspect it wasn''t until I really moved on to recruiting
@@ -1739,7 +1789,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 1716.12
   timeStart: 1647.1
-  topics: []
+  topics:
+  - First Steps
   transcript: 'one question that I wish I had asked earlier in my career was just
     how to properly do and even even how to write an email you know it took me a little
     bit to understand that you that''s probably the single most important document
@@ -1769,7 +1820,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 1801.0
   timeStart: 1745.22
-  topics: []
+  topics:
+  - First Steps
   transcript: 'as a leader you should start understanding you know what those bigger
     goals are suppose just working on something you know at the at the more subordinate
     levels so sometimes you might have to go out of your way to find out what those
@@ -1834,7 +1886,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 1935.24
   timeStart: 1889.24
-  topics: []
+  topics:
+  - First Steps
   transcript: 'having a conflict within your first few days of of a new unit that''s
     that''s entirely common that''s not uncommon at all of your new so you got a new
     environment that you''re trying to figure out and learn to and find out what those
@@ -1859,7 +1912,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 2044.27
   timeStart: 1976.07
-  topics: []
+  topics:
+  - First Steps
   transcript: 'so in order to lead honorably you''ve got to have that that that word
     of integrity is as cliche as it sounds we hear it coming to boot camp all throughout
     your career you have to have that integrity but it''s true and that''s why it''s
@@ -1891,7 +1945,8 @@ utterances:
   sessionVideo: build/recordings/session1-20191029/Session1_Leadership_FirstSteps.mp4
   timeEnd: 2118.13
   timeStart: 2057.23
-  topics: []
+  topics:
+  - First Steps
   transcript: 'certain resources that you''d want to look at as you''re moving into
     a leadership position you know there''s there''s books all those things out there
     that people have written hundreds of books on leadership you know if the if that''s
@@ -2512,7 +2567,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
   timeEnd: 244.0
   timeStart: 216.19
-  topics: []
+  topics:
+  - Biography
   transcript: 'my home life was my mom and I when I was it was older we live together
     go to school go to work and also worked at McDonald''s as my first job until I
     left for the navy after my senior in high school I would say was you know pretty
@@ -2532,7 +2588,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
   timeEnd: 260.25
   timeStart: 249.29
-  topics: []
+  topics:
+  - Background
   transcript: 'so I joined and and actually left for boot camp for the navy July twenty
     fifth two thousand and one and I''ve been working in the navy sense that '
   utteranceAudio: build/utterance_audio/s002p001s00040928e00042025.mp3
@@ -2573,7 +2630,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p001-question-1-bio-info.mp4
   timeEnd: 359.29
   timeStart: 348.16
-  topics: []
+  topics:
+  - Background
   transcript: 'my current position now is a senior chief petty officer where I work
     at explosive ordinance disposal as an instructor for unmanned maritime systems '
   utteranceAudio: build/utterance_audio/s002p001s00054816e00055928.mp3
@@ -2590,7 +2648,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p002-cleanup-questions.mp4
   timeEnd: 146.28
   timeStart: 53.22
-  topics: []
+  topics:
+  - JobSpecific
   transcript: 'something that I did they got a lot of press and actually made it back
     into my even my hometown newspaper was when I was marine mammal when I was a marine
     mammal handler we were deployed to Bahrain using the dolphins there the U. S.
@@ -2624,7 +2683,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p002-cleanup-questions.mp4
   timeEnd: 221.12
   timeStart: 168.18
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'so one way that you can develop your interpersonal skills when you''re
     working you know in a team or with the team is improve your your skills of communication
     and listening as well as the work on your ability to set goals for yourself as
@@ -2649,7 +2709,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p002-cleanup-questions.mp4
   timeEnd: 364.24
   timeStart: 335.15
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'one leadership book that I''ve read that''s related to you know military
     leadership has been the one by Jocko willing neck which is dichotomy of leadership
     he''s got several other books that he''s done on on leadership or co authored
@@ -2670,7 +2731,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p002-cleanup-questions.mp4
   timeEnd: 418.23
   timeStart: 383.06
-  topics: []
+  topics:
+  - Miscellaneous
   transcript: 'no I don''t think it''s dangerous for the dolphins and sea lines in
     your D. actually they have a better life working with us then they do if they
     were out in the wild they get some of the best medical treatment every day they
@@ -2692,7 +2754,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p002-cleanup-questions.mp4
   timeEnd: 528.19
   timeStart: 487.27
-  topics: []
+  topics:
+  - Background
   transcript: 'right now I''m getting my college degree through Columbia College of
     Missouri I''ve actually done several college classes with the variety of different
     colleges throughout my career you know the navy has an agreement with with certain
@@ -2723,6 +2786,7 @@ utterances:
   timeStart: 133.01
   topics:
   - Culture
+  - Leading a Team
   - Military
   transcript: 'so a particular see story that I can remember was actually when I first
     checked in to you T. mobile unit three where I was gonna be doing marine mammal
@@ -2767,7 +2831,9 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p003-question-26.mp4
   timeEnd: 359.25
   timeStart: 311.14
-  topics: []
+  topics:
+  - Challenges
+  - Leading a Team
   transcript: 'so one way that you can you know improve morale if if given challenging
     task that''s unexpected is it actually starts way ahead of that and that''s you''ve
     got to kind of create and foster a culture with in your team that is used to having
@@ -2793,7 +2859,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p003-question-26.mp4
   timeEnd: 424.2
   timeStart: 369.18
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'the core team members that I''ve relied on in my inner circle as a
     leader has been everyone from the most junior guy up to you know the most senior
     person at my command everybody has something to offer you''d be surprised even
@@ -2820,7 +2887,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p003-question-26.mp4
   timeEnd: 498.11
   timeStart: 436.15
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'if you have trouble listening well some strategies that you can do
     is get out of your own head you effective communication there''s a difference
     between a conversation and communication no communication is being able to actually
@@ -2878,7 +2946,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p003-question-26.mp4
   timeEnd: 716.24
   timeStart: 653.02
-  topics: []
+  topics:
+  - Miscellaneous
   transcript: 'the navy''s marine mammal program has been in existence since the early
     seventies where they were using dolphins and sea lions to conduct different operations
     for example the dolphins back in Vietnam were actually brought there and we''re
@@ -2905,7 +2974,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p004-repeat-after-me-2.mp4
   timeEnd: 73.1
   timeStart: 16.26
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'what makes my leadership style unique is I''d trying do my best to
     relate to the individual that I''m working with the people that I''m leading one
     thing that I''ve learned is that you know all never ask somebody to do something
@@ -2933,7 +3003,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 82.09
   timeStart: 13.26
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'something that I do as a leader that I think is recommend for anybody
     in that you could imitate is to be a leader you also need to be a reader right
     so if you look at some of the greatest leaders that we''ve had you know in the
@@ -2963,7 +3034,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 177.28
   timeStart: 92.24
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'so I face a lot of different decisions as a leader in my organization
     and it''s the kind of unique to the military is composed to are compared to the
     civilian sector you know the civilian sector there it you whether your manager
@@ -2997,7 +3069,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 296.08
   timeStart: 225.27
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'ways that you can take lessons that you learned and any kind of leadership
     school our offer for schools and then trying to apply it in your day to day work
     is it you know you you''ve been just a lot you know a lot of times you might be
@@ -3029,7 +3102,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 365.29
   timeStart: 305.05
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'one thing that you need to know about yourself to lead a team is what
     are your flaws in what your weaknesses are again it''s very easy to know what
     your strengths are but if you don''t know what your weaknesses are and how to
@@ -3058,7 +3132,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 404.12
   timeStart: 375.18
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'what you need to know most about your team members it what is what
     drives them everybody has something that''s different they have their own personal
     backgrounds everyone''s got a different diversity they''ve grown up differently
@@ -3080,7 +3155,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 692.01
   timeStart: 582.23
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'some important factors when making decision and that you want to consider
     I think is ultimately is the juice work the squeeze you know is the risk worth
     is the reward worth the risk you need to look at what is the desired end state
@@ -3115,7 +3191,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 775.25
   timeStart: 716.13
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'one particular leadership style that I hope is dying out would be out
     of the the micro managing style you it''s it''s been proven to not be very effective
     it creates trust issues if you''re constantly having to micromanage your people
@@ -3142,7 +3219,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 830.23
   timeStart: 784.01
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'some warning signs that you might see with problems of your team morale
     is gonna be the first one if you''re noticing that everybody is just down people
     don''t enjoy being where they''re at they don''t joy the work that they''re doing
@@ -3168,7 +3246,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 900.06
   timeStart: 843.0
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'way that you can enforce an honor code is you''ve got to start creating
     that culture within your team early on holding people accountable and making sure
     that they hold themselves accountable you''ve got to build a team that''s capable
@@ -3197,7 +3276,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 1004.16
   timeStart: 928.2
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'you might find that certain sailors in your team cause problems in
     one way that you can improve that is making sure they all understand what their
     purposes you''ll find a lot of times that people really don''t know why they''re
@@ -3229,7 +3309,9 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 1076.28
   timeStart: 1017.15
-  topics: []
+  topics:
+  - Leadership Strategies
+  - Leading a Team
   transcript: 'a way to get to the root of the problem with the team member is just
     active communication you have to sit down you''ve got to tell them that you''re
     having an issue with them show them relevant proof of you know what you''ve been
@@ -3266,7 +3348,7 @@ utterances:
   timeEnd: 1410.12
   timeStart: 1326.16
   topics:
-  - Advice
+  - Leadership Strategies
   transcript: 'when is breaking the rules okay it''s kind of a loaded question but
     so I think before you can even attempt to try and break the rules you got a fully
     understand what they are first why were they put in place the reason behind that
@@ -3300,7 +3382,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 1521.12
   timeStart: 1466.19
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'the way that you can tell if you''re able to influence someone or whether
     they''re you they''re just not going to change is body language is kind of key
     so let''s say that you''re trying to get something new across to a group of individuals
@@ -3327,7 +3410,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 1587.12
   timeStart: 1534.18
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'there''s certain conduct issues that you know you don''t want to deal
     with in house because it''s gonna put not only that individual''s career at jeopardy
     but your yours as well as the leader you''ve got to figure out which ones need
@@ -3353,7 +3437,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 1830.11
   timeStart: 1742.27
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'one particular situation that comes to mind when my team and I had
     a disagreement on how to hit how to handle something was when I was on recruiting
     duty I was working with a particular applicant who we thought we''re is going
@@ -3387,7 +3472,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 2175.06
   timeStart: 2011.29
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'one particular time where I had a disagreement with the people that
     I was leading and how to handle that situation was when it came to working hours
     so I had just moved into a new command I''d taken leadership of this new division
@@ -3442,6 +3528,7 @@ utterances:
   timeStart: 2422.14
   topics:
   - JobSpecific
+  - Leadership Strategies
   - Risk
   transcript: 'so some different risks that we take in this field not kind of approach
     it two fold one is you would restore we take duty wise and job wise and wrist
@@ -3480,7 +3567,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 2641.28
   timeStart: 2550.15
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'some problems that you know I wouldn''t try to resolve but would rather
     trying to get help to the profession you know get that person help from a professional
     or use the resources would be definitely anything that has to do with like marital
@@ -3516,7 +3604,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 2782.12
   timeStart: 2714.05
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'so what you can do if you''re given an impossible situation and you''re
     dealing with failures that you didn''t cause is you still need to figure out are
     you alternately the one that''s responsible if you are the one that''s responsible
@@ -3546,7 +3635,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 2895.24
   timeStart: 2849.04
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'so the way that I deliver bad news as an example like a family emergencies
     I''m definitely direct with the person I don''t try and dance around with the
     issue is obviously if it''s something that''s a personal issue that the person
@@ -3572,7 +3662,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 2995.12
   timeStart: 2934.02
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'people leave the navy for a variety of reasons summer just out of your
     control some are the individual and only intended on join in and doing for years
     and moving on because they just wanted something different they wanted that experience
@@ -3601,7 +3692,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p005-question-55-et-seq.mp4
   timeEnd: 3076.27
   timeStart: 3036.16
-  topics: []
+  topics:
+  - Leadership Strategies
   transcript: 'what else do you need to know while well let''s talk one thing I think
     you you can take away is you know as a leader do not be afraid to fail that''s
     okay because you learn from your failures and at least you put forth an effort
@@ -3705,7 +3797,6 @@ utterances:
   timeEnd: 151.01
   timeStart: 144.01
   topics:
-  - Background
   - Miscellaneous
   transcript: 'right now I''m station in San Diego at explosive ordnance disposal
     training and evaluation unit one '
@@ -3730,7 +3821,7 @@ utterances:
   timeEnd: 171.24
   timeStart: 155.19
   topics:
-  - Background
+  - Miscellaneous
   transcript: 'what is my favorite color let''s see I guess perhaps you know red might
     be a a color that I like but or black I don''t know I really don''t have much
     of a favorite color to be honest '
@@ -3756,7 +3847,6 @@ utterances:
   timeEnd: 218.27
   timeStart: 177.21
   topics:
-  - Background
   - Miscellaneous
   transcript: 'one of my favorite books and I don''t know if it''s of all time but
     one book that I have read more than others kind of over and over again is Stephen
@@ -3785,8 +3875,7 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p006-question-55-et-seq.mp4
   timeEnd: 412.11
   timeStart: 373.06
-  topics:
-  - ''
+  topics: []
   transcript: 'my favorite movie of all time that''s a tough one because I have so
     many that I do enjoy I will say like for example when it comes to action movies
     I do kind of like some of the older like eighties early nineties action movies
@@ -3896,7 +3985,7 @@ utterances:
   timeEnd: 741.01
   timeStart: 708.09
   topics:
-  - Background
+  - Miscellaneous
   transcript: 'so what is my favorite food really have a lot of different things that
     I enjoy so I like Italian food a like Mediterranean food Indian food pretty much
     you know anything that''s kind of like ethnic those are kind of foods that I enjoy
@@ -3922,7 +4011,7 @@ utterances:
   timeEnd: 749.29
   timeStart: 745.0
   topics:
-  - Background
+  - Miscellaneous
   transcript: 'my least favorite food would be anchovies '
   utteranceAudio: build/utterance_audio/s002p006s00122500e00122928.mp3
   utteranceType: _ANSWER_
@@ -3951,6 +4040,7 @@ utterances:
   timeStart: 758.18
   topics:
   - Culture
+  - JobSpecific
   - Military
   transcript: 'so I think the coolest thing that I''ve done in the navy and then I
     still continue to do is working in the E. U. D. community originally was a marine
@@ -3979,6 +4069,7 @@ utterances:
   timeStart: 825.17
   topics:
   - Benefits
+  - Building Rapport
   - Military
   transcript: 'I think the best military perk that I''ve experienced has been the
     ability to use the navy''s tuition assistance are to go to school while I''m in
@@ -4003,7 +4094,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 98.28
   timeStart: 55.16
-  topics: []
+  topics:
+  - First Steps
   transcript: 'my recommendation if you''re trying to achieve a certain qualification
     that is kind of high level is what you''re going through the qualification process
     just completely immerse yourself in that process really understand what you''re
@@ -4027,7 +4119,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 199.18
   timeStart: 112.14
-  topics: []
+  topics:
+  - Challenges
   transcript: 'one challenge that I''ve faced kind of my entire career is the fact
     that I''m doing kind of unconventional work as a whole maintenance technician
     if you actually talk to somebody who is an H. T. you know and explain to them
@@ -4094,7 +4187,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 818.15
   timeStart: 721.16
-  topics: []
+  topics:
+  - Challenges
   transcript: 'so I think the biggest failure that I''ve ever had was starting up
     my career you originally came in to be see in the navy so after my initial a school
     training I went on to their basic underwater demolition school our buds where
@@ -4142,6 +4236,7 @@ utterances:
   timeStart: 879.24
   topics:
   - Background
+  - Challenges
   - Failure
   transcript: 'for me the failures that I''m most unhappy about or those that I have
     not had an opportunity to go back and fix it finish it was maybe I started a particular
@@ -4172,6 +4267,7 @@ utterances:
   timeEnd: 974.17
   timeStart: 937.06
   topics:
+  - Challenges
   - Failure
   - JobSpecific
   transcript: 'in the community that I work in you know if you fail but you''ve actually
@@ -4197,7 +4293,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 1037.17
   timeStart: 985.16
-  topics: []
+  topics:
+  - Challenges
   transcript: 'support that I''ve had when I''ve taken a chance in the results been
     poor have been not only from subordinates and my peers but also just are my superiors
     as well because they''re aware that maybe what we''re trying to do was outside
@@ -4261,6 +4358,7 @@ utterances:
   timeStart: 1114.06
   topics:
   - Background
+  - Challenges
   - Impact
   transcript: 'a pivotal moment for me in my career was when I finally was selected
     for chief petty officer not only you know I''ve been given responsibilities a
@@ -4283,7 +4381,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 1217.11
   timeStart: 1158.29
-  topics: []
+  topics:
+  - Challenges
   transcript: 'for me the biggest risks that I''ve taken in my career is just the
     path that I''ve actually chosen to do you know I''m not working as a traditional
     H. T. in the navy so I''ve been kind of working what some would say out of rate
@@ -4325,6 +4424,7 @@ utterances:
   timeEnd: 1325.11
   timeStart: 1276.06
   topics:
+  - Challenges
   - Risk
   transcript: 'some of the most dangerous things that I''ve done on the job I also
     consider maybe being some of the most fun because I do have a tendency to gravitate
@@ -4350,7 +4450,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 1387.14
   timeStart: 1347.28
-  topics: []
+  topics:
+  - Challenges
   transcript: 'I think what causes the most stress for me and my job is am I a doing
     what''s required for the betterment of the organization in the command of the
     people that have actually taken a a lot of race to get to get me to where I''m
@@ -4374,7 +4475,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 1422.09
   timeStart: 1394.27
-  topics: []
+  topics:
+  - Challenges
   transcript: 'the way that I deal with stress on the job is I first acknowledge that
     that there is a stressful situation I don''t run from those activities are those
     stressful situations kind of trying to embrace him and the sooner that you embrace
@@ -4395,7 +4497,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 1463.17
   timeStart: 1433.26
-  topics: []
+  topics:
+  - Challenges
   transcript: 'a trick that I used to keep stress from blowing over is one I''ll talk
     about it if I am feeling stressed either talk about it with the people that I
     work with or my spouse at home the other thing is I just trying to find humor
@@ -4478,7 +4581,9 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 1592.12
   timeStart: 1563.12
-  topics: []
+  topics:
+  - Challenges
+  - Leading a Team
   transcript: 'one way that you can insure boring work gets done well is to associate
     link it to a bigger purpose I understand that even though this may be boring it
     has probably an internal part into something bigger into the larger picture of
@@ -4499,7 +4604,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 1816.15
   timeStart: 1736.17
-  topics: []
+  topics:
+  - Challenges
   transcript: 'so with that all deal with an increase in tempo is off first identify
     why are we having this increase and is it achievable and if it''s something that
     I know that I can take on for another extended period of time and and meet those
@@ -4533,7 +4639,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 2013.12
   timeStart: 1947.21
-  topics: []
+  topics:
+  - Challenges
   transcript: 'I think you know maybe one that does it in a in our field as well as
     maybe just across the board as a whole is you alcohol abuse and maybe the crimes
     that come with that you know depending upon the job that you''re doing a lot of
@@ -4605,6 +4712,7 @@ utterances:
   timeEnd: 2175.06
   timeStart: 2121.0
   topics:
+  - Challenges
   - JobSpecific
   transcript: 'if I could change one thing at my job I think that would be the the
     acquisition process so a lot of times you know you''ll identify a shortfall or
@@ -4632,7 +4740,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 2292.28
   timeStart: 2209.1
-  topics: []
+  topics:
+  - Challenges
   transcript: 'one of my biggest biggest weakness is that I''ve made a valiant effort
     on improving however I still have a lot of work to do in that aspect is Nero I
     guess you could consider it my time management skills or basically is taking my
@@ -4665,7 +4774,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 2633.1
   timeStart: 2576.22
-  topics: []
+  topics:
+  - Challenges
   transcript: 'way that you can deal with an assignment that you don''t lie occur
     that you don''t feel is a good fit is you first try maybe voice that to the people
     that are signing you that that you know it''s not something that you think you
@@ -4692,7 +4802,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p007-beginning-et-seq.mp4
   timeEnd: 2760.25
   timeStart: 2677.27
-  topics: []
+  topics:
+  - Relocating
   transcript: 'so you know depend upon where you''re deployed in and what organization
     combatant commander that you''re helping you know you might be during that full
     deployment costly working you know that''s what the deployment is for is you''re
@@ -4740,9 +4851,7 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 68.01
   timeStart: 58.14
-  topics:
-  - Background
-  - Lifestyle
+  topics: []
   transcript: 'I''m married I''ve been married for close to eighteen years now and
     I''ve also got two kids both of which are in high school '
   utteranceAudio: build/utterance_audio/s002p008s00005814e00010801.mp3
@@ -4759,7 +4868,9 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 86.13
   timeStart: 76.13
-  topics: []
+  topics:
+  - Background
+  - Balancing Family
   transcript: 'I have two kids one who''s going to be turning sixteen in November
     and the other who will be turning eighteen this January '
   utteranceAudio: build/utterance_audio/s002p008s00011613e00012613.mp3
@@ -4782,6 +4893,7 @@ utterances:
   timeStart: 89.07
   topics:
   - Background
+  - Balancing Family
   transcript: 'I''m an only child Avenue siblings '
   utteranceAudio: build/utterance_audio/s002p008s00012907e00013300.mp3
   utteranceType: _ANSWER_
@@ -4808,6 +4920,7 @@ utterances:
   timeStart: 96.15
   topics:
   - Background
+  - Balancing Family
   transcript: 'we have one pet it''s a German pinscher we got as a puppy and he''s
     almost four years old '
   utteranceAudio: build/utterance_audio/s002p008s00013615e00014327.mp3
@@ -4833,6 +4946,7 @@ utterances:
   timeEnd: 139.11
   timeStart: 118.25
   topics:
+  - Balancing Family
   - JobSpecific
   - Lifestyle
   transcript: 'I think I''ve got a lot of free time throughout my career obviously
@@ -4853,7 +4967,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 177.26
   timeStart: 148.09
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'I have a problem with actually taking work home with me a lot sometimes
     it''s self imposed all times because I''m just trying to get ahead because I noticed
     something else you''d be coming up in the near future so if I can work on it ahead
@@ -4875,7 +4990,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 244.22
   timeStart: 186.21
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'being a leader can give you flexibility when it comes time to alter
     your work schedule in when you say your work schedule also implying that that''s
     your team''s work schedule obviously you shouldn''t be creating different working
@@ -4904,7 +5020,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 307.11
   timeStart: 258.23
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'being a leader can change your lifestyle the fact that as you move
     up in your in your positions of leadership you''re obviously going to occur more
     responsibilities and as such those responsibilities to sometimes have to deal
@@ -4931,7 +5048,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 386.26
   timeStart: 319.01
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'so that you can do when you''re pose different duty stations to pick
     from so obviously talk to your family about where they''d like to go where they''d
     like to move to it''s gonna be different based on your current situation you know
@@ -4961,7 +5079,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 451.03
   timeStart: 394.03
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'some things that you should prioritise when you''re picking housing
     is worse its proximity to your work or do you want to live in a place that super
     far away to where you''re going to have to have an hour or more drive in to work
@@ -4990,7 +5109,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 571.17
   timeStart: 501.17
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'there''s a variety of options out there to transfer a change your duty
     if your family needs to person you need to do is just communicate that up your
     chain of command and let him know that based on your situation you think it be
@@ -5022,7 +5142,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 635.05
   timeStart: 583.17
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'if you decide to take a difficult assignment you know that may affect
     your relationship with your family and friends because you could possibly lose
     that connectivity that you have with them but the nice thing is that we can move
@@ -5050,7 +5171,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 684.02
   timeStart: 644.07
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'you should get your family involved very early and processing for your
     next career step because you have to remember you know they''re part of this process
     as well and if you''re not having a good day home life back at home with your
@@ -5074,7 +5196,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 730.23
   timeStart: 691.28
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'the different places that I''ve been stationed I think my favorite
     paid place two of live was actually back home was kind of nice I was back in my
     hometown on recruiting duty working out of the very same office that I had been
@@ -5099,7 +5222,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 840.15
   timeStart: 741.08
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'one conflict that I had we''re focusing on my career as opposed to
     family life was that I missed the birth of both of my kids do the fact that I
     was really focused on where I was out of my career so you know when my daughter
@@ -5136,7 +5260,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 901.04
   timeStart: 851.16
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'managing your career and family life effectively requires a very careful
     balance between the two you have to remember that eventually you are gonna leave
     the service you can''t do it for ever so you don''t want to be messing up your
@@ -5162,7 +5287,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 1107.29
   timeStart: 1045.2
-  topics: []
+  topics:
+  - Relocating
   transcript: 'what I would recommend you do if you''re getting ready to live overseas
     is no research the area that you''re gonna be going to there''s plenty of information
     out there online our you can kind of understand where you''re living you know
@@ -5192,7 +5318,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 1157.05
   timeStart: 1121.14
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'some resources that you can look for if you''re gonna be moving to
     a new location obviously ones online almost every place you gonna be station that
     now has like its own website that you can go to and on the home page usually have
@@ -5214,7 +5341,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 1230.29
   timeStart: 1168.21
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'some things that you might experience or that for fall through the
     cracks when you''re gonna be moving is just the movement of your household goods
     a lot of times you''ll have certain things scheduled and the movers don''t get
@@ -5244,7 +5372,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 1299.12
   timeStart: 1237.28
-  topics: []
+  topics:
+  - Relocating
   transcript: 'things that you should get ready before you deploy is gonna be your
     your household stuff so what are you gonna do with your household goods when you
     deploy if you''re single individual more than likely you''re gonna wanna pack
@@ -5280,6 +5409,7 @@ utterances:
   timeEnd: 1375.12
   timeStart: 1307.04
   topics:
+  - Balancing Family
   - Lifestyle
   - Military
   transcript: 'stay in touch with your family on deployment is extremely easy now
@@ -5311,7 +5441,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 1442.21
   timeStart: 1384.28
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'ways that you can ensure your family''s taking care of all your way
     is make sure that your family knows the resources that they can use before you
     go on deployment so who is the commando ombudsman who can they get a call who
@@ -5339,7 +5470,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 1492.15
   timeStart: 1452.14
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'the best plan for your family if they have an emergency you''re on
     your way is for them to you know make sure they have the phone numbers that they
     need a head of time so that they can address those issues obviously if it''s summer
@@ -5363,7 +5495,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 1607.19
   timeStart: 1506.11
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'military vacation or you know accruing leave it''s routine so you get
     so many days per month every every month that you''re in service you get X. amount
     of days and accrued your leave and depend upon your situation you can have sometimes
@@ -5401,7 +5534,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 1673.27
   timeStart: 1632.24
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'the west the best way to to be happy with your time in the service
     is just make sure that you''re enjoying what you''re doing if you find yourself
     after a while just not really enjoying what you''re doing you''re coming into
@@ -5426,7 +5560,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 1753.15
   timeStart: 1690.14
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'so if you''re a parent you''ve got to be very careful with using some
     of the techniques that you''ve learned in being a military leader with your family
     all that''s not gonna come across appropriately with them you know I''ve had guys
@@ -5463,7 +5598,8 @@ utterances:
   timeEnd: 1807.04
   timeStart: 1765.0
   topics:
-  - Travel
+  - Background
+  - Relocating
   transcript: 'so places that I''ve been import and I''ve never actually been station
     on a ship but I''ve traveled a lot not deployed in on exercises on a lot of different
     places those obviously include all over the U. S. you know of both east coast
@@ -5485,7 +5621,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 1852.28
   timeStart: 1817.01
-  topics: []
+  topics:
+  - Relocating
   transcript: 'things you should prioritise when you''re moving to a new location
     obviously where you''re gonna live how far away is that from where you''re gonna
     be working what type of things are around that place that you intend on living
@@ -5509,7 +5646,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 1932.01
   timeStart: 1864.22
-  topics: []
+  topics:
+  - Relocating
   transcript: 'when you get to choose whether you''re gonna live on base or off base
     is really depending on where you''re getting station and the command that you''re
     at so that some commands and depend upon the size of the command what they have
@@ -5539,7 +5677,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 2005.08
   timeStart: 1944.15
-  topics: []
+  topics:
+  - Relocating
   transcript: 'deciding when to own in deciding when to rent really has to do with
     you personally where you''re at financially and how long you think you''re gonna
     be in the area you know if you think that you''re gonna be station a particular
@@ -5568,7 +5707,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 2138.27
   timeStart: 2088.29
-  topics: []
+  topics:
+  - Relocating
   transcript: 'new services that you''re gonna find on a navy base differentiate based
     on where you''re gonna be station you''ll find that the larger navy bases pretty
     much have every kind of service you can think of right there on base I mean you''ll
@@ -5594,7 +5734,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 2207.13
   timeStart: 2156.13
-  topics: []
+  topics:
+  - Relocating
   transcript: 'how often you''ll have to move is really dependent on what kind of
     job you do you know in the community that I''ve been in I''ve seen individuals
     do their entire career here in San Diego they''ve just moved from one duty station
@@ -5630,6 +5771,7 @@ utterances:
   - Culture
   - Lifestyle
   - Military
+  - Relocating
   transcript: 'where do you can drink alcohol if you''re deployed really depends on
     where you''re deployed to some regions that you''re gonna go to it''s a dry area
     it''s a dry region and you''re probably not gonna be able to have alcohol there
@@ -5655,7 +5797,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 2378.15
   timeStart: 2329.08
-  topics: []
+  topics:
+  - Relocating
   transcript: 'of the things that I''ve seen people spend their reenlistment bonuses
     on that have worked out well has been them taking that money and invest in themselves
     and investing in into some sort of financial vehicle whether that be mutual funds
@@ -5681,7 +5824,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 2464.12
   timeStart: 2398.16
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'what kind of lifestyle you can afford as a junior officer is really
     going to be dependent on what your current financial situation is to begin with
     some people come into the service start out with nothing in their bank accounts
@@ -5711,7 +5855,9 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 2548.14
   timeStart: 2475.02
-  topics: []
+  topics:
+  - Finance
+  - Relocating
   transcript: 'be in the military you still pay taxes a lot of folks are under a misconception
     that you don''t pay taxes when you''re in the military you absolutely do you''ll
     find those things on your W. two form that you''re able to access and look at
@@ -5742,7 +5888,9 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 2624.09
   timeStart: 2559.13
-  topics: []
+  topics:
+  - Career Mentoring
+  - Finance
   transcript: 'when to worry about retirement or at least start thinking about it
     ought to be somewhere you know in your career could be early on it really just
     depends on what your overall goal is if you know that you want to make a career
@@ -5771,7 +5919,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 2698.12
   timeStart: 2647.04
-  topics: []
+  topics:
+  - Relocating
   transcript: 'of one of the benefits you should take advantage of is going to be
     what the the navy has is the thrift savings plan and so that''s where you''re
     taking a portion of your money in your putting it away for the future and there''s
@@ -5798,7 +5947,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 2761.16
   timeStart: 2707.01
-  topics: []
+  topics:
+  - Relocating
   transcript: 'when you''re doing military travel the navy''s going to pay for that
     is usually done through a system called DTS defense travel system so you''re gonna
     put in your orders where you''re going to figure out how much it''s going to cost
@@ -5826,7 +5976,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 2815.01
   timeStart: 2770.01
-  topics: []
+  topics:
+  - Balancing Family
   transcript: 'some of the hobbies that I have time for our scuba diving spear phishing
     doing other things out on the water and another one is is hiking currently being
     station here in San Diego over the past several years I''ve been slowly whittling
@@ -6166,8 +6317,7 @@ utterances:
   timeEnd: 3123.21
   timeStart: 3095.18
   topics:
-  - Advice
-  - Mentor
+  - Career Mentoring
   transcript: 'there''s been a couple people yeah there was one was in high school
     you know it was I was in ROTC in high school I was a lieutenant colonel retired
     you know special forces guy who is our instructor there''s a lot of good lessons
@@ -6275,7 +6425,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 3387.22
   timeStart: 3357.15
-  topics: []
+  topics:
+  - Career Mentoring
   transcript: 'one way that you can tell somebody is going to be a good mentors their
     ability to listen to you and relate to you as you''re talking with that individual
     you know if you''re able to hold an actual conversation and have good communication
@@ -6297,7 +6448,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 3425.28
   timeStart: 3400.13
-  topics: []
+  topics:
+  - Career Mentoring
   transcript: 'if you don''t have a mentor the one way that you can find a good one
     is just find somebody who you admire in whose career looks very similar to the
     path that you want to take or you know is in a position that you want to eventually
@@ -6318,7 +6470,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 3552.27
   timeStart: 3516.13
-  topics: []
+  topics:
+  - Leading a Team
   transcript: 'a way that you can tell on who you can really rely on is just observing
     those individuals during stressful situations you''re gonna be able to see you
     know who''s able to overcome that stress and who might buckle under the pressure
@@ -6342,7 +6495,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 3636.06
   timeStart: 3593.09
-  topics: []
+  topics:
+  - Career Mentoring
   transcript: 'so if I said I listened to from others that help me get advanced was
     understanding how the advancement process works you''d be surprised how many few
     people really quite understand how or what it takes to get advance you know who''s
@@ -6366,7 +6520,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 3794.22
   timeStart: 3731.24
-  topics: []
+  topics:
+  - Career Mentoring
   transcript: 'some of I said I was given that I wish I really what it took was when
     I first got station here in San Diego and I had for your orders which then ultimately
     turned into five and a half years at the same place was I was told you know Hey
@@ -6395,7 +6550,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 3903.27
   timeStart: 3824.09
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'the way to respond to adapt death odd your commander on ship is you
     know obviously be respectful about it have have sympathy for those that are Avenue
     that were maybe close to that individual if you weren''t and understand that they''re
@@ -6426,7 +6582,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 3964.14
   timeStart: 3935.05
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'the way to respond to a suicide at your command is be respectful of
     that situation again you don''t understand it you don''t know who is close at
     individual you probably don''t know all the information behind why that person
@@ -6448,7 +6605,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 4011.06
   timeStart: 3976.07
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'there are several resources available to help sailors with loss or
     grief some of those are directly their chain of command and their superiors they
     can be that first line of of support an effort to help them get through that tough
@@ -6472,7 +6630,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 4077.0
   timeStart: 4023.29
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'the way that I would handle a sailor who''s become less effective due
     to loss or grief is first of all understand where they''re at in their grieving
     process you know that process is different from not for everybody some people
@@ -6500,7 +6659,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 4179.11
   timeStart: 4126.19
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'if you''re talking with an individual and they''re starting to give
     you those indicators that they''re having thoughts of suicide the first thing
     is you know don''t leave that individual loan trying talk with them you can even
@@ -6528,7 +6688,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 4293.07
   timeStart: 4254.25
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'I do know several individuals having worked in the navy that have either
     passed away or been seriously injured and just has to do with the kind of line
     of work that that were in in the communities that I''ve worked with now that''s
@@ -6552,7 +6713,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 4419.07
   timeStart: 4409.22
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'there''s two people that I know that I''ve talked with worked with
     in the past that later on did commit suicide '
   utteranceAudio: build/utterance_audio/s002p008s01132922e01133907.mp3
@@ -6570,7 +6732,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 4546.05
   timeStart: 4442.19
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'in order for you to really tell the difference between somebody who
     could possibly be a suicide risk and somebody''s just having a bad day is you
     have to actually know your people your prior to that occasion happening so you
@@ -6610,7 +6773,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 4669.23
   timeStart: 4616.0
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'options that you have to work with the sailor who is sick and sometimes
     maybe for long periods of time is working with your medical department to make
     sure that they''re getting taken care of in the right approach you obviously want
@@ -6639,7 +6803,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 4746.22
   timeStart: 4690.22
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'one way that you can encourage people to talk about suicide or thought
     that they might be having is making sure that you''ve already foster that kind
     of culture within your organization that they understand it''s okay to get help
@@ -6668,7 +6833,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 4801.28
   timeStart: 4761.01
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'if you''re dealing with an individual who you feel as a suicide risk
     and you know that they have access to items like guns or other dangerous materials
     is ask them if they''re willing to you know turn that kind of object or those
@@ -6692,7 +6858,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 4850.06
   timeStart: 4811.29
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'you should get navy resources involved when there''s a risk of suicide
     immediately as soon as you possibly can if you''re done a fine these risks it
     perhaps the individual himself as you''ve been talking with them has told you
@@ -6716,7 +6883,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p008-question-24-et-seq.mp4
   timeEnd: 4943.13
   timeStart: 4906.12
-  topics: []
+  topics:
+  - Casualties and Suicide
   transcript: 'so you know if you''re trying to figure out when to do a formal report
     for a possible suicide risk your best resource to go to is going to be your command
     suicide prevention coordinator that individual has been trained and understands
@@ -6739,7 +6907,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p009-question-17-et-seq.mp4
   timeEnd: 77.27
   timeStart: 11.09
-  topics: []
+  topics:
+  - Admin and Evals
   transcript: 'one of the new administrative tasks that you have to do is a leader
     is up figure out what it is you''re leading you know why why are you in the position
     that you are so you need to understand fully what your job is that''s probably
@@ -6768,7 +6937,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p009-question-17-et-seq.mp4
   timeEnd: 146.24
   timeStart: 90.01
-  topics: []
+  topics:
+  - Admin and Evals
   transcript: 'one way that you can make paperwork go faster is trying to streamline
     the process and figure out areas to reduce those administrative burdens that''s
     a direct order coming from department of defense is a major priority for all forces
@@ -6796,7 +6966,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p009-question-17-et-seq.mp4
   timeEnd: 262.28
   timeStart: 161.14
-  topics: []
+  topics:
+  - Admin and Evals
   transcript: 'the the first thing that you''ve got to do if you''re trying to write
     an evaluation on somebody who''s really deserving he first got to figure out who''s
     the audience that you''re writing this for and he''s gonna be looking at it because
@@ -6836,7 +7007,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p009-question-17-et-seq.mp4
   timeEnd: 351.19
   timeStart: 273.14
-  topics: []
+  topics:
+  - Admin and Evals
   transcript: 'to write an evaluation a sailor who''s having problems but is still
     useful is you just again have to be honest in your writing you can''t you know
     trying sugar coat things or use flowery wording or adjectives to get around the
@@ -6869,7 +7041,8 @@ utterances:
   sessionVideo: build/recordings/session3-20191030/p009-question-17-et-seq.mp4
   timeEnd: 512.09
   timeStart: 418.16
-  topics: []
+  topics:
+  - Admin and Evals
   transcript: 'a red flag in an evaluation that could be easily missed if you don''t
     train your eye to it is just recognizing if the evaluation is generic in nature
     no is it sure it might talk about some great things but it does it answer the
