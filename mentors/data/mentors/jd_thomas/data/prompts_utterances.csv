@@ -1,78 +1,78 @@
 Situation,Mentor,Utterance/Prompt
-_INTRO_,jd_thomas,autumn lieutenant JD Thomas here at the naval postgraduate school office on a master's degree in financial management prior to coming to NPS I was the a ops and the as well for does Ron staff to Mayport Florida hi to my second tour I was for deployed on the USS Lassen and because good Japan as the repair officer and the C. E. double I was there for about twenty months and my first tour probably was the most challenging tour today I was a lot of ups and downs of my TV my division was composed of about twenty seven personnel we had a couple newly frock first classes so is a lot of junior sailors a so we all had a future a learning curve so like you know get around together of course being in damage control and only in the all the fire equipment the toilets sinks and everything you know of course things break and you know you're responsible for that kind of stuff so nonstop twenty months tour so I felt very challenging but at same time is very rewarding prior to region USS Lassen I was on the list it for two years as a underestimate air me in a kilo squadron out of Jacksonville Florida ageism seven prior to a listing are served as a therapist in a rehab center and one of the local hospitals background from in Georgia how in which I had earned my master's degree from Georgia Southern University 
-_INTRO_,jd_thomas,I'm lieutenant Jeremy D. Thomas are everyone called me JD I'm a lieutenant in the United States Navy I'm here at the naval postgraduate school I have a bachelor's degree from Georgia Southern University in Statesboro Georgia I'm from Georgia prior to arriving at naval postgraduate school I was the anti submarine warfare officer on does run staffer Mayport Florida and prior to that I was the first to a division officer on the USS Lassen and you caused to Japan 
-_FEEDBACK_,jd_thomas,yes 
-_FEEDBACK_,jd_thomas,yes Sir 
-_FEEDBACK_,jd_thomas,yes ma'am 
-_OFF_TOPIC_,jd_thomas,excuse me 
-_PROMPT_,jd_thomas,how are you 
-_PROMPT_,jd_thomas,good morning 
-_PROMPT_,jd_thomas,good afternoon 
-_PROMPT_,jd_thomas,good evening 
-_PROMPT_,jd_thomas,good night 
-_REPEAT_,jd_thomas,how may have said this before 
-_FEEDBACK_,jd_thomas,no 
-_FEEDBACK_,jd_thomas,maybe 
-_FEEDBACK_,jd_thomas,perhaps 
-_FEEDBACK_,jd_thomas,of course 
-_FEEDBACK_,jd_thomas,always 
-_FEEDBACK_,jd_thomas,sometimes 
-_FEEDBACK_,jd_thomas,never 
-_FEEDBACK_,jd_thomas,often 
-_FEEDBACK_,jd_thomas,I do 
-_FEEDBACK_,jd_thomas,I don't 
-_OFF_TOPIC_,jd_thomas,I have no idea 
-_FEEDBACK_,jd_thomas,I don't think so 
-_PROMPT_,jd_thomas,here's something you should really know 
-_OFF_TOPIC_,jd_thomas,that's a good question but I want to make sure I tell you something 
-_PROMPT_,jd_thomas,hello 
-_FEEDBACK_,jd_thomas,it's nice to meet you 
-_OFF_TOPIC_,jd_thomas,I don't really have an opinion on that 
-_FEEDBACK_,jd_thomas,I hope so 
-_FEEDBACK_,jd_thomas,I'm sorry 
-_FEEDBACK_,jd_thomas,I'm sorry to hear 
-_PROMPT_,jd_thomas,I see you didn't ask anything there 
-_PROMPT_,jd_thomas,you've got to ask me some to get a wrist 
+_INTRO_,jd_thomas,"I'm Lieutenant J. D. Thomas. I'm here at the Naval Postgraduate School pursuing a master's degree in financial management. Prior to coming to MPs, I was the A ops and the as well for a desert on staff in Mayport, Florida Prior to my second tour, I was four deployed on the USS Lassen and you Kuska Japan as the repair officer and the C E Devil. I was there for about 20 months, and my first tour probably was the most challenging tour today. There was a lot of ups and downs of my division. My division was composed of about 27 personnel. We had a couple of newly frakked first classes, so it was a lot of junior sailors. So we all had a huge learning curves like You get around together, of course, being in damage control and owning the all the fire equipment, the toilets, sinks and everything. You know, of course, things break and you know you're responsible for that kind of stuff. So it's nonstop 20 months tour, so I felt very challenging, but at same time is very rewarding. Prior to reaching the USS Lassen, I was enlisted for two years as a undesignated airman in a Halo squadron out in Jacksonville, Florida HSM 70 um prior to enlisting, served as a ah therapist in a rehab center in one of the local hospitals back where I'm from in Georgia. Oh, in which I had earned my bastards degree from Georgia Southern University."
+_INTRO_,jd_thomas,"Lieutenant Jeremy D. Thomas are. Everyone calls me J. D. I'm a lieutenant in the United States Navy. I'm here at the Naval Postgraduate School. I have a bachelor's degree from Georgia Southern University and Statesboro, Georgia. I'm from Georgia. Prior to arriving at Naval Postgraduate School, I was the anti submarine warfare officer on Dez Ron Staff and Mayport, Florida. And prior to that, I was the first tour division officer on the USS Lassen and you Cousteau, Japan."
+_FEEDBACK_,jd_thomas,yes.
+_FEEDBACK_,jd_thomas,"Yes, sir."
+_FEEDBACK_,jd_thomas,"Yes, ma'am."
+_OFF_TOPIC_,jd_thomas,excuse me.
+_PROMPT_,jd_thomas,How are you?
+_PROMPT_,jd_thomas,Good morning.
+_PROMPT_,jd_thomas,good afternoon.
+_PROMPT_,jd_thomas,good evening.
+_PROMPT_,jd_thomas,good night.
+_REPEAT_,jd_thomas,I may have said this before.
+_FEEDBACK_,jd_thomas,no.
+_FEEDBACK_,jd_thomas,maybe.
+_FEEDBACK_,jd_thomas,perhaps.
+_FEEDBACK_,jd_thomas,of course.
+_FEEDBACK_,jd_thomas,always.
+_FEEDBACK_,jd_thomas,sometimes.
+_FEEDBACK_,jd_thomas,never
+_FEEDBACK_,jd_thomas,often.
+_FEEDBACK_,jd_thomas,I do.
+_FEEDBACK_,jd_thomas,I don't.
+_OFF_TOPIC_,jd_thomas,I have no idea.
+_FEEDBACK_,jd_thomas,I don't think so.
+_PROMPT_,jd_thomas,Here's something you should really know.
+_OFF_TOPIC_,jd_thomas,"That's a good question, but I want to make sure I tell you something."
+_PROMPT_,jd_thomas,Hello.
+_FEEDBACK_,jd_thomas,it's nice to meet you.
+_OFF_TOPIC_,jd_thomas,I don't really have an opinion on that.
+_FEEDBACK_,jd_thomas,I hope so.
+_FEEDBACK_,jd_thomas,I'm sorry.
+_FEEDBACK_,jd_thomas,I'm sorry to hear.
+_PROMPT_,jd_thomas,I'll see you didn't ask anything there.
+_PROMPT_,jd_thomas,You've got to ask me something to get it.
 _FEEDBACK_,jd_thomas,thank 
-_FEEDBACK_,jd_thomas,I understand that 
-_FEEDBACK_,jd_thomas,I went through something similar 
-_OFF_TOPIC_,jd_thomas,I'm not sure 
-_OFF_TOPIC_,jd_thomas,I can't hear 
-_OFF_TOPIC_,jd_thomas,I don't understand 
-_PROMPT_,jd_thomas,can you repeat that 
-_OFF_TOPIC_,jd_thomas,I don't have an answer 
-_PROMPT_,jd_thomas,can you ask me something 
-_OFF_TOPIC_,jd_thomas,it would help if you could keep the question short and simple 
-_OFF_TOPIC_,jd_thomas,can you rephrase the question 
-_FEEDBACK_,jd_thomas,I can't predict the future 
-_FEEDBACK_,jd_thomas,I do not want to speculate about the future 
-_OFF_TOPIC_,jd_thomas,I don't know what the 
-_OFF_TOPIC_,jd_thomas,I don't know who that is 
-_OFF_TOPIC_,jd_thomas,I'm not going to talk about 
-_OFF_TOPIC_,jd_thomas,I'm not here to talk about the 
-_PROFANITY_,jd_thomas,could you please refrain from using for 
-_PROFANITY_,jd_thomas,you might have heard about swing like a sailor but it could hurt your career 
-_PROMPT_,jd_thomas,anything else 
-_OFF_TOPIC_,jd_thomas,I don't have it a no if information to talk about that 
-_OFF_TOPIC_,jd_thomas,I do not have an answer for that 
-_OFF_TOPIC_,jd_thomas,that's a great question unfortunately I never recorded an answer for that 
-_OFF_TOPIC_,jd_thomas,that's a great question I wish I thought of that 
-_OFF_TOPIC_,jd_thomas,that's a great question unfortunately I don't have an answer right now 
-_OFF_TOPIC_,jd_thomas,unfortunately I was never asked that question 
-_OFF_TOPIC_,jd_thomas,you might have to ask me something else 
-_PROMPT_,jd_thomas,what do you want to talk about 
-_PROMPT_,jd_thomas,what would you like to ask me 
-_PROMPT_,jd_thomas,what do you want to know 
-_PROMPT_,jd_thomas,what do you want to know about me 
-_PROMPT_,jd_thomas,what do you want to know about leadership 
-_PROMPT_,jd_thomas,you could ask for tips about your first month as a leader 
-_PROMPT_,jd_thomas,you could ask me about my go to leadership strategy 
-_PROMPT_,jd_thomas,you could ask me about getting a live set up after a big move 
-_PROMPT_,jd_thomas,you could ask me about serious problems like sexual harassment was suicide risks 
-_PROMPT_,jd_thomas,you could ask me about my job in the navy 
-_PROMPT_,jd_thomas,you could ask me about my background 
-_PROMPT_,jd_thomas,go ahead actually about who gave me the best advice of my career 
-_REPEAT_,jd_thomas,I might have covered this already 
-_FEEDBACK_,jd_thomas,this changes pretty quickly so what I tell you today might not be true tomorrow recommend talking to someone local who might know more 
-_PROMPT_,jd_thomas,I did a lot of technical training in the navy so you can ask me about what skills I learned 
-_PROMPT_,jd_thomas,I haven't always ray perfect decisions you can ask me about any of the fair use out of it 
+_FEEDBACK_,jd_thomas,I understand that.
+_FEEDBACK_,jd_thomas,I went through something similar.
+_OFF_TOPIC_,jd_thomas,I'm not sure.
+_OFF_TOPIC_,jd_thomas,I can't hear.
+_OFF_TOPIC_,jd_thomas,I don't understand.
+_PROMPT_,jd_thomas,Can you repeat that?
+_OFF_TOPIC_,jd_thomas,I don't have an answer.
+_PROMPT_,jd_thomas,Can you ask me something?
+_OFF_TOPIC_,jd_thomas,it would help if you could keep the questions short and simple.
+_OFF_TOPIC_,jd_thomas,Can you rephrase the question?
+_FEEDBACK_,jd_thomas,I can't predict the future.
+_FEEDBACK_,jd_thomas,I do not want to speculate about the future.
+_OFF_TOPIC_,jd_thomas,I don't know what.
+_OFF_TOPIC_,jd_thomas,I don't know who that is.
+_OFF_TOPIC_,jd_thomas,I'm not going to talk about.
+_OFF_TOPIC_,jd_thomas,I'm not here to talk about that.
+_PROFANITY_,jd_thomas,could you please refrain from using?
+_PROFANITY_,jd_thomas,"you might have heard about Swing like a sailor, but it could hurt your career."
+_PROMPT_,jd_thomas,anything else.
+_OFF_TOPIC_,jd_thomas,I don't have enough information to talk about that.
+_OFF_TOPIC_,jd_thomas,I do not have an answer for that.
+_OFF_TOPIC_,jd_thomas,"That's a great question. Unfortunately, I've never recorded an answer for that."
+_OFF_TOPIC_,jd_thomas,That's a great question. I wish I thought of that.
+_OFF_TOPIC_,jd_thomas,"That's a great question. Unfortunately, I don't have an answer right now."
+_OFF_TOPIC_,jd_thomas,"Unfortunately, I was never asked that question."
+_OFF_TOPIC_,jd_thomas,you might have to ask me something else.
+_PROMPT_,jd_thomas,What do you want to talk about?
+_PROMPT_,jd_thomas,What would you like to ask me?
+_PROMPT_,jd_thomas,What do you want to know?
+_PROMPT_,jd_thomas,What do you want to know about me?
+_PROMPT_,jd_thomas,What do you want to know about leadership?
+_PROMPT_,jd_thomas,you could ask for tips about your first month as a leader.
+_PROMPT_,jd_thomas,you could ask me about my go to leadership strategy.
+_PROMPT_,jd_thomas,you could ask me about getting a life set up after a big move.
+_PROMPT_,jd_thomas,you could ask me about serious problems like sexual harassment or suicide risks.
+_PROMPT_,jd_thomas,you could ask me about my job in the Navy.
+_PROMPT_,jd_thomas,you could ask me about my background.
+_PROMPT_,jd_thomas,go ahead after me about who gave me the best advice in my career.
+_REPEAT_,jd_thomas,I might have covered this already.
+_FEEDBACK_,jd_thomas,this changes pretty quickly. So what I tell you today might not be true. Tomorrow I'm gonna recommend talking to someone local who might know more.
+_PROMPT_,jd_thomas,"I did a lot of technical training in the Navy, so you can ask me about what skills I learned."
+_PROMPT_,jd_thomas,I haven't always made perfect decisions. You can ask me about any other failures I've had.
