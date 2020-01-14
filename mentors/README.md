@@ -77,3 +77,83 @@ for each question. Timestamp files should be in a CSV file of the following form
 |----------|------------------|----------|----------------------|----------------------|
 | (string) | (char: A/U)      | (string) | (timestamp HH:MM:SS) | (timestamp HH:MM:SS) |
 
+DEV
+---
+
+### Make/ENV variables for DEV
+
+When you're working on the mentor-pipeline tool set, you frequently want to run `make` rules with a local build of the `mentor-pipeline` docker image and/or local copies of the python source for its python modules. The `Makefile` has a number of variables to support local development.
+
+
+
+**NOTE**
+
+All the examples below prepend variables to a `make` call, but you can also always `export` any of these variables once and they will stay in effect for the remainder of your shell session, e.g.
+
+```bash
+export DOCKER_IMAGE=mentor-pipeline:latest
+# then later ...
+make shell
+```
+
+...instead of 
+
+```bash
+DOCKER_IMAGE=mentor-pipeline:latest make shell
+```
+
+#### DOCKER_IMAGE
+
+Change the `mentor-pipeline` docker image from the current published release, e.g.
+
+Change the docker image for a single make call like this
+
+```bash
+DOCKER_IMAGE=mentor-pipeline:latest make shell
+```
+
+...or configure it for your shell session like this
+
+```bash
+export DOCKER_IMAGE=mentor-pipeline:latest 
+```
+
+#### DEV_ENABLED
+
+Set `DEV_ENABLED` to have `make` rules run with local source for python modules. Will only use local sources for specific modules if the source is found at default (or configured) paths (details below)
+
+```
+DEV_ENABLED=1 make shell
+```
+
+#### DEV_ROOT
+
+A default root for all python modules in dev. If you have set `DEV_ENABLED=1` and any of the python modules listed below are cloned there, they will automatically be includes. The default value for `DEV_ROOT` is `~/projects`
+
+#### DEV_MENTOR_PIPELINE
+
+Override the path to where [mentor-pipeline](https://github.com/ICTLearningSciences/mentor-pipeline) is cloned. ***NOTE*** source will only be used if `DEV_ENABLED=1`
+
+#### DEV_TRANSCRIBE
+
+Override the path to where [py-transcribe](https://github.com/ICTLearningSciences/py-transcribe) is cloned. ***NOTE*** source will only be used if `DEV_ENABLED=1`
+
+#### DEV_TRANSCRIBE_AWS
+
+Override the path to where [py-transcribe-aws](https://github.com/ICTLearningSciences/py-transcribe-aws) is cloned. ***NOTE*** source will only be used if `DEV_ENABLED=1`
+
+### Running mentor-pipeline docker shell
+
+You can open a shell to the pipeline docker image like this:
+
+```bash
+make shell
+```
+
+All dev variables described above will apply to the shell.
+
+Once in the docker shell, you can run the pipeline script directly, e.g.
+
+```
+python mentor_pipeline_runner.py --mentor some_mentor_id --data-update --data=/app/mounts/data/mentors
+```
