@@ -1,50 +1,50 @@
 Situation,Mentor,Utterance/Prompt
-_INTRO_,mario-pais,hi I'm Mario I'm a senior chief petty officer in the navy or am station in San Diego and explosive ordnance disposal training unit one I've of currently I'm serving as the navy expeditionary combat commands lead unmanned underwater vehicle instructor and curriculum developer for the entire force having worked in that role I've deployed multiple times to the fifth fleet A. O. R. and working in Bahrain all throughout that region up and down the golf and Gulf of aiding and in those areas I married with two kids both of which are in high school 
-_FEEDBACK_,mario-pais,yes 
-_FEEDBACK_,mario-pais,yes Sir 
-_FEEDBACK_,mario-pais,yes ma'am 
-_OFF_TOPIC_,mario-pais,excuse me 
-_PROMPT_,mario-pais,how are you 
-_PROMPT_,mario-pais,good morning 
-_PROMPT_,mario-pais,good afternoon 
-_PROMPT_,mario-pais,good evening 
-_PROMPT_,mario-pais,good night 
-_REPEAT_,mario-pais,I may have said this before 
-_FEEDBACK_,mario-pais,now 
-_FEEDBACK_,mario-pais,maybe 
-_FEEDBACK_,mario-pais,perhaps 
-_FEEDBACK_,mario-pais,of course 
-_FEEDBACK_,mario-pais,always 
-_FEEDBACK_,mario-pais,sometimes 
-_FEEDBACK_,mario-pais,never 
-_FEEDBACK_,mario-pais,often 
-_FEEDBACK_,mario-pais,I do 
-_FEEDBACK_,mario-pais,I don't 
-_OFF_TOPIC_,mario-pais,I have no idea 
-_FEEDBACK_,mario-pais,I don't think so 
-_PROMPT_,mario-pais,here's something you should really know 
-_OFF_TOPIC_,mario-pais,that's a good question but I want to make sure I tell you something 
-I don't have enough information to talk about that.,mario-pais,I don't have enough information to talk about that 
-I do not have an answer for that.,mario-pais,I don't have an answer for that 
-"That is a great question, unfortunately I never recorded an answer to that.",mario-pais,that's a great question unfortunately I never recorded an answer for that 
-That is a great question. I wish I'd thought of that.,mario-pais,that's a great question I wish I thought of that 
-"That is a great question but unfortunately, I don't have an answer right now.",mario-pais,that's a great question unfortunately I don't have an answer for that right now 
-Unfortunately I was never asked that question.,mario-pais,unfortunately I was never asked that 
-You might have to ask me something else.,mario-pais,you might have to ask me something else 
-What do you want to talk about?,mario-pais,what do you want to talk about 
-What would you like to ask me?,mario-pais,what would you like to ask me 
-What do you want to know?,mario-pais,what do you want to know 
-What do you want to know about me?,mario-pais,what do you want to know about me 
-What do you want to know about leadership?,mario-pais,what do you want to know about leadership 
-You could ask for tips about your first month as a leader.,mario-pais,you can ask about tips as your first month as a leader 
-You could ask me about getting your life set up after a big move.,mario-pais,you could ask me about getting your life set up for a big move 
-You could ask me about my go-to leadership strategy.,mario-pais,you could ask me about my go to leadership strategy 
-"You could ask me about serious problems, like sexual harrassment or suicide.",mario-pais,you could ask me about serious problems like sexual harassment or suicide 
-You could ask me about my job in the Navy.,mario-pais,you could ask me about my job in the navy 
-You could ask me about my background.,mario-pais,you could ask me about my background 
-"Go ahead, ask me who gave me the best advice about my career.",mario-pais,go ahead ask me who gave me the best advice about my career 
-I might have covered this already...,mario-pais,I might have covered this already 
-"This changes pretty quickly, so what I tell you today might change tomorrow. It'd be best if you asked somebody local that could point you in the right direction.",mario-pais,this changes pretty quickly so what I tell you today might change tomorrow the best if you ask somebody local who can point you in the right direction 
-"I've done a lot of technical training in the Navy, so you can ask me about what skills I learned.",mario-pais,I've done a lot of technical training in the navy so you can ask me about what skills I've learned 
-"I haven't always made perfect decisions, you can ask me about any of the failures that I've had.",mario-pais,I haven't always made perfect decisions so you can ask about any failures I've had 
-What kinds of questions can I ask you about?,mario-pais,what kind of questions can I ask you about 
+_INTRO_,mario-pais,"Hi, I'm Mario. I'm a senior chief petty officer in the Navy. Or I'm stationed in San Diego at Explosive Ordnance Disposal Training Unit One I've currently serving as the Navy Expeditionary Combat Commands lead unmanned underwater vehicle instructor and curriculum developer for the entire force. Having worked in that role, I've deployed multiple times to the fifth Fleet a O. R. Working in Bahrain and all throughout that region, up and down the Gulf and the Gulf of Aden. And in those areas, I'm married with two kids, both of which are in high school."
+_FEEDBACK_,mario-pais,yes.
+_FEEDBACK_,mario-pais,"Yes, sir."
+_FEEDBACK_,mario-pais,"Yes, ma'am."
+_OFF_TOPIC_,mario-pais,excuse me.
+_PROMPT_,mario-pais,How are you?
+_PROMPT_,mario-pais,Good morning.
+_PROMPT_,mario-pais,good afternoon.
+_PROMPT_,mario-pais,good evening.
+_PROMPT_,mario-pais,good night.
+_REPEAT_,mario-pais,I may have said this before.
+_FEEDBACK_,mario-pais,no.
+_FEEDBACK_,mario-pais,maybe.
+_FEEDBACK_,mario-pais,perhaps.
+_FEEDBACK_,mario-pais,of course.
+_FEEDBACK_,mario-pais,always.
+_FEEDBACK_,mario-pais,sometimes.
+_FEEDBACK_,mario-pais,never
+_FEEDBACK_,mario-pais,off.
+_FEEDBACK_,mario-pais,I do.
+_FEEDBACK_,mario-pais,I don't.
+_OFF_TOPIC_,mario-pais,I have no idea.
+_FEEDBACK_,mario-pais,I don't think so.
+_PROMPT_,mario-pais,Here's something you should really know.
+_OFF_TOPIC_,mario-pais,"That's a good question, but I want to make sure I tell you something."
+I don't have enough information to talk about that.,mario-pais,I don't have enough information to talk about that.
+I do not have an answer for that.,mario-pais,I don't have an answer for that.
+"That is a great question, unfortunately I never recorded an answer to that.",mario-pais,"That's a great question. Unfortunately, I never recorded an answer for that."
+That is a great question. I wish I'd thought of that.,mario-pais,That's a great question. I wish I thought of that.
+"That is a great question but unfortunately, I don't have an answer right now.",mario-pais,"That's a great question. Unfortunately, I don't have an answer for that right now."
+Unfortunately I was never asked that question.,mario-pais,"Unfortunately, I was never asked that."
+You might have to ask me something else.,mario-pais,you might have to ask me something else.
+What do you want to talk about?,mario-pais,What do you want to talk about?
+What would you like to ask me?,mario-pais,What would you like to ask me?
+What do you want to know?,mario-pais,What do you want to know?
+What do you want to know about me?,mario-pais,What do you want to know about me?
+What do you want to know about leadership?,mario-pais,What do you want to know about leadership?
+You could ask for tips about your first month as a leader.,mario-pais,you can ask about tips as your first month as a leader.
+You could ask me about getting your life set up after a big move.,mario-pais,you could ask me about getting your life set up for a big move.
+You could ask me about my go-to leadership strategy.,mario-pais,you could ask me about my go to leadership strategy.
+"You could ask me about serious problems, like sexual harrassment or suicide.",mario-pais,you could ask me about serious problems like sexual harassment or suicide.
+You could ask me about my job in the Navy.,mario-pais,you could ask me about my job in the Navy.
+You could ask me about my background.,mario-pais,you could ask me about my background.
+"Go ahead, ask me who gave me the best advice about my career.",mario-pais,"Go ahead, ask me who gave me the best advice about my career."
+I might have covered this already...,mario-pais,I might have covered this already.
+"This changes pretty quickly, so what I tell you today might change tomorrow. It'd be best if you asked somebody local that could point you in the right direction.",mario-pais,this changes pretty quickly. So what I tell you today might change tomorrow would be best if you ask somebody local who can point you in the right direction.
+"I've done a lot of technical training in the Navy, so you can ask me about what skills I learned.",mario-pais,"I've done a lot of technical training in the Navy, so you can ask me about what skills I've learned."
+"I haven't always made perfect decisions, you can ask me about any of the failures that I've had.",mario-pais,"I haven't always made perfect decisions, so you can ask him about any failures I've had."
+What kinds of questions can I ask you about?,mario-pais,What kind of questions can I ask you about?
