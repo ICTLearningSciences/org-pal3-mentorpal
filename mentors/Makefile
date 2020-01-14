@@ -1,15 +1,52 @@
 PWD=$(shell pwd)
-DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.1.0
+DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.3.0-alpha.3
 DOCKER_CONTAINER=mentor-pipeline
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
-WATSON_CREDENTIALS=secrets/watson_credentials.txt
-WATSON_USERNAME?=$(shell if [ -f $(WATSON_CREDENTIALS) ]; then head -n 1 $(WATSON_CREDENTIALS); else echo ""; fi)
-WATSON_PASSWORD?=$(shell if [ -f $(WATSON_CREDENTIALS) ]; then tail -n 1 $(WATSON_CREDENTIALS); else echo ""; fi)
-
+AWS_REGION?=us-east-1
+TRANSCRIBE_AWS_S3_BUCKET_SOURCE?=mentorpal-transcribe-source
+TRANSCRIBE_MODULE_PATH?=transcribe_aws
+DEV_ENABLED?=
+DEV_ROOT?=$(shell cd ~/projects && pwd 2> /dev/null)
+DEV_MENTOR_PIPELINE?=$(shell cd $(DEV_ROOT)/mentor-pipeline && pwd 2> /dev/null)
+DEV_TRANSCRIBE?=$(shell cd $(DEV_ROOT)/py-transcribe && pwd 2> /dev/null)
+DEV_TRANSCRIBE_AWS?=$(shell cd $(DEV_ROOT)/py-transcribe-aws && pwd 2> /dev/null)
+DOCKER_PYTHON_VERSION=3.7
+DOCKER_SITE_PACKAGES=/usr/local/lib/python$(DOCKER_PYTHON_VERSION)/site-packages
+DOCKER_ENV_ARGS=\
+	-e AWS_REGION=$(AWS_REGION) \
+	-e AWS_ACCESS_KEY_ID=$(AWS_ACCESS_KEY_ID) \
+	-e AWS_SECRET_ACCESS_KEY=$(AWS_SECRET_ACCESS_KEY) \
+	-e TRANSCRIBE_AWS_S3_BUCKET_SOURCE=$(TRANSCRIBE_AWS_S3_BUCKET_SOURCE) \
+	-e TRANSCRIBE_MODULE_PATH=$(TRANSCRIBE_MODULE_PATH)
+DOCKER_VOLUME_ARGS_DATA_AND_VIDEO=\
+	-v $(PWD)/data:/app/mounts/data \
+	-v $(PWD)/videos:/app/mounts/videos
+DOCKER_VOLUME_ARGS_DEV=
+ifeq ("$(DEV_ENABLED)", "1")
+ifneq ("$(DEV_TRANSCRIBE)", "")
+	DOCKER_VOLUME_ARGS_DEV += -v $(DEV_TRANSCRIBE)/transcribe:$(DOCKER_SITE_PACKAGES)/transcribe
+endif
+ifneq ("$(DEV_TRANSCRIBE_AWS)", "")
+	DOCKER_VOLUME_ARGS_DEV += -v $(DEV_TRANSCRIBE_AWS)/transcribe_aws:$(DOCKER_SITE_PACKAGES)/transcribe_aws
+endif
+ifneq ("$(DEV_MENTOR_PIPELINE)", "")
+	DOCKER_VOLUME_ARGS_DEV += -v $(DEV_MENTOR_PIPELINE)/mentor_pipeline:/app/mentor_pipeline
+endif
+endif
+DOCKER_ARGS=\
+	$(DOCKER_ENV_ARGS) \
+	$(DOCKER_VOLUME_ARGS_DATA_AND_VIDEO) \
+	$(DOCKER_VOLUME_ARGS_DEV)
 # virtualenv used for pytest
 VENV=.venv
 $(VENV):
 	$(MAKE) venv-create
+
+et:
+	@echo "DEV_TRANSCRIBE=$(DEV_TRANSCRIBE)"
+
+ev:
+	@echo "DOCKER_VOLUME_ARGS_DEV=$(DOCKER_VOLUME_ARGS_DEV)"
 
 .PHONY: venv-create
 venv-create: virtualenv-installed
@@ -20,11 +57,6 @@ venv-create: virtualenv-installed
 
 virtualenv-installed:
 	$(PROJECT_ROOT)/bin/virtualenv_ensure_installed.sh
-
-$(WATSON_CREDENTIALS):
-	@echo "SET_USERNAME_HERE" > $(WATSON_CREDENTIALS)
-	@echo "SET_PASSWORD_HERE" >> $(WATSON_CREDENTIALS)
-	chmod 600 $(WATSON_CREDENTIALS)
 
 # Removes single mentor's data files from the local file system
 .PHONY: data/mentors/%/clean
@@ -47,16 +79,13 @@ clean:
 
 # Runs a shell inside the data processing pipeline dockerfile
 .PHONY shell:
-shell: $(WATSON_CREDENTIALS)
+shell:
 	docker run \
 			-it \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
-			-e WATSON_USERNAME=$(WATSON_USERNAME) \
-			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			--entrypoint /bin/bash \
-			-v $(PWD)/data:/app/mounts/data \
-			-v $(PWD)/videos:/app/mounts/videos \
+			$(DOCKER_ARGS) \
 		$(DOCKER_IMAGE)
 
 
@@ -65,14 +94,12 @@ shell: $(WATSON_CREDENTIALS)
 # Generates data files
 # TODO: 1) log every significant action (generating audio, transcribing), 2) build classifier for jd, 3) utterance yaml gets error codes, 4) make delete audio files that failed to transcribe
 .PHONY: data/mentors-%
-data/mentors-%: $(WATSON_CREDENTIALS)
+data/mentors-%:
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
-			-v $(PWD)/data:/app/mounts/data \
-			-e WATSON_USERNAME=$(WATSON_USERNAME) \
-			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
-			$(DOCKER_IMAGE) --mentor $* --data-update --data=/app/mounts/data/mentors
+			$(DOCKER_ARGS) \
+			$(DOCKER_IMAGE) --mentor $* --data-update --data=/app/mounts/data/mentors $(args)
 
 .PHONY: data/topics_by_question.csv/mentor/%
 data/topics_by_question.csv/mentors/%:
@@ -80,8 +107,6 @@ data/topics_by_question.csv/mentors/%:
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(PWD)/data:/app/mounts/data \
-			-e WATSON_USERNAME=$(WATSON_USERNAME) \
-			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			$(DOCKER_IMAGE) --mentor $* --topics-by-question-generate --data=/app/mounts/data/mentors
 
 
@@ -92,8 +117,6 @@ videos/mentors/%: data/mentors/%
 			--name $(DOCKER_CONTAINER) \
 			-v $(PWD)/data:/app/mounts/data \
 			-v $(PWD)/videos:/app/mounts/videos \
-			-e WATSON_USERNAME=$(WATSON_USERNAME) \
-			-e WATSON_PASSWORD=$(WATSON_PASSWORD) \
 			$(DOCKER_IMAGE) --mentor $* --videos-update --data=/app/mounts/data/mentors
 
 # Build checkpoint from mentor data
