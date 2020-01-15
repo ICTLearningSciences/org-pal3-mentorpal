@@ -23,6 +23,22 @@ data/mentors/my_new_mentor/
 │   │   │   ├── p001-more-questions.mp4
 ```
 
+#### Configure AWS Credentials
+
+TODO:
+- figure out a better way to handle AWS credentials for running locally
+- add more specific details about required permissions for the AWS IAM
+
+The pipeline uses AWS Transcribe, and for now, you MUST set your aws credentials in the env, e.g. either export them to your shell
+
+```bash
+export AWS_ACCESS_KEY_ID=<your iam id>
+export AWS_SECRET_ACCESS_KEY==<your iam key>
+```
+
+...or just pass both of the above to every make call.
+
+
 #### Build and Test a Mentor
 
 If raw video, audio and timestamp files for a mentor are stored in S3 (more on this
@@ -31,7 +47,7 @@ Note that videos are not required to generate a classifier to a new mentor.
 
 ##### Create/update the training data
 ```bash
-make data/mentors/{mentor_id}
+make data/mentors-{mentor_id}
 ```
 
 ##### Train {mentor} classifier
