@@ -1,1 +1,79 @@
 ID,utterance,situation
+s001p001s00000009e00015101,"I'm Lieutenant J. D. Thomas. I'm here at the Naval Postgraduate School pursuing a master's degree in financial management. Prior to coming to MPs, I was the A ops and the as well for a desert on staff in Mayport, Florida Prior to my second tour, I was four deployed on the USS Lassen and you Kuska Japan as the repair officer and the C E Devil. I was there for about 20 months, and my first tour probably was the most challenging tour today. There was a lot of ups and downs of my division. My division was composed of about 27 personnel. We had a couple of newly frakked first classes, so it was a lot of junior sailors. So we all had a huge learning curves like You get around together, of course, being in damage control and owning the all the fire equipment, the toilets, sinks and everything. You know, of course, things break and you know you're responsible for that kind of stuff. So it's nonstop 20 months tour, so I felt very challenging, but at same time is very rewarding. Prior to reaching the USS Lassen, I was enlisted for two years as a undesignated airman in a Halo squadron out in Jacksonville, Florida HSM 70 um prior to enlisting, served as a ah therapist in a rehab center in one of the local hospitals back where I'm from in Georgia. Oh, in which I had earned my bastards degree from Georgia Southern University.",_INTRO_
+s001p002s00004501e00021500,,_IDLE_
+s001p004s00002701e00005907,"Lieutenant Jeremy D. Thomas are. Everyone calls me J. D. I'm a lieutenant in the United States Navy. I'm here at the Naval Postgraduate School. I have a bachelor's degree from Georgia Southern University and Statesboro, Georgia. I'm from Georgia. Prior to arriving at Naval Postgraduate School, I was the anti submarine warfare officer on Dez Ron Staff and Mayport, Florida. And prior to that, I was the first tour division officer on the USS Lassen and you Cousteau, Japan.",_INTRO_
+s001p007s00001203e00001316,yes.,_FEEDBACK_
+s001p007s00001906e00002022,"Yes, sir.",_FEEDBACK_
+s001p007s00002612e00002803,"Yes, ma'am.",_FEEDBACK_
+s001p007s00003402e00003528,excuse me.,_OFF_TOPIC_
+s001p007s00004119e00004310,How are you?,_PROMPT_
+s001p007s00004819e00005001,Good morning.,_PROMPT_
+s001p007s00005519e00005724,good afternoon.,_PROMPT_
+s001p007s00010227e00010421,good evening.,_PROMPT_
+s001p007s00011009e00011124,good night.,_PROMPT_
+s001p007s00011900e00012128,I may have said this before.,_REPEAT_
+s001p007s00012808e00012923,no.,_FEEDBACK_
+s001p007s00013418e00013612,maybe.,_FEEDBACK_
+s001p007s00014101e00014228,perhaps.,_FEEDBACK_
+s001p007s00014720e00014922,of course.,_FEEDBACK_
+s001p007s00015528e00015724,always.,_FEEDBACK_
+s001p007s00020228e00020419,sometimes.,_FEEDBACK_
+s001p007s00020919e00021104,never,_FEEDBACK_
+s001p007s00021601e00021716,often.,_FEEDBACK_
+s001p007s00022304e00022428,I do.,_FEEDBACK_
+s001p007s00022819e00023004,I don't.,_FEEDBACK_
+s001p007s00023528e00023802,I have no idea.,_OFF_TOPIC_
+s001p007s00024401e00024521,I don't think so.,_FEEDBACK_
+s001p007s00025328e00025613,Here's something you should really know.,_PROMPT_
+s001p007s00031709e00032105,"That's a good question, but I want to make sure I tell you something.",_OFF_TOPIC_
+s002p004s00001700e00001807,Hello.,_PROMPT_
+s002p004s00002323e00002508,it's nice to meet you.,_FEEDBACK_
+s002p004s00003018e00003303,I don't really have an opinion on that.,_OFF_TOPIC_
+s002p004s00003923e00004110,I hope so.,_FEEDBACK_
+s002p004s00004625e00004810,I'm sorry.,_FEEDBACK_
+s002p004s00005501e00005624,I'm sorry to hear.,_FEEDBACK_
+s002p004s00010325e00010606,I'll see you didn't ask anything there.,_PROMPT_
+s002p004s00011302e00011527,You've got to ask me something to get it.,_PROMPT_
+s002p004s00012109e00012217,thank ,_FEEDBACK_
+s002p004s00012722e00012905,I understand that.,_FEEDBACK_
+s002p004s00013403e00013614,I went through something similar.,_FEEDBACK_
+s002p004s00014200e00014317,I'm not sure.,_OFF_TOPIC_
+s002p004s00014903e00015022,I can't hear.,_OFF_TOPIC_
+s002p004s00015521e00015719,I don't understand.,_OFF_TOPIC_
+s002p004s00020312e00020501,Can you repeat that?,_PROMPT_
+s002p004s00021023e00021221,I don't have an answer.,_OFF_TOPIC_
+s002p004s00021809e00022021,Can you ask me something?,_PROMPT_
+s002p004s00023523e00023907,it would help if you could keep the questions short and simple.,_OFF_TOPIC_
+s002p004s00024419e00024700,Can you rephrase the question?,_OFF_TOPIC_
+s002p004s00025300e00025502,I can't predict the future.,_FEEDBACK_
+s002p004s00030018e00030309,I do not want to speculate about the future.,_FEEDBACK_
+s002p004s00030900e00031027,I don't know what.,_OFF_TOPIC_
+s002p004s00031504e00031703,I don't know who that is.,_OFF_TOPIC_
+s002p004s00032206e00032415,I'm not going to talk about.,_OFF_TOPIC_
+s002p004s00032928e00033214,I'm not here to talk about that.,_OFF_TOPIC_
+s002p004s00033822e00034117,could you please refrain from using?,_PROFANITY_
+s002p004s00040419e00040903,"you might have heard about Swing like a sailor, but it could hurt your career.",_PROFANITY_
+s002p004s00042521e00042713,anything else.,_PROMPT_
+s002p009s00001303e00001705,I don't have enough information to talk about that.,_OFF_TOPIC_
+s002p009s00002501e00002803,I do not have an answer for that.,_OFF_TOPIC_
+s002p009s00003925e00004504,"That's a great question. Unfortunately, I've never recorded an answer for that.",_OFF_TOPIC_
+s002p009s00005705e00010105,That's a great question. I wish I thought of that.,_OFF_TOPIC_
+s002p009s00011006e00011500,"That's a great question. Unfortunately, I don't have an answer right now.",_OFF_TOPIC_
+s002p009s00012219e00012608,"Unfortunately, I was never asked that question.",_OFF_TOPIC_
+s002p009s00013206e00013507,you might have to ask me something else.,_OFF_TOPIC_
+s002p009s00014020e00014317,What do you want to talk about?,_PROMPT_
+s002p009s00014901e00015201,What would you like to ask me?,_PROMPT_
+s002p009s00015700e00015918,What do you want to know?,_PROMPT_
+s002p009s00020517e00020820,What do you want to know about me?,_PROMPT_
+s002p009s00021424e00021727,What do you want to know about leadership?,_PROMPT_
+s002p009s00025804e00030224,you could ask for tips about your first month as a leader.,_PROMPT_
+s002p009s00031105e00031518,you could ask me about my go to leadership strategy.,_PROMPT_
+s002p009s00033506e00033921,you could ask me about getting a life set up after a big move.,_PROMPT_
+s002p009s00042224e00042904,you could ask me about serious problems like sexual harassment or suicide risks.,_PROMPT_
+s002p009s00043605e00043928,you could ask me about my job in the Navy.,_PROMPT_
+s002p009s00044419e00044710,you could ask me about my background.,_PROMPT_
+s002p009s00050225e00050800,go ahead after me about who gave me the best advice in my career.,_PROMPT_
+s002p009s00051317e00051610,I might have covered this already.,_REPEAT_
+s002p009s00083525e00084421,this changes pretty quickly. So what I tell you today might not be true. Tomorrow I'm gonna recommend talking to someone local who might know more.,_FEEDBACK_
+s002p009s00095024e00095700,"I did a lot of technical training in the Navy, so you can ask me about what skills I learned.",_PROMPT_
+s002p009s00103600e00104119,I haven't always made perfect decisions. You can ask me about any other failures I've had.,_PROMPT_
