@@ -1,27 +1,42 @@
 ID,utterance,situation
 s001p001s00000415e00012314,"I am Navy Captain Dan Burns, graduates of the Naval Academy in 1984. I am a surface warfare officer Ship driver served on two ships out of the Pacific L P D and screw. It's out of hand. What the U. S Naval discredited school in Monterey and after that, served on my department tours. Chief engineer on a fast forget out of Charleston and on the actual USS Ticonderoga out of normal, deployed on both of those tours with the USS Teddy Roosevelt, Natalie's on both ships and then went ashore to the awesome military affairs at Central Intelligence Agency. While there, I screamed for XO of Aegis cruisers and command of a small ship. But frankly, at that point my second child had been born and I decided to resign my active duty commission and joined the reserves. I finished out my 30 year career in the reserves. I was recalled once during that time for a total of 18 years of active duty, 12 years and reserves, and I retired in July off 2014",_INTRO_
-s001p002s00001600e00014600,,_IDLE_
-s001p013s00004716e00005227,I don't have enough information to talk about that.,_OFF_TOPIC_
-s001p013s00005821e00010312,I do not have an answer for that.,_OFF_TOPIC_
-s001p013s00011300e00012114,"That's a great question. Unfortunately, I did not record dancer with that.",_OFF_TOPIC_
-s001p013s00013100e00013600,That's a great question. I wish I had a lot of that.,_OFF_TOPIC_
-s001p013s00014615e00015614,"That's a great question, but unfortunately I don't have an answer right now with that.",_OFF_TOPIC_
-s001p013s00020502e00020928,"Unfortunately, I was never asked that question.",_OFF_TOPIC_
-s001p013s00021816e00022128,What do you want to talk about?,_PROMPT_
-s001p013s00023015e00023612,"you might have to ask me, Sofia.",_OFF_TOPIC_
-s001p013s00024108e00024812,What would you like? Us?,_PROMPT_
-s001p013s00025507e00025728,do you want to know?,_PROMPT_
-s001p013s00030512e00031015,What do you want to know?,_PROMPT_
-s001p013s00031823e00032322,What do you want to know about leadership?,_PROMPT_
-s001p013s00035414e00040126,you can ask for tips about your first long as,_PROMPT_
-s001p013s00041209e00041925,you can ask me my old to leadership strategies.,_PROMPT_
-s001p013s00042702e00043414,you can ask me any of your life set out after a big move.,_PROMPT_
-s001p013s00044312e00045113,you can ask me about serious problems like sexual harassment or suicide.,_PROMPT_
-s001p013s00045621e00050127,you can ask me about my job in the baby.,_PROMPT_
-s001p013s00050528e00050921,you can ask me about my background.,_PROMPT_
-s001p013s00054401e00055128,Go ahead. Ask me about who gave me the best advice about my career paths.,_PROMPT_
-s001p013s00055905e00060216,I might have covered this already.,_REPEAT_
-s001p013s00073226e00074427,"I did a lot of technical training in, So you can ask me. Supports is about how what I've heard in my time.",_PROMPT_
-s001p013s00082111e00083311,"You know, I have not had a perfect career, but you can ask me about some of the challenges on failure points that I've had throughout.",_PROMPT_
-s001p013s00085504e00093622,"what happens. It's your initial career path doesn't work out. First, it's if you're a pilot on you washed out of flight training, you may be given the opportunity to transition over to surface. Or you may be given an opportunity to transition to a restricted line that will depend on the needs off the other service is or the other career field. What? The detail isn't on the programme leaders need there.",_PROMPT_
-s001p013s00131602e00144102,"So what type of questions you asked me about? What's New York Mets Dominating? The Dodgers is always talked about. That's the 1986 Mets 2000 world Siris. In some ways, there is happy to talk about. Those probably reached me offline for further comment on that, However, for the tapes and recordings that you're going to see look on the head. It's really about challenges that you like face in the first sea duty that field too Life at sea worship driver because I am sure on it's based on my experiences there. You also can ask questions about housing. You know, you move from base debates like these questions in their cover. That and just a general illusion questions leadership style questions. Because we know you've had that textbook at this point either. At O. C s war, CIA knows reading list. They want not what it was gonna be. Some questions that you can want one look on on asked me about my responses",_PROMPT_
+s001p002s00000415e00012314,"I am Navy Captain Dan Burns, graduates of the Naval Academy in 1984. I am a surface warfare officer Ship driver served on two ships out of the Pacific L P D and screw. It's out of hand. I went to the U. S. Naval discredited school in Monterey, and after that, served on my department tours. Chief engineer on a fast forget out of Charleston and on the actual USS Ticonderoga out of normal, deployed on both of those tours with the USS Teddy Roosevelt, Natalie's on both ships and then went ashore to the awesome military affairs at Central Intelligence Agency. While there, I screamed for XO of Aegis cruisers and command of a small ship. But frankly, at that point my second child had been born and I decided to resign my active duty commission and joined the reserves. I finished out my 30 year career in the reserves. I was recalled once during that time for a total of 18 years of active duty, 12 years and reserves, and I retired in July off 2014",_BIO_LONG_
+s001p003s00001600e00014600,,_IDLE_
+s001p007s00000908e00001120,no.,No.
+s001p007s00001507e00001719,maybe.,Maybe.
+s001p007s00002105e00002322,perhaps.,Perhaps.
+s001p007s00002610e00002905,off course.,Of course.
+s001p007s00003221e00003427,always.,Always.
+s001p007s00003914e00004212,sometimes.,Sometimes.
+s001p007s00004517e00004804,never,Never.
+s001p007s00005118e00005402,often.,Often.
+s001p007s00005706e00005917,I do.,I do.
+s001p007s00010224e00010512,I don't.,I don't.
+s001p007s00010910e00011212,I have no idea.,I have no idea.
+s001p007s00011522e00011815,I don't think so.,I don't think so.
+s001p007s00012322e00012811,there is something you should really know.,Here is something you should really know.
+s001p007s00013602e00014027,"That's a good question, but I really wanted to tell you something.","That's a good question, but I really want to tell you something."
+s001p017s00004716e00005227,I don't have enough information to talk about that.,_OFF_TOPIC_
+s001p017s00005821e00010312,I do not have an answer for that.,_OFF_TOPIC_
+s001p017s00011300e00012114,"That's a great question. Unfortunately, I did not record answer that.",_OFF_TOPIC_
+s001p017s00013100e00013600,That's a great question. I wish I had a lot of that.,_OFF_TOPIC_
+s001p017s00014615e00015614,"That's a great question, but unfortunately I don't have an answer right now with that.",_OFF_TOPIC_
+s001p017s00020502e00020928,"Unfortunately, I was never asked that question.",_OFF_TOPIC_
+s001p017s00021816e00022128,What do you want to talk about?,_PROMPT_
+s001p017s00023015e00023612,"you might have to ask me, Sofia.",_OFF_TOPIC_
+s001p017s00024108e00024812,What would you like? Us?,_PROMPT_
+s001p017s00025507e00025728,do you want to know?,_PROMPT_
+s001p017s00030512e00031015,What do you want to know?,_PROMPT_
+s001p017s00031823e00032322,What do you want to know about leadership?,_PROMPT_
+s001p017s00035414e00040126,you can ask for tips about your first long as,_PROMPT_
+s001p017s00041209e00041925,you can ask me my old to leadership strategies.,_PROMPT_
+s001p017s00042702e00043414,"you can ask me, ending your life set out after a big move.",_PROMPT_
+s001p017s00044312e00045113,you can ask me about serious problems like sexual harassment or suicide.,_PROMPT_
+s001p017s00045621e00050127,you can ask me about my job in the baby.,_PROMPT_
+s001p017s00050528e00050921,you can ask me about my background.,_PROMPT_
+s001p017s00054401e00055128,Go ahead. Ask me about who gave me the best advice about my career paths.,_PROMPT_
+s001p017s00055905e00060216,I might have covered this already.,_REPEAT_
+s001p017s00073226e00074427,I did a lot of technical training. So you can ask me. Idiot supports is about how what I've heard in my time.,_PROMPT_
+s001p017s00082111e00083311,"You know, I have not had a perfect career, but you can ask me about some of the challenges on failure points that I've had throughout mind.",_PROMPT_
+s001p017s00085504e00093622,"happens, it's your initial career path doesn't work out. First, it's if you're a pilot on you washed out of flight training, you may be given the opportunity to transition over to surface. Or you may be given an opportunity to transition to a restricted line that will depend on the needs off the other service is or the other career field. What? The detail isn't on the programme leaders need there.",_PROMPT_
+s001p017s00131602e00144102,"So what type of questions you asked me about? Or New York Mets dominating? The Dodgers is always available to talk about that's the 1986 Mets 2000 world Siris. In some ways, there is happy to talk about. Those probably reached me offline for further comment on that over for the tapes and recordings that you're going to see Click on Head. It's really about challenges that you like face in the first sea duty that field, too, uh, life at sea worship driver because I am sure on it's based on my experiences there. You also can ask questions about housing. You know, you move from base debates like these questions in their cover. That and just a general illusion questions leadership style questions because we know you've had that textbook at this point, either. At O. C s war, CIA knows reading list. They want not what? There's gonna be some questions that you can want one look on on. Asked me about my responses",_PROMPT_

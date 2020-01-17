@@ -1,8 +1,23 @@
 Situation,Mentor,Utterance/Prompt
 _INTRO_,dan-burns,"I am Navy Captain Dan Burns, graduates of the Naval Academy in 1984. I am a surface warfare officer Ship driver served on two ships out of the Pacific L P D and screw. It's out of hand. What the U. S Naval discredited school in Monterey and after that, served on my department tours. Chief engineer on a fast forget out of Charleston and on the actual USS Ticonderoga out of normal, deployed on both of those tours with the USS Teddy Roosevelt, Natalie's on both ships and then went ashore to the awesome military affairs at Central Intelligence Agency. While there, I screamed for XO of Aegis cruisers and command of a small ship. But frankly, at that point my second child had been born and I decided to resign my active duty commission and joined the reserves. I finished out my 30 year career in the reserves. I was recalled once during that time for a total of 18 years of active duty, 12 years and reserves, and I retired in July off 2014"
+_BIO_LONG_,dan-burns,"I am Navy Captain Dan Burns, graduates of the Naval Academy in 1984. I am a surface warfare officer Ship driver served on two ships out of the Pacific L P D and screw. It's out of hand. I went to the U. S. Naval discredited school in Monterey, and after that, served on my department tours. Chief engineer on a fast forget out of Charleston and on the actual USS Ticonderoga out of normal, deployed on both of those tours with the USS Teddy Roosevelt, Natalie's on both ships and then went ashore to the awesome military affairs at Central Intelligence Agency. While there, I screamed for XO of Aegis cruisers and command of a small ship. But frankly, at that point my second child had been born and I decided to resign my active duty commission and joined the reserves. I finished out my 30 year career in the reserves. I was recalled once during that time for a total of 18 years of active duty, 12 years and reserves, and I retired in July off 2014"
+No.,dan-burns,no.
+Maybe.,dan-burns,maybe.
+Perhaps.,dan-burns,perhaps.
+Of course.,dan-burns,off course.
+Always.,dan-burns,always.
+Sometimes.,dan-burns,sometimes.
+Never.,dan-burns,never
+Often.,dan-burns,often.
+I do.,dan-burns,I do.
+I don't.,dan-burns,I don't.
+I have no idea.,dan-burns,I have no idea.
+I don't think so.,dan-burns,I don't think so.
+Here is something you should really know.,dan-burns,there is something you should really know.
+"That's a good question, but I really want to tell you something.",dan-burns,"That's a good question, but I really wanted to tell you something."
 _OFF_TOPIC_,dan-burns,I don't have enough information to talk about that.
 _OFF_TOPIC_,dan-burns,I do not have an answer for that.
-_OFF_TOPIC_,dan-burns,"That's a great question. Unfortunately, I did not record dancer with that."
+_OFF_TOPIC_,dan-burns,"That's a great question. Unfortunately, I did not record answer that."
 _OFF_TOPIC_,dan-burns,That's a great question. I wish I had a lot of that.
 _OFF_TOPIC_,dan-burns,"That's a great question, but unfortunately I don't have an answer right now with that."
 _OFF_TOPIC_,dan-burns,"Unfortunately, I was never asked that question."
@@ -14,13 +29,13 @@ _PROMPT_,dan-burns,What do you want to know?
 _PROMPT_,dan-burns,What do you want to know about leadership?
 _PROMPT_,dan-burns,you can ask for tips about your first long as
 _PROMPT_,dan-burns,you can ask me my old to leadership strategies.
-_PROMPT_,dan-burns,you can ask me any of your life set out after a big move.
+_PROMPT_,dan-burns,"you can ask me, ending your life set out after a big move."
 _PROMPT_,dan-burns,you can ask me about serious problems like sexual harassment or suicide.
 _PROMPT_,dan-burns,you can ask me about my job in the baby.
 _PROMPT_,dan-burns,you can ask me about my background.
 _PROMPT_,dan-burns,Go ahead. Ask me about who gave me the best advice about my career paths.
 _REPEAT_,dan-burns,I might have covered this already.
-_PROMPT_,dan-burns,"I did a lot of technical training in, So you can ask me. Supports is about how what I've heard in my time."
-_PROMPT_,dan-burns,"You know, I have not had a perfect career, but you can ask me about some of the challenges on failure points that I've had throughout."
-_PROMPT_,dan-burns,"what happens. It's your initial career path doesn't work out. First, it's if you're a pilot on you washed out of flight training, you may be given the opportunity to transition over to surface. Or you may be given an opportunity to transition to a restricted line that will depend on the needs off the other service is or the other career field. What? The detail isn't on the programme leaders need there."
-_PROMPT_,dan-burns,"So what type of questions you asked me about? What's New York Mets Dominating? The Dodgers is always talked about. That's the 1986 Mets 2000 world Siris. In some ways, there is happy to talk about. Those probably reached me offline for further comment on that, However, for the tapes and recordings that you're going to see look on the head. It's really about challenges that you like face in the first sea duty that field too Life at sea worship driver because I am sure on it's based on my experiences there. You also can ask questions about housing. You know, you move from base debates like these questions in their cover. That and just a general illusion questions leadership style questions. Because we know you've had that textbook at this point either. At O. C s war, CIA knows reading list. They want not what it was gonna be. Some questions that you can want one look on on asked me about my responses"
+_PROMPT_,dan-burns,I did a lot of technical training. So you can ask me. Idiot supports is about how what I've heard in my time.
+_PROMPT_,dan-burns,"You know, I have not had a perfect career, but you can ask me about some of the challenges on failure points that I've had throughout mind."
+_PROMPT_,dan-burns,"happens, it's your initial career path doesn't work out. First, it's if you're a pilot on you washed out of flight training, you may be given the opportunity to transition over to surface. Or you may be given an opportunity to transition to a restricted line that will depend on the needs off the other service is or the other career field. What? The detail isn't on the programme leaders need there."
+_PROMPT_,dan-burns,"So what type of questions you asked me about? Or New York Mets dominating? The Dodgers is always available to talk about that's the 1986 Mets 2000 world Siris. In some ways, there is happy to talk about. Those probably reached me offline for further comment on that over for the tapes and recordings that you're going to see Click on Head. It's really about challenges that you like face in the first sea duty that field, too, uh, life at sea worship driver because I am sure on it's based on my experiences there. You also can ask questions about housing. You know, you move from base debates like these questions in their cover. That and just a general illusion questions leadership style questions because we know you've had that textbook at this point, either. At O. C s war, CIA knows reading list. They want not what? There's gonna be some questions that you can want one look on on. Asked me about my responses"
