@@ -1,5 +1,5 @@
 PWD=$(shell pwd)
-DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.3.0-alpha.4
+DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.3.0
 DOCKER_CONTAINER=mentor-pipeline
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 AWS_REGION?=us-east-1
