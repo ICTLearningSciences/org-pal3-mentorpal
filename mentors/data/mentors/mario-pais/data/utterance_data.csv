@@ -1,51 +1,51 @@
 ID,utterance,situation
-s001p001s00000923e00004613,hi I'm Mario I'm a senior chief petty officer in the navy or am station in San Diego and explosive ordnance disposal training unit one I've of currently I'm serving as the navy expeditionary combat commands lead unmanned underwater vehicle instructor and curriculum developer for the entire force having worked in that role I've deployed multiple times to the fifth fleet A. O. R. and working in Bahrain all throughout that region up and down the golf and Gulf of aiding and in those areas I married with two kids both of which are in high school ,_INTRO_
+s001p001s00000923e00004613,"Hi, I'm Mario. I'm a senior chief petty officer in the Navy. Or I'm stationed in San Diego at Explosive Ordnance Disposal Training Unit One I've currently serving as the Navy Expeditionary Combat Commands lead unmanned underwater vehicle instructor and curriculum developer for the entire force. Having worked in that role, I've deployed multiple times to the fifth Fleet a O. R. Working in Bahrain and all throughout that region, up and down the Gulf and the Gulf of Aden. And in those areas, I'm married with two kids, both of which are in high school.",_INTRO_
 s001p002s00001628e00014628,,_IDLE_
-s001p008s00001600e00001703,yes ,_FEEDBACK_
-s001p008s00002017e00002128,yes Sir ,_FEEDBACK_
-s001p008s00002406e00002523,yes ma'am ,_FEEDBACK_
-s001p008s00002819e00003005,excuse me ,_OFF_TOPIC_
-s001p008s00003312e00003505,how are you ,_PROMPT_
-s001p008s00003721e00003913,good morning ,_PROMPT_
-s001p008s00004122e00004319,good afternoon ,_PROMPT_
-s001p008s00004601e00004717,good evening ,_PROMPT_
-s001p008s00004918e00005105,good night ,_PROMPT_
-s001p008s00005423e00005706,I may have said this before ,_REPEAT_
-s001p008s00005923e00010028,now ,_FEEDBACK_
-s001p008s00010309e00010506,maybe ,_FEEDBACK_
-s001p008s00010714e00010911,perhaps ,_FEEDBACK_
-s001p008s00011119e00011318,of course ,_FEEDBACK_
-s001p008s00011600e00011718,always ,_FEEDBACK_
-s001p008s00012000e00012126,sometimes ,_FEEDBACK_
-s001p008s00012328e00012527,never ,_FEEDBACK_
-s001p008s00012809e00012920,often ,_FEEDBACK_
-s001p008s00013219e00013325,I do ,_FEEDBACK_
-s001p008s00013528e00013709,I don't ,_FEEDBACK_
-s001p008s00014015e00014219,I have no idea ,_OFF_TOPIC_
-s001p008s00014504e00014704,I don't think so ,_FEEDBACK_
-s001p008s00015109e00015323,here's something you should really know ,_PROMPT_
-s001p008s00020212e00020702,that's a good question but I want to make sure I tell you something ,_OFF_TOPIC_
-s002p008s00475628e00480028,I don't have enough information to talk about that ,I don't have enough information to talk about that.
-s002p008s00480624e00480927,I don't have an answer for that ,I do not have an answer for that.
-s002p008s00481910e00482516,that's a great question unfortunately I never recorded an answer for that ,"That is a great question, unfortunately I never recorded an answer to that."
-s002p008s00483128e00483608,that's a great question I wish I thought of that ,That is a great question. I wish I'd thought of that.
-s002p008s00484522e00485007,that's a great question unfortunately I don't have an answer for that right now ,"That is a great question but unfortunately, I don't have an answer right now."
-s002p008s00485622e00490028,unfortunately I was never asked that ,Unfortunately I was never asked that question.
-s002p008s00490811e00491107,you might have to ask me something else ,You might have to ask me something else.
-s002p008s00491721e00492010,what do you want to talk about ,What do you want to talk about?
-s002p008s00492516e00492814,what would you like to ask me ,What would you like to ask me?
-s002p008s00493324e00493611,what do you want to know ,What do you want to know?
-s002p008s00494224e00494515,what do you want to know about me ,What do you want to know about me?
-s002p008s00495101e00495401,what do you want to know about leadership ,What do you want to know about leadership?
-s002p008s00500411e00500907,you can ask about tips as your first month as a leader ,You could ask for tips about your first month as a leader.
-s002p008s00502727e00503215,you could ask me about getting your life set up for a big move ,You could ask me about getting your life set up after a big move.
-s002p008s00503823e00504228,you could ask me about my go to leadership strategy ,You could ask me about my go-to leadership strategy.
-s002p008s00505001e00505601,you could ask me about serious problems like sexual harassment or suicide ,"You could ask me about serious problems, like sexual harrassment or suicide."
-s002p008s00510207e00510523,you could ask me about my job in the navy ,You could ask me about my job in the Navy.
-s002p008s00511208e00511505,you could ask me about my background ,You could ask me about my background.
-s002p008s00512309e00512823,go ahead ask me who gave me the best advice about my career ,"Go ahead, ask me who gave me the best advice about my career."
-s002p008s00522113e00522322,I might have covered this already ,I might have covered this already...
-s002p008s00530615e00531512,this changes pretty quickly so what I tell you today might change tomorrow the best if you ask somebody local who can point you in the right direction ,"This changes pretty quickly, so what I tell you today might change tomorrow. It'd be best if you asked somebody local that could point you in the right direction."
-s002p008s00532623e00533205,I've done a lot of technical training in the navy so you can ask me about what skills I've learned ,"I've done a lot of technical training in the Navy, so you can ask me about what skills I learned."
-s002p008s00534407e00534927,I haven't always made perfect decisions so you can ask about any failures I've had ,"I haven't always made perfect decisions, you can ask me about any of the failures that I've had."
-s002p008s00540515e00540902,what kind of questions can I ask you about ,What kinds of questions can I ask you about?
+s001p008s00001600e00001703,yes.,_FEEDBACK_
+s001p008s00002017e00002128,"Yes, sir.",_FEEDBACK_
+s001p008s00002406e00002523,"Yes, ma'am.",_FEEDBACK_
+s001p008s00002819e00003005,excuse me.,_OFF_TOPIC_
+s001p008s00003312e00003505,How are you?,_PROMPT_
+s001p008s00003721e00003913,Good morning.,_PROMPT_
+s001p008s00004122e00004319,good afternoon.,_PROMPT_
+s001p008s00004601e00004717,good evening.,_PROMPT_
+s001p008s00004918e00005105,good night.,_PROMPT_
+s001p008s00005423e00005706,I may have said this before.,_REPEAT_
+s001p008s00005923e00010028,no.,_FEEDBACK_
+s001p008s00010309e00010506,maybe.,_FEEDBACK_
+s001p008s00010714e00010911,perhaps.,_FEEDBACK_
+s001p008s00011119e00011318,of course.,_FEEDBACK_
+s001p008s00011600e00011718,always.,_FEEDBACK_
+s001p008s00012000e00012126,sometimes.,_FEEDBACK_
+s001p008s00012328e00012527,never,_FEEDBACK_
+s001p008s00012809e00012920,off.,_FEEDBACK_
+s001p008s00013219e00013325,I do.,_FEEDBACK_
+s001p008s00013528e00013709,I don't.,_FEEDBACK_
+s001p008s00014015e00014219,I have no idea.,_OFF_TOPIC_
+s001p008s00014504e00014704,I don't think so.,_FEEDBACK_
+s001p008s00015109e00015323,Here's something you should really know.,_PROMPT_
+s001p008s00020212e00020702,"That's a good question, but I want to make sure I tell you something.",_OFF_TOPIC_
+s002p008s00475628e00480028,I don't have enough information to talk about that.,I don't have enough information to talk about that.
+s002p008s00480624e00480927,I don't have an answer for that.,I do not have an answer for that.
+s002p008s00481910e00482516,"That's a great question. Unfortunately, I never recorded an answer for that.","That is a great question, unfortunately I never recorded an answer to that."
+s002p008s00483128e00483608,That's a great question. I wish I thought of that.,That is a great question. I wish I'd thought of that.
+s002p008s00484522e00485007,"That's a great question. Unfortunately, I don't have an answer for that right now.","That is a great question but unfortunately, I don't have an answer right now."
+s002p008s00485622e00490028,"Unfortunately, I was never asked that.",Unfortunately I was never asked that question.
+s002p008s00490811e00491107,you might have to ask me something else.,You might have to ask me something else.
+s002p008s00491721e00492010,What do you want to talk about?,What do you want to talk about?
+s002p008s00492516e00492814,What would you like to ask me?,What would you like to ask me?
+s002p008s00493324e00493611,What do you want to know?,What do you want to know?
+s002p008s00494224e00494515,What do you want to know about me?,What do you want to know about me?
+s002p008s00495101e00495401,What do you want to know about leadership?,What do you want to know about leadership?
+s002p008s00500411e00500907,you can ask about tips as your first month as a leader.,You could ask for tips about your first month as a leader.
+s002p008s00502727e00503215,you could ask me about getting your life set up for a big move.,You could ask me about getting your life set up after a big move.
+s002p008s00503823e00504228,you could ask me about my go to leadership strategy.,You could ask me about my go-to leadership strategy.
+s002p008s00505001e00505601,you could ask me about serious problems like sexual harassment or suicide.,"You could ask me about serious problems, like sexual harrassment or suicide."
+s002p008s00510207e00510523,you could ask me about my job in the Navy.,You could ask me about my job in the Navy.
+s002p008s00511208e00511505,you could ask me about my background.,You could ask me about my background.
+s002p008s00512309e00512823,"Go ahead, ask me who gave me the best advice about my career.","Go ahead, ask me who gave me the best advice about my career."
+s002p008s00522113e00522322,I might have covered this already.,I might have covered this already...
+s002p008s00530615e00531512,this changes pretty quickly. So what I tell you today might change tomorrow would be best if you ask somebody local who can point you in the right direction.,"This changes pretty quickly, so what I tell you today might change tomorrow. It'd be best if you asked somebody local that could point you in the right direction."
+s002p008s00532623e00533205,"I've done a lot of technical training in the Navy, so you can ask me about what skills I've learned.","I've done a lot of technical training in the Navy, so you can ask me about what skills I learned."
+s002p008s00534407e00534927,"I haven't always made perfect decisions, so you can ask him about any failures I've had.","I haven't always made perfect decisions, you can ask me about any of the failures that I've had."
+s002p008s00540515e00540902,What kind of questions can I ask you about?,What kinds of questions can I ask you about?

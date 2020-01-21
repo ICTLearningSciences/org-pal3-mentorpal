@@ -1,6 +1,6 @@
 CHECKPOINT_ROOT=$(shell pwd)
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
-CHECKPOINT?=2019-11-09-0031
+CHECKPOINT?=2019-11-14-2031
 MENTOR_ROOT=$(PROJECT_ROOT)/mentors/data/mentors
 ARCH?=lstm_v1
 MENTOR?=clint
