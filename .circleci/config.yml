@@ -77,36 +77,6 @@ jobs:
       - checkout
       - *git-lfs-pull
       - *checkout-revision-save
-  test-format:
-    executor: python
-    steps:
-      - *checkout-revision-restore
-      - *git-lfs-install
-      - checkout
-      - run:
-          name: Test format
-          command: make test-format
-  test-lint:
-    executor: python
-    steps:
-      - *checkout-revision-restore
-      - *git-lfs-install
-      - checkout
-      - run:
-          name: Test lint
-          command: make test-lint
-  reports-test:
-    executor: node
-    steps:
-      - *checkout-revision-restore
-      - *git-lfs-install
-      - checkout
-      - run:
-          name: Test reports
-          command: |
-            cd reports \
-            && npm install \
-            && npm test
   dev-ebs-deploy:
     executor: ebs
     steps:
@@ -136,30 +106,15 @@ workflows:
   build-test-deploy:
     jobs:
       - checkout-revision-setup
-      - test-format:
-          requires:
-            - checkout-revision-setup
-      - test-lint:
-          requires:
-            - checkout-revision-setup
-      - reports-test:
-          requires:
-            - checkout-revision-setup
       - approve-dev-deploy:
           type: approval
           requires:
-            - test-format
-            - test-lint
-            - reports-test
+            - checkout-revision-setup
       - dev-ebs-deploy:
           requires:
             - approve-dev-deploy
       - qa-ebs-deploy:
           filters: *only-master
-          requires:
-            - test-format
-            - test-lint
-            - reports-test
   build-test-deploy-prod:
     jobs:
       - prod-ebs-deploy:
