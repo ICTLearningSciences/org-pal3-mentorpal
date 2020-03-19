@@ -1,8 +1,12 @@
 SHELL:=/bin/bash
-PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 VENV=.venv
-
 EBS_BUNDLE_MENTOR_API=build/ebs/bundle/mentor-api
+ENV?=dev-mentorpal
+
+define read_env_lrs_password
+$(shell cat ./env/lrs/$(1)/.password)
+endef
+
 $(EBS_BUNDLE_MENTOR_API):
 	mkdir -p $(EBS_BUNDLE_MENTOR_API)
 	cp -R checkpoint/classifiers $(EBS_BUNDLE_MENTOR_API)/classifiers
@@ -24,22 +28,67 @@ venv-create:
 # Once the server is running, you can open the local site in a browser at
 # http://localhost:8080
 ###############################################################################
-.PHONY: local-run
-local-run: $(VENV)
+.PHONY: run
+run: $(VENV)
 	$(VENV)/bin/docker-compose up
 
-.PHONY: local-run-dev
-local-run-dev: $(VENV)
-	$(VENV)/bin/docker-compose -f docker-compose.yml -f  docker-compose.dev-override.yml up
+.PHONY: run-local-lrs-%
+run-local-lrs-%: $(VENV)
+	$(MAKE) env/lrs/$*/.env.enc \
+	&& export ENV=$* \
+	&& export ENV_PASSWORD=$(call read_env_lrs_password,$*) \
+	&& $(VENV)/bin/docker-compose -f docker-compose.yml -f docker-compose.local-lrs.yml up
+
+.PHONY: run-local-lrs
+run-local-lrs:
+	$(MAKE) run-local-lrs-dev-mentorpal
+
+.PHONY: run-local-video
+run-local-video: $(VENV)
+	$(VENV)/bin/docker-compose -f docker-compose.yml -f  docker-compose.local-videos.yml up
 
 .PHONY: local-stop
-local-stop: $(VENV)
+stop: $(VENV)
 	$(VENV)/bin/docker-compose down
 
 virtualenv-installed:
-	$(PROJECT_ROOT)/bin/virtualenv_ensure_installed.sh
+	sh ./bin/virtualenv_ensure_installed.sh
 
 eb-ssh-%: $(VENV)
 	. $(VENV)/bin/activate \
 		&& eb use $* --region us-east-1 \
 		&& eb ssh
+
+DOTENVENC=node_modules/.bin/dotenvenc
+$(DOTENVENC):
+	NODE_ENV=build npm ci
+
+env/lrs/%/.password:
+ifneq ("$(password)","")
+	@echo "updating password file at env/lrs/$*/.password..."
+	@echo $(password) > env/lrs/$*/.password
+	chmod 600 env/lrs/$*/.password
+endif
+
+env/lrs/%/.env:
+	@echo "requires (unversioned) source .env file at env/lrs/$*/.env"
+	exit 1
+
+env/lrs/%/.env.enc: env/lrs/%/.env $(DOTENVENC)
+ifneq ("$(password)","")
+	rm -f env/lrs/$*/.password
+	$(MAKE) env/lrs/$*/.password password=$(password)
+endif
+	@if [ ! -f env/lrs/$*/.password ]; then \
+		echo "Password required in $(env/lrs/$*/.password)"; \
+		echo "...or pass it to this rule as follows:"; \
+		echo "    make env/lrs/$*/.env.enc password=<your_password>"; \
+		exit 1; \
+	fi
+	cd env/lrs/$* && \
+		npx dotenvenc "$$(cat .password)"
+
+.PHONY: env/lrs/%/rebuild
+env/lrs/%/rebuild: env/%/.env
+	rm -f env/lrs/$*/.env.enc
+	$(MAKE) env/lrs/$*/.env.enc

@@ -2,6 +2,12 @@
   "AWSEBDockerrunVersion": 2,
   "volumes": [
     {
+      "name": "lrs-volume-env-enc",
+      "host": {
+        "sourcePath": "/var/app/current/lrs/.env.enc"
+      }
+    },
+    {
       "name": "mentor-api-checkpoint",
       "host": {
         "sourcePath": "/var/app/current/mentor-api/checkpoint"
@@ -23,7 +29,7 @@
   "containerDefinitions": [
     {
       "name": "web-app",
-      "image": "uscictdocker/mentor-client:1.1.0",
+      "image": "uscictdocker/mentor-client:1.2.0",
       "portMappings": [
         {
           "hostPort": 3000,
@@ -38,7 +44,13 @@
       ],
       "essential": true,
       "memory": 1024,
-      "links": ["mentor-api"]
+      "links": ["mentor-api"],
+      "mountPoints": [
+        {
+          "sourceVolume": "awseb-logs-web-app",
+          "containerPath": "/var/log/node"
+        }
+      ]
     },
     {
       "name": "mentor-api",
@@ -61,6 +73,38 @@
           "sourceVolume": "mentor-api-mentors",
           "containerPath": "/app/mentors",
           "readOnly": true
+        },
+        {
+          "sourceVolume": "awseb-logs-mentor-api",
+          "containerPath": "/var/log/flask"
+        }
+      ]
+    },
+    {
+      "name": "lrs",
+      "image": "uscictdocker/xapi-lrs-proxy:1.1.0",
+      "essential": true,
+      "memory": 1024,
+      "portMappings": [
+        {
+          "hostPort": 3001,
+          "containerPort": 3001
+        }
+      ],
+      "environment": [
+        {
+          "name": "PORT",
+          "value": 3001
+        }
+      ],
+      "mountPoints": [
+        {
+          "sourceVolume": "lrs-volume-env-enc",
+          "containerPath": "/app/.env.enc"
+        },
+        {
+          "sourceVolume": "awseb-logs-lrs",
+          "containerPath": "/var/log/node"
         }
       ]
     },
@@ -75,7 +119,7 @@
           "containerPort": 80
         }
       ],
-      "links": ["web-app", "mentor-api"],
+      "links": ["web-app", "mentor-api", "lrs"],
       "mountPoints": [
         {
           "sourceVolume": "nginx-conf",

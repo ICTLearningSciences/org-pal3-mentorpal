@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  web-app:
+    environment:
+      - MENTOR_VIDEO_URL=http://localhost:8080/videos
+  mentor-api:
+    environment:
+      - MENTOR_VIDEO_URL=http://localhost:8080
+  nginx:
+    volumes:
+      - type: bind
+        source: ./mentors/videos
+        target: /etc/nginx/html/videos
+      - type: bind
+        source: ./nginx/local-videos/conf.d
+        target: /etc/nginx/conf.d
