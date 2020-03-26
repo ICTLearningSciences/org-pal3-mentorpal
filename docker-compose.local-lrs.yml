@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  lrs:
+    image: "uscictdocker/xapi-lrs-proxy:1.1.0"
+    environment:
+      - ENV_PASSWORD
+    expose:
+      - "3000"
+    volumes:
+      - type: bind
+        source: ./env/lrs/dev-mentorpal/.env.enc
+        target: /app/.env.enc
+  nginx:
+    volumes:
+      - type: bind
+        source: ./nginx/local-lrs/conf.d
+        target: /etc/nginx/conf.d

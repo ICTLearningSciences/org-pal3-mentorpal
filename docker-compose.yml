@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   web-app:
-    image: "uscictdocker/mentor-client:1.1.0"
+    image: "uscictdocker/mentor-client:1.2.0"
     expose:
       - "3000"
     depends_on:
@@ -33,8 +33,8 @@ services:
       - web-app
     volumes:
       - type: bind
-        source: ./nginx/nginx.conf
+        source: ./nginx/default/nginx.conf
         target: /etc/nginx/nginx.conf
       - type: bind
-        source: ./nginx/conf.d
+        source: ./nginx/default/conf.d
         target: /etc/nginx/conf.d
