@@ -36,8 +36,6 @@ aliases:
           --to build/ebs/bundle/mentor-api/checkpoint/classifiers \
         && cp -r ~/project/checkpoint/vector_models build/ebs/bundle/mentor-api/checkpoint/vector_models \
         && cp -r ~/project/mentors/data/mentors build/ebs/bundle/mentor-api/mentors \
-        && mkdir -p build/ebs/bundle/lrs \
-        && cp ~/project/env/lrs/${EB_ENV}/.env.enc build/ebs/bundle/lrs/.env.enc \
         && make eb-deploy
   - &only-master
     branches:
