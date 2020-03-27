@@ -5,7 +5,7 @@ services:
     environment:
       # you will need to set the LRS_PASSWORD in host env
       - LRS_PASSWORD
-      - LRS_ENDPOINT=https://mentorpal-dev.lrs.io/xapi/
+      - LRS_ENDPOINT=https://dev-mentorpal.lrs.io/xapi/
       - LRS_USERNAME=mentorpal-lrs
       - XAPI_ACCOUNT_HOMEPAGE=https://dev.mentorpal.org/lrs/users
     expose:
