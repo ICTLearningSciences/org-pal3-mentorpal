@@ -2,12 +2,6 @@
   "AWSEBDockerrunVersion": 2,
   "volumes": [
     {
-      "name": "lrs-volume-env-enc",
-      "host": {
-        "sourcePath": "/var/app/current/lrs/.env.enc"
-      }
-    },
-    {
       "name": "mentor-api-checkpoint",
       "host": {
         "sourcePath": "/var/app/current/mentor-api/checkpoint"
@@ -98,10 +92,6 @@
         }
       ],
       "mountPoints": [
-        {
-          "sourceVolume": "lrs-volume-env-enc",
-          "containerPath": "/app/.env.enc"
-        },
         {
           "sourceVolume": "awseb-logs-lrs",
           "containerPath": "/var/log/node"

@@ -3,10 +3,6 @@ VENV=.venv
 EBS_BUNDLE_MENTOR_API=build/ebs/bundle/mentor-api
 ENV?=dev-mentorpal
 
-define read_env_lrs_password
-$(shell cat ./env/lrs/$(1)/.password)
-endef
-
 $(EBS_BUNDLE_MENTOR_API):
 	mkdir -p $(EBS_BUNDLE_MENTOR_API)
 	cp -R checkpoint/classifiers $(EBS_BUNDLE_MENTOR_API)/classifiers
@@ -21,22 +17,18 @@ venv-create:
 	$(VENV)/bin/pip install --upgrade pip
 	$(VENV)/bin/pip install -r requirements.txt
 
-###############################################################################
-# Run the app locally with 'docker-compose up'
-# with a clean build of docker-compose.yml
-# (updated secrets and config)
-# Once the server is running, you can open the local site in a browser at
-# http://localhost:8080
-###############################################################################
 .PHONY: run
 run: $(VENV)
 	$(VENV)/bin/docker-compose up
 
 .PHONY: run-local-lrs-%
 run-local-lrs-%: $(VENV)
-	$(MAKE) env/lrs/$*/.env.enc \
-	&& export ENV=$* \
-	&& export ENV_PASSWORD=$(call read_env_lrs_password,$*) \
+ifeq ("$(LRS_PASSWORD)","")
+	@echo "required env variable LRS_PASSWORD unset"
+	@exit 1
+endif
+	export ENV=$* \
+	&& export LRS_PASSWORD=$(LRS_PASSWORD) \
 	&& $(VENV)/bin/docker-compose -f docker-compose.yml -f docker-compose.local-lrs.yml up
 
 .PHONY: run-local-lrs

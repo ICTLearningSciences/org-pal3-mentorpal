@@ -1,9 +1,8 @@
 __pycache__
 node_modules
-QuestionAnswerLog.csv
 build
 dist
-terraform.tfstate
+!ebs/.elasticbeanstalk
 htmlcov
 
 # Mentor Data Files
@@ -11,11 +10,11 @@ htmlcov
 */build
 */videos
 *.log
-*password.txt
 *.pyc
 
 .coverage
 .coverage.*
+.elasticbeanstalk
 .DS_Store
 .env
 .log

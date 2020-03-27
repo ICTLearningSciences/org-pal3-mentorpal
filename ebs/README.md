@@ -2,6 +2,26 @@
 
 This document covers deploying a multicontainer-docker app to AWS Elastic Beanstalk using CircleCI
 
+## Environment Variables
+
+The `lrs` service requires environment variables:
+
+- **LRS_ENDPOINT** 
+- **LRS_USERNAME** 
+- **LRS_PASSWORD** 
+- **XAPI_ACCOUNT_HOMEPAGE** 
+
+...e.g.
+
+```
+LRS_ENDPOINT=https://mentorpal-dev.lrs.io/xapi/
+LRS_USERNAME=mentorpal-lrs
+LRS_PASSWORD=<password-for-LRS_USERNAME>
+XAPI_ACCOUNT_HOMEPAGE=https://dev.mentorpal.org/lrs/users
+```
+
+see [xapi-lrs-proxy](https://github.com/ICTLearningSciences/xapi-lrs-proxy) for details.
+
 ## Publishing to DEV
 
 The method to publish to dev.mentorpal.org is now this:
