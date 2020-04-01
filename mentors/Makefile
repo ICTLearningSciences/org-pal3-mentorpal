@@ -1,5 +1,5 @@
 PWD=$(shell pwd)
-DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.3.0
+DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.4.0-alpha.4
 DOCKER_CONTAINER=mentor-pipeline
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 AWS_REGION?=us-east-1
@@ -41,12 +41,6 @@ DOCKER_ARGS=\
 VENV=.venv
 $(VENV):
 	$(MAKE) venv-create
-
-et:
-	@echo "DEV_TRANSCRIBE=$(DEV_TRANSCRIBE)"
-
-ev:
-	@echo "DOCKER_VOLUME_ARGS_DEV=$(DOCKER_VOLUME_ARGS_DEV)"
 
 .PHONY: venv-create
 venv-create: virtualenv-installed
@@ -99,7 +93,7 @@ data/mentors-%:
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			$(DOCKER_ARGS) \
-			$(DOCKER_IMAGE) --mentor $* --data-update --data=/app/mounts/data/mentors $(args)
+			$(DOCKER_IMAGE) data-update --mentor $* --data=/app/mounts/data/mentors $(args)
 
 .PHONY: data/topics_by_question.csv/mentor/%
 data/topics_by_question.csv/mentors/%:
@@ -107,7 +101,7 @@ data/topics_by_question.csv/mentors/%:
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(PWD)/data:/app/mounts/data \
-			$(DOCKER_IMAGE) --mentor $* --topics-by-question-generate --data=/app/mounts/data/mentors
+			$(DOCKER_IMAGE) topics-by-question-generate --mentor $* --data=/app/mounts/data/mentors
 
 
 .PHONY: videos/mentors/%
@@ -117,7 +111,20 @@ videos/mentors/%: data/mentors/%
 			--name $(DOCKER_CONTAINER) \
 			-v $(PWD)/data:/app/mounts/data \
 			-v $(PWD)/videos:/app/mounts/videos \
-			$(DOCKER_IMAGE) --mentor $* --videos-update --data=/app/mounts/data/mentors
+			$(DOCKER_ARGS) \
+			$(DOCKER_IMAGE) videos-update --mentor $* --data=/app/mounts/data/mentors
+
+.PHONY: videos/shell
+videos/shell:
+	docker run \
+			-it \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-v $(PWD)/data:/app/mounts/data \
+			-v $(PWD)/videos:/app/mounts/videos \
+			$(DOCKER_ARGS) \
+			--entrypoint /bin/bash \
+			$(DOCKER_IMAGE)
 
 # Build checkpoint from mentor data
 .PHONY: checkpoint/%
