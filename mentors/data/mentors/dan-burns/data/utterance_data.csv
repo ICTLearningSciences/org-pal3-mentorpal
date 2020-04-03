@@ -1,42 +1,70 @@
 ID,utterance,situation
-s001p001s00000415e00012314,"I am Navy Captain Dan Burns, graduates of the Naval Academy in 1984. I am a surface warfare officer Ship driver served on two ships out of the Pacific L P D and screw. It's out of hand. What the U. S Naval discredited school in Monterey and after that, served on my department tours. Chief engineer on a fast forget out of Charleston and on the actual USS Ticonderoga out of normal, deployed on both of those tours with the USS Teddy Roosevelt, Natalie's on both ships and then went ashore to the awesome military affairs at Central Intelligence Agency. While there, I screamed for XO of Aegis cruisers and command of a small ship. But frankly, at that point my second child had been born and I decided to resign my active duty commission and joined the reserves. I finished out my 30 year career in the reserves. I was recalled once during that time for a total of 18 years of active duty, 12 years and reserves, and I retired in July off 2014",_INTRO_
-s001p002s00000415e00012314,"I am Navy Captain Dan Burns, graduates of the Naval Academy in 1984. I am a surface warfare officer Ship driver served on two ships out of the Pacific L P D and screw. It's out of hand. I went to the U. S. Naval discredited school in Monterey, and after that, served on my department tours. Chief engineer on a fast forget out of Charleston and on the actual USS Ticonderoga out of normal, deployed on both of those tours with the USS Teddy Roosevelt, Natalie's on both ships and then went ashore to the awesome military affairs at Central Intelligence Agency. While there, I screamed for XO of Aegis cruisers and command of a small ship. But frankly, at that point my second child had been born and I decided to resign my active duty commission and joined the reserves. I finished out my 30 year career in the reserves. I was recalled once during that time for a total of 18 years of active duty, 12 years and reserves, and I retired in July off 2014",_BIO_LONG_
+s001p001s00000450e00012347,"I am Navy Captain Dan Burns, graduates of the Naval Academy in 1984. I am a surface warfare officer Ship driver served on two ships out of the Pacific L P D and screw. It's out of hand. I went to the U S. Naval Postgraduate School in Monterey, and after that, served on my department tours Chief engineer on a fast forget out of Charleston and on the actual USS Ticonderoga out of Normal. Oh, deployed on both of those tours with the USS Teddy Roosevelt, Natalie's on both ships and then went ashore to the awesome military affairs at Central Intelligence Agency. While there, I screamed for XO of Aegis cruisers and command of a small ship. But frankly, at that point my second child had been born and I decided to resign my active duty commission and joined the reserves. I finished out my 30 year career in the reserves. I was recalled once during that time for a total of 18 years of active duty, 12 years and reserves, and I retired in July off 2014",_INTRO_
+s001p002s00000450e00012347,"I am Navy Captain Dan Burns, graduates of the Naval Academy in 1984. I am a surface warfare officer Ship driver served on two ships out of the Pacific L P D and screw. It's out of hand. I went to the U S. Naval Postgraduate School in Monterey, and after that, served on my department tours Chief engineer on a fast forget out of Charleston and on the actual USS Ticonderoga out of Normal. Oh, deployed on both of those tours with the USS Teddy Roosevelt, Natalie's on both ships and then went ashore to the awesome military affairs at Central Intelligence Agency. While there, I screamed for XO of Aegis cruisers and command of a small ship. But frankly, at that point my second child had been born and I decided to resign my active duty commission and joined the reserves. I finished out my 30 year career in the reserves. I was recalled once during that time for a total of 18 years of active duty, 12 years and reserves, and I retired in July off 2014",_BIO_LONG_
 s001p003s00001600e00014600,,_IDLE_
-s001p007s00000908e00001120,no.,No.
-s001p007s00001507e00001719,maybe.,Maybe.
-s001p007s00002105e00002322,perhaps.,Perhaps.
-s001p007s00002610e00002905,off course.,Of course.
-s001p007s00003221e00003427,always.,Always.
-s001p007s00003914e00004212,sometimes.,Sometimes.
-s001p007s00004517e00004804,never,Never.
-s001p007s00005118e00005402,often.,Often.
-s001p007s00005706e00005917,I do.,I do.
-s001p007s00010224e00010512,I don't.,I don't.
-s001p007s00010910e00011212,I have no idea.,I have no idea.
-s001p007s00011522e00011815,I don't think so.,I don't think so.
-s001p007s00012322e00012811,there is something you should really know.,Here is something you should really know.
-s001p007s00013602e00014027,"That's a good question, but I really wanted to tell you something.","That's a good question, but I really want to tell you something."
-s001p017s00004716e00005227,I don't have enough information to talk about that.,_OFF_TOPIC_
-s001p017s00005821e00010312,I do not have an answer for that.,_OFF_TOPIC_
-s001p017s00011300e00012114,"That's a great question. Unfortunately, I did not record answer that.",_OFF_TOPIC_
-s001p017s00013100e00013600,That's a great question. I wish I had a lot of that.,_OFF_TOPIC_
-s001p017s00014615e00015614,"That's a great question, but unfortunately I don't have an answer right now with that.",_OFF_TOPIC_
-s001p017s00020502e00020928,"Unfortunately, I was never asked that question.",_OFF_TOPIC_
-s001p017s00021816e00022128,What do you want to talk about?,_PROMPT_
-s001p017s00023015e00023612,"you might have to ask me, Sofia.",_OFF_TOPIC_
-s001p017s00024108e00024812,What would you like? Us?,_PROMPT_
-s001p017s00025507e00025728,do you want to know?,_PROMPT_
-s001p017s00030512e00031015,What do you want to know?,_PROMPT_
-s001p017s00031823e00032322,What do you want to know about leadership?,_PROMPT_
-s001p017s00035414e00040126,you can ask for tips about your first long as,_PROMPT_
-s001p017s00041209e00041925,you can ask me my old to leadership strategies.,_PROMPT_
-s001p017s00042702e00043414,"you can ask me, ending your life set out after a big move.",_PROMPT_
-s001p017s00044312e00045113,you can ask me about serious problems like sexual harassment or suicide.,_PROMPT_
-s001p017s00045621e00050127,you can ask me about my job in the baby.,_PROMPT_
-s001p017s00050528e00050921,you can ask me about my background.,_PROMPT_
-s001p017s00054401e00055128,Go ahead. Ask me about who gave me the best advice about my career paths.,_PROMPT_
-s001p017s00055905e00060216,I might have covered this already.,_REPEAT_
-s001p017s00073226e00074427,I did a lot of technical training. So you can ask me. Idiot supports is about how what I've heard in my time.,_PROMPT_
-s001p017s00082111e00083311,"You know, I have not had a perfect career, but you can ask me about some of the challenges on failure points that I've had throughout mind.",_PROMPT_
-s001p017s00085504e00093622,"happens, it's your initial career path doesn't work out. First, it's if you're a pilot on you washed out of flight training, you may be given the opportunity to transition over to surface. Or you may be given an opportunity to transition to a restricted line that will depend on the needs off the other service is or the other career field. What? The detail isn't on the programme leaders need there.",_PROMPT_
-s001p017s00131602e00144102,"So what type of questions you asked me about? Or New York Mets dominating? The Dodgers is always available to talk about that's the 1986 Mets 2000 world Siris. In some ways, there is happy to talk about. Those probably reached me offline for further comment on that over for the tapes and recordings that you're going to see Click on Head. It's really about challenges that you like face in the first sea duty that field, too, uh, life at sea worship driver because I am sure on it's based on my experiences there. You also can ask questions about housing. You know, you move from base debates like these questions in their cover. That and just a general illusion questions leadership style questions because we know you've had that textbook at this point, either. At O. C s war, CIA knows reading list. They want not what? There's gonna be some questions that you can want one look on on. Asked me about my responses",_PROMPT_
+s001p007s00000927e00001167,no.,No.
+s001p007s00001523e00001763,maybe.,Maybe.
+s001p007s00002117e00002373,perhaps.,Perhaps.
+s001p007s00002633e00002917,off course.,Of course.
+s001p007s00003270e00003490,always.,Always.
+s001p007s00003947e00004240,sometimes.,Sometimes.
+s001p007s00004556e00004813,never,Never.
+s001p007s00005160e00005466,often.,Often.
+s001p007s00005720e00005956,I do.,I do.
+s001p007s00010280e00010540,I don't.,I don't.
+s001p007s00010933e00011240,I have no idea.,I have no idea.
+s001p007s00011573e00011850,I don't think so.,I don't think so.
+s001p007s00012373e00012837,there's something you should really know.,Here is something you should really know.
+s001p007s00013666e00014090,"That's a good question, but I really wanted to tell you something.","That's a good question, but I really want to tell you something."
+s001p012s00001200e00001450,Hello.,Hello.
+s001p012s00002017e00002243,it's nice to meet you.,It is nice to meet you.
+s001p012s00002893e00003360,I don't really have an opinion about that.,I don't really have an opinion about that.
+s001p012s00004043e00004250,I hope so.,I hope so.
+s001p012s00004950e00005140,"Oh, sorry.",I'm sorry.
+s001p012s00005720e00005950,I'm sorry to hear that.,I'm sorry to hear that.
+s001p012s00010813e00011237,I see you didn't ask anything there.,I see you didn't ask anything there.
+s001p012s00015030e00015573,you've got to ask me something to get a response.,You've got to ask me something to get a response.
+s001p012s00020133e00020280,Thank you.,Thank you
+s001p012s00020833e00021133,I understand that.,I understand that.
+s001p012s00021940e00022353,I would through something's similares.,I went through something similar
+s001p012s00023080e00023433,I am not sure.,I am not sure.
+s001p012s00024120e00024493,I can't hear you.,I can't hear you.
+s001p012s00025227e00025580,I don't understand.,I don't understand
+s001p012s00030380e00030673,Can you keep that?,Can you repeat that?
+s001p012s00031660e00032056,I don't have an answer for that.,I don't have an answer for that.
+s001p012s00034187e00034530,did you ask being something else?,Can you ask me something else?
+s001p012s00040767e00041360,it would help if you could keep the questions short and simple.,It would help if you could keep the questions short and simple.
+s001p012s00042130e00042500,venues. Rephrase the question.,Can you rephrase the question?
+s001p012s00043167e00043560,I cannot predict the future.,I can not predict the future.
+s001p012s00044340e00044797,I do not want to speculate about the future.,I do not want to speculate about the future.
+s001p012s00045417e00045820,I don't know what that is.,I don't know what that is.
+s001p012s00050533e00050883,I don't know who that is.,I don't know who that is.
+s001p012s00051630e00051990,I am not going to talk about that.,I am not going to talk about that.
+s001p012s00052873e00053290,I am not here to talk about that.,I am not here to talk about that
+s001p012s00054740e00055267,Can you refrain from the years of vanity?,Can you refrain from the use of profanity?
+s001p012s00061467e00062250,"good, uh, swearing and cussing like a sailor that will hurt your career.","You may have heard about swearing and cussing like a sailor, but that will hurt your career."
+s001p012s00062980e00063183,anything else.,Anything else?
+s001p018s00004753e00005290,I don't have enough information to talk about that.,_OFF_TOPIC_
+s001p018s00005870e00010340,I do not have an answer for that.,_OFF_TOPIC_
+s001p018s00011300e00012147,"That's a great question. Unfortunately, I did not record answer that.",_OFF_TOPIC_
+s001p018s00013100e00013600,That's a great question. I wish I had a lot of that.,_OFF_TOPIC_
+s001p018s00014650e00015647,"It's a great question, but unfortunately I don't have an answer right now with that.",_OFF_TOPIC_
+s001p018s00020566e00020993,"Fortunately, I was never asked that question.",_OFF_TOPIC_
+s001p018s00021853e00022197,What do you want to talk about?,_PROMPT_
+s001p018s00023050e00023640,"you might have to ask me, Sofia.",_OFF_TOPIC_
+s001p018s00024127e00024840,What would you like? Us?,_PROMPT_
+s001p018s00025523e00025793,do you want to know?,_PROMPT_
+s001p018s00030540e00031050,What do you want to know Out?,_PROMPT_
+s001p018s00031877e00032373,What do you want to know about leadership?,_PROMPT_
+s001p018s00035447e00040187,you can ask for tips about your first long as,_PROMPT_
+s001p018s00041230e00041983,you can ask me my old to leadership strategies.,_PROMPT_
+s001p018s00042766e00043447,ask me in your life set out after a big move.,_PROMPT_
+s001p018s00044340e00045143,you can ask me about serious problems like sexual harassment or suicide.,_PROMPT_
+s001p018s00045670e00050190,you can ask me about my job in the baby.,_PROMPT_
+s001p018s00050593e00050970,you can ask me about my background.,_PROMPT_
+s001p018s00054433e00055193,Go ahead. Ask me about who gave me the best advice about my career paths.,_PROMPT_
+s001p018s00055917e00060253,I might have covered this already.,_REPEAT_
+s001p018s00073287e00074490,I did a lot of technical training in. So you can ask me. Idiot supports is about how what I've learned in my time.,_PROMPT_
+s001p018s00082137e00083337,"I have not had a perfect career, but you could ask me about some of the challenges and failure points that I've had throughout mind.",_PROMPT_
+s001p018s00085513e00093673,"happens, it's your initial career path doesn't work out for us. That's if you're a pilot on you washed out of flight, you may be given the opportunity to transition over to surface. Or you may be given an opportunity to transition to a rip restricted line that will depend on the needs off the other service is or the other career field. What? The detail isn't on the programme leaders need there.",_PROMPT_
+s001p018s00131666e00144166,"questions you asked me about. What's New York Mets dominating? The Dodgers is always available to talk about that's the 1986 Mets 2000 world Siris. In some ways, there is happy to talk about. Those probably reached me offline for further comment on that over for the tapes and recordings that you're going to see, Click on Head. It's really about challenges that you like face in the first sea duty that field, too, uh, life at sea worship driver, because I am sure, and it's based on my experiences there. You also can ask questions about housing. You move from base debates like these questions in their cover. That and just a general illusion questions leadership style questions because we know you've had that textbook at this point, either. At O. C s war, CIA knows reading list. They want not what? There's gonna be some questions that you can want one look on on. Asked me about my responses",_PROMPT_
