@@ -2,7 +2,7 @@
 PWD=$(shell pwd)
 AWS_ACCESS_KEY_ID?=required_if_using_aws_transcribe
 AWS_SECRET_ACCESS_KEY?=required_if_using_aws_transcribe
-DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.4.0-alpha.14
+DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.4.0
 DOCKER_CONTAINER=mentor-pipeline
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 AWS_REGION?=us-east-1

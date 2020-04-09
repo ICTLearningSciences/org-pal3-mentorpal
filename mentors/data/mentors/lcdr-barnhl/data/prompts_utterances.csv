@@ -1,0 +1,80 @@
+Situation,Mentor,Utterance/Prompt
+_BIO_LONG_,lcdr-barnhl,"My name is Lieutenant Commander David Barnhill on 37 years old, and I'm an aviator in the United States Navy. I grew up in Greensboro, North Carolina. I went to high school at Southwest Guilford High School. My dad is a is an investment broker. My mom was a ST stayed at home, but she also did thinks, except to taught things like that. Growing up, we didn't move around very much. We only moved once to my recollection, and my parents are actually still in that house in North Carolina. In high school, I had multiple options. A sw far is where I wanted to go to college. A lot of public universities. My dad would not pay for anything. Private eso. I sought out a Navy Rossi scholarship, and I also applied to the United States Naval Academy and West Point. I got into all of those schools, uh, to include UNC Chapel Hill, North Carolina State University, University of Colorado, Boulder and I got as well a cz Virginia Tech. I got ah Rossi scholarship to UNC Chapel Hill, but my junior year I decided that my goal was going to be together. The United States Naval Academy with a backup of West Point. I decided that year that I wanted to join the military, which was kind of odd for our family, because we didn't have a long tradition of military service. As far as I know, there are only two people in my family that served in the military and both of them or my grandfather's. One of them was a CB in the United States Navy, and the other one was in the Army, and I'm not entirely sure what he did. But both of them served in World War Two in different capacities. So my junior year, I I decided to apply to the Naval Academy on, and I found out in the fall of my senior year that I was accepted, and that was said and done everything else every other place was then put on hold, and I was looking for to go into the Naval Academy in the summer of 2000 won ignore. Like every other student, there spent four years of the Naval Academy upon going there, I thought for sure that I was going to be a sub Mariner. That was what I thought I wanted to do. But then, after some careful, deliberate and perhaps some wise words given from some other people, I decided the aviation was the better choice. And that was also my goal for pretty much the rest of my time at the Naval Academy, I studied history at the Naval Academy, which is somewhat odd because it is a technical school. But I took enough courses, Ah, to get myself a bachelor of science, which is someone abnormal from any other college you might go to. Normally we get a bachelor of arts. I minored in the Russian language, and the Naval Academy sent me to Russia twice to study for about a month each time, only staying with families there to get a bit better. Handle the Russian language. As of now, I have spoken zero Russian since I last left the Naval Academy. Upon graduation, as I said, a selected aviation, I spent about three months at the Naval Academy after graduation, and then I went down to Pensacola, Florida, for flight training. It was pretty difficult for me. I did well, but it required me to put a lot of time to study after I at the end of my time down in Pensacola. I ended up selecting helicopters as my community and I went through the training pipeline and about a about a year and 1/2 after I finished basic flight training from there, I moved to San Diego. Prior to moving, I got married to my wife, whom I met at the Naval Academy. She was not in the Naval Academy, but she was working in Washington, D. C. At the time. So we both moved to San Diego to finish up my training before I went to my first operational duty station. My after I finish training in San Diego, which if you ever get the chance of going to San Diego, you should, uh I then went to Japan. What I found odd about going to Japan is that no one seemed to really want to go there. Always kind of felt like being in the military gave you the opportunity to see all kinds of things, but it seemed like to me most people wanted to stay in the continental United States, and that's totally understandable because there's a lot of stability in that choice. However, I had the opportunity to go to Japan is a mid shipment, and I knew that that was the place I wanted to go. After some careful convincing, my wife agreed to it. I think you could talk to her and she would say it was one of the better decisions we've made Being in the in the with us, both with us being in the Navy. I spent three years in Japan where I deployed, depending how you calculate it. Six times multiple ships. So two different aircraft carriers I, and three different destroyer class ships and tone in total assessment about a year and 1/2 out at sea with several other small land based of detachments around Japan while we were there after leaving after at the end of my time in Japan for we selected to go to a training, a kind of training command in Fallon, Nevada is called a naval strike in our warfare center, and I hate to describe it like this, but it is where Top gun is located, and basically I was was part of the school that taught advanced tactics to helicopter aviators, so usually you would have more advanced aviators come through and we would help hone their skills and that that they learned as junior officers. After 3.5 years in Fallon, we then decided to go back to Japan for a second tour. We spent about a year and 1/2 or maybe just under two years in Japan. The second time at the time, I was put on the carrier wing staff where I was responsible for helicopter operations in and around the Carrier Strike Group. While there, uh, we had our second child. We had a first child. Well, weird Fallon at her second child in Japan. Uh, this this experience being in Japan with Children was far different than the 1st 1 It was more difficult, still provided a lot of different good opportunities, but it was definitely more of a challenge. And I believe my wife would say something similar that we did after we finished our tour in Japan, the second tour in Japan. We then moved to San Diego for what we call the department head to her. I was in charge of various departments within an aviation squadron. Uh, probably one of the more challenging leadership roles that I had have had in the since being in the Navy, but one of more rewarding things I've done as well. Uh, at the end of my time as a department head, I decided it was time for me to go to school, and soon I'm now a student at the Naval Postgraduate School studying Operations Research, which is a combination of data, science, data analysis and various types of statistics and optimization."
+_FEEDBACK_,lcdr-barnhl,yes.
+_FEEDBACK_,lcdr-barnhl,"Yes, sir."
+_FEEDBACK_,lcdr-barnhl,"Yes, ma'am."
+_OFF_TOPIC_,lcdr-barnhl,excuse me.
+_PROMPT_,lcdr-barnhl,How are you?
+_PROMPT_,lcdr-barnhl,Good morning.
+_PROMPT_,lcdr-barnhl,good afternoon.
+_PROMPT_,lcdr-barnhl,good evening.
+_PROMPT_,lcdr-barnhl,good night.
+_REPEAT_,lcdr-barnhl,I may have said this before.
+_FEEDBACK_,lcdr-barnhl,no.
+_FEEDBACK_,lcdr-barnhl,maybe.
+_FEEDBACK_,lcdr-barnhl,perhaps.
+_FEEDBACK_,lcdr-barnhl,"Oh, of course."
+_FEEDBACK_,lcdr-barnhl,always.
+_FEEDBACK_,lcdr-barnhl,sometimes.
+_FEEDBACK_,lcdr-barnhl,never
+_FEEDBACK_,lcdr-barnhl,often.
+_FEEDBACK_,lcdr-barnhl,I do.
+_FEEDBACK_,lcdr-barnhl,I don't.
+_OFF_TOPIC_,lcdr-barnhl,I have no idea.
+_FEEDBACK_,lcdr-barnhl,I don't think so.
+_PROMPT_,lcdr-barnhl,Here's something you should really know.
+_OFF_TOPIC_,lcdr-barnhl,"that's a good question, but I want to make sure I tell you something else."
+_INTRO_,lcdr-barnhl,"my name's lieutenant commander, David Barnhill. I'm an aviator in the United States Navy helicopter pilot by trade, but also fly drones. Uh, I've moved seven times since I've been in the Navy. Between training and operational deployments are duty stations. I graduated from the Naval Academy in 2005 with a degree in history and ah, minor and Russian language, which just shows that you do not need a technical major in order to be a pilot."
+"If you have trouble listening well, what strategies can help you listen well?",lcdr-barnhl,"if you have a hard time listening Two people, whether their peers or subordinates or even superiors. Hopefully, that's not the case. Um, you know, if you have the luxury of it, one thing you could potentially do you have someone come with you or be with you to listen to these things? Uh, so let's say if a subordinate has a problem, they want to come to you to talk about it. Uh, you might want to bring in your chief for senior chief or whoever works for in that capacity toe. Listen as well. And then maybe you can give the subordinate good answer to begin with. But at least you have someone else who is listening that can give you a different perspective on, Really, Perhaps maybe to understand what they're saying Or, you know, they could put a different framework or something like that. Said it could be one strategy that could help you"
+_PROMPT_,lcdr-barnhl,Hello.
+_FEEDBACK_,lcdr-barnhl,it's nice to meet you.
+_OFF_TOPIC_,lcdr-barnhl,I don't really have an opinion on that.
+_FEEDBACK_,lcdr-barnhl,I hope so.
+_FEEDBACK_,lcdr-barnhl,I'm sorry.
+_FEEDBACK_,lcdr-barnhl,I'm sorry to hear that.
+_PROMPT_,lcdr-barnhl,I noticed that you didn't ask anything there.
+_PROMPT_,lcdr-barnhl,You got to ask me something in order to get a response.
+_FEEDBACK_,lcdr-barnhl,Thank you.
+_FEEDBACK_,lcdr-barnhl,I understand that.
+_FEEDBACK_,lcdr-barnhl,I went through something similar.
+_OFF_TOPIC_,lcdr-barnhl,I am not sure.
+_OFF_TOPIC_,lcdr-barnhl,I can't quite hear you.
+_OFF_TOPIC_,lcdr-barnhl,I don't understand.
+_PROMPT_,lcdr-barnhl,Can you repeat that?
+_OFF_TOPIC_,lcdr-barnhl,I don't have an answer for that.
+_PROMPT_,lcdr-barnhl,Can you ask me something else?
+_OFF_TOPIC_,lcdr-barnhl,it would help if you could keep the questions short and simple.
+_OFF_TOPIC_,lcdr-barnhl,Can you rephrase the question?
+_FEEDBACK_,lcdr-barnhl,I cannot predict the future.
+_FEEDBACK_,lcdr-barnhl,I don't want to speculate about the future.
+_OFF_TOPIC_,lcdr-barnhl,I don't know what that is.
+_OFF_TOPIC_,lcdr-barnhl,I don't know who that is.
+_OFF_TOPIC_,lcdr-barnhl,I'm not gonna talk about that.
+_OFF_TOPIC_,lcdr-barnhl,I'm not here to talk about that.
+_PROFANITY_,lcdr-barnhl,Can you please refrain from the use of profanity that this was very
+_PROFANITY_,lcdr-barnhl,"you might have heard about swearing like a sailor, but I can actually hurt your career."
+_PROMPT_,lcdr-barnhl,anything else.
+_OFF_TOPIC_,lcdr-barnhl,I don't have enough information to talk about that.
+_OFF_TOPIC_,lcdr-barnhl,I do not have an answer for that.
+_OFF_TOPIC_,lcdr-barnhl,"That's a great question. Unfortunately, I never recorded an answer for that."
+_OFF_TOPIC_,lcdr-barnhl,That's a great question. I wish I'd thought of that.
+_OFF_TOPIC_,lcdr-barnhl,"That's a great question, but unfortunately I don't have an answer right now."
+_OFF_TOPIC_,lcdr-barnhl,"Unfortunately, I was never asked that question."
+_OFF_TOPIC_,lcdr-barnhl,you might have to ask me something else.
+_PROMPT_,lcdr-barnhl,What do you want to talk about?
+_PROMPT_,lcdr-barnhl,What would you like to ask me?
+_PROMPT_,lcdr-barnhl,What do you want to know?
+_PROMPT_,lcdr-barnhl,What do you want to know about me?
+_PROMPT_,lcdr-barnhl,What do you want to know about leadership?
+_PROMPT_,lcdr-barnhl,he could ask for tips about your first month is a leader.
+_PROMPT_,lcdr-barnhl,you could ask me about my preferred leadership strategy.
+_PROMPT_,lcdr-barnhl,you could ask me about getting your life set up for a big move.
+_PROMPT_,lcdr-barnhl,you could ask me about serious problems like sexual harassment or suicide.
+_PROMPT_,lcdr-barnhl,you could ask me about my job in the Navy.
+_PROMPT_,lcdr-barnhl,you could ask me about my background.
+_PROMPT_,lcdr-barnhl,Go ahead. Ask me about who gave me the best advice about my career.
+_REPEAT_,lcdr-barnhl,I might have covered this already.
+_PROMPT_,lcdr-barnhl,this changes quickly. So what I tell you today might not be true tomorrow.
+_PROMPT_,lcdr-barnhl,I would recommend talking to someone local who might know more.
+_PROMPT_,lcdr-barnhl,"I did a lot of technical training in the Navy, so you can ask me about what skills I learned."
+_PROMPT_,lcdr-barnhl,you can ask me about any failures I've had.

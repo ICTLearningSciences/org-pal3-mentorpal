@@ -1,11 +1,7 @@
 version: '3.7'
 services:
   web-app:
-<<<<<<< HEAD
-    image: "uscictdocker/mentor-client:1.3.0-alpha.1"
-=======
-    image: "uscictdocker/mentor-client:1.2.1"
->>>>>>> 7e0c55e... fixes: recommended icons too large
+    image: "uscictdocker/mentor-client:1.2.2"
     expose:
       - "3000"
     depends_on:
