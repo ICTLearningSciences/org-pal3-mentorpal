@@ -1,5 +1,8 @@
+## TODO: fix video cropping for wrong-sized videos
 PWD=$(shell pwd)
-DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.3.0
+AWS_ACCESS_KEY_ID?=required_if_using_aws_transcribe
+AWS_SECRET_ACCESS_KEY?=required_if_using_aws_transcribe
+DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.4.0
 DOCKER_CONTAINER=mentor-pipeline
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 AWS_REGION?=us-east-1
@@ -42,11 +45,9 @@ VENV=.venv
 $(VENV):
 	$(MAKE) venv-create
 
-et:
-	@echo "DEV_TRANSCRIBE=$(DEV_TRANSCRIBE)"
-
-ev:
-	@echo "DOCKER_VOLUME_ARGS_DEV=$(DOCKER_VOLUME_ARGS_DEV)"
+abs=$(shell d=$$(cd $$(dirname $(1)); pwd); f=$$(basename '$(1)') && echo "$${d}/$${f}")
+absdir=$(shell cd $$(dirname $(1)); pwd)
+fname=$(shell echo $$(basename '$(1)'))
 
 .PHONY: venv-create
 venv-create: virtualenv-installed
@@ -93,31 +94,71 @@ shell:
 # Runs build if necessary
 # Generates data files
 # TODO: 1) log every significant action (generating audio, transcribing), 2) build classifier for jd, 3) utterance yaml gets error codes, 4) make delete audio files that failed to transcribe
-.PHONY: data/mentors-%
-data/mentors-%:
+.PHONY: data/mentor-%
+data/mentor-%:
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			$(DOCKER_ARGS) \
-			$(DOCKER_IMAGE) --mentor $* --data-update --data=/app/mounts/data/mentors $(args)
+			$(DOCKER_IMAGE) data-update --mentor $* --data=/app/mounts/data/mentors $(args)
 
-.PHONY: data/topics_by_question.csv/mentor/%
-data/topics_by_question.csv/mentors/%:
+.PHONY: data/topics_by_question.csv/mentor-%
+data/topics_by_question.csv/mentors-%:
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(PWD)/data:/app/mounts/data \
-			$(DOCKER_IMAGE) --mentor $* --topics-by-question-generate --data=/app/mounts/data/mentors
+			$(DOCKER_IMAGE) topics-by-question-generate --mentor $* --data=/app/mounts/data/mentors
 
 
-.PHONY: videos/mentors/%
-videos/mentors/%: data/mentors/% 
+.PHONY: videos/mentor-%
+videos/mentor-%: data/mentor-% 
 	docker run \
 			--rm \
 			--name $(DOCKER_CONTAINER) \
 			-v $(PWD)/data:/app/mounts/data \
 			-v $(PWD)/videos:/app/mounts/videos \
-			$(DOCKER_IMAGE) --mentor $* --videos-update --data=/app/mounts/data/mentors
+			$(DOCKER_ARGS) \
+			$(DOCKER_IMAGE) videos-update --mentor $* --data=/app/mounts/data/mentors
+
+.PHONY: videos/shell
+videos/shell:
+	docker run \
+			-it \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			-v $(PWD)/data:/app/mounts/data \
+			-v $(PWD)/videos:/app/mounts/videos \
+			$(DOCKER_ARGS) \
+			--entrypoint /bin/bash \
+			$(DOCKER_IMAGE)
+
+
+##################################################################
+# Tool to reduce noise a mentor's utterance videos.
+#
+# NOTE: requires noise sample[s] to be set up under
+#
+# ./data/mentors/<mentor>/build/noise
+#
+# ...where each noise sample is a wav file that will be used
+# on utterances where the noise-sample file name is a prefix
+# if the utterance id, e.g. ./data/mentors/<mentor>/build/noise/s001p001.wav
+# will apply to all utterance whose id starts with s001p001
+#
+# NOTE: this process does NOT automatically rebuild web and mobile videos
+# When noise reduction is complete, you should delete existing mobile/web videos
+# and then rerun `make videos/mentor-<mentorid>
+.PHONY: noise-reduce
+noise-reduce-%:
+	docker run \
+		--rm \
+		--name $(DOCKER_CONTAINER) \
+		-v $(PWD)/data:/app/mounts/data \
+		-v $(PWD)/videos:/app/mounts/videos \
+		$(DOCKER_ARGS) \
+		$(DOCKER_IMAGE) videos-reduce-noise --mentor $* --data=/app/mounts/data/mentors
+
 
 # Build checkpoint from mentor data
 .PHONY: checkpoint/%
