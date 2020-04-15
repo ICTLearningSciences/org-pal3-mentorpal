@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   web-app:
-    image: "uscictdocker/mentor-client:1.2.2"
+    image: "uscictdocker/mentor-client:1.2.3"
     expose:
       - "3000"
     depends_on:
