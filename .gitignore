@@ -8,7 +8,6 @@ htmlcov
 # Mentor Data Files
 */temp
 */build
-*/videos
 *.log
 *.pyc
 
