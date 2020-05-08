@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  aws-s3: circleci/aws-s3@1.0.15
 executors:
   ebs:
     docker:
@@ -22,7 +24,7 @@ aliases:
     command: eval $EBS_TOOLS_ENV_INIT && echo 'export EB_ENV=prod-mentorpal' >> $BASH_ENV
   - &eb-deploy
     name: EBS Deploy
-    # TODO: now hardcoded with arch 'lstm_v1' and --newest. 
+    # TODO: now hardcoded with arch 'lstm_v1' and --newest.
     # This should be made configurable but in a way that is minimally burdonsome/error prone
     command: |
       cd ${EBS_TOOLS} \
@@ -85,6 +87,19 @@ jobs:
       - *git-lfs-pull
       - run: *dev-mentorpal-env-init
       - run: *eb-deploy
+  dev-video-deploy:
+    executor: python
+    steps:
+      - *git-lfs-install
+      - checkout
+      - *git-lfs-pull
+      - aws-s3/sync:
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400"
+          from: mentors/videos
+          overwrite: true
+          to: "s3://mentorpal-dev-videos/videos"
   qa-ebs-deploy:
     executor: ebs
     steps:
@@ -103,6 +118,16 @@ jobs:
       - run: *eb-deploy
 workflows:
   version: 2
+  videos-deploy-dev:
+    jobs:
+      - approve-dev-deploy:
+          type: approval
+      - checkout-revision-setup:
+          requires:
+            - approve-dev-deploy
+      - dev-video-deploy:
+          requires:
+            - checkout-revision-setup
   build-test-deploy:
     jobs:
       - checkout-revision-setup
