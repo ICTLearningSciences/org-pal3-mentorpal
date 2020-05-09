@@ -99,7 +99,7 @@ jobs:
             --cache-control "max-age=86400"
           from: mentors/videos
           overwrite: true
-          to: "s3://mentorpal-dev-videos/videos"
+          to: "s3://mentorpal-dev-video/videos"
   qa-ebs-deploy:
     executor: ebs
     steps:
