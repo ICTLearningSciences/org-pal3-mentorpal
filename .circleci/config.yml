@@ -87,8 +87,11 @@ jobs:
       - *git-lfs-pull
       - run: *dev-mentorpal-env-init
       - run: *eb-deploy
-  dev-video-deploy:
+  video-deploy:
     executor: python
+    parameters:
+      bucket:
+        type: string
     steps:
       - *git-lfs-install
       - checkout
@@ -99,7 +102,7 @@ jobs:
             --cache-control "max-age=86400"
           from: mentors/videos
           overwrite: true
-          to: "s3://mentorpal-dev-video/videos"
+          to: <<parameters.bucket>>
   qa-ebs-deploy:
     executor: ebs
     steps:
@@ -118,29 +121,32 @@ jobs:
       - run: *eb-deploy
 workflows:
   version: 2
-  videos-deploy-dev:
+  dev-build-test-deploy:
     jobs:
       - approve-dev-deploy:
           type: approval
       - checkout-revision-setup:
           requires:
             - approve-dev-deploy
-      - dev-video-deploy:
-          requires:
-            - checkout-revision-setup
-  build-test-deploy:
-    jobs:
-      - checkout-revision-setup
-      - approve-dev-deploy:
-          type: approval
-          requires:
-            - checkout-revision-setup
       - dev-ebs-deploy:
           requires:
+            - checkout-revision-setup
+  dev-videos-deploy:
+    jobs:
+      - approve-dev-deploy:
+          type: approval
+      - checkout-revision-setup:
+          requires:
             - approve-dev-deploy
+      - video-deploy:
+          bucket: "s3://mentorpal-dev-video/videos"
+          requires:
+            - checkout-revision-setup
+  qa-build-test-deploy:
+    jobs:
       - qa-ebs-deploy:
           filters: *only-master
-  build-test-deploy-prod:
+  prod-build-test-deploy:
     jobs:
       - prod-ebs-deploy:
           filters: *only-prod-releases
