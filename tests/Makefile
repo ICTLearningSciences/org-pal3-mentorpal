@@ -11,22 +11,22 @@ $(BEHAVE_RESTFUL)/setup.py:
         git submodule update --remote 
 
 
-TEST_VIRTUAL_ENV=.venv
-TEST_VIRTUAL_ENV_PIP=$(TEST_VIRTUAL_ENV)/bin/pip
-$(TEST_VIRTUAL_ENV):
+VENV=.venv
+VENV_PIP=$(VENV)/bin/pip
+$(VENV):
 	$(MAKE) test-env-create
 
 .PHONY: test-env-create
 test-env-create: $(PROJECT_ROOT)/behave-restful/setup.py virtualenv-installed
-	[ -d $(TEST_VIRTUAL_ENV) ] || virtualenv -p python3 $(TEST_VIRTUAL_ENV)
-	$(TEST_VIRTUAL_ENV_PIP) install --upgrade pip
-	$(TEST_VIRTUAL_ENV_PIP) install -r requirements.txt
-	$(TEST_VIRTUAL_ENV_PIP) install -r $(BEHAVE_RESTFUL)/requirements.txt && \
-	$(TEST_VIRTUAL_ENV_PIP) install -e $(BEHAVE_RESTFUL)
+	[ -d $(VENV) ] || virtualenv -p python3 $(VENV)
+	$(VENV_PIP) install --upgrade pip
+	$(VENV_PIP) install -r requirements.txt
+	$(VENV_PIP) install -r $(BEHAVE_RESTFUL)/requirements.txt && \
+	$(VENV_PIP) install -e $(BEHAVE_RESTFUL)
 
 .PHONY: test
-test: $(TEST_VIRTUAL_ENV)
-	. $(TEST_VIRTUAL_ENV)/bin/activate \
+test: $(VENV)
+	. $(VENV)/bin/activate \
 		&& export DOCKER_IMAGE=$(DOCKER_IMAGE) \
 		&& export USE_MOUNTED_DATA=1 \
 		&& ./bin/flask_start.sh \
