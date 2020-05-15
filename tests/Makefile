@@ -26,7 +26,7 @@ test-env-create: $(PROJECT_ROOT)/behave-restful/setup.py virtualenv-installed
 
 .PHONY: test
 test: $(TEST_VIRTUAL_ENV)
-	source $(TEST_VIRTUAL_ENV)/bin/activate \
+	. $(TEST_VIRTUAL_ENV)/bin/activate \
 		&& export DOCKER_IMAGE=$(DOCKER_IMAGE) \
 		&& export USE_MOUNTED_DATA=1 \
 		&& ./bin/flask_start.sh \
