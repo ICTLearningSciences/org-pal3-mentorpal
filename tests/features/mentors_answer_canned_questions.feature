@@ -32,6 +32,7 @@ Feature: Mentors answer canned questions
   
   Examples: Queries
     | mentor            | query                                                   | answer_id                     | answer_text_start                                                                                                   |
+    | lcdr-barnhl       | how do you keep stress from boiling over?               | s001p003s00245460e00253800    | stress on the job as a naval officer                                                                                        |
     | dan-burns         | what are the most important first steps?                | s001p006s00161040e00191100    | So what is critical to review                                                                                       |
     | dan-burns         | how do you set the tone?                                | s001p008s00024743e00060433    | my time is a junior. Also, how I lead by example                                                                    |
     | dan-burns         | what are the most common mistakes?                      | s001p014s00082013e00101227    | So I would like to say that way are in                                                                              |
