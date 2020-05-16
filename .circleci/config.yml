@@ -9,6 +9,10 @@ executors:
   python:
     docker:
       - image: circleci/python:3.6.9
+  tests-dockerized:
+    machine:
+      image: ubuntu-1604:201903-01
+      docker_layer_caching: true
 aliases:
   # setup env vars for ebs tools
   - &dev-mentorpal-env-init
@@ -101,15 +105,29 @@ jobs:
       - *git-lfs-pull
       - run: *prod-mentorpal-env-init
       - run: *eb-deploy
+  test:
+    executor: tests-dockerized
+    steps:
+      - run:
+          name: "Set Python Version"
+          command: pyenv global 3.7.0
+      - *git-lfs-install
+      - checkout
+      - run: git submodule init && git submodule update --remote
+      - *git-lfs-pull
+      - run: make test
 workflows:
   version: 2
   build-test-deploy:
     jobs:
       - checkout-revision-setup
+      - test:
+          requires:
+            - checkout-revision-setup
       - approve-dev-deploy:
           type: approval
           requires:
-            - checkout-revision-setup
+            - test
       - dev-ebs-deploy:
           requires:
             - approve-dev-deploy

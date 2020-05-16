@@ -19,7 +19,7 @@ venv-create:
 
 .PHONY: run
 run: $(VENV)
-	$(VENV)/bin/docker-compose up
+	$(VENV)/bin/docker-compose up $(args)
 
 .PHONY: run-local-lrs-%
 run-local-lrs-%: $(VENV)
@@ -84,3 +84,7 @@ endif
 env/lrs/%/rebuild: env/%/.env
 	rm -f env/lrs/$*/.env.enc
 	$(MAKE) env/lrs/$*/.env.enc
+
+.PHONY: test
+test:
+	cd tests && $(MAKE) test
