@@ -2346,7 +2346,7 @@ utterances:
   utteranceAudio: build/utterance_audio/s002p001s00135128e00144112.mp3
   utteranceType: _ANSWER_
   utteranceVideo: build/utterance_video/s002p001s00135128e00144112.mp4
-- errorMessage: null
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2355,16 +2355,16 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 54.1
-  timeStart: 42.13
+  timeEnd: 54.33
+  timeStart: 42.43
   topics:
   - Leading a Team
   transcript: my ideal team would be, uh, basically a group that is selfless, selfless,
     motivated and with a good work ethic.
-  utteranceAudio: build/utterance_audio/s002p002s00004213e00005410.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00004243e00005433.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00004213e00005410.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2373,17 +2373,17 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 86.05
-  timeStart: 65.15
+  timeEnd: 86.17
+  timeStart: 65.5
   topics: []
   transcript: In order to lead by example, you have to have a the ability to empathize.
     And what I mean by empathize with that would be the look at a situation from someone
-    else's point of view. If you understand how it feels and what it means to be let,
-    then you can lead by example.
-  utteranceAudio: build/utterance_audio/s002p002s00010515e00012605.mp3
+    else's point of view. If you understand how it feels and what it means to be late,
+    then you could lead by example.
+  utteranceAudio: build/utterance_audio/s002p002s00010550e00012617.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00010515e00012605.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2392,20 +2392,20 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 129.14
+  timeEnd: 129.47
   timeStart: 96.0
   topics:
   - Leadership Strategies
-  transcript: simple tiptoe. Earn the trust of your team Are, uh, doing things like
-    if you wouldn't ask someone to do something that you wouldn't do yourself, uh,
-    doing things with your team, building that team cohesion by being present, working
-    with asking questions of them, asking things, asking for their opinion. Um, those
-    are simple things. That, too developed team cohesion and build a report with your
+  transcript: simple tips on the trust of your team are, uh, doing things like, if
+    you wouldn't ask someone to do something that you wouldn't do yourself, uh, doing
+    things with your team, building that team cohesion by being present, working with
+    asking questions of them, asking things, asking for their opinion. Um, those are
+    simple things. That, too developed team cohesion and build a report with your
     team.
-  utteranceAudio: build/utterance_audio/s002p002s00013600e00020914.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00013600e00020947.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00013600e00020914.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2414,22 +2414,47 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 183.18
-  timeStart: 139.01
+  timeEnd: 183.6
+  timeStart: 139.33
   topics:
   - Leading a Team
   transcript: in order to connect with your team. That takes time. Some people don't
-    respond or trust is early and often as you'd like. But being present, you'll notice
-    and working with and even working in certain evolutions are doing certain things
-    that you know division's departments and commands. Do there be on plaintive, opportune
-    time for you to have simple conversation, And as time goes on, those conversations
-    will get deeper and you learn more about each other and they'll ask you questions
-    and you know you'll be able to relate to them, and the conversation's just go
-    deeper and deeper and you'll learn more and more.
-  utteranceAudio: build/utterance_audio/s002p002s00021901e00030318.mp3
+    respond or trust is early and often as you'd like. But uh, being present, you'll
+    notice and working with and even working in certain evolutions of doing certain
+    things that you know divisions, departments and commands do there'll be a plaintive,
+    opportune time for you to have simple conversations. And as time goes on, those
+    conversations will get deeper and your you'll learn more about each other and
+    they'll ask you questions and you know you'll be able to relate to them and the
+    conversation. Just go deeper and deeper and you'll learn more and more.
+  utteranceAudio: build/utterance_audio/s002p002s00021933e00030360.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00021901e00030318.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
+  mentor: jd_thomas
+  paraphrases: []
+  part: 2
+  question: How do I build trust between different team members (e.g., new ones, ones
+    with bad interactions)?
+  session: 2
+  sessionAudio: build/recordings/session2/p002-building-teams.mp3
+  sessionTimestamps: build/recordings/session2/p002-building-teams.csv
+  sessionVideo: build/recordings/session2/p002-building-teams.mp4
+  timeEnd: 244.17
+  timeStart: 199.9
+  topics:
+  - Leading a Team
+  transcript: in order, Teoh build trust among team members. That kind of relies on
+    you as a leader but also being able to communicate with the more senior leaders
+    and even the most senior leaders. But the more senior team members and the team
+    members that have been there the longest. So it's not all on you. Excuse me, It's
+    not all on you. It's amongst each other. So established that culture of trusting
+    and developing each other and it'll trickle down. The trickle down effect will
+    occur and you will go through some some bumps in the road. But that's up to you.
+    Toe. Establish that communication amongst those the parties of all involved.
+  utteranceAudio: build/utterance_audio/s002p002s00031990e00040417.mp3
+  utteranceType: _ANSWER_
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2438,26 +2463,26 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 362.18
-  timeStart: 295.03
+  timeEnd: 363.33
+  timeStart: 295.13
   topics:
   - Leading a Team
   transcript: good strategies would be to again empathize. I typically would make
     routine rounds with the team, so I would come in, you know, in the morning, right
     before lunch after lunch sometime in the evening and be present during special
-    evolution's. If you know your your team has, say, evolution to training evolution,
-    you might want to be around for it. Be around for the meetings, be around. Just
+    evolutions. If you know your your team has, say, evolution to training evolution,
+    you might want to be around for Be around for the meetings. Bill around. Just
     be there. Be be around. It adds your input when it's needed. Sometimes you'll
-    have to play. What I call would be the sword and the shield. Well, they might
+    have toe play. What I call would be the sword in the shield. Well, they might
     need someone to speak up for them to a senior, And you might be there might be
-    that guy that take the sword and go out and do what you need to do and speak for
+    that guy to take the sword and go out and do what you need to do and speak for
     them. But at the same time, if something happens, that's, um, like, not so good
-    for your team as, say, a training evolution didn't go is playing. You need to
-    be there to defend them, but how would you defend him if you're not there?
-  utteranceAudio: build/utterance_audio/s002p002s00045503e00060218.mp3
+    for your your team as, say, a training evolution didn't go is playing. You need
+    to be there to defend them, but how would you defend him if you're not there?
+  utteranceAudio: build/utterance_audio/s002p002s00045513e00060333.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00045503e00060218.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases:
   - How did you meet new people in the Navy?
@@ -2476,23 +2501,23 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 407.29
-  timeStart: 375.29
+  timeEnd: 407.97
+  timeStart: 375.97
   topics:
   - Colleagues
   - Leading a Team
   - Lifestyle
-  transcript: uh, we are socialized, just like any other group. We plan. You know,
-    Bolin trips. We go out, you know, hang out and go get something. You know, we
-    take our families out for dinners and sometimes breakfast. Sometimes we'll go
-    out. And do you know why? And the reason things of that nature so is typically
-    it's just like any other group of friends or group of colleagues. You just get
-    together. You playing something, you know where everybody's free, just, you know,
-    go hang out.
-  utteranceAudio: build/utterance_audio/s002p002s00061528e00064728.mp3
+  transcript: uh, we are socialized, just like any other group. We plan, you know,
+    bowling trips. We go out, you know, hang out and go get some. You know, we take
+    our families out for dinners and sometimes breakfast. Sometimes we'll go out.
+    And do you know why? The reason things of that nature so is typically it is just
+    like any other group of friends or group of colleagues. You just get together
+    your playing something, you know, where everybody's free. Just, you know, go hang
+    out.
+  utteranceAudio: build/utterance_audio/s002p002s00061597e00064797.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00061528e00064728.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2501,24 +2526,24 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 488.19
-  timeStart: 432.14
+  timeEnd: 488.63
+  timeStart: 432.47
   topics:
   - Leading a Team
-  transcript: as far as relationship with a subordinate. I had, ah, Chief Petty officer.
-    Once he told me that if you always keep it professional, you'll never have to
-    worry about anything. So I would take that notion if you and I would add onto
-    it. Stay professional, stay respectful, stay cordial and add Yummy. Include something
-    in your personality. Never always be genuine is what I'm trying to say, So genuineness.
-    Be cordial. Be respectful, be professional and be respected and just stay true
-    to yourself and things will flow how they're supposed to flow now. Giving you
-    won't get along and be buddy buddy with everyone. But you keep those things in
-    mind and you'll always have a positive and productive working environment with
-    those subordinates.
-  utteranceAudio: build/utterance_audio/s002p002s00071214e00080819.mp3
+  transcript: um, as far as relationship with us subordinates, I had ah, Chief Petty
+    officer. Once he told me that if you always keep it professional, you would never
+    have to worry about anything. So I would take that notion if you and I would add
+    onto it. Stay professional, stay respectful, Stay cordial and and yummy includes
+    something in your personality. Never always be genuine is what I'm trying to say.
+    So genuineness. Be cordial. Be respectful, be professional and be respected and
+    just stay true to yourself. And things will flow how they're supposed to flow
+    now. Giving you won't get along and be buddy buddy with everyone. But you keep
+    those things in mind and you will always have a positive and productive working
+    environment with those subordinates.
+  utteranceAudio: build/utterance_audio/s002p002s00071247e00080863.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00071214e00080819.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2528,28 +2553,28 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 587.11
-  timeStart: 506.23
+  timeEnd: 587.37
+  timeStart: 506.77
   topics:
   - Leading a Team
-  transcript: huh? Preparing for a tough situation or even a stressful situation?
-    It could be. You could even be an inspection that's come up. You don't prepare
-    for that mission or that inspection while it's right before it's happening. So
-    it's a mindset. So you prepare, just like you would prepare them for, say, a football
-    game. Or for a baseball game, you have to encourage them. You have to motivate
-    them. You have to be positive. You have to. You have to be that be the one motivating
-    factor behind the team. So you encourage them by, you know, being there. I'm a
-    very vocal and boisterous person. So my thing, Woz too yelled and screen. You
-    know, if we're about to start a revolution and say an inspection is about to happen
-    and I'm out there, I'm yelling. I'm screaming. I'm encouraging my team. I'm letting
-    them know that Lieutenant Thomas is behind. You were there. Whether we win, lose,
-    fail, we're going to do it together. And I think just having that that backing
-    that support says a lot, So just be, be there, be there to encourage and just
-    let him know you're you're you're their support system that you got
-  utteranceAudio: build/utterance_audio/s002p002s00082623e00094711.mp3
+  transcript: preparing for a tough situation or even a stressful situation. It could
+    be. You could even be an inspection that's come up. You don't prepare for that
+    mission or that inspection while it's right before it's happening. So it's a mindset.
+    So you prepare, just like you would prepare them for, say, a football game. Or
+    for a baseball game you have to encourage them. You have to motivate them. You
+    have to be positive. You have to. You have to be that be the one motivating factor
+    behind the team. So you encourage them by, you know, being there. I'm a very vocal
+    and bushes person. So my thing waas too Yeldon screen. You know, if we're about
+    to start a revolution and say an inspection is about to happen and I'm out there,
+    I'm yelling, I'm screaming. I'm encouraging my team. I'm letting them know that
+    Lieutenant Thomas is behind. You were there. Whether we win, lose, fail, we're
+    going to do it together. And I think just having that that backing that support
+    says a lot, So just be, be there, be there to encourage and just let him know
+    you. You're their support system that you got
+  utteranceAudio: build/utterance_audio/s002p002s00082677e00094737.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00082623e00094711.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2558,31 +2583,31 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 702.09
-  timeStart: 596.26
+  timeEnd: 702.3
+  timeStart: 596.87
   topics: []
-  transcript: I think that depends on the person that depends on you. Um, though is
-    there's no no 11 size fits all type thing, So you can't say with this type of
-    person, I'm going to do this, but with this type of person, I'm going to do that.
-    You have to learn and, you know, just kind of gain that experience by doing it.
+  transcript: I think that depends on the person that depends on you. Um though is
+    there is no no one one size fits all type thing. So you can't say with this type
+    of person. I'm gonna do this with this type of person. I'm going to do that. You
+    have Teoh, learn and you know, just kind of gain that experience by doing it.
     You won't be successful in every matter, but what you can do is communicate. You
-    can sit down with the sailor and say, Hey, you know I'm trying. Thio established
+    can sit down with the sailor and say, Hey, you know I'm trying. Teoh established
     this kind of culture. I'm trying to do X, Y and Z and respond to feedback. That's
-    the big thing. Communicate and respond to Phoebe. So if you see something's not
-    working with a certain sailor, try something different. What's the worst that
-    could happen if you go talk to someone, really nothing. So communicate. Sit down
-    and talk with. That's how you that's how you move forward. That's how you deal
+    the big thing. Communicate and responding feedback. So if you see something is
+    not working with a certain sailor, try something different. What's the worst that
+    could happen if you go talk to someone? Really Nothing. So communicate. Sit down
+    and talk with. That's how you That's how you move forward. That's how you deal
     with a wide multitude of people. You communicate, you listen. You observe, watch
     how they respond to you. When you say certain things, watch how they respond with
-    certain other things happen for example, I knew certain sailors didn't, you know,
-    respond well to me screaming and yelling or, you know, just being very playful
+    starting other things happen. For example, I knew certain sailors didn't, you
+    know, respond well to me screaming and yelling or, you know, just being very playful
     or something. So you wouldn't be that way with that sailor. You know what I mean?
     You just have to respond accordingly. So but always, uh, observe and listen more
     than you speak and follow their verbal and nonverbal cues. That's basically it.
-  utteranceAudio: build/utterance_audio/s002p002s00095626e00114209.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00095687e00114230.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00095626e00114209.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2591,28 +2616,28 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 803.06
-  timeStart: 716.03
+  timeEnd: 803.2
+  timeStart: 716.1
   topics:
   - Leadership Strategies
-  transcript: counseling skills for a leader, I would definitely say, and I keep saying
-    this one over and over his ability to empathize. If you have to counsel a sailor,
+  transcript: council skills for a leader, I would definitely say, and I keep saying
+    this one over and over its ability to empathize If you have to counsel a sailor,
     the first question you should ask yourself is, How would I want someone to approach
-    me in the same situation if I were in that sense? And how you respond in your
+    me in the same situation if I were in that situation? And how you respond in your
     mind is nine times out of 10 how you should respond to that sailor? So if you
     don't respond well to someone yelling and screaming at you, why would you yell
-    and scream at a sale? If you don't respond well to someone cursing at you, why
+    and scream at a safe? If you don't respond well to some one person that you why
     would you curse satisfied in a council? The situation? Um, my thing was, in terms
     of Council of Sailors is a a quote man to man or man to woman sit down personal
-    closed door conversation where we discussed what happened, why it happened and
-    the reasoning behind their behavior and how we fixed that going forward and what
+    closed door conversation where we discussed what happened, why it happened, and
+    the reasoning behind their behavior and how we fix that going forward and what
     I have to do in terms of being a leader going forward and what my expectations
     are of him or her moving forward. So the bottom line is you communicate and be
     respectful and empathize. I keep saying that you were in for that
-  utteranceAudio: build/utterance_audio/s002p002s00115603e00132306.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00115610e00132320.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00115603e00132306.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2622,25 +2647,25 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 881.05
-  timeStart: 815.13
+  timeEnd: 881.17
+  timeStart: 815.43
   topics:
   - Leading a Team
-  transcript: you're pushers, your team to meet standards. You. It's simple early
-    and often you communicate your standards and what's expected of them, and you
-    reinforce those expectations early and often by being present by being around
-    them. By displaying those standards by pushing those standards by encouraging
-    them to meet those standards, it'll it might take time. Some teams take longer
-    than others, and you'll eventually get there. But one key thio this method is
-    you also have to, um, you also have to. I'm trying to figure out the words to
-    say You have to lay out a plan to get there so you can't leave the blind if you're
-    blind, blind, can't lead the black so established A plan to get to those standards
-    and take your team throughout those steps and move forward, Move accordingly.
-    That's that's That's one way that I could I could think of
-  utteranceAudio: build/utterance_audio/s002p002s00133513e00144105.mp3
+  transcript: you're pushers your team to meet standards, do you? It's simple early
+    and often you communicate your standards and what's expected of them. And you
+    reinforced those expectations early enough by being present by being around them
+    by displaying those standards by pushing those standards by encouraging them to
+    meet those standards, it'll it might take time. Some teams take longer than others,
+    and you will eventually get there. But one key Teoh this method is you also have
+    to, um, you also have to. I'm trying to figure out the words to say You have to
+    lay out a plan to get there so you can't lead the blind if you're blind blind.
+    Can't leave the blood so established A plan to get to those standards and take
+    your team throughout those steps and move forward. Move accordingly. That's that's
+    one way that I couldn't I could think of
+  utteranceAudio: build/utterance_audio/s002p002s00133543e00144117.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00133513e00144105.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2649,8 +2674,8 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 922.07
-  timeStart: 889.03
+  timeEnd: 922.23
+  timeStart: 889.1
   topics:
   - Leading a Team
   transcript: again, my answer would be dependent events. Um, is that good? Performance
@@ -2658,10 +2683,10 @@ utterances:
     liberty. So in terms of good performance or exceptional performance outside of
     you know them performing their basic duties a day off two days off and in some
     cases, three days off, you reward sailors with liberty.
-  utteranceAudio: build/utterance_audio/s002p002s00144903e00152207.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00144910e00152223.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00144903e00152207.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2670,22 +2695,22 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 988.04
-  timeStart: 932.06
+  timeEnd: 988.13
+  timeStart: 932.2
   topics: []
-  transcript: nuke qualifications. It depends on the requirements a CE faras qualifications.
+  transcript: nuke qualifications. It depends on the requirements assed faras qualifications.
     But in terms off personality traits, um, work ethic is a big one. Initiative is
-    a big one. Um, attitude is a big one. So those were probably be three huge factors
-    in terms of looking for a team member. Other things you can kind of develop and
-    work to develop going forward. But if they have a work effort, work ethic, that's
-    like half the battle because of you, a person works hard and they take the initiative
-    to do something. It's kind of, ah, what a lot of people in the Navy say a fire.
-    Forget I can ask a person to do something. And before I'm finished with my question,
-    there is already halfway done, So work ethic is is huge for me.
-  utteranceAudio: build/utterance_audio/s002p002s00153206e00162804.mp3
+    a big one. Um, attitude is a big so those are probably be three huge factors in
+    terms of looking for a team member. Other things you can kind of develop and work
+    to develop going forward. But if they have a work effort, work ethic, that's like
+    half the battle because of you, a person works hard and they take the initiative
+    to do something. That's kind of ah, what a lot of people in the Navy say a fire
+    forget because I can ask a person to do something. And before I'm finished with
+    my question, there is already halfway done, so work ethic is is huge for me.
+  utteranceAudio: build/utterance_audio/s002p002s00153220e00162813.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00153206e00162804.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2694,27 +2719,27 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 1085.06
-  timeStart: 996.01
+  timeEnd: 1085.2
+  timeStart: 996.33
   topics: []
-  transcript: as far as relationships with those in charge again, you respond to verbal
-    and nonverbal cues and also by keeping it professional and respectful. Um, you
-    have a lot off seniors who have, ah, difficult time responding to the new generation
-    of sailors that are coming here. So it's kind of hard to for them to empathize
-    and understand how to approach in interact with some of the younger service. And
-    that's understandable. But you as a a subordinate to, say a senior, you have to
-    be able to understand that things aren't perfect. Take your ego out of it and
-    find out what makes the boss t what makes them happy and what makes them happy.
-    We'll make you happy because they're happy. So with that relationship, just do
-    your best to keep it professional and respectful. If you keep it professional,
-    you won't have to worry about anything going south. So nine times out of 10 don't
-    respond with how you really feel. Just keep it professional and keep it respectful,
-    because sometimes you may feel like you want to react like in a negative manner.
-    But that won't go well for you. So keep professional and keep a respectful
-  utteranceAudio: build/utterance_audio/s002p002s00163601e00180506.mp3
+  transcript: as far as relationship with those in charge. Again, you respond to,
+    uh, verbal and non verbal cues, and also by keeping it professional and respectful.
+    You have a lot off seniors who have, ah, difficult time responding to the new
+    generation of sailors that are coming in. So it's kind of hard to for them to
+    empathize and understand how to approach in interact with some of the younger
+    service. And that's understandable. But you as a a subordinate to, say a senior,
+    you have to be able to understand that things aren't perfect. Take your ego out
+    of it and find out what makes the boss t What makes them happy. And what makes
+    them happy will make you happy because they're happy. So with that relationship,
+    just do your best to keep it professional and respectful. If you keep it professional,
+    you won't have to wear about anything going south. So nine times out of 10 don't
+    respond with how you really feel. Just keep it professional and keep it respectful.
+    Sometimes you may feel like you want to react like in a negative manner, but that
+    won't go well for you, so keep it professional and keep a respectful
+  utteranceAudio: build/utterance_audio/s002p002s00163633e00180520.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00163601e00180506.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2723,25 +2748,25 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 1186.19
-  timeStart: 1132.25
+  timeEnd: 1186.63
+  timeStart: 1132.83
   topics:
   - Leading a Team
   transcript: um, simple words of advice for me, for someone to understand, to get
-    to know their bosses would be to listen. Listen, in the observant again, you'll
-    be able to see the things they do. You'll hear the things that they talk about.
-    And as time goes on, they will open up to you about the things that they like
-    to do, the things that they like to talk about. And that'll be your opportunity.
-    Thio, you know, find some common area that you guys share. I like fishing. So
-    chances are if we walk by, we were walking and you were a subordinate of mine.
-    And we're walking by, say, I don't know efficient pollen or something. You might
-    hear me say something like, You know, I wish I had a ride or something. I could
-    go fishing right now and that'll be your opportunity. It's simple and subtle.
-    Things like that. Uh, just listen and observe
-  utteranceAudio: build/utterance_audio/s002p002s00185225e00194619.mp3
+    to know their bosses would be to listen. Listen, in the observant again, you will
+    be able to see the things they do. You hear the things that they talk about, and
+    as time goes on, they will open up to you about the things that they like to do,
+    the things that they like to talk about. And that would be your opportunity. Teoh,
+    you know, find some common area that you guys share. I like fishing. So chances
+    are if we walk by, we were walking and you were a subordinate of man and we're
+    walking by. I say, I don't know efficient pollen or something. You might hear
+    me say something like, You know, I wish I had a ride or something. I could go
+    fishing right now and that will be your opportunity. It's simple and subtle. Things
+    like that. Uh, just listen and observe
+  utteranceAudio: build/utterance_audio/s002p002s00185283e00194663.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00185225e00194619.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2750,29 +2775,28 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 1291.06
-  timeStart: 1200.15
+  timeEnd: 1291.2
+  timeStart: 1200.5
   topics: []
   transcript: um, with supervisors who are unwilling or unable to give you feedback
     again, you have to. This is kind of a tough one, because there are personnel out
-    there who don't really respond to feet back. Oh, are you? Don't give feedback
-    when things are good or things are bad. You simply have to take note off, um,
-    the demands that they're placed under and what's required of those demands. Um,
-    as time goes on your you'll learn the things that they like, whether it be certain
-    colors and power points of certain graphs and power points, certain products handed
-    or email to them and certain times of day times of the day. But it's definitely
-    just something for you, too. You just have to learn. Um, it's also within your
-    ability to actually going up in approach a senior and say, you know, respond and
-    ask the question. You know, how do you like certain things? How do you like this?
-    What products do you want? You know, Do you want eight o'clock reports delivered
-    at five o'clock? Do you want you know, things in writing Do would you rather me
-    call you? You know, those are things the questions that you have to take the initiative
-    and have the developed the forethought to ask of a senior if they are willing
-    to offer.
-  utteranceAudio: build/utterance_audio/s002p002s00200015e00213106.mp3
+    there who don't really respond to feet that oh, are you don't give feedback when
+    things are good or things are bad. You simply have to take note of, um, the demands
+    that they're placed under and what's required of those. The man. Um, as time goes
+    on your you'll learn the things that they like, whether it be certain colors and
+    power points of certain graphs and power points, certain products handed or email
+    to them and certain times of day times of the day. But it's definitely just something
+    for you, too. You just have to learn. Um, it's also within your ability to actually
+    going up in approach a senior and say, you know, respond and ask the question.
+    You know, how do you like certain things? How do you like this? What products
+    do you want? You know, Do you want eight o'clock reports delivered at five o'clock?
+    Do you want you know, things in writing Do would you rather me call you? You know
+    those are things the questions that you have to take the initiative and have the
+    developed the forethought to ask of a senior if they are willing to offer.
+  utteranceAudio: build/utterance_audio/s002p002s00200050e00213120.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00200015e00213106.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2781,26 +2805,26 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 1408.08
-  timeStart: 1335.03
+  timeEnd: 1408.27
+  timeStart: 1335.1
   topics:
   - Leadership Strategies
-  transcript: things that encouraged accountability are, um, one of my favorites.
-    Uh, this would be ownership. So throughout your command, throughout your division,
-    throughout your department and even, you know, just in general, people respond
-    better when they feel as if they own something. And that simple notion will encourage
-    someone to be accountable for their equipment before a program. So throughout
-    your team to develop or encourage accountability would be to give a sailor program
-    and sit down and communicate with them your expectations and your standards and
-    encourage them to make this program the best or, you know, to pass an expectation,
-    you know, whatever it may be. But that sense of ownership encourages accountability
-    alone. But you just have to be the leader, too. Find that that that sailor, that
-    you can apply to that program Thio, you know, move forward. So ownership encourages
-    accountability in my pain
-  utteranceAudio: build/utterance_audio/s002p002s00221503e00232808.mp3
+  transcript: things that encourage accountability are, um, one of my favorites. This
+    would be ownership. So throughout your command, throughout your division, throughout
+    your department and even, you know, just in general, people respond better when
+    they feel as if they own something. And that simple notion will encourage someone
+    to be accountable for their equipment before a program. So throughout your team
+    to develop or encourage accountability would be to give a sailor program and sit
+    down and communicate with them your expectations and your standards and encourage
+    them to make this program the best or, you know, to pass an expectation, you know,
+    whatever it may be. But that sense of ownership encourages accountability alone.
+    But you just have to be the leader to find that that that sailor, that you can
+    apply to that program, Teoh, you know, move for so ownership encourages accountability
+    in my pain
+  utteranceAudio: build/utterance_audio/s002p002s00221510e00232827.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00221503e00232808.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2810,27 +2834,27 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 1491.22
-  timeStart: 1420.14
+  timeEnd: 1491.73
+  timeStart: 1420.47
   topics:
   - Leading a Team
-  transcript: um, I didn't find the strength of Regency. It's kind of a simple, and
-    it goes back to two more words. I keep saying, Listen and observe. By being present
-    and being around your team, you'll notice who's more vocal. You'll notice who
-    will stand out as being You know, the goal getter, the hard worker. You'll notice
-    who will be more of the quiet one that doesn't do too much or doesn't say much,
-    even when during, like, started training evolutions or even like operating. You
-    know who's the first to step up, who won't step up and by being around and watching
-    how that occurs, you'll learn where one sailor has one strength and another one
-    has a weakness, and you can kind of paired together and turn in that aspect. Eso
-    As time goes on, the more you watching, the more you around your sailors and your
-    team, you'll see who has certain strengths and who has certain weaknesses and
-    that all that kind of allowed you to manage. You know who to put with who and
+  transcript: um, I didn't find the strength of regencies. It's kind of a simple,
+    and it goes back to two more words. I keep saying, Listen and observe. By being
+    present and being around your team, you'll notice who's more vocal. You'll notice
+    who will stand out as being You know, the goal getter, the hard worker. You'll
+    notice who will be more of the quiet one that doesn't do too much or doesn't save
+    much, even when, during like 30 training evolutions or even like operating, you
+    know who's the first to step up or who won't step up. And by being around and
+    watching how that occurs, you'll learn where one sailor has one strength and another
+    one has a weakness, and you can kind of pairing together and turn in that aspect.
+    Eso As time goes on, the more you watching, the more you around your sailors and
+    your team, you'll see who has certain strengths and who has certain weaknesses
+    and that all that kind allowed you to manage. You know who to put with who and
     how the better, you know, go for how to move on from there
-  utteranceAudio: build/utterance_audio/s002p002s00234014e00245122.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00234047e00245173.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00234014e00245122.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2839,23 +2863,22 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 1575.2
-  timeStart: 1523.28
+  timeEnd: 1575.67
+  timeStart: 1523.93
   topics:
   - Leading a Team
-  transcript: um, it's a working with saying Isn't working with the V's is totally
-    different. Civilians are Maur relaxed. They're more casual. There are peaceful
-    sailors are are at times very high, strong because they're so used to operating
-    under certain environments. And that's kind of like how well, we're kind of compare
-    it to like a yin and the yang there's like Ah, hi, strong, you know, Go, go, go,
-    go, go sailor mentality. But then on the civilian side, it's kind of like Hey,
-    slow down, back it down Here's what we need to do So it sze awesome working with
-    severe And I think that's just a big difference is just the tempo that we operate
-    on.
-  utteranceAudio: build/utterance_audio/s002p002s00252328e00261520.mp3
+  transcript: um, it's a working with saying Isn't working with movies is totally
+    different. Civilians are mawr relaxed. They're more casual. There are peaceful
+    sailors are at times very high, strong because they're so used to operating under
+    certain environments. And that's kind of like how well, we're kind of compare
+    it to like a yin and the Yang there's like Ah, hi, strong, you know, Go, go, go,
+    go, go sailor mentality. But then, on the civilian side, it's kind of like a slow
+    down back it down. Here's what we need to do. So it z awesome working with severe
+    and I think that's just a big difference is just the tempo that we operate on.
+  utteranceAudio: build/utterance_audio/s002p002s00252393e00261567.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00252328e00261520.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases:
   - Is the private sector better than the public sector?
@@ -2870,32 +2893,32 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 1702.05
-  timeStart: 1583.29
+  timeEnd: 1702.17
+  timeStart: 1583.97
   topics:
   - Miscellaneous
   transcript: um, the big difference between working privacy you're in, like, say,
     is working in the military, uh, would be the for one the tempo to the stress level.
-    And three, It's kind of tough to explain, but there is there in the military you
+    And three. It's kind of tough to explain, but there's there in the military you
     you're always under like the watchful eye of something that I think that's the
     big thing. It's like you're you're always under the microscope when you're in
     the military. So everything that you say you do, you're being like scrutinized
     for you, man. Watch for, say, for example, incident happens out in town, and I'm
     in my uniform the difference between me being in that incident as a civilian between
     and now, you know, in my uniform it's looked at as, Hey, Naval Officer did X,
-    y and Z. But if I was as a civilian, it'll just be J d. The this. You know, you
-    represent a larger a group of people, a larger organization, I think that plays
-    ah big part into a person's like a day to day operations as faras the differences,
-    but also you get there. You know, there's like a a different, um, sense of. I
-    guess you could say freedom as a civilian as opposed to being in the military.
-    Because every day I think I like, Hey, I'll be I don't I won't be I won't be anywhere
-    permanently So this is temporary for me, so I always have to go back to see I'll
-    always be moving. So it was just a few things that play into, You know, the difference
+    y and Z. But if I was as a civilian, it will just be J. D. V. This, you know,
+    you represent a larger ah group of people, a larger organization and I think that
+    plays ah big part into a person's like a day to day operations as faras the differences,
+    but also you get there. You know, there's like a different, um, sense of. I guess
+    you could say freedom as a civilian, as opposed to been in the military. Because
+    every day I think I like, Hey, I'll be I don't I won't be I won't be anywhere
+    permanently So this is temporary for me, So I always have to go back to see I'll
+    always be moving. So those just, ah, few things that play into you know, the difference
     is, I guess.
-  utteranceAudio: build/utterance_audio/s002p002s00262328e00282205.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00262397e00282217.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00262328e00282205.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases:
   - Are the other services like the Navy?
@@ -2910,28 +2933,29 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 1786.06
-  timeStart: 1710.27
+  timeEnd: 1786.2
+  timeStart: 1710.9
   topics:
   - Culture
   - First Steps
-  transcript: right. Um, the differences between us and the other branches are for
-    one. I think our culture, um, a big day for me, especially when I joined, was
-    the fact that if you join the Navy nine times out of 10 you'll be around some
-    form of water and, uh, unlike being an air force of the Army or the Marines, I
-    didn't want to be anywhere near the desert or anywhere near like a bunch of just
-    like nature. I didn't want to sleep after sleep out in the field. I rather sleep
-    in a little cot on the ship at the bottom of the ship, as opposed to sleeping
-    out in the desert. So I would say those are like two of the big things is just
-    the locations that you're operating in and the climate and environment operating
-    in, and just the culture of being a sailor. Um, being on their side, you can kind
-    of notice like a definitely a rah rah, you know, mentality out of the say, the
-    Marines and the Army And the Air Force is more like laid back, like we're kind
-    of casual on the neighbors, just kind of like in the middle, you know,
-  utteranceAudio: build/utterance_audio/s002p002s00283027e00294606.mp3
+  transcript: um the differences between us and the other branches are for one. I
+    think our culture, um, a big day for me, especially when I joined, was the fact
+    that if you join the Navy nine times out of 10 you will be around some form of
+    water and, uh, unlike being an air force of the Army or the Marines. I didn't
+    want to be anywhere near the desert or anywhere near, like a bunch of just like
+    nature. I didn't want to sleep after sleep out in the field. I rather sleep in
+    a little cotton on the ship at the bottom of the ship, as opposed to sleeping
+    out in the desert. So I would say those are like, two of the big things is just
+    the the locations that you're operating here and the climates and environments
+    operating in and just the culture of being a sailor. Um, being on the inside,
+    you can kind of notice like a definitely a rah rah. You know, uh, mentality out
+    of the say, the Marines and the Army and the Air Force is more like laid back,
+    like we're kind of casual on the neighbors, just kind of like in the middle, you
+    know,
+  utteranceAudio: build/utterance_audio/s002p002s00283090e00294620.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00283027e00294606.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases:
   - Can you tell a story about a Navy experience?
@@ -2945,33 +2969,33 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 1893.02
-  timeStart: 1795.26
+  timeEnd: 1893.66
+  timeStart: 1795.87
   topics:
   - Culture
   - Leading a Team
   - Military
-  transcript: I'm sorry. An experience that illuminates Navy culture. Um, I would
-    say it Sze classic and I'm pretty sure everyone experiences is this is ah definitely
-    would have to say returning from a deployment say on boy like any any ship after
-    a long period out at sea. Uh, so the general excitement among the crew and you
-    know each other's It just kind of raises morale because, you know, you're going
-    home. You know, everyone's kind of walking on like cloud now, like the last couple
-    of days, and it's almost like a kid going to Disney World for the first time the
+  transcript: I'm sorry and experience that illuminates Navy culture. Um, I would
+    say it's classic, and I'm pretty sure everyone experiences is this is Ah definitely
+    would have to say, returning from a deployment say onboard like any any ship after
+    a long period out of C. Uh so the general excitement among the crew and you know
+    each other's It just kind of raises morale because you know you're going home.
+    You know, everyone's kind of walking on like Cloud now, like the last couple of
+    days, and it's almost like a kid going to Disney World for the first time the
     night before. It's like that kid and sleep is just so excited to read to go home.
-    You know, you're just ready to see your family and friends. And that culture just
-    kind of hits its peak the day off when everyone is putting on their dress whites
-    or the dress blues. And we're getting already and pressed and everything's nice
-    and, you know, you finally hear the the man the rails called on the one emcee,
-    and that's how you know it's like you're going home. And I think that that culture
-    kind of hits it hits its peak at that time toe where you're putting import and
-    you and all your 300 of your closest friends are going home for the first time
-    in seven or eight months on. And I think that just kind of, you know, that that
+    You know, you're just ready to see your family and friends. And, uh, that culture
+    just kind of hits its peak the day off when everyone is putting on their dress
+    whites. So the dress blues and we're getting already and pressed and everything
+    is nice and, you know, you finally hear the the man the rails called on the one
+    EMC, and that's how you know it's like you're going home. And I think that that
+    culture kind of hits it hits its peak at that time toe where you're putting import
+    and you and all your 300 of your closest friends are going home for the first
+    time in seven or eight months on. And I think that just kind of, you know, that
     just sums up like Navy culture, right?
-  utteranceAudio: build/utterance_audio/s002p002s00295526e00313302.mp3
+  utteranceAudio: build/utterance_audio/s002p002s00295587e00313366.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00295526e00313302.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -2981,36 +3005,36 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 2049.21
-  timeStart: 1931.19
+  timeEnd: 2049.7
+  timeStart: 1931.63
   topics:
   - Challenges
   - Leading a Team
-  transcript: and so a number of ways that you can affect morale is for one, you're
-    personally. It's about being positive, and I would like to think that a positive
-    attitude is contagious. So the more you're smiling, the more that you're being
-    positive about things. The more others will be positive about things on board.
-    Like certain ships. You are every ship that I've been on. I had the privilege
-    of being on. There are definitely a number of activities that you can engage in
-    which you start with each other to, you know, help building around. There's bingo
-    night. There's a video game night. There's our I hop night where you know the
-    C S is get around and they cook. I hot pancakes for an omelets for dinner. You
-    know that ice cream night? There's pizza and Chicken wing night, but also you
-    have certain activities that sometimes that the captain will push, which are like
-    they'll allow beards so you pay the into the MW are fun, say, three bucks or so,
-    and you can grow your beard out. Do you? You know, you come back in port, so you
-    know, that's like a big morale booster believe it or not, is it zip? It may seem
-    very small, but something like that will build morale very quickly if I don't
-    have to get up and save everyone and I could walk around with beer. But things
-    like that, um, those air about, you know, just about the limits that a person
-    can do or someone can do to affect morale when you have obligations to meet outside
-    of that, you know, putting import as often as you are allowed to and getting off
-    the ship. Just been able to decompress and are going tours and see things. And,
-    uh, those are about the best that you can do to build around.
-  utteranceAudio: build/utterance_audio/s002p002s00321119e00340921.mp3
+  transcript: so a number of ways that you can affect morale is for one your personally.
+    It's about being positive. Um, and I would like to think that a positive attitude
+    is contagious. So the more you're smiling, the more that you're being positive
+    about things. The more others will be positive about things on board, like certain
+    ships are every ship that I have been on. I had the privilege of being on. There
+    are definitely a number of activities that you can engage in which you start with
+    each other to, you know, help building around. There's bingo night. There's, Ah,
+    video game night. There's our hop night where you know the CS is Get around and
+    they cook. I hopped pancakes for an omelet for dinner. You know that ice cream
+    night? There's pizza and Chicken wing night, but also you have certain activities
+    that sometimes that the captain will push, which are like they allow beards. So
+    you pay the into the nwr fun, say, three bucks or so, and you can grow your beard
+    out. Do you? You know, you come back in port, so you know, that's like a big morale
+    booster. Believe it or not? Is it zip? It may seem very small, but something like
+    that will build morale very quickly If I don't have to get up and say you everyone
+    and I can walk around with beer. Um, but things like that, um, those air about,
+    you know, just about the limits that a person can do or someone can do to affect
+    morale. When you have obligations to meet outside of that, you know, put import
+    as often as you are allowed to and getting off the ship and just been able to
+    decompress and are going tours and see things. And, uh, those are about the best
+    that you can do to build around.
+  utteranceAudio: build/utterance_audio/s002p002s00321163e00340970.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00321119e00340921.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -3019,22 +3043,22 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 2110.08
-  timeStart: 2064.1
+  timeEnd: 2110.27
+  timeStart: 2064.33
   topics:
   - Leading a Team
-  transcript: the core team members out. What's our light on? Would be, um, definitely
-    your chief Petty officer. If you were a division officer, your chief petty officer,
-    your department here and a number of your peers, these will be people that you
-    were basically talked with numerous times throughout the day, and, uh, they will
-    be able to excuse me, cyst you with personal issues. You may be dealing with a
-    professional issues you may be dealing with offer guidance. You may be a bit offer
-    guidance to them. So I would definitely say a department hit and your peers and
-    a chief petty officer.
-  utteranceAudio: build/utterance_audio/s002p002s00342410e00351008.mp3
+  transcript: the core team members. Alberts. Our light on would be, um, definitely
+    your chief Petty officer. If you are a division officer, your chief petty officer,
+    your department here and a number of your peers, these would be people that you
+    were basically, you know, talked with numerous times throughout the day. And,
+    uh, they will be able Teoh excuse me? Assist you with personal issues. You may
+    be dealing with a professional issues you may be dealing with offer guidance.
+    You may be a bit offer guidance to them. So I would definitely say a department
+    hit and your peers and a chief petty officer.
+  utteranceAudio: build/utterance_audio/s002p002s00342433e00351027.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00342410e00351008.mp4
-- errorMessage: null
+  utteranceVideo: ''
+- errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
   part: 2
@@ -3044,24 +3068,25 @@ utterances:
   sessionAudio: build/recordings/session2/p002-building-teams.mp3
   sessionTimestamps: build/recordings/session2/p002-building-teams.csv
   sessionVideo: build/recordings/session2/p002-building-teams.mp4
-  timeEnd: 2203.02
-  timeStart: 2131.05
+  timeEnd: 2203.66
+  timeStart: 2131.17
   topics: []
-  transcript: strategies to help Listen Will would be to first acknowledge that you
-    have a problem listening with two. Take note of it while you're listening to someone's
-    talk or attempting to listen to one to someone speak, Be mindful of how much you
-    interrupt of how much you speak or you attempt to speak. I always say that people
-    there are two types of people. People who listen to respond and people who listen
-    to understand. If you know that you're a person that listens to respond, practice
-    not responding. Practice. Listening, engaging, active listening. Which would be
-    say, if you're speaking to me, maybe not, maybe respond. Ask a question while
-    they're speaking, and as time goes on, you'll just develop those habits of not
-    speaking while someone else's. You know why you're supposed to be listening? Try
-    to repeat things in your mind that that person is saying, and those things are
-    definitely get you started on the right path of being a been a better listener
-  utteranceAudio: build/utterance_audio/s002p002s00353105e00364302.mp3
+  transcript: strategies to help Listen, Will would be to first acknowledge that you
+    have a problem listening with to, um, take note of it while you're listening to
+    someone's talk or attempting to listen to one to someone. Speak, Be mindful of
+    how much you interrupt of how much you speak or you attempt to speak. I always
+    say that people there are two types of people, people who listen to respond and
+    people who listen to understand. If you know that you're a person that listens
+    to respond, practice not responding practice, listening, engaging, active listening.
+    Which would be say, if you're speaking to me, maybe not, maybe respond. Ask a
+    question while they're speaking, and as time goes on, you'll just develop those
+    habits of not speaking while someone else is. You know why you're supposed to
+    be listening? Try to repeat things in your mind that that person is saying, and
+    those things are definitely get you started on the right path of being a being
+    a better listener
+  utteranceAudio: build/utterance_audio/s002p002s00353117e00364366.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: build/utterance_video/s002p002s00353105e00364302.mp4
+  utteranceVideo: ''
 - errorMessage: null
   mentor: jd_thomas
   paraphrases: []
