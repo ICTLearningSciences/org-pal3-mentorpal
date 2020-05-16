@@ -2363,7 +2363,7 @@ utterances:
     motivated and with a good work ethic.
   utteranceAudio: build/utterance_audio/s002p002s00004243e00005433.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00004243e00005433.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2382,7 +2382,7 @@ utterances:
     then you could lead by example.
   utteranceAudio: build/utterance_audio/s002p002s00010550e00012617.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00010550e00012617.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2404,7 +2404,7 @@ utterances:
     team.
   utteranceAudio: build/utterance_audio/s002p002s00013600e00020947.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00013600e00020947.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2428,7 +2428,7 @@ utterances:
     conversation. Just go deeper and deeper and you'll learn more and more.
   utteranceAudio: build/utterance_audio/s002p002s00021933e00030360.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00021933e00030360.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2453,7 +2453,7 @@ utterances:
     Toe. Establish that communication amongst those the parties of all involved.
   utteranceAudio: build/utterance_audio/s002p002s00031990e00040417.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00031990e00040417.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2481,7 +2481,7 @@ utterances:
     to be there to defend them, but how would you defend him if you're not there?
   utteranceAudio: build/utterance_audio/s002p002s00045513e00060333.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00045513e00060333.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases:
@@ -2516,7 +2516,7 @@ utterances:
     out.
   utteranceAudio: build/utterance_audio/s002p002s00061597e00064797.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00061597e00064797.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2542,7 +2542,7 @@ utterances:
     environment with those subordinates.
   utteranceAudio: build/utterance_audio/s002p002s00071247e00080863.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00071247e00080863.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2573,7 +2573,7 @@ utterances:
     you. You're their support system that you got
   utteranceAudio: build/utterance_audio/s002p002s00082677e00094737.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00082677e00094737.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2606,7 +2606,7 @@ utterances:
     than you speak and follow their verbal and nonverbal cues. That's basically it.
   utteranceAudio: build/utterance_audio/s002p002s00095687e00114230.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00095687e00114230.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2636,7 +2636,7 @@ utterances:
     respectful and empathize. I keep saying that you were in for that
   utteranceAudio: build/utterance_audio/s002p002s00115610e00132320.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00115610e00132320.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2664,7 +2664,7 @@ utterances:
     one way that I couldn't I could think of
   utteranceAudio: build/utterance_audio/s002p002s00133543e00144117.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00133543e00144117.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2685,7 +2685,7 @@ utterances:
     cases, three days off, you reward sailors with liberty.
   utteranceAudio: build/utterance_audio/s002p002s00144910e00152223.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00144910e00152223.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2709,7 +2709,7 @@ utterances:
     my question, there is already halfway done, so work ethic is is huge for me.
   utteranceAudio: build/utterance_audio/s002p002s00153220e00162813.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00153220e00162813.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2738,7 +2738,7 @@ utterances:
     won't go well for you, so keep it professional and keep a respectful
   utteranceAudio: build/utterance_audio/s002p002s00163633e00180520.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00163633e00180520.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2765,7 +2765,7 @@ utterances:
     like that. Uh, just listen and observe
   utteranceAudio: build/utterance_audio/s002p002s00185283e00194663.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00185283e00194663.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2795,7 +2795,7 @@ utterances:
     developed the forethought to ask of a senior if they are willing to offer.
   utteranceAudio: build/utterance_audio/s002p002s00200050e00213120.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00200050e00213120.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2823,7 +2823,7 @@ utterances:
     in my pain
   utteranceAudio: build/utterance_audio/s002p002s00221510e00232827.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00221510e00232827.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2853,7 +2853,7 @@ utterances:
     how the better, you know, go for how to move on from there
   utteranceAudio: build/utterance_audio/s002p002s00234047e00245173.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00234047e00245173.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -2877,7 +2877,7 @@ utterances:
     and I think that's just a big difference is just the tempo that we operate on.
   utteranceAudio: build/utterance_audio/s002p002s00252393e00261567.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00252393e00261567.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases:
@@ -2917,7 +2917,7 @@ utterances:
     is, I guess.
   utteranceAudio: build/utterance_audio/s002p002s00262397e00282217.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00262397e00282217.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases:
@@ -2954,7 +2954,7 @@ utterances:
     know,
   utteranceAudio: build/utterance_audio/s002p002s00283090e00294620.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00283090e00294620.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases:
@@ -2994,7 +2994,7 @@ utterances:
     just sums up like Navy culture, right?
   utteranceAudio: build/utterance_audio/s002p002s00295587e00313366.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00295587e00313366.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -3033,7 +3033,7 @@ utterances:
     that you can do to build around.
   utteranceAudio: build/utterance_audio/s002p002s00321163e00340970.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00321163e00340970.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -3057,7 +3057,7 @@ utterances:
     hit and your peers and a chief petty officer.
   utteranceAudio: build/utterance_audio/s002p002s00342433e00351027.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00342433e00351027.mp4
 - errorMessage: ''
   mentor: jd_thomas
   paraphrases: []
@@ -3086,7 +3086,7 @@ utterances:
     a better listener
   utteranceAudio: build/utterance_audio/s002p002s00353117e00364366.mp3
   utteranceType: _ANSWER_
-  utteranceVideo: ''
+  utteranceVideo: build/utterance_video/s002p002s00353117e00364366.mp4
 - errorMessage: null
   mentor: jd_thomas
   paraphrases: []
