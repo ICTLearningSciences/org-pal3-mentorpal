@@ -1325,7 +1325,7 @@ utterances:
   mentor: dan-burns
   paraphrases: []
   part: 6
-  question: What is critical to review when you start on a new ship?
+  question: What are the most important first steps?
   session: 1
   sessionAudio: build/recordings/sessions/s1_p003.mp3
   sessionTimestamps: build/recordings/sessions/s1_p003.csv
@@ -1625,7 +1625,7 @@ utterances:
   mentor: dan-burns
   paraphrases: []
   part: 8
-  question: What things do you always make sure to lead by example on?
+  question: How do you set the tone?  
   session: 1
   sessionAudio: build/recordings/sessions/s2_p002.mp3
   sessionTimestamps: build/recordings/sessions/s2_p002.csv
