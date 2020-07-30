@@ -1081,7 +1081,7 @@ utterances:
   timeStart: 132.2
   topics:
   - JobSpecific
-  - STEM
+  - OTHER
   transcript: So one of the major benefits my job. What I think is great about it
     is just the diversity that you experience every single day. It's really not the
     same thing every single day. You're given many opportunities to kind of think
@@ -1125,7 +1125,7 @@ utterances:
   timeStart: 206.06
   topics:
   - JobSpecific
-  - STEM
+  - OTHER
   transcript: So I guess what could be considered a major negative is the fact that
     you do work kind of long hours in this job and community, and there's nothing
     really defined. Some days I come in and I work till noon. I can go home. There's
@@ -1730,7 +1730,7 @@ utterances:
   - Advice
   - First Steps
   - Priorities
-  - STEM
+  - OTHER
   transcript: so the priorities that I'd recommend for you if you're entering into
     a leadership position is read. You have to read a lot of things you need to read.
     You know what your commanders, guidance, mission, vision and intent is and then
