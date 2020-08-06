@@ -1,0 +1,11 @@
+# Ignore everything
+*
+
+# But not these files...
+!*/
+!*/*.py
+!*/*.js
+!*/*.ts
+!*/*.jsx
+!*/*.tsx
+!*/*.cs
