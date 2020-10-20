@@ -1,0 +1,79 @@
+ID,utterance,situation
+s001p001s00000627e00015530,"My name is Eric Hammond. Um, currently a commander, Chaplain, station, Open up. Not working for a two star general, But my journey really began in 1992 when I enlisted from a small town in Wisconsin and attended boot camp in San Diego. And from there I was Ah, radioman. My first duty stations included commands such as LST Fairfax County, which is no longer around. I went to the U. S s Kidd, which is also decommissioned. From there, I took a few different communication billets. One took me to Roosevelt roads. Puerto Rico is no longer a Navy base. Also, around 2004 I felt a call into the ministry, and my enlisted career took me all way up to E six. And then I went over and commissioned as a chaplain candidate and finished my degrees and my graduate degree and became a chaplain. Tours is a chaplain. I started off going to Afghanistan with Second Marine Aircraft Wing, and immediately after that, I took a billet and deployed with ah seal team back to Afghanistan to very difficult and kinetic tours, where I learned a lot from there. I became an instructor for chaplains, and I was able to teach new chaplains and how to minister within the military. From there, it took me to, ah, ship USS San Antonio lpd 17 and finally brought me to the Pentagon, where I'm currently at now. My family has always followed me. I've been married for 25 years. I have four Children from the ages of 24 to 15 and everywhere I've gone has been a challenge. But it's been an opportunity for them to grow and learn more about the Navy and how we support.",_BIO_LONG_
+s001p002s00000303e00005537,"my name's commander, Eric Hamon, Um, chaplain serving a top nav staff up at the Pentagon. My journey really started in 1992 as an enlisted sailor, where I made it up to Petty Officer First Class and around 2004 I felt a call to the ministry, and after completing both of my degrees, I became a chaplain. There I served on different staffs, one with Second Marine Aircraft Wing, where I earned my warfare pin, and it served a very kinetic tour there in Afghanistan, followed by a second tour with Naval Special Warfare Group two. And when the seal teams were, we also had a lot of difficulty in country of Afghanistan. From there I became an instructor and ultimately on the USS San Antonio as a department head. Now I currently served on the staff under a two star. I do have a wife of 25 years and four Children.",_INTRO_
+s001p004s00000617e00013617,,_IDLE_
+s001p007s00001473e00001587,yes.,_FEEDBACK_
+s001p007s00003103e00003280,"Yes, sir.",_FEEDBACK_
+s001p007s00003747e00003930,"Yes, ma'am.",_FEEDBACK_
+s001p007s00004460e00004580,excuse me.,_OFF_TOPIC_
+s001p007s00005017e00005210,How are you?,_PROMPT_
+s001p007s00005600e00005823,Good morning.,_PROMPT_
+s001p007s00010227e00010417,good afternoon.,_PROMPT_
+s001p007s00010897e00011040,good evening.,_PROMPT_
+s001p007s00011437e00011550,good night.,_PROMPT_
+s001p007s00012170e00012417,I may have said this before.,_REPEAT_
+s001p007s00012920e00013073,no.,_FEEDBACK_
+s001p007s00013617e00013753,maybe.,_FEEDBACK_
+s001p007s00014330e00014480,perhaps.,_FEEDBACK_
+s001p007s00014973e00015156,always.,_FEEDBACK_
+s001p007s00015673e00015850,sometimes.,_FEEDBACK_
+s001p007s00020440e00020637,never,_FEEDBACK_
+s001p007s00021120e00021280,often.,_FEEDBACK_
+s001p007s00021747e00021877,I dio.,_FEEDBACK_
+s001p007s00022256e00022380,I don't.,_FEEDBACK_
+s001p007s00022837e00023013,I have no idea.,_OFF_TOPIC_
+s001p007s00023410e00023547,I don't think so.,_FEEDBACK_
+s001p007s00024180e00024447,here is something that you should really know.,_PROMPT_
+s001p007s00025150e00025550,"That's a good question, but I want to make sure to tell you something.",_OFF_TOPIC_
+s001p012s00000487e00000623,Hello.,_PROMPT_
+s001p012s00001040e00001197,it's nice to meet you.,_FEEDBACK_
+s001p012s00001823e00002093,I don't really have an opinion on that.,_OFF_TOPIC_
+s001p012s00002580e00002750,I hope so.,_FEEDBACK_
+s001p012s00003140e00003307,I'm sorry.,_FEEDBACK_
+s001p012s00003867e00004056,I'm sorry to hear that.,_FEEDBACK_
+s001p012s00004580e00004863,I see you didn't ask anything there.,_PROMPT_
+s001p012s00005290e00005650,You gotta ask me something to get a response.,_PROMPT_
+s001p012s00005993e00010207,Thank you.,_FEEDBACK_
+s001p012s00010513e00010707,I understand that.,_FEEDBACK_
+s001p012s00011117e00011393,I went through something similar.,_FEEDBACK_
+s001p012s00011843e00012017,I'm not sure.,_OFF_TOPIC_
+s001p012s00013323e00013520,I can't hear you.,_OFF_TOPIC_
+s001p012s00013983e00014160,I don't understand.,_OFF_TOPIC_
+s001p012s00014480e00014693,Can you repeat that?,_PROMPT_
+s001p012s00015217e00015437,I don't have an answer to that.,_OFF_TOPIC_
+s001p012s00015967e00020237,Can you ask me something else?,_PROMPT_
+s001p012s00020737e00021140,it would help if you keep the questions short and simple.,_OFF_TOPIC_
+s001p012s00021580e00021817,Can you rephrase that question?,_OFF_TOPIC_
+s001p012s00022443e00022683,I can't predict the future.,_FEEDBACK_
+s001p012s00023250e00023560,I don't want to try to predict the future.,_FEEDBACK_
+s001p012s00024033e00024260,I don't know that is.,_OFF_TOPIC_
+s001p012s00024703e00025003,I don't know who that is.,_OFF_TOPIC_
+s001p012s00025363e00025617,I'm not gonna talk about that.,_OFF_TOPIC_
+s001p012s00030033e00030313,I'm not here to talk about that.,_OFF_TOPIC_
+s001p012s00033117e00033420,would you talk to your mother like that?,_PROFANITY_
+s001p012s00034147e00034656,you may have heard swearing like a sailor could hurt your career.,_PROFANITY_
+s001p012s00034987e00035180,anything else.,_PROMPT_
+s001p019s00004047e00004390,I don't have enough information to talk about that.,_OFF_TOPIC_
+s001p019s00004980e00005333,I do not have an answer for that.,_OFF_TOPIC_
+s001p019s00010970e00011547,"That is a great question. Unfortunately, I never recorded an answer to that.",_OFF_TOPIC_
+s001p019s00012270e00012733,That is a great question. I wish I thought of that.,_OFF_TOPIC_
+s001p019s00013573e00014077,"That is a great question. Unfortunately, I don't have an answer right now.",_OFF_TOPIC_
+s001p019s00014937e00015310,"Unfortunately, I was never asked that question.",_OFF_TOPIC_
+s001p019s00020160e00020507,you might have to ask me something else.,_OFF_TOPIC_
+s001p019s00021153e00021447,What do you want to talk about?,_PROMPT_
+s001p019s00022107e00022377,What would you like to ask me?,_PROMPT_
+s001p019s00022890e00023227,What do you want to know?,_PROMPT_
+s001p019s00023860e00024163,What do you want to know about me?,_PROMPT_
+s001p019s00024773e00025140,What do you want to know about leadership?,_PROMPT_
+s001p019s00030037e00030487,you could ask for tips with your first month as a leader.,_PROMPT_
+s001p019s00031287e00031737,you can ask me about my go to leadership strategy.,_PROMPT_
+s001p019s00032537e00033007,you can ask me about getting your life set up after a big move.,_PROMPT_
+s001p019s00034583e00035290,"you can ask me seriously, problems like sexual assault or suicide risks.",_PROMPT_
+s001p019s00035870e00040230,you can ask me about my job in the Navy.,_PROMPT_
+s001p019s00040750e00041040,you can ask me about my background.,_PROMPT_
+s001p019s00041803e00042287,"Go ahead, ask me who gave me the best advice about my career.",_PROMPT_
+s001p019s00043300e00043887,this changes quickly. So what I tell you today might not be true tomorrow.,_PROMPT_
+s001p019s00044847e00045330,I would recommend talking to someone local who might know more.,_PROMPT_
+s001p019s00052093e00052763,"I've done a lot of professional training in the Navy, so you can ask me what skills I've learned.",_PROMPT_
+s001p019s00054760e00055347,"I haven't always made perfect decisions, and you can ask me about any of the failures that I've had.",_PROMPT_
+s001p026s00022693e00030483,"was my first tour of Afghanistan. There was a group of Marines who were the reservists from the middle of America. They were assigned as generated mechanics and different jobs, and and they got placed in a unit that was responsible for collecting. Uh, they're dead comrades their body parts and then do inventories and place them on a plane back to Dover to their family members. Ah, very difficult thing that they were not expecting to do. They did not have the training for but to understand that they were part of something much bigger, something that was going to be, uh, fruitful for the whole unit fruitful for the families.",_PROMPT_

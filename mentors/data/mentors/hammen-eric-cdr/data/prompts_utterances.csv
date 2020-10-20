@@ -1,0 +1,78 @@
+Situation,Mentor,Utterance/Prompt
+_BIO_LONG_,hammen-eric-cdr,"My name is Eric Hammond. Um, currently a commander, Chaplain, station, Open up. Not working for a two star general, But my journey really began in 1992 when I enlisted from a small town in Wisconsin and attended boot camp in San Diego. And from there I was Ah, radioman. My first duty stations included commands such as LST Fairfax County, which is no longer around. I went to the U. S s Kidd, which is also decommissioned. From there, I took a few different communication billets. One took me to Roosevelt roads. Puerto Rico is no longer a Navy base. Also, around 2004 I felt a call into the ministry, and my enlisted career took me all way up to E six. And then I went over and commissioned as a chaplain candidate and finished my degrees and my graduate degree and became a chaplain. Tours is a chaplain. I started off going to Afghanistan with Second Marine Aircraft Wing, and immediately after that, I took a billet and deployed with ah seal team back to Afghanistan to very difficult and kinetic tours, where I learned a lot from there. I became an instructor for chaplains, and I was able to teach new chaplains and how to minister within the military. From there, it took me to, ah, ship USS San Antonio lpd 17 and finally brought me to the Pentagon, where I'm currently at now. My family has always followed me. I've been married for 25 years. I have four Children from the ages of 24 to 15 and everywhere I've gone has been a challenge. But it's been an opportunity for them to grow and learn more about the Navy and how we support."
+_INTRO_,hammen-eric-cdr,"my name's commander, Eric Hamon, Um, chaplain serving a top nav staff up at the Pentagon. My journey really started in 1992 as an enlisted sailor, where I made it up to Petty Officer First Class and around 2004 I felt a call to the ministry, and after completing both of my degrees, I became a chaplain. There I served on different staffs, one with Second Marine Aircraft Wing, where I earned my warfare pin, and it served a very kinetic tour there in Afghanistan, followed by a second tour with Naval Special Warfare Group two. And when the seal teams were, we also had a lot of difficulty in country of Afghanistan. From there I became an instructor and ultimately on the USS San Antonio as a department head. Now I currently served on the staff under a two star. I do have a wife of 25 years and four Children."
+_FEEDBACK_,hammen-eric-cdr,yes.
+_FEEDBACK_,hammen-eric-cdr,"Yes, sir."
+_FEEDBACK_,hammen-eric-cdr,"Yes, ma'am."
+_OFF_TOPIC_,hammen-eric-cdr,excuse me.
+_PROMPT_,hammen-eric-cdr,How are you?
+_PROMPT_,hammen-eric-cdr,Good morning.
+_PROMPT_,hammen-eric-cdr,good afternoon.
+_PROMPT_,hammen-eric-cdr,good evening.
+_PROMPT_,hammen-eric-cdr,good night.
+_REPEAT_,hammen-eric-cdr,I may have said this before.
+_FEEDBACK_,hammen-eric-cdr,no.
+_FEEDBACK_,hammen-eric-cdr,maybe.
+_FEEDBACK_,hammen-eric-cdr,perhaps.
+_FEEDBACK_,hammen-eric-cdr,always.
+_FEEDBACK_,hammen-eric-cdr,sometimes.
+_FEEDBACK_,hammen-eric-cdr,never
+_FEEDBACK_,hammen-eric-cdr,often.
+_FEEDBACK_,hammen-eric-cdr,I dio.
+_FEEDBACK_,hammen-eric-cdr,I don't.
+_OFF_TOPIC_,hammen-eric-cdr,I have no idea.
+_FEEDBACK_,hammen-eric-cdr,I don't think so.
+_PROMPT_,hammen-eric-cdr,here is something that you should really know.
+_OFF_TOPIC_,hammen-eric-cdr,"That's a good question, but I want to make sure to tell you something."
+_PROMPT_,hammen-eric-cdr,Hello.
+_FEEDBACK_,hammen-eric-cdr,it's nice to meet you.
+_OFF_TOPIC_,hammen-eric-cdr,I don't really have an opinion on that.
+_FEEDBACK_,hammen-eric-cdr,I hope so.
+_FEEDBACK_,hammen-eric-cdr,I'm sorry.
+_FEEDBACK_,hammen-eric-cdr,I'm sorry to hear that.
+_PROMPT_,hammen-eric-cdr,I see you didn't ask anything there.
+_PROMPT_,hammen-eric-cdr,You gotta ask me something to get a response.
+_FEEDBACK_,hammen-eric-cdr,Thank you.
+_FEEDBACK_,hammen-eric-cdr,I understand that.
+_FEEDBACK_,hammen-eric-cdr,I went through something similar.
+_OFF_TOPIC_,hammen-eric-cdr,I'm not sure.
+_OFF_TOPIC_,hammen-eric-cdr,I can't hear you.
+_OFF_TOPIC_,hammen-eric-cdr,I don't understand.
+_PROMPT_,hammen-eric-cdr,Can you repeat that?
+_OFF_TOPIC_,hammen-eric-cdr,I don't have an answer to that.
+_PROMPT_,hammen-eric-cdr,Can you ask me something else?
+_OFF_TOPIC_,hammen-eric-cdr,it would help if you keep the questions short and simple.
+_OFF_TOPIC_,hammen-eric-cdr,Can you rephrase that question?
+_FEEDBACK_,hammen-eric-cdr,I can't predict the future.
+_FEEDBACK_,hammen-eric-cdr,I don't want to try to predict the future.
+_OFF_TOPIC_,hammen-eric-cdr,I don't know that is.
+_OFF_TOPIC_,hammen-eric-cdr,I don't know who that is.
+_OFF_TOPIC_,hammen-eric-cdr,I'm not gonna talk about that.
+_OFF_TOPIC_,hammen-eric-cdr,I'm not here to talk about that.
+_PROFANITY_,hammen-eric-cdr,would you talk to your mother like that?
+_PROFANITY_,hammen-eric-cdr,you may have heard swearing like a sailor could hurt your career.
+_PROMPT_,hammen-eric-cdr,anything else.
+_OFF_TOPIC_,hammen-eric-cdr,I don't have enough information to talk about that.
+_OFF_TOPIC_,hammen-eric-cdr,I do not have an answer for that.
+_OFF_TOPIC_,hammen-eric-cdr,"That is a great question. Unfortunately, I never recorded an answer to that."
+_OFF_TOPIC_,hammen-eric-cdr,That is a great question. I wish I thought of that.
+_OFF_TOPIC_,hammen-eric-cdr,"That is a great question. Unfortunately, I don't have an answer right now."
+_OFF_TOPIC_,hammen-eric-cdr,"Unfortunately, I was never asked that question."
+_OFF_TOPIC_,hammen-eric-cdr,you might have to ask me something else.
+_PROMPT_,hammen-eric-cdr,What do you want to talk about?
+_PROMPT_,hammen-eric-cdr,What would you like to ask me?
+_PROMPT_,hammen-eric-cdr,What do you want to know?
+_PROMPT_,hammen-eric-cdr,What do you want to know about me?
+_PROMPT_,hammen-eric-cdr,What do you want to know about leadership?
+_PROMPT_,hammen-eric-cdr,you could ask for tips with your first month as a leader.
+_PROMPT_,hammen-eric-cdr,you can ask me about my go to leadership strategy.
+_PROMPT_,hammen-eric-cdr,you can ask me about getting your life set up after a big move.
+_PROMPT_,hammen-eric-cdr,"you can ask me seriously, problems like sexual assault or suicide risks."
+_PROMPT_,hammen-eric-cdr,you can ask me about my job in the Navy.
+_PROMPT_,hammen-eric-cdr,you can ask me about my background.
+_PROMPT_,hammen-eric-cdr,"Go ahead, ask me who gave me the best advice about my career."
+_PROMPT_,hammen-eric-cdr,this changes quickly. So what I tell you today might not be true tomorrow.
+_PROMPT_,hammen-eric-cdr,I would recommend talking to someone local who might know more.
+_PROMPT_,hammen-eric-cdr,"I've done a lot of professional training in the Navy, so you can ask me what skills I've learned."
+_PROMPT_,hammen-eric-cdr,"I haven't always made perfect decisions, and you can ask me about any of the failures that I've had."
+_PROMPT_,hammen-eric-cdr,"was my first tour of Afghanistan. There was a group of Marines who were the reservists from the middle of America. They were assigned as generated mechanics and different jobs, and and they got placed in a unit that was responsible for collecting. Uh, they're dead comrades their body parts and then do inventories and place them on a plane back to Dover to their family members. Ah, very difficult thing that they were not expecting to do. They did not have the training for but to understand that they were part of something much bigger, something that was going to be, uh, fruitful for the whole unit fruitful for the families."
