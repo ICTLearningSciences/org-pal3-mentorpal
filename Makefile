@@ -1,7 +1,7 @@
 SHELL:=/bin/bash
-VENV=.venv
 EBS_BUNDLE_MENTOR_API=build/ebs/bundle/mentor-api
 ENV?=dev-mentorpal
+VENV=.venv
 
 $(EBS_BUNDLE_MENTOR_API):
 	mkdir -p $(EBS_BUNDLE_MENTOR_API)
@@ -9,9 +9,9 @@ $(EBS_BUNDLE_MENTOR_API):
 	cp -R mentors/data/mentors $(EBS_BUNDLE_MENTOR_API)/mentors
 
 $(VENV):
-	$(MAKE) venv-create
+	$(MAKE) $(VENV)-update
 
-.PHONY: venv-create
+.PHONY: $(VENV)-update
 $(VENV)-update:
 	[ -d $(VENV) ] || virtualenv -p python3 $(VENV)
 	$(VENV)/bin/pip install --upgrade pip
@@ -37,7 +37,7 @@ run-local-lrs:
 
 .PHONY: run-local-video
 run-local-video: $(VENV)
-	docker-compose -f docker-compose.yml -f  docker-compose.local-videos.yml up
+	docker-compose -f docker-compose.yml -f docker-compose.local-videos.yml up
 
 .PHONY: local-stop
 stop: $(VENV)

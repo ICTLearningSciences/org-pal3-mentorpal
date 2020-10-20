@@ -14,33 +14,6 @@ executors:
       image: ubuntu-1604:201903-01
       docker_layer_caching: true
 aliases:
-  # setup env vars for ebs tools
-  - &dev-mentorpal-env-init
-    name: dev-mentorpal env init
-    command: eval $EBS_TOOLS_ENV_INIT && echo 'export EB_ENV=dev-mentorpal' >> $BASH_ENV
-  - &qa-mentorpal-env-init
-    name: qa-mentorpal env init
-    command: eval $EBS_TOOLS_ENV_INIT && echo 'export EB_ENV=qa-mentorpal' >> $BASH_ENV
-  - &prod-mentorpal-env-init
-    name: qa-mentorpal env init
-    command: eval $EBS_TOOLS_ENV_INIT && echo 'export EB_ENV=prod-mentorpal' >> $BASH_ENV
-  - &eb-deploy
-    name: EBS Deploy
-    # TODO: now hardcoded with arch 'lstm_v1' and --newest. 
-    # This should be made configurable but in a way that is minimally burdonsome/error prone
-    command: |
-      cd ${EBS_TOOLS} \
-        && make clean build \
-        && mkdir -p build/ebs/bundle/mentor-api/checkpoint \
-        && pip install --user -e git+https://github.com/ICTLearningSciences/mentor-classifier.git@1.0.0#egg=mentor_classifier \
-        && mentor_classifier_copy_models \
-          --newest \
-          --arch lstm_v1 \
-          --from ~/project/checkpoint/classifiers \
-          --to build/ebs/bundle/mentor-api/checkpoint/classifiers \
-        && cp -r ~/project/checkpoint/vector_models build/ebs/bundle/mentor-api/checkpoint/vector_models \
-        && cp -r ~/project/mentors/data/mentors build/ebs/bundle/mentor-api/mentors \
-        && make eb-deploy
   - &only-master
     branches:
       only:
@@ -50,71 +23,126 @@ aliases:
       only: /v[0-9]+(\.[0-9]+)*(-prod)/
     branches:
       ignore: /.*/
-  - &git-lfs-install
-    run:
-      name: Git lfs install
-      command: |
-        curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash \
-          && sudo apt-get install -y git-lfs \
-          && git lfs install
-  - &git-lfs-pull
-    run:
-      name: Git lfs pull
-      command: git lfs pull
-  - &checkout-revision-restore
-    restore_cache:
-      keys:
-        - source-v1-{{ .Branch }}-{{ .Revision }}
-        - source-v1-{{ .Branch }}-
-        - source-v1-
-  - &checkout-revision-save
-    save_cache:
-      key: source-v1-{{ .Branch }}-{{ .Revision }}
-      paths:
-        - ".git"
+  - &only-tagged-releases
+    tags:
+      only: /^\d+\.\d+\.\d+(-[a-z\d\-.]+)?$/
+    branches:
+      ignore: /.*/
+  - &only-untagged
+    tags:
+      ignore: /.*/
+commands:
+  git-lfs-install:
+    steps:
+      - run:
+          name: Git lfs install
+          command: |
+            curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash \
+              && sudo apt-get install -y git-lfs \
+              && git lfs install
+  checkout-with-lfs:
+    steps:
+      - restore_cache:
+          keys:
+            - source-v1-{{ .Branch }}-{{ .Revision }}
+            - source-v1-{{ .Branch }}-
+            - source-v1-
+      - git-lfs-install
+      - checkout
+      - run: git lfs pull
+  checkout-and-cache:
+    steps:
+      - checkout-with-lfs
+      - save_cache:
+          key: source-v1-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - ".git"
+  mentorpal-env-init:
+    parameters:
+      eb_env:
+        type: string
+    steps:
+      - run:
+          name: mentorpal env init - << parameters.eb_env >> 
+          command: eval $EBS_TOOLS_ENV_INIT && echo 'export EB_ENV=<< parameters.eb_env >>' >> $BASH_ENV
+  mentorpal-env-init-dev:
+    steps:
+      - mentorpal-env-init:
+          eb_env: dev-mentorpal
+  mentorpal-env-init-qa:
+    steps:
+      - mentorpal-env-init:
+          eb_env: qa-mentorpal
+  mentorpal-env-init-prod:
+    steps:
+      - mentorpal-env-init:
+          eb_env: prod-mentorpal
+  eb-deploy:
+    parameters:
+      eb_env:
+        type: string
+      video_host:
+        type: string
+      video_url:
+        type: string
+    steps:
+      - checkout-with-lfs
+      - mentorpal-env-init:
+          eb_env: << parameters.eb_env >>
+      - run:
+          name: EBS Deploy
+          # TODO: now hardcoded with arch 'lstm_v1' and --newest. 
+          # This should be made configurable but in a way that is minimally burdonsome/error prone
+          command: |
+            cd ${EBS_TOOLS} \
+              && make clean build \
+              && mkdir -p build/ebs/bundle/mentor-api/checkpoint \
+              && pip install --user -e git+https://github.com/ICTLearningSciences/mentor-classifier.git@1.0.1#egg=mentor_classifier \
+              && mentor_classifier_copy_models \
+                --newest \
+                --arch lstm_v1 \
+                --from ~/project/checkpoint/classifiers \
+                --to build/ebs/bundle/mentor-api/checkpoint/classifiers \
+              && cp -r ~/project/checkpoint/vector_models build/ebs/bundle/mentor-api/checkpoint/vector_models \
+              && cp -r ~/project/mentors/data/mentors build/ebs/bundle/mentor-api/mentors \
+              && echo "MENTOR_VIDEO_HOST=<< parameters.video_host >>" >> build/ebs/bundle/mentor-api/.env \
+              && mkdir -p build/ebs/bundle/mentor-client \
+              && echo "MENTOR_VIDEO_URL=<< parameters.video_url >>" >> build/ebs/bundle/mentor-client/.env \
+              && make eb-deploy
+
 jobs:
   checkout-revision-setup:
     executor: python
     steps:
-      - *checkout-revision-restore
-      - *git-lfs-install
-      - checkout
-      - *git-lfs-pull
-      - *checkout-revision-save
+      - checkout-and-cache
   dev-ebs-deploy:
     executor: ebs
     steps:
-      - *git-lfs-install
-      - checkout
-      - *git-lfs-pull
-      - run: *dev-mentorpal-env-init
-      - run: *eb-deploy
+      - eb-deploy:
+          eb_env: dev-mentorpal
+          video_host: https://dev-video.mentorpal.org
+          video_url: https://dev-video.mentorpal.org/videos
   qa-ebs-deploy:
     executor: ebs
     steps:
-      - *git-lfs-install
-      - checkout
-      - *git-lfs-pull
-      - run: *qa-mentorpal-env-init
-      - run: *eb-deploy
+      - eb-deploy:
+          eb_env: qa-mentorpal
+          video_host: https://qa-video.mentorpal.org
+          video_url: https://qa-video.mentorpal.org/videos
   prod-ebs-deploy:
     executor: ebs
     steps:
-      - *git-lfs-install
-      - checkout
-      - *git-lfs-pull
-      - run: *prod-mentorpal-env-init
-      - run: *eb-deploy
+      - eb-deploy:
+          eb_env: prod-mentorpal
+          video_host: https://video.mentorpal.org
+          video_url: https://video.mentorpal.org/videos
   test:
     executor: tests-dockerized
     steps:
+      - checkout-with-lfs
       - run:
           name: "Set Python Version"
           command: pyenv global 3.7.0
-      - *git-lfs-install
-      - checkout
-      - run: git submodule init && git submodule update --remote
-      - *git-lfs-pull
       - run: make test
   test-license:
     executor: node
@@ -125,24 +153,46 @@ jobs:
           command: npm ci && npm run test:license
 workflows:
   version: 2
-  build-test-deploy:
+  test-and-deploy-commit:
     jobs:
-      - checkout-revision-setup
-      - test-license
-      - test:
+      - checkout-revision-setup:
+          filters: *only-untagged
+      - test-license:
+          filters: *only-untagged
           requires:
             - checkout-revision-setup
-            - test-license
-      - approve-dev-deploy:
+      - test:
+          filters: *only-untagged
+          requires:
+            - checkout-revision-setup
+      - approve-deploy-dev:
           type: approval
+          filters: *only-untagged
           requires:
             - test
+            - test-license
       - dev-ebs-deploy:
+          filters: *only-untagged
           requires:
-            - approve-dev-deploy
-      - qa-ebs-deploy:
-          filters: *only-master
-  build-test-deploy-prod:
-    jobs:
-      - prod-ebs-deploy:
-          filters: *only-prod-releases
+            - approve-deploy-dev
+  # build-test-deploy:
+  #   jobs:
+  #     - checkout-revision-setup
+  #     - test-license
+  #     - test:
+  #         requires:
+  #           - checkout-revision-setup
+  #           - test-license
+  #     - approve-dev-deploy:
+  #         type: approval
+  #         requires:
+  #           - test
+  #     - dev-ebs-deploy:
+  #         requires:
+  #           - approve-dev-deploy
+  #     - qa-ebs-deploy:
+  #         filters: *only-master
+  # build-test-deploy-prod:
+  #   jobs:
+  #     - prod-ebs-deploy:
+  #         filters: *only-prod-releases

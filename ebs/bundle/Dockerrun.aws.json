@@ -8,9 +8,21 @@
       }
     },
     {
+      "name": "mentor-api-dotenv",
+      "host": {
+        "sourcePath": "/var/app/current/mentor-api/.env"
+      }
+    },
+    {
       "name": "mentor-api-mentors",
       "host": {
         "sourcePath": "/var/app/current/mentor-api/mentors"
+      }
+    },
+    {
+      "name": "mentor-client-dotenv",
+      "host": {
+        "sourcePath": "/var/app/current/mentor-client/.env"
       }
     },
     {
@@ -22,18 +34,12 @@
   ],
   "containerDefinitions": [
     {
-      "name": "web-app",
-      "image": "uscictdocker/mentor-client:1.2.7-alpha.1",
+      "name": "mentor-client",
+      "image": "uscictdocker/mentor-client:1.4.0-alpha.1",
       "portMappings": [
         {
           "hostPort": 3000,
           "containerPort": 3000
-        }
-      ],
-      "environment": [
-        {
-          "name": "MENTOR_VIDEO_URL",
-          "value": "https://video.mentorpal.org/videos"
         }
       ],
       "essential": true,
@@ -41,14 +47,19 @@
       "links": ["mentor-api"],
       "mountPoints": [
         {
-          "sourceVolume": "awseb-logs-web-app",
+          "sourceVolume": "mentor-client-dotenv",
+          "containerPath": "/app/.env",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "awseb-logs-mentor-client",
           "containerPath": "/var/log/node"
         }
       ]
     },
     {
       "name": "mentor-api",
-      "image": "uscictdocker/mentor-api:1.0.0",
+      "image": "uscictdocker/mentor-api:1.1.0-alpha.1",
       "essential": true,
       "memory": 6144,
       "portMappings": [
@@ -61,6 +72,11 @@
         {
           "sourceVolume": "mentor-api-checkpoint",
           "containerPath": "/app/checkpoint",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "mentor-api-dotenv",
+          "containerPath": "/app/.env",
           "readOnly": true
         },
         {
@@ -109,7 +125,7 @@
           "containerPort": 80
         }
       ],
-      "links": ["web-app", "mentor-api", "lrs"],
+      "links": ["mentor-client", "mentor-api", "lrs"],
       "mountPoints": [
         {
           "sourceVolume": "nginx-conf",
