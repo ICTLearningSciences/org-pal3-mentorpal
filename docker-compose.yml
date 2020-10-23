@@ -1,7 +1,7 @@
 version: '3.7'
 services:
-  web-app:
-    image: "uscictdocker/mentor-client:1.2.7-alpha.1"
+  mentor-client:
+    image: "uscictdocker/mentor-client:1.4.0"
     expose:
       - "3000"
     depends_on:
@@ -9,12 +9,12 @@ services:
     environment:
       - MENTOR_VIDEO_URL=https://video.mentorpal.org/videos
   mentor-api:
-    image: "uscictdocker/mentor-api:1.0.0"
+    image: "uscictdocker/mentor-api:1.1.0"
     # environment:
-      # we don't need to override the MENTOR_VIDEO_URL
+      # we don't need to override the MENTOR_VIDEO_HOST
       # but this is how you would do it,
       # say, for serving locally-hosted videos
-      # - MENTOR_VIDEO_URL=http://video.mentorpal.org
+      # - MENTOR_VIDEO_HOST=http://video.mentorpal.org
     expose:
       - "5000"
     volumes:
@@ -30,7 +30,7 @@ services:
       - 8080:80
     depends_on:
       - mentor-api
-      - web-app
+      - mentor-client
     volumes:
       - type: bind
         source: ./nginx/default/nginx.conf

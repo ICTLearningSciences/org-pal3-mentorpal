@@ -43,18 +43,17 @@ DOCKER_ARGS=\
 # virtualenv used for pytest
 VENV=.venv
 $(VENV):
-	$(MAKE) venv-create
+	$(MAKE) $(VENV)-update
 
 abs=$(shell d=$$(cd $$(dirname $(1)); pwd); f=$$(basename '$(1)') && echo "$${d}/$${f}")
 absdir=$(shell cd $$(dirname $(1)); pwd)
 fname=$(shell echo $$(basename '$(1)'))
 
-.PHONY: venv-create
-venv-create: virtualenv-installed
+.PHONY: $(MAKE) $(VENV)-update
+$(VENV)-update: virtualenv-installed
 	[ -d $(VENV) ] || virtualenv -p python3 $(VENV)
 	$(VENV)/bin/pip install --upgrade pip
 	$(VENV)/bin/pip install -r ./requirements.txt
-	$(VENV)/bin/pip install -r ./requirements.test.txt
 
 virtualenv-installed:
 	$(PROJECT_ROOT)/bin/virtualenv_ensure_installed.sh
@@ -64,6 +63,28 @@ virtualenv-installed:
 data/mentors/%/clean:
 	@echo "cleaning data/mentors/$*/build..."
 	@rm -rf "data/mentors/$*/build"
+
+VIDEOS_LOCAL?=./videos
+VIDEOS_DEV?=s3://dev-video.mentorpal.org/videos
+VIDEO_SYNC_SRC?=$(VIDEOS_LOCAL)
+VIDEO_SYNC_DST?=$(VIDEOS_DEV)
+
+.PHONY: video-sync
+video-sync: $(VENV)
+	$(MAKE) video-sync/mentors
+
+.PHONY: video-sync/%
+video-sync/%:
+	$(VENV)/bin/aws s3 sync $(VIDEO_SYNC_SRC)/$* $(VIDEO_SYNC_DST)/$* --exclude '*/build/*'
+
+.PHONY: video-sync-up
+video-sync-up:
+	$(MAKE) video-sync-up/mentors
+
+.PHONY: video-sync-up-%
+video-sync-up/%: $(VENV)
+	VIDEO_SYNC_SRC=$(VIDEO_SYNC_SRC) VIDEO_SYNC_DST=$(VIDEO_SYNC_DST) $(MAKE) video-sync/$*
+
 
 # Removes single mentor's data files from the local file system
 .PHONY: videos/%/clean

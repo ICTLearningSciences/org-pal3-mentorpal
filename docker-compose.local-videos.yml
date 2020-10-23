@@ -1,11 +1,11 @@
 version: '3.7'
 services:
-  web-app:
+  mentor-client:
     environment:
       - MENTOR_VIDEO_URL=http://localhost:8080/videos
   mentor-api:
     environment:
-      - MENTOR_VIDEO_URL=http://localhost:8080
+      - MENTOR_VIDEO_HOST=http://localhost:8080
   nginx:
     volumes:
       - type: bind
