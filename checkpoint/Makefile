@@ -5,9 +5,9 @@ MENTOR_ROOT=$(PROJECT_ROOT)/mentors/data/mentors
 ARCH?=lstm_v1
 MENTOR?=clint
 CHECKPOINT_PATH=${CHECKPOINT_ROOT}/classifiers/${ARCH}/${CHECKPOINT}
-MENTOR_CLASSIFIER_TAG=1.0.0
+MENTOR_CLASSIFIER_TAG=1.0.1
 MENTOR_CLASSIFIER_DOCKER?=uscictdocker/mentor-classifier:$(MENTOR_CLASSIFIER_TAG)
-MENTOR_CLASSIFIER_PIP="git://github.com/ICTLearningSciences/mentor-classifier.git@$(MENTOR_CLASSIFIER_TAG)\#egg=mentor_classifier"
+MENTOR_CLASSIFIER_PIP=git://github.com/ICTLearningSciences/mentor-classifier.git@$(MENTOR_CLASSIFIER_TAG)\#egg=mentor_classifier
 VENV=.venv
 
 $(VENV):
@@ -15,7 +15,7 @@ $(VENV):
 
 .PHONY: venv-create
 venv-create:
-	[ -d $(VENV) ] || virtualenv -p python3 $(VENV)
+	[ -d $(VENV) ] || virtualenv -p python3.6 $(VENV)
 	$(VENV)/bin/pip install --upgrade pip
 	$(VENV)/bin/pip install -e $(MENTOR_CLASSIFIER_PIP)
 
@@ -79,6 +79,5 @@ docker-run-dev:
             --entrypoint /bin/bash \
         ${MENTOR_CLASSIFIER_DOCKER}
 	
-.PHONY: vector_models
 vector_models:
 	git lfs install && git lfs pull
