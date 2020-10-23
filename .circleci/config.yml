@@ -41,10 +41,10 @@ aliases:
         && cp -r ~/project/checkpoint/vector_models build/ebs/bundle/mentor-api/checkpoint/vector_models \
         && cp -r ~/project/mentors/data/mentors build/ebs/bundle/mentor-api/mentors \
         && make eb-deploy
-  - &only-master
+  - &only-main
     branches:
       only:
-        - master
+        - main
   - &only-prod-releases
     tags:
       only: /v[0-9]+(\.[0-9]+)*(-prod)/
@@ -141,7 +141,7 @@ workflows:
           requires:
             - approve-dev-deploy
       - qa-ebs-deploy:
-          filters: *only-master
+          filters: *only-main
   build-test-deploy-prod:
     jobs:
       - prod-ebs-deploy:
