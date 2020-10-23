@@ -5,7 +5,7 @@ executors:
       - image: larrykirschner/circleci-elasticbeanstalk:1.1.0
   node:
     docker:
-      - image: circleci/node:12.4
+      - image: circleci/node:12.18.1
   python:
     docker:
       - image: circleci/python:3.6.9
@@ -14,7 +14,7 @@ executors:
       image: ubuntu-1604:201903-01
       docker_layer_caching: true
 aliases:
-  - &only-master
+  - &only-main
     branches:
       only:
         - master
@@ -109,6 +109,21 @@ commands:
               && mkdir -p build/ebs/bundle/mentor-client \
               && echo "MENTOR_VIDEO_URL=<< parameters.video_url >>" >> build/ebs/bundle/mentor-client/.env \
               && make eb-deploy
+  videos-sync-buckets:
+    parameters:
+      bucket_src:
+        type: string
+      bucket_dst:
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: sync << parameters.bucket_src >> to << parameters.bucket_dst >>
+          command: |
+            cd mentors \
+              && VIDEO_SYNC_SRC=<< parameters.bucket_src >> \
+                VIDEO_SYNC_DST=<< parameters.bucket_dst >> \
+                make video-sync
 
 jobs:
   checkout-revision-setup:
@@ -136,6 +151,12 @@ jobs:
           eb_env: prod-mentorpal
           video_host: https://video.mentorpal.org
           video_url: https://video.mentorpal.org/videos
+  videos-sync-dev-to-qa:
+    executor: python
+    steps:
+      - videos-sync-buckets:
+          bucket_src: s3://dev-video.mentorpal.org/videos
+          bucket_dst: s3://qa-video.mentorpal.org/videos
   test:
     executor: tests-dockerized
     steps:
@@ -175,6 +196,40 @@ workflows:
           filters: *only-untagged
           requires:
             - approve-deploy-dev
+      - approve-video-sync-to-qa:
+          type: approval
+          filters: *only-untagged
+      - videos-sync-dev-to-qa:
+          filters: *only-untagged
+          requires:
+            - approve-video-sync-to-qa
+  test-and-deploy-main:
+    jobs:
+      - checkout-revision-setup:
+          filters: *only-main
+      - test-license:
+          filters: *only-main
+          requires:
+            - checkout-revision-setup
+      - test:
+          filters: *only-main
+          requires:
+            - checkout-revision-setup
+      - approve-deploy-qa:
+          type: approval
+          filters: *only-main
+          requires:
+            - test
+            - test-license
+      - qa-ebs-deploy:
+          filters: *only-main
+          requires:
+            - approve-deploy-qa
+      - videos-sync-dev-to-qa:
+          filters: *only-main
+          requires:
+            - approve-deploy-qa
+
   # build-test-deploy:
   #   jobs:
   #     - checkout-revision-setup

@@ -66,9 +66,15 @@ data/mentors/%/clean:
 
 VIDEOS_LOCAL?=./videos
 VIDEOS_DEV?=s3://dev-video.mentorpal.org/videos
-VIDEO_SYNC_SRC=$(VIDEOS_LOCAL)
-VIDEO_SYNC_DST=$(VIDEOS_DEV)
+VIDEO_SYNC_SRC?=$(VIDEOS_LOCAL)
+VIDEO_SYNC_DST?=$(VIDEOS_DEV)
+
+.PHONY: video-sync
+video-sync: $(VENV)
+	$(MAKE) video-sync/mentors
+
 .PHONY: video-sync/%
+video-sync/%:
 	$(VENV)/bin/aws s3 sync $(VIDEO_SYNC_SRC)/$* $(VIDEO_SYNC_DST)/$* --exclude '*/build/*'
 
 .PHONY: video-sync-up
