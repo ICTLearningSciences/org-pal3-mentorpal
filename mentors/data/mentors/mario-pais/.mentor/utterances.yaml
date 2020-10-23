@@ -703,7 +703,7 @@ utterances:
   - what is the difference between the navy and the army?
   - what's the difference between the navy and the army?
   part: 3
-  question: What makes the navy different than other branches of the military?
+  question: What makes the Navy different than other branches of the military?
   session: 1
   sessionAudio: build/recordings/session1-20191029/Session1-SecondHalf.mp3
   sessionTimestamps: build/recordings/session1-20191029/Session1-SecondHalf.csv
