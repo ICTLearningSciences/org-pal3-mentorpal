@@ -2,7 +2,7 @@
 PWD=$(shell pwd)
 AWS_ACCESS_KEY_ID?=required_if_using_aws_transcribe
 AWS_SECRET_ACCESS_KEY?=required_if_using_aws_transcribe
-DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.4.1
+DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.5.0
 DOCKER_CONTAINER=mentor-pipeline
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 AWS_REGION?=us-east-1
@@ -13,7 +13,7 @@ DEV_ROOT?=$(shell cd ~/projects && pwd 2> /dev/null)
 DEV_MENTOR_PIPELINE?=$(shell cd $(DEV_ROOT)/mentor-pipeline && pwd 2> /dev/null)
 DEV_TRANSCRIBE?=$(shell cd $(DEV_ROOT)/py-transcribe && pwd 2> /dev/null)
 DEV_TRANSCRIBE_AWS?=$(shell cd $(DEV_ROOT)/py-transcribe-aws && pwd 2> /dev/null)
-DOCKER_PYTHON_VERSION=3.7
+DOCKER_PYTHON_VERSION=3.8
 DOCKER_SITE_PACKAGES=/usr/local/lib/python$(DOCKER_PYTHON_VERSION)/site-packages
 DOCKER_ENV_ARGS=\
 	-e AWS_REGION=$(AWS_REGION) \
