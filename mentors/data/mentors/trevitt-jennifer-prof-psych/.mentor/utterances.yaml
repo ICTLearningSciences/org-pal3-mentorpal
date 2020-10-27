@@ -10,7 +10,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 121.9
   timeStart: 49.17
-  topics: []
+  topics:
+  - Job Specific
   transcript: my main job responsibility is to teach eso teaching. It is a That's
     the biggest part of my job. Um, a very close second is research. So that's the
     other really big part of my job. Is doing research, writing papers, doing those
@@ -36,7 +37,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 258.23
   timeStart: 132.93
-  topics: []
+  topics:
+  - Job Specific
   transcript: one of the things I love about my job is that there really aren't average
     days. Um, there are average, maybe weeks, I would say, but every day is different.
     So on the days that I'm teaching, I usually teach classes on Tuesdays and Thursdays.
@@ -70,7 +72,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 452.33
   timeStart: 269.7
-  topics: []
+  topics:
+  - Job Specific
   transcript: what it's sometimes hard to estimate how many hours I work, like either
     per day or per week. Um, I kind of live by the academic calendar. And so it's
     a It's a larger time scale, really. Andi, their their periods within that timescale,
@@ -119,7 +122,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 504.7
   timeStart: 461.27
-  topics: []
+  topics:
+  - Job Specific
   transcript: the thing I enjoy the most about my job is interacting with my students,
     and I can absolutely 100% say that and know that it's truth, especially given
     the recent experience of the pandemic and not having that interaction. And it's
@@ -141,7 +145,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 571.03
   timeStart: 514.47
-  topics: []
+  topics:
+  - Job Specific
   transcript: I think the thing I find the most interesting about my job probably
     has to do with my research, the research questions that I'm kind of trying thio
     ask pertaining Thio how what we eat effects, how we feel and how we learn Um,
@@ -164,7 +169,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 620.47
   timeStart: 580.2
-  topics: []
+  topics:
+  - Job Specific
   transcript: I'm going to say meetings, committee meetings, that its committee meetings
     are hard committee meetings. Sometimes they could be awesome, But honestly, a
     lot of times they're very long and they're very boring. So and at the end of the
@@ -186,7 +192,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 715.37
   timeStart: 633.67
-  topics: []
+  topics:
+  - Job Specific
   transcript: I think it's it's time management, that is, that's a really big part.
     And that's one that I just I feel like I continuously struggle with. Or at least
     maybe struggle isn't the right word, um, that I have to keep returning to, and
@@ -215,7 +222,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 877.53
   timeStart: 802.53
-  topics: []
+  topics:
+  - Job Specific
   transcript: I think the most rewarding part of my job is has to do with my interaction
     with my students and in particular, like some of the most rewarding moments in
     my career have come when students have communicated to me that they were able
@@ -241,7 +249,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 1003.47
   timeStart: 887.47
-  topics: []
+  topics:
+  - Job Specific
   transcript: I love my job. I cannot imagine loving another job more than I love
     my job. It really is. It's like a gift that I've been given on, Baby. It's because
     I didn't seek it. I just kind of honestly stumbled into it. And here I am, and
@@ -272,7 +281,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 1161.83
   timeStart: 1038.53
-  topics: []
+  topics:
+  - Job Specific
   transcript: So some of the misconceptions that I've run across, um are that I don't
     work during the summer. That's my favorite. You have the summers off. No, no,
     I do not. Um, and that the biggest one, I think, actually is that teaching, lecturing,
@@ -307,8 +317,7 @@ utterances:
   timeEnd: 1426.53
   timeStart: 1280.07
   topics:
-  - First Steps
-  - JobSpecific
+  - Personal Experience
   transcript: I think that probably most everything that I'm doing right now is different
     than what I thought I would be doing. I suppose it depends on what time of my
     life I'm thinking about. Um, certainly. All the way up until past grad school,
@@ -343,7 +352,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 1574.3
   timeStart: 1454.5
-  topics: []
+  topics:
+  - Challenges
   transcript: I can't recall a deliberate time when I have been treated unfairly at
     work. However, I do think that there have been some instances in which assumptions
     were made based primarily on my gender, that we're not really equal. So So assumptions
@@ -372,7 +382,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 1714.93
   timeStart: 1585.77
-  topics: []
+  topics:
+  - Challenges
   transcript: the coronavirus pandemic has definitely affected my work. Um, I really
     miss interacting with my students. It's been very difficult to not have that interaction
     with them, and it's made me realizing myself that interaction with my students
@@ -410,7 +421,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 1835.23
   timeStart: 1723.27
-  topics: []
+  topics:
+  - Personal Experience
   transcript: one of the things I really love about my job is that it provides a lot
     of flexibility. A zloty as I get things done when I get them done when I do them
     is pretty much, for the most part, up to me. I mean, there are some things that
@@ -444,7 +456,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 2101.13
   timeStart: 1846.23
-  topics: []
+  topics:
+  - Personal Experience
   transcript: so I don't think most people go into academics to be rich. And if they
     do, they're probably not very smart. Um, teachers on at all levels are notoriously
     underpaid. Um, and I think that that's probably true, You know, for me, I You
@@ -499,7 +512,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 2374.23
   timeStart: 2116.0
-  topics: []
+  topics:
+  - Job Specific
   transcript: the salary for a professor can can Very, pretty widely. Um, it's usually
     I would say probably between how I'm bad at this, and it changes I should mention
     with inflation. Eso You know, I've been in my position for almost 20 years now.
@@ -556,7 +570,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 2526.33
   timeStart: 2437.27
-  topics: []
+  topics:
+  - Challenges
   transcript: So right now we're actually kind of in the middle of the pandemic. Eso
     the struggles that I am encountering right now mainly have to do with trying number
     one trying to teach in an online format which is not a format that I am used.
@@ -583,7 +598,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 2588.43
   timeStart: 2534.8
-  topics: []
+  topics:
+  - Personal Experience
   transcript: I am. I am ridiculously happy in my job. I am. I am almost embarrassed
     at how happy I am with my job. I love my job. Any time I really stop. I mean,
     I don't get me wrong. There are parts of my job that really annoy me. Their part
@@ -606,7 +622,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 2654.97
   timeStart: 2625.2
-  topics: []
+  topics:
+  - Job Specific
   transcript: I generally attend W P A, which is the Western Psych Association conference.
     Every year with my students. Occasionally, I will attend a P A, which is the American
     Psychological Association annual meeting. It kind of depends on where it is. I
@@ -627,7 +644,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 2725.17
   timeStart: 2673.57
-  topics: []
+  topics:
+  - Professional Background
   transcript: my specialty is bio psychology, which is sometimes also known as neuroscience.
     It's the intersection between psychological phenomenon like thinking and feeling
     and sensing and moving or behaving is a better way to think of that. And then
@@ -650,7 +668,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-about-the-job.mp4
   timeEnd: 2795.57
   timeStart: 2738.5
-  topics: []
+  topics:
+  - Personal Experience
   transcript: I haven't thought too much about retirement. Um, one of the things I
     actually really like about my job is because it's not terribly physically demanding.
     It's one of those things that like, honestly, you can just keep doing it until
@@ -702,7 +721,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography-follow-up.mp4
   timeEnd: 226.23
   timeStart: 123.97
-  topics: []
+  topics:
+  - Personal
   transcript: Jen is actually the name that my family and friends call me. And so,
     in my personal life, most people call me Jen. I do prefer that my students call
     me Doctor Trev. It and I used to think that that made me feel like it made me
@@ -733,7 +753,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography-follow-up.mp4
   timeEnd: 390.63
   timeStart: 234.23
-  topics: []
+  topics:
+  - Education
   transcript: I actually started my college career at San Diego State University,
     which is part of the CSU system. Um, but it's obviously in San Diego and I went
     there because my dad and my step mom lived in Orange County and I did not want
@@ -770,7 +791,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography-follow-up.mp4
   timeEnd: 544.93
   timeStart: 401.57
-  topics: []
+  topics:
+  - Professional Background
   transcript: probably in a million little ways that I'm not even conscious of. Now,
     I do think that okay, My parents divorce showed me a couple of things. Number
     one, they watching my mom be a single mom. Um, and, you know, raised my brother
@@ -807,7 +829,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography-follow-up.mp4
   timeEnd: 670.9
   timeStart: 562.7
-  topics: []
+  topics:
+  - Professional Background
   transcript: I think it's really neat, actually, that I am but alum because I feel
     that that I've had the experience of being a student at Cal State Fullerton. I
     know you know some of the common problems that students have, but I also know
@@ -841,7 +864,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography-follow-up.mp4
   timeEnd: 885.77
   timeStart: 769.03
-  topics: []
+  topics:
+  - Personal
   transcript: I think the culture that I most identify with is white, upper middle
     class American. I don't even know if an American is a culture, but I think it
     might be, um I definitely grew up, I would say, surrounded mostly by white people
@@ -876,7 +900,7 @@ utterances:
   timeEnd: 75.43
   timeStart: 71.9
   topics:
-  - Background
+  - Personal
   transcript: My name is Dr Jennifer Travis.
   utteranceAudio: build/utterance_audio/s001p004s00011190e00011543.mp3
   utteranceType: _ANSWER_
@@ -898,7 +922,7 @@ utterances:
   timeEnd: 86.73
   timeStart: 80.57
   topics:
-  - Background
+  - Personal
   transcript: I was born in 1969 The summer of love.
   utteranceAudio: build/utterance_audio/s001p004s00012056e00012673.mp3
   utteranceType: _ANSWER_
@@ -914,7 +938,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 115.03
   timeStart: 89.53
-  topics: []
+  topics:
+  - Personal
   transcript: That is an excellent question. I believe that I am 51 years old because
     I was born in 1969. The math is hard. And also, you may find that when you get
     older, these things don't matter so much. And so you don't keep track of them
@@ -938,7 +963,7 @@ utterances:
   timeEnd: 125.9
   timeStart: 120.1
   topics:
-  - Background
+  - Personal
   transcript: I was born in San Francisco, California.
   utteranceAudio: build/utterance_audio/s001p004s00020010e00020590.mp3
   utteranceType: _ANSWER_
@@ -962,7 +987,7 @@ utterances:
   timeEnd: 161.93
   timeStart: 130.8
   topics:
-  - Background
+  - Personal
   transcript: I was born in California, and I lived there until I was almost nine
     years old. I lived in Southern California. Um, actually in full or not, Fullerton.
     Sorry. Fountain Valley. But in Orange County, Um And then when I was almost nine,
@@ -994,7 +1019,7 @@ utterances:
   timeEnd: 300.2
   timeStart: 179.8
   topics:
-  - Background
+  - Personal
   transcript: I think I had a pretty good childhood. Um, my parents were good people.
     My dad was a clinical psychologist. He worked a lot. He was He really loved his
     work. Um, so he was kind of doing that most of my early childhood. And then, um
@@ -1031,7 +1056,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 662.13
   timeStart: 319.33
-  topics: []
+  topics:
+  - Personal
   transcript: So when I was growing up, I wanted to be a lot of things. I wanted to
     be a ballerina because I was a young girl growing up in America. So I think that
     was a pretty standard one. Um, I wanted to be a cowgirl. I wanted to be a singer,
@@ -1100,7 +1126,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 969.93
   timeStart: 837.7
-  topics: []
+  topics:
+  - Education
   transcript: When I started college, I started at San Diego State University, and
     at the time the university was impacted, which meant that they had too many students,
     and so their policy was to have students declare their major as incoming freshmen.
@@ -1139,7 +1166,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 1063.73
   timeStart: 986.57
-  topics: []
+  topics:
+  - Professional Background
   transcript: the fact that my father was a clinical psychologist really did affect
     my career choice. Not in the way that it might seem, but really, it was because
     of him that I chose. Psychology is a major initially, um, and that was just because
@@ -1167,7 +1195,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 1180.4
   timeStart: 1073.6
-  topics: []
+  topics:
+  - Education
   transcript: I think the better question here is what other majors did I not consider?
     I switched my major so many times during my college grow and not officially so
     I didn't officially ever filed paperwork to switch my major, But in my in my mind,
@@ -1208,7 +1237,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 1338.17
   timeStart: 1203.33
-  topics: []
+  topics:
+  - Personal
   transcript: So I am married Teoh, a man named Brian. And he and I met when we were
     both doing our PhD work. So in graduate school, um, and he was actually a year
     behind me. Um, and we were great friends all through. We weren't We weren't together
@@ -1245,8 +1275,7 @@ utterances:
   timeEnd: 1439.23
   timeStart: 1429.5
   topics:
-  - Background
-  - Balancing Family
+  - Personal
   transcript: I have three Children. They are 15 years old. They're all 15 years old.
     They're triplets. I have one son and two daughters.
   utteranceAudio: build/utterance_audio/s001p004s00234950e00235923.mp3
@@ -1269,7 +1298,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 1508.7
   timeStart: 1444.97
-  topics: []
+  topics:
+  - Personal
   transcript: I have a lot of hobbies. Actually, I like Thio Do. I'm very crafty.
     I like to dio lots of different crafts. So I knit. I crash a, um I also like thio
     cook and preserve food. So I like to do a lot of canning on other forms of food
@@ -1293,7 +1323,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 1837.87
   timeStart: 1823.1
-  topics: []
+  topics:
+  - Education
   transcript: my educational background is that I have a PhD. That's the highest level
     of education that I have. Um, I also have a master's degree and a bachelor's degree.
   utteranceAudio: build/utterance_audio/s001p004s00302310e00303787.mp3
@@ -1314,7 +1345,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 2166.9
   timeStart: 1880.33
-  topics: []
+  topics:
+  - Professional Background
   transcript: I teach psychology at Cal State Fullerton University. Uh, in particular.
     I teach bio psychology, which is kind of the intersection of biology and then
     psychology. Eso We're kind of looking at psychological constructs like cognition
@@ -1376,7 +1408,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 2229.27
   timeStart: 2213.37
-  topics: []
+  topics:
+  - Professional Background
   transcript: I have been working at Cal State Fullerton since the fall of 2000 and
     three. That was the first semester that I started teaching, so that means that
     I am coming close to 20 years at Cal State Fullerton.
@@ -1394,7 +1427,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 2521.1
   timeStart: 2235.97
-  topics: []
+  topics:
+  - Professional Background
   transcript: I actually did not choose this career, Really. I mean, I guess I did,
     But I was not looking for this career. I was working. So in 2000 and three, I
     was working in a research lab at U. C. I and I was a post doctoral students, so
@@ -1470,7 +1504,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-biography.mp4
   timeEnd: 2701.23
   timeStart: 2537.8
-  topics: []
+  topics:
+  - Professional Background
   transcript: I didn't really choose this career. I This was never my plan to be a
     teacher when I was in graduate school, working on my PhD. I envision my future
     as one of a researcher working in industry. So working for a pharmaceutical company,
@@ -1509,7 +1544,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-field.mp4
   timeEnd: 91.43
   timeStart: 20.24
-  topics: []
+  topics:
+  - Discipline
   transcript: psychology is an interesting major. I would say it's it can be easy.
     In some ways, it's easy because it's intuitive. I think there's a higher degree
     of of, um, like intuition and just kind of a e. I mean, we're all human beings,
@@ -1535,7 +1571,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-field.mp4
   timeEnd: 187.57
   timeStart: 99.34
-  topics: []
+  topics:
+  - Discipline
   transcript: psychology has AH lot of different areas. Um, there are areas that look
     at relationships between people. So social psychology, looking at, like groups
     and things like that. There's cultural psychology, looking at different cultures.
@@ -1565,7 +1602,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-field.mp4
   timeEnd: 320.05
   timeStart: 198.83
-  topics: []
+  topics:
+  - Discipline
   transcript: I would have to say that the best area of or branch of psychology to
     study is bio psychology, and that may be because I love it. And I'm biased. Absolutely.
     That's probably why I'm saying that. But I truly, truly believe in my heart that
@@ -1598,7 +1636,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-field.mp4
   timeEnd: 602.15
   timeStart: 384.46
-  topics: []
+  topics:
+  - Education
   transcript: the time it takes to finish the degree is based on first of all, what
     degree we're talking about. And then, second of all, what? What you're doing for
     that degree. So a bachelor's degree generally takes 4 to 5 years for most students.
@@ -1650,7 +1689,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-field.mp4
   timeEnd: 639.02
   timeStart: 623.66
-  topics: []
+  topics:
+  - Education
   transcript: all of my degrees are in psychology. So my bachelor's degree in psychology
     and my master's degree in psychology, my PhD, is in neuroscience slash psychology,
     so they're all in psychology.
@@ -1668,7 +1708,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-field.mp4
   timeEnd: 678.06
   timeStart: 658.46
-  topics: []
+  topics:
+  - Job Specific
   transcript: it varies quite a bit, but I think that on average, like the range,
     I think is about, let's say, $80,000 to $120,000. I think most people are earning
     somewhere in that range. It's quite a big range, but that's as close as I can
@@ -1687,7 +1728,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-1-field.mp4
   timeEnd: 730.89
   timeStart: 686.56
-  topics: []
+  topics:
+  - Job Specific
   transcript: I conventions and conferences, we can. I present my research so I often
     go because I'm presenting new research. And conventions and conferences are great
     places to meet other colleagues generally, who are other places? Other universities,
@@ -1746,7 +1788,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 255.34
   timeStart: 186.71
-  topics: []
+  topics:
+  - Trajectory
   transcript: um, I think that one of the advantages of the especially the graduate
     training that I had so both of my masters and in my PhD, uh, one of the real basic
     skills that I learned that has been tremendously helpful to me in my career is
@@ -1779,7 +1822,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 325.88
   timeStart: 266.38
-  topics: []
+  topics:
+  - Challenges
   transcript: I think probably my fears were the ones that a lot of college students
     have, which that I wasn't good enough. I wasn't smart enough. I wasn't disciplined
     enough. Thio be successful. You know, I didn't know if I was going to be able
@@ -1806,7 +1850,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 432.58
   timeStart: 333.08
-  topics: []
+  topics:
+  - Challenges
   transcript: I think what I wish I had known back then was that the time pressure
     that I felt that I was under was not as intense as I thought it was. I think that
     in this was kind of true. I think through all of my educational activities that
@@ -1839,7 +1884,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 558.67
   timeStart: 440.33
-  topics: []
+  topics:
+  - Challenges
   transcript: I think the challenge is the most. I mean, there were a lot of challenges.
     There were just, you know, the workload was a lot, you know, going to being a
     student and working, even though I mean, I was only working part time, so even
@@ -1874,7 +1920,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 641.88
   timeStart: 565.68
-  topics: []
+  topics:
+  - Challenges
   transcript: How many hours do you have? I have made so many mistakes in my career,
     Um, both in my education in my, you know, early jobs in my job. Now I make mistakes
     all the time. Um, I think that the thing that's constant about all of the mistakes
@@ -1900,7 +1947,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 774.36
   timeStart: 649.56
-  topics: []
+  topics:
+  - Challenges
   transcript: um I think early in my life, e I was very afraid of failure. You know,
     failure meant that I wasn't doing what I was supposed to dio, um, I wasn't good
     enough. I wasn't smart enough. I wasn't working hard enough. Whatever you wanna
@@ -1940,7 +1988,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 855.34
   timeStart: 779.55
-  topics: []
+  topics:
+  - Challenges
   transcript: I have some regrets, but not many. To be honest, I'm very, very happy
     and satisfied with my life with multiple aspects of my life. And so every step
     of this journey has brought me here. And while some of them weren't pleasant,
@@ -1966,7 +2015,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 948.14
   timeStart: 871.52
-  topics: []
+  topics:
+  - Challenges
   transcript: That's a hard question because I like where I am. And the way that I
     got here was by making all the decisions that I made. Um, I don't know if I would
     do anything differently. Um, if there are things that you know like, So for instance,
@@ -1995,7 +2045,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 1040.59
   timeStart: 956.21
-  topics: []
+  topics:
+  - Challenges
   transcript: I think the biggest risk I ever took was applying to my PhD programs.
     That was really scary for me. Um, I was very afraid of not getting in anywhere.
     Um, I was afraid that I wouldn't be able to do it if I did get in. But I applied
@@ -2028,7 +2079,7 @@ utterances:
   timeEnd: 1467.88
   timeStart: 1335.58
   topics:
-  - Career Mentoring
+  - Influence
   transcript: There have been a lot of people who have influenced me throughout the
     course of my life and my career. Um, if I'm just looking at my life over all,
     not with particular emphasis on my career I would say that my greatest mentors
@@ -2066,7 +2117,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 1542.03
   timeStart: 1478.96
-  topics: []
+  topics:
+  - Influence
   transcript: I've had multiple mentors. I have multiple mentors. Um, I have mentors
     and different aspects of my life. So I have mentors for my career. I have mentors
     for for parenting. Um, I have mentors for just kind of doing life in general.
@@ -2092,7 +2144,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 1725.2
   timeStart: 1549.28
-  topics: []
+  topics:
+  - Influence
   transcript: I've had a lot of role models. Um, my grandmother, when I was much younger,
     was a powerful role model for me. She was very smart woman, very interested in
     a lot of things. Um, like botany and arts and crafts and making things and cooking.
@@ -2136,7 +2189,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 1863.24
   timeStart: 1749.84
-  topics: []
+  topics:
+  - Influence
   transcript: within the field of psychology itself. My mentors are, uh, Dr Margaret
     White, who I met when I was an undergrad and psychology. In fact, it was her bio
     psychology class. That really kind of set me on this path. Um, and when I was
@@ -2169,7 +2223,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 1953.79
   timeStart: 1880.55
-  topics: []
+  topics:
+  - Influence
   transcript: My mentors are so helpful to me. They they're people that I could just
     turn thio when I have a question. How do I handle this? What do I dio? You know,
     here's the decision I'm facing. You know me. You know what do you Here's what
@@ -2197,7 +2252,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 2066.18
   timeStart: 1971.42
-  topics: []
+  topics:
+  - Challenges
   transcript: e. I think the main difficulties that I experienced pursuing my PhD
     was that my I guess my expectations of what it was going to be like were not entirely
     accurate. Um, I like in my PhD experience Thio, you know, getting married or me
@@ -2226,7 +2282,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 2162.65
   timeStart: 2102.39
-  topics: []
+  topics:
+  - Education
   transcript: e think a class that I wish I had taken that I didn't take waas. Maybe
     a beginning nure Oh, science class. I took bio psychology, which maybe was kind
     of like a beginning neuroscience class, but it was really more focused on the
@@ -2252,7 +2309,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development-follow-up.mp4
   timeEnd: 2421.63
   timeStart: 2247.98
-  topics: []
+  topics:
+  - Employment
   transcript: so there's a lot of variability in salaries, depending on so many factors.
     So I think in general it is true that the more advanced degree that you have,
     the higher your overall salary range, is going to be. So. Usually people with
@@ -2298,7 +2356,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 54.28
   timeStart: 10.55
-  topics: []
+  topics:
+  - Trajectory
   transcript: I think that I was always kind of, I guess, interested. Or maybe aware
     is a better word for it. My dad was a clinical psychologist and he was actually
     working on his PhD when I was kind of a young kid. I think he got his PhD when
@@ -2321,7 +2380,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 90.83
   timeStart: 59.8
-  topics: []
+  topics:
+  - Trajectory
   transcript: So I got started in psychology. I guess in general, when I went to college
     because I went to San Diego State University and as an incoming freshman, you
     had to pick a major. At that point on dso I just ended up picking psychology because
@@ -2342,7 +2402,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 131.9
   timeStart: 97.05
-  topics: []
+  topics:
+  - Trajectory
   transcript: so the career that I'm in now or at least the field that I'm in the
     field of psychology that I'm in, which is bio psychology or neuroscience. Um,
     what inspired me to go into that field was a class that I took called bio psychology,
@@ -2363,7 +2424,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 159.58
   timeStart: 138.44
-  topics: []
+  topics:
+  - Trajectory
   transcript: once I had been introduced Thio the field of bio psychology or neuroscience.
     There was just It was kind of like everything else just dropped away. Like this
     was the most interesting thing that I had ever come across, and all I wanted to
@@ -2382,7 +2444,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 557.46
   timeStart: 366.31
-  topics: []
+  topics:
+  - Trajectory
   transcript: That is a great question. And it's a really long and winding story.
     Um, my career path or trajectory from kind of like when I started, let's say in
     college and now is not a linear process. It all, um or at least not a straight
@@ -2430,7 +2493,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 647.43
   timeStart: 603.38
-  topics: []
+  topics:
+  - Trajectory
   transcript: Yeah. How long did it take me? Um, well, let's see. Let's do the math,
     shall we? So I It took me five years to get my bachelor's degree, and then I was
     in a master's program for two years and then so that's seven years now. Then I
@@ -2452,7 +2516,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 772.81
   timeStart: 655.87
-  topics: []
+  topics:
+  - Experience
   transcript: Yeah, I think what surprised me the most was how many different things
     were going on. I remember the first time I went to my first bio psychology conference.
     So there's a new annual conference called the Society for Neuroscience. And I
@@ -2487,7 +2552,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 890.29
   timeStart: 779.82
-  topics: []
+  topics:
+  - Experience
   transcript: When I was in my bachelor's degree, I thought about changing my major.
     I almost every week, I think, and I kind of did. I just didn't do it like I didn't
     follow the paperwork, but in my mind, I changed my major at least eight times.
@@ -2520,7 +2586,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 946.56
   timeStart: 898.89
-  topics: []
+  topics:
+  - Influence
   transcript: Yeah, I've got a lot of really good advice. And I think for me personally,
     the best advice that I've gotten is to listen to myself. Okay? And to Onley, measure
     my success by standards or metrics that I myself have chosen as opposed Thio.
@@ -2540,7 +2607,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 974.54
   timeStart: 955.13
-  topics: []
+  topics:
+  - Teaching
   transcript: I started teaching at Cal State Fullerton in the fall of 2000 and three.
     I took a year off when my kids were born, So I think I'm not going to do the math
     because it's really hard. I think I'm close to 20 years of teaching.
@@ -2558,7 +2626,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 1028.04
   timeStart: 981.61
-  topics: []
+  topics:
+  - Teaching
   transcript: I did not want to teach. That was not my career goal. I wanted to work
     in the pharmaceutical industry in a lab. I loved working in a lab I loved, you
     know, doing experiments and things like that. Teaching was not something that
@@ -2580,7 +2649,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 1174.18
   timeStart: 1033.85
-  topics: []
+  topics:
+  - Experience
   transcript: I think it depends on what time of my life we're talking about in high
     school. I waas uh, okay, student. I wasn't I was never, like, straight A's or
     anything like that. Subjects that interested me. I did well in subjects that I
@@ -2620,7 +2690,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 1315.2
   timeStart: 1179.43
-  topics: []
+  topics:
+  - Experience
   transcript: Okay. So when I started college as a freshman, I was at San Diego State
     University. I had chosen psychology is my major, but wasn't really super excited
     about it. I just needed something to kind of right in that. That spot on the application,
@@ -2659,7 +2730,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 1430.0
   timeStart: 1322.35
-  topics: []
+  topics:
+  - Experience
   transcript: Yeah, Being in a PhD program to this day was one of the hardest things
     I've done one of the most difficult experiences of my life, but also one of the
     absolute best experiences of my life. So I do remember sitting on my living room
@@ -2690,7 +2762,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 1444.16
   timeStart: 1436.84
-  topics: []
+  topics:
+  - Education
   transcript: It took me about four years, almost exactly four years to get my PhD.
   utteranceAudio: build/utterance_audio/s001p009s00235684e00240416.mp3
   utteranceType: _ANSWER_
@@ -2706,7 +2779,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 1534.75
   timeStart: 1451.59
-  topics: []
+  topics:
+  - Experience
   transcript: I worked all through my bachelor's degree and all through my master's
     degree. Now, when I was working on my bachelors degree, I had a job. I actually
     worked in a fabric store. Um, I like to so and so it was a great job for me, and
@@ -2736,7 +2810,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 1600.39
   timeStart: 1541.55
-  topics: []
+  topics:
+  - Experience
   transcript: When I was doing my bachelors degree, I was a member of PDS A. And once
     I got my g p a up. I was a member of psych. I, um In fact, I think I might have
     served as, like, treasurer or something for psych. I I think I had a like, a new
@@ -2760,7 +2835,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 1709.69
   timeStart: 1606.47
-  topics: []
+  topics:
+  - Education
   transcript: I think the hardest class I have ever taken in my entire college career.
     Waas The general level math class. When I was a sophomore, I had always struggled
     with math. I think I got through high school math mainly through pity. Um, I definitely
@@ -2791,7 +2867,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 1765.44
   timeStart: 1716.67
-  topics: []
+  topics:
+  - Education
   transcript: this is hard. I took so many good classes as an undergraduate and as
     a graduate. Um, I think probably I You know, what I'm going to say is the best
     class that I ever took Waas the bio psychology class that I took as an undergraduate
@@ -2813,7 +2890,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-development.mp4
   timeEnd: 1940.82
   timeStart: 1773.54
-  topics: []
+  topics:
+  - Education
   transcript: Yeah. Okay, so this is a little bit of a story. So I took a class in
     my second semester. Freshman year of college, in linguistics on I love languages.
     I love Entomology. Where the words come from, how did they change? Um and so I
@@ -2859,7 +2937,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 92.62
   timeStart: 14.91
-  topics: []
+  topics:
+  - Discipline
   transcript: It depends on what you dio. So there is there, there, both of those
     things. Psychology is a science. So we use the scientific method. Um, and a big
     part of what we do is gather data and then analyze that. And so that's kind of
@@ -2889,7 +2968,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 135.3
   timeStart: 102.26
-  topics: []
+  topics:
+  - Discipline
   transcript: There are a lot of benefits to studying psychology. Even if you don't
     go into psychology as a career like you're not gonna become a clinical psychologist
     or something like that, Um, the things that you're going toe learn in psychology
@@ -2911,7 +2991,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 221.85
   timeStart: 186.13
-  topics: []
+  topics:
+  - Discipline
   transcript: Yeah, I honestly can't think of any disadvantages right off hand again.
     Psychology, I think, because the knowledge that you're learning applies to human
     beings in general, it's the skill sets that you're going to develop are really,
@@ -2933,7 +3014,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 270.86
   timeStart: 230.56
-  topics: []
+  topics:
+  - Discipline
   transcript: It's not terribly hard to get into the field of psychology in There
     are a lot of different ways that you can use what you learn as a psych major to
     go into different fields. You can remain like in the field of psychology. You
@@ -2956,7 +3038,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 312.1
   timeStart: 278.0
-  topics: []
+  topics:
+  - Discipline
   transcript: one of the best ways is Thio Maken appointment and talk to the psych
     advisers. So we have a psychology advising office. That's a great way to learn
     more about the field. Um, career options within the field. Another place that
@@ -2978,7 +3061,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 356.21
   timeStart: 320.18
-  topics: []
+  topics:
+  - Employment
   transcript: There are a lot of career paths open to you with a degree in psychology.
     I mean, there's the traditional in psychology types of things. Um, but I mean,
     human resource is, has a lot of people. They like to hire people who have degrees
@@ -3000,7 +3084,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 420.27
   timeStart: 364.15
-  topics: []
+  topics:
+  - Employment
   transcript: I think that it's probably pretty easy in the sense that because the
     psychology degree is applicable to so many different career tracks, um, you're
     not as limited as you would be if you had a degree in geology, for instance, Um,
@@ -3024,7 +3109,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 508.27
   timeStart: 428.27
-  topics: []
+  topics:
+  - Employment
   transcript: There are a lot of lucrative career paths in psychology. Um, you can
     go into private practice. That's one of them. So you could be a clinician, and
     they make pretty decent money. Um, you can go into academics, which can provide
@@ -3053,7 +3139,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 635.98
   timeStart: 588.52
-  topics: []
+  topics:
+  - Career
   transcript: I think your best chance for being successful in this field is Thio.
     Look at all the different areas within psychology and see what really ignite your
     passion. Uh, it's so much easier to taken information and retain it when it's
@@ -3077,7 +3164,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 684.78
   timeStart: 643.48
-  topics: []
+  topics:
+  - Training
   transcript: we have a lot of resource is on campus that students can use to help
     them kind of figure out what they want to do. My number one recommendation is
     the career center. They have tests that are available to you, kind of to figure
@@ -3102,7 +3190,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 733.23
   timeStart: 692.43
-  topics: []
+  topics:
+  - Career
   transcript: explore a ZMA TAS. You can take different classes and see what rings
     true to you. See what ignites you. It may not be what you think it's going to
     be. So let yourself stay open to the possibilities. And then once you find something
@@ -3124,7 +3213,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-field.mp4
   timeEnd: 777.1
   timeStart: 741.3
-  topics: []
+  topics:
+  - Employment
   transcript: you can absolutely pursue careers outside of psychology with a psychology
     degree. In fact, most people who graduate with a bachelor's degree in psychology
     are not working in the field of psychology. They're working in other fields. They're
@@ -3152,7 +3242,7 @@ utterances:
   timeEnd: 91.67
   timeStart: 67.96
   topics:
-  - Miscellaneous
+  - Conversation
   transcript: Well, right now, we're in the middle of a pandemic, so life is different.
     I'm trying to find the good good parts of this. I am enjoying time with my family
     and time at home to work on projects, but, um, it's it's a little weird right
@@ -3178,7 +3268,7 @@ utterances:
   timeEnd: 127.68
   timeStart: 99.9
   topics:
-  - Miscellaneous
+  - Conversation
   transcript: I'm doing really good. The world is a bit weird right now with the pandemic.
     But I'm really enjoying having time with my kids and with my husband. Um, we're
     able to do a lot of things that normally our schedules would just prohibit. So
@@ -3198,7 +3288,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-rapport.mp4
   timeEnd: 149.29
   timeStart: 133.62
-  topics: []
+  topics:
+  - Conversation
   transcript: it's finally warming up. It's getting We're having some warmer days
     weaken set out on our deck and enjoy the sunshine. Um, it's been really nice,
     actually.
@@ -3221,7 +3312,7 @@ utterances:
   timeEnd: 223.36
   timeStart: 212.59
   topics:
-  - Miscellaneous
+  - Personal
   transcript: Well right now because of the code pandemic, I'm spending the vast majority
     of my time at my home in Fullerton, California. Thank you.
   utteranceAudio: build/utterance_audio/s001p011s00033259e00034336.mp3
@@ -3245,7 +3336,7 @@ utterances:
   timeEnd: 244.46
   timeStart: 229.6
   topics:
-  - Miscellaneous
+  - Personal
   transcript: My favorite color is red. I actually just love color in general, especially
     kind of deep, rich, saturated tones, but probably might go to favorite color is
     like a deep red.
@@ -3270,7 +3361,7 @@ utterances:
   timeEnd: 275.86
   timeStart: 248.44
   topics:
-  - Miscellaneous
+  - Personal
   transcript: I have trouble answering this question. Always because I love food.
     I love all food. There are so many things. I love my desert island food. If I
     had to go to a desert island and only one food for the rest of my time would probably
@@ -3295,7 +3386,7 @@ utterances:
   timeEnd: 330.56
   timeStart: 296.05
   topics:
-  - Miscellaneous
+  - Personal
   transcript: You know, I hate to admit it because I just feel like I should I should
     love this food. I don't like fish. I just don't. And I mean, I grew up in Hawaii,
     and you think that I would have a really good appreciation for good fish. And
@@ -3318,7 +3409,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-rapport.mp4
   timeEnd: 379.24
   timeStart: 335.52
-  topics: []
+  topics:
+  - Personal
   transcript: I am part of a stridently nonsporting family. We do not sports. In fact,
     it was a point of pride for my husband and I that up until I'm going to say second
     grade, my Children did not know the difference between a basketball and football.
@@ -3340,7 +3432,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-rapport.mp4
   timeEnd: 433.47
   timeStart: 385.27
-  topics: []
+  topics:
+  - Personal
   transcript: so many people inspire me. My friends inspire me. My husband inspires
     me. My kids inspire me. My colleagues inspire me. Um, I guess when people ask
     this question, they're usually asking, like, maybe about, like, historical figures.
@@ -3811,7 +3904,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 82.43
   timeStart: 38.46
-  topics: []
+  topics:
+  - Education
   transcript: there are some required classes that you have to take and some of those
     you're going to have to take in a certain order. The best place to get information
     about those classes in the order that you need to take them in is either just
@@ -3835,7 +3929,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 154.28
   timeStart: 122.31
-  topics: []
+  topics:
+  - Education
   transcript: minors aren't required, but they can be really helpful depending, especially
     on what, um, part of psychology you want to go into. So, for instance, if you
     wanted to go into BIOS psychology, having a minor in either biology or in chemistry
@@ -3855,7 +3950,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 200.3
   timeStart: 161.92
-  topics: []
+  topics:
+  - Education
   transcript: specializations aren't necessary. But they can be helpful to you, particularly
     if you are looking to go either into graduate school or into a career in a particular
     sub field of psychology. Um, we don't have ah lot of concentrations within the
@@ -3876,7 +3972,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 244.79
   timeStart: 209.37
-  topics: []
+  topics:
+  - Education
   transcript: okay? Yeah. I think the best thing the best way to start off is Thio.
     Either take psychology. Wanna one, which is a survey class, and it goes through
     a lot of the different kind of sub areas or domains within psychology. Um, if
@@ -3899,7 +3996,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 288.76
   timeStart: 252.47
-  topics: []
+  topics:
+  - Education
   transcript: you don't have to take advanced statistics, but I'll tell you this statistics
     and statistical abilities is actually one of the best things that you can get
     out of being a psych major. Um, particularly in my department, we have a lot of
@@ -3920,7 +4018,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 387.35
   timeStart: 342.85
-  topics: []
+  topics:
+  - Training
   transcript: so internships are a great way to kind of test the waters in different
     aspects of the field of psychology. So some people do internships that air at
     specific places, like maybe or working with certain populations, like working
@@ -3944,7 +4043,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 438.37
   timeStart: 395.78
-  topics: []
+  topics:
+  - Training
   transcript: okay. Most students take their internship class the year that they're
     going to graduate sometime in their Andi. I think the reason for that is that
     internship is something that you don't want to jump into right away. Just because
@@ -3967,7 +4067,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 488.06
   timeStart: 443.85
-  topics: []
+  topics:
+  - Training
   transcript: you can ask the internship coordinator right now. I believe that position
     is held by Dr Joanne Stows, Um, but you can always just ask at the psychology
     department office and they'll tell you who's who's in charge of it. And they usually
@@ -3991,7 +4092,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 545.58
   timeStart: 495.77
-  topics: []
+  topics:
+  - Education
   transcript: in general, I would look for professors who have been teaching the class
     that you're interested in taking for a while. Um, generally, we get better the
     more class sections we've had, we get a chance to fine tune our teaching methods.
@@ -4016,7 +4118,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 599.84
   timeStart: 552.31
-  topics: []
+  topics:
+  - Education
   transcript: Okay, Well, I don't think there's anything special or magical about
     psychology courses as opposed to other types. Of course, is usually the way that
     you do well, is that you make sure that you have enough time to devote to the
@@ -4042,7 +4145,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 674.25
   timeStart: 612.23
-  topics: []
+  topics:
+  - Experience
   transcript: Yeah, college is a really cool time in a person's life. You have a lot
     of opportunities, and resource is available to you through the university on DSO.
     I think that to get the most out of this experience, you need to get involved.
@@ -4069,7 +4173,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 741.25
   timeStart: 682.86
-  topics: []
+  topics:
+  - Training
   transcript: e think in psychology the skills that you really want to focus on developing
     our critical thinking skills. A lot of what we do in research is evaluating information,
     both the information that maybe we're generating with our research, but also the
@@ -4094,7 +4199,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 774.3
   timeStart: 749.41
-  topics: []
+  topics:
+  - Education
   transcript: I would say you'd probably want to get us close to a four point. Oh,
     is possible? Maybe, You know, I mean, shoot for a four point. Oh, it may not happen,
     but the closer you can get to that, the better. I definitely would not drop below
@@ -4113,7 +4219,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 860.07
   timeStart: 783.08
-  topics: []
+  topics:
+  - Training
   transcript: students asked me how to get involved in research all the time, and
     I am happy to say it's actually pretty easy. So if you go to the department website
     and look under the faculty page, there are blurbs about all of the full time faculty
@@ -4143,7 +4250,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 947.25
   timeStart: 869.32
-  topics: []
+  topics:
+  - Training
   transcript: So for some of the research that I dio, I actually need people to have
     a certain skill set. But I don't expect my students to come into my lab with that
     skill set. Uh, if they have those skills, that's awesome. That's a bonus for me.
@@ -4172,7 +4280,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-2-training.mp4
   timeEnd: 1059.37
   timeStart: 1030.73
-  topics: []
+  topics:
+  - Education
   transcript: That is a great question. And to be honest, I am not entirely sure of
     the step by step process for doing that. But what I would do is refer you to the
     psychology, advising office or possibly even just the psychology department office.
@@ -4192,7 +4301,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-career-advice.mp4
   timeEnd: 121.91
   timeStart: 84.34
-  topics: []
+  topics:
+  - Career
   transcript: so networks can begin right now. So your networks are essentially the
     people that you are sharing this experience with eso. You know, obviously faculty
     that you're taking classes from can become a part of your network. Your peers
@@ -4214,7 +4324,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-career-advice.mp4
   timeEnd: 178.02
   timeStart: 127.58
-  topics: []
+  topics:
+  - Career
   transcript: I think the best way to stand out is by bringing something to the table
     that is uniquely yours. So, for instance, um, you know, joining PDS a or joining
     psych, I I mean, that's great, but that's something a lot of students conduce.
@@ -4238,7 +4349,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-career-advice.mp4
   timeEnd: 284.48
   timeStart: 185.62
-  topics: []
+  topics:
+  - Interpersonal
   transcript: so good. Communication skills are really important, not just in psychology,
     but you know, in a lot of different areas of life. So if you do not if you know
     that you don't have good communication skills or if you think your communication
@@ -4272,7 +4384,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-career-advice.mp4
   timeEnd: 400.13
   timeStart: 293.57
-  topics: []
+  topics:
+  - Career
   transcript: crafting a strong resume, Um, is about oftentimes it's about spin. So
     it's not just what you've done, but it's how you're presenting what you've done.
     Um, so if you think about it in almost any job that you have there, certain skill
@@ -4305,7 +4418,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-career-advice.mp4
   timeEnd: 475.85
   timeStart: 407.54
-  topics: []
+  topics:
+  - Career
   transcript: Well, generally you're going if you're talking about, like, career type
     jobs, Um, generally, you're going to be looking to start a job like maybe after
     you finish your bachelor's degree. So you should start looking for those jobs
@@ -4331,7 +4445,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-career-advice.mp4
   timeEnd: 524.38
   timeStart: 481.1
-  topics: []
+  topics:
+  - Career
   transcript: Yeah, I think probably your best bet is to go to the career center.
     They have a ton of resource is at your disposal. Um, they get job postings from
     all over the place, like they get local job postings. But they also get from national
@@ -4354,7 +4469,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-career-advice.mp4
   timeEnd: 603.02
   timeStart: 532.01
-  topics: []
+  topics:
+  - Career
   transcript: I think my best advice for job searching like kind of beginning a job
     search is to try to be, you know, try to narrow down what you really want to dio
     Um but keep your options open, and so I wouldn't turn down a job that looked pretty
@@ -4382,7 +4498,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-career-advice.mp4
   timeEnd: 747.32
   timeStart: 609.16
-  topics: []
+  topics:
+  - Career
   transcript: So this is kind of like your professional handshake. Really? Um, you
     know, this is your first impression, and research shows us that first impressions
     are hard to shake. So you want Thio? Be sure that you are presenting yourself
@@ -4421,7 +4538,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-career-advice.mp4
   timeEnd: 950.45
   timeStart: 864.37
-  topics: []
+  topics:
+  - Career
   transcript: okay, That could be difficulty. Especially early on. I think I think
     you want Thio. Just pay good attention, Thio. Especially in the context of like,
     your work experiences or your educational experiences. You know how engaged are
@@ -4452,7 +4570,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school-follow-up.mp4
   timeEnd: 401.97
   timeStart: 198.03
-  topics: []
+  topics:
+  - Application
   transcript: That's a great question. You want ultimately, to have strong, positive
     letters. So my advice is Thio pick people number one who like you, Um, number
     two who know you pretty well. So So one of the most common things that happens,
@@ -4502,7 +4621,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school-follow-up.mp4
   timeEnd: 512.91
   timeStart: 414.17
-  topics: []
+  topics:
+  - Preparation
   transcript: it can be fairly competitive to get into graduate school. I mean, the
     general state of affairs is that there are more people who want to get into graduate
     school than there are positions in graduate school. Now, that is not always the
@@ -4535,7 +4655,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school-follow-up.mp4
   timeEnd: 659.32
   timeStart: 529.48
-  topics: []
+  topics:
+  - Application
   transcript: that decision is totally up to you. Um, I think that for those students
     I've had who've applied to graduate programs and haven't gotten into the ones
     that they wanted to get into or maybe just didn't get into any at all, um, most
@@ -4576,7 +4697,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school-follow-up.mp4
   timeEnd: 747.26
   timeStart: 667.85
-  topics: []
+  topics:
+  - Advice
   transcript: Yeah, it kind of depends. It depends on where you're looking for a future
     job. So, you know, there are some areas where having a PhD from a certain institution
     really really matters and, you know, or it's gonna look impressive on your your
@@ -4606,7 +4728,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school-follow-up.mp4
   timeEnd: 865.64
   timeStart: 769.96
-  topics: []
+  topics:
+  - Financial
   transcript: I would say it's pretty difficult. Um, graduate school is unlike undergraduate
     in that it's really not meant to be a part time thing. Most graduate programs,
     both at the Masters level and at the PhD level, are designed to be full time programs.
@@ -4637,7 +4760,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school-follow-up.mp4
   timeEnd: 967.67
   timeStart: 874.58
-  topics: []
+  topics:
+  - Financial
   transcript: I think that you have to look at this from the perspective of you're
     making an investment. When you when you pay for graduate school, right, you're
     investing your time and your investing your money. And so to me, what that means
@@ -4667,7 +4791,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school-follow-up.mp4
   timeEnd: 1145.52
   timeStart: 986.11
-  topics: []
+  topics:
+  - Financial
   transcript: there are a couple of different ways that you can pay for graduate school.
     Um, one is that you can somehow get money. Um, you can either get loans, which
     you have to pay back, But generally there is a fairly low interest rate. Um, and
@@ -4712,7 +4837,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school-follow-up.mp4
   timeEnd: 1243.61
   timeStart: 1156.94
-  topics: []
+  topics:
+  - Financial
   transcript: I would visit the financial aid department at Cal State Fullerton. Um,
     you could also try the career center they might know mawr Thio about, like, possible
     grants and fellowships and scholarships that are available. You could talk to
@@ -4742,7 +4868,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school-follow-up.mp4
   timeEnd: 1681.97
   timeStart: 1601.89
-  topics: []
+  topics:
+  - Financial
   transcript: Yes. So there are programs, and specifically we're talking here about
     PhD programs. Um, most masters level programs are you have to pay to go to them.
     Um, but if you're looking at PhD level programs, programs that focus on research,
@@ -4807,7 +4934,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school-follow-up.mp4
   timeEnd: 2070.32
   timeStart: 1939.32
-  topics: []
+  topics:
+  - Preparation
   transcript: the Jerry is kind of like the s a T for grad school. Um, so it z ah,
     higher level of, um questions and and knowledge assumed that compared to the S
     A. T, which is the college entrance, Uh, it's the same kind of stuff they're looking
@@ -4846,7 +4974,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school-follow-up.mp4
   timeEnd: 2599.67
   timeStart: 2377.49
-  topics: []
+  topics:
+  - Preparation
   transcript: How does a great question I'll be honest. I took the Jerry almost 30
     years ago and it was a very different test back then. It was, I mean, wasn't administered
     on computers. So, like your next question was not dependent on how you answered
@@ -4900,7 +5029,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 118.13
   timeStart: 98.74
-  topics: []
+  topics:
+  - General
   transcript: graduate school refers to schooling that you do after you get your bachelor's
     degree so it could be a master's program. It could be a PhD program, and there
     are actually some other programs as well that are considered to be graduate school
@@ -4919,7 +5049,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 234.18
   timeStart: 181.81
-  topics: []
+  topics:
+  - General
   transcript: So graduate school is, I would say, more specialized than college college.
     Even within a major, you're still kind of doing a broader course of study In graduate
     school, you're really dialing down into a very specific area. Um, graduate school
@@ -4943,7 +5074,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 293.41
   timeStart: 240.68
-  topics: []
+  topics:
+  - General
   transcript: well, the main different degrees. Or you could get a master's degree
     and a PhD or, like maybe another type of doctoral degree. So so that's kind of
     the two categories is a master's degree and a doctoral degree. So masters are
@@ -4967,7 +5099,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 357.04
   timeStart: 296.73
-  topics: []
+  topics:
+  - Advice
   transcript: whether or not you goto graduate school really kind of depends on what
     you want to dio. So, for instance, there are some jobs like my job that you have
     tow have a doctoral degree in order to be able to do it. So this is a kind of
@@ -4993,7 +5126,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 446.05
   timeStart: 375.94
-  topics: []
+  topics:
+  - Advice
   transcript: the choice to get a masters or a doctorate really depends on the job
     that you're seeking or the career path that you want to be on. Um, so I think
     that my first piece of advice would be Thio. You know, once you've kind of figured
@@ -5021,7 +5155,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 547.66
   timeStart: 452.45
-  topics: []
+  topics:
+  - General
   transcript: mhm. So M and s degree M A and M s degrees are both masters degrees.
     So Emma stands for Master of Arts and M s stands for master of Science. And while
     sometimes there's some logic in this usually things that maybe you're in, like
@@ -5053,7 +5188,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 662.19
   timeStart: 552.69
-  topics: []
+  topics:
+  - General
   transcript: So a PhD is in psychology, kind of the more traditional degree. So so,
     way back in the day, the doctors, uh, philosophers were kind of like the thinkers.
     And so a doctor of philosophy was was a degree that was earned by people who,
@@ -5086,7 +5222,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 765.52
   timeStart: 666.86
-  topics: []
+  topics:
+  - Advice
   transcript: So my advice to you in trying to kind of what you should look for in
     a graduate program graduate school is hard. It's not horrible. It's just hard.
     And so in my experience, unless you really love and are committed to what you're
@@ -5120,7 +5257,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 904.42
   timeStart: 854.62
-  topics: []
+  topics:
+  - General
   transcript: the length of graduate school depends primarily on what kind of program
     you're in, so a master's degree usually takes 2 to 3 years, whereas a PhD can
     take anywhere from four thio six, maybe even seven years. Um, in the PhD, What's
@@ -5144,7 +5282,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 968.87
   timeStart: 911.2
-  topics: []
+  topics:
+  - Preparation
   transcript: the best preparation that you can have for going to graduate school
     is having good communication skills. So being able to communicate really effectively
     both, uh, through writing and through speaking, so oral and written communication
@@ -5169,7 +5308,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 1017.6
   timeStart: 974.6
-  topics: []
+  topics:
+  - Advice
   transcript: when you're applying, When you're starting to think about applying to
     graduate school, the main thing that should guide your choice is if it's for,
     like a master's degree, the content of the program. So are they teaching the things
@@ -5191,7 +5331,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 1115.73
   timeStart: 1022.63
-  topics: []
+  topics:
+  - General
   transcript: generally to apply for graduate school, you're going to need to fill
     out an application form. Um, sometimes their general application forms that you
     fill out, and then you can send them to multiple schools. Sometimes schools have
@@ -5224,7 +5365,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 1222.25
   timeStart: 1121.34
-  topics: []
+  topics:
+  - Preparation
   transcript: so the best things the best way to improve your chances of getting into
     grad school are to have the right experience for the programs that you're applying
     Thio to have good letters of recommendation and toe have a very well crafted personal
@@ -5258,7 +5400,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 1351.45
   timeStart: 1257.09
-  topics: []
+  topics:
+  - Advice
   transcript: I think the best way to choose a graduate program is to go there. If
     you can, um, physically go to the location and spend some time with, you know,
     for instance, the faculty, um, you know, in the department and the labs take a
@@ -5291,7 +5434,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 1512.8
   timeStart: 1380.53
-  topics: []
+  topics:
+  - Advice
   transcript: Yeah, this could be really tough. Um, you know, sometimes it's really
     hard to tell. And I will say at the outset, graduate school is hard. There's a
     reason that not everyone is walking around with a graduate degree. It's because
@@ -5331,7 +5475,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 1620.57
   timeStart: 1523.82
-  topics: []
+  topics:
+  - Advice
   transcript: uh, that's a hard one. When you don't get into the program you want.
     Yeah, I think your best course of action is going to depend on a couple of things.
     Number one. Did you get into a different program? Maybe one that you didn't like
@@ -5365,7 +5510,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 1855.46
   timeStart: 1686.82
-  topics: []
+  topics:
+  - Financial
   transcript: so paying for graduate school or the cost of graduate school, I should
     say, is going to depend a little bit on the program that you go thio or the type
     of program. So if you're going to a master's program, generally you're going to
@@ -5408,7 +5554,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 1940.99
   timeStart: 1866.67
-  topics: []
+  topics:
+  - Financial
   transcript: Yeah, the cost of graduate school can vary widely, and it depends on
     a couple of things. It depends on what type of program you're going to. So, for
     instance, you know a master's program is generally going to cost less than a PhD
@@ -5437,7 +5584,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 2039.9
   timeStart: 1951.46
-  topics: []
+  topics:
+  - Financial
   transcript: Yeah, it really depends. Some students don't take on any loans. Eso
     You know, some students who are going Teoh, a program that fully funds them and
     provides for low cost housing and stipends. And things like that may not have
@@ -5469,7 +5617,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 2185.79
   timeStart: 2066.39
-  topics: []
+  topics:
+  - Advice
   transcript: This is an interesting question because I personally feel that the way
     you should evaluate a graduate program is maybe slightly different than the way
     that you would evaluate an undergraduate program. So when you're going to an undergraduate
@@ -5503,7 +5652,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 2380.14
   timeStart: 2260.28
-  topics: []
+  topics:
+  - Preparation
   transcript: in general, The higher your g p a, the better your chances. This is
     one of those easy metrics that admission boards are going to use to essentially
     wade through a ton of applications like this is one of the first metrics they're
@@ -5541,7 +5691,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 2838.65
   timeStart: 2605.78
-  topics: []
+  topics:
+  - Advice
   transcript: Well, the first thing you want to do is you want to find out what g
     p a like What's the minimum G p A. That you need for the programs to what you
     want to apply. So most programs have a minimum. G p a on, but it may be something
@@ -5603,7 +5754,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 2973.39
   timeStart: 2847.48
-  topics: []
+  topics:
+  - Advice
   transcript: I actually love the idea of a gap year. I'll be honest. Um, that really
     wasn't a thing. I think when I was going through graduate school, it was just
     kind of one thing after another. Also, I personally knew my own temperament, and
@@ -5639,7 +5791,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-graduate-school.mp4
   timeEnd: 3078.28
   timeStart: 2980.65
-  topics: []
+  topics:
+  - General
   transcript: graduate school is an experience unlike any other. In my opinion, um,
     it was one of the hardest things I've ever done in my whole life. Maybe outside
     of parenting, Um, you know, if I look back at experiences that just really pushed
@@ -5668,7 +5821,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-on-the-job.mp4
   timeEnd: 53.85
   timeStart: 13.3
-  topics: []
+  topics:
+  - Research
   transcript: I do several different types of experiments, so I do some experiments
     with animal subjects. Rodents in particular those air generally, the studies where
     I'm looking at the effects of nutrition on anxiety and depression and learning.
@@ -5690,7 +5844,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-on-the-job.mp4
   timeEnd: 113.63
   timeStart: 59.42
-  topics: []
+  topics:
+  - Research
   transcript: planning a study takes a lot of time. Generally, you kind of start with
     a question that you have, like, you know. So my my kind of overarching question
     is how does what we eat effect, how we feel and how we learn. And then I take
@@ -5715,7 +5870,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-on-the-job.mp4
   timeEnd: 195.4
   timeStart: 121.89
-  topics: []
+  topics:
+  - Strategies
   transcript: balancing work and family is in some ways, I think, kind of a myth.
     It's not that you are doing both equally at all times. I think rather instead,
     sometimes you're doing more work related stuff, and sometimes you're doing more
@@ -5743,7 +5899,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-on-the-job.mp4
   timeEnd: 285.16
   timeStart: 202.24
-  topics: []
+  topics:
+  - Strategies
   transcript: I think the way that I am able thio juggle kind of different roles,
     Multiple roles, maybe, just, you know, like being a teacher, being a researcher
     and being a parent, being a friend and all these different things is I don't do
@@ -5775,7 +5932,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-on-the-job.mp4
   timeEnd: 355.86
   timeStart: 290.64
-  topics: []
+  topics:
+  - Strategies
   transcript: time management, I think, is one of the biggest keys to success, probably
     for any professional person, but particularly if you are wearing multiple hats
     either within your profession or you have other important elements of your life
@@ -5803,7 +5961,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-on-the-job.mp4
   timeEnd: 588.28
   timeStart: 559.53
-  topics: []
+  topics:
+  - Professional
   transcript: Yeah, I think the thing that keeps me motivated is that I really like
     my job. I really enjoy working with my students. I really like doing research.
     I really like working with my colleagues. Um and so it's It's actually not hard
@@ -5822,7 +5981,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-on-the-job.mp4
   timeEnd: 687.11
   timeStart: 594.31
-  topics: []
+  topics:
+  - Strategies
   transcript: okay. Staying focused could be difficult for me. Sometimes I tend to
     have what I think of as my monkey mind where I'm doing one thing. And then it's
     like, um squirrel eso. I found that when I'm getting that way, when I'm getting
@@ -5857,7 +6017,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-on-the-job.mp4
   timeEnd: 743.93
   timeStart: 693.48
-  topics: []
+  topics:
+  - Strategies
   transcript: Yeah, I think that the way that I set goals is by seeing what's the
     next step. You know, I'm kind of always trying to learn more, um, and trying Teoh,
     you know, show more data or show something more clearly with my data in my research.
@@ -5880,7 +6041,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-on-the-job.mp4
   timeEnd: 807.06
   timeStart: 751.35
-  topics: []
+  topics:
+  - Professional
   transcript: in five years. I think I'll probably still be pretty much where I am
     doing what I'm doing. Um, teaching, Doing research, Enjoying my career in 10 years.
     I don't know. I I mean, I I do see myself possibly on the point of retiring in
@@ -5904,7 +6066,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-3-on-the-job.mp4
   timeEnd: 869.07
   timeStart: 812.29
-  topics: []
+  topics:
+  - Strategies
   transcript: okay. Setbacks could be really frustrating. Um, I think that as a researcher
     and having been a researcher for almost 30 years now, I have learned that this
     is just par for the course. There's always gonna be setbacks. You're always gonna
@@ -5936,7 +6099,7 @@ utterances:
   timeEnd: 960.71
   timeStart: 875.46
   topics:
-  - Motivation
+  - Professional
   transcript: for me, success means that I am enjoying what I'm doing. So I would
     consider myself to be very successful. I really like my job. I really like the
     elements of my life. That air, not job related. Um, I know that people like to
@@ -5973,7 +6136,6 @@ utterances:
   timeStart: 966.97
   topics:
   - Challenges
-  - JobSpecific
   transcript: if I could change one thing about my job, I would abolish meetings forever
     for I would never be. No, I'm kidding. Um, but I kind of not There are a lot of
     meetings. I feel that could be just as easily handled through something like email.
@@ -6249,7 +6411,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-about.mp4
   timeEnd: 70.8
   timeStart: 37.37
-  topics: []
+  topics:
+  - Reflection
   transcript: I feel pretty accomplished. Um, in my career and also in my life, I
     really like where I am in my career. I enjoy my job, my day to day job very, very
     much. I like where I am in terms of my personal life. Um, I don't know, I kind
@@ -6269,7 +6432,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-about.mp4
   timeEnd: 153.0
   timeStart: 113.67
-  topics: []
+  topics:
+  - Reflection
   transcript: I think my biggest accomplishment at this point is that I have crafted,
     ah, life that I find really rewarding and very meaningful. And it encompasses
     a lot of different parts my career, my personal life. Um, but I just feel that
@@ -6289,7 +6453,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-about.mp4
   timeEnd: 379.27
   timeStart: 332.07
-  topics: []
+  topics:
+  - Challenges
   transcript: That's a really hard question. I mean, I've definitely had difficulty
     experiences in this field, um, in my career, but I really don't have any experiences
     that have just been awful. And, you know, like, I haven't learned anything from
@@ -6312,7 +6477,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-about.mp4
   timeEnd: 457.0
   timeStart: 387.57
-  topics: []
+  topics:
+  - Challenges
   transcript: I think my hardest experience in this field were there is to actually
     So So the first was graduate school. Graduate school was just really, really tough.
     It was long and it was very stressful and very demanding, and that that was a
@@ -6339,7 +6505,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-about.mp4
   timeEnd: 519.9
   timeStart: 465.03
-  topics: []
+  topics:
+  - Strategies
   transcript: writer's block is the worst. I hate it. Hate it. I hate it. I hate it.
     Um, the way that I deal with Writer's block is to try to switch into editing mode,
     so I takes. And sometimes what this means is that I take something that I've actually
@@ -6362,7 +6529,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-about.mp4
   timeEnd: 579.57
   timeStart: 528.77
-  topics: []
+  topics:
+  - Strategies
   transcript: There are a couple of ways that I have to manage. Um, anxiety. And one
     of them is Thio. Watch what I eat. So I have just noticed in my own life that
     when I am eating a lot of sugar that that really feeds my anxiety. Eso I try thio
@@ -6385,7 +6553,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-about.mp4
   timeEnd: 633.97
   timeStart: 588.2
-  topics: []
+  topics:
+  - Personal
   transcript: Yes, I have. I have several members of my family who have been diagnosed
     with various mental illnesses. Um, and I myself was diagnosed with depression
     when I was a teenager and, you know, kind of dealt with that for several years,
@@ -6407,7 +6576,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-about.mp4
   timeEnd: 703.97
   timeStart: 651.0
-  topics: []
+  topics:
+  - Reflection
   transcript: So my dad was really into outdoors outdoor things and we went camping
     and hiking a lot as kids and his rule, always when we were out in nature, was
     leave a place better than you found it. And that's essentially been The motto
@@ -6429,7 +6599,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-about.mp4
   timeEnd: 840.6
   timeStart: 789.9
-  topics: []
+  topics:
+  - Reflection
   transcript: I think that in terms of my my career, my greatest source of inspiration
     is probably my colleagues. I am so fortunate toe work with just ah, wonderful
     group of people who really strive to be the best educators that they can be. And
@@ -6452,7 +6623,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-about.mp4
   timeEnd: 893.87
   timeStart: 851.07
-  topics: []
+  topics:
+  - Reflection
   transcript: I think for me the most rewarding thing about being a teacher is watching
     my students realize their own potential. I teach some pretty hard classes, and
     I think like I feel that a lot of students come into my class is ah, little trepidatious
@@ -6480,7 +6652,7 @@ utterances:
   timeEnd: 973.8
   timeStart: 904.27
   topics:
-  - Career Mentoring
+  - Influence
   transcript: I think I've had a lot of really good advice from a lot of different
     people about my career in my life. Um, I think probably the best piece of advice
     that I got was from one of my original mentors, Dr Meg White, who I met when I
@@ -6506,7 +6678,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 57.9
   timeStart: 21.34
-  topics: []
+  topics:
+  - Education
   transcript: I think the best tip for studying is to do it consistently. So I think
     a lot of students, often times want Thio wait until the end right before an exam
     and then study really hard. And research actually shows that for most people,
@@ -6552,7 +6725,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 210.1
   timeStart: 175.7
-  topics: []
+  topics:
+  - Professional Skills
   transcript: The easiest way to develop a positive relationship with one of your
     professors is to actually go to their office hours and meet them and get to know
     them. Um, it helps if you have some targeted questions. Um, usually, professors
@@ -6574,7 +6748,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 274.51
   timeStart: 226.73
-  topics: []
+  topics:
+  - Professional Skills
   transcript: staying motivated can be tricky. For me, one of the ways that I stay
     motivated is I try to break up big tasks into smaller steps, and then as I complete
     each of the steps, I try to reward myself in some small way. So it may be that
@@ -6597,7 +6772,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 344.78
   timeStart: 298.11
-  topics: []
+  topics:
+  - Education
   transcript: I think probably a good bet would be going thio either the career Center
     or to the financial Aid office. Because in addition to helping you process and
     apply for loans and things like that, they're also aware of pools of scholarship
@@ -6620,7 +6796,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 402.48
   timeStart: 361.48
-  topics: []
+  topics:
+  - Education
   transcript: choosing a major is an important decision, and I think that one of the
     biggest factors you need to consider is your own personal enjoyment of this major
     school is really hard. And if you don't enjoy what you're doing and you're not
@@ -6643,7 +6820,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 517.35
   timeStart: 491.07
-  topics: []
+  topics:
+  - Interpersonal
   transcript: I think that some of the easiest ways to make friends in college, our
     thio participate in student clubs because usually you're going to be with, you
     know, people who are interested in the same things that you are and also to form
@@ -6663,7 +6841,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 590.92
   timeStart: 532.71
-  topics: []
+  topics:
+  - Professional Skills
   transcript: It's pretty easy to get burned out if you're doing a lot at once. And
     so the way to avoid burnout is to pace yourself. Essentially be realistic about
     the time that you have available to you. And, you know, don't take too many courses.
@@ -6688,7 +6867,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 637.73
   timeStart: 599.11
-  topics: []
+  topics:
+  - Interpersonal
   transcript: professors are just regular people who know a lot about a particular
     subject. So the best way to approach a professor is just thio. Be friendly and
     respectful and introduce yourself. Professors are used to students introducing
@@ -6710,7 +6890,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 730.45
   timeStart: 651.51
-  topics: []
+  topics:
+  - Experience
   transcript: a few mistakes that I often see students make are taking too many classes,
     given the other things were happening in their lives. So, for instance, of students
     are working a lot of hours, you know, taking 12 to 15 units may not really be
@@ -6738,7 +6919,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 779.41
   timeStart: 740.35
-  topics: []
+  topics:
+  - Experience
   transcript: a couple of great ways to get involved in student life and in academic
     life are to join student clubs. Most departments have several student clubs. Uh,
     there are also other interdepartmental or just not departmental student clubs
@@ -6760,7 +6942,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 861.41
   timeStart: 813.64
-  topics: []
+  topics:
+  - Education
   transcript: If you're looking to improve your grades, probably the best thing that
     you can dio is toe Look at your study habits and to see if there's any way that
     you can improve your study habits. Um, things to look at. Are you studying a little
@@ -6784,7 +6967,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 936.83
   timeStart: 875.79
-  topics: []
+  topics:
+  - Education
   transcript: writing an ape. A format is definitely a skill. So this is something
     that the way that you get better at it is you do it more so you practice more.
     Um, there are some wonderful websites out there that can help with AP style writing.
@@ -6811,7 +6995,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 965.41
   timeStart: 949.74
-  topics: []
+  topics:
+  - Advising
   transcript: for help understanding your T d A. I would send you straight to the
     psychology advising office. They are experts at this kind of thing, and they can
     help you understand all of the parts of your T d A.
@@ -6829,7 +7014,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 1031.44
   timeStart: 976.6
-  topics: []
+  topics:
+  - Advising
   transcript: There are a lot of different things that you can ask during an advising
     session, and you're not limited to a single advising session. You can have multiple
     advising sessions. So some of the things that they can help you with our planning,
@@ -6855,7 +7041,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 1128.19
   timeStart: 1040.74
-  topics: []
+  topics:
+  - Education
   transcript: it is possible to graduate in four years, but there are a few circumstances
     that have to be in place. I think for that to happen, Number one, you have to
     be able to go to school full time every semester during that four year period.
@@ -6884,7 +7071,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 1191.66
   timeStart: 1139.93
-  topics: []
+  topics:
+  - Training
   transcript: to become a teaching assistant. There are a few criteria. First of all,
     you have to have taken the class and gotten I think you have to have it least
     a B. But honestly, most professors will require that you got in a, um generally,
@@ -6909,7 +7097,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 1253.06
   timeStart: 1206.49
-  topics: []
+  topics:
+  - Preparation
   transcript: the importance of extracurriculars kind of depends a lot on, for instance,
     the career path that you're on. So if you're participating in extracurricular
     activities that are directly related to the career you are looking for, then they
@@ -6932,7 +7121,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 1308.87
   timeStart: 1264.31
-  topics: []
+  topics:
+  - Preparation
   transcript: I think one of the best things that you could do to make yourself competitive
     in the job sector is Thio Accumulate experience during your educational time.
     Eso you know, working in fields that are related to kind of your ultimate career
@@ -6954,7 +7144,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 1365.32
   timeStart: 1319.55
-  topics: []
+  topics:
+  - Preparation
   transcript: to make yourself competitive for graduate school. You want to have some
     experiences on your CV that are going to make you stand out. And so things like
     working with professors doing research. That's a great one. Having some some actual
@@ -6977,7 +7168,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 1428.99
   timeStart: 1376.38
-  topics: []
+  topics:
+  - Interpersonal
   transcript: the mental relationship is a very personal one. And, you know, being
     able thio, rely on your mentor toe, have your best interests at heart. Being able
     to trust your mentor is a paramount importance in that relationship. So if you
@@ -7002,7 +7194,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-advice.mp4
   timeEnd: 1509.61
   timeStart: 1439.38
-  topics: []
+  topics:
+  - Education
   transcript: the lab or labs that you take are really going to depend on number one
     what you're interested in. And number two, what you think you might end up doing
     as a career, for instance? So if you think you might go into any kind of teaching
@@ -7030,7 +7223,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity-follow-up.mp4
   timeEnd: 168.36
   timeStart: 16.3
-  topics: []
+  topics:
+  - Diversity
   transcript: I'd like to think that I'm doing several things to support minority
     students. Um, one of the things that I think is really important for for my minority
     students is Thio know that they can approach me and they can ask me questions
@@ -7070,7 +7264,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity-follow-up.mp4
   timeEnd: 192.84
   timeStart: 184.21
-  topics: []
+  topics:
+  - Diversity
   transcript: black lives absolutely matter and they matter to all of us.
   utteranceAudio: build/utterance_audio/s001p021s00030421e00031284.mp3
   utteranceType: _ANSWER_
@@ -7086,7 +7281,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity-follow-up.mp4
   timeEnd: 348.39
   timeStart: 203.62
-  topics: []
+  topics:
+  - Diversity
   transcript: that is such a great question. And there are. There are a lot of different
     answers to that. I have been on many search committees for faculty members through
     the course of my career, and I can testify to the fact that oftentimes when we
@@ -7125,7 +7321,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity-follow-up.mp4
   timeEnd: 512.2
   timeStart: 435.02
-  topics: []
+  topics:
+  - Diversity
   transcript: Well, I think if you're referring Thio the folks with PhDs, for instance.
     So these air oftentimes, you know, the clinical psychologist or the people who
     are in academic positions. Um, so, you know, maybe not even just PhDs. But like
@@ -7154,7 +7351,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity-follow-up.mp4
   timeEnd: 579.94
   timeStart: 520.62
-  topics: []
+  topics:
+  - Diversity
   transcript: the campus of Cal State Fullerton is located in Orange County, which
     is traditionally considered to be a fairly conservative county, uh, in in the
     United States. But I think that, honestly, anytime you're looking at a an educational
@@ -7177,7 +7375,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity-follow-up.mp4
   timeEnd: 663.85
   timeStart: 597.79
-  topics: []
+  topics:
+  - Diversity
   transcript: as a field. I would say that psychology is probably on the liberal side
     of the liberal conservative spectrum. Um, particularly given that the psychology
     is concerned with, you know, individual differences and things like that. I think
@@ -7203,7 +7402,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity-follow-up.mp4
   timeEnd: 838.43
   timeStart: 731.67
-  topics: []
+  topics:
+  - Diversity
   transcript: I think that some basic ways that you can stand up for people who are
     facing discrimination is to number one. Look at your own behavior and see in what
     ways you are supporting that discrimination. Eso This could be things like, You
@@ -7235,7 +7435,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity-follow-up.mp4
   timeEnd: 892.38
   timeStart: 846.55
-  topics: []
+  topics:
+  - Diversity
   transcript: If you are feeling discriminated by other students on campus, you should
     report that to the dean of students and let them take it from there. Um, you can
     also report, you know, feeling discriminated against Thio your professors, you
@@ -7258,7 +7459,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity-follow-up.mp4
   timeEnd: 1051.53
   timeStart: 959.67
-  topics: []
+  topics:
+  - Diversity
   transcript: that's a really hard position to be in. Um, my first impulse would be
     Thio advise you to speak to the professor directly and to tell them that, you
     know, give them an example of something that made you feel uncomfortable. That's
@@ -7289,7 +7491,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity.mp4
   timeEnd: 130.81
   timeStart: 53.81
-  topics: []
+  topics:
+  - Diversity
   transcript: Well, I guess there are a lot of different ways you gonna answer this
     question? Um, on the face of it, I think you could argue that it's incredibly
     diverse because psychology is the study of people, you know. And we, you know,
@@ -7317,7 +7520,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity.mp4
   timeEnd: 194.4
   timeStart: 169.99
-  topics: []
+  topics:
+  - Diversity
   transcript: L G B T Q issues L G B T Q plus issues, I should say, are absolutely
     studied in this field on dim fact. We have faculty members within our department
     who are very involved in that particular aspect of psychology, So this is certainly
@@ -7336,7 +7540,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity.mp4
   timeEnd: 222.08
   timeStart: 200.84
-  topics: []
+  topics:
+  - Diversity
   transcript: Yes, Racial relationships are absolutely studied within the field of
     psychology. Both on the individual level. Azaz. Well, as on the cultural level.
     So so Absolutely. Rachel. Um, issues are studied within the field of psychology.
@@ -7354,7 +7559,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity.mp4
   timeEnd: 277.97
   timeStart: 232.32
-  topics: []
+  topics:
+  - Diversity
   transcript: I think that the field of psychology is probably one of the more welcoming
     and in affirming, um, fields for l g B T Q plus individuals. Um, just because
     that's kind of part of what we do is be aware of the fact that people are different,
@@ -7376,7 +7582,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-diversity.mp4
   timeEnd: 341.32
   timeStart: 285.87
-  topics: []
+  topics:
+  - Diversity
   transcript: Well, I think other than just the kind of normal aspect of trying to
     be welcoming Thio, you know, all students, regardless of several factors including
     race, sexual orientation, religious background, all of those things. Um, we do
@@ -7399,7 +7606,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field-follow-up.mp4
   timeEnd: 15.66
   timeStart: 10.9
-  topics: []
+  topics:
+  - Personal
   transcript: I am married to my husband, Brian.
   utteranceAudio: build/utterance_audio/s001p023s00001090e00001566.mp3
   utteranceType: _ANSWER_
@@ -7415,7 +7623,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field-follow-up.mp4
   timeEnd: 34.03
   timeStart: 23.4
-  topics: []
+  topics:
+  - Personal
   transcript: when I retire. My plan right now is to actually pursue a second career.
     A za midwife.
   utteranceAudio: build/utterance_audio/s001p023s00002340e00003403.mp3
@@ -7432,7 +7641,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field-follow-up.mp4
   timeEnd: 96.63
   timeStart: 44.14
-  topics: []
+  topics:
+  - Professional Skills
   transcript: procrastination is tough. It is hard to stop procrastinating. I think
     for myself, the reason that I find myself wanting to procrastinate is because
     whatever the task at hand is, it seems too big and I can't I just I can't do it.
@@ -7456,7 +7666,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field-follow-up.mp4
   timeEnd: 177.34
   timeStart: 111.77
-  topics: []
+  topics:
+  - Experience
   transcript: I think that you want to join clubs or organizations that are number
     one interesting to you. So even if they don't like, if they're not related to
     your career But they feed your soul, then yeah, absolutely joined them. Because
@@ -7483,7 +7694,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field-follow-up.mp4
   timeEnd: 256.58
   timeStart: 188.96
-  topics: []
+  topics:
+  - Career
   transcript: it can seem really daunting to choose your career path. Figure out what
     you want to dio Um, there are a lot of really great books that can help you to
     kind of look at your kind of natural inclinations. May be natural skill sets,
@@ -7510,7 +7722,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field-follow-up.mp4
   timeEnd: 341.92
   timeStart: 269.85
-  topics: []
+  topics:
+  - Trajectory
   transcript: So when I graduated with my bachelor's degree, I went into a master's
     program. So I went into graduate school from There s Oh, I didn't I wasn't really
     on the job market at that point on Ben. When I was during my Masters program,
@@ -7537,7 +7750,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field-follow-up.mp4
   timeEnd: 440.24
   timeStart: 350.38
-  topics: []
+  topics:
+  - Professional Skills
   transcript: because I have a career that I enjoy and a family that I enjoy and friends
     and all sorts of things. I also have a lot of stress in my life. I just have a
     lot of things going on all the time. And so I have made a point to develop a couple
@@ -7569,7 +7783,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field.mp4
   timeEnd: 39.04
   timeStart: 24.75
-  topics: []
+  topics:
+  - Education
   transcript: a thesis is a paper. Essentially, it's usually a research paper or a
     literature review paper, and it is a requirement of the masters degree.
   utteranceAudio: build/utterance_audio/s001p024s00002475e00003904.mp3
@@ -7586,7 +7801,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field.mp4
   timeEnd: 53.21
   timeStart: 42.97
-  topics: []
+  topics:
+  - Education
   transcript: a minor is like a secondary field of study. It's usually in a different
     field, but a complimentary field.
   utteranceAudio: build/utterance_audio/s001p024s00004297e00005321.mp3
@@ -7603,7 +7819,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field.mp4
   timeEnd: 76.06
   timeStart: 57.32
-  topics: []
+  topics:
+  - Education
   transcript: I'm not actually sure about that. I think I'm not sure your limited.
     You can probably have a lot of different miners, but each miner that you have
     is going to come with its own course of study and requirements. And so most people
@@ -7622,7 +7839,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field.mp4
   timeEnd: 142.84
   timeStart: 115.94
-  topics: []
+  topics:
+  - Education
   transcript: There are a lot of medications and they have a lot of different effects.
     Uh, neurotransmitters. I think probably one of the best ways to remember this
     information is by the use of flashcards. You can write the medication on one side,
@@ -7642,7 +7860,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field.mp4
   timeEnd: 188.96
   timeStart: 156.26
-  topics: []
+  topics:
+  - Education
   transcript: the brain has a lot of parts and they do a lot of things. And so, really,
     the best strategy is just REVIEW JUST REVIEW REVIEW REVIEW. You can use flash
     cards. Um, I think a nice way to do it, too, is Thio. Draw so you can draw a brain
@@ -7662,7 +7881,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field.mp4
   timeEnd: 247.45
   timeStart: 204.41
-  topics: []
+  topics:
+  - Employment
   transcript: If you're looking for a teaching job at, like the university or college
     level, Um, it's it's pretty tough competition. There's there's a lot of people
     who want to teach psychology. Um, but there are a lot of different venues, so
@@ -7685,7 +7905,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-field.mp4
   timeEnd: 454.68
   timeStart: 352.03
-  topics: []
+  topics:
+  - Employment
   transcript: so it it kind of depends on a couple of things. So So One main way to
     distinguish one group of professors from another is essentially whether they are
     tenure, track or not. Tenure track. So not tenure track professors or sometimes
@@ -7719,7 +7940,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-rapport.mp4
   timeEnd: 150.95
   timeStart: 28.47
-  topics: []
+  topics:
+  - Diversity
   transcript: As far as I know, psychological cities are not required to have any
     specific representation at all. So they don't have to represent equally by gender.
     They don't have Thio represent equally by ethnicity. Um, or anything like that.
@@ -7761,7 +7983,7 @@ utterances:
   timeEnd: 232.18
   timeStart: 199.53
   topics:
-  - Miscellaneous
+  - Personal
   transcript: my favorite book of all time. The one that I have read a million times
     and will probably read a million times more is Sense and Sensibility. Bye, Jane
     Austen and I just love that book so much. I just love the way she writes. I love
@@ -7786,7 +8008,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-rapport.mp4
   timeEnd: 313.34
   timeStart: 265.51
-  topics: []
+  topics:
+  - Personal
   transcript: I don't know if I have a favorite movie of all time. I have movies that
     I love in that I have watched repeatedly. Um, so I guess that would be things
     like Harry Potter. Siri's. I love those movies. Um e like the movie of sense and
@@ -7817,8 +8040,7 @@ utterances:
   timeEnd: 399.25
   timeStart: 329.22
   topics:
-  - Miscellaneous
-  - Motivation
+  - Personal
   transcript: I think somebody who I really have always admired um is my grandmother.
     She's actually she's passed at this point, but, um, she was she was really, really
     smart and she waas just always finding new things to Dio. She was really creative.
@@ -7842,7 +8064,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-rapport.mp4
   timeEnd: 442.95
   timeStart: 425.25
-  topics: []
+  topics:
+  - Personal
   transcript: The one thing I cannot live without is coffee. I have tried and failed
     and I can really live with almost. I can give up almost everything. But you will
     take my coffee out of my cold, dead hands.
@@ -7870,8 +8093,7 @@ utterances:
   timeEnd: 487.48
   timeStart: 449.44
   topics:
-  - Background
-  - Balancing Family
+  - Personal
   transcript: I do have pets. I have at the moment I have three dogs and three cats,
     and I'm gonna say 15 chickens. Although technically they're not pets, They're
     working animals. Eso we don't We don't consider them to be pets. We've also had
@@ -7891,7 +8113,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-rapport.mp4
   timeEnd: 525.47
   timeStart: 494.24
-  topics: []
+  topics:
+  - Personal
   transcript: I do. Actually, my family calls me Jenny, and they've called me that
     ever since I was a kid. And it's it's funny because there have been a few people
     in my adult life who, upon meeting me, just decided to call me Jenny. And it always
@@ -7911,7 +8134,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-rapport.mp4
   timeEnd: 555.26
   timeStart: 534.7
-  topics: []
+  topics:
+  - Personal
   transcript: I would totally try out being a midwife because that's actually something
     I do want to dio uh, at some point in my life like, maybe is a second career,
     and I would absolutely love to have the opportunity to kind of, like, be one for
@@ -7938,7 +8162,7 @@ utterances:
   timeEnd: 663.27
   timeStart: 578.82
   topics:
-  - Building Rapport
+  - Personal
   transcript: So one time when my kids were little like I'm gonna say around two,
     we went hiking with, um not really hiking hiking because they were only two. So
     we went on kind of maybe more of like a nature walk. Um and so my husband and
@@ -8485,7 +8709,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 94.75
   timeStart: 41.34
-  topics: []
+  topics:
+  - OffTopic
   transcript: It's great. I love being a psychologist, although I do think when most
     people ask me that question, the what they're thinking about is that I am a clinical
     psychologist. So, like I'm a therapist or a counselor, and I am not that at all.
@@ -8509,7 +8734,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 176.38
   timeStart: 133.42
-  topics: []
+  topics:
+  - Major
   transcript: I think that being a clinical psychologists probably does require a
     certain degree of emotional regulation because you have to kind of be able thio
     interface with clients and not show like surprise or disgust. Um, but clinical
@@ -8532,7 +8758,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 237.75
   timeStart: 204.39
-  topics: []
+  topics:
+  - Major
   transcript: the decision to switch majors first of all, is a really personal one,
     and second of all depends on a lot of different factors. And so I think that at
     this point, we're kind of getting outside of my ability to provide sound advice.
@@ -8552,7 +8779,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 315.18
   timeStart: 259.14
-  topics: []
+  topics:
+  - OffTopic
   transcript: that is such a cool question. And the truth is, nobody really knows.
     Um, I think that the definition that I like best is the decision of whether something
     is normal or abnormal totally depends on the context. So it's kind of like the
@@ -8578,7 +8806,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 353.11
   timeStart: 324.73
-  topics: []
+  topics:
+  - OffTopic
   transcript: Well, I mean, you're a student. And so in that theoretical sense, yes,
     I do care about you because I care about students. That's part of my job. Do I
     care about you yourself? Personally? I don't know you. So that limits my ability
@@ -8598,7 +8827,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 469.48
   timeStart: 428.86
-  topics: []
+  topics:
+  - OffTopic
   transcript: I know that there are certain things that you have to dio. I believe
     there's a prescribed course of study, like a pre med course of study. And you
     have to take the M cat on bond. Then, of course, you have to apply to medical
@@ -8620,7 +8850,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 518.12
   timeStart: 476.26
-  topics: []
+  topics:
+  - OffTopic
   transcript: Well, I think there is a general course of study that you have to dio.
     And I think there's a a graduate course of study as well. On Ben, there are various
     licensing exams on DPA, possibly like internships and things like that. I am not
@@ -8642,7 +8873,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 561.48
   timeStart: 535.61
-  topics: []
+  topics:
+  - OffTopic
   transcript: you know, I don't really know. I mean, my my overall guesses that there's
     some kind of course of study that you need to do. And then there's probably like,
     an internship and maybe some kind of exam that you have tow our multiple exams.
@@ -8662,7 +8894,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 692.55
   timeStart: 642.94
-  topics: []
+  topics:
+  - Advice
   transcript: so honestly, that is a question that only you can answer, and your answer
     is going to be based on your knowledge of the field and your knowledge of yourself.
     And so to answer that question, you can find out mawr about both of those things.
@@ -8687,7 +8920,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 745.76
   timeStart: 708.16
-  topics: []
+  topics:
+  - OffTopic
   transcript: Well, I don't know. I am not qualified. Thio, answer that question.
     I would say that if you think there is something wrong with you, then you should
     explore that more. And you might want to consult a professional on that, Um, you
@@ -8708,7 +8942,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 793.3
   timeStart: 770.96
-  topics: []
+  topics:
+  - OffTopic
   transcript: that is a question for the ages and will probably never be answered
     because life is a lot of different things to a lot of different people. I don't
     think there is one answer to that question. The important thing is that you find
@@ -8727,7 +8962,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 862.59
   timeStart: 837.96
-  topics: []
+  topics:
+  - OffTopic
   transcript: okay. Happiness is one of those things that's hard to define, but you
     know it when you feel it. Um, happiness is, I think, different for different people.
     So I don't think there is just one general definition of this is happiness. I
@@ -8747,7 +8983,8 @@ utterances:
   sessionVideo: build/recordings/sessions/session-4-situations.mp4
   timeEnd: 965.84
   timeStart: 875.95
-  topics: []
+  topics:
+  - Advice
   transcript: dealing with anxiety can be really tough. Um, I do think that there
     are a few things that can benefit most people. One thing that I think can really
     help manage anxiety in the long run is to pay attention to what you are eating.
