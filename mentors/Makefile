@@ -75,7 +75,7 @@ video-sync: $(VENV)
 
 .PHONY: video-sync/%
 video-sync/%:
-	$(VENV)/bin/aws s3 sync $(VIDEO_SYNC_SRC)/$* $(VIDEO_SYNC_DST)/$* --exclude '*/build/*'
+	$(VENV)/bin/aws s3 sync $(VIDEO_SYNC_SRC)/$* $(VIDEO_SYNC_DST)/$* --exclude 'build/*'
 
 .PHONY: video-sync-up
 video-sync-up:
