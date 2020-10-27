@@ -18,11 +18,6 @@ aliases:
     branches:
       only:
         - main
-  - &only-main-releases
-    tags:
-      only: /v[0-9]+(\.[0-9]+)/
-    branches:
-      only: main
   - &only-untagged
     tags:
       ignore: /.*/
@@ -217,43 +212,27 @@ workflows:
           filters: *only-main
           requires:
             - checkout-revision-setup
-      - approve-deploy-qa:
-          type: approval
+      - qa-ebs-deploy:
           filters: *only-main
           requires:
             - test
             - test-license
-      - qa-ebs-deploy:
-          filters: *only-main
-          requires:
-            - approve-deploy-qa
       - videos-sync-dev2qa:
           filters: *only-main
           requires:
-            - approve-deploy-qa
-  test-and-deploy-release:
-    jobs:
-      - checkout-revision-setup:
-          filters: *only-main-releases
-      - test-license:
-          filters: *only-main-releases
-          requires:
-            - checkout-revision-setup
-      - test:
-          filters: *only-main-releases
-          requires:
-            - checkout-revision-setup
+            - test
+            - test-license
       - approve-deploy-prod:
           type: approval
-          filters: *only-main-releases
+          filters: *only-main
           requires:
             - test
             - test-license
       - prod-ebs-deploy:
-          filters: *only-main-releases
+          filters: *only-main
           requires:
             - approve-deploy-prod
       - videos-sync-qa2prod:
-          filters: *only-main-releases
+          filters: *only-main
           requires:
             - approve-deploy-prod
