@@ -1,0 +1,81 @@
+Situation,Mentor,Utterance/Prompt
+_BIO_LONG_,trevitt-jennifer-prof-psych,"My name is Dr Jennifer Trav It I'm an associate professor in the psychology department at California State University, Fullerton. I did my undergrad at Fullerton, so I'm actually an alum. I did my PhD at the University of Connecticut, so I lived in Connecticut for about four years, and then I came back to California and worked at U. C. I. And then I started teaching at Cal State Fullerton. I study the effects of nutrition on anxiety, depression and learning, and the courses that I teach our bio psychology, which has a lecture component and a lab component. I also teach psychopharmacology, which is the study of how drugs affect the brain. And I also teach intermediate research methods and statistics. And I love all of these classes. I have three Children and I'm married. My Children are 15 years old. I actually have triplets. They were born the year after I started teaching at Cal State Fullerton. So I've pretty much been a full time parent the whole time that I've been a full time professor and I really love my job."
+_INTRO_,trevitt-jennifer-prof-psych,"My name is Dr Jennifer Trev. It and I'm an associate professor in the psychology department at California State University, Fullerton. My research focuses on the effects of nutrition on depression, anxiety and learning."
+_PROMPT_,trevitt-jennifer-prof-psych,Hello.
+_FEEDBACK_,trevitt-jennifer-prof-psych,it's nice to meet you.
+_PROMPT_,trevitt-jennifer-prof-psych,go ahead.
+_FEEDBACK_,trevitt-jennifer-prof-psych,thanks.
+_FEEDBACK_,trevitt-jennifer-prof-psych,yes.
+_FEEDBACK_,trevitt-jennifer-prof-psych,"Yes, sir."
+_FEEDBACK_,trevitt-jennifer-prof-psych,"Yes, ma'am."
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,excuse me.
+_PROMPT_,trevitt-jennifer-prof-psych,How are you?
+_PROMPT_,trevitt-jennifer-prof-psych,Good morning.
+_PROMPT_,trevitt-jennifer-prof-psych,good afternoon.
+_PROMPT_,trevitt-jennifer-prof-psych,good evening.
+_PROMPT_,trevitt-jennifer-prof-psych,good night.
+_REPEAT_,trevitt-jennifer-prof-psych,I may have said this before.
+_FEEDBACK_,trevitt-jennifer-prof-psych,Nope.
+_FEEDBACK_,trevitt-jennifer-prof-psych,maybe.
+_FEEDBACK_,trevitt-jennifer-prof-psych,"of course, yeah."
+_FEEDBACK_,trevitt-jennifer-prof-psych,perhaps right.
+_FEEDBACK_,trevitt-jennifer-prof-psych,always.
+_FEEDBACK_,trevitt-jennifer-prof-psych,sometimes.
+_FEEDBACK_,trevitt-jennifer-prof-psych,never
+_FEEDBACK_,trevitt-jennifer-prof-psych,often.
+_FEEDBACK_,trevitt-jennifer-prof-psych,I dio.
+_FEEDBACK_,trevitt-jennifer-prof-psych,I don't.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I have no idea.
+_FEEDBACK_,trevitt-jennifer-prof-psych,I don't think so.
+_PROMPT_,trevitt-jennifer-prof-psych,So here's something you should really know.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,"That's a good question, but I want to make sure to tell you something."
+_FEEDBACK_,trevitt-jennifer-prof-psych,I hope so.
+_FEEDBACK_,trevitt-jennifer-prof-psych,I'm sorry.
+_FEEDBACK_,trevitt-jennifer-prof-psych,I'm sorry to hear that.
+_FEEDBACK_,trevitt-jennifer-prof-psych,Thank you.
+_FEEDBACK_,trevitt-jennifer-prof-psych,I understand that.
+_FEEDBACK_,trevitt-jennifer-prof-psych,I went through something similar.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I'm not sure.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I can't hear you.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I don't understand.
+_PROMPT_,trevitt-jennifer-prof-psych,Can you repeat that?
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I don't have an answer for that.
+_PROMPT_,trevitt-jennifer-prof-psych,Can you ask me something else?
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,it would help if you could keep your questions short and simple.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,Can you rephrase the question?
+_FEEDBACK_,trevitt-jennifer-prof-psych,you can click on the link for more information.
+_FEEDBACK_,trevitt-jennifer-prof-psych,here's some resource is that you can check out.
+_FEEDBACK_,trevitt-jennifer-prof-psych,I cannot predict the future.
+_FEEDBACK_,trevitt-jennifer-prof-psych,I don't want to speculate about the future.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I don't know what that is.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I don't know who that ISS.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I'm not going to talk about that.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I'm not here to talk about that.
+_PROMPT_,trevitt-jennifer-prof-psych,anything else.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I don't have enough information to talk about that.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I don't have an answer for that.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,I don't really have an opinion on that.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,"That is a great question, but unfortunately I don't have an answer for that right now."
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,That is a great question. I wish I thought of that.
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,"That's an interesting question, but I'm here to talk about psychology training."
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,"Unfortunately, I was never asked that question."
+_OFF_TOPIC_,trevitt-jennifer-prof-psych,you might have to ask me something else.
+_PROMPT_,trevitt-jennifer-prof-psych,What do you want to talk about?
+_PROMPT_,trevitt-jennifer-prof-psych,What would you like to ask me?
+_PROMPT_,trevitt-jennifer-prof-psych,What do you want to know?
+_PROMPT_,trevitt-jennifer-prof-psych,I see you didn't ask anything there.
+_PROMPT_,trevitt-jennifer-prof-psych,you have to ask me something to get a response.
+_PROMPT_,trevitt-jennifer-prof-psych,What do you want to know about me?
+_PROMPT_,trevitt-jennifer-prof-psych,What do you want to know about working in psychology?
+_PROMPT_,trevitt-jennifer-prof-psych,What do you want to know about being a professor?
+_PROMPT_,trevitt-jennifer-prof-psych,What do you want to know about studying psychology?
+_PROMPT_,trevitt-jennifer-prof-psych,What kind of advice are you looking for?
+_PROMPT_,trevitt-jennifer-prof-psych,you could ask me about my education.
+_PROMPT_,trevitt-jennifer-prof-psych,you could ask me about my job.
+_PROMPT_,trevitt-jennifer-prof-psych,you could ask me about my background.
+_PROMPT_,trevitt-jennifer-prof-psych,"Go ahead, ask me who gave me the best advice about my career."
+_REPEAT_,trevitt-jennifer-prof-psych,I might have covered this already.
+_PROMPT_,trevitt-jennifer-prof-psych,"Since this can change quickly, I would recommend talking to someone local who might know more."
+_PROMPT_,trevitt-jennifer-prof-psych,"Go ahead, ask me what I like about my job."
+_PROFANITY_,trevitt-jennifer-prof-psych,"Okay. I'm gonna stop you right there and let you know that in the field of psychology and really in any professional field, uh, the use of profanity is considered unprofessional. So for the purposes of this session, I'm gonna ask that you refrain from using it. If you want me to continue answering your questions."
+_PROFANITY_,trevitt-jennifer-prof-psych,"So if you said what I think you just said, I'm guessing that you're not taking this seriously. We don't tend to use profanity and professional settings, and so I'm guessing that your not wanting to do that right now."
