@@ -1,7 +1,18 @@
 utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How would you describe your duties?
+  - How would you describe your job responsibilities?
+  - How would you describe your responsibilities at work?
+  - What are you required to do?
+  - What are you responsible for at work?
+  - What are you responsible for at your work?
+  - What are your job obligations?
+  - What are your primary responsibilities as a professor?
+  - What are your roles at work?
+  - What do you do at work?
+  - What do you do at your job?
   part: 1
   question: What are your job responsibilities?
   session: 1
@@ -28,7 +39,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00004917e00020190.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you describe a typical day at your job?
+  - Tell me about a typical day at your job.
+  - What do you do on a daily basis at work?
+  - What do you do on a typical day at work?
+  - What do you do on a usual day at work?
+  - What does an average day at work entail?
+  - What is a normal day like at work?
+  - What is a normal day like on the job?
+  - What is an average day like on the job?
   part: 1
   question: What is an average day like on the job?
   session: 1
@@ -63,7 +83,19 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00021293e00041823.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you have long hours?
+  - Do you work a lot of hours?
+  - Do you work full-time?
+  - How long are your shifts?
+  - How long was your shift?
+  - How many hours do you put in every week?
+  - How many hours do you work per week on average?
+  - How many hours do you work?
+  - How much do you work?
+  - What are your hours like?
+  - What are your weekly hours?
+  - What are your work hours?
   part: 1
   question: How many hours do you work in a typical day or week?
   session: 1
@@ -113,7 +145,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00042970e00073233.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Enjoyment you get from your job
+  - Overall, do you enjoy your job?
+  - 'What do you enjoy most about this field? '
+  - What do you enjoy most about your career?
+  - What do you love most about your career?
+  - What is your favorite part about the job?
+  - Why do you love your job?
   part: 1
   question: What do you enjoy the most about your job?
   session: 1
@@ -136,7 +175,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00074127e00082470.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - What do you find most interesting in the job?
+  - What do you think is the most interesting aspect of your job?
+  - What is most interesting about your career?
+  - What part of the job is the most interesting?
+  - What would make you think that you have never worked a day in your life?
   part: 1
   question: What do you find the most interesting about your job?
   session: 1
@@ -160,7 +204,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00083447e00093103.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Is there anything you dislike about your work?
+  - Is there anything you hate about your job?
+  - What about your job do you hate?
+  - What do you dislike about your job?
+  - What do you hate about your job?
+  - What do you like least about your career?
+  - What do you like least about your job?
+  - What is the worst part about your job?
   part: 1
   question: What do you like the least about your job?
   session: 1
@@ -183,7 +235,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00094020e00102047.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Difficult job?
+  - What has been the most challenging part about your job?
+  - What is the hardest part about your job?
+  - What is the most difficult part of your career?
+  - What is the most difficult situation you have encountered throughout your career?
+  - What makes your job hard?
   part: 1
   question: What is the most difficult part of your job?
   session: 1
@@ -213,7 +271,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00103367e00115537.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Does your job have any big rewards?
+  - Is your job rewarding in any way?
+  - What are the greatest rewards of your job?
+  - What do you find rewarding about your career?
+  - What is most rewarding about your job?
+  - What is the biggest reward of your job?
   part: 1
   question: What is the most rewarding part of your job?
   session: 1
@@ -240,7 +304,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00132253e00143753.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are you fulfilled?
+  - Are you happy with your career?
+  - Are you satisfied with what you're doing now?
+  - Are you satisfied with your career?
+  - Do you find your job satisfying?
+  - What is your satisfaction with this line of work?
   part: 1
   question: How satisfied are you with your job or career?
   session: 1
@@ -272,7 +342,20 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00144747e00164347.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do people get the wrong idea about what you do?
+  - Do the movies and TV portray your job well?
+  - How are people fooled about what you do for a living?
+  - Is you work as stressful as it is shown on TV?
+  - Is your job misleading to others?
+  - What are some false misconceptions about your job?
+  - What are the myths about what you do?
+  - What do people get wrong about being a professor?
+  - What do people get wrong about your job?
+  - What do people not know about your job?
+  - What do people not understand about being a professor?
+  - What do people not understand about your job?
+  - What is misleading about your job?
   part: 1
   question: What are some of the common misconceptions about your profession?
   session: 1
@@ -306,7 +389,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00171853e00192183.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are you doing anything different from what you thought originally?
+  - Are you doing anything you didn't expect?
+  - Did your job description fit what you are doing?
+  - How are things different from when you started?
+  - How is your work different from what you expected?
+  - Is there something you are doing that is different from what you expected?
+  - What do you do that is different from what you expected?
+  - What was unexpected about your job?
   part: 1
   question: What do you do now that is different from what you thought you would be
     doing?
@@ -343,7 +434,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00212007e00234653.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you feel like your workplace treats you fairly?
+  - Do you feel there are treatment inequalities at your job?
+  - Has there been any discrimination at work?
+  - Has your job ever treated you unfairly?
+  - Have you ever felt discriminated against at your job?
+  - Have you ever felt like the victim of workplace inequality?
+  - Have you experienced unfair treatment at work?
+  - How were you personally affected by sexism or racism?
+  - Is there unfair treatment in your workplace?
   part: 1
   question: Have you ever been treated unfairly at work?
   session: 1
@@ -373,7 +473,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00241450e00261430.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did your job get threatened due to COVID?
+  - Has your job been affected by the coronavirus?
+  - Have you had any difficulties related to the COVID-19 pandemic?
+  - Have you had any trouble due to the COVID-19 pandemic?
+  - How has the coronavirus pandemic affected your work?
+  - How has your career been affected by COVID?
+  - Was there any impact of corona?
+  - Were you impacted by COVID?
+  - Were you negatively affected by COVID?
+  - What have you had to change because of COVID?
   part: 1
   question: How has your work been affected by the coronavirus pandemic?
   session: 1
@@ -412,7 +522,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00262577e00283493.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you pursue your hobbies?
+  - Do you have a life?
+  - Do you have any time for leisure?
+  - Do you have free time?
+  - Do you have leisure time?
+  - Do you have spare time?
+  - Do you have time off?
+  - Does your job allow you to have free time?
+  - How much free time do you have?
   part: 1
   question: Do you have free time to do what you enjoy?
   session: 1
@@ -447,7 +566,22 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00284327e00303523.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you afford a house?
+  - Can you afford to live off your salary?
+  - Can you get by on your salary?
+  - Can you make a living out of your pay?
+  - Do you earn enough money to cover living expenses?
+  - Do you earn enough money?
+  - Do you get paid enough to make a living?
+  - Do you make enough to be able to afford rent?
+  - Do you need financial assistance?
+  - Do you need food stamps?
+  - Do you need to take out loans?
+  - Does your job pay enough?
+  - Does your salary cover all of your living expenses?
+  - Is the pay enough to make a living?
+  - Is your salary enough to make a living?
   part: 1
   question: Can you make a living with your pay?
   session: 1
@@ -503,7 +637,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00304623e00350113.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How much do you earn annually?
+  - How much do you get paid?
+  - How much money do you earn?
+  - How much money do you make?
+  - How well does your job pay?
+  - Salary?
+  - What is a rough estimate of how much you get paid?
+  - What is your annual income?
+  - What is your salary range?
   part: 1
   question: What is the salary like for your job?
   session: 1
@@ -561,7 +704,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00351600e00393423.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Is there anything you are trying to overcome at work right now?
+  - What are some struggles you face while at work?
+  - What are things you are struggling with right now?
+  - What do you struggle with right now?
+  - What have you been struggling with recently?
+  - What is something you still struggle with?
+  - What is the struggle you still face now?
+  - What kinds of challenges are you currently experiencing at work?
+  - What kinds of challenges are you facing at work right now?
   part: 1
   question: What are some struggles you are currently facing in your job?
   session: 1
@@ -589,7 +741,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00403727e00420633.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are you content at your job?
+  - Are you glad you took your job?
+  - Are you happy with your career?
+  - Are you happy with your current job?
+  - Are you happy?
+  - Are you where you want to be?
+  - How joyful are you at work?
+  - Would you say you are happy in your job?
   part: 1
   question: How happy are you in your job?
   session: 1
@@ -613,7 +773,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00421480e00430843.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are you required to go to conferences?
+  - Do you attend conventions for psychologists?
+  - Do you have to present at conferences?
+  - Do you present at conventions?
+  - Do you usually go to conferences or conventions?
+  - Does your job require you to attend conferences or conventions?
+  - Have you attended any conferences?
+  - How often do you go to conferences?
   part: 1
   question: Do you attend any conferences or conventions?
   session: 1
@@ -635,7 +803,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00434520e00441497.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you have a specialty?
+  - Do you specialize in a specific field?
+  - What area do you specialize in?
+  - What field do you specialize in?
+  - What is your specialty?
   part: 1
   question: What do you specialize in?
   session: 1
@@ -659,7 +832,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p001s00443356e00452517.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - At what age do you think you'll retire?
+  - Have you started planning for retirement?
+  - How long until you retire?
+  - What year will you retire?
+  - When do you plan to retire?
+  - Will you retire?
   part: 1
   question: When will you retire?
   session: 1
@@ -712,7 +891,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p002s00001710e00014297.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can I call you by your first name?
+  - Do people call you Jenn?
+  - Do you have a nickname?
+  - Do you mind if I call you Jen?
+  - Do your students call you Jenn?
+  - Do your students call you by your first name?
+  - Does anyone call you Jen?
+  - 'Hi Jen '
+  - Is it Jen with one or two n's?
+  - Is it okay if I call you Jen?
+  - Jen?
   part: 3
   question: Can I call you Jenn?
   session: 1
@@ -744,7 +934,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p003s00020397e00034623.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - What influenced you to go to school at Fullerton?
+  - What made you choose Fullerton over other schools?
+  - What made you go to school at Fullerton?
+  - Why Fullerton?
+  - Why did you choose to attend Fullerton?
+  - Why did you complete your undergrad at Fullerton?
+  - Why didn't you pick another school?
   part: 3
   question: Why did you go to school at Fullerton?
   session: 1
@@ -782,7 +979,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p003s00035423e00063063.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did your parents' divorce affect your career choice?
+  - Did your parents' divorce has anything to do with your career choice?
+  - Did your parents' divorce have an impact on your career choice?
+  - How did your parents' divorce affect your career choice?
+  - How did your parents' divorce impact you?
+  - Was your career path impacted by your parents' divorce?
   part: 3
   question: How did your parents' divorce impact your career choices?
   session: 1
@@ -819,7 +1022,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p003s00064156e00090493.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How do you like being at Fullerton again for your job?
+  - How does it feel to come back to Fullerton as a teacher?
+  - What is it like teaching at a school that you used to attend?
+  - What is like being a teacher for your alma mater?
+  - What is like teaching at Fullerton when you used to be a Titan?
+  - What is like teaching at Fullerton while also being an alumni?
+  - What is like teaching at a university that you attended?
+  - What's it like being back at Fullerton for your job?
+  - What's it like being back at Fullerton to teach?
   part: 3
   question: What is it like teaching at Fullerton when you are an alum who graduated
     from the same university?
@@ -855,7 +1067,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p003s00092270e00111090.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you tell me about your culture?
+  - Do you have a culture you most identify with?
+  - How would you describe your culture(s)?
+  - What is your cultural identity?
+  - What's your cultural background?
   part: 3
   question: What culture(s) do you most identify with?
   session: 1
@@ -887,9 +1104,11 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - How are you addressed?
+  - How should I address you?
+  - What are you called?
   - What do people call you?
-  - What is your name?
+  - What do you go by?
+  - What do you like to be called?
   - Who are you?
   part: 4
   question: What is your name?
@@ -908,11 +1127,9 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
+  - What is your birth year?
   - What is your date of birth?
-  - What time were you born?
-  - When was your birth year?
   - When were you born?
-  - Which year were you born?
   part: 4
   question: What year were you born?
   session: 1
@@ -929,7 +1146,11 @@ utterances:
   utteranceVideo: build/utterance_video/s001p004s00012056e00012673.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How many years have you been alive?
+  - How much older are you than me?
+  - How much younger are you than me?
+  - What is your age?
   part: 4
   question: How old are you?
   session: 1
@@ -950,10 +1171,11 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - Were you born in Los Angeles?
+  - Birthplace?
+  - From where do you originate?
+  - In what area where you born?
   - Where are you from?
-  - in what city were you born?
-  - what's your home state?
+  - Where do you come from?
   part: 4
   question: Where were you born?
   session: 1
@@ -971,13 +1193,12 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - Were you born here?
-  - Where are you from?
-  - Where did you go to high school?
+  - Are you a local?
+  - Are you from around here?
+  - Have you been here your whole life?
+  - What is your hometown?
   - Where did you spend your childhood?
-  - Where do you call home?
-  - Where were you born?
-  - Where's your hometown?
+  - Where is your hometown?
   part: 4
   question: Where did you grow up?
   session: 1
@@ -999,17 +1220,13 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - How were you raised?
-  - Were you a bad kid?
-  - Were you a good kid?
-  - What happened when you were young?
-  - What kind of kid were you?
-  - What was it like for you growing up?
+  - Did you have a difficult childhood?
+  - How did your childhood influence you?
+  - How was it growing up?
+  - How was your childhood?
+  - What was it like growing up for you?
   - What was your childhood like?
-  - When you were young, what was your family like?
-  - did you get along with your parents?
-  - did your parents encourage you to join the navy?
-  - were your parents okay with you joining the army?
+  - What were you like as a kid?
   part: 4
   question: Tell me about your childhood.
   session: 1
@@ -1047,7 +1264,19 @@ utterances:
   utteranceVideo: build/utterance_video/s001p004s00025980e00050020.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you always want to be a professor?
+  - Did you always want to pursue this kind of work?
+  - Did you dream of doing exactly what you are doing now?
+  - Did you hope to become a professor when you were a kid?
+  - Did you think of becoming a professor when you were growing up?
+  - Do you remember what wanted to be when you were a kid?
+  - Is your job always what you expected to do?
+  - What did you dream of doing when you were a kid?
+  - What did you dream of doing when you were young?
+  - What did you think you would be when you were growing up?
+  - What did you think your ideal job would be when you grew up?
+  - What was your dream job as a kid?
   part: 4
   question: What did you want to be when you were growing up?
   session: 1
@@ -1117,7 +1346,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p004s00051933e00110213.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did anyone help you choose your major?
+  - How did you choose what you wanted to study?
+  - How did you choose your field of study?
+  - How did you decide that you want to pursue this major?
+  - How did you decide to study psychology?
+  - What led you to major in psychology?
+  - What made you decide on this major?
   part: 4
   question: How did you choose your major?
   session: 1
@@ -1156,7 +1392,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p004s00135770e00160993.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did being a daughter of a clinical psychologist affect your career choice?
+  - Did having a clinical psychologist in the family affect your career choice?
+  - Did your family impact your career choices?
+  - Did your parents affect your career choice?
+  - How did having a clinical psychologist Dad affect your career choice?
+  - How did your father's career affect your career choice?
+  - How did your parents influence your career choice?
+  - How influential was the fact that your Dad was a clinical psychologist?
+  - Was your dad influential in your career choice?
   part: 4
   question: How did it affect your career choices that your father was a clinical
     psychologist?
@@ -1186,7 +1431,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p004s00162656e00174373.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Any other majors you considered?
+  - Did you consider any alternate majors?
+  - Did you consider other majors?
+  - Did you only consider psychology as a major?
+  - Was this the only major that you wanted to do?
+  - Were you always set on your major?
+  - What other fields did you consider?
+  - What other majors did you think about?
   part: 4
   question: What other majors did you consider?
   session: 1
@@ -1219,16 +1472,12 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - Are you close with your parents?
-  - Do you like your family?
-  - Do you like your parents?
-  - How well do you get along with your folks?
-  - What is your family like?
-  - What is your relationship with your family?
-  - Who were your parents?
-  - do you get along with your dad and mom?
-  - how are your parents?
-  - how is your family?
+  - Do you have any family?
+  - Do you have any siblings?
+  - How would you describe your family?
+  - Talk about your family.
+  - What can you tell me about your family?
+  - What's your family like?
   part: 4
   question: Tell me about your family.
   session: 1
@@ -1265,7 +1514,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p004s00200333e00221817.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are you a parent?
+  - Are you raising a child?
+  - Do you have a daughter?
+  - Do you have a son?
+  - Do you have any children?
+  - Do you have any sons or daughter?
+  - Do you have children?
+  - Do you take care of any kids?
   part: 4
   question: Do you have any kids?
   session: 1
@@ -1284,12 +1541,15 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - What are you interested in?
+  - Do you have any hobbies?
+  - Do you have time for hobbies?
+  - Do you play video games?
+  - What are you interested in for fun?
+  - What are your hobbies?
   - What do you do for fun?
   - What do you do in your spare time?
+  - What do you enjoy doing in your free time?
   - What do you like to do?
-  - do you have any hobbies?
-  - do you play video games?
   part: 4
   question: What are your hobbies?
   session: 1
@@ -1314,7 +1574,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p004s00240497e00250870.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - What college or university degrees did you earn?
+  - What degrees do you have?
+  - What kinds of degrees have you earned?
+  - Where did you attend college?
+  - Where did you get your degree?
+  - Where did you go to school?
   part: 4
   question: What is your educational background?
   session: 1
@@ -1333,10 +1599,15 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - Can you tell me more about the research you're doing?
-  - What's your job in japan?
-  - You told me you're doing research, what is it?
-  - what are you doing now?
+  - How do you earn money?
+  - How do you earn your money?
+  - What career are you pursuing?
+  - What do you do now?
+  - What is your career?
+  - What is your job title?
+  - What is your job?
+  - What kind of work do you do?
+  - What line of of work are you in?
   part: 4
   question: What do you do?
   session: 1
@@ -1399,7 +1670,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p004s00312033e00360690.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How long have you been a professor?
+  - How long have you been working?
+  - How long have you had your career?
+  - How long have you held your position?
+  - How many years of experience do you have in your field?
+  - When did you start your career?
+  - When did you start your job?
   part: 4
   question: How long have you been in your job?
   session: 1
@@ -1418,7 +1696,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p004s00365337e00370927.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did you choose your career path?
+  - How did you decide to become a professor?
+  - How did you decide to become a professor?
+  - How did you end up choosing your career?
+  - How did you get interested in the field?
+  - When did you realize you wanted to pursue a career in this field?
   part: 4
   question: How did you choose this career?
   session: 1
@@ -1482,20 +1766,13 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - How did you choose the Navy?
-  - How did you decide to join the navy?
-  - How did you decide you wanted to go into the navy?
-  - What is your job today?
-  - Why did you choose the Navy?
-  - Why did you choose the military?
-  - did you choose the Navy or was it forced on you?
-  - tell me why you are in the navy.
-  - was the Navy your first choice?
-  - what went into choosing your career in the Navy?
-  - why are in your current job?
-  - why did you choose your current job
-  - why did you join the navy?
-  - why did you take this career path?
+  - Why did you choose your career path?
+  - Why did you chose the career you did?
+  - Why did you decide on this career?
+  - Why did you decide to become a professor?
+  - Why did you decide to have the career that you have now?
+  - Why did you pursue this field?
+  - Why didn't you choose another career?
   part: 4
   question: Why did you choose this career?
   session: 1
@@ -1535,7 +1812,19 @@ utterances:
   utteranceVideo: build/utterance_video/s001p004s00421780e00450123.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are Psychology classes supposed to be difficult?
+  - Do you find Psychology easy?
+  - Do you think majoring in Psychology is easy?
+  - How difficult is being a Psychology major?
+  - How do you feel when people say that Psychology is an "Easy major?"
+  - If you are looking for an easy major, should you choose Psychology?
+  - Is Psychology a hard field to get into?
+  - Is Psychology a hard major?
+  - Is Psychology an easy field to get into?
+  - Is Psychology an easy major?
+  - 'Is Psychology easy or hard? '
+  - Would you say Psychology is easy?
   part: 5
   question: Is Psychology an easy or hard major?
   session: 1
@@ -1562,7 +1851,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p005s00002024e00013143.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Does Psychology have different areas?
+  - What are some sub-specialties in Psychology?
+  - What are the different branches of Psychology?
+  - What are the different subfields in Psychology?
+  - What different areas does Psychology have?
+  - What different subfields are there in Psychology?
+  - What fields of psychology can I study?
+  - What types of Psychology specializations are there?
   part: 5
   question: What are the different areas of Psychology?
   session: 1
@@ -1593,7 +1890,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p005s00013934e00030756.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Is there a particular area of Psychology you'd recommend that I study?
+  - What is the best area of Psychology?
+  - What is the best type of psychology to study?
+  - What sub-area should I study?
+  - What subfield of Psychology do you recommend?
+  - What type of Psychology should I specialize in?
+  - Which subfield of Psychology is best?
   part: 5
   question: What is the best area or branch of psychology to study?
   session: 1
@@ -1627,7 +1931,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p005s00031883e00052005.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you graduate in four years if you study Psychology?
+  - How long does a Psychology major take?
+  - How long does finishing your degree take?
+  - How long does it take to earn a Bachelor's?
+  - How long does it take to get your degree?
+  - How long does it take to graduate with a degree in Psychology?
+  - How many semesters does it take to finish your degree?
+  - How many units do you have to take in order to graduate with a Bachelor's degree
+    in Psychology?
+  - How many years does it take to finish your degree?
+  - How many years does it take to graduate?
   part: 5
   question: How long does it take to finish your degree?
   session: 1
@@ -1680,7 +1995,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p005s00062446e00100215.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you only study psychology?
+  - Did you study anything other than psychology?
+  - Do you have any other degrees besides Psychology?
+  - Do you have degrees that are not in Psychology?
+  - Do you only have Psychology degrees?
   part: 5
   question: Are all of your degrees in Psychology?
   session: 1
@@ -1699,7 +2019,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p005s00102366e00103902.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you give me a sense of how much professors make?
+  - How much do professors usually make?
+  - How much money do college teachers make?
+  - How much money do professors earn?
+  - What is the annual income of a professor?
+  - What is the average salary of professors?
+  - What is the salary range for a professor?
   part: 5
   question: How much money do professors make?
   session: 1
@@ -1719,7 +2046,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p005s00105846e00111806.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you tell me more about conferences or conventions?
+  - What are conventions or conferences like?
+  - What do people do at conventions or conferences?
+  - What do you expected to do at conventions or conferences?
+  - What do you have to do at conferences?
+  - What does the itinerary of a convention or conference look like?
+  - What's a conference?
   part: 5
   question: What do you do at conventions or conferences?
   session: 1
@@ -1778,7 +2112,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p007s00000877e00002407.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Is there anything you did during school that helped you to become successful?
+  - What aspect of your training contributed the most to your success?
+  - What part of training helped you the most?
+  - What training experience contributed to your success today?
+  - What was the most helpful part of your training?
+  - What was the most valuable thing you did during your training?
   part: 8
   question: What did you do during your training that contributed the most to your
     success?
@@ -1808,12 +2148,17 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - Did you have fears going into college or your career?
-  - Were you worried about anything when you were entering college or your career?
-  - What concerns did you have prior to entering college and your career?
-  - What were you afraid of before you went to college?
-  - What were you fearful of before beginning college and your career?
-  - what were you scared of going into college?
+  - Did you have any anxiety while entering college or starting your career?
+  - Did you have any fears when entering college?
+  - Were there things you were afraid of about starting college?
+  - Were there things you were scared of when starting out your career?
+  - What fears did you have when entering college and your career?
+  - What fears did you have when you were starting your career?
+  - What kinds of things made you nervous about starting your career?
+  - What kinds of things scared you when you were starting out?
+  - What were you intimidated by when starting college?
+  - What worries did you have about starting college?
+  - What worries or fears did you have when starting your career?
   part: 8
   question: What were some of your fears entering college and your career?
   session: 1
@@ -1841,7 +2186,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00042638e00052588.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there things you know now that you wish you had known during school?
+  - Is there anything you wish you had known while you were in school?
+  - Is there something you wish you knew while you were in school?
+  - What did you not know during school that would have been helpful to know?
+  - What do you wish you knew while you were in school?
+  - What information would have been helpful to have while you were in school?
+  - What is something you wish you knew earlier in school?
   part: 8
   question: What do you wish you had known while you were in school?
   session: 1
@@ -1875,7 +2227,21 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00053308e00071257.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Biggest challenge?
+  - How did you deal with complications that came your way?
+  - How did you get through obstacles?
+  - Roadblocks you faced to achieve career?
+  - Tell me about a recent setback and how you recovered?
+  - What challenges did you have to overcome?
+  - What has been your biggest challenge?
+  - What kinds of challenges have you conquered?
+  - What obstacles did you encounter?
+  - What things have you struggled with?
+  - What was the hardest thing you've ever experienced?
+  - What was your biggest struggle and how did you overcome it?
+  - What were your biggest challenges?
+  - What were your challenges in life?
   part: 8
   question: What challenges did you struggle with, and how did you overcome them?
   session: 1
@@ -1911,7 +2277,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00072033e00091867.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there things you've done that you know better not to do now?
+  - Have you done things that you shouldn't have?
+  - Have you had any oopsies?
+  - Have you made any mistakes?
+  - Is there anything you have done that you consider a mistake?
+  - Tell me about a mistake you've made.
+  - What are some mistakes you have made?
+  - What have you done that you wish you didn't?
+  - What would you not do again, in hindsight?
   part: 8
   question: What mistakes have you made?
   session: 1
@@ -1938,7 +2313,21 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00092568e00104188.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there times when you feel you've failed, and how did you cope with that?
+  - Have you ever failed?
+  - Have you ever hit rock bottom, and if so, what did you do to get out of it?
+  - How did you bounce back after a failure?
+  - How do I get past failure?
+  - How do you cope with failure?
+  - How does one overcome failure?
+  - How have you dealt with failure?
+  - How have you gotten through times when you feel like you've failed?
+  - Is there such a thing as failure?
+  - Tell me a story about failure
+  - Tell me about a time when something didn't work out and you got through it.
+  - What have you done to get past major setbacks?
+  - What kinds of failures have you had, and how did you overcome them?
   part: 8
   question: How did you overcome failure?
   session: 1
@@ -1976,10 +2365,17 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - Can you tell me about an instance when you had to deal with failure?
-  - tell me about your regrets.
-  - what did you wish you did differently?
-  - what do you regret?
+  - Are there things you haven't done in the past that you wish you had?
+  - Are there things you second-guess yourself about?
+  - Are there things you should have done that you didn't?
+  - Have you done things you wish you hadn't?
+  - If you can do it again, would you change anything?
+  - If you could go back in school, what things would you change?
+  - Is there anything you wish you could change about your past?
+  - Were there any regrets that you had?
+  - 'What do you regret not doing? '
+  - What do you wish you'd done differently?
+  - What is one thing you regret not doing?
   part: 8
   question: Do you have any regrets?
   session: 1
@@ -2006,7 +2402,20 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00125955e00141534.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - If given the chance, what would you do differently?
+  - If you could change any step you took, which?
+  - If you had to do it all over again, would you become a teacher?
+  - Is there anything you wish you had done or done differently if you were 25 again?
+  - What are things you would do differently?
+  - What could you have done differently?
+  - What is something you could have done earlier?
+  - What would you do differently if you could do college over again?
+  - 'What would you do differently in your life? '
+  - What would you have done different?
+  - What would you have done differently?
+  - What's one thing you would have done differently?
+  - Would you do anything differently if given the opportunity?
   part: 8
   question: What would you do differently, if you had a chance to do things over again?
   session: 1
@@ -2036,7 +2445,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00143152e00154814.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Describe the biggest chance you have ever taken in your career.
+  - Did you ever put yourself out there when you knew it would be super difficult?
+  - Tell me about the the biggest risk you have ever taken in your career.
+  - What biggest chance you have taken in your career?
+  - What decision have you taken that had a high chance of failure in your career?
+  - What kinds of risks have you taken in your career?
+  - What was the biggest gamble you have ever taken in your career?
+  - What was the riskiest thing you've done in your career?
   part: 8
   question: What is the biggest risk you've taken in your career?
   session: 1
@@ -2066,10 +2483,11 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - Has anyone significantly impacted your life?
-  - Who has changed your life?
-  - Who has had the greatest impact on your life?
-  - Who has had the most influence on you?
+  - Do you have anyone in your own life that has greatly influenced you?
+  - Who has been the biggest influence?
+  - Who has had the biggest impact on your career?
+  - Who has had the biggest influence on your life or career?
+  - Who has positively influenced you?
   part: 8
   question: Who has influenced you the most?
   session: 1
@@ -2108,7 +2526,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00221557e00242788.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you have people who helped you along the way?
+  - Have you been mentored in the past
+  - Tell me about your mentor
+  - Who are some of your mentors in life?
+  - Who do you consider to be your mentor? And why?
+  - Who helped you most?
+  - Who was your mentor(s)?
+  - Who would you consider as mentors?
   part: 8
   question: Did you have any mentors?
   session: 1
@@ -2135,7 +2561,19 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00243896e00254203.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did anyone serve as a role model for you?
+  - Did you look up to someone as a kid or student?
+  - Did you up to someone while growing up and how did they influence you now?
+  - Has anyone provided an example of what you wanted to do?
+  - Has anyone served as an example of who you wanted to be?
+  - Have you had a role model?
+  - Is there anyone you've admired?
+  - Was there anyone who has gone before you whose footsteps you've followed?
+  - Was there anyone you have modeled yourself after?
+  - What is an example of one of your role models?
+  - Who did you look up to?
+  - Who was your role model?
   part: 8
   question: Who is your role model?
   session: 1
@@ -2180,7 +2618,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00254928e00284520.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you have any Psychology mentors?
+  - Did you have any mentors in Psychology?
+  - Did you have any mentors when studying Psychology?
+  - Which Psychologists provided you with career guidance or mentoring?
+  - Who gave you advice in the field of Psychology?
+  - Who guided you in the field of Psychology?
+  - Who has helped you the most in your Psychology career?
+  - Who has mentored you in Psychology?
+  - Who in Psychology has helped you get where you are now?
   part: 8
   question: Who were your mentors in Psychology?
   session: 1
@@ -2214,7 +2661,19 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00290984e00310324.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did your mentors contribute to your success?
+  - How did your mentors help?
+  - How did your mentors impact your success?
+  - In what ways did your mentors help you become successful?
+  - In what ways did your mentors make a difference?
+  - 'What did your mentor teach you? '
+  - What did your mentors do to help you with your career?
+  - What did your mentors enable you to do?
+  - What impact did your mentors have on your career?
+  - What kind of guidance did your mentors give you?
+  - What role did your mentors play in your career?
+  - What was the role of your mentors in helping you with your career?
   part: 8
   question: How did your mentors help you with your career?
   session: 1
@@ -2243,7 +2702,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00312055e00323379.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you ever think about leaving your PhD program?
+  - Did you experience any setbacks while getting your PhD?
+  - Were there any difficulties with pursuing your Ph.D.?
+  - Were you ever discouraged in grad school?
+  - What aspects of the Ph.D. process were the most difficult?
+  - What challenges did you encounter while pursuing your PhD?
+  - What difficulties did you face while pursuing your Ph.D.?
+  - What kind of hardship did you experience during grad school?
+  - What made getting a PhD so difficult for you?
+  - What was the hardest part about getting your PhD?
+  - What were some obstacles you encountered on your way to getting your PhD?
   part: 8
   question: What were some difficulties you experienced while pursuing your PhD?
   session: 1
@@ -2273,7 +2743,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00325142e00342618.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there courses you should have taken but didn't?
+  - Are there courses you wanted to take but couldn't?
+  - If you could do it all over again, what courses would you take that you didn't
+    take before?
+  - Is there a class you regret not taking?
+  - Is there a class you wish you took?
+  - Is there a course you wish you could have taken?
+  - What class did you miss out on?
+  - What is a class that you regret not taking?
   part: 8
   question: What is a class you wish you took?
   session: 1
@@ -2299,7 +2778,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00350239e00360265.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - 'How much can I make with this degree? '
+  - How much money can I earn with different Psychology degrees?
+  - How much money can you make with a doctorate?
+  - How much money did you make when you got your Masters?
+  - How much money did you make with your Bachelors Degree?
+  - What is the average salary that you can earn with Bachelors, Masters, and Doctoral
+    degrees?
+  - What is the difference in salaries between different Psychology degrees?
+  - What's the average salary for a bachelor's degree?
+  - What's the average salary for someone with a master's degree?
   part: 8
   question: Can you give me a sense of how much salary you can earn with Bachelors,
     Masters, and Doctoral degrees?
@@ -2347,7 +2836,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p008s00372798e00402163.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did Psychology begin to interest you?
+  - How did you get interested in Psychology?
+  - What drew you to Psychology?
+  - What first interested you in Psychology?
+  - What got you into psychology?
+  - What made you decide to get into psychology?
   part: 9
   question: How did you become interested in Psychology?
   session: 1
@@ -2371,7 +2866,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00001055e00005428.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did you get started in your career?
+  - How did you start on your path to psychology?
+  - How did you start?
+  - What got you started in your career?
+  - What is the first thing you did when you decided to get into psychology?
   part: 9
   question: How did you get started in this field?
   session: 1
@@ -2393,7 +2893,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00005980e00013083.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did anything inspire you to get into psychology?
+  - How did you get inspired to pursue psychology?
+  - What experiences have you had that inspired you to get into psychology?
+  - What inspired you to become a professor?
+  - 'What inspired you to go into the field that you''re in? '
+  - Where did you get the inspiration to get into psychology?
   part: 9
   question: What inspired you to pursue this career?
   session: 1
@@ -2415,7 +2921,21 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00013705e00021190.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did you confirm that this is what you wanted to do?
+  - How did you decide that this is what you wanted to do?
+  - How did you decide to become a professor?
+  - How did you know this is what you want to do in life?
+  - How did you know what you wanted to do?
+  - How did you know you chose the right career path?
+  - How did you know you wanted to do this for the rest of your life?
+  - How did you know you were interested in this line of work?
+  - What let you know that being a professor is what you want to do?
+  - What let you know that this kind of work is what you want to do?
+  - What let you know that this was the right path for you?
+  - What let you know that you chose the right career?
+  - What made you realize that this is the right career for you?
+  - When did you realize that you wanted to be a professor?
   part: 9
   question: How did you know you wanted to pursue this type of work?
   session: 1
@@ -2435,7 +2955,21 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00021844e00023957.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did you become successful?
+  - How did you do it?
+  - How did you get here?
+  - 'How did you get to the top? '
+  - 'How did you get to this position? '
+  - How did you get to where you are now?
+  - How did you get to where you are now?
+  - How did you get to where you are today?
+  - How did you get where you are today
+  - How did you land your current role?
+  - How did you succeed in your field?
+  - What did it take to get to where you are today?
+  - What did you do to get to your career?
+  - What was your process or history that got you into the position you are in?
   part: 9
   question: How did you get to where you are now?
   session: 1
@@ -2484,7 +3018,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00060631e00091746.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Has it taken you a long time to become a professor?
+  - How long did it take you to get here?
+  - How long does it take to become a professor?
+  - How long has your career been so far?
+  - How many years have you put in so far?
+  - How many years have you spent getting to this position?
+  - How many years have you studied and worked in this field?
   part: 9
   question: How long did it take you to get to where you are now?
   session: 1
@@ -2507,7 +3048,19 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00100338e00104743.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Is there anything you found especially surprising about this field?
+  - Was anything surprising about studying psychology?
+  - Was there anything that you did not anticipate about pursuing this career?
+  - Were you surprised by anything when you got into psychology?
+  - What about the field surprised you the most?
+  - What caught you off guard when you entered this field?
+  - What did you find the most surprising about the field?
+  - What did you not see coming when you entered the field?
+  - What is something you didn't know about the field when you got started?
+  - What most surprised you when entering the field?
+  - What took you by surprise when you entered the field?
+  - When you entered the field, what surprised you the most?
   part: 9
   question: What surprised you the most when you entered the field?
   session: 1
@@ -2543,7 +3096,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00105587e00125281.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you ever consider a different major or career?
+  - Did you ever question whether you chose the right major or career?
+  - Did you ever question your major or career choice?
+  - Did you ever want to jump ship?
+  - Do you ever feel like this major isn't right for you?
+  - Have you ever had doubts about your major?
+  - Have you ever thought about changing majors or careers?
+  - How often do you rethink your career decision?
+  - Were you always sure about your major or career?
   part: 9
   question: Did you ever think about changing your major or career?
   session: 1
@@ -2577,7 +3139,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00125982e00145028.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Is there any advice that was given to you in terms of school that you would be
+    willing to share with me?
+  - Tell me the best advice you've gotten.
+  - What advice do you live by?
+  - What advice do you think is the most helpful?
+  - What is the best advice you have gotten?
+  - What piece of advice has made the most difference?
   part: 9
   question: What is the most helpful advice you have gotten?
   session: 1
@@ -2598,7 +3167,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00145889e00154656.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you start teaching a while back?
+  - Have you been a teacher for a long time?
+  - Have you been teaching for a long time?
+  - How long ago did you start teaching?
+  - How long have you been a professor?
+  - How long have you been a teacher?
+  - How long have you had a teaching career?
+  - How many years of teaching experience do you have?
+  - How much teaching experience do you have?
   part: 9
   question: How long have you been teaching?
   session: 1
@@ -2617,7 +3195,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00155513e00161454.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did you decide to become a teacher?
+  - What got you into teaching?
+  - What interested you about teaching?
+  - What interested you in teaching?
+  - What made you decide to become a teacher?
+  - What were your motivations for becoming a teacher?
   part: 9
   question: What made you want to teach?
   session: 1
@@ -2640,7 +3224,26 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00162161e00170804.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you describe yourself as a student?
+  - Describe yourself as a student.
+  - 'Did you do well in school? '
+  - Did you get along with your teachers?
+  - Did you study hard in school?
+  - How did you study?
+  - How studious were you as a student?
+  - How were you in school?
+  - If I saw you in school, what would I have seen?
+  - Tell me about your time as a student.
+  - Were you a good student?
+  - Were you a nerd in school?
+  - Were you a straight-A student?
+  - Were you a strong student?
+  - Were you good at studying?
+  - Were you studious?
+  - What kind of activities were you a part of in school?
+  - What type of student were you?
+  - What were your grades like in school?
   part: 9
   question: What were you like as a student?
   session: 1
@@ -2681,7 +3284,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00171385e00193418.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did college treat you?
+  - How was life in college?
+  - How'd your college experience go?
+  - Tell me about your college experience.
+  - Was your college experience hard?
+  - What was college like for you?
+  - What was your experience like in college?
+  - What were your college years like?
   part: 9
   question: What was your college experience like?
   session: 1
@@ -2721,7 +3332,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00193943e00215520.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you have a difficult time getting your PhD?
+  - How was grad school for you?
+  - How was the process of earning your PhD?
+  - How were your PhD years?
+  - Was it hard getting your PhD?
+  - What did you do as a PhD student?
+  - What is the Ph.D. process like?
+  - What was getting your Ph.D. like?
   part: 9
   question: What was it like to get your PhD?
   session: 1
@@ -2753,7 +3372,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00220235e00235000.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did it take you a long time to finish your PhD?
+  - How long did it take for you to complete your thesis and graduate?
+  - How long did it take you to earn your PhD?
+  - How long did it take you to graduate from graduate school?
+  - How long was the Ph.D. process?
+  - How many years did you spend in school to get a PhD?
+  - How many years did you take to finish your PhD?
+  - How many years was your PhD program?
+  - How old were you by the time you finished your PhD?
   part: 9
   question: How long did it take to get your PhD?
   session: 1
@@ -2770,7 +3398,20 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00235684e00240416.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you do any work-study during college?
+  - Did you have any jobs while you went to school?
+  - Did you have to hold any jobs while going to school?
+  - Did you have to work in order to put yourself through school?
+  - Did you have to work to pay for school?
+  - Did you work during college?
+  - 'Did you work during college? '
+  - Did you work while in graduate school?
+  - Did you work while you completed your doctorate?
+  - Did you work while you were in school?
+  - How did you make money when you were a student?
+  - How many jobs did you work while going to school?
+  - Were you employed while you were going to school?
   part: 9
   question: Did you work while you were in school?
   session: 1
@@ -2801,7 +3442,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00241159e00253475.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you have any extracurriculars?
+  - Did you have any time to pursue extracurriculars when you were going to school?
+  - Did you participate in any clubs when you were in school?
+  - Did you participate in any student organizations?
+  - How many extracurriculars were you involved in?
+  - What extracurriculars did you participate in?
+  - What kinds of extracurricular activities were you involved in?
+  - What were your extracurriculars?
   part: 9
   question: Did you participate in any extracurriculars?
   session: 1
@@ -2826,7 +3475,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00254155e00264039.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you ever fail any classes?
+  - In what class did you earn the lowest grade?
+  - Was there a class that was particularly difficult?
+  - Were there any classes that brought down your GPA?
+  - Were there any classes you struggled in?
+  - What class challenged you the most?
+  - What subject was the hardest for you to learn or study?
+  - What subject was the hardest for you?
+  - What was the class you performed the worst in?
+  - What was the most difficult course you have taken?
+  - Which course was hardest to take?
   part: 9
   question: What was the hardest class you have ever taken?
   session: 1
@@ -2858,7 +3518,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00264647e00282969.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - What class did you enjoy the most as a student?
+  - What class gave you the best learning experience?
+  - What class gave you the best training?
+  - What course was the best?
+  - 'What has been one of the best courses that you have taken? '
+  - What is the best class you have ever taken?
+  - What was your favorite class?
+  - Which class did you like the most?
   part: 9
   question: What was the best class you have ever taken?
   session: 1
@@ -2881,7 +3549,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00283667e00292544.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there any courses you wish you never had to take?
+  - Were there are any courses that gave you a horrible experience?
+  - What class did you dislike the most?
+  - What class gave you the worst learning experience?
+  - What course did you hate the most?
+  - What course was the worst?
+  - What course would you never want to take again?
+  - What was your least favorite class?
   part: 9
   question: What was the worst class you have ever taken?
   session: 1
@@ -2928,7 +3604,20 @@ utterances:
   utteranceVideo: build/utterance_video/s001p009s00293354e00322082.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you need to be good at STEM in order to study Psychology?
+  - Do you need to be good at certain things in order to study Psychology?
+  - Does Psychology have a lot of math classes?
+  - Does Psychology have a lot of science classes?
+  - How much math do you need to know in Psychology?
+  - How much math or science is involved?
+  - I don't like math.
+  - I don't like science.
+  - Is math or science important to study in Psychology?
+  - Taking math classes makes me nervous.
+  - Taking science classes make me nervous.
+  - What if I'm not good at math?
+  - What if I'm not good at science?
   part: 10
   question: Do you need to be good at math or science in order to study Psychology?
   session: 1
@@ -2959,7 +3648,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p010s00001491e00013262.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - What are the benefits of choosing this path?
+  - 'What are the benefits of pursuing this major? '
+  - What do you get out of being a Psychology major?
+  - What's good about studying psychology?
+  - What's the most rewarding part in studying Psychology?
+  - Why do people like studying psychology?
+  - Why study psychology?
   part: 10
   question: What are the benefits of studying psychology?
   session: 1
@@ -2982,7 +3678,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p010s00014226e00021530.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - What are some reasons why it's not good to study psychology?
+  - What are the disadvantages of studying psychology?
+  - What are the disadvantages of this major?
+  - What are the drawbacks of choosing this path?
+  - What's bad about studying psychology?
+  - Why do people say you shouldn't get a Psychology degree?
+  - Why shouldn't you study psychology?
   part: 10
   question: What are the disadvantages of studying psychology?
   session: 1
@@ -3005,7 +3708,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p010s00030613e00034185.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you have any difficulty pursuing this field?
+  - How difficult is it to get into your field?
+  - How hard is it to get into a particular field in psychology?
+  - How hard is it to get into your specific field?
+  - Is a psychology major competitive?
+  - Is it hard to get into Psychology?
   part: 10
   question: How hard is it to get into your field?
   session: 1
@@ -3029,7 +3738,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p010s00035056e00043086.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I gain more knowledge about this field?
+  - How do I get more information on this field?
+  - How would you recommend that I learn more about Psychology?
+  - What's a good way to learn more about this field?
+  - Where could I find more information about this field?
   part: 10
   question: How can I learn more about this field?
   session: 1
@@ -3052,7 +3766,27 @@ utterances:
   utteranceVideo: build/utterance_video/s001p010s00043800e00051210.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there jobs in psychology that are medical-related?
+  - 'Job opportunities? '
+  - Kinds of jobs?
+  - What am I supposed to do with a Psychology degree?
+  - What are some career options for this major?
+  - What are some career paths I can take with this major?
+  - 'What are some career plans that I can follow? '
+  - What are the most popular career options for people with my major?
+  - What are the possible careers you can pursue with a psych major?
+  - What career paths are available for psychology majors?
+  - What careers are possible with a Psychology degree?
+  - What could I do with my psych degree?
+  - 'What job fields open up with a Psychology degree? '
+  - What job options do I have?
+  - What jobs are available?
+  - What jobs are out there?
+  - What kind of future jobs would be available?
+  - What kinds of jobs do people hold with a Psychology major?
+  - What types of jobs are there in psychology?
+  - Which fields can I enter by choosing psychology?
   part: 10
   question: What kind of jobs can I pursue with a psychology major?
   session: 1
@@ -3075,7 +3809,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p010s00052018e00055621.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there a lot of job opportunities in Psychology?
+  - Are there jobs out there for this field?
+  - Do a lot of employers hire psychology majors?
+  - Do employers look for psychology majors?
+  - How hard is finding a job in psychology?
+  - Is it difficult to find a job with this degree?
+  - Is it hard getting anywhere in psychology with a BA?
   part: 10
   question: How easy or hard is it to get a job with a psychology degree?
   session: 1
@@ -3100,7 +3841,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p010s00060415e00070027.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I get the best money with a psychology degree?
+  - How can I succeed financially in psychology?
+  - How can i make more money?
+  - How do I make a lot of money?
+  - How do you maximize your salary in psychology?
+  - How to make money?
+  - What kinds of jobs give you the highest salary in psychology?
   part: 10
   question: How can I make good money in this field?
   session: 1
@@ -3130,7 +3878,21 @@ utterances:
   utteranceVideo: build/utterance_video/s001p010s00070827e00082827.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - 'How can I be successful academically? '
+  - How can I be successful?
+  - How can I ensure future success?
+  - How can i have a life and be successful?
+  - How to work my way to the top?
+  - What advice would you give me in order to succeed in this path that I am taking?
+  - What can I do to be more successful?
+  - 'What can I do to succeed? '
+  - 'What can I do to succeed? '
+  - What is the best way to be successful?
+  - What is the key to success?
+  - What makes a student successful in psychology?
+  - What should I do now to be successful in the future?
+  - What steps do I have to take to succeed?
   part: 10
   question: How can I be successful in this field?
   session: 1
@@ -3155,7 +3917,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p010s00094852e00103598.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - 'Can you recommend me some resources to help me figure out what I want to do with
+    my major? '
+  - Is there any way you could let me know more about the resources on campus?
+  - Should I reach out to the additional resources on campus in order to help my academics?
+  - What are some resources available in school that can help me?
+  - What are the best resources on campus for students?
+  - What campus resources should I take advantage of?
+  - What resources do you recommend?
+  - What sort of resources are available for students with my major?
   part: 10
   question: Are there resources on campus that you'd recommend that I use?
   session: 1
@@ -3180,7 +3951,25 @@ utterances:
   utteranceVideo: build/utterance_video/s001p010s00104348e00112478.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you give me your best advice?
+  - If you could give me one piece of advice, what would it be?
+  - If you could give one piece of advice, what would it be?
+  - If you had to give me one suggestion what would it be?
+  - Is their any advice that you would have for me?
+  - Tips?
+  - What advice do you have for someone in my position?
+  - What advice would you give if I decide to pursuing this field?
+  - What advice would you give to a psychology major?
+  - What advice would you give to someone interested in this field?
+  - What advice would you give to someone pursuing this field?
+  - What do you recommend?
+  - What is one piece of advice you would give to someone in this field?
+  - What is the best advice that you can give?
+  - What is your most helpful advice?
+  - What would you tell me that you wish you could have told your younger self?
+  - What's the best advice you could give?
+  - What's the most important advice you would give to a student in psychology?
   part: 10
   question: What is the best piece of advice you would give to someone pursuing this
     field?
@@ -3204,7 +3993,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p010s00113243e00121323.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can a Psychology degree allow me to get a job outside of this field?
+  - Can a Psychology degree give me a foundation for other types of jobs?
+  - 'Can my major help me get different jobs I did not think of? '
+  - Can psychology majors get jobs in other fields?
+  - Can you get a job in other fields with a psychology degree?
+  - Do psychology majors get jobs outside of psychology?
+  - Do you have to become a psychologist if you get a degree in psychology?
+  - Do you have to work in Psychology if you get a degree in it?
+  - How flexible are your career options with a psychology degree?
+  - What if I don't want to work in psychology?
+  - What kinds of non-psychology jobs can I pursue with a Psychology degree?
   part: 10
   question: Can I pursue careers outside of the field with a psychology degree?
   session: 1
@@ -3228,11 +4028,13 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
+  - Whaddup
   - What are you doing?
   - What are you up to?
+  - What have you been up to?
   - What is going on?
   - What is up?
-  - how's it hanging?
+  - Whazzup
   part: 11
   question: What's up?
   session: 1
@@ -3255,10 +4057,12 @@ utterances:
   paraphrases:
   - Are you well?
   - How are you doing?
+  - How are you feeling?
   - How was your day?
   - How's it going?
-  - are you happy?
-  - how do you do?
+  - How's it hanging?
+  - How's it?
+  - What is your current state?
   part: 11
   question: How are you?
   session: 1
@@ -3279,7 +4083,20 @@ utterances:
   utteranceVideo: build/utterance_video/s001p011s00013990e00020768.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Is it cold?
+  - Is it hot?
+  - Is it raining?
+  - Is it sunny?
+  - Is it warm outside?
+  - Is the weather nice there?
+  - Is the weather really bad outside?
+  - What do the skies look like?
+  - What does it look like outside?
+  - What is the weather like right now?
+  - What is the weather like?
+  - What season is it?
+  - What's the weather?
   part: 11
   question: How's the weather?
   session: 1
@@ -3299,9 +4116,17 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - Are you in the US now?
+  - Are you in California?
+  - Are you in Fullerton?
+  - Are you in the US?
+  - Are you out of the country?
+  - Do you live in California?
+  - Do you live in Fullerton?
+  - What environment are you in now?
+  - What is it like where you live?
   - Where are you now?
-  - Where do you currently live?
+  - Where are you recording this?
+  - Where do you live?
   - Which city are you in right now?
   part: 11
   question: Where are you?
@@ -3321,12 +4146,10 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - Are you a boss in the Navy?
-  - Are you high up in the Navy?
-  - What is your position in the military?
-  - do you have a favorite color?
-  - do you have any color preferences?
-  - other than Navy blue, what colors do you like?
+  - Do you have a favorite color?
+  - Do you have any color preferences?
+  - Do you prefer any color?
+  - What color do you like best?
   part: 11
   question: What is your favorite color?
   session: 1
@@ -3346,12 +4169,18 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - At work, how will you be spending your time
-  - At work, what will you be doing
-  - How will you be spending your time at work
-  - do you have a favorite dish ?
-  - what do you like to eat?
-  - what is your ideal meal?
+  - Do you have a favorite dish ?
+  - If you could eat one thing, what would it be?
+  - What do you like to eat the most?
+  - What do you like to eat?
+  - What food are you into right now?
+  - What food can you not live without?
+  - What foods do you like?
+  - What is your desert island food?
+  - What is your ideal meal?
+  - What is your preferred cuisine?
+  - What would you rather eat?
+  - What's the best thing you've eaten recently?
   part: 11
   question: What is your favorite food?
   session: 1
@@ -3374,9 +4203,15 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
+  - Are you allergic to any food?
+  - Is there any food you avoid?
+  - What food do you consider yucky?
+  - What food do you hate?
+  - What food do you like the least?
+  - What food do you wish didn't exist?
+  - What food makes you gag?
+  - What kinds of food do you dislike?
   - is there anything you hate to eat?
-  - what food do you hate?
-  - what food makes you gag?
   part: 11
   question: What is your least favorite food?
   session: 1
@@ -3400,7 +4235,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p011s00045605e00053056.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are you a sports fan?
+  - Did you play any sports in high school or college?
+  - Do you follow any sports team?
+  - Do you follow sports?
+  - Do you like sports?
+  - Do you play any sports?
+  - Do you watch any sports?
+  - What's your favorite sports team?
   part: 11
   question: What sports do you play or follow?
   session: 1
@@ -3423,7 +4266,11 @@ utterances:
   utteranceVideo: build/utterance_video/s001p011s00053552e00061924.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Is there anyone you draw inspiration from?
+  - Who do you find inspirational?
+  - Who inspires you the most?
+  - Who motivates you?
   part: 11
   question: Who inspires you?
   session: 1
@@ -3895,7 +4742,37 @@ utterances:
   utteranceVideo: build/utterance_video/s001p012s00034350e00034951.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are some psychology electives better than others?
+  - Are there any classes that I should avoid?
+  - Can you give me advice on classes to take?
+  - Classes to take
+  - How I should go about scheduling classes to help me work towards my bachelor's?
+  - 'How do I know if I am taking the correct classes? '
+  - 'How do I pick classes? '
+  - Recommendations on psych classes
+  - What GE classes would you recommend?
+  - What are the best classes to take for my major?
+  - What are the best classes to take?
+  - 'What are the best classes to take? '
+  - What class would you advise I take for next semester?
+  - What classes are most important for psychology?
+  - What classes can I take to optimize my schedule availability?
+  - What classes do you recommend for next semester?
+  - 'What classes do you recommend? '
+  - What classes have you taken that are interesting?
+  - What classes would you recommend I take?
+  - What courses should I take?
+  - What courses to take?
+  - 'What courses would you recommend me to take the upcoming semester? '
+  - What is the most challenging class for Psychology majors?
+  - What psych classes should I pay most attention to?
+  - What psychology classes would you recommend?
+  - What specific classes should I take?
+  - Which classes would you recommend me to take?
+  - Which courses are best to take?
+  - 'Which electives benefit me the most? '
+  - any advice on specific classes?
   part: 13
   question: What classes should I take?
   session: 1
@@ -3920,7 +4797,25 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00003846e00012243.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are minors useful?
+  - Do minors give me a competitive advantage?
+  - How do I find out more about a minor?
+  - How do I minor in something?
+  - Is a minor useful?
+  - Is it beneficial to minor in something?
+  - Is it too late to decide to minor or should I minor?
+  - Should I be minoring in child development, sign language, etc.
+  - Should I consider minoring in something?
+  - Should I minor?
+  - Should I pursue a minor in a related subject?
+  - Should i have a minor?
+  - What are some benefits of having a minor?
+  - What minors are good to have?
+  - Why minor?
+  - 'Would having a minor help me with the future? '
+  - Would having a minor make me more marketable or competitive on the job market?
+  - Would you recommend any minors?
   part: 13
   question: Should I pursue a minor?
   session: 1
@@ -3941,7 +4836,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00020231e00023428.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Is having a specialization better than generalized knowledge?
+  - Is it necessary to pursue a specialization within psychology?
+  - Is there a specialization that is more desirable?
+  - Should i specialize in something?
+  - What should i specialize in?
+  - Would you recommend that I specialize?
   part: 13
   question: Should I pursue a specialization?
   session: 1
@@ -3963,7 +4864,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00024192e00032030.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How do I decide which area of Psychology to study?
+  - How should I choose which area of Psychology to study?
+  - How would I know which area of Psychology is suitable for me?
+  - What area of Psychology should I study?
+  - What's the best way to choose an area of psychology to study?
+  - Which subfield of psychology is best for me to study?
   part: 13
   question: How should I choose the area of Psychology to study?
   session: 1
@@ -3987,7 +4894,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00032937e00040479.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How useful is it to take advanced statistics?
+  - Is advanced statistics a course that should be taken?
+  - Is it necessary for me to take advanced statistics?
+  - Is taking advanced statistics important or helpful?
+  - Should I take the advanced statistics class?
+  - What are some reasons to take advanced statistics?
+  - What benefits would I get from taking advanced stats?
+  - Would you recommend that I take advanced statistics?
   part: 13
   question: Should I take advanced statistics?
   session: 1
@@ -4009,7 +4924,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00041247e00044876.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there any internships that would benefit me most?
+  - Do I need an internship?
+  - 'What are the best internships? '
+  - What internships do you think would be best for me?
+  - What internships should I sign up for?
+  - What kind of internship would you recommend for me?
+  - What kinds of internship would you recommend?
+  - What type of internships are there?
+  - 'Which internship would be best for me? '
   part: 13
   question: What type of internship should I pursue?
   session: 1
@@ -4034,7 +4958,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00054285e00062735.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How early should I start looking for internships?
+  - Should I start internships before senior year?
+  - When is the appropriate time for internships?
+  - When should I seek an internship?
+  - When should i start doing internships?
   part: 13
   question: When should I pursue internships?
   session: 1
@@ -4058,7 +4987,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00063578e00071837.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you help me find an internship in this field?
+  - Could you help me find an internship?
+  - How can I get an internship?
+  - What is a good place to apply for internships/jobs?
+  - Where are good places to do internships?
+  - Where can I find jobs or internships for my career?
+  - Where can I find places for me to intern that are safe/reliable?
+  - Where can I intern where I can land a job after I graduate?
+  - Where can i find internships?
+  - Would like to know places where you can get internship/experience
+  - where can i find an appropriate psychological internship?
   part: 13
   question: How can I find internships?
   session: 1
@@ -4083,7 +5023,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00072385e00080806.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there any professors I shouldn't take courses from?
+  - Are there any professors that are not very effective?
+  - Do you have a specific referral on a professor?
+  - What professors should I avoid?
+  - What teachers do you recommend?
+  - Which professors are the best to take courses from?
+  - Which professors do you recommend or wouldn't recommend?
+  - Which professors do you recommend or wouldn't recommend?
+  - Which professors would you recommend to take?
+  - Which teachers should I try getting?
+  - Which teachers should I try getting?
   part: 13
   question: What kind of professors would you recommend or not recommend?
   session: 1
@@ -4109,7 +5060,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00081577e00090557.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I get good grades in my psychology courses?
+  - How can I succeed in a Psychology course?
+  - How do I do well in a Psychology course?
+  - How do I get good grades in my psychology courses?
+  - What do I need in order to do well in Psychology courses?
+  - What should I do in order to excel in psychology classes?
   part: 13
   question: How can you do well in Psychology courses?
   session: 1
@@ -4136,7 +5093,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00091231e00095984.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there any things I should do on campus before I graduate?
+  - How can I improve my college experience?
+  - How can I utilize my time to benefit the most out of my time studying here?
+  - What are some of the best ways to enjoy my time in college?
+  - What are ways I can help my education live up to its full potential?
+  - What can I gain through my four years at csuf?
+  - What should I do to get the most out of my experience at CSUF?
+  - What should I not miss out on during college?
   part: 13
   question: How do I make the most of my college experience?
   session: 1
@@ -4164,7 +5129,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00101223e00111425.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do I need any other skills that will help me in the future?
+  - What is one important skill that I should learn?
+  - What kinds of skills are most important to foster in order to do well in psychology?
+  - What new skills do I need to move ahead?
+  - What new skills do I need to move ahead?
+  - What should I be able to do in order to be successful in psychology?
+  - What skills do I need in to better my career?
+  - What skills do i need to succeed?
+  - What skills or strengths do you think are most important?
+  - What skills/strengths do you think are most important?
   part: 13
   question: What skills are most important to develop in this field?
   session: 1
@@ -4190,7 +5165,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00112286e00122125.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How high of a GPA should I try to maintain?
+  - What GPA range should I try to aim for?
+  - What GPA should I aim for?
+  - What GPA should I try to get?
+  - What GPA would be competitive?
+  - What do you consider a good GPA?
+  - What is a good GPA for me to get?
+  - What range of GPA is necessary?
   part: 13
   question: What range of GPA should I aim for?
   session: 1
@@ -4210,7 +5193,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00122941e00125430.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I get more opportunities to do research?
+  - How can I get started in a research lab?
+  - How can I volunteer or become involved in research?
+  - How can you get into research projects?
+  - How do I get into a psych research lab?
+  - What do I need to do to join a lab?
+  - 'What requirements do I need to do research '
   part: 13
   question: How do I get involved in research?
   session: 1
@@ -4241,7 +5231,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00130308e00142007.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How do you choose your research assistants?
+  - What are some qualities or skills are expected in a research assistant?
+  - What background is needed before you become a research assistant?
+  - What do professors look for in a research assistant?
+  - What expectation are there for research assistants?
+  - What kinds of qualifications are needed in order to become a research assistant?
+  - What makes someone competitive for a research assistant position?
   part: 13
   question: What do you look for in a research assistant?
   session: 1
@@ -4271,7 +5268,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00142932e00154725.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you help me declare my major?
+  - Can you tell me what I need to do to declare a major?
+  - How do I declare a major at my school?
+  - How does a student declare a major?
+  - What are the procedures involved in declaring a major?
+  - What are the requirements for declaring a major?
+  - What are the steps I need to follow in order to declare a major?
+  - What do i need in order to declare a major?
   part: 13
   question: How can I declare a major?
   session: 1
@@ -4292,7 +5297,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p013s00171073e00173937.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I build a network within the major?
+  - How did you network?
+  - How do you recommend that I start to network?
+  - What are some strategies I can use to effectively build a networking community?
+  - What else do you do to broaden your connections and increase your network?
+  - What is networking?
+  - What kinds of opportunities are available for networking?
+  - What's a good way to network?
+  - Where do I begin to build a network?
+  - Who should I be networking with?
   part: 14
   question: How do I start networking?
   session: 1
@@ -4315,7 +5330,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p014s00012434e00020191.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I distinguish myself from other applicants?
+  - 'How do I get noticed? '
+  - 'How do I make myself stand out? '
+  - What can I do to set myself apart from other applicants applying for my same job
+    or grad school?
+  - What is a better way to make myself known in my career path?
   part: 14
   question: How do I stand out?
   session: 1
@@ -4340,7 +5361,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p014s00020757e00025802.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I conquer my social anxiety?
+  - How can I work on my social or communication skills?
+  - 'What activities is there to help me socialize at school? '
+  - What are some ways to enhance my communication skills?
+  - What is the best way to improve my social ability?
+  - What's a good way to work on my social skills?
   part: 14
   question: How can I improve my social or communication skills?
   session: 1
@@ -4375,7 +5402,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p014s00030562e00044448.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can we go over my resume?
+  - 'Can you help me set up my resume? '
+  - How can I improve my resume?
+  - How can I improve my resume?
+  - How can I write a good resume?
+  - How do I develop a resume?
+  - How should I create my resume for the job in my career?
+  - What are some tips for writing a strong resume?
+  - What is the best way to write a resume?
   part: 14
   question: How can I write a strong resume?
   session: 1
@@ -4409,7 +5445,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p014s00045356e00064013.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How do you time your job search?
+  - How soon should I start looking for jobs?
+  - Is it best to wait until I graduate to look for a job?
+  - When is a good time for finding jobs?
+  - When is a good time to start your job search?
+  - When should I begin looking for jobs?
+  - When should I start job searching?
   part: 14
   question: When should I start looking for jobs?
   session: 1
@@ -4436,7 +5479,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p014s00064754e00075585.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I find a job after my educational process?
+  - How do I find jobs that fit me?
+  - How do I start looking for jobs when I graduate from college?
+  - How to apply for jobs?
+  - What are good job search strategies?
+  - What does a job hunting process look like?
+  - What steps should I follow to find jobs?
+  - Where can I begin looking for a job?
+  - Where can I find job openings?
+  - Where can I find jobs to apply for?
   part: 14
   question: How should I look for jobs?
   session: 1
@@ -4460,7 +5513,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p014s00080110e00084438.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Any advice for people who are job searching?
+  - Can you give me advice for job searching?
+  - Can you give me tips on job searching?
+  - Do you have any recommendations for job hunting?
+  - How can I improve my job search?
+  - What advice can you give for those job searching?
+  - What are some good things to do on the job market?
+  - What should I consider when searching for job?
   part: 14
   question: What advice do you have for job searching?
   session: 1
@@ -4489,7 +5550,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p014s00085201e00100302.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I make myself stand out during job interviews?
+  - How can I prepare for the job interview?
+  - How can I stand out in job interviews?
+  - How do I nail my job interview?
+  - What advice can you give for job interviews?
+  - What are good ways to prepare for job interviews?
+  - What are some good things to do during job interviews?
+  - What are the right things to bring up in an interview?
+  - What tips do you have for job interviews?
+  - how can I make a good impression during job interviews?
   part: 14
   question: What advice do you have for job interviews?
   session: 1
@@ -4529,7 +5600,24 @@ utterances:
   utteranceVideo: build/utterance_video/s001p014s00100916e00122732.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Am I making the right decisions?
+  - Am I on the right path?
+  - Am I on the right track?
+  - Am I on track for my goals?
+  - Do you think this field suits me?
+  - 'How can I ensure that my career path is the right one for me? '
+  - How do I know if this is the right path for me?
+  - How do I know if this job is a good fit for me?
+  - 'How do I know that the major I chose is the right thing for me? '
+  - How do I know what is the right job for me in this field?
+  - How will I know if I chose the right job?
+  - How will I know what path to pick if I have not tried certain paths?
+  - How would someone know if that is the career that they want to follow through
+    in the future?
+  - Is this the right life choice for me
+  - Is this the right path for me?
+  - if not, what is the "right" path?
   part: 14
   question: How do I know that I'm on the right track or career path?
   session: 1
@@ -4561,7 +5649,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p014s00142437e00155045.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How should I choose people to write my letters of recommendation?
+  - What should I look for when choosing writers for my letters of recommendation?
+  - Where should I get my letters of recommendation?
+  - Who are the best people to write my letters of recommendation for grad school?
+  - Who should I ask to write my letters of recommendation?
   part: 15
   question: How should I choose writers for my letters of recommendation?
   session: 1
@@ -4612,7 +5705,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p015s00031803e00064197.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are graduate schools usually competitive?
+  - How competitive is graduate school?
+  - How difficult is it to get into graduate school?
+  - How easy is to get admitted into graduate school?
+  - How hard is it to gain admission into graduate school?
+  - How hard is it to get accepted into graduate school?
+  - How many people get into graduate school each year?
+  - Is graduate school's admission or entrance requirement relatively high?
+  - What percentage of students get into grad school?
   part: 15
   question: How competitive is it to get into graduate school?
   session: 1
@@ -4645,7 +5747,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p015s00065417e00083291.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can I apply for the same grad schools twice?
+  - Does it make sense to apply to the same graduate program again if I get rejected?
+  - How likely is it that I could get into a grad program if it rejected me once already?
+  - Is it better to apply for different graduate programs next cycle if I don't get
+    into grad school this year?
+  - Should I apply for different grad programs next year if I don't get in this year?
+  - Should I avoid applying for the same graduate program twice?
+  - Should I reapply to the same graduate schools next year if I get rejected this
+    year?
+  - Should I try another program if I do not get into my desired graduate program?
   part: 15
   question: If I don't get into the graduate programs I want (or didn't get into any),
     should I reapply to the same program(s) the next cycle?
@@ -4688,7 +5800,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p015s00084948e00105932.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do graduates from prestigious universities have an easier time finding jobs?
+  - Does graduate school prestige matter?
+  - Does graduate school prestige play a role in future job prospects?
+  - Does it matter if you attend well-known graduate schools?
+  - Does the name of your graduate school matter in future job prospects?
+  - Does the prestige of my graduate school matter?
+  - How much does it help your career to have gone to a prestigious graduate school?
+  - Is it to your advance to go to a prestigious graduate school?
+  - Should you choose graduate school based on prestige?
   part: 15
   question: Does graduate school prestige matter for my future job prospects?
   session: 1
@@ -4751,7 +5872,11 @@ utterances:
   utteranceVideo: build/utterance_video/s001p015s00124996e00142564.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are taking on loans better than working during graduate school?
+  - Is working while in graduate school a smart idea?
+  - Is working while in graduate school worth it, or should I take on loans?
+  - Should I work or take on loans during graduate school?
   part: 15
   question: Should I take on loans or work during graduate school?
   session: 1
@@ -4782,7 +5907,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p015s00143457e00160767.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there options besides loans and work that helps you pay for grad school?
+  - How can I pay for graduate education?
+  - How do you pay for graduate education?
+  - What are different ways you can finance your graduate education?
+  - What are the different options for paying for a graduate education?
+  - What different sources of money are there for grad school?
   part: 15
   question: What are the different ways you can pay for your graduate education?
   session: 1
@@ -4828,7 +5959,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p015s00162611e00190552.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I find out more about scholarships for grad school?
+  - How do I find graduate school funding?
+  - How do I find scholarships for graduate school?
+  - Is there a database you can use to search for scholarships for grad school?
+  - What grad school scholarships should I apply for?
+  - Where can I look for funding or scholarships for graduate school?
   part: 15
   question: How do I find funding or scholarships for graduate school?
   session: 1
@@ -4858,7 +5995,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p015s00191694e00204361.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can I get paid to go to graduate school?
+  - How can I get graduate schools to pay me?
+  - How do I find schools that pay you to go to school?
+  - How do I get paid to go to graduate school?
+  - Is it true that you get paid to go to graduate school?
+  - Tell me more about graduate school that pays for your education.
+  - What kinds of graduate programs are fully funded?
+  - Which graduate programs pay you to go to school?
   part: 15
   question: I've heard that you can get paid to go to graduate school. Can you talk
     about that?
@@ -4925,7 +6070,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p015s00293856e00315738.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do I need to take the GRE?
+  - Does the GRE really matter?
+  - How could I prepare for GRE test?
+  - How do I do well on the GRE?
+  - Is the GRE difficult?
+  - What is the GRE?
   part: 15
   question: What is a GRE, and how can I do well on it?
   session: 1
@@ -4965,7 +6116,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p015s00321932e00343032.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How high of a GRE score do I need?
+  - Is there a cutoff for GRE scores?
+  - What GRE score is good?
+  - What GRE score should I aim for in order to get into grad school?
+  - What GRE scores are considered good or competitive?
+  - What do graduate programs expect for a GRE score?
+  - What is the average GRE score of graduate students?
+  - What range of GRE scores are good?
   part: 15
   question: What is a good GRE score?
   session: 1
@@ -5020,7 +6179,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p015s00393749e00431967.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you explain what graduate school is?
+  - Can you tell me about graduate school?
+  - What do people mean when they say graduate school?
+  - What is grad school?
+  - What is the purpose of graduate school?
   part: 16
   question: What is graduate school?
   session: 1
@@ -5040,7 +6204,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00013874e00015813.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How is college different from graduate school?
+  - Is graduate school different from college?
+  - Is graduate school harder or easier than college?
+  - Is graduate school same thing as college?
+  - What is different about graduate school when compared to college?
+  - What is the difference between graduate school and college?
   part: 16
   question: How is graduate school different from college?
   session: 1
@@ -5090,7 +6260,21 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00040068e00045341.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - 'Can I make the same money without a masters? '
+  - Do i need to go to grad school?
+  - Do you get an advantage by going to graduate school?
+  - Do you have to go to graduate school?
+  - Is a PhD needed?
+  - Is getting a masters degree worth it?
+  - Is grad school worth it?
+  - Is it necessary to get a graduate degree?
+  - Should I pursue graduate school?
+  - Why should you go to grad school?
+  - Will Master's be beneficial for the long haul?
+  - Would you recommend getting a Ph.D.?
+  - Would you recommend looking into attending grad school?
+  - is it best to get a PhD or stick with a master's or bachelor's
   part: 16
   question: Should I go to graduate school?
   session: 1
@@ -5117,7 +6301,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00045673e00055704.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - If you could only choose one, would you choose a Master's or a Doctorate?
+  - Should I get a doctorate or a Master's?
+  - What degree should I get after college?
+  - What graduate school degree should I get?
+  - What is your opinion on Master's versus a Doctorate?
+  - Which is better, master's or a PhD?
   part: 16
   question: Should I get a Master's or a doctorate?
   session: 1
@@ -5146,7 +6336,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00061594e00072605.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How are M.A. and M.S. degrees different?
+  - Is there a difference between master of arts and master of science degrees?
+  - Is there a huge difference between a MA and a MS?
+  - Should I get an MA or an MS in Psychology?
+  - What is the difference between M.S. and M.A. degree?
+  - What's an MA degree?
+  - What's an MS degree?
   part: 16
   question: What's the difference between M.A. and M.S. degrees?
   session: 1
@@ -5179,7 +6376,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00073245e00090766.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are PsyD and PhD equivalent?
+  - How are Psy.D. and Ph.D. degrees different?
+  - Is it better to get a PsyD or a PhD?
+  - Is there difference between a Ph.D. and Psy.D. degree?
+  - Should I get a PsyD or a PhD?
+  - What are different kinds of doctorates I can get?
+  - What are the advantages of getting a PsyD?
+  - What is a PsyD?
+  - Which one is harder, PsyD or PhD?
+  - Why should I get a PsyD over the PhD, or vice versa?
   part: 16
   question: What's the difference between Ph.D. and Psy.D. degrees?
   session: 1
@@ -5213,7 +6420,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00091269e00110219.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - What characteristics determine how good a grad program is?
+  - What characteristics should I look for in a graduate program?
+  - What makes a good graduate program?
+  - What qualities should a grad school have?
+  - What qualities should a graduate school have?
+  - What should I look for in a doctoral program?
+  - What should I look for in a graduate school program?
+  - 'What should i look for in a master program? '
+  - Which aspects of a graduate program are considered important?
   part: 16
   question: What should I look for in a graduate program?
   session: 1
@@ -5248,7 +6464,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00110686e00124552.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How long are graduate school programs?
+  - How long do people spend in grad school?
+  - How long does it take to graduate from grad school?
+  - How long does it usually take to graduate from graduate school?
+  - How long is grad school?
+  - How long would it take to finish my masters degree?
+  - How many years does grad school take?
+  - How many years does it take to get a master's or a doctorate?
+  - How quickly can you finish a graduate degree?
   part: 16
   question: How long is graduate school?
   session: 1
@@ -5273,7 +6498,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00141462e00150442.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How do I prepare to apply for grad school?
+  - How should I prepare for graduate school?
+  - What are the requirements for grad school?
+  - What classes do I need for grad school?
+  - What do I need to prepare for graduate school?
+  - What kinds of activities should I pursue in order to get ready for grad school?
+  - What kinds of things should I have on my CV before applying for grad school?
+  - What should I do in order to qualify for graduate school?
+  - What should I do to get ready for grad school?
+  - What should I do to get ready to apply for graduate school?
+  - What should I prepare prior to graduate school?
   part: 16
   question: What kind of preparation do I need to go to graduate school?
   session: 1
@@ -5299,7 +6535,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00151120e00160887.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can I apply to graduate schools out of state?
+  - How should I choose which graduate program to apply for?
+  - What graduate programs are good to apply for?
+  - What graduate school programs should I apply for?
+  - Which graduate programs would you recommend that I apply for?
   part: 16
   question: Where should I apply for graduate school?
   session: 1
@@ -5322,7 +6563,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00161460e00165760.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I apply to graduate school?
+  - How do I apply for the graduate program?
+  - How to get into the Masters program?
+  - What are the steps involved in applying for grad school?
+  - What do I need to do in order to apply for grad school?
+  - What does applying for graduate school entail?
+  - What is the application process for graduate school like?
+  - Where do I start if I want information about graduate programs or life after graduation
   part: 16
   question: How do I apply for graduate school?
   session: 1
@@ -5356,7 +6605,22 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00170263e00183573.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there any resources or opportunities that can help boost my grad school application
+    to make it more competitive?
+  - How can I make my application more competitive for graduate school?
+  - How could I strengthen my grad school application?
+  - 'How do I gain an advantage to pursue grad school? '
+  - How do I make my grad school application stronger?
+  - How do I make myself a stronger applicant for grad school?
+  - How do I make myself competitive for grad school?
+  - What activities should I pursue to make myself more competitive for grad school?
+  - What can I do now to make myself competitive for grad school?
+  - What can I do to become more competitive for graduate school?
+  - What can I do to better myself and get into graduate school?
+  - What can I do to ensure entry into grad school?
+  - What should I add to my CV to make it more likely that I'd get into grad school?
+  - What steps should I take to make sure I get into a good grad school?
   part: 16
   question: How can I improve my chances of getting into graduate school?
   session: 1
@@ -5391,7 +6655,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00184134e00202225.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How should I decide which grad school to go to?
+  - How should I pick which grad school to attend?
+  - How would I know which program to choose?
+  - What criteria should I use when choosing my graduate program?
+  - Which aspects should I look into when choosing my graduate program?
   part: 16
   question: How should I choose my graduate program?
   session: 1
@@ -5425,7 +6694,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00205709e00223145.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did you know that you chose the right master's program?
+  - How did you know that you chose the right phd program?
+  - How do I know that I chose the right graduate program for me?
+  - How should I ensure that I chose the right graduate program for me?
+  - How will I know whether or not I picked the right graduate program?
+  - How would I know if the graduate program is suitable for me?
+  - What would tell me that I chose the right grad school?
   part: 16
   question: How do I know that I picked the right graduate program?
   session: 1
@@ -5466,7 +6742,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00230053e00251280.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Should I do another semester or year if I do not get into the program I want?
+  - Should I give up if graduate programs reject me?
+  - Should I take a gap year if I don't get into my top choices for grad school?
+  - What do I do if I do not get into my dream graduate program?
+  - What do I do if I get rejected from graduate school?
+  - What happens if I do not get into the program I want?
+  - What if I don't get into my top choices for grad school?
+  - What is the best thing to do if I don't get into the grad program that I want?
+  - What would you advise me to do if I don't get into the graduate program I want?
   part: 16
   question: What should I do if I do not get into a graduate program that I want?
   session: 1
@@ -5501,7 +6786,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00252382e00270056.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you need to be rich in order to attend graduate school?
+  - How can I afford to go to graduate school?
+  - How can I pay for graduate education?
+  - How do I fund my graduate education?
+  - How do I pay for tuition at graduate school?
+  - What are different ways to finance graduate education?
+  - What are my options for paying for graduate school?
+  - What options do I have regarding paying for my graduate school tuition?
   part: 16
   question: How do I pay for graduate education?
   session: 1
@@ -5545,7 +6838,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00280682e00305546.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How much do tuition and fees cost for grad school?
+  - How much is tuition for grad school?
+  - How much money do I need to graduate from graduate school?
+  - How much money do I need to save up in order to be able to afford grad school?
+  - How much money does graduate school cost?
+  - How much money is it to attend grad school?
+  - What is the average price of graduate school?
+  - What is the cost of attending graduate school?
   part: 16
   question: How much does it cost to attend graduate school?
   session: 1
@@ -5575,7 +6876,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00310667e00322099.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are loans a common thing for students in graduate programs?
+  - Do you have to take on a lot of loans to go to grad school?
+  - How much debt do graduate students usually have?
+  - How much debt do students incur order to attend grad school?
+  - How much in loans do students usually take out for grad school?
+  - How much money would I need to borrow in order to go to grad school?
+  - What is the average amount of loans taken out by a graduate student?
   part: 16
   question: How much debt or loans do students incur for graduate school?
   session: 1
@@ -5608,7 +6916,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00323146e00335990.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - What are the best graduate schools?
+  - What are the top graduate programs?
+  - What good grad schools are there for psych majors?
+  - What graduate programs are the most competitive?
+  - What schools offer the best graduate programs?
+  - 'Where is the best university to obtain a doctorate in Psychology? '
+  - 'Where is the best university to obtain a masters degree in Psychology? '
+  - Which graduate programs have the best reputation?
   part: 16
   question: What are the best graduate programs?
   session: 1
@@ -5643,7 +6959,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00342639e00362579.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How high of a GPA do you need in order to get into grad school?
+  - What GPA is expected of graduate students?
+  - What is the GPA requirements for graduate schools?
+  - What is the average GPA for a graduate school applicant?
+  - What's the average GPA for a student going to grad school?
   part: 16
   question: What GPA do you need to get into graduate school?
   session: 1
@@ -5682,7 +7003,20 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00374028e00394014.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Could I still get into grad school even if my GPA is low?
+  - I don't have the highest GPA but have a lot of experience in my field. What do
+    I do?
+  - Should I take easier classes to raise my GPA?
+  - Should I take more courses to raise my GPA if it is too low for grad school?
+  - What can I do to compensate for a low GPA when applying for grad school?
+  - What can I do to improve my GPA if my grades aren't that great?
+  - What can I do to improve my chances of getting into graduate school if my GPA
+    is low?
+  - What could I do to raise my GPA if it is not high enough for grad school?
+  - What options do I have for making up a low GPA when I apply for graduate programs?
+  - Will I get into graduate school, even if my GPA is not the best?
+  - Would I still be able to get into grad school if my GPA is low?
   part: 16
   question: What should I do if my GPA is not the highest?
   session: 1
@@ -5745,7 +7079,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00432578e00471865.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do grad schools like it when you take a gap year?
+  - Is a gap year expected for graduate students?
+  - Is a gap year helpful?
+  - Is it necessary to take a gap year before going to grad school?
+  - Is taking a gap year beneficial or a myth?
+  - Should I take a break after undergrad?
+  - What is your opinion on taking a gap year before going to graduate school?
+  - Would it make you more competitive for grad school if you take a gap year?
+  - Would taking a gap year help or hurt your chances of getting into grad school?
   part: 16
   question: Should I take a gap year before going to graduate school?
   session: 1
@@ -5782,7 +7125,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00472748e00493339.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Day in the life of a graduate student
+  - What is going to graduate school like?
+  - What is graduate school like?
+  - What is the transition to graduate school like?
+  - What kinds of things do you do in grad school?
+  - What should I expect from graduate school?
   part: 16
   question: What is it like to go to graduate school?
   session: 1
@@ -5812,7 +7161,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p016s00494065e00511828.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Experiments?
+  - Tell me more about your research experiments
+  - What does your lab study?
+  - What experiments does your lab focus on?
+  - What kinds of research studies does your lab conduct?
+  - What studies do you do?
   part: 17
   question: What kinds of experiments do you do?
   session: 1
@@ -5835,7 +7190,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p017s00001330e00005385.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can you create a study?
+  - How do you create a successful research study?
+  - How do you prepare a research study?
+  - What steps are involved in planning a research study?
+  - What would you do when you want to conduct a study?
   part: 17
   question: How do you plan a study?
   session: 1
@@ -5861,7 +7221,19 @@ utterances:
   utteranceVideo: build/utterance_video/s001p017s00005942e00015363.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did you balance school and work?
+  - How did you balance school/job/internship/social life?
+  - How did you start a career and raise a family at the same time?
+  - How do you balance work and your personal life?
+  - How do you balance work, family, and your own time?
+  - How do you balance you work and home life?
+  - How do you balance your work and home life?
+  - How do you juggle work and family?
+  - How do you keep everything in balance?
+  - How were you able to reach your goals while working?
+  - 'What are some ways you found that helped you balance school, work and social
+    life? '
   part: 17
   question: How do you balance work and family responsibilities?
   session: 1
@@ -5890,7 +7262,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p017s00020189e00031540.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How do you cope when you have multiple responsibilities?
+  - How do you focus on the multiple responsibilities you have?
+  - How do you handle all your responsibilities?
+  - How do you manage your responsibilities and roles efficiently?
+  - What do you do to keep track of all your responsibilities?
+  - What's it like to juggle multiple responsibilities and roles?
+  - What's your strategy for keeping up with different roles and responsibilities
+    that you have?
   part: 17
   question: How do you juggle multiple responsibilities and roles that you have?
   session: 1
@@ -5923,7 +7303,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p017s00032224e00044516.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I manage my time?
+  - How do you efficiently balance all of what you do with limited time given?
+  - How do you manage your schedule?
+  - Time management
+  - What's your strategy for managing your time?
+  - What's your strategy for maximizing your efficiency?
   part: 17
   question: How do you manage your time?
   session: 1
@@ -5952,7 +7338,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p017s00045064e00055586.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did you find determination to keep pushing
+  - 'How did you find motivation? '
+  - How do you not lose your patience?
+  - How do you stay passionate about what you do?
+  - What has kept you motivated?
+  - 'What keeps you going? '
+  - What makes you motivated to pursue your career goal?
+  - What makes you not give up?
+  - What makes you want to continue this job everyday?
+  - 'What motivates you? '
   part: 17
   question: What keeps you motivated?
   session: 1
@@ -5972,7 +7368,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p017s00091953e00094828.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I always stay on top of my studies?
+  - How can I ensure that I don't get distracted from my goals?
+  - How can I stay disciplined on my studies while staying healthy?
+  - How do you maintain concentration?
+  - How do you manage distractions?
+  - How do you stay on task?
+  - How to get rid of distractions?
+  - How to improve your focus or attention span
   part: 17
   question: How do you stay focused?
   session: 1
@@ -6008,7 +7412,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p017s00095431e00112711.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are my career goals realistic?
+  - How do I set realistic goals?
+  - How do you give yourself goals?
+  - How do you set your own goals?
+  - What are some easy ways I can lead up to my goal?
   part: 17
   question: How do you set goals?
   session: 1
@@ -6032,7 +7441,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p017s00113348e00122393.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - What are your goals in 5 years? How about 10 years?
+  - What do you predict your career will be like in five or ten years?
+  - What does the next decade hold for you?
+  - What will you be doing in 5 years or 10 years?
+  - Where do you see yourself going in the future?
+  - Where do you see yourself in 10 years?
+  - Where do you see yourself in 5 years?
   part: 17
   question: Where do you see yourself in 5 years? 10 years?
   session: 1
@@ -6057,7 +7473,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p017s00123135e00132706.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How do you cope when faced with obstacles or setbacks?
+  - How do you deal with setbacks?
+  - How do you handle obstacles in your way?
+  - How do you overcome setbacks?
+  - What's your strategy for dealing with setbacks?
   part: 17
   question: How do you handle setbacks?
   session: 1
@@ -6083,13 +7504,13 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - Do you have your own definition of success?
-  - How would you characterize achievement?
-  - How would you describe success?
-  - What does it mean to be successful?
-  - What does life mean to you?
+  - Can you tell me what success looks like?
+  - What do you define as success in your field?
+  - What do you think success is?
+  - What does success look like to you?
   - What does success mean to you?
   - What is success?
+  - What makes someone successful?
   part: 17
   question: How do you define success?
   session: 1
@@ -6119,13 +7540,14 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
-  - How would you modify your job if you could?
-  - Is there anything bad about computer science?
-  - What changes would you make to the computer science field?
-  - What do you wish was different about computer science?
-  - What is bad about computer science?
-  - What sucks about CS?
-  - What would you change about computer sciecne?
+  - If you could change something about your job, what would it be?
+  - Is there anything about your job that you would like to change?
+  - Is there anything you'd change about your job?
+  - What is a flaw with your job that you would change?
+  - What is one thing about your job that you would want to change?
+  - What is something you would rather have different about your job?
+  - What would you change about your job to make it ideal?
+  - What would you fix about your job if you could?
   part: 17
   question: If you could change one thing about your job, what would it be?
   session: 1
@@ -6402,7 +7824,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p018s00021643e00022085.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are you proud of your accomplishments?
+  - Are you successful?
+  - Did you accomplish all your goals?
+  - Do you feel accomplished?
+  - Do you feel as if you have accomplished your goals?
+  - Do you feel successful?
+  - How much do you feel like you have accomplished what you wanted to do?
+  - How proud are you of your achievements?
+  - To what extent do you feel like you have achieved a lot?
+  - What makes you feel accomplished at the end of the day?
+  - Would you say you are accomplished?
   part: 19
   question: How accomplished do you feel?
   session: 1
@@ -6423,7 +7856,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p019s00003737e00011080.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - What accomplishment are you most proud of?
+  - What do you think is your biggest accomplishment?
+  - What is your most memorable accomplishment?
+  - Which experience or achievement do you think was your biggest success in the field
+    or in your life?
   part: 19
   question: What is your biggest accomplishment?
   session: 1
@@ -6444,7 +7882,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p019s00015367e00023300.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did you have any experiences where you felt it left a negative impact on you?
+  - What has been the most negative or unpleasant experience you have had in this
+    field?
+  - What was the most horrible experience you have had in this field?
+  - What was the worst experience you've had in psychology?
+  - What was your worst experience in the field?
+  - What would you say was the rock bottom in your career?
   part: 19
   question: What was your worst experience in this field?
   session: 1
@@ -6468,7 +7913,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p019s00053207e00061927.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you describe one of the toughest situations you've ever been in?
+  - Have you had a specific experience that was especially difficult in the field?
+  - What is the hardest part of being in the psychology field?
+  - What was the hardest experience you have had in psychology?
+  - What was the most challenging experience you have had in this field?
+  - What was the most difficult experience you've had while working in the field?
   part: 19
   question: What was the hardest experience in this field?
   session: 1
@@ -6496,7 +7947,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p019s00062756e00073700.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you ever experience writer's block?
+  - Do you have any advice on how to combat creative block?
+  - How do you get past a writer's block?
+  - How do you get through writer's block?
+  - How do you handle creative block?
+  - Tips on writer's block?
+  - What are some good ways to deal with a writer's block?
+  - What are some tricks to get past a writer's block?
+  - 'What should I do if I am having trouble with writing or other creative measures? '
   part: 19
   question: How do you deal with writer's block?
   session: 1
@@ -6520,7 +7980,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p019s00074503e00083990.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you ever feel nervous or anxious?
+  - Do you suffer from anxiety?
+  - Does anything make you fearful or afraid?
+  - Have you had times when you've had to control your anxiety or nerves?
+  - How do you cope with anxiety?
+  - How do you manage your anxiety?
+  - What do you do when you are nervous?
+  - What makes you nervous or anxious?
+  - Would you consider yourself an anxious person?
   part: 19
   question: How do you deal with anxiety or nervousness?
   session: 1
@@ -6544,7 +8013,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p019s00084877e00093956.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you know anyone with mental health problems?
+  - Have you been personally close to someone with mental illness?
+  - Have you ever had a mental illness?
+  - Have you experienced any mental health problems?
+  - Have you had close individuals with mental health problems?
+  - Have you had personal experience with mental illness?
+  - Have you had previous experience with mental illness in family or friends?
+  - Have you had previous experience with mental illness?
+  - Have you personally known people with mental illness?
+  - How close have you been to mental illness?
   part: 19
   question: Have you had any experience with mental illness?
   session: 1
@@ -6567,7 +8046,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p019s00094820e00103397.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How did you find your sense of purpose?
+  - Is there something that gives you a sense of purpose?
+  - What do you think gives you a sense of purpose?
+  - What gives you a sense of worth?
+  - What is your purpose?
+  - What is your sense of purpose?
   part: 19
   question: What gives you a sense of purpose?
   session: 1
@@ -6590,7 +8075,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p019s00105100e00114397.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How are you inspired?
+  - How do you get inspired?
+  - What gives you inspiration?
+  - What inspires you?
+  - Where do you find inspiration to meet your goals?
+  - Where does your inspiration come from?
+  - Where does your inspiration come from?
+  - Why are you inspired?
   part: 19
   question: Where do you find inspiration?
   session: 1
@@ -6614,7 +8107,11 @@ utterances:
   utteranceVideo: build/utterance_video/s001p019s00130990e00140060.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - What do you think is the most rewarding thing about being a teacher?
+  - What is rewarding about being a teacher?
+  - What is the most fulfilling thing about being a teacher?
+  - What is the most rewarding moment you've had being a teacher?
   part: 19
   question: What is the most rewarding thing about being a teacher?
   session: 1
@@ -6638,11 +8135,12 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
+  - What is the best advice you received?
   - What is the best piece of advice that you've received?
-  - what is the best advice you received?
-  - what person helped you the most to get where you are today?
-  - who was you best career counselor?
-  - who was your "go to guy" regarding your career?
+  - Who gave you the best guidance on your career?
+  - Who was your "go to person" regarding your career?
+  - Who was your best career counselor?
+  - Whose advice did you find the most valuable?
   part: 19
   question: Who gave you the best advice about your career?
   session: 1
@@ -6669,7 +8167,33 @@ utterances:
   utteranceVideo: build/utterance_video/s001p019s00150427e00161380.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you provide study techniques?
+  - How can I easily digest the content given to me?
+  - How can I get an A in this class?
+  - How can I learn easier?
+  - How can I learn faster?
+  - How can i prepare for a final test?
+  - How do i study?
+  - How do you recommend studying for the class?
+  - How do you study for an exam?
+  - How to take a good notes in class?
+  - 'How would you suggest I take notes for psychology? '
+  - I need some study tips.
+  - What are better and more effective ways to study?
+  - What are better study habits?
+  - What are better ways to study ?
+  - What are some good study tips for this class?
+  - What are some good studying tips for psychology tests?
+  - 'What are some ways that I can study efficiently? '
+  - What are the best ways to study for psychology?
+  - What are your best study habits?
+  - What can I study to better my test grades?
+  - What environment would be best for me to study in?
+  - What is the best way to study?
+  - What were some of the study techniques that you used to help you in classes?
+  - What's the most effective study method?
+  - Where should I study?
   part: 20
   question: Can you give me some study tips?
   session: 1
@@ -6691,7 +8215,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00002134e00005790.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you have advice for balancing multiple responsibilities?
+  - Do you have advice for managing different responsibilities?
+  - Do you have any advice on balancing work and school?
+  - How can I balance different aspects of my life from school to personal?
+  - How can I manage my time when working?
+  - How can I stay focused while also working full time?
+  - How to balance academic, work, and social life?
+  - What are some ways to balance work and home life?
+  - What's the best way to balance work and school?
   part: 20
   question: Do you have any advice on balancing work, home life, and school?
   session: 1
@@ -6716,7 +8249,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00014296e00024392.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I create positive relationships with my professors?
+  - How can I get to know a professor better?
+  - How do you establish rapport with a professor?
+  - Is it possible to build a strong relationship with my professor outside of class?
+  - What are some ways I could develop good relationships with professors?
   part: 20
   question: How can I develop a positive relationship with my professor?
   session: 1
@@ -6739,7 +8277,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00025570e00033010.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I always stay motivated to achieve my end goal?
+  - 'How can I stay motivated? '
+  - How can a student not feel like giving up when there is so much stress around
+    them?
+  - How do I regain my motivation?
+  - What can I do to keep myself motivated when I am feeling down?
+  - What should I do when I've lost motivation?
+  - Where can I find motivation to keep going when I feel like giving up?
   part: 20
   question: How do I stay motivated?
   session: 1
@@ -6763,7 +8309,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00034673e00043451.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you know of any scholarships I can apply for?
+  - How can I find scholarships that I am eligible for?
+  - What databases can I use to find scholarships?
+  - What scholarships should I apply for?
+  - Where can I find the available scholarships?
   part: 20
   question: How can I find scholarships to apply for?
   session: 1
@@ -6787,7 +8338,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00045811e00054478.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - 'How do I know what major to choose? '
+  - How should I pick my major?
+  - What considerations should I take into account when choosing my major?
+  - What criteria should I use when choosing my major?
+  - What's a good way to choose your major?
+  - Which aspects should I look into when choosing my major?
   part: 20
   question: How should I choose my major?
   session: 1
@@ -6811,7 +8368,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00060148e00064248.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you have recommendations for how I could make friends?
+  - How do I find the right friends?
+  - How do I make friends as a commuter?
+  - How do you keep relationships and friendships during school and outside of school?
+  - How do you make friends in class and maintain those friendships?
+  - 'How do you make more college friends? '
+  - I have trouble making friends.
+  - What are good ways to make friends in college?
+  - What is a good way to look for new friends in college?
+  - Where can I develop friendships?
+  - Where can I meet new friends in college?
   part: 20
   question: How do you make friends in college?
   session: 1
@@ -6832,7 +8400,19 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00081107e00083735.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you help me with burnout?
+  - How do I keep from burning out?
+  - How do I know I am experiencing burnout and what can I do to prevent it?
+  - How do I stop myself from pushing myself too hard?
+  - How do you not burn out from all the responsibilities you have?
+  - How should I get through being burnt out
+  - I'm burned out
+  - I'm feeling burned out. What can I do?
+  - What can I do to cope with burnout?
+  - What can students do when they feel emotionally and mentally drowned from so much
+    school work?
+  - What is your advice for dealing with burnout?
   part: 20
   question: How can I prevent burnout?
   session: 1
@@ -6858,7 +8438,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00085271e00095092.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I talk to my professors?
+  - How should I introduce myself to a professor?
+  - Is there a proper way to communicate or address your professors?
+  - What do you recommend that I do if I want to talk to a professor?
+  - What is the best way to approach a professor for help during their office hours?
+  - What's a good way to approach a professor?
   part: 20
   question: What is the best way to approach a professor?
   session: 1
@@ -6881,7 +8467,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00095911e00103773.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there things you recommend I should not do?
+  - If you were me, what would you avoid doing?
+  - What are some no-no's?
+  - What are some things I need to avoid doing?
+  - What mistakes should I avoid?
+  - What pitfalls should I avoid?
+  - When it comes to college or my career, what should I avoid doing to prevent setbacks?
   part: 20
   question: What do you recommend that I avoid doing?
   session: 1
@@ -6910,7 +8503,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00105151e00121045.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there any ways I can help my community while pursuing my career?
+  - 'Do you have any recommendations for events or meetings that I should attend? '
+  - How can I get more involved?
+  - 'How can someone become more involved with their environment? '
+  - How do I become more involved on or off campus?
+  - What are some opportunities I can be a part of?
+  - What are some things I can do for the community that relates to my major?
+  - What are some ways to get involved in the campus community?
   part: 20
   question: How do I get involved more?
   session: 1
@@ -6933,7 +8534,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00122035e00125941.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you help me raise my grades?
+  - How can I do better in my classes?
+  - How can I earn better grades?
+  - How can I raise my GPA by a few points?
+  - Tips for improving my grades?
+  - What can I do to improve my grades?
   part: 20
   question: How can I improve my grades?
   session: 1
@@ -6958,7 +8565,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00133364e00142141.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Does the writing center or career center offer tips in APA formatting?
+  - How can I get better at APA Format?
+  - How do you write an effective paper in APA format?
+  - Is there an online resource I could use to help me with APA formatting?
+  - What is APA format?
+  - What resources are there to help me with APA format?
+  - Where can I learn more about the APA format?
   part: 20
   question: How do I get better at writing in APA format?
   session: 1
@@ -6986,7 +8600,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00143579e00153683.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you explain my TDA to me?
+  - Can you help me understand my TDA?
+  - Do I need to talk to a counselor about my TDA?
+  - How do you read your TDA?
+  - I'm a transfer student and I need help understand my TDA. Can you help me with
+    that?
+  - What is a TDA?
+  - Who can help me with understanding my TDA?
   part: 20
   question: I need help understanding my TDA. Who can help me with that?
   session: 1
@@ -7005,7 +8627,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00154974e00160541.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I best prepare for my advising appointment?
+  - How can the psychology advisor help me?
+  - What are some good questions to ask of a psychology advisor?
+  - What kinds of information can the advising session provide?
+  - What kinds of questions can my advisor answer?
+  - What questions should I be asking during my advising session?
+  - What questions should I prepare for advising sessions?
+  - What should I bring to my advising appointment?
   part: 20
   question: What should I be asking during my advising session?
   session: 1
@@ -7032,7 +8662,19 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00161660e00171144.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can I graduate in four years?
+  - Do I have to increase my workload in order to graduate on time?
+  - Do you need a lot of AP classes in order to graduate in four years?
+  - How do I stay on track for graduation?
+  - How hard is it to graduate in four years?
+  - How many courses do I need to take each semester in order to graduate in four
+    years?
+  - How many units should I take in order to graduate in four years?
+  - Is graduating in four years realistic?
+  - Is it possible to graduate in four years with a psychology major?
+  - What can I do to ensure that I graduate within four years?
+  - Who can help me graduate in four years?
   part: 20
   question: How can I graduate in four years?
   session: 1
@@ -7062,7 +8704,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00172074e00184819.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can I become a teaching assistant?
+  - Can you ask professors if you could be a teaching assistant for them?
+  - How can I sign up to be a TA or a UCA?
+  - How do I become a TA?
+  - How do you become a TA or a UCA?
+  - If I want to become a TA, what do I have to do and who do I go to?
+  - What are some qualifications for becoming a TA?
+  - What are some ways for me to best prepare to be a TA?
+  - What do I need to do in order to become a teaching assistant?
+  - Who can I talk to if I want to be a TA?
   part: 20
   question: How can I become a teaching assistant or TA?
   session: 1
@@ -7087,7 +8739,20 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00185993e00195166.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are extracurriculars helpful or important?
+  - Are extracurriculars important for your future success?
+  - Are extracurriculars important when getting a job or getting into graduate school?
+  - Are extracurriculars necessary?
+  - Can extracurriculars provide you additional experience for jobs or graduate school?
+  - Do extracurriculars help?
+  - Do you have to have extracurriculars in order to be competitive?
+  - How can extracurriculars help you get a job?
+  - How can extracurriculars help you get into grad school?
+  - How many extracurriculars do successful applicants have?
+  - What is the role of extracurriculars in helping you get into grad school or find
+    a job?
+  - What is your opinion on extracurriculars?
   part: 20
   question: How important are extracurriculars in helping you get a job or go to graduate
     school?
@@ -7112,7 +8777,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00200649e00205306.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I be successful on the job market?
+  - How could I advertise myself to be more desirable by employers?
+  - How do I compete for jobs?
+  - How do I do well on the job market?
+  - How do I make myself a competitive candidate for jobs?
+  - What are the best things to do to increase my chances of getting a job?
+  - What can I do to boost my chances of getting a job?
+  - What can I do to make myself more competitive for future jobs?
+  - What do you recommend to raise my chances of employment?
+  - What kinds of experiences should I have in order to be a competitive job candidate?
+  - What kinds of qualifications make a person competitive for a job?
   part: 20
   question: How can I make myself competitive for jobs?
   session: 1
@@ -7135,7 +8811,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00210431e00214887.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I ensure that I'm competitive for graduate school?
+  - How can I put together a competitive application for grad school?
+  - How do I become a competitive applicant for grad school?
+  - What are some ways to make my profile stand out for graduate school?
+  - What kinds of experiences should I have on my CV in order to be a good applicant
+    for grad school?
+  - What would make me a good candidate for grad school?
+  - What would make me competitive for grad school?
   part: 20
   question: How can I make myself competitive for graduate school?
   session: 1
@@ -7159,7 +8843,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00215955e00224532.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How should I deal with not getting along with my mentor?
+  - Should I ask to switch mentors?
+  - Should I find a new mentor if I don't get along with my current one?
+  - Should I replace my mentor if I don't like them?
+  - What can I do if I have conflicts with my mentor?
+  - What can I do to improve my relationship with my mentor?
+  - What do I do if I do not get along with my mentor?
+  - What if I don't like my mentor's advice?
+  - What if I don't like my mentor?
+  - What should I do if I am having trouble with my mentor?
   part: 20
   question: What should you do when you don't get along with your mentor?
   session: 1
@@ -7185,7 +8879,19 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00225638e00234899.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How should I choose my lab classes?
+  - If I want to pursue a certain concentration, which lab(s) should I take?
+  - What are good labs to take?
+  - What is the best lab course?
+  - What lab courses do you recommend?
+  - What labs am I supposed to take?
+  - What labs should I join?
+  - What labs should I take part in?
+  - Which lab courses are best?
+  - Which lab courses are the most useful?
+  - Which labs are the most advantageous?
+  - Who teaches the best labs?
   part: 20
   question: What lab(s) should I take?
   session: 1
@@ -7214,7 +8920,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p020s00235938e00250961.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you mentor minority students?
+  - How are you supporting minority students?
+  - How can minority students feel more supported?
+  - Is anything going on that supports minority students?
+  - Is there anything happening to support minority students?
+  - What are you doing to make minority students feel included?
+  - What is the Department doing to support or encourage minority students?
   part: 21
   question: What are you doing to support minority students?
   session: 1
@@ -7255,7 +8968,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p021s00001630e00024836.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you have anything feelings about BLM?
+  - Do you support the BLM movement?
+  - How do you feel about BLM?
+  - Is BLM a helpful cause?
+  - What is your opinion on BLM?
+  - Where do you stand on BLM?
   part: 21
   question: Do Black Lives Matter?
   session: 1
@@ -7272,7 +8991,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p021s00030421e00031284.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Is there a reason for the lack of minority professors?
+  - Where are professors of color?
+  - Why are there fewer amounts of minority professors?
+  - Why are there less professors of color?
+  - Why are there not many professors of color?
+  - Why are there so few Latinx or Hispanic professors?
+  - Why do we lack professors of color?
+  - Why is there no Black professor?
   part: 21
   question: Why are there so few minority professors / professors of color?
   session: 1
@@ -7312,7 +9039,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p021s00032362e00054839.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there certain socioeconomic demographic factors that are more common or prevalent
+    in the field of psychology?
+  - Can you describe the demographic makeup in psychology?
+  - Can you describe the socioeconomic demographic of the Psychology field?
+  - What does the socioeconomic demographic of the Psychology field look like?
+  - What is the demographic characteristics of students and faculty in psychology?
   part: 21
   question: What is the socioeconomic demographic of the psychology field?
   session: 1
@@ -7342,7 +9075,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p021s00071502e00083220.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are conservatives welcome at your school?
+  - Does your campus lean liberal or conservative?
+  - How conservative is your college?
+  - How conservative is your school?
+  - Is your campus conservative?
+  - What is the political leaning of your campus?
+  - Would you consider your campus fairly conservative?
   part: 21
   question: How conservative is your campus?
   session: 1
@@ -7366,7 +9106,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p021s00084062e00093994.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you feel like the field of Psychology is conservative?
+  - Does the field of Psychology have any political bias?
+  - How conservative is Psychology as a whole?
+  - Is Psychology liberal or conservative?
+  - Is the field of Psychology conservative?
   part: 21
   question: How conservative is the field of Psychology?
   session: 1
@@ -7393,7 +9138,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p021s00095779e00110385.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I become more anti-racist?
+  - How can I help fight racism?
+  - How can I help people who are facing discrimination?
+  - How can I help people who are targets of racism?
+  - How can I stand up for those facing discrimination?
+  - How can i support individuals who have faced discrimination?
+  - How do you stand up for people facing discrimination?
+  - What would you do in order to help people facing discrimination?
   part: 21
   question: How do I stand up for people facing discrimination?
   session: 1
@@ -7426,7 +9179,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p021s00121167e00135843.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there any resources for those facing discrimination from others?
+  - How do I address discrimination against me?
+  - How do I deal with discrimination from others?
+  - Is there a solution to discrimination from others?
+  - What can I do if I feel discriminated against?
+  - What should I do if I feel discriminated against by my peers?
   part: 21
   question: What should I do if I feel discriminated against by others?
   session: 1
@@ -7450,7 +9209,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p021s00140655e00145238.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there any resources for those facing discrimination from a professor?
+  - Can professors discriminate against you?
+  - How do I deal with discrimination from a professor?
+  - If I feel that a professor is discriminating against me, what can I do?
+  - Is there a solution to discrimination from a professor?
+  - What should I do if I feel discriminated against by a teacher?
   part: 21
   question: What should I do if I feel discriminated against by a professor?
   session: 1
@@ -7482,7 +9247,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p021s00155967e00173153.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are the students in Psychology diverse?
+  - Is Psychology a diverse field?
+  - Is the field of Psychology a multicultural environment?
+  - Is the field of Psychology committed to supporting or increasing its diversity?
+  - Tell me about diversity in psychology.
+  - Would you say Psychology is a diverse field?
   part: 22
   question: How diverse is the field of Psychology?
   session: 1
@@ -7511,7 +9282,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p022s00005381e00021081.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are LGBTQ issues something that Psychology studies?
+  - Are there scholars that study LGBTQ issues from a psychological perspective?
+  - Are there studies about LGBTQ issues?
+  - Does Psychology have an area that studies LGBTQ issues?
+  - Does Psychology study LGBTQ issues?
+  - How big is the literature on LGBTQ issues?
+  - Is gender or sexuality studied in psychology?
+  - Is there a subfield that focuses on LGBTQ psychology?
   part: 22
   question: Are LGBTQ issues studied in this field?
   session: 1
@@ -7531,7 +9310,20 @@ utterances:
   utteranceVideo: build/utterance_video/s001p022s00024999e00031440.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are racial relations something that Psychology studies?
+  - Are there cross-cultural studies?
+  - Are there studies about racial relations?
+  - Can psychology help explain racial relations or tensions?
+  - Can psychology help improve racial relations?
+  - Can you learn about racial issues in psychology?
+  - Can you understand racism using psychological principles?
+  - Does Psychology have an area that studies racial relations?
+  - Does Psychology study racial relations?
+  - Does psychology play a role in racism?
+  - How is racism addressed in psychology?
+  - Is psychology anti-racist or racist?
+  - Is race studied in psychology?
   part: 22
   question: Are racial relations studied in this field?
   session: 1
@@ -7550,7 +9342,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p022s00032084e00034208.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are professors understanding or supportive of LGBTQ students?
+  - Do LGBTQ students feel harassed in psychology?
+  - Do LGBTQ students feel welcome in psychology?
+  - Do LGBTQ students find it welcoming in psychology?
+  - Do LGBTQ students succeed in psychology?
+  - Does this field welcome LGBTQ students?
+  - How supportive is this field of LGBTQ students?
+  - How welcoming is this field of incoming LGBTQ students?
+  - Is Psychology friendly towards LGBTQ students?
+  - Is the field of Psychology committed to supporting LGBTQ students?
   part: 22
   question: How welcoming, affirming, or supportive is this field of LGBTQ students?
   session: 1
@@ -7573,7 +9375,20 @@ utterances:
   utteranceVideo: build/utterance_video/s001p022s00035232e00043797.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are you anti-racist?
+  - Are you fighting anti-Black racism?
+  - Do you mentor Black students?
+  - How are you showing support for Black students?
+  - How can Black students feel more supported?
+  - How do you recruit and retain Black students in psychology?
+  - How do you support Black students?
+  - How is the department supporting black students?
+  - In what ways do you encourage Black students?
+  - Is anything going on that supports Black students?
+  - Is there anything happening to support Black students?
+  - What are you doing to be anti-racist?
+  - What are you doing to make Black students feel included?
   part: 22
   question: What are you doing to support Black students?
   session: 1
@@ -7597,7 +9412,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p022s00044587e00054132.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are you single?
+  - Do you have a husband?
+  - Do you have a partner?
+  - Do you have a romantic relationship?
+  - Do you have a significant other?
+  - Do you have a spouse?
+  - Do you have a wife?
+  - Have you been married?
+  - Have you tied the knot?
+  - Is there romance in your life?
+  - Is there someone waiting for you at home?
   part: 23
   question: Are you married or in a relationship?
   session: 1
@@ -7614,7 +9440,19 @@ utterances:
   utteranceVideo: build/utterance_video/s001p023s00001090e00001566.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you have any plans for when you retire?
+  - Do you have any post-retirement plans?
+  - How do you think your retirement will go?
+  - What are you going to do once you retire?
+  - What are your plans for retirement?
+  - What comes after retirement?
+  - What do professors do after they retire?
+  - What do you envision for your retirement?
+  - What do you think your retirement will be like?
+  - What will you do after retirement?
+  - Will you continue to do research after retirement?
+  - Will you continue to teach after retirement?
   part: 23
   question: What do you plan to do when you retire?
   session: 1
@@ -7632,7 +9470,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p023s00002340e00003403.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Could you give me some advice on how to stop procrastinating?
+  - How can I stop procrastinating?
+  - How do you avoid procrastination?
+  - How to cope with procrastination?
+  - What actions do you need to take in order to stop procrastinating?
+  - What's the best way to stop procrastinating?
   part: 23
   question: How do i stop procrastinating?
   session: 1
@@ -7657,7 +9501,22 @@ utterances:
   utteranceVideo: build/utterance_video/s001p023s00004414e00013663.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there any clubs specific towards my major?
+  - Are there clubs or organizations that are good to join?
+  - How many clubs should I join?
+  - Is it important to belong to clubs or organizations?
+  - Is it worth it to get involved in clubs on campus?
+  - Should I join a club?
+  - Should I join any organizations?
+  - What are the best activities/clubs or anything of that sort to be involved with
+    at school to give me more credibility?
+  - What clubs can I join in order to make the most out of college?
+  - What clubs should I join?
+  - What organizations can you recommend for someone looking to further their research
+    in their field?
+  - Where can I find the best club for me?
+  - Which are the best psychology clubs on campus?
   part: 23
   question: What clubs or organizations should I join?
   session: 1
@@ -7685,7 +9544,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p023s00015177e00025734.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I decide on which career to pursue?
+  - How do I choose a career?
+  - 'I am in between two career paths that I want to take. What do you recommend me
+    to do to make my mind up on which path to take? '
+  - What are some things I can do when I have trouble choosing my career path?
+  - What do I do if I'm questioning my career path?
+  - What is a good way to choose my career path?
+  - Which aspects should I look for when choosing my career path?
   part: 23
   question: How do I choose my career path?
   session: 1
@@ -7713,7 +9580,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p023s00030896e00041657.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Did it take you a long time to find a job after graduation?
+  - Did you have any jobs lined up by the time you graduated?
+  - Did your degree help you find a job?
+  - How did you find your job?
+  - How difficult was it for you to get a job after graduation?
+  - How long did it take to find a job after graduation?
+  - How quickly did you get a job after graduation?
+  - How was your job search?
+  - Tell me about your experience on the job market.
+  - What was it like to look for a job after graduation?
+  - What was the job market like when you were looking?
   part: 23
   question: What was your job search like after graduation?
   session: 1
@@ -7741,7 +9619,18 @@ utterances:
   utteranceVideo: build/utterance_video/s001p023s00042985e00054192.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I manage my stress more efficiently?
+  - How did you deal with stress?
+  - How do I keep my mental health okay during stress?
+  - 'How do you deal if stress? '
+  - How do you deal with stress and pressure from classes?
+  - How do you keep sane?
+  - How to cope with stress?
+  - Stress management
+  - What activities do you engage in to de-stress?
+  - What can I do to relieve stress when there is no time to do so?
+  - What do you like to do to clear your mind from too much work?
   part: 23
   question: How do you manage your stress?
   session: 1
@@ -7774,7 +9663,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p023s00055038e00072024.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you tell me more about the thesis?
+  - Do I have to do a thesis?
+  - How do I write a thesis?
+  - Is a thesis required?
+  - Is a thesis worth it?
+  - Is thesis just a long paper?
+  - What does a thesis include?
+  - Would you recommend that I write a thesis?
   part: 24
   question: What is a thesis?
   session: 1
@@ -7792,7 +9689,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p024s00002475e00003904.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are minors required?
+  - Can you tell me more about minors
+  - How does a minor help complement our studies?
+  - What are minors?
+  - What do you have to do for a minor?
   part: 24
   question: What is a minor?
   session: 1
@@ -7810,7 +9712,15 @@ utterances:
   utteranceVideo: build/utterance_video/s001p024s00004297e00005321.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you have three minors?
+  - Can you have two minors?
+  - How many minors are you allowed to have?
+  - How many minors is the maximum amount?
+  - How many minors should I have?
+  - Is it better to get more minors?
+  - Is there such a thing as too many minors?
+  - What is the optimal number of minors to have?
   part: 24
   question: How many minors can you have?
   session: 1
@@ -7830,7 +9740,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p024s00005732e00011606.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Best ways to memorize psychopharmacology
+  - How do you effectively study and memorize important parts of pharmacology?
+  - How do you memorize different medications and their effects?
+  - Is there a way to categorize different types of medicine and their effects on
+    neurotransmitters?
+  - Study tips for psychopharmacology?
+  - What are good strategies for memorizing effects of medications on neurotransmitters?
+  - What is the easiest way to memorize different medications and the effects they
+    have?
+  - What's the best way to study medications and their effects?
   part: 24
   question: How do you memorize medications and the effect on neurotransmitters?
   session: 1
@@ -7851,7 +9771,14 @@ utterances:
   utteranceVideo: build/utterance_video/s001p024s00015594e00022284.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Best ways to memorize brain parts
+  - Can you give me study tips for how to study brain parts or functions?
+  - Can you help me with brain biology?
+  - Do you have any tips on how to memorize major parts of the brain and their function?
+  - How do you memorize all the parts of the brain and the things they control?
+  - How do you memorize the parts of the brain and their responsibilities?
+  - What are good ways to memorize different parts of the brain?
   part: 24
   question: How do you memorize all the parts of the brain and their function?
   session: 1
@@ -7872,7 +9799,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p024s00023626e00030896.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there a lot of openings for psychology teachers?
+  - How competitive is it to get a teaching job in Psychology?
+  - How difficult is finding a teaching job in Psychology?
+  - Is it difficult to get a teaching job in psychology?
+  - Is it easy to get a teaching job?
+  - What is the job outlook like for teaching opportunities in psychology?
   part: 24
   question: How hard is it to find a teaching job in Psychology?
   session: 1
@@ -7896,7 +9829,16 @@ utterances:
   utteranceVideo: build/utterance_video/s001p024s00032441e00040745.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are there different types of professors?
+  - How many different kinds of professors are there?
+  - What are the different ranks of professors?
+  - What different types of professors are there?
+  - What do different titles mean for professors?
+  - What does assistant or associate or full professor mean?
+  - What types of positions are there for professors?
+  - What's the difference between a professor and an adjunct professor?
+  - can you explain the different titles for professors?
   part: 24
   question: What are the different types of professors?
   session: 1
@@ -7930,7 +9872,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p024s00055203e00073468.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Are Psychological studies required to a diverse demographic?
+  - Do psychological studies help the representation of minority participants?
+  - Do you have to ensure representation of minority participants in psychological
+    studies?
+  - Do you have to provide a representative sample that includes minority participants?
+  - Have there been psychological studies done to aid the representation of minority
+    participants?
+  - How many minority participants do you have to include in studies?
+  - Is the representation of minority participants ensured in psychological studies?
+  - What proportion of your research subjects need to be minority participants?
   part: 25
   question: Are psychological studies required to ensure representation of minority
     participants?
@@ -7968,12 +9920,13 @@ utterances:
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
   - Do you have a favorite book?
+  - Do you have any favorite book recommendations?
+  - Have you read anything that made a difference in your life?
   - Is there a book that changed your life?
   - Is there a book that you love?
-  - Your favorite book?
-  - have you read anything that made a difference in your life?
-  - what have you read that changed you?
-  - what's your favorite read?
+  - What book can you not live without?
+  - What is your best read?
+  - What's your favorite read?
   part: 25
   question: What's your favorite book of all time? Why?
   session: 1
@@ -7995,11 +9948,13 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
+  - Best movie?
   - Do you have a favorite movie?
+  - Movie you can't live without?
+  - What do you think is the best movie?
   - What is one movie that you love?
-  - What movie do you love?
-  - Your favorite movie?
-  - is there a movie you really like?
+  - What movie do you enjoy the most?
+  - What movie would you recommend watching?
   part: 25
   question: What's your favorite movie of all time? Why?
   session: 1
@@ -8025,12 +9980,10 @@ utterances:
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
   - Which person do you admire and why?
-  - Who is a role model for you?
-  - Who is your role model?
+  - Who do you find the most admirable?
+  - Who do you find the most amazing?
+  - Who is really cool to you?
   - Whom do you admire?
-  - what person stands out to you?
-  - who is really cool to you?
-  - who is the best role model?
   part: 25
   question: What person do you most admire and why?
   session: 1
@@ -8055,7 +10008,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p025s00052922e00063925.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Is there anything you can not live without?
+  - Is there something you can not live without?
+  - What can you not live without?
+  - What is a basic necessity in your life?
+  - What is something that you absolutely need in your life?
   part: 25
   question: What is one thing you cannot live without?
   session: 1
@@ -8075,15 +10033,16 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
+  - Did you ever own an animal?
+  - Did you raise any animals?
+  - Did your parents allow you to have a pet?
+  - Do you have a cat?
+  - Do you have a dog?
+  - Do you like animals?
   - Do you like cats?
-  - did you ever own an animal?
-  - did your parents allow you to have a pet?
-  - do you have a cat?
-  - do you have a dog?
-  - do you like animals?
-  - do you like pets?
-  - have you had a pet?
-  - were you responsible for a pet?
+  - Do you like pets?
+  - Have you ever had a pet?
+  - Were you responsible for a pet?
   part: 25
   question: Do you have any pets?
   session: 1
@@ -8104,7 +10063,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p025s00072944e00080748.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you go by a different name?
+  - Do you have a name your close friends call you?
+  - Do you have a nickname that you go by?
+  - Do you have any variations of your name?
+  - Does your family call you a different name?
+  - What's your nickname or moniker?
   part: 25
   question: Do you have a nickname?
   session: 1
@@ -8125,7 +10090,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p025s00081424e00084547.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Have you ever had a dream job you've always wanted to try?
+  - If you could change jobs for a day, what would it be?
+  - If you could swap jobs for a day, what would you do?
+  - Is there any job that you would want to have for a day?
+  - What job do you see yourself doing if you had the chance to work there for a day?
+  - What job would you love to try out?
   part: 25
   question: If you could try out any job for a day, what would it be?
   session: 1
@@ -8146,13 +10117,13 @@ utterances:
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
   paraphrases:
+  - Did something ever funny happen to you?
+  - Do you know any funny stories?
+  - Make me laugh
   - Narrate a funny story.
-  - do you know any funny stories?
-  - have you ever been in australia?
-  - make me laugh
-  - tell me a story.
-  - tell me something funny.
-  - what tickles you
+  - Tell me a story.
+  - Tell me something funny.
+  - What tickles you?
   part: 25
   question: Tell me a funny story.
   session: 1
@@ -8700,7 +10671,22 @@ utterances:
   utteranceVideo: build/utterance_video/s001p027s00025960e00030408.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How can I improve as a psychologist?
+  - How do I become a child psychologist?
+  - How do I become a clinical psychologist?
+  - How to stay up to date with mental disorders?
+  - Is being a psychologist hard?
+  - Is it difficult to maintain a job as a psychologist?
+  - What did you do to get your counseling hours?
+  - What do I need to know before becoming a psychologist?
+  - What is the most satisfying part of being a psychologist?
+  - What made you decide to become a psychologist?
+  - What makes you a good candidate for want to be a psychologist?
+  - What types of psychologist are out there?
+  - Where are some places I can meet other psychologists?
+  - Where can I work as a psychologist?
+  - Why did you become a psychologist?
   part: 28
   question: What's it like to be a psychologist?
   session: 1
@@ -8725,7 +10711,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00004134e00013475.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can this major be emotionally draining and require self-regulation?
+  - Do you have to be emotionally stable in order to work in this field?
+  - How emotionally stable do you have to be?
+  - How important is emotional regulation for this major?
+  - Is emotional regulation required for this major?
   part: 28
   question: Does this major require a lot of emotional regulation?
   session: 1
@@ -8749,7 +10740,11 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00021342e00025638.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How do you know when you should switch majors?
+  - Should I switch my major over to ...?
+  - Should i continue on my major course?
+  - What should I ask myself if I am thinking about switching majors?
   part: 28
   question: Should I switch majors?
   session: 1
@@ -8770,7 +10765,11 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00032439e00035775.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How do we define something that is normal or abnormal?
+  - How do you define normal and abnormal?
+  - What is abnormal and normal in your eyes?
+  - What is the difference between normal and abnormal?
   part: 28
   question: What is normal or abnormal?
   session: 1
@@ -8797,7 +10796,10 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00041914e00051518.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you care about me as a person?
+  - Do you genuinely care about me?
+  - Do you really care about me?
   part: 28
   question: Do you care about me?
   session: 1
@@ -8818,7 +10820,10 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00052473e00055311.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How does a person get into medical school?
+  - What does getting into medical school require?
+  - What is getting into medical school like?
   part: 28
   question: How do you get into medical school?
   session: 1
@@ -8841,7 +10846,10 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00070886e00074948.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How does someone become a therapist?
+  - What does being a therapist require?
+  - What does it take to become a therapist?
   part: 28
   question: How do you become a therapist?
   session: 1
@@ -8864,7 +10872,10 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00075626e00083812.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - How does someone become a [different career]?
+  - What does being a [different career] require?
+  - What does it take to become a [different career]?
   part: 28
   question: How do you become a .... [insert different career]
   session: 1
@@ -8885,7 +10896,11 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00085561e00092148.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Am I in the right field for me?
+  - How do I know I am in the right field?
+  - Is this the right field for me?
+  - What would be the right field for me?
   part: 28
   question: Am I in the right field?
   session: 1
@@ -8911,7 +10926,10 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00104294e00113255.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you know what is wrong with me?
+  - How do I find out what is wrong with me?
+  - Why do I think something is wrong with me?
   part: 28
   question: What's wrong with me?
   session: 1
@@ -8933,7 +10951,13 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00114816e00122576.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you define life?
+  - Does anyone know what life is?
+  - How would you define life?
+  - What do you think life is?
+  - What is the definition of life?
+  - When does life begin?
   part: 28
   question: What is life?
   session: 1
@@ -8953,7 +10977,12 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00125096e00131330.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Can you define happiness?
+  - Does anyone know what happiness is?
+  - How would you evaluate happiness?
+  - What do you think happiness is?
+  - What is the definition of happiness?
   part: 28
   question: What is happiness?
   session: 1
@@ -8974,7 +11003,17 @@ utterances:
   utteranceVideo: build/utterance_video/s001p028s00135796e00142259.mp4
 - errorMessage: ''
   mentor: trevitt-jennifer-prof-psych
-  paraphrases: []
+  paraphrases:
+  - Do you have any tips for managing my anxiety?
+  - How can I be less anxious?
+  - How can I cope with my anxiety?
+  - How can I manage my stress more efficiently?
+  - How do I handle my anxiety?
+  - How do you deal with anxiety and/or nervousness?
+  - 'Is there any tips to control exam anxiety? '
+  - What are some strategies to deal with anxiety?
+  - What can I do to help my anxiety?
+  - What should I do if I am feeling really anxious?
   part: 28
   question: How can I deal with my anxiety?
   session: 1
