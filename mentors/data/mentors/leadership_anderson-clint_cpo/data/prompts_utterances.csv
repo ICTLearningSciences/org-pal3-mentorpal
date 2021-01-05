@@ -30,6 +30,34 @@ _OFF_TOPIC_,leadership_anderson-clint_cpo,I have no idea.
 _FEEDBACK_,leadership_anderson-clint_cpo,I don't think so.
 _PROMPT_,leadership_anderson-clint_cpo,here is something you should really know.
 _OFF_TOPIC_,leadership_anderson-clint_cpo,"That's a good question, but I want to make sure to tell you something."
+_PROMPT_,leadership_anderson-clint_cpo,Hello.
+_FEEDBACK_,leadership_anderson-clint_cpo,it is nice to meet you.
+_OFF_TOPIC_,leadership_anderson-clint_cpo,I don't really have an opinion on that.
+_FEEDBACK_,leadership_anderson-clint_cpo,I hope so.
+_FEEDBACK_,leadership_anderson-clint_cpo,I'm sorry.
+_FEEDBACK_,leadership_anderson-clint_cpo,I'm sorry to hear that.
+_PROMPT_,leadership_anderson-clint_cpo,I see you did not answer anything there.
+_PROMPT_,leadership_anderson-clint_cpo,you've got to ask me something to get a response.
+_FEEDBACK_,leadership_anderson-clint_cpo,Thank you.
+_FEEDBACK_,leadership_anderson-clint_cpo,I understand that.
+_FEEDBACK_,leadership_anderson-clint_cpo,I went through something similar.
+_OFF_TOPIC_,leadership_anderson-clint_cpo,I am not sure.
+_OFF_TOPIC_,leadership_anderson-clint_cpo,I can't hear you.
+_OFF_TOPIC_,leadership_anderson-clint_cpo,I don't understand.
+_PROMPT_,leadership_anderson-clint_cpo,Can you repeat that?
+_OFF_TOPIC_,leadership_anderson-clint_cpo,I don't have an answer for that.
+_PROMPT_,leadership_anderson-clint_cpo,Can you ask me something else?
+_OFF_TOPIC_,leadership_anderson-clint_cpo,it would help if you can keep the questions short and simple.
+_OFF_TOPIC_,leadership_anderson-clint_cpo,Can you rephrase the question?
+_FEEDBACK_,leadership_anderson-clint_cpo,I cannot predict the future.
+_FEEDBACK_,leadership_anderson-clint_cpo,I do not want to speculate about the future.
+_OFF_TOPIC_,leadership_anderson-clint_cpo,I don't know what that is.
+_OFF_TOPIC_,leadership_anderson-clint_cpo,I don't know who that is.
+_OFF_TOPIC_,leadership_anderson-clint_cpo,I'm not going to talk about that.
+_OFF_TOPIC_,leadership_anderson-clint_cpo,I'm not here to talk about that.
+_PROFANITY_,leadership_anderson-clint_cpo,Can you refrain from the use of profanity?
+_PROFANITY_,leadership_anderson-clint_cpo,"you might have heard about swearing like a sailor, but it might hurt your career."
+_PROMPT_,leadership_anderson-clint_cpo,anything else.
 _OFF_TOPIC_,leadership_anderson-clint_cpo,I don't have enough information to talk about that.
 _OFF_TOPIC_,leadership_anderson-clint_cpo,I do not have an answer for that.
 _OFF_TOPIC_,leadership_anderson-clint_cpo,"That's a great question. Unfortunately, I never recorded an answer for that."

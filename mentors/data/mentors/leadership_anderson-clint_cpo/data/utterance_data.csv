@@ -31,27 +31,55 @@ s001p007s00040857e00041156,I have no idea.,_OFF_TOPIC_
 s001p007s00042227e00042540,I don't think so.,_FEEDBACK_
 s001p007s00043904e00044250,here is something you should really know.,_PROMPT_
 s001p007s00050377e00050942,"That's a good question, but I want to make sure to tell you something.",_OFF_TOPIC_
-s001p014s00004863e00005447,I don't have enough information to talk about that.,_OFF_TOPIC_
-s001p014s00010587e00011020,I do not have an answer for that.,_OFF_TOPIC_
-s001p014s00012323e00012923,"That's a great question. Unfortunately, I never recorded an answer for that.",_OFF_TOPIC_
-s001p014s00014163e00014730,That's a great question. I wish I would have thought of that.,_OFF_TOPIC_
-s001p014s00020356e00020939,"That's a great question. Unfortunately, I do not have an answer right now.",_OFF_TOPIC_
-s001p014s00022188e00022606,"Unfortunately, I was never asked that question.",_OFF_TOPIC_
-s001p014s00023766e00024186,you might have to ask me something else.,_OFF_TOPIC_
-s001p014s00025250e00025573,What do you want to talk about?,_PROMPT_
-s001p014s00030835e00031136,What would you like to ask me?,_PROMPT_
-s001p014s00032860e00033143,What do you want to know?,_PROMPT_
-s001p014s00034063e00034404,What do you want to know about me?,_PROMPT_
-s001p014s00035533e00035868,What do you want to know about leadership?,_PROMPT_
-s001p014s00042693e00043102,you could ask about tips for your first month as a leader.,_PROMPT_
-s001p014s00044413e00044895,you could ask me about my go to leadership strategy.,_PROMPT_
-s001p014s00050148e00050638,you could ask about getting your life set up after a big move.,_PROMPT_
-s001p014s00052224e00052844,"you could ask me about serious problems like sexual harassment, suicide risk.",_PROMPT_
-s001p014s00054047e00054386,you could ask me about my job in the Navy.,_PROMPT_
-s001p014s00055425e00055800,you could ask me about my background.,_PROMPT_
-s001p014s00062177e00062733,"go ahead, asked me who gave me the best advice about my career.",_PROMPT_
-s001p014s00065588e00065848,I might have covered this already.,_REPEAT_
-s001p014s00080150e00081306,this change is pretty quickly. So what I tell you today might not be true. Tomorrow I suggest that you talk to someone local who might be able to give you more information.,_PROMPT_
-s001p014s00091628e00092315,"I did a lot of technical training in the Navy, so you can ask me about what skills I learned.",_PROMPT_
-s001p014s00095130e00095784,I haven't always made perfect decisions. You can ask me about any of the failures I've had.,_PROMPT_
-s001p019s00000817e00022800,"Well, my name is M C. Clint Anderson. Ian stands for electrician's mate. I've been the Navy for about 20 years in the Navy Reserve right now. Um, for the first six years of my naval career, I've been on lots of different tours. Aircraft care, USS John C. Stennis, start off with a nuclear power school. So, um, the first tour that I had was working in the nuclear engine room in the propulsion plants, fixing electrical lights, um, working with other people, trying toe repair pumps, repair valves, um, moving the throttles on this ship toe provide propulsion. I had a lot experience with that. Um, there's a lot of clean that went on, but for the most part, it was satisfactory tour that I spent in South Carolina in New York. Um, um, the most recent place was Washington. And after that, that initial six year tour actually extended for two more years to have a total of eight years, two years of school, six years on the ship, and then I actually got out. I didn't want to get out of the Navy. Um, completely actually started joining the Naval Reserve. And I've been in the Navy Reserve. Um, for the last 10 years, for that whole 10 years, I've actually been in school, working on and off. But for the most part, I, um I got to see a lot more of the world through the Navy reserves than I did ever on the ship. They take me toe all the all the different states. Washington, Hawaii, New York again. Norfolk, Virginia, San Diego. Um, yeah. Every single year, actually. Do something with the Navy for about this summer. We go and we we go to a shipyard and we repair some things or they give us some kind of training. Um, outside of the navy, I've been in school, I've been in, um, I've been going to USC, and I got my masters there for computer science. Before that, I was an undergrad at UC Berkeley, and currently I'm at the Naval Postgraduate School in Monterey, California. So for the last 20 years, I've had a a wide range of experiences from, you know, touring overseas. Um, the first time I joined the Navy was right after, um, 9 11 happened, So I was really involved with wars, and I got to see a lot of things that most people would never see. So I'd say that the Navy has been been pretty good, and I'm looking forward to my next tour.",_INTRO_
+s001p013s00002983e00003207,Hello.,_PROMPT_
+s001p013s00003860e00004210,it is nice to meet you.,_FEEDBACK_
+s001p013s00005030e00005393,I don't really have an opinion on that.,_OFF_TOPIC_
+s001p013s00010210e00010487,I hope so.,_FEEDBACK_
+s001p013s00011317e00011617,I'm sorry.,_FEEDBACK_
+s001p013s00012437e00012770,I'm sorry to hear that.,_FEEDBACK_
+s001p013s00013887e00014320,I see you did not answer anything there.,_PROMPT_
+s001p013s00015497e00020113,you've got to ask me something to get a response.,_PROMPT_
+s001p013s00020656e00020903,Thank you.,_FEEDBACK_
+s001p013s00021567e00021963,I understand that.,_FEEDBACK_
+s001p013s00022820e00023220,I went through something similar.,_FEEDBACK_
+s001p013s00024080e00024403,I am not sure.,_OFF_TOPIC_
+s001p013s00025283e00025797,I can't hear you.,_OFF_TOPIC_
+s001p013s00030447e00030917,I don't understand.,_OFF_TOPIC_
+s001p013s00031493e00031850,Can you repeat that?,_PROMPT_
+s001p013s00032697e00033080,I don't have an answer for that.,_OFF_TOPIC_
+s001p013s00033800e00034130,Can you ask me something else?,_PROMPT_
+s001p013s00035240e00035797,it would help if you can keep the questions short and simple.,_OFF_TOPIC_
+s001p013s00040573e00040997,Can you rephrase the question?,_OFF_TOPIC_
+s001p013s00044603e00045030,I cannot predict the future.,_FEEDBACK_
+s001p013s00045927e00050420,I do not want to speculate about the future.,_FEEDBACK_
+s001p013s00051190e00051643,I don't know what that is.,_OFF_TOPIC_
+s001p013s00052260e00052573,I don't know who that is.,_OFF_TOPIC_
+s001p013s00053253e00053710,I'm not going to talk about that.,_OFF_TOPIC_
+s001p013s00054323e00054670,I'm not here to talk about that.,_OFF_TOPIC_
+s001p013s00063010e00063456,Can you refrain from the use of profanity?,_PROFANITY_
+s001p013s00065233e00065883,"you might have heard about swearing like a sailor, but it might hurt your career.",_PROFANITY_
+s001p013s00072230e00072580,anything else.,_PROMPT_
+s001p017s00004863e00005447,I don't have enough information to talk about that.,_OFF_TOPIC_
+s001p017s00010587e00011020,I do not have an answer for that.,_OFF_TOPIC_
+s001p017s00012323e00012923,"That's a great question. Unfortunately, I never recorded an answer for that.",_OFF_TOPIC_
+s001p017s00014163e00014730,That's a great question. I wish I would have thought of that.,_OFF_TOPIC_
+s001p017s00020356e00020939,"That's a great question. Unfortunately, I do not have an answer right now.",_OFF_TOPIC_
+s001p017s00022188e00022606,"Unfortunately, I was never asked that question.",_OFF_TOPIC_
+s001p017s00023766e00024186,you might have to ask me something else.,_OFF_TOPIC_
+s001p017s00025250e00025573,What do you want to talk about?,_PROMPT_
+s001p017s00030835e00031136,What would you like to ask me?,_PROMPT_
+s001p017s00032860e00033143,What do you want to know?,_PROMPT_
+s001p017s00034063e00034404,What do you want to know about me?,_PROMPT_
+s001p017s00035533e00035868,What do you want to know about leadership?,_PROMPT_
+s001p017s00042693e00043102,you could ask about tips for your first month as a leader.,_PROMPT_
+s001p017s00044413e00044895,you could ask me about my go to leadership strategy.,_PROMPT_
+s001p017s00050148e00050638,you could ask about getting your life set up after a big move.,_PROMPT_
+s001p017s00052224e00052844,"you could ask me about serious problems like sexual harassment, suicide risk.",_PROMPT_
+s001p017s00054047e00054386,you could ask me about my job in the Navy.,_PROMPT_
+s001p017s00055425e00055800,you could ask me about my background.,_PROMPT_
+s001p017s00062177e00062733,"go ahead, asked me who gave me the best advice about my career.",_PROMPT_
+s001p017s00065588e00065848,I might have covered this already.,_REPEAT_
+s001p017s00080150e00081306,this change is pretty quickly. So what I tell you today might not be true. Tomorrow I suggest that you talk to someone local who might be able to give you more information.,_PROMPT_
+s001p017s00091628e00092315,"I did a lot of technical training in the Navy, so you can ask me about what skills I learned.",_PROMPT_
+s001p017s00095130e00095784,I haven't always made perfect decisions. You can ask me about any of the failures I've had.,_PROMPT_
+s001p022s00000817e00022800,"Well, my name is M C. Clint Anderson. Ian stands for electrician's mate. I've been the Navy for about 20 years in the Navy Reserve right now. Um, for the first six years of my naval career, I've been on lots of different tours. Aircraft care, USS John C. Stennis, start off with a nuclear power school. So, um, the first tour that I had was working in the nuclear engine room in the propulsion plants, fixing electrical lights, um, working with other people, trying toe repair pumps, repair valves, um, moving the throttles on this ship toe provide propulsion. I had a lot experience with that. Um, there's a lot of clean that went on, but for the most part, it was satisfactory tour that I spent in South Carolina in New York. Um, um, the most recent place was Washington. And after that, that initial six year tour actually extended for two more years to have a total of eight years, two years of school, six years on the ship, and then I actually got out. I didn't want to get out of the Navy. Um, completely actually started joining the Naval Reserve. And I've been in the Navy Reserve. Um, for the last 10 years, for that whole 10 years, I've actually been in school, working on and off. But for the most part, I, um I got to see a lot more of the world through the Navy reserves than I did ever on the ship. They take me toe all the all the different states. Washington, Hawaii, New York again. Norfolk, Virginia, San Diego. Um, yeah. Every single year, actually. Do something with the Navy for about this summer. We go and we we go to a shipyard and we repair some things or they give us some kind of training. Um, outside of the navy, I've been in school, I've been in, um, I've been going to USC, and I got my masters there for computer science. Before that, I was an undergrad at UC Berkeley, and currently I'm at the Naval Postgraduate School in Monterey, California. So for the last 20 years, I've had a a wide range of experiences from, you know, touring overseas. Um, the first time I joined the Navy was right after, um, 9 11 happened, So I was really involved with wars, and I got to see a lot of things that most people would never see. So I'd say that the Navy has been been pretty good, and I'm looking forward to my next tour.",_INTRO_
