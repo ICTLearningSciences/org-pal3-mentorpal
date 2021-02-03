@@ -1,0 +1,79 @@
+ID,utterance,situation
+s001p001s00003153e00003347,yes.,_FEEDBACK_
+s001p001s00003700e00003923,"Yes, sir.",_FEEDBACK_
+s001p001s00004283e00004440,"Yes, ma'am.",_FEEDBACK_
+s001p001s00004793e00005030,excuse me.,_OFF_TOPIC_
+s001p001s00005423e00005643,How are you?,_PROMPT_
+s001p001s00010077e00010283,Good morning.,_PROMPT_
+s001p001s00010687e00010937,good afternoon.,_PROMPT_
+s001p001s00011273e00011497,good evening.,_PROMPT_
+s001p001s00011867e00012080,good night.,_PROMPT_
+s001p001s00012560e00012830,I may have said this before.,_REPEAT_
+s001p001s00013156e00013353,no.,_FEEDBACK_
+s001p001s00013713e00013920,maybe.,_FEEDBACK_
+s001p001s00014187e00014640,perhaps.,_FEEDBACK_
+s001p001s00014807e00015027,of course.,_FEEDBACK_
+s001p001s00015530e00015756,always.,_FEEDBACK_
+s001p001s00020047e00020330,sometimes.,_FEEDBACK_
+s001p001s00020803e00021017,never,_FEEDBACK_
+s001p001s00021477e00021707,often.,_FEEDBACK_
+s001p001s00022117e00022350,I do.,_FEEDBACK_
+s001p001s00022673e00022917,I don't.,_FEEDBACK_
+s001p001s00023303e00023567,I have no idea.,_OFF_TOPIC_
+s001p001s00024043e00024337,I don't think so.,_FEEDBACK_
+s001p001s00024713e00025127,here is something you should really know.,_PROMPT_
+s001p001s00025490e00030040,"That's a good question, but I want to tell you something.",_OFF_TOPIC_
+s001p004s00002773e00015773,,_IDLE_
+s001p007s00002047e00002587,I don't have enough information to talk about that.,_OFF_TOPIC_
+s001p007s00003113e00003470,I don't have an answer for that.,_OFF_TOPIC_
+s001p007s00004503e00005300,"That is a great question. Unfortunately, I have not recorded the answer for that.",_OFF_TOPIC_
+s001p007s00010170e00010660,That is a great question. I wish I had thought of that.,_OFF_TOPIC_
+s001p007s00011630e00012290,"That is a great question, but unfortunately, I don't have an answer right now.",_OFF_TOPIC_
+s001p007s00013163e00013610,"Unfortunately, I was never asked that question.",_OFF_TOPIC_
+s001p007s00014353e00014710,you may have to ask me something else.,_OFF_TOPIC_
+s001p007s00015424e00015770,What do you want to talk about?,_PROMPT_
+s001p007s00020400e00020747,What would you like to ask me?,_PROMPT_
+s001p007s00021327e00021617,What do you want to know?,_PROMPT_
+s001p007s00022307e00022620,What do you want to know about me?,_PROMPT_
+s001p007s00023387e00023760,What do you want to know about leadership?,_PROMPT_
+s001p007s00025617e00030060,you can ask me about your first month as a leader.,_PROMPT_
+s001p007s00030797e00031270,you can ask me about my go to leadership strategy.,_PROMPT_
+s001p007s00033867e00034477,you can ask me how to get your life set up after a big move.,_PROMPT_
+s001p007s00035430e00040200,you can ask me about serious problems like sexual harassment or suicide.,_PROMPT_
+s001p007s00040920e00041303,you could ask me about my job in the Navy.,_PROMPT_
+s001p007s00042037e00042373,you can ask me about my background.,_PROMPT_
+s001p007s00043210e00043800,Go ahead. Ask me about who gave me the best advice about my career.,_PROMPT_
+s001p007s00044370e00044763,I might have covered this already.,_REPEAT_
+s001p007s00055820e00061007,this change is pretty quickly. So what I tell you today may change tomorrow. I recommend that you speak to someone locally.,_PROMPT_
+s001p007s00073390e00074110,"I've did a lot of professional training in the Navy, so you can ask me about the skills that I've learned.",_PROMPT_
+s001p007s00075033e00075787,"I haven't always make perfect decisions, so you can ask me about the failures that I've had.",_PROMPT_
+s001p010s00000950e00010847,"Hello. My name is Senior Chief Celery Twitty. I've been in the Navy for 19 years. I am the senior listed leader here in San Jose, California I work at the Naval Operational Support Center. My job consists of taking care of sailors. That's what I like to do. I started out in Akron, Ohio, as a reservist, and I did the reserve time for two years. It was around 9 11, and I actually went active duty after that. I spent some time in Akron, Ohio, from their Ingleside, Texas. Uh, Jacksonville, Florida. Great Lakes. Illinois is back to boot camp, the Bureau of Medicine Surgery in Falls Church. And now I'm here in California. I am a single mother of six Children, five boys and one girl, and I have one granddaughter.",_INTRO_
+s001p011s00000493e00023720,"Hello. My name is Senior Chief Celery Twitty. I've been in the Navy for 19 years. I'm actually stationed at Naval Operational Support Center, San Jose in California. My job here is to help sailors, something I've always loved to do. I have six Children, five boys and one girl and a granddaughter. I came in the Navy in Akron, Ohio, As a reservist. I did two years of reserve time after I did my reserve time. It was your 9 11. I went to boot camp in October. In boot camp. I did everything I was supposed to do. Graduated and from there on, I came back home and they re called me the active duty because of 9 11. What that mean was I was at the reserve center taking care of sailors ordering different supplies for them. I realized I want to do something different. So I went after duty, full time support. After coming on as an active duty sailor, I went to a ship in Ingleside, Texas. I was on the ship for three years. As a culinary specialist, I realized I wanted to change my rate to something different as well. So that's one of my commanding officer told me. He said, If you pass on your inspections outside, off on you, to change your rate took hospital Cormack. And that's exactly what I did from hospital. From from leaving the ship, I went directly to hospital course school. That's where I was the second class and hospital course school. I left there and went to our D. C. I went to Great Lakes, one of my favorite jobs being in our d. C. I went there like I said in the beginning, as a second class from there, I made first very quickly, and I left Great Lakes as a chief, which is one of the greatest milestones in my life. I am now here at Naval Operational Support Center here in San Jose, California and I am the senior enlisted leader. I spent a lot of time taking care of sailors taking care of my commanding officer and my excel",_BIO_LONG_
+s001p016s00040640e00040970,Hello.,_PROMPT_
+s001p016s00041256e00041603,it's nice to meet you.,_FEEDBACK_
+s001p016s00042173e00042603,I don't really have an opinion on that.,_OFF_TOPIC_
+s001p016s00043090e00043510,I hope so.,_FEEDBACK_
+s001p016s00043927e00044223,I'm sorry.,_FEEDBACK_
+s001p016s00044840e00045183,I'm sorry to hear that.,_FEEDBACK_
+s001p016s00050093e00050456,I see you didn't ask anything there.,_PROMPT_
+s001p016s00053173e00053717,you have to ask me something to get a response.,_PROMPT_
+s001p016s00054170e00054467,Thank you.,_FEEDBACK_
+s001p016s00054970e00055507,I understand that.,_FEEDBACK_
+s001p016s00060093e00060617,I went through something similar. Yeah.,_FEEDBACK_
+s001p016s00061156e00061437,I'm not sure.,_OFF_TOPIC_
+s001p016s00062493e00062787,I can't hear you.,_OFF_TOPIC_
+s001p016s00063510e00063850,I don't understand.,_OFF_TOPIC_
+s001p016s00064690e00065193,"Can you repeat that, please?",_PROMPT_
+s001p016s00065953e00070380,I don't have an answer for that. This happened.,_OFF_TOPIC_
+s001p016s00071273e00071700,Can you ask me something else?,_PROMPT_
+s001p016s00072537e00073187,you know it really help if you could keep the question short and simple.,_OFF_TOPIC_
+s001p016s00073980e00074420,"Can you rephrase the question, please?",_OFF_TOPIC_
+s001p016s00075700e00080173,e cannot predict the future.,_FEEDBACK_
+s001p016s00081183e00081640,I did not want to speculate about the future.,_FEEDBACK_
+s001p016s00082460e00082710,I don't know what that is.,_OFF_TOPIC_
+s001p016s00083553e00084056,I don't know who that is.,_OFF_TOPIC_
+s001p016s00084807e00085177,I'm not going to talk about that.,_OFF_TOPIC_
+s001p016s00085923e00090433,"Unfortunately, I'm not here to talk about that.",_OFF_TOPIC_
+s001p016s00092660e00093377,could you please? Referring from the use of profanity. Would you talk to your mother like that?,_PROFANITY_
+s001p016s00101740e00102663,"you might have heard the sayings swearing like a sailor, but it will actually hurt your career.",_PROFANITY_
+s001p016s00103053e00103380,anything else.,_PROMPT_
