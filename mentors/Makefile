@@ -2,7 +2,7 @@
 PWD=$(shell pwd)
 AWS_ACCESS_KEY_ID?=required_if_using_aws_transcribe
 AWS_SECRET_ACCESS_KEY?=required_if_using_aws_transcribe
-DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.5.0
+DOCKER_IMAGE?=uscictdocker/mentor-pipeline:1.5.1
 DOCKER_CONTAINER=mentor-pipeline
 PROJECT_ROOT?=$(shell git rev-parse --show-toplevel 2> /dev/null)
 AWS_REGION?=us-east-1
@@ -130,6 +130,16 @@ data/topics_by_question.csv/mentors-%:
 			--name $(DOCKER_CONTAINER) \
 			-v $(PWD)/data:/app/mounts/data \
 			$(DOCKER_IMAGE) topics-by-question-generate --mentor $* --data=/app/mounts/data/mentors
+
+
+# update just topics and paraphrases
+.PHONY: topics-update/mentor-%
+topics/mentor-%:
+	docker run \
+			--rm \
+			--name $(DOCKER_CONTAINER) \
+			$(DOCKER_ARGS) \
+			$(DOCKER_IMAGE) topics-and-paraphrases-update --mentor $* --data=/app/mounts/data/mentors $(args)
 
 
 .PHONY: videos/mentor-%
