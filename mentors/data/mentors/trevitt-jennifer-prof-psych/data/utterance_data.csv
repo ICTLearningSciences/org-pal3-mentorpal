@@ -1,7 +1,7 @@
 ID,utterance,situation
-s001p002s00001710e00014297,"My name is Dr Jennifer Trav It I'm an associate professor in the psychology department at California State University, Fullerton. I did my undergrad at Fullerton, so I'm actually an alum. I did my PhD at the University of Connecticut, so I lived in Connecticut for about four years, and then I came back to California and worked at U. C. I. And then I started teaching at Cal State Fullerton. I study the effects of nutrition on anxiety, depression and learning, and the courses that I teach our bio psychology, which has a lecture component and a lab component. I also teach psychopharmacology, which is the study of how drugs affect the brain. And I also teach intermediate research methods and statistics. And I love all of these classes. I have three Children and I'm married. My Children are 15 years old. I actually have triplets. They were born the year after I started teaching at Cal State Fullerton. So I've pretty much been a full time parent the whole time that I've been a full time professor and I really love my job.",_BIO_LONG_
+s001p002s00001710e00014297,"My name is Dr Jennifer Trevitt I'm an associate professor in the psychology department at California State University, Fullerton. I did my undergrad at Fullerton, so I'm actually an alum. I did my PhD at the University of Connecticut, so I lived in Connecticut for about four years, and then I came back to California and worked at U. C. I. And then I started teaching at Cal State Fullerton. I study the effects of nutrition on anxiety, depression and learning, and the courses that I teach our bio psychology, which has a lecture component and a lab component. I also teach psychopharmacology, which is the study of how drugs affect the brain. And I also teach intermediate research methods and statistics. And I love all of these classes. I have three Children and I'm married. My Children are 15 years old. I actually have triplets. They were born the year after I started teaching at Cal State Fullerton. So I've pretty much been a full time parent the whole time that I've been a full time professor and I really love my job.",_BIO_LONG_
 s001p006s00001400e00014400,,_IDLE_
-s001p007s00000877e00002407,"My name is Dr Jennifer Trev. It and I'm an associate professor in the psychology department at California State University, Fullerton. My research focuses on the effects of nutrition on depression, anxiety and learning.",_INTRO_
+s001p007s00000877e00002407,"My name is Dr Jennifer Trevitt and I'm an associate professor in the psychology department at California State University, Fullerton. My research focuses on the effects of nutrition on depression, anxiety and learning.",_INTRO_
 s001p012s00001036e00001323,Hello.,_PROMPT_
 s001p012s00001756e00002189,it's nice to meet you.,_FEEDBACK_
 s001p012s00002616e00002814,go ahead.,_PROMPT_
@@ -24,7 +24,7 @@ s001p012s00024154e00024432,always.,_FEEDBACK_
 s001p012s00024775e00025000,sometimes.,_FEEDBACK_
 s001p012s00025318e00025543,never,_FEEDBACK_
 s001p012s00025928e00030093,often.,_FEEDBACK_
-s001p012s00030489e00030713,I dio.,_FEEDBACK_
+s001p012s00030489e00030713,I do.,_FEEDBACK_
 s001p012s00031113e00031343,I don't.,_FEEDBACK_
 s001p012s00031819e00032098,I have no idea.,_OFF_TOPIC_
 s001p012s00032556e00032935,I don't think so.,_FEEDBACK_
